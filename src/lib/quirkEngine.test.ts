@@ -8,6 +8,7 @@ describe('applyFilters', () => {
   it('returns only quirks that match selected type and range', () => {
     const result = applyFilters(quirks, {
       origins: [],
+      tiers: [],
       types: ['Transformation'],
       ranges: ['Self'],
       facets: [],
@@ -22,6 +23,7 @@ describe('applyFilters', () => {
   it('requires all selected facets to be present', () => {
     const result = applyFilters(quirks, {
       origins: [],
+      tiers: [],
       types: [],
       ranges: [],
       facets: ['Mobility', 'Support'],
@@ -40,6 +42,7 @@ describe('applyFilters', () => {
   it('supports case-insensitive query search', () => {
     const result = applyFilters(quirks, {
       origins: [],
+      tiers: [],
       types: [],
       ranges: [],
       facets: [],

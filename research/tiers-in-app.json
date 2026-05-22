@@ -1,0 +1,29 @@
+{
+  "description": "Tiers das 24 individualidades já no app (piloto da rubrica)",
+  "quirks": [
+    { "id": "decay", "tier": "S", "rationale": "Despertada: negação de terreno e dano em cadeia em escala urbana." },
+    { "id": "rewind", "tier": "S", "rationale": "Reversão/apagamento biológico; teto narrativo extremo com treino." },
+    { "id": "eraser", "tier": "S", "rationale": "Erasure: hard counter meta contra Quirks dependentes." },
+    { "id": "permeation", "tier": "S", "rationale": "Intangibilidade dominante + ofensiva quando dominada." },
+    { "id": "hellflame", "tier": "A", "rationale": "Poder de Endeavor; dano elemental de elite." },
+    { "id": "blackwhip", "tier": "A", "rationale": "Controle, mobilidade e captura em alto nível." },
+    { "id": "brainwashing", "tier": "A", "rationale": "Controle mental condicional mas decisivo em combate." },
+    { "id": "creation", "tier": "A", "rationale": "Construção versátil limitada por conhecimento, não por teto bruto." },
+    { "id": "dark-shadow", "tier": "A", "rationale": "Entidade autônoma com pico alto (sombra/raiva)." },
+    { "id": "electrification", "tier": "A", "rationale": "Área elétrica consistente em confrontos." },
+    { "id": "fiber-master", "tier": "A", "rationale": "Controle têxtil de longo alcance, herói pro." },
+    { "id": "fierce-wings", "tier": "A", "rationale": "Mobilidade e combate aéreo de nível Hawks." },
+    { "id": "frog", "tier": "A", "rationale": "Kit versátil (mobilidade, captura, suporte)." },
+    { "id": "rabbit", "tier": "A", "rationale": "Aprimoramento físico de Mirko / top tier." },
+    { "id": "zero-gravity", "tier": "A", "rationale": "Controle gravitacional decisivo com experiência." },
+    { "id": "air-cannon", "tier": "B", "rationale": "Pressão direcional forte, não meta." },
+    { "id": "engine", "tier": "B", "rationale": "Mobilidade excelente com custo/recarga corporal." },
+    { "id": "foldabody", "tier": "B", "rationale": "Mobilidade/defesa sólida, teto ofensivo médio." },
+    { "id": "hardening", "tier": "B", "rationale": "Defesa/ofensa corpo a corpo confiável." },
+    { "id": "manifest", "tier": "B", "rationale": "Adaptação corporal forte com limites claros." },
+    { "id": "mind-reading", "tier": "B", "rationale": "Intel de contato; pouco dano direto." },
+    { "id": "tape", "tier": "B", "rationale": "Controle e mobilidade boa, não elite nacional." },
+    { "id": "pop-off", "tier": "C", "rationale": "Armadilhas e adesão; teto de combate direto baixo." },
+    { "id": "sugar-rush", "tier": "C", "rationale": "Boost com crash; nicho e custo alto." }
+  ]
+}

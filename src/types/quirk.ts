@@ -14,6 +14,9 @@ export const QUIRK_RANGES = [
 ] as const
 export type QuirkRange = (typeof QUIRK_RANGES)[number]
 
+export const QUIRK_TIERS = ['S', 'A', 'B', 'C'] as const
+export type QuirkTier = (typeof QUIRK_TIERS)[number]
+
 export const QUIRK_FACETS = [
   'Elemental',
   'Psychic',
@@ -42,6 +45,7 @@ export interface QuirkCopy {
 export interface QuirkBase {
   id: QuirkId
   origin: QuirkOrigin
+  tier: QuirkTier
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
@@ -51,6 +55,7 @@ export type Quirk = QuirkBase & QuirkCopy
 
 export interface QuirkFilters {
   origins: QuirkOrigin[]
+  tiers: QuirkTier[]
   types: QuirkType[]
   ranges: QuirkRange[]
   facets: QuirkFacet[]
@@ -59,6 +64,7 @@ export interface QuirkFilters {
 
 export const DEFAULT_QUIRK_FILTERS: QuirkFilters = {
   origins: [],
+  tiers: [],
   types: [],
   ranges: [],
   facets: [],

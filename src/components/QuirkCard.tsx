@@ -2,22 +2,22 @@ import { useMemo, useState } from 'react'
 import { resolveQuirk } from '../i18n/quirks'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
-import type { Quirk, QuirkType } from '../types/quirk'
+import { QUIRK_TIERS, type Quirk, type QuirkType } from '../types/quirk'
 
-function typeToneClass(type: QuirkType): string {
+function typeThemeClass(type: QuirkType): string {
   switch (type) {
     case 'Emitter':
-      return 'quirk-meta-type-emitter'
+      return 'quirk-card-type-emitter'
     case 'Transformation':
-      return 'quirk-meta-type-transformation'
+      return 'quirk-card-type-transformation'
     case 'Mutant':
-      return 'quirk-meta-type-mutant'
+      return 'quirk-card-type-mutant'
   }
 }
 
 interface QuirkCardProps {
   quirk: Quirk
-  slotLabel?: 'A' | 'B'
+  slotLabel?: '1' | '2'
 }
 
 export function QuirkCard({ quirk, slotLabel }: QuirkCardProps) {
@@ -26,20 +26,38 @@ export function QuirkCard({ quirk, slotLabel }: QuirkCardProps) {
   const resolved = useMemo(() => resolveQuirk(quirk, locale), [quirk, locale])
   const [detailsOpen, setDetailsOpen] = useState(false)
 
+  const themeClass = typeThemeClass(quirk.type)
+  const slotClass = slotLabel ? `quirk-card-slot-${slotLabel.toLowerCase()}` : ''
+
   return (
-    <article className={`quirk-card ${slotLabel ? `quirk-card-slot-${slotLabel.toLowerCase()}` : ''}`}>
+    <article className={`quirk-card ${themeClass} ${slotClass}`.trim()}>
+      <div className="quirk-card-glow" aria-hidden="true" />
       {slotLabel ? (
         <span className={`quirk-slot-badge quirk-slot-badge-${slotLabel.toLowerCase()}`}>
           {slotLabel}
         </span>
       ) : null}
       <p className="quirk-meta">
-        <span className={`quirk-meta-type ${typeToneClass(quirk.type)}`}>
-          {meta.type(quirk.type)}
-        </span>{' '}
-        ·{' '}
+        <span
+          className="quirk-tier-scale"
+          role="group"
+          aria-label={meta.tier(quirk.tier)}
+        >
+          {QUIRK_TIERS.map((tier) => (
+            <span
+              key={tier}
+              className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
+              aria-current={tier === quirk.tier ? 'true' : undefined}
+            >
+              {tier}
+            </span>
+          ))}
+        </span>
+        <span className="quirk-meta-sep" aria-hidden="true" />
+        <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
+        <span className="quirk-meta-sep" aria-hidden="true" />
         <span className="quirk-meta-range">
-          <span className="quirk-meta-label">{t('advanced.range')}:</span>{' '}
+          <span className="quirk-meta-range-icon" aria-hidden="true" />
           {meta.range(quirk.range)}
         </span>
       </p>

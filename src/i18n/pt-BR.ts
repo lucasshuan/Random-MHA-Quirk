@@ -55,6 +55,14 @@ export const ptBR: Messages = {
     mutant: 'Mutante',
     mutantHint: 'Traços físicos permanentes, sempre presentes.',
   },
+  tier: {
+    mark: 'Tier',
+    pick: 'Escolha os tiers',
+    first: 'Tiers da primeira individualidade',
+    second: 'Tiers da segunda individualidade',
+    individualLabel: 'Tiers individuais',
+    advance: 'Avançar',
+  },
   advanced: {
     mark: 'Filtros avançados',
     title: 'Ajuste a seleção',
@@ -76,8 +84,8 @@ export const ptBR: Messages = {
     rolling: 'Sorteando sua individualidade...',
     title: 'Seu resultado',
     empty: 'Nenhum resultado encontrado.',
-    prefixA: 'A',
-    prefixB: 'B',
+    slot1: '1',
+    slot2: '2',
     showDetails: 'Mostrar detalhes',
     hideDetails: 'Ocultar detalhes',
   },
@@ -86,6 +94,12 @@ export const ptBR: Messages = {
       BNHA: 'BNHA',
       BNHA_SPINOFF: 'Spin-off do BNHA',
       ORIGINAL: 'Original',
+    },
+    tier: {
+      S: 'Nível S',
+      A: 'Nível A',
+      B: 'Nível B',
+      C: 'Nível C',
     },
     type: {
       Emitter: 'Emissor',

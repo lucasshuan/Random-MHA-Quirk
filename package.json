@@ -8,7 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "research:wiki-index": "node scripts/sync-wiki-index.mjs",
+    "research:fetch-wiki": "node scripts/fetch-wiki-sources.mjs",
+    "research:build-catalog": "node scripts/build-quirk-catalog.mjs",
+    "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs"
   },
   "dependencies": {
     "country-flag-icons": "^1.6.17",

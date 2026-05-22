@@ -48,6 +48,14 @@ export const en = {
     mutant: 'Mutant',
     mutantHint: 'Permanent physical traits that are always present.',
   },
+  tier: {
+    mark: 'Tier',
+    pick: 'Choose tiers',
+    first: 'Tiers for the first quirk',
+    second: 'Tiers for the second quirk',
+    individualLabel: 'Individual tiers',
+    advance: 'Continue',
+  },
   advanced: {
     mark: 'Advanced',
     title: 'Tune the pool',
@@ -69,8 +77,8 @@ export const en = {
     rolling: 'Drawing your quirk...',
     title: 'Your result',
     empty: 'No result found.',
-    prefixA: 'A',
-    prefixB: 'B',
+    slot1: '1',
+    slot2: '2',
     showDetails: 'Show details',
     hideDetails: 'Hide details',
   },
@@ -79,6 +87,12 @@ export const en = {
       BNHA: 'BNHA',
       BNHA_SPINOFF: 'BNHA spin-off',
       ORIGINAL: 'Original',
+    },
+    tier: {
+      S: 'S-tier',
+      A: 'A-tier',
+      B: 'B-tier',
+      C: 'C-tier',
     },
     type: {
       Emitter: 'Emitter',

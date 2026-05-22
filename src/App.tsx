@@ -8,8 +8,10 @@ import { BrandMark } from './components/wizard/BrandMark'
 import { StepFinalResult } from './components/wizard/StepFinalResult'
 import { StepModeChoice } from './components/wizard/StepModeChoice'
 import { StepRandomRoll } from './components/wizard/StepRandomRoll'
+import { StepTierChoice } from './components/wizard/StepTierChoice'
 import { StepTypeChoice } from './components/wizard/StepTypeChoice'
 import { getQuirks } from './i18n/quirks'
+import { ALL_QUIRK_TIERS } from './lib/tierPresets'
 import {
   applyFilters,
   pickHybridPair,
@@ -23,14 +25,28 @@ import {
   type SimpleTypeChoice,
   type WizardStep,
 } from './lib/wizardFlow'
-import { DEFAULT_QUIRK_FILTERS, type Quirk, type QuirkFilters } from './types/quirk'
+import {
+  DEFAULT_QUIRK_FILTERS,
+  type Quirk,
+  type QuirkFilters,
+  type QuirkTier,
+} from './types/quirk'
 
 type RollResult = Quirk | [Quirk, Quirk] | null
+type PickPhase = 'type' | 'tier'
 
-function filtersForType(type: SimpleTypeChoice): QuirkFilters {
+function defaultFilters(): QuirkFilters {
+  return { ...DEFAULT_QUIRK_FILTERS }
+}
+
+function filtersForTypeAndTiers(
+  type: SimpleTypeChoice,
+  tiers: QuirkTier[],
+): QuirkFilters {
   return {
     ...DEFAULT_QUIRK_FILTERS,
     types: type === 'Any' ? [] : [type],
+    tiers,
   }
 }
 
@@ -38,13 +54,21 @@ function App() {
   const { locale, t } = useI18n()
   const [currentStep, setCurrentStep] = useState<WizardStep>('start')
   const [mode, setMode] = useState<ResultMode>('single')
-  const [filters, setFilters] = useState(DEFAULT_QUIRK_FILTERS)
+  const [filters, setFilters] = useState(defaultFilters)
   const [result, setResult] = useState<RollResult>(null)
   const [resultBackStep, setResultBackStep] = useState<WizardStep>('type')
+  const [pickPhase, setPickPhase] = useState<PickPhase>('type')
+  const [pendingType, setPendingType] = useState<SimpleTypeChoice | null>(null)
+  const [selectedTiers, setSelectedTiers] = useState<QuirkTier[]>([...ALL_QUIRK_TIERS])
+  const [tierSlideDirection, setTierSlideDirection] = useState<'forward' | 'back'>('forward')
   const [hybridTypeStep, setHybridTypeStep] = useState<0 | 1>(0)
   const [hybridTypes, setHybridTypes] = useState<[SimpleTypeChoice | null, SimpleTypeChoice | null]>(
     [null, null],
   )
+  const [hybridSlotFilters, setHybridSlotFilters] = useState<[QuirkFilters, QuirkFilters]>([
+    defaultFilters(),
+    defaultFilters(),
+  ])
   const [hybridReachedSecondType, setHybridReachedSecondType] = useState(false)
 
   const allQuirks = useMemo(() => getQuirks(locale), [locale])
@@ -59,22 +83,21 @@ function App() {
     [allQuirks, filters, searchableText],
   )
 
-  function mergeTypeWithFilters(type: SimpleTypeChoice, userFilters: QuirkFilters): QuirkFilters {
-    const typeFilters = filtersForType(type)
-    return {
-      ...userFilters,
-      types: typeFilters.types.length > 0 ? typeFilters.types : userFilters.types,
-    }
+  function resetPickFlow() {
+    setPickPhase('type')
+    setPendingType(null)
+    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setTierSlideDirection('forward')
+    setHybridTypeStep(0)
+    setHybridTypes([null, null])
+    setHybridSlotFilters([defaultFilters(), defaultFilters()])
+    setHybridReachedSecondType(false)
   }
 
   function rollFromCurrentSettings() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
-      const poolA = applyFilters(allQuirks, mergeTypeWithFilters(hybridTypes[0], filters), {
-        searchableText,
-      })
-      const poolB = applyFilters(allQuirks, mergeTypeWithFilters(hybridTypes[1], filters), {
-        searchableText,
-      })
+      const poolA = applyFilters(allQuirks, hybridSlotFilters[0], { searchableText })
+      const poolB = applyFilters(allQuirks, hybridSlotFilters[1], { searchableText })
       setResult(pickHybridPair(poolA, poolB))
       return
     }
@@ -88,12 +111,52 @@ function App() {
     setCurrentStep('result')
   }
 
+  function goToTierStep(type: SimpleTypeChoice) {
+    setPendingType(type)
+    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setTierSlideDirection('forward')
+    setPickPhase('tier')
+  }
+
+  function finishTierStep(tiers: QuirkTier[]) {
+    const type = pendingType ?? 'Any'
+    const slotFilters = filtersForTypeAndTiers(type, tiers)
+
+    if (mode === 'hybrid') {
+      if (hybridTypeStep === 0) {
+        setHybridTypes([type, null])
+        setHybridSlotFilters([slotFilters, hybridSlotFilters[1]])
+        setHybridTypeStep(1)
+        setHybridReachedSecondType(true)
+        setPendingType(null)
+        setPickPhase('type')
+        return
+      }
+
+      const firstType = hybridTypes[0] ?? 'Any'
+      const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
+      setHybridTypes([firstType, type])
+      setHybridSlotFilters(finalFilters)
+
+      const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
+      const poolB = applyFilters(allQuirks, finalFilters[1], { searchableText })
+      setResult(pickHybridPair(poolA, poolB))
+      setResultBackStep('type')
+      setCurrentStep('result')
+      return
+    }
+
+    setFilters(slotFilters)
+    const nextPool = applyFilters(allQuirks, slotFilters, { searchableText })
+    setResult(pickRandom(nextPool))
+    setResultBackStep('type')
+    setCurrentStep('result')
+  }
+
   function handleModeChoice(choice: ModeChoice) {
     setResult(null)
-    setHybridTypeStep(0)
-    setHybridTypes([null, null])
-    setHybridReachedSecondType(false)
-    setFilters(DEFAULT_QUIRK_FILTERS)
+    resetPickFlow()
+    setFilters(defaultFilters())
 
     if (choice === 'random') {
       setCurrentStep('randomRoll')
@@ -107,70 +170,59 @@ function App() {
 
   function handleRandomRollComplete(outcome: ResultMode) {
     setMode(outcome)
-    setHybridTypeStep(0)
-    setHybridTypes([null, null])
-    setHybridReachedSecondType(false)
+    resetPickFlow()
+    setFilters(defaultFilters())
     setCurrentStep('type')
   }
 
   function handleTypeChoice(type: SimpleTypeChoice) {
-    if (mode === 'hybrid') {
-      if (hybridTypeStep === 0) {
-        setHybridTypes([type, null])
-        setHybridTypeStep(1)
-        setHybridReachedSecondType(true)
-        return
-      }
+    goToTierStep(type)
+  }
 
-      const firstType = hybridTypes[0] ?? 'Any'
-      const poolA = applyFilters(allQuirks, mergeTypeWithFilters(firstType, filters), {
-        searchableText,
-      })
-      const poolB = applyFilters(allQuirks, mergeTypeWithFilters(type, filters), {
-        searchableText,
-      })
-      setHybridTypes([firstType, type])
-      setResult(pickHybridPair(poolA, poolB))
-      setResultBackStep('type')
-      setCurrentStep('result')
-      return
-    }
-
-    const nextFilters = filtersForType(type)
-    const nextPool = applyFilters(allQuirks, nextFilters)
-    setFilters(nextFilters)
-    setResult(pickRandom(nextPool))
-    setResultBackStep('type')
-    setCurrentStep('result')
+  function handleTierAdvance() {
+    finishTierStep(selectedTiers)
   }
 
   function handleRestart() {
     setCurrentStep('start')
     setMode('single')
-    setFilters(DEFAULT_QUIRK_FILTERS)
+    setFilters(defaultFilters())
     setResult(null)
     setResultBackStep('type')
-    setHybridTypeStep(0)
-    setHybridTypes([null, null])
-    setHybridReachedSecondType(false)
+    resetPickFlow()
   }
 
   function handleBack() {
     if (currentStep === 'advanced') {
+      setPickPhase(pendingType ? 'tier' : 'type')
+      setTierSlideDirection('back')
       setCurrentStep('type')
       return
     }
 
-    if (currentStep === 'type' && mode === 'hybrid' && hybridTypeStep === 1) {
+    if (currentStep === 'type' && pickPhase === 'tier') {
+      setPickPhase('type')
+      setTierSlideDirection('back')
+      setPendingType(null)
+      return
+    }
+
+    if (currentStep === 'type' && pickPhase === 'type' && mode === 'hybrid' && hybridTypeStep === 1) {
       setHybridTypeStep(0)
       setHybridTypes([hybridTypes[0], null])
+      setPendingType(hybridTypes[0])
+      setSelectedTiers(
+        hybridSlotFilters[0].tiers.length > 0
+          ? [...hybridSlotFilters[0].tiers]
+          : [...ALL_QUIRK_TIERS],
+      )
+      setPickPhase('tier')
+      setTierSlideDirection('back')
       return
     }
 
     if (currentStep === 'type') {
-      setHybridTypeStep(0)
-      setHybridTypes([null, null])
-      setHybridReachedSecondType(false)
+      resetPickFlow()
       setCurrentStep('mode')
       return
     }
@@ -179,7 +231,7 @@ function App() {
   }
 
   function handleResetFilters() {
-    setFilters(DEFAULT_QUIRK_FILTERS)
+    setFilters(defaultFilters())
   }
 
   function renderStep() {
@@ -204,6 +256,19 @@ function App() {
     }
 
     if (currentStep === 'type') {
+      if (pickPhase === 'tier') {
+        return (
+          <StepTierChoice
+            mode={mode}
+            hybridStep={hybridTypeStep}
+            slideDirection={tierSlideDirection}
+            selectedTiers={selectedTiers}
+            onSelectedTiersChange={setSelectedTiers}
+            onAdvance={handleTierAdvance}
+          />
+        )
+      }
+
       return (
         <StepTypeChoice
           mode={mode}

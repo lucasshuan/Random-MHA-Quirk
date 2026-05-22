@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-05-22T02:40:35.143Z",
+  "total": 338,
+  "byOrigin": {
+    "BNHA": 278,
+    "BNHA_SPINOFF": 60
+  },
+  "byType": {
+    "Emitter": 199,
+    "Transformation": 68,
+    "Mutant": 71
+  }
+}

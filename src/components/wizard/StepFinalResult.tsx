@@ -98,9 +98,9 @@ function ResultReveal({
 
       {Array.isArray(result) ? (
         <div className="fusion-result result-cards-reveal">
-          <QuirkCard quirk={result[0]} slotLabel="A" />
+          <QuirkCard quirk={result[0]} slotLabel="1" />
           <div className="fusion-plus fusion-plus-reveal">+</div>
-          <QuirkCard quirk={result[1]} slotLabel="B" />
+          <QuirkCard quirk={result[1]} slotLabel="2" />
         </div>
       ) : result ? (
         <div className="result-cards-reveal">

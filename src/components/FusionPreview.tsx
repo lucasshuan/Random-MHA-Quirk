@@ -11,8 +11,8 @@ export function FusionPreview({ pair }: FusionPreviewProps) {
       <h2>Fusion Inputs</h2>
       {pair ? (
         <div className="fusion-grid">
-          <QuirkCard quirk={pair[0]} slotLabel="A" />
-          <QuirkCard quirk={pair[1]} slotLabel="B" />
+          <QuirkCard quirk={pair[0]} slotLabel="1" />
+          <QuirkCard quirk={pair[1]} slotLabel="2" />
         </div>
       ) : (
         <p>Choose or roll two quirks to preview a possible fusion input pair.</p>

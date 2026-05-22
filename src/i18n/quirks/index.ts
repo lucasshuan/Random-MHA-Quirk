@@ -5,10 +5,10 @@ import type { Locale } from '../types'
 import { enQuirkCopy } from './en'
 import { ptBRQuirkCopy } from './pt-BR'
 
-const quirkCopyByLocale = {
+const quirkCopyByLocale: Record<Locale, Record<QuirkId, QuirkCopy>> = {
   en: enQuirkCopy,
   'pt-BR': ptBRQuirkCopy,
-} satisfies Record<Locale, Record<QuirkId, QuirkCopy>>
+}
 
 export function getQuirks(locale: Locale): Quirk[] {
   const copy = quirkCopyByLocale[locale]

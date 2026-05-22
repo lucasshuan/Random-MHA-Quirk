@@ -1,0 +1,198 @@
+{
+  "en": {
+    "air-cannon": {
+      "name": "Air Cannon",
+      "description": "Releases compressed air blasts that generate directional impact."
+    },
+    "blackwhip": {
+      "name": "Blackwhip",
+      "description": "Produces dark energy tendrils that can capture, swing, and pull targets."
+    },
+    "brainwashing": {
+      "name": "Brainwashing",
+      "description": "Forces compliant responses from a target after vocal interaction."
+    },
+    "creation": {
+      "name": "Creation",
+      "description": "Converts body resources into non-living matter with known composition."
+    },
+    "dark-shadow": {
+      "name": "Dark Shadow",
+      "description": "Manifests an autonomous shadow-like entity with offensive and defensive utility."
+    },
+    "decay": {
+      "name": "Decay",
+      "description": "Disintegrates touched matter through a rapid chain-like breakdown effect."
+    },
+    "electrification": {
+      "name": "Electrification",
+      "description": "Generates and discharges electrical energy to shock nearby targets."
+    },
+    "engine": {
+      "name": "Engine",
+      "description": "Provides propulsion through biological engine structures in the legs."
+    },
+    "eraser": {
+      "name": "Erasure",
+      "description": "Suppresses target quirk activation while visual contact is maintained."
+    },
+    "fiber-master": {
+      "name": "Fiber Master",
+      "description": "Manipulates textile fibers for binding, shaping, and movement control."
+    },
+    "fierce-wings": {
+      "name": "Fierce Wings",
+      "description": "Controls detached feathers individually for flight, attack, and rescue tasks."
+    },
+    "foldabody": {
+      "name": "Foldabody",
+      "description": "Folds and unfolds body sections to alter shape and avoid damage."
+    },
+    "frog": {
+      "name": "Frog",
+      "description": "Grants amphibian traits including wall adhesion, leaping, and tongue extension."
+    },
+    "hardening": {
+      "name": "Hardening",
+      "description": "Temporarily increases body hardness to improve durability and striking power."
+    },
+    "hellflame": {
+      "name": "Hellflame",
+      "description": "Generates and controls high-temperature flames for offense and propulsion."
+    },
+    "manifest": {
+      "name": "Manifest",
+      "description": "Temporarily manifests biological traits from consumed material sources."
+    },
+    "mind-reading": {
+      "name": "Mind Reading",
+      "description": "Receives active thought information from a target under specific conditions."
+    },
+    "permeation": {
+      "name": "Permeation",
+      "description": "Allows body matter to phase through solid objects while active."
+    },
+    "pop-off": {
+      "name": "Pop Off",
+      "description": "Produces detachable adhesive spheres that stick strongly to contacted surfaces."
+    },
+    "rabbit": {
+      "name": "Rabbit",
+      "description": "Enhances leg strength, agility, and sensory responsiveness with lagomorph traits."
+    },
+    "rewind": {
+      "name": "Rewind",
+      "description": "Reverses a living target to a previous biological state over time."
+    },
+    "sugar-rush": {
+      "name": "Sugar Rush",
+      "description": "Temporarily boosts physical output after metabolizing sugar intake."
+    },
+    "tape": {
+      "name": "Tape",
+      "description": "Ejects adhesive tape from elbows for restraint, traversal, and object handling."
+    },
+    "zero-gravity": {
+      "name": "Zero Gravity",
+      "description": "Negates gravitational pull on touched targets until effect release or overload."
+    }
+  },
+  "pt-BR": {
+    "air-cannon": {
+      "name": "Canhão de Ar",
+      "description": "Libera rajadas de ar comprimido que geram impacto direcional."
+    },
+    "blackwhip": {
+      "name": "Chicote Negro",
+      "description": "Produz tentáculos de energia escura para capturar, balançar e puxar alvos."
+    },
+    "brainwashing": {
+      "name": "Lavagem Cerebral",
+      "description": "Força respostas obedientes de um alvo após interação vocal."
+    },
+    "creation": {
+      "name": "Criação",
+      "description": "Converte recursos do corpo em matéria inanimada de composição conhecida."
+    },
+    "dark-shadow": {
+      "name": "Sombra Escura",
+      "description": "Manifesta uma entidade sombria autônoma com utilidade ofensiva e defensiva."
+    },
+    "decay": {
+      "name": "Decadência",
+      "description": "Desintegra matéria tocada por meio de um efeito rápido em cadeia."
+    },
+    "electrification": {
+      "name": "Eletrização",
+      "description": "Gera e descarrega energia elétrica para eletrocutar alvos próximos."
+    },
+    "engine": {
+      "name": "Motor",
+      "description": "Fornece propulsão por estruturas biológicas de motor nas pernas."
+    },
+    "eraser": {
+      "name": "Apagamento",
+      "description": "Suprime a ativação da individualidade do alvo enquanto o contato visual é mantido."
+    },
+    "fiber-master": {
+      "name": "Mestre das Fibras",
+      "description": "Manipula fibras têxteis para amarrar, moldar e controlar movimento."
+    },
+    "fierce-wings": {
+      "name": "Asas Ferozes",
+      "description": "Controla penas destacadas para voo, ataque e resgate."
+    },
+    "foldabody": {
+      "name": "Corpo Dobrável",
+      "description": "Dobra e desdobra partes do corpo para alterar a forma e evitar dano."
+    },
+    "frog": {
+      "name": "Sapo",
+      "description": "Concede traços anfíbios, incluindo adesão em paredes, saltos e língua extensível."
+    },
+    "hardening": {
+      "name": "Endurecimento",
+      "description": "Aumenta temporariamente a dureza do corpo para melhorar resistência e impacto."
+    },
+    "hellflame": {
+      "name": "Chama Infernal",
+      "description": "Gera e controla chamas de alta temperatura para ataque e propulsão."
+    },
+    "manifest": {
+      "name": "Manifestação",
+      "description": "Manifesta temporariamente traços biológicos de fontes de material consumido."
+    },
+    "mind-reading": {
+      "name": "Leitura Mental",
+      "description": "Recebe informações de pensamento ativo de um alvo sob condições específicas."
+    },
+    "permeation": {
+      "name": "Permeação",
+      "description": "Permite que a matéria do corpo atravesse objetos sólidos enquanto ativa."
+    },
+    "pop-off": {
+      "name": "Estouro",
+      "description": "Produz esferas adesivas destacáveis que grudam fortemente em superfícies."
+    },
+    "rabbit": {
+      "name": "Coelho",
+      "description": "Aprimora força das pernas, agilidade e sentidos com traços de lagomorfos."
+    },
+    "rewind": {
+      "name": "Rebobinar",
+      "description": "Reverte um alvo vivo a um estado biológico anterior ao longo do tempo."
+    },
+    "sugar-rush": {
+      "name": "Corrida do Açúcar",
+      "description": "Aumenta temporariamente o desempenho físico após metabolizar açúcar."
+    },
+    "tape": {
+      "name": "Fita",
+      "description": "Ejeta fita adesiva dos cotovelos para contenção, locomoção e manipulação."
+    },
+    "zero-gravity": {
+      "name": "Gravidade Zero",
+      "description": "Anula a gravidade em alvos tocados até liberar o efeito ou sobrecarga."
+    }
+  }
+}

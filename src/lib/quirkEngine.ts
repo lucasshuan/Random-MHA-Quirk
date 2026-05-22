@@ -16,6 +16,10 @@ export function applyFilters(
       return false
     }
 
+    if (filters.tiers.length > 0 && !filters.tiers.includes(quirk.tier)) {
+      return false
+    }
+
     if (filters.types.length > 0 && !filters.types.includes(quirk.type)) {
       return false
     }

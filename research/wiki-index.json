@@ -1,0 +1,2383 @@
+{
+  "generatedAt": "2026-05-22T02:41:07.538Z",
+  "sources": [
+    "Category:Quirks",
+    "Category:Vigilantes_Original_Quirks",
+    "Category:Team-Up_Missions_Original_Quirks"
+  ],
+  "excludedTitles": [
+    "Quirk",
+    "Quirkless",
+    "Quirk Singularity",
+    "Quirk Bestowal",
+    "Forced Quirk Activation",
+    "Trigger"
+  ],
+  "counts": {
+    "total": 337,
+    "inApp": 337,
+    "pending": 0,
+    "spinoff": 60
+  },
+  "entries": [
+    {
+      "wikiTitle": "2D-ify",
+      "slug": "2d-ify",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Absorption and Release",
+      "slug": "absorption-and-release",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Accelerator Rings",
+      "slug": "accelerator-rings",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Acid",
+      "slug": "acid",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Acid Sweat",
+      "slug": "acid-sweat",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Air Cannon",
+      "slug": "air-cannon",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Air Walk",
+      "slug": "air-walk",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Air Wall",
+      "slug": "air-wall",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Alchemy",
+      "slug": "alchemy",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "All For One (Quirk)",
+      "slug": "all-for-one",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Amplivolt (Quirk)",
+      "slug": "amplivolt",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Anivoice",
+      "slug": "anivoice",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Anthropomorph",
+      "slug": "anthropomorph",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Antigen Swap",
+      "slug": "antigen-swap",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Arbor",
+      "slug": "arbor",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Assault Dust",
+      "slug": "assault-dust",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Attraction of Small Objects",
+      "slug": "attraction-of-small-objects",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Barrier",
+      "slug": "barrier",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bat",
+      "slug": "bat",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Beams From His Eyes",
+      "slug": "beams-from-his-eyes",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Beast",
+      "slug": "beast",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Big Fist",
+      "slug": "big-fist",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Big Horn",
+      "slug": "big-horn",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Big Monkey",
+      "slug": "big-monkey",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Binging Ball",
+      "slug": "binging-ball",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Black",
+      "slug": "black",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Black Hole",
+      "slug": "black-hole",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blackwhip",
+      "slug": "blackwhip",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blade-Tooth",
+      "slug": "blade-tooth",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blast",
+      "slug": "blast",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blazing Hair",
+      "slug": "blazing-hair",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blood Control",
+      "slug": "blood-control",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bloodcurdle",
+      "slug": "bloodcurdle",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bloodlet",
+      "slug": "bloodlet",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Blueflame",
+      "slug": "blueflame",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Body Bulk",
+      "slug": "body-bulk",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Body Morph",
+      "slug": "body-morph",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bombify",
+      "slug": "bombify",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Boomerang",
+      "slug": "boomerang",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Brainwashing",
+      "slug": "brainwashing",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Brawn Boost",
+      "slug": "brawn-boost",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bristle",
+      "slug": "bristle",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Brown Bear",
+      "slug": "brown-bear",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bruiser",
+      "slug": "bruiser",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bubble",
+      "slug": "bubble",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bull Head",
+      "slug": "bull-head",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bullet Laser",
+      "slug": "bullet-laser",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Bullhorn",
+      "slug": "bullhorn",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Burst",
+      "slug": "burst",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cell Activation",
+      "slug": "cell-activation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cemedine",
+      "slug": "cemedine",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cement",
+      "slug": "cement",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Centipede",
+      "slug": "centipede",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Chameleon",
+      "slug": "chameleon",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Charging Muscles",
+      "slug": "charging-muscles",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Chart",
+      "slug": "chart",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Chest Hair",
+      "slug": "chest-hair",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Chimera (Quirk)",
+      "slug": "chimera",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Chronostasis (Quirk)",
+      "slug": "chronostasis",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Clean Bubbler",
+      "slug": "clean-bubbler",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cleaning",
+      "slug": "cleaning",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Clones",
+      "slug": "clones",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cloud",
+      "slug": "cloud",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Comic",
+      "slug": "comic",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Compress",
+      "slug": "compress",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Confession",
+      "slug": "confession",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Conjure",
+      "slug": "conjure",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Control Glass",
+      "slug": "control-glass",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Control Horn",
+      "slug": "control-horn",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Copy",
+      "slug": "copy",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cow",
+      "slug": "cow",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Creation",
+      "slug": "creation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Crystallize",
+      "slug": "crystallize",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Cubism",
+      "slug": "cubism",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Curse",
+      "slug": "curse",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Danger Sense",
+      "slug": "danger-sense",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dark Ball",
+      "slug": "dark-ball",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dark Shadow",
+      "slug": "dark-shadow",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Darkness",
+      "slug": "darkness",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Day Dream",
+      "slug": "day-dream",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Decay",
+      "slug": "decay",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Delay Spot",
+      "slug": "delay-spot",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Despot",
+      "slug": "despot",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Diesel Engine",
+      "slug": "diesel-engine",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dog",
+      "slug": "dog",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Double",
+      "slug": "double",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dragon",
+      "slug": "dragon",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dragon Breath",
+      "slug": "dragon-breath",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dupli-Arms",
+      "slug": "dupli-arms",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Dust",
+      "slug": "dust",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Eagle",
+      "slug": "eagle",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Earphone Jack",
+      "slug": "earphone-jack",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Earth Flow",
+      "slug": "earth-flow",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Eel",
+      "slug": "eel",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Elasticity",
+      "slug": "elasticity",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Electric Charge",
+      "slug": "electric-charge",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Electric Eel",
+      "slug": "electric-eel",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Electricity Generation",
+      "slug": "electricity-generation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Electrification",
+      "slug": "electrification",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Electromagnetic Bullets",
+      "slug": "electromagnetic-bullets",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Endurance",
+      "slug": "endurance",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Energy Saver",
+      "slug": "energy-saver",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Energy Suck",
+      "slug": "energy-suck",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Enfeeble",
+      "slug": "enfeeble",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Engine",
+      "slug": "engine",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Erasure",
+      "slug": "eraser",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Erasure Spot",
+      "slug": "erasure-spot",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Eruption",
+      "slug": "eruption",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Explosion",
+      "slug": "explosion",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Extend-o-Hair",
+      "slug": "extend-o-hair",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Extra Arms",
+      "slug": "extra-arms",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fa Jin",
+      "slug": "fa-jin",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fan",
+      "slug": "fan",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fast Fist",
+      "slug": "fast-fist",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fat Absorption",
+      "slug": "fat-absorption",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fiber Master",
+      "slug": "fiber-master",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fierce Gains",
+      "slug": "fierce-gains",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fierce Wings",
+      "slug": "fierce-wings",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fire Cracker",
+      "slug": "fire-cracker",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Flash Bang Sweat",
+      "slug": "flash-bang-sweat",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Flight",
+      "slug": "flight",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Float",
+      "slug": "float",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Fly Swatter",
+      "slug": "fly-swatter",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Flying Squirrel",
+      "slug": "flying-squirrel",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Foldabody",
+      "slug": "foldabody",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Food",
+      "slug": "food",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Foresight",
+      "slug": "foresight",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Free Walker",
+      "slug": "free-walker",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Frog",
+      "slug": "frog",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Frost",
+      "slug": "frost",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gale Gale",
+      "slug": "gale-gale",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gas",
+      "slug": "gas",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gatling",
+      "slug": "gatling",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gearshift",
+      "slug": "gearshift",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gecko",
+      "slug": "gecko",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gigantic Spinning Flying Turtle",
+      "slug": "gigantic-spinning-flying-turtle",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gigantification",
+      "slug": "gigantification",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Glamour",
+      "slug": "glamour",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Glide and Slide",
+      "slug": "glide-and-slide",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Glycerin",
+      "slug": "glycerin",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Good Ear",
+      "slug": "good-ear",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Grasshopper",
+      "slug": "grasshopper",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Gyrate",
+      "slug": "gyrate",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hair Control",
+      "slug": "hair-control",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hair-Raiser",
+      "slug": "hair-raiser",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Half-Cold Half-Hot",
+      "slug": "half-cold-half-hot",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hardening",
+      "slug": "hardening",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hardflame Fan",
+      "slug": "hardflame-fan",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Heal",
+      "slug": "heal",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Heavy Payload",
+      "slug": "heavy-payload",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Helical Scythe",
+      "slug": "helical-scythe",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hellflame",
+      "slug": "hellflame",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "High Specs",
+      "slug": "high-specs",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hologram",
+      "slug": "hologram",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Homing",
+      "slug": "homing",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Horn Cannon",
+      "slug": "horn-cannon",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hula Hoop",
+      "slug": "hula-hoop",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hydra",
+      "slug": "hydra",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Hypertrophy",
+      "slug": "hypertrophy",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Ice Ply",
+      "slug": "ice-ply",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Ignition",
+      "slug": "ignition",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Impact Recoil",
+      "slug": "impact-recoil",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Impure Beam",
+      "slug": "impure-beam",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Incite",
+      "slug": "incite",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Infrared",
+      "slug": "infrared",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Invisibility",
+      "slug": "invisibility",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "IQ",
+      "slug": "iq",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Iron Ball",
+      "slug": "iron-ball",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Iron Claws",
+      "slug": "iron-claws",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Iron Club",
+      "slug": "iron-club",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Jet",
+      "slug": "jet",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Kaiju",
+      "slug": "kaiju",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Kinetic Booster",
+      "slug": "kinetic-booster",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "King Slam",
+      "slug": "king-slam",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Landmine",
+      "slug": "landmine",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Larceny",
+      "slug": "larceny",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Laser",
+      "slug": "laser",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Leafipulation",
+      "slug": "leafipulation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Leap",
+      "slug": "leap",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Life Force",
+      "slug": "life-force",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Lion",
+      "slug": "lion",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Liquification",
+      "slug": "liquification",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Lizard",
+      "slug": "lizard",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Lizard Tail Splitter",
+      "slug": "lizard-tail-splitter",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Lock Down",
+      "slug": "lock-down",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Longbow",
+      "slug": "longbow",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Longleg",
+      "slug": "longleg",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Love",
+      "slug": "love",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Luminescence",
+      "slug": "luminescence",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mad Gluttony",
+      "slug": "mad-gluttony",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Magic",
+      "slug": "magic",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Magnetism",
+      "slug": "magnetism",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Manifest",
+      "slug": "manifest",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mantis",
+      "slug": "mantis",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Meatball",
+      "slug": "meatball",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Metal Manipulation",
+      "slug": "metal-manipulation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mimicry",
+      "slug": "mimicry",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mind Reaper",
+      "slug": "mind-reaper",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mole",
+      "slug": "mole",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Monster Cat (Quirk)",
+      "slug": "monster-cat",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Monster Summon",
+      "slug": "monster-summon",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Muddied",
+      "slug": "muddied",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Multiplier",
+      "slug": "multiplier",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mummification",
+      "slug": "mummification",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Muscle Augmentation",
+      "slug": "muscle-augmentation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Muscle Expansion",
+      "slug": "muscle-expansion",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mushroom",
+      "slug": "mushroom",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Mutant Bovini",
+      "slug": "mutant-bovini",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Navel Laser",
+      "slug": "navel-laser",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Neutralization",
+      "slug": "neutralization",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "New Order",
+      "slug": "new-order",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Octopus",
+      "slug": "octopus",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Octopus (Squid)",
+      "slug": "octopus-squid",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "One For All",
+      "slug": "one-for-all",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Orcinus",
+      "slug": "orcinus",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Outburst",
+      "slug": "outburst",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Overclock",
+      "slug": "overclock",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Overhaul (Quirk)",
+      "slug": "overhaul",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Overmodification",
+      "slug": "overmodification",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Pain Blocker",
+      "slug": "pain-blocker",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Papyrus",
+      "slug": "papyrus",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Permeation",
+      "slug": "permeation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Physical Enhancement",
+      "slug": "physical-enhancement",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Plant",
+      "slug": "plant",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Playtime",
+      "slug": "playtime",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Pliabody",
+      "slug": "pliabody",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Pointer",
+      "slug": "pointer",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Poison Gas",
+      "slug": "poison-gas",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Poltergeist",
+      "slug": "poltergeist",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Polygraph",
+      "slug": "polygraph",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Pop Off",
+      "slug": "pop-off",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Power",
+      "slug": "power",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Power Stock",
+      "slug": "power-stock",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Propagation",
+      "slug": "propagation",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Quad Arms",
+      "slug": "quad-arms",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Queen Beam",
+      "slug": "queen-beam",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Queen Bee",
+      "slug": "queen-bee",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rabbit",
+      "slug": "rabbit",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Radio Waves",
+      "slug": "radio-waves",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Radio Waves (Bombers)",
+      "slug": "radio-waves-bombers",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Razor Sharp",
+      "slug": "razor-sharp",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Reflect (Flect Turn)",
+      "slug": "reflect-flect-turn",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Reflect (Tomura Shigaraki)",
+      "slug": "reflect-tomura-shigaraki",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rewind",
+      "slug": "rewind",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rifle",
+      "slug": "rifle",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rivet",
+      "slug": "rivet",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rivet Stab",
+      "slug": "rivet-stab",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rocket Thrust",
+      "slug": "rocket-thrust",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Rupture",
+      "slug": "rupture",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Saber",
+      "slug": "saber",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Sandstorm",
+      "slug": "sandstorm",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Scalemail",
+      "slug": "scalemail",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Scales",
+      "slug": "scales",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Scanning",
+      "slug": "scanning",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Scatter",
+      "slug": "scatter",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Search",
+      "slug": "search",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Self-Detonation",
+      "slug": "self-detonation",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Serpentress",
+      "slug": "serpentress",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Shame",
+      "slug": "shame",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Shield",
+      "slug": "shield",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Shock Absorption",
+      "slug": "shock-absorption",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Shoulder-Mounted Jets",
+      "slug": "shoulder-mounted-jets",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Size",
+      "slug": "size",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Slice (Quirk)",
+      "slug": "slice",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Slide and Glide",
+      "slug": "slide-and-glide",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Sloshed",
+      "slug": "sloshed",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Smile",
+      "slug": "smile",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Smoke",
+      "slug": "smoke",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Smokescreen",
+      "slug": "smokescreen",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Snip Clip",
+      "slug": "snip-clip",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Soccer",
+      "slug": "soccer",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Softening",
+      "slug": "softening",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Solid Air",
+      "slug": "solid-air",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Somnambulist",
+      "slug": "somnambulist",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Soul",
+      "slug": "soul",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spatial Excursion",
+      "slug": "spatial-excursion",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spear Hand Missiles",
+      "slug": "spear-hand-missiles",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spearlike Bones",
+      "slug": "spearlike-bones",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spike",
+      "slug": "spike",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spotted Seal",
+      "slug": "spotted-seal",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spray Art",
+      "slug": "spray-art",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Spring",
+      "slug": "spring",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Springlike Limbs",
+      "slug": "springlike-limbs",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Squirmy Fingers",
+      "slug": "squirmy-fingers",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Static",
+      "slug": "static",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Steel",
+      "slug": "steel",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Stiffening",
+      "slug": "stiffening",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Stock",
+      "slug": "stock",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Storage",
+      "slug": "storage",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Stress",
+      "slug": "stress",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Strongarm",
+      "slug": "strongarm",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Sugar Rush",
+      "slug": "sugar-rush",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Suicide Bomb",
+      "slug": "suicide-bomb",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Super Regeneration",
+      "slug": "super-regeneration",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Swan",
+      "slug": "swan",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Sword Kill",
+      "slug": "sword-kill",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tail",
+      "slug": "tail",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tank Engine",
+      "slug": "tank-engine",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tape",
+      "slug": "tape",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Telekinesis",
+      "slug": "telekinesis",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Telepath",
+      "slug": "telepath",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Teleportation",
+      "slug": "teleportation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Telescopic",
+      "slug": "telescopic",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tidal Bore",
+      "slug": "tidal-bore",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Toho",
+      "slug": "toho",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tongue Tank",
+      "slug": "tongue-tank",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tool Arms",
+      "slug": "tool-arms",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Traject",
+      "slug": "traject",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Transform",
+      "slug": "transform",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Transforming Arms",
+      "slug": "transforming-arms",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Trap Flex",
+      "slug": "trap-flex",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tree Frog",
+      "slug": "tree-frog",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Tripod",
+      "slug": "tripod",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Twin Impact",
+      "slug": "twin-impact",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Vibrate",
+      "slug": "vibrate",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Vibration Detection",
+      "slug": "vibration-detection",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Vines",
+      "slug": "vines",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Viral Cosmos",
+      "slug": "viral-cosmos",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Voice",
+      "slug": "voice",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Voyance",
+      "slug": "voyance",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Warp Gate",
+      "slug": "warp-gate",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Warping",
+      "slug": "warping",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Water Control",
+      "slug": "water-control",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Water Gun",
+      "slug": "water-gun",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Water Pump",
+      "slug": "water-pump",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Wave Motion",
+      "slug": "wave-motion",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Weather Manipulation",
+      "slug": "weather-manipulation",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Weld",
+      "slug": "weld",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Whale",
+      "slug": "whale",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Whirlwind",
+      "slug": "whirlwind",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Whiteline",
+      "slug": "whiteline",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Whole-Body Lens",
+      "slug": "whole-body-lens",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Wing",
+      "slug": "wing",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Wooden Swords From His Hands",
+      "slug": "wooden-swords-from-his-hands",
+      "origin": "BNHA_SPINOFF",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Zero Gravity",
+      "slug": "zero-gravity",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Zombie Virus",
+      "slug": "zombie-virus",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    },
+    {
+      "wikiTitle": "Zoom",
+      "slug": "zoom",
+      "origin": "BNHA",
+      "status": "in_app",
+      "tier": null
+    }
+  ]
+}

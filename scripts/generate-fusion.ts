@@ -1,5 +1,5 @@
 /**
- * Gera uma fusão (híbrido) via LLM e grava em src/data/fusion-cache.json.
+ * Gera uma fusão (híbrido) via LLM e grava no Supabase.
  *
  * Uso:
  *   pnpm fusion:generate -- --a acid --b explosion
@@ -8,28 +8,29 @@
  */
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defaultFusionSeed, generateFusionEntry } from './lib/fusion-generate-core.mjs'
-import { loadQuirksCatalog } from './lib/load-quirks.mjs'
+import { loadEnv } from '../src/lib/server/env'
+import { defaultFusionSeed, generateFusionEntry } from '../src/lib/server/fusion/generate'
+import { loadQuirksCatalog } from '../src/lib/server/fusion/catalog'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-const src = join(root, 'src')
 
-function parseArgs(argv) {
-  const args = { a: null, b: null, seed: null, random: false, force: false }
+function parseArgs(argv: string[]) {
+  const args = { a: null as string | null, b: null as string | null, seed: null as string | null, random: false, force: false }
   for (let i = 0; i < argv.length; i++) {
     const token = argv[i]
     if (token === '--random') args.random = true
     else if (token === '--force') args.force = true
-    else if (token === '--a') args.a = argv[++i]
-    else if (token === '--b') args.b = argv[++i]
-    else if (token === '--seed') args.seed = argv[++i]
+    else if (token === '--a') args.a = argv[++i] ?? null
+    else if (token === '--b') args.b = argv[++i] ?? null
+    else if (token === '--seed') args.seed = argv[++i] ?? null
   }
   return args
 }
 
 async function main() {
+  loadEnv(root)
   const args = parseArgs(process.argv.slice(2))
-  const catalog = loadQuirksCatalog(src)
+  const catalog = loadQuirksCatalog(join(root, 'src'))
 
   let idA = args.a
   let idB = args.b
@@ -65,13 +66,12 @@ async function main() {
     return
   }
 
-  console.log(`Salvo: src/data/fusion-cache.json`)
-  console.log(`  key: ${entry.key}`)
+  console.log(`Salvo no Supabase: ${entry.key}`)
   console.log(`  EN: ${entry.en.name}`)
   console.log(`  PT: ${entry['pt-BR'].name}`)
 }
 
 main().catch((err) => {
-  console.error(err.message ?? err)
+  console.error(err instanceof Error ? err.message : err)
   process.exit(1)
 })

@@ -17,7 +17,6 @@ interface StepFinalResultProps {
   flickerNames: string[]
   fusionPhase: FusionPhase
   fusionError: string | null
-  canGenerateFusionLive: boolean
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -49,7 +48,6 @@ interface ResultRevealProps {
   flickerNames: string[]
   fusionPhase: FusionPhase
   fusionError: string | null
-  canGenerateFusionLive: boolean
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -62,7 +60,6 @@ function ResultReveal({
   flickerNames,
   fusionPhase,
   fusionError,
-  canGenerateFusionLive,
   onRetry,
   onRetryFusion,
   onBack,
@@ -124,7 +121,6 @@ function ResultReveal({
           resultKey={resultKey(result)}
           fusionPhase={fusionPhase}
           fusionError={fusionError}
-          canGenerateFusionLive={canGenerateFusionLive}
           onRetryFusion={onRetryFusion}
         />
       ) : result ? (

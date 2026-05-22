@@ -1,34 +1,33 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useI18n } from './i18n/useI18n'
-import { buildQuirkSearchText } from './i18n/quirkSearchText'
-import './App.css'
-import { MinimalFrame } from './components/wizard/MinimalFrame'
-import { StepAdvancedFilters } from './components/wizard/StepAdvancedFilters'
-import { BrandMark } from './components/wizard/BrandMark'
-import { StepFinalResult } from './components/wizard/StepFinalResult'
-import { StepModeChoice } from './components/wizard/StepModeChoice'
-import { StepRandomRoll } from './components/wizard/StepRandomRoll'
-import { StepTierChoice } from './components/wizard/StepTierChoice'
-import { StepTypeChoice } from './components/wizard/StepTypeChoice'
-import { getQuirks } from './i18n/quirks'
-import { ALL_QUIRK_TIERS } from './lib/tierPresets'
-import { canGenerateFusionLive, requestFusionGeneration } from './lib/generateFusion'
-import { rollHybrid } from './lib/hybridRoll'
-import { applyFilters, pickRandom } from './lib/quirkEngine'
+import { useI18n } from '@/i18n/useI18n'
+import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
+import { MinimalFrame } from '@/components/wizard/MinimalFrame'
+import { StepAdvancedFilters } from '@/components/wizard/StepAdvancedFilters'
+import { BrandMark } from '@/components/wizard/BrandMark'
+import { StepFinalResult } from '@/components/wizard/StepFinalResult'
+import { StepModeChoice } from '@/components/wizard/StepModeChoice'
+import { StepRandomRoll } from '@/components/wizard/StepRandomRoll'
+import { StepTierChoice } from '@/components/wizard/StepTierChoice'
+import { StepTypeChoice } from '@/components/wizard/StepTypeChoice'
+import { getQuirks } from '@/i18n/quirks'
+import { ALL_QUIRK_TIERS } from '@/lib/tierPresets'
+import { requestFusionGeneration } from '@/lib/generateFusion'
+import { rollHybrid } from '@/lib/hybridRoll'
+import { applyFilters, pickRandom } from '@/lib/quirkEngine'
 import {
   getPreviousStep,
   type ModeChoice,
   type ResultMode,
   type SimpleTypeChoice,
   type WizardStep,
-} from './lib/wizardFlow'
-import type { HybridRollResult } from './types/fusion'
+} from '@/lib/wizardFlow'
+import type { HybridRollResult } from '@/types/fusion'
 import {
   DEFAULT_QUIRK_FILTERS,
   type Quirk,
   type QuirkFilters,
   type QuirkTier,
-} from './types/quirk'
+} from '@/types/quirk'
 
 type RollResult = Quirk | HybridRollResult | null
 type PickPhase = 'type' | 'tier'
@@ -56,7 +55,7 @@ function hybridRollKey(result: HybridRollResult): string {
   return `${result.parents[0].id}+${result.parents[1].id}:${result.seed}`
 }
 
-function App() {
+export function WizardApp() {
   const { locale, t } = useI18n()
   const [currentStep, setCurrentStep] = useState<WizardStep>('start')
   const [mode, setMode] = useState<ResultMode>('single')
@@ -106,46 +105,43 @@ function App() {
     generatingFusionKeyRef.current = null
   }
 
-  const tryGenerateFusion = useCallback(
-    async (hybrid: HybridRollResult, force = false) => {
-      if (!canGenerateFusionLive() || hybrid.fusionEntry) {
-        return
-      }
+  const tryGenerateFusion = useCallback(async (hybrid: HybridRollResult, force = false) => {
+    if (hybrid.fusionEntry) {
+      return
+    }
 
-      const key = hybridRollKey(hybrid)
-      if (!force && generatingFusionKeyRef.current === key) {
-        return
-      }
+    const key = hybridRollKey(hybrid)
+    if (!force && generatingFusionKeyRef.current === key) {
+      return
+    }
 
-      generatingFusionKeyRef.current = key
-      setFusionPhase('generating')
-      setFusionError(null)
+    generatingFusionKeyRef.current = key
+    setFusionPhase('generating')
+    setFusionError(null)
 
-      try {
-        const fusionEntry = await requestFusionGeneration(
-          hybrid.parents[0].id,
-          hybrid.parents[1].id,
-          hybrid.seed,
-          { force },
-        )
-        setResult((prev) => {
-          if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
-            return prev
-          }
-          return { ...prev, fusionEntry }
-        })
-        setFusionPhase('idle')
-      } catch (err) {
-        setFusionError(err instanceof Error ? err.message : String(err))
-        setFusionPhase('error')
-      } finally {
-        if (generatingFusionKeyRef.current === key) {
-          generatingFusionKeyRef.current = null
+    try {
+      const fusionEntry = await requestFusionGeneration(
+        hybrid.parents[0].id,
+        hybrid.parents[1].id,
+        hybrid.seed,
+        { force },
+      )
+      setResult((prev) => {
+        if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
+          return prev
         }
+        return { ...prev, fusionEntry }
+      })
+      setFusionPhase('idle')
+    } catch (err) {
+      setFusionError(err instanceof Error ? err.message : String(err))
+      setFusionPhase('error')
+    } finally {
+      if (generatingFusionKeyRef.current === key) {
+        generatingFusionKeyRef.current = null
       }
-    },
-    [locale],
-  )
+    }
+  }, [])
 
   useEffect(() => {
     if (currentStep !== 'result' || mode !== 'hybrid') {
@@ -159,7 +155,7 @@ function App() {
 
   function setHybridRoll(hybrid: HybridRollResult | null) {
     setResult(hybrid)
-    if (hybrid && !hybrid.fusionEntry && canGenerateFusionLive()) {
+    if (hybrid && !hybrid.fusionEntry) {
       setFusionPhase('generating')
       setFusionError(null)
     }
@@ -370,7 +366,6 @@ function App() {
         flickerNames={allQuirks.map((quirk) => quirk.name)}
         fusionPhase={fusionPhase}
         fusionError={fusionError}
-        canGenerateFusionLive={canGenerateFusionLive()}
         onRetry={() => {
           rollFromCurrentSettings()
         }}
@@ -396,5 +391,3 @@ function App() {
     </MinimalFrame>
   )
 }
-
-export default App

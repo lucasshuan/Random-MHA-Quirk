@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# Random MHA Quirk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / pt-BR).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Next.js 16** (App Router)
+- **React 19**
+- **Supabase** — fusion cache (`fusion_entries`)
+- **OpenAI / Gemini** — on-demand hybrid fusion generation (server-only)
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. `cp .env.example .env.local` and fill in:
+   - `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+   - `OPENAI_API_KEY` and/or `GEMINI_API_KEY`
+2. Run the SQL in [`supabase/migrations/001_fusion_entries.sql`](supabase/migrations/001_fusion_entries.sql) in your Supabase project.
+3. Seed existing fusions (optional): `pnpm db:seed-fusion`
+4. `pnpm dev` → http://localhost:3000
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Next.js dev server |
+| `pnpm build` | Production build |
+| `pnpm start` | Run production server |
+| `pnpm test` | Vitest unit tests |
+| `pnpm fusion:generate -- --a id1 --b id2` | CLI fusion → Supabase |
+| `pnpm db:seed-fusion` | Import seed JSON → Supabase |
+| `pnpm research:build-catalog` | Regenerate quirk TS from wiki research |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+See [`research/FUSION.md`](research/FUSION.md) and [`research/EXPANSION.md`](research/EXPANSION.md) for content pipelines.

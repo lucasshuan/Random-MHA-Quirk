@@ -1,10 +1,6 @@
-import type { QuirkId } from '../data/quirk-ids'
-import type { FusionCacheEntry } from '../types/fusion'
-import { upsertFusionCacheEntry } from './fusionCache'
-
-export function canGenerateFusionLive(): boolean {
-  return import.meta.env.DEV
-}
+import type { QuirkId } from '@/data/quirk-ids'
+import type { FusionCacheEntry } from '@/types/fusion'
+import { upsertFusionCacheEntry } from '@/lib/fusionCache'
 
 export async function requestFusionGeneration(
   parentA: QuirkId,

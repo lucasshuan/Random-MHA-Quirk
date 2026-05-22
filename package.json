@@ -4,39 +4,45 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint .",
-    "preview": "vite preview",
     "test": "vitest run",
+    "fusion:generate": "tsx scripts/generate-fusion.ts",
+    "db:seed-fusion": "node scripts/seed-fusion-cache.mjs",
     "research:wiki-index": "node scripts/sync-wiki-index.mjs",
     "research:fetch-wiki": "node scripts/fetch-wiki-sources.mjs",
     "research:build-catalog": "node scripts/build-quirk-catalog.mjs",
     "research:fix-descriptions": "node scripts/fix-descriptions.mjs",
-    "fusion:generate": "node scripts/generate-fusion.mjs",
     "research:translate-pt": "node scripts/translate-pt-descriptions.mjs",
     "research:sync-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
     "research:fix-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
-    "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs"
+    "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs",
+    "research:report:en-like-pt": "node scripts/list-en-like-pt-names.mjs",
+    "research:report:untranslated-pt": "node scripts/list-untranslated-pt-names.mjs",
+    "research:report:same-names": "node scripts/list-same-names.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.106.1",
     "country-flag-icons": "^1.6.17",
+    "next": "^16.2.6",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "tsx": "^4.22.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^10.3.0",
+    "eslint-config-next": "^16.2.6",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12",
     "vitest": "^4.0.8"
   }
 }

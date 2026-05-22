@@ -38,7 +38,7 @@ for (const [id, pn] of pt) {
 }
 
 writeFileSync(
-  'research/en-like-pt-names.json',
+  'research/reports/en-like-pt-names.json',
   JSON.stringify({ same, englishish }, null, 2) + '\n',
 )
 console.log('same:', same.length)

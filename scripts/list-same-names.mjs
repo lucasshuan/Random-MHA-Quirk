@@ -20,5 +20,5 @@ for (const [id, enName] of en) {
 }
 
 import { writeFileSync } from 'node:fs'
-writeFileSync('research/same-names.json', `${JSON.stringify(same, null, 2)}\n`)
+writeFileSync('research/reports/same-names.json', `${JSON.stringify(same, null, 2)}\n`)
 console.log('total:', same.length)

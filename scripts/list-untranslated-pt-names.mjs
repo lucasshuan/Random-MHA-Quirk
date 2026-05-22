@@ -63,7 +63,7 @@ for (const [id, ptName] of pt) {
 
 hits.sort((a, b) => a.pt.localeCompare(b.pt))
 writeFileSync(
-  'research/untranslated-pt-names.json',
+  'research/reports/untranslated-pt-names.json',
   JSON.stringify(hits, null, 2) + '\n',
 )
 console.log('hits:', hits.length)

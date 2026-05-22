@@ -1,0 +1,8 @@
+@import '../index.css';
+@import '../App.css';
+
+html,
+body {
+  height: 100svh;
+  overflow: hidden;
+}

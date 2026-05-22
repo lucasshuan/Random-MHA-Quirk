@@ -3,10 +3,7 @@
   "entries": [
     {
       "key": "gas+shield:pv98o524",
-      "parents": [
-        "gas",
-        "shield"
-      ],
+      "parents": ["gas", "shield"],
       "seed": "pv98o524",
       "en": {
         "name": "Aegis Mist",
@@ -18,20 +15,12 @@
       },
       "type": "Emitter",
       "range": "Area",
-      "facets": [
-        "Support",
-        "Defense",
-        "Emission",
-        "Control"
-      ],
+      "facets": ["Support", "Defense", "Emission", "Control"],
       "origin": "ORIGINAL"
     },
     {
       "key": "compress+mummification:o6nytlxm",
-      "parents": [
-        "compress",
-        "mummification"
-      ],
+      "parents": ["compress", "mummification"],
       "seed": "o6nytlxm",
       "en": {
         "name": "Sarcophagus Squeeze",
@@ -43,19 +32,12 @@
       },
       "type": "Emitter",
       "range": "Medium",
-      "facets": [
-        "Control",
-        "Emission",
-        "Biological"
-      ],
+      "facets": ["Control", "Emission", "Biological"],
       "origin": "ORIGINAL"
     },
     {
       "key": "body-bulk+dragon-breath:rmxt47or",
-      "parents": [
-        "body-bulk",
-        "dragon-breath"
-      ],
+      "parents": ["body-bulk", "dragon-breath"],
       "seed": "rmxt47or",
       "en": {
         "name": "Titanic Inferno",
@@ -67,19 +49,12 @@
       },
       "type": "Transformation",
       "range": "Medium",
-      "facets": [
-        "Enhancement",
-        "Emission",
-        "Elemental"
-      ],
+      "facets": ["Enhancement", "Emission", "Elemental"],
       "origin": "ORIGINAL"
     },
     {
       "key": "life-force+whole-body-lens:g7fl99ka",
-      "parents": [
-        "life-force",
-        "whole-body-lens"
-      ],
+      "parents": ["life-force", "whole-body-lens"],
       "seed": "g7fl99ka",
       "en": {
         "name": "Vital Lens",
@@ -91,19 +66,12 @@
       },
       "type": "Mutant",
       "range": "Self",
-      "facets": [
-        "Enhancement",
-        "Support",
-        "Biological"
-      ],
+      "facets": ["Enhancement", "Support", "Biological"],
       "origin": "ORIGINAL"
     },
     {
       "key": "iron-club+poltergeist:pz9s72l5",
-      "parents": [
-        "iron-club",
-        "poltergeist"
-      ],
+      "parents": ["iron-club", "poltergeist"],
       "seed": "pz9s72l5",
       "en": {
         "name": "Ghostly Mauler",
@@ -115,20 +83,12 @@
       },
       "type": "Emitter",
       "range": "Medium",
-      "facets": [
-        "Enhancement",
-        "Control",
-        "Emission",
-        "Psychic"
-      ],
+      "facets": ["Enhancement", "Control", "Emission", "Psychic"],
       "origin": "ORIGINAL"
     },
     {
       "key": "stock+whale:os2n8rt9",
-      "parents": [
-        "stock",
-        "whale"
-      ],
+      "parents": ["stock", "whale"],
       "seed": "os2n8rt9",
       "en": {
         "name": "Abyssal Absorption",
@@ -140,20 +100,12 @@
       },
       "type": "Emitter",
       "range": "Medium",
-      "facets": [
-        "Elemental",
-        "Anthropomorphic",
-        "Emission",
-        "Defense"
-      ],
+      "facets": ["Elemental", "Anthropomorphic", "Emission", "Defense"],
       "origin": "ORIGINAL"
     },
     {
       "key": "sugar-rush+whale:0fg3k0tm",
-      "parents": [
-        "sugar-rush",
-        "whale"
-      ],
+      "parents": ["sugar-rush", "whale"],
       "seed": "0fg3k0tm",
       "en": {
         "name": "Tidal Surge",
@@ -165,12 +117,7 @@
       },
       "type": "Transformation",
       "range": "Medium",
-      "facets": [
-        "Elemental",
-        "Anthropomorphic",
-        "Enhancement",
-        "Emission"
-      ],
+      "facets": ["Elemental", "Anthropomorphic", "Enhancement", "Emission"],
       "origin": "ORIGINAL"
     }
   ]

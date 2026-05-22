@@ -36,10 +36,8 @@
 }
 
 html,
-body,
-#root {
-  height: 100svh;
-  overflow: hidden;
+body {
+  min-height: 100%;
 }
 
 body {

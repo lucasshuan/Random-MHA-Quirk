@@ -13,7 +13,6 @@ interface HybridResultTabsProps {
   resultKey: string
   fusionPhase: FusionPhase
   fusionError: string | null
-  canGenerateFusionLive: boolean
   onRetryFusion: () => void
 }
 
@@ -22,7 +21,6 @@ export function HybridResultTabs({
   resultKey,
   fusionPhase,
   fusionError,
-  canGenerateFusionLive,
   onRetryFusion,
 }: HybridResultTabsProps) {
   const { locale, t } = useI18n()
@@ -92,35 +90,24 @@ export function HybridResultTabs({
             <div className="fusion-pending fusion-error">
               <p className="mini-copy">{t('fusion.generateError')}</p>
               {fusionError ? <p className="fusion-error-detail">{fusionError}</p> : null}
-              {canGenerateFusionLive ? (
-                <button
-                  type="button"
-                  className="big-action fusion-retry-btn"
-                  onClick={onRetryFusion}
-                >
-                  {t('fusion.retryGenerate')}
-                </button>
-              ) : null}
-              <p className="fusion-generate-hint">{t('fusion.generateHint')}</p>
-              <code className="fusion-generate-cmd">
-                {t('fusion.generateCommand', {
-                  a: result.parents[0].id,
-                  b: result.parents[1].id,
-                  seed: result.seed,
-                })}
-              </code>
+              <button
+                type="button"
+                className="big-action fusion-retry-btn"
+                onClick={onRetryFusion}
+              >
+                {t('fusion.retryGenerate')}
+              </button>
             </div>
           ) : (
             <div className="fusion-pending">
               <p className="mini-copy">{t('fusion.notGenerated')}</p>
-              <p className="fusion-generate-hint">{t('fusion.generateHint')}</p>
-              <code className="fusion-generate-cmd">
-                {t('fusion.generateCommand', {
-                  a: result.parents[0].id,
-                  b: result.parents[1].id,
-                  seed: result.seed,
-                })}
-              </code>
+              <button
+                type="button"
+                className="big-action fusion-retry-btn"
+                onClick={onRetryFusion}
+              >
+                {t('fusion.retryGenerate')}
+              </button>
             </div>
           )}
         </div>

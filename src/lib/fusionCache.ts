@@ -1,15 +1,10 @@
-import fusionCacheFile from '../data/fusion-cache.json'
-import type { QuirkId } from '../data/quirk-ids'
-import type { Locale } from '../i18n/types'
-import type { FusionCacheEntry, FusionCacheFile, FusionQuirk } from '../types/fusion'
-import { fusionCopyForLocale } from '../types/fusion'
-import { fusionCacheKey, fusionQuirkId } from './fusionKey'
+import type { QuirkId } from '@/data/quirk-ids'
+import type { Locale } from '@/i18n/types'
+import type { FusionCacheEntry, FusionQuirk } from '@/types/fusion'
+import { fusionCopyForLocale } from '@/types/fusion'
+import { fusionCacheKey, fusionQuirkId } from '@/lib/fusionKey'
 
-const cache = fusionCacheFile as FusionCacheFile
-
-const byKey = new Map<string, FusionCacheEntry>(
-  cache.entries.map((entry) => [entry.key, entry]),
-)
+const byKey = new Map<string, FusionCacheEntry>()
 
 export function upsertFusionCacheEntry(entry: FusionCacheEntry): void {
   byKey.set(entry.key, entry)

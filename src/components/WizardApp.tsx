@@ -33,6 +33,7 @@ import {
 
 type RollResult = Quirk | HybridRollResult | null
 type PickPhase = 'type' | 'tier' | 'manual'
+type TierEntrySource = 'type' | 'advanced'
 
 function defaultFilters(): QuirkFilters {
   return { ...DEFAULT_QUIRK_FILTERS }
@@ -45,6 +46,22 @@ function filtersForTypeAndTiers(
   return {
     ...DEFAULT_QUIRK_FILTERS,
     types: type === 'Any' ? [] : [type],
+    tiers,
+  }
+}
+
+function slotFiltersForTierStep(
+  base: QuirkFilters,
+  type: SimpleTypeChoice,
+  tiers: QuirkTier[],
+  source: TierEntrySource,
+): QuirkFilters {
+  if (source === 'type') {
+    return filtersForTypeAndTiers(type, tiers)
+  }
+
+  return {
+    ...base,
     tiers,
   }
 }
@@ -82,6 +99,7 @@ export function WizardApp() {
     defaultFilters(),
   ])
   const [hybridReachedSecondType, setHybridReachedSecondType] = useState(false)
+  const [tierEntrySource, setTierEntrySource] = useState<TierEntrySource>('type')
   const [fusionPhase, setFusionPhase] = useState<'idle' | 'generating' | 'error'>('idle')
   const [fusionError, setFusionError] = useState<string | null>(null)
   const generatingFusionKeyRef = useRef<string | null>(null)
@@ -113,6 +131,7 @@ export function WizardApp() {
     setHybridTypes([null, null])
     setHybridSlotFilters([defaultFilters(), defaultFilters()])
     setHybridReachedSecondType(false)
+    setTierEntrySource('type')
     setFusionPhase('idle')
     setFusionError(null)
     generatingFusionKeyRef.current = null
@@ -213,10 +232,13 @@ export function WizardApp() {
     setResult(pickRandom(filteredQuirks))
   }
 
-  function rollWithSettings() {
-    rollFromCurrentSettings()
-    setResultBackStep('advanced')
-    setCurrentStep('result')
+  function continueFromAdvanced() {
+    setPendingType('Any')
+    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setTierSlideDirection('forward')
+    setTierEntrySource('advanced')
+    setPickPhase('tier')
+    setCurrentStep('type')
   }
 
   function goToTierStep(type: SimpleTypeChoice) {
@@ -230,17 +252,18 @@ export function WizardApp() {
     setPendingType(type)
     setSelectedTiers([...ALL_QUIRK_TIERS])
     setTierSlideDirection('forward')
+    setTierEntrySource('type')
     setPickPhase('tier')
   }
 
   function finishTierStep(tiers: QuirkTier[]) {
     const type = pendingType ?? 'Any'
-    const slotFilters = filtersForTypeAndTiers(type, tiers)
+    const slotFilters = slotFiltersForTierStep(filters, type, tiers, tierEntrySource)
 
     if (mode === 'hybrid') {
       if (hybridTypeStep === 0) {
         setManualHybridParents([null, manualHybridParents[1]])
-        setHybridTypes([type, null])
+        setHybridTypes([type === 'Any' ? null : type, null])
         setHybridSlotFilters([slotFilters, hybridSlotFilters[1]])
         setHybridTypeStep(1)
         setHybridReachedSecondType(true)
@@ -252,7 +275,7 @@ export function WizardApp() {
       const firstType = hybridTypes[0] ?? 'Any'
       const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
       setManualHybridParents([manualHybridParents[0], null])
-      setHybridTypes([firstType, type])
+      setHybridTypes([firstType, type === 'Any' ? null : type])
       setHybridSlotFilters(finalFilters)
 
       const poolB = applyFilters(allQuirks, finalFilters[1], { searchableText })
@@ -364,13 +387,20 @@ export function WizardApp() {
 
   function handleBack() {
     if (currentStep === 'advanced') {
-      setPickPhase(pendingType ? 'tier' : 'type')
-      setTierSlideDirection('back')
+      setPendingType(null)
+      setTierEntrySource('type')
+      setPickPhase('type')
       setCurrentStep('type')
       return
     }
 
     if (currentStep === 'type' && pickPhase === 'tier') {
+      if (tierEntrySource === 'advanced') {
+        setPendingType(null)
+        setTierSlideDirection('back')
+        setCurrentStep('advanced')
+        return
+      }
       setPickPhase('type')
       setTierSlideDirection('back')
       setPendingType(null)
@@ -471,7 +501,7 @@ export function WizardApp() {
           onChange={setFilters}
           onReset={handleResetFilters}
           filteredCount={filteredQuirks.length}
-          onRoll={rollWithSettings}
+          onContinue={continueFromAdvanced}
         />
       )
     }

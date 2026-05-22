@@ -8,7 +8,7 @@ interface StepAdvancedFiltersProps {
   filteredCount: number
   onChange: (filters: QuirkFilters) => void
   onReset: () => void
-  onRoll: () => void
+  onContinue: () => void
 }
 
 export function StepAdvancedFilters({
@@ -16,7 +16,7 @@ export function StepAdvancedFilters({
   filteredCount,
   onChange,
   onReset,
-  onRoll,
+  onContinue,
 }: StepAdvancedFiltersProps) {
   const { locale, t } = useI18n()
 
@@ -29,10 +29,10 @@ export function StepAdvancedFilters({
       <button
         type="button"
         className="big-action"
-        onClick={onRoll}
+        onClick={onContinue}
         disabled={filteredCount === 0}
       >
-        {t('advanced.roll')}
+        {t('advanced.continue')}
       </button>
     </div>
   )

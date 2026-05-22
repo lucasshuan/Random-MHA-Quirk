@@ -73,6 +73,105 @@
         "Elemental"
       ],
       "origin": "ORIGINAL"
+    },
+    {
+      "key": "life-force+whole-body-lens:g7fl99ka",
+      "parents": [
+        "life-force",
+        "whole-body-lens"
+      ],
+      "seed": "g7fl99ka",
+      "en": {
+        "name": "Vital Lens",
+        "description": "With the Vital Lens quirk, the user harnesses the essence of life itself and captures the vitality of individuals within their photos. Each image they print can reveal the life force of the subject, showing a visual representation of their health and energy levels. This unique ability allows them to enhance the life force of allies by projecting their vitality through the lenses, creating an aura of rejuvenation in battle. However, overuse can leave the user feeling drained as they temporarily share their own life force."
+      },
+      "pt-BR": {
+        "name": "Lente Vital",
+        "description": "Com a Lente Vital, o usuário capta a essência da vida e a vitalidade dos indivíduos em suas fotos. Cada imagem impressa pode revelar a força vital do sujeito, mostrando uma representação visual de sua saúde e níveis de energia. Essa habilidade única permite que eles potencializem a força vital de aliados, projetando sua vitalidade através das lentes, criando uma aura de rejuvenescimento durante a batalha. No entanto, o uso excessivo pode deixar o usuário exausto, já que compartilham temporariamente sua própria força vital."
+      },
+      "type": "Mutant",
+      "range": "Self",
+      "facets": [
+        "Enhancement",
+        "Support",
+        "Biological"
+      ],
+      "origin": "ORIGINAL"
+    },
+    {
+      "key": "iron-club+poltergeist:pz9s72l5",
+      "parents": [
+        "iron-club",
+        "poltergeist"
+      ],
+      "seed": "pz9s72l5",
+      "en": {
+        "name": "Ghostly Mauler",
+        "description": "Ghostly Mauler allows the user to summon ethereal iron clubs that can smash through both physical and spiritual barriers. With a flick of their wrist, they can telekinetically control these spectral weapons, maneuvering them around the battlefield to deliver relentless blows and disorient foes. The clubs retain the weight and strength of iron while being partially intangible, making them a dual threat that can crush solid objects or ensnare opponents."
+      },
+      "pt-BR": {
+        "name": "Destruidor Fantasma",
+        "description": "Destruidor Fantasma permite que o usuário convoque clubes de ferro etéreos que conseguem quebrar barreiras físicas e espirituais. Com um movimento de pulso, eles podem controlar telecineticamente essas armas espectrais, manobrando-as ao redor do campo de batalha para desferir golpes implacáveis e desorientar os inimigos. Os clubes mantêm o peso e a força do ferro, enquanto são parcialmente intangíveis, tornando-se uma ameaça dupla que pode esmagar objetos sólidos ou capturar oponentes."
+      },
+      "type": "Emitter",
+      "range": "Medium",
+      "facets": [
+        "Enhancement",
+        "Control",
+        "Emission",
+        "Psychic"
+      ],
+      "origin": "ORIGINAL"
+    },
+    {
+      "key": "stock+whale:os2n8rt9",
+      "parents": [
+        "stock",
+        "whale"
+      ],
+      "seed": "os2n8rt9",
+      "en": {
+        "name": "Abyssal Absorption",
+        "description": "The user can absorb and store the kinetic energy from attacks, transforming their limbs into powerful whale appendages for enhanced strength and water manipulation. By channeling collected energy, they unleash massive torrents of superheated water, capable of both offense and defense, mimicking the turbulent depths of the ocean. This unique ability harmonizes the defensive nature of 'Stock' with the fluidity and power of 'Whale', creating a formidable force on the battlefield."
+      },
+      "pt-BR": {
+        "name": "Absorção Abissal",
+        "description": "O usuário consegue absorver e armazenar a energia cinética de ataques, transformando seus membros em poderosos apêndices de baleia para aumentar a força e a manipulação da água. Ao canalizar a energia acumulada, ele libera grandes torrentes de água superaquecida, capazes de ofender e defender, imitando as turbulentas profundezas do oceano. Essa habilidade única integra a natureza defensiva do 'Stock' com a fluidez e o poder do 'Whale', criando uma força formidável no campo de batalha."
+      },
+      "type": "Emitter",
+      "range": "Medium",
+      "facets": [
+        "Elemental",
+        "Anthropomorphic",
+        "Emission",
+        "Defense"
+      ],
+      "origin": "ORIGINAL"
+    },
+    {
+      "key": "sugar-rush+whale:0fg3k0tm",
+      "parents": [
+        "sugar-rush",
+        "whale"
+      ],
+      "seed": "0fg3k0tm",
+      "en": {
+        "name": "Tidal Surge",
+        "description": "Tidal Surge harnesses the user's sugar-fueled vigor to transform into a powerful hybrid form that combines human agility with the mass and aquatic abilities of a sperm whale. This Quirk allows the user to unleash rapid bursts of energy, creating tidal waves of water that propel them forward at high speeds, while simultaneously engaging in melee combat with enhanced strength. As the sugar metabolizes, the tides swell, giving the user an overwhelming surge of power until they crash down in an impressive display."
+      },
+      "pt-BR": {
+        "name": "Onda Tidal",
+        "description": "Onda Tidal aproveita a energia alimentada pelo açúcar para se transformar em uma forma híbrida poderosa, que combina a agilidade humana com a força e habilidades aquáticas de uma baleia esperma. Essa Quirk permite que o usuário libere explosões rápidas de energia, criando ondas de água que o impulsionam em alta velocidade, enquanto se envolve em combate corpo a corpo com uma força aprimorada. À medida que o açúcar é metabolizado, as ondas aumentam, dando ao usuário uma onda avassaladora de poder até que ele desabe em um espetáculo impressionante."
+      },
+      "type": "Transformation",
+      "range": "Medium",
+      "facets": [
+        "Elemental",
+        "Anthropomorphic",
+        "Enhancement",
+        "Emission"
+      ],
+      "origin": "ORIGINAL"
     }
   ]
 }

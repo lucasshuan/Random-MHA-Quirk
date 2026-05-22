@@ -30,5 +30,6 @@ describe('rollHybrid', () => {
     expect(result).not.toBeNull()
     expect(result!.seed).toBe('fixedseed')
     expect(result!.parents).toHaveLength(2)
+    expect(result!.fusionEntry).toBeNull()
   })
 })

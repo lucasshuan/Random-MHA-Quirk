@@ -1,6 +1,7 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
+import { resolveFusionQuirk } from '../../lib/fusionCache'
 import type { HybridRollResult } from '../../types/fusion'
 import { RollOrb } from './RollOrb'
 
@@ -24,8 +25,13 @@ export function HybridResultTabs({
   canGenerateFusionLive,
   onRetryFusion,
 }: HybridResultTabsProps) {
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const [view, setView] = useState<HybridView>('fusion')
+
+  const fusion = useMemo(
+    () => resolveFusionQuirk(result.fusionEntry, locale),
+    [result.fusionEntry, locale],
+  )
   const tablistId = useId()
   const fusionPanelId = useId()
   const parentsPanelId = useId()
@@ -73,9 +79,9 @@ export function HybridResultTabs({
           id={fusionPanelId}
           aria-labelledby={`${tablistId}-fusion`}
         >
-          {result.fusion ? (
+          {fusion ? (
             <div className="fusion-hero">
-              <QuirkCard quirk={result.fusion} hideTier />
+              <QuirkCard quirk={fusion} hideTier />
             </div>
           ) : fusionPhase === 'generating' ? (
             <div className="fusion-pending fusion-forging">

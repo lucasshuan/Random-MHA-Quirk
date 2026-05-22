@@ -45,7 +45,8 @@ export interface FusionQuirk {
 
 export interface HybridRollResult {
   parents: [Quirk, Quirk]
-  fusion: FusionQuirk | null
+  /** Entrada bilíngue; texto exibido é resolvido pelo locale ativo. */
+  fusionEntry: FusionCacheEntry | null
   seed: string
 }
 

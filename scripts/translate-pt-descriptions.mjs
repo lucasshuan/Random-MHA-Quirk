@@ -186,7 +186,8 @@ async function main() {
     const en = manual.en[id]
     if (!isUsableCopy(en)) return false
     const pt = manual['pt-BR'][id]
-    return !isUsableCopy(pt)
+    if (!isUsableCopy(pt)) return true
+    return pt.description.trim() === en.description.trim()
   })
 
   console.log(`Traduzir ${pending.length} quirks para PT-BR…`)
@@ -219,6 +220,8 @@ async function main() {
 
     const progress = Math.min(i + BATCH_SIZE, pending.length)
     process.stdout.write(`\r  ${progress}/${pending.length} (ok: ${done}, falhas: ${failed})`)
+    writeFileSync(manualPath, `${JSON.stringify(manual, null, 2)}\n`)
+
     if (i + BATCH_SIZE < pending.length) await sleep(DELAY_MS)
   }
 

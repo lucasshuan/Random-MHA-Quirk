@@ -25,6 +25,54 @@
         "Control"
       ],
       "origin": "ORIGINAL"
+    },
+    {
+      "key": "compress+mummification:o6nytlxm",
+      "parents": [
+        "compress",
+        "mummification"
+      ],
+      "seed": "o6nytlxm",
+      "en": {
+        "name": "Sarcophagus Squeeze",
+        "description": "Harnessing the power of ancient preservation, this quirk allows the user to wrap opponents in enchanted bandages that not only immobilize them but also compress their abilities, rendering them powerless. Once ensnared, the bandages can transform the victims into puppet-like mummies, fully under the user's control. The user can also release compressed mummies at will, causing them to burst free and unleash their stored powers in chaotic bursts."
+      },
+      "pt-BR": {
+        "name": "Esfera de Sarcófago",
+        "description": "Aproveitando o poder da preservação antiga, essa habilidade permite ao usuário envolver os oponentes em bandagens encantadas que não apenas os imobilizam, mas também comprimem suas habilidades, tornando-os impotentes. Uma vez aprisionados, as bandagens podem transformar as vítimas em múmias semelhantes a fantoches, totalmente sob o controle do usuário. O usuário também pode liberar múmias comprimidas à vontade, fazendo-as explodir e liberar seus poderes armazenados em explosões caóticas."
+      },
+      "type": "Emitter",
+      "range": "Medium",
+      "facets": [
+        "Control",
+        "Emission",
+        "Biological"
+      ],
+      "origin": "ORIGINAL"
+    },
+    {
+      "key": "body-bulk+dragon-breath:rmxt47or",
+      "parents": [
+        "body-bulk",
+        "dragon-breath"
+      ],
+      "seed": "rmxt47or",
+      "en": {
+        "name": "Titanic Inferno",
+        "description": "Titanic Inferno transforms the user into a massive, fire-breathing behemoth, amplifying their size and strength while allowing them to spew devastating flames. This quirk channels the alcohol consumed, igniting a whirlwind of fiery power as the user charges into battle, becoming a formidable force of destruction."
+      },
+      "pt-BR": {
+        "name": "Inferno Titânico",
+        "description": "O Inferno Titânico transforma o usuário em um colossal monstro que cospe fogo, ampliando seu tamanho e força enquanto libera chamas devastadoras. Este poder canaliza a bebida alcoólica consumida, criando um redemoinho de fogo enquanto o usuário avança para a batalha, tornando-se uma força formidável de destruição."
+      },
+      "type": "Transformation",
+      "range": "Medium",
+      "facets": [
+        "Enhancement",
+        "Emission",
+        "Elemental"
+      ],
+      "origin": "ORIGINAL"
     }
   ]
 }

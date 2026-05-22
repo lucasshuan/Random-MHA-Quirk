@@ -11,22 +11,39 @@ const byKey = new Map<string, FusionCacheEntry>(
   cache.entries.map((entry) => [entry.key, entry]),
 )
 
+export function upsertFusionCacheEntry(entry: FusionCacheEntry): void {
+  byKey.set(entry.key, entry)
+}
+
+export function lookupFusionEntry(
+  parentA: QuirkId,
+  parentB: QuirkId,
+  seed: string,
+): FusionCacheEntry | null {
+  const key = fusionCacheKey(parentA, parentB, seed)
+  return byKey.get(key) ?? null
+}
+
+export function resolveFusionQuirk(
+  entry: FusionCacheEntry | null,
+  locale: Locale,
+): FusionQuirk | null {
+  if (!entry) {
+    return null
+  }
+  return entryToFusionQuirk(entry, locale)
+}
+
 export function lookupFusion(
   parentA: QuirkId,
   parentB: QuirkId,
   seed: string,
   locale: Locale,
 ): FusionQuirk | null {
-  const key = fusionCacheKey(parentA, parentB, seed)
-  const entry = byKey.get(key)
-  if (!entry) {
-    return null
-  }
-
-  return entryToFusionQuirk(entry, locale)
+  return resolveFusionQuirk(lookupFusionEntry(parentA, parentB, seed), locale)
 }
 
-function entryToFusionQuirk(entry: FusionCacheEntry, locale: Locale): FusionQuirk {
+export function entryToFusionQuirk(entry: FusionCacheEntry, locale: Locale): FusionQuirk {
   const copy = fusionCopyForLocale(entry, locale)
   return {
     id: fusionQuirkId(entry.parents[0], entry.parents[1], entry.seed),
@@ -42,5 +59,5 @@ function entryToFusionQuirk(entry: FusionCacheEntry, locale: Locale): FusionQuir
 }
 
 export function getFusionCacheSize(): number {
-  return cache.entries.length
+  return byKey.size
 }

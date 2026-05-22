@@ -108,7 +108,7 @@ function App() {
 
   const tryGenerateFusion = useCallback(
     async (hybrid: HybridRollResult, force = false) => {
-      if (!canGenerateFusionLive() || hybrid.fusion) {
+      if (!canGenerateFusionLive() || hybrid.fusionEntry) {
         return
       }
 
@@ -122,18 +122,17 @@ function App() {
       setFusionError(null)
 
       try {
-        const fusion = await requestFusionGeneration(
+        const fusionEntry = await requestFusionGeneration(
           hybrid.parents[0].id,
           hybrid.parents[1].id,
           hybrid.seed,
-          locale,
           { force },
         )
         setResult((prev) => {
           if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
             return prev
           }
-          return { ...prev, fusion }
+          return { ...prev, fusionEntry }
         })
         setFusionPhase('idle')
       } catch (err) {
@@ -152,7 +151,7 @@ function App() {
     if (currentStep !== 'result' || mode !== 'hybrid') {
       return
     }
-    if (!result || !isHybridRoll(result) || result.fusion) {
+    if (!result || !isHybridRoll(result) || result.fusionEntry) {
       return
     }
     void tryGenerateFusion(result)
@@ -160,7 +159,7 @@ function App() {
 
   function setHybridRoll(hybrid: HybridRollResult | null) {
     setResult(hybrid)
-    if (hybrid && !hybrid.fusion && canGenerateFusionLive()) {
+    if (hybrid && !hybrid.fusionEntry && canGenerateFusionLive()) {
       setFusionPhase('generating')
       setFusionError(null)
     }

@@ -13,6 +13,7 @@ interface FilterPanelProps {
   filters: QuirkFilters
   onChange: (nextFilters: QuirkFilters) => void
   onReset: () => void
+  showSearch?: boolean
 }
 
 function toggleValue<T extends string>(items: T[], value: T): T[] {
@@ -71,7 +72,12 @@ function CheckboxGroup<T extends string>({
   )
 }
 
-export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
+export function FilterPanel({
+  filters,
+  onChange,
+  onReset,
+  showSearch = true,
+}: FilterPanelProps) {
   const { t } = useI18n()
   const meta = useMetaLabel()
 
@@ -84,17 +90,19 @@ export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
         </button>
       </div>
 
-      <label className="search-input">
-        <span>{t('advanced.search')}</span>
-        <input
-          type="search"
-          placeholder={t('advanced.searchPlaceholder')}
-          value={filters.query}
-          onChange={(event) =>
-            onChange({ ...filters, query: event.target.value })
-          }
-        />
-      </label>
+      {showSearch ? (
+        <label className="search-input">
+          <span>{t('advanced.search')}</span>
+          <input
+            type="search"
+            placeholder={t('advanced.searchPlaceholder')}
+            value={filters.query}
+            onChange={(event) =>
+              onChange({ ...filters, query: event.target.value })
+            }
+          />
+        </label>
+      ) : null}
 
       <CheckboxGroup
         title={t('advanced.origin')}

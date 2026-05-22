@@ -81,3 +81,13 @@ export const DEFAULT_QUIRK_FILTERS: QuirkFilters = {
   query: '',
 }
 
+/** Selected options in advanced filter groups (excludes search query and tiers). */
+export function countAdvancedFilterSelections(filters: QuirkFilters): number {
+  return (
+    filters.origins.length +
+    filters.types.length +
+    filters.ranges.length +
+    filters.facets.length
+  )
+}
+

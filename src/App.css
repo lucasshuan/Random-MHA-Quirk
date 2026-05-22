@@ -758,6 +758,16 @@
   max-height: 100%;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   align-content: start;
+  min-height: 0;
+}
+
+.hybrid-result .segment-tab-panel {
+  min-height: 0;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .result-step-rolling {
@@ -1416,6 +1426,13 @@
   pointer-events: none;
 }
 
+.icon-btn.strong-icon:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: saturate(0.4);
+}
+
 .strong-icon {
   border-color: var(--accent-border);
   color: var(--accent-strong);
@@ -1795,6 +1812,8 @@
 }
 
 .quirk-tier-cell {
+  --tier-cell-rgb: 200, 215, 240;
+
   display: grid;
   place-items: center;
   min-width: 1.15rem;
@@ -1812,14 +1831,41 @@
     box-shadow 200ms ease;
 }
 
-.quirk-tier-cell-active {
-  color: var(--card-accent-strong);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent),
-    var(--card-accent-soft);
+.quirk-tier-cell[aria-current='true'] {
+  color: #0d1218;
+  background: rgb(var(--tier-cell-rgb));
   box-shadow:
-    inset 0 0 0 1px var(--card-accent-soft),
-    0 0 10px var(--card-accent-glow);
+    0 0 8px rgba(var(--tier-cell-rgb), 0.7),
+    0 0 16px rgba(var(--tier-cell-rgb), 0.35);
+}
+
+/* S — cyan-teal */
+.quirk-tier-cell:nth-child(1)[aria-current='true'] {
+  --tier-cell-rgb: 52, 228, 196;
+}
+
+/* A — green */
+.quirk-tier-cell:nth-child(2)[aria-current='true'] {
+  --tier-cell-rgb: 118, 220, 130;
+}
+
+/* B — amber */
+.quirk-tier-cell:nth-child(3)[aria-current='true'] {
+  --tier-cell-rgb: 255, 186, 88;
+}
+
+/* C — red */
+.quirk-tier-cell:nth-child(4)[aria-current='true'] {
+  --tier-cell-rgb: 255, 92, 108;
+}
+
+/* keep the old class name working for any non-aria usage */
+.quirk-tier-cell-active {
+  color: #0d1218;
+  background: rgb(var(--tier-cell-rgb));
+  box-shadow:
+    0 0 8px rgba(var(--tier-cell-rgb), 0.7),
+    0 0 16px rgba(var(--tier-cell-rgb), 0.35);
 }
 
 .quirk-meta-type {
@@ -2098,17 +2144,29 @@
   line-height: 1;
 }
 
+.quirk-card-fusion {
+  --card-accent: rgba(255, 185, 85, 0.85);
+  --card-accent-strong: #ffd0a0;
+  --card-accent-soft: rgba(255, 185, 85, 0.22);
+  --card-accent-glow: rgba(255, 170, 80, 0.28);
+  --card-accent-tint: rgba(255, 170, 60, 0.06);
+
+  border-color: rgba(255, 185, 85, 0.28);
+  padding-right: 3.6rem;
+}
+
 .fusion-hero .quirk-card-fusion {
   box-shadow:
-    0 0 0 1px rgba(255, 200, 120, 0.22),
     0 12px 40px rgba(0, 0, 0, 0.45),
-    0 0 48px rgba(255, 170, 80, 0.12);
+    0 0 48px rgba(255, 170, 80, 0.14);
 }
 
 .quirk-fusion-badge {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 3;
   display: inline-flex;
-  align-self: flex-start;
-  margin-bottom: 0.35rem;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   font-size: 0.62rem;
@@ -2118,6 +2176,7 @@
   color: rgba(255, 220, 160, 0.95);
   background: rgba(255, 160, 60, 0.18);
   border: 1px solid rgba(255, 190, 100, 0.35);
+  pointer-events: none;
 }
 
 .fusion-pending {
@@ -2213,82 +2272,212 @@
   grid-template-rows: auto auto auto minmax(0, 1fr);
 }
 
-.manual-pick-layout {
-  width: 100%;
-  min-height: 0;
+.manual-pick-controls {
+  width: min(100%, 760px);
   display: grid;
-  gap: 0.75rem;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
 }
 
-.manual-pick-layout > .panel,
+.manual-search-input {
+  text-align: left;
+}
+
+.manual-filter-button,
+.manual-secondary-action {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.62rem 0.9rem;
+  background: rgba(24, 36, 56, 0.72);
+  color: rgba(232, 238, 248, 0.86);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.manual-filter-button-has-count {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent-strong);
+}
+
+.manual-filter-count {
+  min-width: 1.35rem;
+  height: 1.35rem;
+  display: grid;
+  place-items: center;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  color: #1b1300;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.manual-filter-button:hover,
+.manual-filter-button:focus-visible,
+.manual-secondary-action:hover,
+.manual-secondary-action:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent-strong);
+}
+
+.manual-pick-layout {
+  width: min(100%, 860px);
+  min-height: 0;
+  display: block;
+}
+
 .manual-quirk-panel {
-  max-height: min(50svh, 440px);
+  max-height: min(48svh, 440px);
+  padding: 0.72rem;
+}
+
+.manual-quirk-panel-heading {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.55rem;
+}
+
+.manual-quirk-panel-heading span {
+  color: rgba(180, 195, 215, 0.62);
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .manual-quirk-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.62rem;
 }
 
 .manual-quirk-card {
   position: relative;
-  min-height: 112px;
+  min-height: 104px;
   display: grid;
   align-content: start;
-  gap: 0.35rem;
-  padding: 0.62rem 0.65rem;
-  border-radius: 14px;
-  border: 1px solid var(--card-accent-soft, rgba(255, 255, 255, 0.12));
+  gap: 0.32rem;
+  padding: 0.68rem 0.72rem;
+  border-radius: 16px;
+  border: 1px solid var(--card-accent-soft);
   background:
-    linear-gradient(180deg, var(--card-accent-tint, rgba(255, 255, 255, 0.03)) 0%, transparent 58%),
-    rgba(14, 22, 36, 0.78);
+    linear-gradient(180deg, var(--card-accent-tint) 0%, transparent 56%),
+    linear-gradient(180deg, rgba(20, 28, 42, 0.78) 0%, rgba(10, 16, 26, 0.84) 100%);
   text-align: left;
   color: var(--text);
   overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 20px rgba(0, 0, 0, 0.24);
   transition:
     transform 180ms ease,
     border-color 220ms ease,
     box-shadow 220ms ease;
 }
 
+.manual-quirk-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.manual-quirk-card .quirk-card-glow {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.manual-quirk-card::before {
+  content: '';
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0.55;
+  z-index: 1;
+}
+
 .manual-quirk-card:hover,
 .manual-quirk-card:focus-visible {
   transform: translateY(-1px);
-  border-color: var(--card-accent, #f8d849);
+  border-color: var(--card-accent);
+  outline: none;
   box-shadow:
-    0 10px 18px rgba(0, 0, 0, 0.35),
-    0 0 22px var(--card-accent-glow, rgba(248, 216, 73, 0.14));
-}
-
-.manual-quirk-card h3 {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.manual-quirk-card p {
-  margin: 0;
-  color: rgba(230, 235, 246, 0.86);
-  font-size: 0.75rem;
-  line-height: 1.4;
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 12px 22px rgba(0, 0, 0, 0.32),
+    0 0 20px var(--card-accent-glow);
 }
 
 .manual-quirk-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+  font-size: 0.58rem;
 }
 
-.manual-quirk-tier {
-  padding: 0.12rem 0.35rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+.manual-quirk-tier-badge {
+  --tier-badge-rgb: 200, 215, 240;
+
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 5px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #0d1218;
+  background: rgb(var(--tier-badge-rgb));
+  box-shadow: 0 0 8px rgba(var(--tier-badge-rgb), 0.55);
+}
+
+/* Per-tier colors matching the tier-toggle palette */
+.quirk-card-type-emitter .manual-quirk-tier-badge,
+.quirk-card-type-transformation .manual-quirk-tier-badge,
+.quirk-card-type-mutant .manual-quirk-tier-badge {
+  /* resolved below per tier letter via data or nth-child isn't available here,
+     so we use a parent data attribute approach — simpler: set per-tier class on card */
+}
+
+.manual-quirk-card[data-tier='S'] .manual-quirk-tier-badge { --tier-badge-rgb: 52, 228, 196; }
+.manual-quirk-card[data-tier='A'] .manual-quirk-tier-badge { --tier-badge-rgb: 118, 220, 130; }
+.manual-quirk-card[data-tier='B'] .manual-quirk-tier-badge { --tier-badge-rgb: 255, 186, 88; }
+.manual-quirk-card[data-tier='C'] .manual-quirk-tier-badge { --tier-badge-rgb: 255, 92, 108; }
+
+.manual-quirk-name {
+  margin: 0;
+  color: #f3f6fb;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.manual-quirk-description {
+  margin: 0;
+  color: rgba(220, 228, 240, 0.62);
+  font-size: 0.68rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .quirk-pick-modal-backdrop {
@@ -2303,25 +2492,68 @@
 }
 
 .quirk-pick-modal {
-  width: min(540px, 100%);
+  width: min(620px, 100%);
   max-height: min(86svh, 760px);
   display: grid;
-  gap: 0.7rem;
-  padding: 1rem 1rem 0.95rem;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.1), transparent 62%),
-    rgba(11, 18, 30, 0.95);
-  box-shadow:
-    0 22px 45px rgba(0, 0, 0, 0.48),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-  overflow: auto;
+  gap: 0.75rem;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
-.quirk-pick-modal h2 {
-  margin: 0;
-  font-size: clamp(1.4rem, 5.5vw, 2rem);
+.quirk-pick-card {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  min-height: 0;
+  max-height: min(calc(86svh - 7rem), 680px);
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--card-accent-soft);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, var(--card-accent-tint) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(20, 28, 42, 0.9) 0%, rgba(10, 16, 26, 0.96) 100%);
+  isolation: isolate;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  text-align: left;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 22px 45px rgba(0, 0, 0, 0.5),
+    0 0 34px var(--card-accent-glow);
+}
+
+.quirk-pick-card::before {
+  content: '';
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.quirk-pick-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.quirk-pick-card .quirk-card-glow {
+  position: absolute;
+  z-index: 0;
+}
+
+.quirk-pick-card-name {
+  margin: 0.05rem 0 0;
+  color: #f3f6fb;
+  font-size: clamp(1.45rem, 5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
 }
 
 .quirk-pick-modal-meta {
@@ -2336,7 +2568,7 @@
 .quirk-pick-modal-description {
   margin: 0;
   font-size: 0.94rem;
-  color: rgba(240, 246, 255, 0.92);
+  color: rgba(220, 228, 240, 0.82);
   line-height: 1.58;
 }
 
@@ -2358,28 +2590,47 @@
 .quirk-pick-modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.55rem;
+  gap: 0.65rem;
+  padding: 0.2rem 0.5rem 0.55rem;
+  overflow: visible;
 }
 
-.quirk-pick-modal.quirk-card-type-emitter {
-  border-color: rgba(111, 181, 255, 0.35);
-  box-shadow:
-    0 22px 45px rgba(0, 0, 0, 0.48),
-    0 0 34px rgba(93, 161, 255, 0.16);
+.manual-secondary-action {
+  min-width: 130px;
+  justify-content: center;
+  padding-inline: 1.15rem;
 }
 
-.quirk-pick-modal.quirk-card-type-transformation {
-  border-color: rgba(145, 239, 181, 0.35);
-  box-shadow:
-    0 22px 45px rgba(0, 0, 0, 0.48),
-    0 0 34px rgba(110, 226, 161, 0.16);
+.manual-confirm-action {
+  min-width: 160px;
+  cursor: pointer;
 }
 
-.quirk-pick-modal.quirk-card-type-mutant {
-  border-color: rgba(255, 165, 151, 0.35);
+.manual-filter-modal {
+  width: min(640px, calc(100vw - 2rem));
+  max-height: min(86svh, 720px);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.manual-filter-modal .panel {
+  max-height: min(68svh, 560px);
+  padding: 1rem 1.1rem;
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 42%),
+    linear-gradient(180deg, rgba(18, 28, 44, 0.99) 0%, rgba(8, 12, 22, 1) 100%);
   box-shadow:
-    0 22px 45px rgba(0, 0, 0, 0.48),
-    0 0 34px rgba(255, 142, 122, 0.16);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 50px rgba(0, 0, 0, 0.55);
+}
+
+.manual-filter-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  padding: 0.2rem 0.5rem 0.55rem;
+  overflow: visible;
 }
 
 @media (max-width: 680px) {
@@ -2389,6 +2640,42 @@
 
   .minimal-card {
     min-height: 100svh;
+  }
+
+  /* Result pages: let the screen scroll (hybrid cards exceed viewport) */
+  .minimal-screen:has(.result-step) {
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    align-content: start;
+    place-items: stretch;
+  }
+
+  .simple-step.result-step,
+  .result-step:has(.hybrid-result) {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .result-step:has(.hybrid-result) {
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .hybrid-result {
+    max-height: none;
+    overflow: visible;
+    grid-template-rows: auto auto;
+  }
+
+  .hybrid-result .segment-tab-panel {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .rolled-quirks-box.inner-scroll-panel {
+    max-height: none;
+    overflow: visible;
   }
 
   .choice-grid {
@@ -2411,16 +2698,28 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .manual-pick-controls {
+    grid-template-columns: 1fr;
+  }
+
   .manual-pick-layout {
     grid-template-columns: 1fr;
   }
 
-  .manual-pick-layout > .panel,
   .manual-quirk-panel {
     max-height: min(38svh, 340px);
   }
 
   .manual-quirk-grid {
     grid-template-columns: 1fr;
+  }
+
+  .quirk-pick-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .manual-secondary-action,
+  .manual-confirm-action {
+    width: 100%;
   }
 }

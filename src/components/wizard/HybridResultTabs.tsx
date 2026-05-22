@@ -60,7 +60,7 @@ export function HybridResultTabs({
           activeView === 'fusion' ? (
             <>
               {fusion ? (
-                <div className="fusion-hero" key={resultKey}>
+                <div className="fusion-hero inner-scroll-panel" key={resultKey}>
                   <QuirkCard quirk={fusion} hideTier />
                 </div>
               ) : fusionPhase === 'generating' ? (

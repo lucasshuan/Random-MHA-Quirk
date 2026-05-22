@@ -447,7 +447,6 @@ export function WizardApp() {
             filters={manualFilters}
             filteredQuirks={manuallyFilteredQuirks}
             onChangeFilters={setManualFilters}
-            onResetFilters={() => setManualFilters(defaultFilters())}
             onSelectQuirk={handleManualPick}
           />
         )

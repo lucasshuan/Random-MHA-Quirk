@@ -9,9 +9,9 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
-    "quirks:generate-es": "tsx scripts/generate-es-quirks.ts",
-    "quirks:seed": "tsx scripts/seed-quirks.ts",
-    "db:push": "tsx scripts/db-push.mjs"
+    "quirks:generate-es": "tsx scripts/quirks/generate-es.ts",
+    "quirks:seed": "tsx scripts/quirks/seed.ts",
+    "db:push": "tsx scripts/db/push.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",

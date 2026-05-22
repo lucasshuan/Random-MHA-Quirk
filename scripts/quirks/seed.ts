@@ -4,20 +4,19 @@
  * Usage:
  *   pnpm quirks:seed
  */
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { createClient } from '@supabase/supabase-js'
-import { QUIRK_IDS } from '../tools/catalog/output/quirk-ids'
-import { quirksBase } from '../tools/catalog/output/quirks.base'
-import { buildQuirkSearchText } from '../src/i18n/quirkSearchText'
-import { enQuirkCopy } from '../tools/catalog/output/copy/en'
-import { esQuirkCopy } from '../tools/catalog/output/copy/es.locale'
-import { ptBRQuirkCopy } from '../tools/catalog/output/copy/pt-BR'
-import { loadEnv } from '../src/server/env/load'
-import type { Locale } from '../src/i18n/types'
-import type { Quirk, QuirkCopy } from '../src/types/quirk'
+import { buildQuirkSearchText } from '../../src/i18n/quirkSearchText'
+import type { Locale } from '../../src/i18n/types'
+import { loadEnv } from '../../src/server/env/load'
+import type { Quirk, QuirkCopy } from '../../src/types/quirk'
+import { enQuirkCopy } from '../../tools/catalog/output/copy/en'
+import { esQuirkCopy } from '../../tools/catalog/output/copy/es.locale'
+import { ptBRQuirkCopy } from '../../tools/catalog/output/copy/pt-BR'
+import { QUIRK_IDS } from '../../tools/catalog/output/quirk-ids'
+import { quirksBase } from '../../tools/catalog/output/quirks.base'
+import { getProjectRoot } from '../_shared/root'
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+const root = getProjectRoot()
 
 const COPY_BY_LOCALE = {
   en: enQuirkCopy,

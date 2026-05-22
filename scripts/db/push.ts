@@ -8,11 +8,10 @@
  * Usage: pnpm db:push
  */
 import { spawnSync } from 'node:child_process'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'url'
-import { loadEnv } from './lib/load-env.mjs'
+import { getProjectRoot } from '../_shared/root'
+import { loadEnv } from '../../src/server/env/load'
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+const root = getProjectRoot()
 loadEnv(root)
 
 const url = process.env.SUPABASE_URL?.trim()
@@ -40,7 +39,7 @@ if (!dbPassword) {
   process.exit(1)
 }
 
-function run(args) {
+function run(args: string[]) {
   const result = spawnSync('pnpm', ['exec', 'supabase', ...args], {
     cwd: root,
     stdio: 'inherit',

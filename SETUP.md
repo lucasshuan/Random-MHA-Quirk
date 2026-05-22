@@ -16,7 +16,7 @@ Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / 
    - `pnpm exec supabase login` (once)
    - set `SUPABASE_DB_PASSWORD` in `.env`
    - `pnpm db:push`
-3. Optional one-time seed: `node scripts/seed-fusion-cache.mjs`
+3. Optional one-time seed: `pnpm exec tsx scripts/fusion/seed-cache.ts`
 4. `pnpm dev` → http://localhost:3000
 
 ## Scripts

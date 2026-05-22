@@ -7,20 +7,14 @@
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { QUIRK_IDS } from '../tools/catalog/output/quirk-ids'
-import { enQuirkCopy } from '../tools/catalog/output/copy/en'
-import { loadEnv } from '../src/server/env/load'
-import type { QuirkCopy } from '../src/types/quirk'
+import { loadEnv } from '../../src/server/env/load'
+import type { QuirkCopy } from '../../src/types/quirk'
+import { enQuirkCopy } from '../../tools/catalog/output/copy/en'
+import { QUIRK_IDS } from '../../tools/catalog/output/quirk-ids'
+import { getProjectRoot } from '../_shared/root'
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-
-const CHECKPOINT_PATH = join(
-  dirname(fileURLToPath(import.meta.url)),
-  '..',
-  '.cache',
-  'es-quirks-partial.json',
-)
+const root = getProjectRoot()
+const CHECKPOINT_PATH = join(root, '.cache', 'es-quirks-partial.json')
 
 function parseArgs(argv: string[]) {
   let batchSize = 25

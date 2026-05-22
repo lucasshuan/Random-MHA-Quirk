@@ -122,9 +122,6 @@ export const es: Messages = {
     generateError: 'No se pudo generar esta fusión.',
     retryGenerate: 'Intentar de nuevo',
     rerollVariant: 'Nueva fusión (mismos orígenes)',
-    generateHint: 'O genera en la terminal y recarga:',
-    generateCommand:
-      'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
   },
   meta: {
     origin: {

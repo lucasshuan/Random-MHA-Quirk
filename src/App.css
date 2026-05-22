@@ -2211,24 +2211,6 @@
   padding: 0.55rem 1.2rem;
 }
 
-.fusion-generate-hint {
-  margin: 0.5rem 0 0.35rem;
-  font-size: 0.82rem;
-  color: rgba(220, 228, 240, 0.72);
-}
-
-.fusion-generate-cmd {
-  display: block;
-  padding: 0.65rem 0.75rem;
-  border-radius: 10px;
-  font-size: 0.72rem;
-  line-height: 1.45;
-  word-break: break-all;
-  color: rgba(200, 230, 255, 0.92);
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
 .fusion-parents-grid {
   margin-top: 0;
 }

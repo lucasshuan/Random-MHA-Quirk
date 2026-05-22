@@ -22,15 +22,6 @@ node scripts/seed-fusion-cache.mjs
 - Se a geração falhar e já existir entrada para o mesmo par + seed → usa fallback do banco
 - Chaves de API ficam **somente no servidor** — nunca no client
 
-## Terminal (opcional)
-
-```bash
-pnpm fusion:generate -- --a acid --b explosion
-pnpm fusion:generate -- --a acid --b explosion --seed k7x2m9
-```
-
-Grava direto no Supabase.
-
 ## Reroll
 
 Cada ↻ no resultado gera novo `seed` → nova variante.

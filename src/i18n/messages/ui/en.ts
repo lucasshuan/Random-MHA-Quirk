@@ -115,9 +115,6 @@ export const en = {
     generateError: 'Could not generate this fusion.',
     retryGenerate: 'Try again',
     rerollVariant: 'Reroll fusion (same parents)',
-    generateHint: 'Or generate via terminal, then reload:',
-    generateCommand:
-      'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
   },
   meta: {
     origin: {

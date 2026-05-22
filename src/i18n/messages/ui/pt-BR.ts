@@ -122,9 +122,6 @@ export const ptBR: Messages = {
     generateError: 'Não foi possível gerar esta fusão.',
     retryGenerate: 'Tentar novamente',
     rerollVariant: 'Sortear nova fusão (mesmas origens)',
-    generateHint: 'Ou gere no terminal e recarregue:',
-    generateCommand:
-      'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
   },
   meta: {
     origin: {

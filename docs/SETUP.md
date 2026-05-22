@@ -27,7 +27,6 @@ Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / 
 | `pnpm build` | Production build |
 | `pnpm start` | Production server |
 | `pnpm test` | Unit tests (Vitest) |
-| `pnpm fusion:generate -- --a id1 --b id2` | CLI: generate fusion → Supabase |
 | `pnpm db:push` | Apply `supabase/migrations/` to linked project |
 
 Fusion setup: [`fusion.md`](fusion.md)

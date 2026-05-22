@@ -1,5 +1,20 @@
 import { requireOneOf } from '@/lib/server/env-utils'
-import { validateFusionPayload, type ValidatedFusionPayload } from './validate'
+import {
+  validateEnglishFusionPayload,
+  validateLocaleFusionTranslation,
+  type ValidatedEnglishFusionPayload,
+  type ValidatedLocaleFusionCopy,
+} from './validate'
+import type { FusionTranslationLocale } from './constants'
+
+const FUSION_EN_SYSTEM =
+  'You design creative My Hero Academia fusion quirks. Output strict JSON only.'
+
+const FUSION_LOCALE_SYSTEM: Record<FusionTranslationLocale, string> = {
+  'pt-BR':
+    'You adapt My Hero Academia quirk entries into natural Brazilian Portuguese for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
+  es: 'You adapt My Hero Academia quirk entries into natural Spanish for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
+}
 
 function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
   const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
@@ -22,7 +37,11 @@ function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } 
   throw new Error('Nenhum provedor LLM configurado.')
 }
 
-async function callOpenAI(apiKey: string, userPrompt: string): Promise<unknown> {
+async function callOpenAI(
+  apiKey: string,
+  userPrompt: string,
+  systemContent: string,
+): Promise<unknown> {
   const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini'
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -35,11 +54,7 @@ async function callOpenAI(apiKey: string, userPrompt: string): Promise<unknown> 
       temperature: Number(process.env.FUSION_TEMPERATURE ?? 0.9),
       response_format: { type: 'json_object' },
       messages: [
-        {
-          role: 'system',
-          content:
-            'You design creative My Hero Academia fusion quirks. Output strict JSON only.',
-        },
+        { role: 'system', content: systemContent },
         { role: 'user', content: userPrompt },
       ],
     }),
@@ -58,15 +73,20 @@ async function callOpenAI(apiKey: string, userPrompt: string): Promise<unknown> 
   return JSON.parse(text)
 }
 
-async function callGemini(apiKey: string, userPrompt: string): Promise<unknown> {
+async function callGemini(
+  apiKey: string,
+  userPrompt: string,
+  systemContent: string,
+): Promise<unknown> {
   const model = process.env.GEMINI_MODEL?.trim() || 'gemini-2.0-flash'
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
+  const prompt = `${systemContent}\n\n${userPrompt}`
 
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: Number(process.env.FUSION_TEMPERATURE ?? 0.9),
         responseMimeType: 'application/json',
@@ -87,7 +107,11 @@ async function callGemini(apiKey: string, userPrompt: string): Promise<unknown> 
   return JSON.parse(text)
 }
 
-export async function generateWithLlm(userPrompt: string): Promise<ValidatedFusionPayload> {
+async function callLlmJson<T>(
+  userPrompt: string,
+  systemContent: string,
+  validate: (raw: unknown) => T,
+): Promise<T> {
   const provider = resolveFusionProvider()
   const maxAttempts = 3
 
@@ -95,13 +119,37 @@ export async function generateWithLlm(userPrompt: string): Promise<ValidatedFusi
     try {
       const raw =
         provider.name === 'openai'
-          ? await callOpenAI(provider.apiKey, userPrompt)
-          : await callGemini(provider.apiKey, userPrompt)
-      return validateFusionPayload(raw)
+          ? await callOpenAI(provider.apiKey, userPrompt, systemContent)
+          : await callGemini(provider.apiKey, userPrompt, systemContent)
+      return validate(raw)
     } catch (err) {
       if (attempt === maxAttempts) throw err
     }
   }
 
-  throw new Error('Falha ao gerar fusão.')
+  throw new Error('Falha na chamada LLM.')
+}
+
+export function generateEnglishFusionWithLlm(
+  userPrompt: string,
+): Promise<ValidatedEnglishFusionPayload> {
+  return callLlmJson(userPrompt, FUSION_EN_SYSTEM, validateEnglishFusionPayload)
+}
+
+export function translateFusionToLocaleWithLlm(
+  userPrompt: string,
+  locale: FusionTranslationLocale,
+): Promise<ValidatedLocaleFusionCopy> {
+  return callLlmJson(
+    userPrompt,
+    FUSION_LOCALE_SYSTEM[locale],
+    (raw) => validateLocaleFusionTranslation(raw, locale),
+  )
+}
+
+/** @deprecated Use translateFusionToLocaleWithLlm */
+export function translateFusionToPtBrWithLlm(
+  userPrompt: string,
+): Promise<Pick<ValidatedLocaleFusionCopy, 'pt-BR'>> {
+  return translateFusionToLocaleWithLlm(userPrompt, 'pt-BR')
 }

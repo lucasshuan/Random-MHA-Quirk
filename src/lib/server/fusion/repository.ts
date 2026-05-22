@@ -9,6 +9,7 @@ interface FusionRow {
   seed: string
   en: { name: string; description: string }
   pt_br: { name: string; description: string }
+  es: { name: string; description: string } | null
   type: string
   range: string
   facets: string[]
@@ -22,6 +23,7 @@ function rowToEntry(row: FusionRow): FusionCacheEntry {
     seed: row.seed,
     en: row.en,
     'pt-BR': row.pt_br,
+    es: row.es ?? row.en,
     type: row.type as QuirkType,
     range: row.range as QuirkRange,
     facets: row.facets as QuirkFacet[],
@@ -37,6 +39,7 @@ function entryToRow(entry: FusionCacheEntry): FusionRow {
     seed: entry.seed,
     en: entry.en,
     pt_br: entry['pt-BR'],
+    es: entry.es,
     type: entry.type,
     range: entry.range,
     facets: entry.facets,

@@ -4,9 +4,14 @@ import { fusionCacheKey, sortedParentPair } from '@/lib/fusionKey'
 import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkId } from '@/data/quirk-ids'
 import { getQuirkById, loadQuirksCatalog } from './catalog'
-import { buildFusionEntry } from './validate'
+import { FUSION_TRANSLATION_LOCALES } from './constants'
+import { buildFusionEntry, mergeFusionPayload } from './validate'
 import { buildFusionPrompt } from './prompt'
-import { generateWithLlm } from './llm'
+import { buildFusionTranslationPrompt } from './translationPrompt'
+import {
+  generateEnglishFusionWithLlm,
+  translateFusionToLocaleWithLlm,
+} from './llm'
 import { findFusionByKey, upsertFusionEntry } from './repository'
 
 export function defaultFusionSeed(): string {
@@ -30,7 +35,7 @@ export interface GenerateFusionResult {
 }
 
 /**
- * Generates a fusion entry via LLM and persists to Supabase.
+ * Generates a fusion entry via LLM (English quirk, then locale adaptations) and persists to Supabase.
  * Uses an existing row only as a fallback when generation fails (unless `force`).
  */
 export async function generateFusionEntry({
@@ -53,7 +58,20 @@ export async function generateFusionEntry({
   const key = fusionCacheKey(parents[0], parents[1], seed)
 
   try {
-    const payload = await generateWithLlm(buildFusionPrompt(quirkA, quirkB, seed))
+    const english = await generateEnglishFusionWithLlm(
+      buildFusionPrompt(quirkA, quirkB, seed),
+    )
+
+    const translations = await Promise.all(
+      FUSION_TRANSLATION_LOCALES.map(async (locale) =>
+        translateFusionToLocaleWithLlm(
+          buildFusionTranslationPrompt(english, locale),
+          locale,
+        ),
+      ),
+    )
+
+    const payload = mergeFusionPayload(english, ...translations)
     const entry = buildFusionEntry(key, parents, seed, payload)
     await upsertFusionEntry(entry)
     return { entry, cached: false, generated: true }

@@ -23,7 +23,7 @@
 
 **[Random MHA Quirk](https://mha-random-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*. No account, no grind — tap **Start**, follow the path, and let the wheel decide what your next individuality looks like. Filter by type and tier if you want control; leave it wide open if you trust fate.
 
-Available in **English** and **Português (Brasil)**.
+Available in **English**, **Português (Brasil)**, and **Español**.
 
 ---
 

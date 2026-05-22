@@ -1,4 +1,4 @@
-export const LOCALES = ['en', 'pt-BR'] as const
+export const LOCALES = ['en', 'pt-BR', 'es'] as const
 export type Locale = (typeof LOCALES)[number]
 
 export type Interpolation = Record<string, string | number>
@@ -23,6 +23,9 @@ export function detectLocale(): Locale {
   const language = navigator.language.toLowerCase()
   if (language.startsWith('pt')) {
     return 'pt-BR'
+  }
+  if (language.startsWith('es')) {
+    return 'es'
   }
 
   return 'en'

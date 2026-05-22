@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { I18nContext, type I18nContextValue } from './useI18n'
 import { translate } from './translate'
+import { LOCALE_DOCUMENT_TITLE, LOCALE_HTML_LANG } from './localeMeta'
 import {
   detectLocale,
   isLocale,
@@ -45,9 +46,8 @@ export function I18nProvider({ children }: I18nProviderProps) {
   }, [])
 
   useEffect(() => {
-    document.documentElement.lang = locale === 'pt-BR' ? 'pt-BR' : 'en'
-    document.title =
-      locale === 'pt-BR' ? 'Individualidade Aleatória MHA' : 'Random MHA Quirk'
+    document.documentElement.lang = LOCALE_HTML_LANG[locale]
+    document.title = LOCALE_DOCUMENT_TITLE[locale]
   }, [locale])
 
   const value = useMemo<I18nContextValue>(

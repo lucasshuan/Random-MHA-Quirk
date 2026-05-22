@@ -1,10 +1,12 @@
 import { en, type Messages } from './messages/ui/en'
+import { es } from './messages/ui/es'
 import { ptBR } from './messages/ui/pt-BR'
 import type { Interpolation, Locale } from './types'
 
 const catalogs: Record<Locale, Messages> = {
   en,
   'pt-BR': ptBR,
+  es,
 }
 
 export type { Interpolation } from './types'

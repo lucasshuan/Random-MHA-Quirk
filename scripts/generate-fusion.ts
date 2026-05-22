@@ -69,6 +69,7 @@ async function main() {
     console.log(`Salvo no Supabase: ${entry.key}`)
     console.log(`  EN: ${entry.en.name}`)
     console.log(`  PT: ${entry['pt-BR'].name}`)
+    console.log(`  ES: ${entry.es.name}`)
   }
 }
 

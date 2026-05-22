@@ -7,6 +7,7 @@ export const en = {
     language: 'Language',
     languageEn: 'English (United States)',
     languagePt: 'Portuguese (Brazil)',
+    languageEs: 'Spanish',
   },
   brand: {
     title: 'Random Quirk',

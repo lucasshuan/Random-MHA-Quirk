@@ -9,6 +9,7 @@ export const ptBR: Messages = {
     language: 'Idioma',
     languageEn: 'Inglês (Estados Unidos)',
     languagePt: 'Português (Brasil)',
+    languageEs: 'Espanhol',
   },
   brand: {
     title: 'Individualidade Aleatória',

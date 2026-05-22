@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "fusion:generate": "tsx scripts/generate-fusion.ts",
+    "quirks:generate-es": "tsx scripts/generate-es-quirks.ts",
     "db:push": "tsx scripts/db-push.mjs"
   },
   "dependencies": {

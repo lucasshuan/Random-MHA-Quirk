@@ -28,6 +28,8 @@ dist-ssr
 *.sln
 *.sw?
 
+.cache/
+
 # Catalog tooling (refetch / rebuild locally)
 tools/catalog/data/wiki/
 tools/catalog/data/generated/

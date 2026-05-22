@@ -1,5 +1,9 @@
 export const FUSION_DESCRIPTION_MAX_LENGTH = 500
 
+/** Locales produced by the post-English adaptation LLM step. */
+export const FUSION_TRANSLATION_LOCALES = ['pt-BR', 'es'] as const
+export type FusionTranslationLocale = (typeof FUSION_TRANSLATION_LOCALES)[number]
+
 export const QUIRK_TYPES = ['Emitter', 'Transformation', 'Mutant'] as const
 export const QUIRK_RANGES = [
   'Self',

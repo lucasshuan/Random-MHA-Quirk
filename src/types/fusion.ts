@@ -19,6 +19,7 @@ export interface FusionCacheEntry {
   seed: string
   en: FusionCopy
   'pt-BR': FusionCopy
+  es: FusionCopy
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
@@ -45,7 +46,7 @@ export interface FusionQuirk {
 
 export interface HybridRollResult {
   parents: [Quirk, Quirk]
-  /** Entrada bilíngue; texto exibido é resolvido pelo locale ativo. */
+  /** Entrada multilíngue; texto exibido é resolvido pelo locale ativo. */
   fusionEntry: FusionCacheEntry | null
   seed: string
 }
@@ -54,5 +55,14 @@ export function fusionCopyForLocale(
   entry: FusionCacheEntry,
   locale: Locale,
 ): FusionCopy {
-  return entry[locale]
+  if (locale === 'en') {
+    return entry.en
+  }
+
+  const localized = entry[locale]
+  if (localized?.name && localized.description) {
+    return localized
+  }
+
+  return entry.en
 }

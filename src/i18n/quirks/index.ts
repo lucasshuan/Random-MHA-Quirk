@@ -3,11 +3,13 @@ import type { Quirk, QuirkCopy } from '../../types/quirk'
 import type { QuirkId } from '../../data/quirk-ids'
 import type { Locale } from '../types'
 import { enQuirkCopy } from '../messages/quirks/en'
+import { esQuirkCopy } from '../messages/quirks/es'
 import { ptBRQuirkCopy } from '../messages/quirks/pt-BR'
 
 const quirkCopyByLocale: Record<Locale, Record<QuirkId, QuirkCopy>> = {
   en: enQuirkCopy,
   'pt-BR': ptBRQuirkCopy,
+  es: esQuirkCopy,
 }
 
 export function getQuirks(locale: Locale): Quirk[] {
@@ -26,4 +28,4 @@ export function resolveQuirk(quirk: Quirk, locale: Locale): Quirk {
   }
 }
 
-export { enQuirkCopy, ptBRQuirkCopy, quirkCopyByLocale }
+export { enQuirkCopy, esQuirkCopy, ptBRQuirkCopy, quirkCopyByLocale }

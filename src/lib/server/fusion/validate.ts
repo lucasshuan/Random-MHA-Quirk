@@ -1,37 +1,63 @@
 import type { FusionCopy, FusionCacheEntry } from '@/types/fusion'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
-import { QUIRK_FACETS, QUIRK_RANGES, QUIRK_TYPES } from './constants'
+import type { Locale } from '@/i18n/types'
+import {
+  FUSION_DESCRIPTION_MAX_LENGTH,
+  FUSION_TRANSLATION_LOCALES,
+  type FusionTranslationLocale,
+  QUIRK_FACETS,
+  QUIRK_RANGES,
+  QUIRK_TYPES,
+} from './constants'
 
 export interface ValidatedFusionPayload {
   en: FusionCopy
   'pt-BR': FusionCopy
+  es: FusionCopy
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
   origin: QuirkOrigin
 }
 
-export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
-  if (!raw || typeof raw !== 'object') {
-    throw new Error('Resposta LLM não é um objeto JSON.')
+export interface ValidatedEnglishFusionPayload {
+  en: FusionCopy
+  type: QuirkType
+  range: QuirkRange
+  facets: QuirkFacet[]
+  origin: QuirkOrigin
+}
+
+export type ValidatedLocaleFusionCopy = Pick<
+  ValidatedFusionPayload,
+  FusionTranslationLocale
+>
+
+function validateFusionCopy(block: unknown, locale: Locale): FusionCopy {
+  const record = block as Record<string, unknown> | undefined
+  if (!record?.name || typeof record.name !== 'string' || record.name.trim().length < 2) {
+    throw new Error(`Campo ${locale}.name inválido.`)
   }
 
-  const obj = raw as Record<string, unknown>
-
-  for (const locale of ['en', 'pt-BR'] as const) {
-    const block = obj[locale] as Record<string, unknown> | undefined
-    if (!block?.name || typeof block.name !== 'string' || block.name.length < 2) {
-      throw new Error(`Campo ${locale}.name inválido.`)
-    }
-    if (
-      !block?.description ||
-      typeof block.description !== 'string' ||
-      block.description.trim().length < 20
-    ) {
-      throw new Error(`Campo ${locale}.description inválido.`)
-    }
+  const description =
+    typeof record.description === 'string' ? record.description.trim() : ''
+  if (description.length < 20) {
+    throw new Error(`Campo ${locale}.description inválido.`)
+  }
+  if (description.length > FUSION_DESCRIPTION_MAX_LENGTH) {
+    throw new Error(
+      `Campo ${locale}.description excede ${FUSION_DESCRIPTION_MAX_LENGTH} caracteres.`,
+    )
   }
 
+  return { name: record.name.trim(), description }
+}
+
+function validateFusionMechanics(obj: Record<string, unknown>): {
+  type: QuirkType
+  range: QuirkRange
+  facets: QuirkFacet[]
+} {
   if (!QUIRK_TYPES.includes(obj.type as (typeof QUIRK_TYPES)[number])) {
     throw new Error(`type inválido: ${String(obj.type)}`)
   }
@@ -47,27 +73,83 @@ export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
     }
   }
 
-  const en = obj.en as FusionCopy
-  const pt = obj['pt-BR'] as FusionCopy
-  const enDescription =
-    typeof en.description === 'string' ? en.description.trim() : ''
-  const ptDescription =
-    typeof pt.description === 'string' ? pt.description.trim() : ''
+  return {
+    type: obj.type as QuirkType,
+    range: obj.range as QuirkRange,
+    facets: [...new Set(obj.facets as QuirkFacet[])],
+  }
+}
 
-  if (/\b(quirk|peculiaridade)\b/i.test(ptDescription)) {
+function validateLocaleDescriptionRules(
+  locale: FusionTranslationLocale,
+  description: string,
+): void {
+  if (locale === 'pt-BR' && /\b(quirk|peculiaridade)\b/i.test(description)) {
     throw new Error(
       'pt-BR.description deve usar "individualidade" (não usar "Quirk" ou "Peculiaridade").',
     )
   }
 
-  return {
-    en: { name: en.name.trim(), description: enDescription },
-    'pt-BR': { name: pt.name.trim(), description: ptDescription },
-    type: obj.type as QuirkType,
-    range: obj.range as QuirkRange,
-    facets: [...new Set(obj.facets as QuirkFacet[])],
-    origin: 'ORIGINAL',
+  if (
+    locale === 'es' &&
+    /\b(quirk|peculiaridad|individualidad)\b/i.test(description)
+  ) {
+    throw new Error(
+      'es.description deve usar "don" (não usar "Quirk", "Peculiaridad" ou "individualidad").',
+    )
   }
+}
+
+export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
+  if (!raw || typeof raw !== 'object') {
+    throw new Error('Resposta LLM (inglês) não é um objeto JSON.')
+  }
+
+  const obj = raw as Record<string, unknown>
+  const en = validateFusionCopy(obj.en, 'en')
+  const mechanics = validateFusionMechanics(obj)
+
+  return { en, ...mechanics, origin: 'ORIGINAL' }
+}
+
+export function validateLocaleFusionTranslation(
+  raw: unknown,
+  locale: FusionTranslationLocale,
+): ValidatedLocaleFusionCopy {
+  if (!raw || typeof raw !== 'object') {
+    throw new Error(`Resposta LLM (${locale}) não é um objeto JSON.`)
+  }
+
+  const obj = raw as Record<string, unknown>
+  const copy = validateFusionCopy(obj[locale], locale)
+  validateLocaleDescriptionRules(locale, copy.description)
+
+  return { [locale]: copy } as ValidatedLocaleFusionCopy
+}
+
+/** @deprecated Use validateLocaleFusionTranslation */
+export function validatePtBrFusionTranslation(raw: unknown): Pick<
+  ValidatedFusionPayload,
+  'pt-BR'
+> {
+  return validateLocaleFusionTranslation(raw, 'pt-BR')
+}
+
+export function mergeFusionPayload(
+  english: ValidatedEnglishFusionPayload,
+  ...translations: ValidatedLocaleFusionCopy[]
+): ValidatedFusionPayload {
+  const merged = { ...english } as ValidatedFusionPayload
+
+  for (const locale of FUSION_TRANSLATION_LOCALES) {
+    const block = translations.find((item) => locale in item)?.[locale]
+    if (!block) {
+      throw new Error(`Tradução ausente para ${locale}.`)
+    }
+    merged[locale] = block
+  }
+
+  return merged
 }
 
 export function buildFusionEntry(

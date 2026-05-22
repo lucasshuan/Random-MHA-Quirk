@@ -1,0 +1,68 @@
+import type { Locale } from '@/i18n/types'
+import type { Quirk, QuirkFilters } from '@/types/quirk'
+
+export interface QuirksListResponse {
+  locale: Locale
+  quirks: Quirk[]
+  total: number
+  filtered: boolean
+}
+
+export interface QuirkDetailResponse {
+  locale: Locale
+  quirk: Quirk
+}
+
+function filtersToSearchParams(locale: Locale, filters?: QuirkFilters): URLSearchParams {
+  const params = new URLSearchParams({ locale })
+
+  if (!filters) return params
+
+  if (filters.query) params.set('q', filters.query)
+  if (filters.origins.length) params.set('origins', filters.origins.join(','))
+  if (filters.tiers.length) params.set('tiers', filters.tiers.join(','))
+  if (filters.types.length) params.set('types', filters.types.join(','))
+  if (filters.ranges.length) params.set('ranges', filters.ranges.join(','))
+  if (filters.facets.length) params.set('facets', filters.facets.join(','))
+
+  return params
+}
+
+export async function fetchQuirks(
+  locale: Locale,
+  filters?: QuirkFilters,
+  init?: RequestInit,
+): Promise<QuirksListResponse> {
+  const params = filtersToSearchParams(locale, filters)
+  const res = await fetch(`/api/quirks?${params}`, {
+    ...init,
+    headers: { Accept: 'application/json', ...init?.headers },
+  })
+
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { message?: string } | null
+    throw new Error(body?.message ?? `Failed to load quirks (${res.status}).`)
+  }
+
+  return res.json() as Promise<QuirksListResponse>
+}
+
+export async function fetchQuirkById(
+  locale: Locale,
+  id: string,
+  init?: RequestInit,
+): Promise<Quirk> {
+  const params = new URLSearchParams({ locale })
+  const res = await fetch(`/api/quirks/${encodeURIComponent(id)}?${params}`, {
+    ...init,
+    headers: { Accept: 'application/json', ...init?.headers },
+  })
+
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { message?: string } | null
+    throw new Error(body?.message ?? `Failed to load quirk (${res.status}).`)
+  }
+
+  const data = (await res.json()) as QuirkDetailResponse
+  return data.quirk
+}

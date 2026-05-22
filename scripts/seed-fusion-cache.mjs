@@ -36,6 +36,7 @@ const rows = cache.entries.map((entry) => ({
   seed: entry.seed,
   en: entry.en,
   pt_br: entry['pt-BR'],
+  es: entry.es ?? entry.en,
   type: entry.type,
   range: entry.range,
   facets: entry.facets,

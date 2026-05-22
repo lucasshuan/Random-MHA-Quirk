@@ -1,5 +1,5 @@
 /**
- * Generates src/i18n/messages/quirks/es.ts from English copy via LLM adaptation.
+ * Generates tools/catalog/output/copy/es.locale.ts from English copy via LLM adaptation.
  *
  * Usage:
  *   pnpm quirks:generate-es
@@ -8,9 +8,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { QUIRK_IDS } from '../src/data/quirk-ids'
-import { loadEnv } from '../src/lib/server/env'
-import { enQuirkCopy } from '../src/i18n/messages/quirks/en'
+import { QUIRK_IDS } from '../tools/catalog/output/quirk-ids'
+import { enQuirkCopy } from '../tools/catalog/output/copy/en'
+import { loadEnv } from '../src/server/env/load'
 import type { QuirkCopy } from '../src/types/quirk'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -213,8 +213,8 @@ Reply with ONLY valid JSON:
 
 function renderEsFile(copy: Record<string, QuirkCopy>): string {
   const lines = [
-    "import type { QuirkCopy } from '../../../types/quirk'",
-    "import type { QuirkId } from '../../../data/quirk-ids'",
+    "import type { QuirkCopy } from '../../../../src/types/quirk'",
+    "import type { QuirkId } from '../quirk-ids'",
     '',
     'export const esQuirkCopy = {',
   ]
@@ -254,7 +254,7 @@ async function main() {
     console.log(`Traduzidos ${Object.keys(result).length}/${QUIRK_IDS.length}`)
   }
 
-  const outPath = join(root, 'src/i18n/messages/quirks/es.ts')
+  const outPath = join(root, 'tools/catalog/output/copy/es.locale.ts')
   writeFileSync(outPath, renderEsFile(result), 'utf8')
   console.log(`Escrito: ${outPath}`)
 }

@@ -6,7 +6,6 @@ const mockTranslateFusionToLocaleWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
 const mockGetQuirkById = vi.fn()
-const mockLoadQuirksCatalog = vi.fn()
 
 vi.mock('./llm', () => ({
   generateEnglishFusionWithLlm: (...args: unknown[]) =>
@@ -21,7 +20,6 @@ vi.mock('./repository', () => ({
 }))
 
 vi.mock('./catalog', () => ({
-  loadQuirksCatalog: () => mockLoadQuirksCatalog(),
   getQuirkById: (...args: unknown[]) => mockGetQuirkById(...args),
 }))
 
@@ -69,8 +67,7 @@ const englishPayload = {
 describe('generateFusionEntry', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    mockLoadQuirksCatalog.mockReturnValue([quirkA, quirkB])
-    mockGetQuirkById.mockImplementation((_catalog: unknown, id: string) =>
+    mockGetQuirkById.mockImplementation((id: string) =>
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
     mockFindFusionByKey.mockResolvedValue(cachedEntry)
@@ -99,7 +96,6 @@ describe('generateFusionEntry', () => {
 
   it('generates via English + locale LLM calls even when Supabase already has the key', async () => {
     const result = await generateFusionEntry({
-      root: process.cwd(),
       idA: 'acid',
       idB: 'explosion',
       seed: 'seed1',
@@ -120,7 +116,6 @@ describe('generateFusionEntry', () => {
     mockGenerateEnglishFusionWithLlm.mockRejectedValue(new Error('LLM down'))
 
     const result = await generateFusionEntry({
-      root: process.cwd(),
       idA: 'acid',
       idB: 'explosion',
       seed: 'seed1',
@@ -140,7 +135,6 @@ describe('generateFusionEntry', () => {
 
     await expect(
       generateFusionEntry({
-        root: process.cwd(),
         idA: 'acid',
         idB: 'explosion',
         seed: 'seed1',

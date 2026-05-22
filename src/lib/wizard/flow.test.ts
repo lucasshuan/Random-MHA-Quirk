@@ -4,7 +4,7 @@ import {
   getNextStep,
   getPreviousStep,
   type StepValidationInput,
-} from './wizardFlow'
+} from './flow'
 
 function buildValidationInput(
   override: Partial<StepValidationInput>,

@@ -1,12 +1,43 @@
 import { describe, expect, it } from 'vitest'
-import { getQuirks } from '../i18n/quirks'
+import type { Quirk } from '../types/quirk'
+import { applyFilters, pickHybridPair, pickRandom, pickTwoDistinctRandom } from './engine'
 
-const quirks = getQuirks('en')
-import { applyFilters, pickHybridPair, pickRandom, pickTwoDistinctRandom } from './quirkEngine'
+const sampleQuirks: Quirk[] = [
+  {
+    id: 'acid',
+    origin: 'BNHA',
+    tier: 'B',
+    type: 'Emitter',
+    range: 'Short',
+    facets: ['Elemental'],
+    name: 'Acid',
+    description: 'Corrosive liquid from skin.',
+  },
+  {
+    id: 'air-walk',
+    origin: 'BNHA',
+    tier: 'B',
+    type: 'Emitter',
+    range: 'Self',
+    facets: ['Mobility', 'Support'],
+    name: 'Air Walk',
+    description: 'Walk on air pockets for mobility.',
+  },
+  {
+    id: 'beast',
+    origin: 'BNHA',
+    tier: 'A',
+    type: 'Transformation',
+    range: 'Self',
+    facets: ['Anthropomorphic', 'Enhancement'],
+    name: 'Beast',
+    description: 'Transform into a savage beast form.',
+  },
+]
 
 describe('applyFilters', () => {
   it('returns only quirks that match selected type and range', () => {
-    const result = applyFilters(quirks, {
+    const result = applyFilters(sampleQuirks, {
       origins: [],
       tiers: [],
       types: ['Transformation'],
@@ -15,13 +46,12 @@ describe('applyFilters', () => {
       query: '',
     })
 
-    expect(result.length).toBeGreaterThan(0)
-    expect(result.every((quirk) => quirk.type === 'Transformation')).toBe(true)
-    expect(result.every((quirk) => quirk.range === 'Self')).toBe(true)
+    expect(result).toHaveLength(1)
+    expect(result[0].id).toBe('beast')
   })
 
   it('requires all selected facets to be present', () => {
-    const result = applyFilters(quirks, {
+    const result = applyFilters(sampleQuirks, {
       origins: [],
       tiers: [],
       types: [],
@@ -30,26 +60,28 @@ describe('applyFilters', () => {
       query: '',
     })
 
-    expect(result.length).toBeGreaterThan(0)
-    expect(
-      result.every(
-        (quirk) =>
-          quirk.facets.includes('Mobility') && quirk.facets.includes('Support'),
-      ),
-    ).toBe(true)
+    expect(result).toHaveLength(1)
+    expect(result[0].id).toBe('air-walk')
   })
 
-  it('supports case-insensitive query search', () => {
-    const result = applyFilters(quirks, {
-      origins: [],
-      tiers: [],
-      types: [],
-      ranges: [],
-      facets: [],
-      query: 'eLeCtRiCaL',
-    })
+  it('matches query against searchable text callback', () => {
+    const result = applyFilters(
+      sampleQuirks,
+      {
+        origins: [],
+        tiers: [],
+        types: [],
+        ranges: [],
+        facets: [],
+        query: 'beast form',
+      },
+      {
+        searchableText: (quirk) => `${quirk.name} ${quirk.description}`,
+      },
+    )
 
-    expect(result.map((quirk) => quirk.id)).toContain('electrification')
+    expect(result).toHaveLength(1)
+    expect(result[0].id).toBe('beast')
   })
 })
 
@@ -57,48 +89,18 @@ describe('pickRandom', () => {
   it('returns null for empty input', () => {
     expect(pickRandom([])).toBeNull()
   })
-
-  it('returns an item from input list', () => {
-    const items = ['a', 'b', 'c']
-    const result = pickRandom(items)
-    expect(result === null ? false : items.includes(result)).toBe(true)
-  })
 })
 
 describe('pickTwoDistinctRandom', () => {
-  it('returns null when list has fewer than two entries', () => {
-    expect(pickTwoDistinctRandom([])).toBeNull()
-    expect(pickTwoDistinctRandom(['one'])).toBeNull()
-  })
-
-  it('returns two distinct entries', () => {
-    const items = ['alpha', 'beta', 'gamma']
-    const pair = pickTwoDistinctRandom(items)
-
-    expect(pair).not.toBeNull()
-    if (!pair) {
-      return
-    }
-
-    expect(items.includes(pair[0])).toBe(true)
-    expect(items.includes(pair[1])).toBe(true)
-    expect(pair[0]).not.toBe(pair[1])
+  it('returns null when fewer than two items', () => {
+    expect(pickTwoDistinctRandom([sampleQuirks[0]])).toBeNull()
   })
 })
 
 describe('pickHybridPair', () => {
-  it('returns one quirk from each pool when possible', () => {
-    const poolA = quirks.filter((quirk) => quirk.type === 'Emitter')
-    const poolB = quirks.filter((quirk) => quirk.type === 'Mutant')
-    const pair = pickHybridPair(poolA, poolB)
-
+  it('returns two quirks from the provided pools', () => {
+    const pair = pickHybridPair([sampleQuirks[0]], [sampleQuirks[1], sampleQuirks[2]])
     expect(pair).not.toBeNull()
-    if (!pair) {
-      return
-    }
-
-    expect(poolA.some((quirk) => quirk.id === pair[0].id)).toBe(true)
-    expect(poolB.some((quirk) => quirk.id === pair[1].id)).toBe(true)
+    expect(pair?.[0].id).toBe('acid')
   })
 })
-

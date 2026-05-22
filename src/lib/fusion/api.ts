@@ -1,6 +1,6 @@
-import type { QuirkId } from '@/data/quirk-ids'
+import type { QuirkId } from '@/types/quirk-id'
 import type { FusionCacheEntry } from '@/types/fusion'
-import { upsertFusionCacheEntry } from '@/lib/fusionCache'
+import { upsertFusionCacheEntry } from '@/lib/fusion/cache'
 
 export async function requestFusionGeneration(
   parentA: QuirkId,

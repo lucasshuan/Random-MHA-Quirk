@@ -43,7 +43,7 @@ export const QUIRK_FACETS = [
 ] as const
 export type QuirkFacet = (typeof QUIRK_FACETS)[number]
 
-import type { QuirkId } from '../data/quirk-ids'
+import type { QuirkId } from './quirk-id'
 
 export type { QuirkId }
 

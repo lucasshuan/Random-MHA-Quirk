@@ -1,4 +1,4 @@
-import { requireOneOf } from '@/lib/server/env-utils'
+import { requireOneOf } from '@/server/env/utils'
 import {
   validateEnglishFusionPayload,
   validateLocaleFusionTranslation,

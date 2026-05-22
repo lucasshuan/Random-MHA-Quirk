@@ -1,4 +1,4 @@
-import type { Quirk, QuirkFilters } from '../types/quirk'
+import type { Quirk, QuirkFilters } from '@/types/quirk'
 
 export interface ApplyFiltersOptions {
   searchableText?: (quirk: Quirk) => string

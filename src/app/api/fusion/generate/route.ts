@@ -1,6 +1,6 @@
-import { generateFusionEntry } from '@/lib/server/fusion/generate'
-import { checkFusionRateLimit } from '@/lib/server/fusion/rateLimit'
-import type { QuirkId } from '@/data/quirk-ids'
+import { generateFusionEntry } from '@/server/fusion/generate'
+import { checkFusionRateLimit } from '@/server/fusion/rate-limit'
+import type { QuirkId } from '@/types/quirk-id'
 
 export const runtime = 'nodejs'
 

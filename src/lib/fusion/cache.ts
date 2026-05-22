@@ -1,8 +1,8 @@
-import type { QuirkId } from '@/data/quirk-ids'
+import type { QuirkId } from '@/types/quirk-id'
 import type { Locale } from '@/i18n/types'
 import type { FusionCacheEntry, FusionQuirk } from '@/types/fusion'
 import { fusionCopyForLocale } from '@/types/fusion'
-import { fusionCacheKey, fusionQuirkId } from '@/lib/fusionKey'
+import { fusionCacheKey, fusionQuirkId } from '@/lib/fusion/keys'
 
 const byKey = new Map<string, FusionCacheEntry>()
 

@@ -100,6 +100,11 @@ export const en = {
     showDetails: 'Show details',
     hideDetails: 'Hide details',
   },
+  quirks: {
+    loading: 'Loading quirks…',
+    loadError: 'Could not load the quirk catalog.',
+    retry: 'Try again',
+  },
   fusion: {
     badge: 'Fusion',
     tabFusion: 'Fusion',

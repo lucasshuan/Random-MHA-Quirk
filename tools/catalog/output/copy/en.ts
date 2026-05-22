@@ -1,5 +1,5 @@
-import type { QuirkCopy } from '../../../types/quirk'
-import type { QuirkId } from '../../../data/quirk-ids'
+import type { QuirkCopy } from '../../../../src/types/quirk'
+import type { QuirkId } from '../quirk-ids'
 
 export const enQuirkCopy = {
   '2d-ify': {

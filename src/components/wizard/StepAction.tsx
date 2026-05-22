@@ -1,7 +1,7 @@
 import { FusionPreview } from '../FusionPreview'
 import { QuirkCard } from '../QuirkCard'
 import { QuirkList } from '../QuirkList'
-import type { RollMode } from '../../lib/wizardFlow'
+import type { RollMode } from '@/lib/wizard/flow'
 import type { Quirk } from '../../types/quirk'
 
 interface StepActionProps {

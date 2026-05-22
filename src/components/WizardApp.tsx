@@ -10,19 +10,19 @@ import { StepModeChoice } from '@/components/wizard/StepModeChoice'
 import { StepRandomRoll } from '@/components/wizard/StepRandomRoll'
 import { StepTierChoice } from '@/components/wizard/StepTierChoice'
 import { StepTypeChoice } from '@/components/wizard/StepTypeChoice'
-import { getQuirks } from '@/i18n/quirks'
-import { ALL_QUIRK_TIERS } from '@/lib/tierPresets'
-import { randomFusionSeed } from '@/lib/fusionKey'
-import { requestFusionGeneration } from '@/lib/generateFusion'
-import { rollHybrid } from '@/lib/hybridRoll'
-import { applyFilters, pickRandom } from '@/lib/quirkEngine'
+import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
+import { requestFusionGeneration } from '@/lib/fusion/api'
+import { randomFusionSeed } from '@/lib/fusion/keys'
+import { rollHybrid } from '@/lib/hybrid/roll'
+import { applyFilters, pickRandom } from '@/lib/quirks/engine'
+import { ALL_QUIRK_TIERS } from '@/lib/quirks/tiers'
 import {
   getPreviousStep,
   type ModeChoice,
   type ResultMode,
   type SimpleTypeChoice,
   type WizardStep,
-} from '@/lib/wizardFlow'
+} from '@/lib/wizard/flow'
 import type { HybridRollResult } from '@/types/fusion'
 import {
   DEFAULT_QUIRK_FILTERS,
@@ -104,21 +104,17 @@ export function WizardApp() {
   const [fusionError, setFusionError] = useState<string | null>(null)
   const generatingFusionKeyRef = useRef<string | null>(null)
 
-  const allQuirks = useMemo(() => getQuirks(locale), [locale])
+  const { quirks: allQuirks } = useQuirksCatalog(locale)
 
   const searchableText = useCallback(
     (quirk: Quirk) => buildQuirkSearchText(quirk, locale),
     [locale],
   )
 
-  const filteredQuirks = useMemo(
-    () => applyFilters(allQuirks, filters, { searchableText }),
-    [allQuirks, filters, searchableText],
-  )
-  const manuallyFilteredQuirks = useMemo(
-    () => applyFilters(allQuirks, manualFilters, { searchableText }),
-    [allQuirks, manualFilters, searchableText],
-  )
+  const filteredQuirks = useFilteredQuirks(allQuirks, locale, filters)
+  const manuallyFilteredQuirks = useFilteredQuirks(allQuirks, locale, manualFilters)
+  const hybridPoolA = useFilteredQuirks(allQuirks, locale, hybridSlotFilters[0])
+  const hybridPoolB = useFilteredQuirks(allQuirks, locale, hybridSlotFilters[1])
 
   function resetPickFlow() {
     setPickPhase('type')
@@ -213,8 +209,8 @@ export function WizardApp() {
 
   function rollFromCurrentSettings() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
-      const poolA = applyFilters(allQuirks, hybridSlotFilters[0], { searchableText })
-      const poolB = applyFilters(allQuirks, hybridSlotFilters[1], { searchableText })
+      const poolA = hybridPoolA
+      const poolB = hybridPoolB
       const firstParent = manualHybridParents[0] ?? pickRandom(poolA)
       const secondParent = manualHybridParents[1] ?? pickRandom(poolB)
       if (firstParent && secondParent) {

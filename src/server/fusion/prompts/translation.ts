@@ -1,6 +1,6 @@
-import { FUSION_DESCRIPTION_MAX_LENGTH } from './constants'
-import type { FusionTranslationLocale } from './constants'
-import type { ValidatedEnglishFusionPayload } from './validate'
+import { FUSION_DESCRIPTION_MAX_LENGTH } from '../constants'
+import type { FusionTranslationLocale } from '../constants'
+import type { ValidatedEnglishFusionPayload } from '../validate'
 
 const LOCALE_PROMPT_CONFIG: Record<
   FusionTranslationLocale,

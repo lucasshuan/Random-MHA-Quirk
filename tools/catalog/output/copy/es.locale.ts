@@ -1,5 +1,5 @@
-import type { QuirkCopy } from '../../../types/quirk'
-import type { QuirkId } from '../../../data/quirk-ids'
+import type { QuirkCopy } from '../../../../src/types/quirk'
+import type { QuirkId } from '../quirk-ids'
 
 export const esQuirkCopy = {
   '2d-ify': {
@@ -1354,4 +1354,4 @@ export const esQuirkCopy = {
     name: 'Zoom',
     description: 'Magnifica la visión lejana cuando el usuario se concentra en un punto, viendo claramente objetivos a varios kilómetros de distancia. Funciona como una lente telescópica biológica.',
   },
-} satisfies Record<QuirkId, QuirkCopy>
+} as Record<QuirkId, QuirkCopy>

@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n/useI18n'
-import type { ModeChoice } from '../../lib/wizardFlow'
+import type { ModeChoice } from '@/lib/wizard/flow'
 import { BrandMark } from './BrandMark'
 import { ChoiceOptionButton } from './ChoiceOptionButton'
 

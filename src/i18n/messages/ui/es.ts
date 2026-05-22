@@ -107,6 +107,11 @@ export const es: Messages = {
     showDetails: 'Mostrar detalles',
     hideDetails: 'Ocultar detalles',
   },
+  quirks: {
+    loading: 'Cargando dones…',
+    loadError: 'No se pudo cargar el catálogo de dones.',
+    retry: 'Intentar de nuevo',
+  },
   fusion: {
     badge: 'Fusión',
     tabFusion: 'Fusión',

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
-import type { ResultMode } from '../../lib/wizardFlow'
+import type { ResultMode } from '@/lib/wizard/flow'
 import type { HybridRollResult } from '../../types/fusion'
 import type { Quirk } from '../../types/quirk'
 import { HybridResultTabs } from './HybridResultTabs'

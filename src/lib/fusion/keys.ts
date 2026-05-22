@@ -1,4 +1,4 @@
-import type { QuirkId } from '../data/quirk-ids'
+import type { QuirkId } from '@/types/quirk-id'
 
 /** Par canônico: ids ordenados, independente da ordem do sorteio. */
 export function sortedParentPair(a: QuirkId, b: QuirkId): [QuirkId, QuirkId] {

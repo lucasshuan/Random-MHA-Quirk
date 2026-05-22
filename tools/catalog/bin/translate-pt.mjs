@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { isGenericDescription, isUsableCopy } from '../lib/copy-quality.mjs'
 import { loadEnv } from '../lib/load-env.mjs'
-import { REPO_ROOT, SOURCES, SRC } from '../lib/paths.mjs'
+import { CATALOG_OUTPUT, REPO_ROOT, SOURCES } from '../lib/paths.mjs'
 
 const manualPath = join(SOURCES, 'manual-copy.json')
 const BATCH_SIZE = 10
@@ -18,7 +18,7 @@ const DELAY_MS = 400
 loadEnv(REPO_ROOT)
 
 function loadQuirkIds() {
-  const text = readFileSync(join(SRC, 'data', 'quirk-ids.ts'), 'utf8')
+  const text = readFileSync(join(CATALOG_OUTPUT, 'quirk-ids.ts'), 'utf8')
   return [...text.matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1])
 }
 

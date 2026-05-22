@@ -1,4 +1,4 @@
-export const QUIRK_IDS = [
+﻿export const QUIRK_IDS = [
   '2d-ify',
   'absorption-and-release',
   'accelerator-rings',

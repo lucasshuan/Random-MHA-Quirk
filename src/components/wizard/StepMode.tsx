@@ -1,4 +1,4 @@
-import type { RollMode } from '../../lib/wizardFlow'
+import type { RollMode } from '@/lib/wizard/flow'
 
 interface StepModeProps {
   mode: RollMode

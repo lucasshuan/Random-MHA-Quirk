@@ -8,9 +8,8 @@
  */
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { loadEnv } from '../src/lib/server/env'
-import { defaultFusionSeed, generateFusionEntry } from '../src/lib/server/fusion/generate'
-import { loadQuirksCatalog } from '../src/lib/server/fusion/catalog'
+import { loadEnv } from '../src/server/env/load'
+import { defaultFusionSeed, generateFusionEntry } from '../src/server/fusion/generate'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -30,18 +29,17 @@ function parseArgs(argv: string[]) {
 async function main() {
   loadEnv(root)
   const args = parseArgs(process.argv.slice(2))
-  const catalog = loadQuirksCatalog(join(root, 'src'))
-
   let idA = args.a
   let idB = args.b
 
   if (args.random) {
-    if (catalog.length < 2) throw new Error('Catálogo insuficiente.')
-    const i = Math.floor(Math.random() * catalog.length)
-    let j = Math.floor(Math.random() * catalog.length)
-    while (j === i) j = Math.floor(Math.random() * catalog.length)
-    idA = catalog[i].id
-    idB = catalog[j].id
+    const { QUIRK_IDS } = await import('../tools/catalog/output/quirk-ids')
+    if (QUIRK_IDS.length < 2) throw new Error('Catálogo insuficiente.')
+    const i = Math.floor(Math.random() * QUIRK_IDS.length)
+    let j = Math.floor(Math.random() * QUIRK_IDS.length)
+    while (j === i) j = Math.floor(Math.random() * QUIRK_IDS.length)
+    idA = QUIRK_IDS[i]
+    idB = QUIRK_IDS[j]
   }
 
   if (!idA || !idB) {

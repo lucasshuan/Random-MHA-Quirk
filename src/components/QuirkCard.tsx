@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { resolveQuirk } from '../i18n/quirks'
+import { resolveQuirk } from '../hooks/useQuirksCatalog'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
 import type { FusionQuirk } from '../types/fusion'

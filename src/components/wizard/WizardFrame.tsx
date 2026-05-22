@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { WIZARD_STEPS, type WizardStep } from '../../lib/wizardFlow'
+import { WIZARD_STEPS, type WizardStep } from '@/lib/wizard/flow'
 
 interface WizardFrameProps {
   step: WizardStep

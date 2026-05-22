@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { SegmentTabs } from '../SegmentTabs'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
-import { resolveFusionQuirk } from '../../lib/fusionCache'
+import { resolveFusionQuirk } from '@/lib/fusion/cache'
 import type { HybridRollResult } from '../../types/fusion'
 import { RollOrb } from './RollOrb'
 

@@ -107,6 +107,11 @@ export const ptBR: Messages = {
     showDetails: 'Mostrar detalhes',
     hideDetails: 'Ocultar detalhes',
   },
+  quirks: {
+    loading: 'Carregando individualidades…',
+    loadError: 'Não foi possível carregar o catálogo de individualidades.',
+    retry: 'Tentar novamente',
+  },
   fusion: {
     badge: 'Fusão',
     tabFusion: 'Fusão',

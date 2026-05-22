@@ -1,5 +1,5 @@
 import { useI18n } from '../../i18n/useI18n'
-import type { ResultMode, SimpleTypeChoice } from '../../lib/wizardFlow'
+import type { ResultMode, SimpleTypeChoice } from '@/lib/wizard/flow'
 import { ChoiceOptionButton } from './ChoiceOptionButton'
 
 interface StepTypeChoiceProps {

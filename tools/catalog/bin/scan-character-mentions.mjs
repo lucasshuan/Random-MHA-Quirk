@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const locale = process.argv[2] ?? 'en'
 const enPath = join(
   __dirname,
-  `../../../src/i18n/messages/quirks/${locale === 'pt-BR' ? 'pt-BR' : 'en'}.ts`,
+  `../output/copy/${locale === 'pt-BR' ? 'pt-BR' : 'en'}.ts`,
 )
 
 const KNOWN_NAMES = [

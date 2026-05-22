@@ -1,6 +1,6 @@
 import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
-import { getSupabaseAdmin } from '@/lib/server/supabase/admin'
+import { getSupabaseAdmin } from '@/server/db/supabase'
 
 interface FusionRow {
   key: string

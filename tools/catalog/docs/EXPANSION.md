@@ -52,7 +52,7 @@ node tools/catalog/bin/build-catalog.mjs
 
 | Métrica | Valor |
 |---------|-------|
-| No app | **338** quirks em `src/data` |
+| No app | **338** quirks em `tools/catalog/output` (seed → Supabase) |
 | Cópia curada | `data/sources/manual-copy.json` |
 
 Ver [`../README.md`](../README.md) para todos os comandos.

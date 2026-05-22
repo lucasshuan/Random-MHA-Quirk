@@ -3,7 +3,7 @@ import { FilterPanel } from '../FilterPanel'
 import { useI18n } from '../../i18n/useI18n'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
 import { translateMatches } from '../../i18n/translate'
-import type { ResultMode } from '../../lib/wizardFlow'
+import type { ResultMode } from '@/lib/wizard/flow'
 import {
   countAdvancedFilterSelections,
   QUIRK_TIERS,

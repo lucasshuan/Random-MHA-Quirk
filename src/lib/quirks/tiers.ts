@@ -1,4 +1,4 @@
-import { QUIRK_TIERS, type QuirkTier } from '../types/quirk'
+import { QUIRK_TIERS, type QuirkTier } from '@/types/quirk'
 
 export const ALL_QUIRK_TIERS: QuirkTier[] = [...QUIRK_TIERS]
 

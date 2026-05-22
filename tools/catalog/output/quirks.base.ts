@@ -1,4 +1,4 @@
-import type { QuirkBase } from '../types/quirk'
+import type { QuirkBase } from '../../../src/types/quirk'
 
 export const quirksBase = [
   {

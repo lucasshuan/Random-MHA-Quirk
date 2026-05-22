@@ -1,5 +1,5 @@
-import type { FusionCatalogQuirk } from './catalog'
-import { FUSION_DESCRIPTION_MAX_LENGTH, QUIRK_FACETS } from './constants'
+import type { FusionCatalogQuirk } from '../catalog'
+import { FUSION_DESCRIPTION_MAX_LENGTH, QUIRK_FACETS } from '../constants'
 
 export function buildFusionPrompt(
   quirkA: FusionCatalogQuirk,

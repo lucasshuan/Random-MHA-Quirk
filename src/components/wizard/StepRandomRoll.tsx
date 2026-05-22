@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useI18n } from '../../i18n/useI18n'
-import type { ResultMode } from '../../lib/wizardFlow'
-import { rollRandomOutcome } from '../../lib/wizardFlow'
+import { rollRandomOutcome, type ResultMode } from '@/lib/wizard/flow'
 import { RollOrb } from './RollOrb'
 
 interface StepRandomRollProps {

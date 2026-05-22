@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { Quirk } from '../types/quirk'
-import { rollHybrid } from './hybridRoll'
+import { rollHybrid } from './roll'
 
 function mockQuirk(id: string): Quirk {
   return {

@@ -1,13 +1,12 @@
 import { randomBytes } from 'node:crypto'
-import { join } from 'node:path'
-import { fusionCacheKey, sortedParentPair } from '@/lib/fusionKey'
+import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
 import type { FusionCacheEntry } from '@/types/fusion'
-import type { QuirkId } from '@/data/quirk-ids'
-import { getQuirkById, loadQuirksCatalog } from './catalog'
+import type { QuirkId } from '@/types/quirk-id'
+import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
-import { buildFusionPrompt } from './prompt'
-import { buildFusionTranslationPrompt } from './translationPrompt'
+import { buildFusionPrompt } from './prompts/english'
+import { buildFusionTranslationPrompt } from './prompts/translation'
 import {
   generateEnglishFusionWithLlm,
   translateFusionToLocaleWithLlm,
@@ -39,17 +38,13 @@ export interface GenerateFusionResult {
  * Uses an existing row only as a fallback when generation fails (unless `force`).
  */
 export async function generateFusionEntry({
-  root = process.cwd(),
   idA,
   idB,
   seed,
   force = false,
 }: GenerateFusionOptions): Promise<GenerateFusionResult> {
-  const src = join(root, 'src')
-  const catalog = loadQuirksCatalog(src)
-
-  const quirkA = getQuirkById(catalog, idA)
-  const quirkB = getQuirkById(catalog, idB)
+  const quirkA = await getQuirkById(idA)
+  const quirkB = await getQuirkById(idB)
   if (!quirkA) throw new Error(`Quirk não encontrada: ${idA}`)
   if (!quirkB) throw new Error(`Quirk não encontrada: ${idB}`)
   if (idA === idB) throw new Error('Escolha duas quirks diferentes.')

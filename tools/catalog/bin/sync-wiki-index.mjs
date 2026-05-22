@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { GENERATED, SRC, WIKI } from '../lib/paths.mjs'
+import { CATALOG_OUTPUT, GENERATED, WIKI } from '../lib/paths.mjs'
 
 const EXCLUDED_TITLES = new Set([
   'Quirk',
@@ -36,7 +36,7 @@ const main = loadMembers('wiki-quirks-raw.json')
 const vigilantes = new Set(loadMembers('wiki-vigilantes-quirks.json'))
 const teamUp = new Set(loadMembers('wiki-teamup-quirks.json'))
 
-const idSource = readFileSync(join(SRC, 'data/quirk-ids.ts'), 'utf8')
+const idSource = readFileSync(join(CATALOG_OUTPUT, 'quirk-ids.ts'), 'utf8')
 const inApp = new Set(
   [...idSource.matchAll(/'([a-z0-9-]+)'/g)].map((m) => m[1]),
 )

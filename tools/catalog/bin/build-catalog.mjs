@@ -1,11 +1,19 @@
 /**
- * Gera quirks.base.ts, quirk-ids.ts e messages/quirks/{en,pt-BR}.ts a partir do índice wiki + taxonomia Fandom.
+ * Gera tools/catalog/output (quirks.base, quirk-ids, copy/{en,pt-BR}) a partir do índice wiki + taxonomia Fandom.
+ * Sincroniza src/types/quirk-id.ts (re-export) para o tipo QuirkId no app.
  * Preserva cópia manual curada em tools/catalog/data/sources/manual-copy.json
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { isUsableCopy } from '../lib/copy-quality.mjs'
-import { GENERATED, SOURCES, SRC, WIKI } from '../lib/paths.mjs'
+import {
+  CATALOG_COPY,
+  CATALOG_OUTPUT,
+  GENERATED,
+  SOURCES,
+  SRC,
+  WIKI,
+} from '../lib/paths.mjs'
 const API_EN = 'https://myheroacademia.fandom.com/api.php'
 const API_PT = 'https://myheroacademia.fandom.com/pt-br/api.php'
 
@@ -247,7 +255,8 @@ function ensureManualCopyBackup(enExisting, ptExisting) {
 function writeQuirkIds(ids) {
   const lines = ids.map((id) => `  '${id}',`).join('\n')
   const content = `export const QUIRK_IDS = [\n${lines}\n] as const\n\nexport type QuirkId = (typeof QUIRK_IDS)[number]\n`
-  writeFileSync(join(SRC, 'data', 'quirk-ids.ts'), content)
+  writeFileSync(join(CATALOG_OUTPUT, 'quirk-ids.ts'), content)
+  writeFileSync(join(SRC, 'data', 'quirk-ids.ts'), `/** Re-export for app runtime types */\nexport type { QuirkId } from '../../tools/catalog/output/quirk-ids'\nexport { QUIRK_IDS } from '../../tools/catalog/output/quirk-ids'\n`)
 }
 
 function writeQuirksBase(entries, tierMap) {
@@ -264,13 +273,13 @@ function writeQuirksBase(entries, tierMap) {
   },`
   })
 
-  const content = `import type { QuirkBase } from '../types/quirk'
+  const content = `import type { QuirkBase } from '../../../src/types/quirk'
 
 export const quirksBase = [
 ${blocks.join('\n')}
 ] as const satisfies readonly QuirkBase[]
 `
-  writeFileSync(join(SRC, 'data', 'quirks.base.ts'), content)
+  writeFileSync(join(CATALOG_OUTPUT, 'quirks.base.ts'), content)
 }
 
 function writeCopyFile(locale, exportName, copy) {
@@ -288,21 +297,17 @@ function writeCopyFile(locale, exportName, copy) {
     })
 
   const importLine =
-    locale === 'en'
-      ? "import type { QuirkCopy } from '../../../types/quirk'\nimport type { QuirkId } from '../../../data/quirk-ids'\n\n"
-      : "import type { QuirkId } from '../../../data/quirk-ids'\nimport type { QuirkCopy } from '../../../types/quirk'\n\n"
+    "import type { QuirkCopy } from '../../../../src/types/quirk'\nimport type { QuirkId } from '../quirk-ids'\n\n"
 
   const content = `${importLine}export const ${exportName} = {\n${blocks.join('\n')}\n} as Record<QuirkId, QuirkCopy>\n`
-  writeFileSync(
-    join(SRC, 'i18n', 'messages', 'quirks', `${locale === 'en' ? 'en' : 'pt-BR'}.ts`),
-    content,
-  )
+  const filename = locale === 'en' ? 'en.ts' : 'pt-BR.ts'
+  writeFileSync(join(CATALOG_COPY, filename), content)
 }
 
 async function main() {
   const tierMap = loadTierOverrides()
-  const enExisting = parseExistingCopy(join(SRC, 'i18n', 'messages', 'quirks', 'en.ts'))
-  const ptExisting = parseExistingCopy(join(SRC, 'i18n', 'messages', 'quirks', 'pt-BR.ts'))
+  const enExisting = parseExistingCopy(join(CATALOG_COPY, 'en.ts'))
+  const ptExisting = parseExistingCopy(join(CATALOG_COPY, 'pt-BR.ts'))
   const manual = ensureManualCopyBackup(enExisting, ptExisting)
 
   const entries = buildIndex()
@@ -372,7 +377,7 @@ async function main() {
   )
 
   console.log(
-    'Wrote src/data/quirk-ids.ts, quirks.base.ts, messages/quirks/en.ts, messages/quirks/pt-BR.ts',
+    'Wrote tools/catalog/output (quirks.base, quirk-ids, copy/en, copy/pt-BR) and synced src/types/quirk-id.ts',
   )
 }
 

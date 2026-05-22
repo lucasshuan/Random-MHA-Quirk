@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { fusionCacheKey, fusionPairKey, sortedParentPair } from './fusionKey'
+import { fusionCacheKey, fusionPairKey, sortedParentPair } from './keys'
 
 describe('fusionKey', () => {
   it('ordena par de ids', () => {

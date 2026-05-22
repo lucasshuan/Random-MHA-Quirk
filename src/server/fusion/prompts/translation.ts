@@ -1,4 +1,7 @@
-import { FUSION_DESCRIPTION_MAX_LENGTH } from '../constants'
+import {
+  FUSION_DESCRIPTION_MAX_LENGTH,
+  FUSION_DESCRIPTION_MIN_LENGTH,
+} from '../constants'
 import type { FusionTranslationLocale } from '../constants'
 import type { ValidatedEnglishFusionPayload } from '../validate'
 
@@ -57,8 +60,8 @@ English source (canonical — do not change the mechanics):
 Your job is ADAPTATION, not translation. Write as if the quirk were authored directly in ${config.languageLabel} for anime fans.
 
 Rules:
-- ${config.nameField}: creative title in natural ${config.languageLabel}; may rephrase the English name (do not transliterate word-for-word unless it sounds right in fandom)
-- ${config.descriptionField}: 2–4 sentences, max ${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation)
+- ${config.nameField}: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, or meme-adjacent — as long as they still sound like a quirk name in ${config.languageLabel} MHA fandom. ADAPTATION, not literal translation: if a pun, joke, or sharper local nickname works better than mirroring the English title, use it (wordplay that only lands in ${config.languageLabel} is encouraged). Do not transliterate word-for-word unless it already sounds right to fans
+- ${config.descriptionField}: 2–4 sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation)
 - Preserve the same mechanism, activation, body changes, what moves where, limits, and tradeoffs as the English text — do not add, remove, or soften effects
 - MHA singularity: the user has only ONE Quirk — this entry is that whole Quirk. Never imply a second separate power or that they "lose their quirk" while using part of it; rephrase bad English into limits of the same ability if needed
 - That one Quirk may still have multiple linked effects (like Half-Cold Half-Hot); keep them as branches of the same Quirk, not separate quirks

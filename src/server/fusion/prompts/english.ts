@@ -1,5 +1,9 @@
 import type { FusionCatalogQuirk } from '../catalog'
-import { FUSION_DESCRIPTION_MAX_LENGTH, QUIRK_FACETS } from '../constants'
+import {
+  FUSION_DESCRIPTION_MAX_LENGTH,
+  FUSION_DESCRIPTION_MIN_LENGTH,
+  QUIRK_FACETS,
+} from '../constants'
 
 export function buildFusionPrompt(
   quirkA: FusionCatalogQuirk,
@@ -25,7 +29,7 @@ Rules:
 - type must be one of: Emitter, Transformation, Mutant
 - range must be one of: Self, Contact, Short, Medium, Long, Area
 - facets: 1–4 values from: ${QUIRK_FACETS.join(', ')}
-- en.description: 2–4 sentences, max ${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation), objective, vivid, anime tone, self-contained, focused on the resulting quirk only
+- en.description: 2–4 sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation), objective, vivid, anime tone, self-contained, focused on the resulting quirk only
 - Assume the reader only imagines an ordinary human at first and knows nothing about the source quirks. Explain the quirk from zero: what appears on or changes in the body, how it activates, what it lets the user do, and what visible behavior others would notice.
 - If the quirk changes anatomy or makes the user animal-like, monstrous, inorganic, elemental, or otherwise not fully human, state that clearly in the description. Mention major visual traits, altered senses or movement, and whether the change is permanent, triggered, or partial.
 - If the user still looks human, say what subtle or overt signs reveal the quirk when active, such as eyes, skin, posture, aura, emitted material, sound, temperature, or motion.
@@ -36,7 +40,7 @@ Rules:
 - Write ONLY about the new hybrid quirk. Do not refer to the source quirks by name (${quirkA.name}, ${quirkB.name}), id (${quirkA.id}, ${quirkB.id}), or as separate quirks — no "fusion", "combination", "based on", "inspired by", "inherits from", or "merges X with Y"
 - Normal vocabulary is fine even when it overlaps a parent name (e.g. English "power" in "raw power" is allowed; do not capitalize it or use it as the parent quirk's proper name)
 - Describe the resulting quirk in an encyclopedia-like tone: mechanism, activation, behavior, limits/tradeoffs
-- en.name: creative English title
+- en.name: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, really short, really long or meme-adjacent — like canon examples (Pop Off, Comic, Meatball, Beams From His Eyes) — as long as they still sound like a quirk name in the setting. Avoid stiff technical labels (e.g. "Omni-Kinetic Field")
 
 Reply with ONLY valid JSON (no markdown):
 {

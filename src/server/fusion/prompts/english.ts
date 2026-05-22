@@ -40,7 +40,7 @@ Rules:
 - Write ONLY about the new hybrid quirk. Do not refer to the source quirks by name (${quirkA.name}, ${quirkB.name}), id (${quirkA.id}, ${quirkB.id}), or as separate quirks — no "fusion", "combination", "based on", "inspired by", "inherits from", or "merges X with Y"
 - Normal vocabulary is fine even when it overlaps a parent name (e.g. English "power" in "raw power" is allowed; do not capitalize it or use it as the parent quirk's proper name)
 - Describe the resulting quirk in an encyclopedia-like tone: mechanism, activation, behavior, limits/tradeoffs
-- en.name: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, really short, really long or meme-adjacent — like canon examples (Pop Off, Comic, Meatball, Beams From His Eyes) — as long as they still sound like a quirk name in the setting. Avoid stiff technical labels (e.g. "Omni-Kinetic Field")
+- en.name: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, really short, really long or meme-adjacent — like canon examples (Pop Off, Comic, Meatball, Beams From His Eyes, Gigantic Spinning Flying Turtle, etc.) — as long as they still sound like a quirk name in the setting. Avoid stiff technical labels (e.g. "Omni-Kinetic Field")
 
 Reply with ONLY valid JSON (no markdown):
 {

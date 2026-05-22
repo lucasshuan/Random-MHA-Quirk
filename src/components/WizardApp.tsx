@@ -11,6 +11,7 @@ import { StepTierChoice } from '@/components/wizard/StepTierChoice'
 import { StepTypeChoice } from '@/components/wizard/StepTypeChoice'
 import { getQuirks } from '@/i18n/quirks'
 import { ALL_QUIRK_TIERS } from '@/lib/tierPresets'
+import { randomFusionSeed } from '@/lib/fusionKey'
 import { requestFusionGeneration } from '@/lib/generateFusion'
 import { rollHybrid } from '@/lib/hybridRoll'
 import { applyFilters, pickRandom } from '@/lib/quirkEngine'
@@ -106,7 +107,7 @@ export function WizardApp() {
   }
 
   const tryGenerateFusion = useCallback(async (hybrid: HybridRollResult, force = false) => {
-    if (hybrid.fusionEntry) {
+    if (hybrid.fusionEntry && !force) {
       return
     }
 
@@ -159,6 +160,24 @@ export function WizardApp() {
       setFusionPhase('generating')
       setFusionError(null)
     }
+  }
+
+  function handleRerollFusion() {
+    if (!result || !isHybridRoll(result)) {
+      return
+    }
+
+    const next: HybridRollResult = {
+      parents: result.parents,
+      seed: randomFusionSeed(),
+      fusionEntry: null,
+    }
+
+    generatingFusionKeyRef.current = null
+    setResult(next)
+    setFusionPhase('generating')
+    setFusionError(null)
+    void tryGenerateFusion(next, true)
   }
 
   function rollFromCurrentSettings() {
@@ -369,11 +388,7 @@ export function WizardApp() {
         onRetry={() => {
           rollFromCurrentSettings()
         }}
-        onRetryFusion={() => {
-          if (result && isHybridRoll(result)) {
-            void tryGenerateFusion(result, true)
-          }
-        }}
+        onRetryFusion={handleRerollFusion}
         onBack={handleBack}
         onRestart={handleRestart}
       />

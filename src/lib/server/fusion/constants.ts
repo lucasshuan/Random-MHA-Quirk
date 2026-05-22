@@ -1,3 +1,5 @@
+export const FUSION_DESCRIPTION_MAX_LENGTH = 500
+
 export const QUIRK_TYPES = ['Emitter', 'Transformation', 'Mutant'] as const
 export const QUIRK_RANGES = [
   'Self',

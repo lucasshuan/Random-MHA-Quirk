@@ -26,7 +26,7 @@ export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
     if (
       !block?.description ||
       typeof block.description !== 'string' ||
-      block.description.length < 20
+      block.description.trim().length < 20
     ) {
       throw new Error(`Campo ${locale}.description inválido.`)
     }
@@ -49,8 +49,10 @@ export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
 
   const en = obj.en as FusionCopy
   const pt = obj['pt-BR'] as FusionCopy
-  const enDescription = en.description.trim()
-  const ptDescription = pt.description.trim()
+  const enDescription =
+    typeof en.description === 'string' ? en.description.trim() : ''
+  const ptDescription =
+    typeof pt.description === 'string' ? pt.description.trim() : ''
 
   if (/\b(quirk|peculiaridade)\b/i.test(ptDescription)) {
     throw new Error(

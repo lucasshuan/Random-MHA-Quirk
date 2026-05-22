@@ -8,7 +8,7 @@
 
 .minimal-card {
   position: relative;
-  width: min(100%, 560px);
+  width: min(100%, 680px);
   height: 100%;
   min-height: 0;
   display: grid;
@@ -1909,6 +1909,73 @@
   min-height: 0;
 }
 
+.fusion-hero {
+  position: relative;
+  width: 100%;
+  animation: resultCardPop 420ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fusion-reroll-btn {
+  border-color: rgba(255, 200, 120, 0.32);
+  color: rgba(255, 220, 160, 0.95);
+}
+
+.fusion-reroll-btn:hover:not(:disabled) {
+  border-color: rgba(255, 200, 120, 0.55);
+  background: rgba(255, 180, 80, 0.14);
+  color: #fff;
+  box-shadow: 0 0 22px rgba(255, 170, 80, 0.24);
+}
+
+.fusion-reroll-btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.fusion-reroll-glyph {
+  display: block;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.fusion-variant-reroll {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 200, 120, 0.35);
+  border-radius: 999px;
+  background: rgba(12, 18, 30, 0.82);
+  color: rgba(255, 220, 160, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 170, 80, 0.12);
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 160ms ease;
+}
+
+.fusion-variant-reroll:hover:not(:disabled) {
+  border-color: rgba(255, 210, 140, 0.65);
+  background: rgba(28, 34, 48, 0.92);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.4),
+    0 0 24px rgba(255, 170, 80, 0.28);
+  transform: scale(1.04);
+}
+
+.fusion-variant-reroll:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 .fusion-hero .quirk-card-fusion {
   box-shadow:
     0 0 0 1px rgba(255, 200, 120, 0.22),
@@ -2017,7 +2084,7 @@
   gap: 0.65rem;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 680px) {
   .minimal-shell {
     padding: 0;
   }

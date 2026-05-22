@@ -78,8 +78,20 @@ export function HybridResultTabs({
           aria-labelledby={`${tablistId}-fusion`}
         >
           {fusion ? (
-            <div className="fusion-hero">
+            <div className="fusion-hero" key={resultKey}>
               <QuirkCard quirk={fusion} hideTier />
+              <button
+                type="button"
+                className="fusion-variant-reroll"
+                onClick={onRetryFusion}
+                disabled={fusionPhase === 'generating'}
+                title={t('fusion.rerollVariant')}
+                aria-label={t('fusion.rerollVariant')}
+              >
+                <span className="fusion-reroll-glyph" aria-hidden="true">
+                  ✦
+                </span>
+              </button>
             </div>
           ) : fusionPhase === 'generating' ? (
             <div className="fusion-pending fusion-forging">

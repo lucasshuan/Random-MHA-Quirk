@@ -1,5 +1,5 @@
 import type { FusionCatalogQuirk } from './catalog'
-import { QUIRK_FACETS } from './constants'
+import { FUSION_DESCRIPTION_MAX_LENGTH, QUIRK_FACETS } from './constants'
 
 export function buildFusionPrompt(
   quirkA: FusionCatalogQuirk,
@@ -23,7 +23,7 @@ Rules:
 - type must be one of: Emitter, Transformation, Mutant
 - range must be one of: Self, Contact, Short, Medium, Long, Area
 - facets: 1–4 values from: ${QUIRK_FACETS.join(', ')}
-- en.description and pt-BR.description: 2–4 sentences each, objective, vivid, anime tone and self-contained, focused on the resulting quirk only
+- en.description and pt-BR.description: 2–4 sentences each, max ${FUSION_DESCRIPTION_MAX_LENGTH} characters each (count includes spaces and punctuation), objective, vivid, anime tone and self-contained, focused on the resulting quirk only
 - Write ONLY about the new fused quirk. Do not refer to the parents by name (${quirkA.name}, ${quirkB.name}), id (${quirkA.id}, ${quirkB.id}), or as separate quirks — no "fusion", "combination", "based on", "inspired by", "inherits from", or "merges X with Y"
 - Normal vocabulary is fine even when it overlaps a parent name (e.g. English "power" in "raw power" is allowed; do not capitalize it or use it as the parent quirk's proper name)
 - Describe the resulting quirk in an encyclopedia-like tone: mechanism, activation, behavior, limits/tradeoffs

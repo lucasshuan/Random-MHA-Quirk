@@ -30,16 +30,20 @@ function isHybridResult(result: RollResult): result is HybridRollResult {
   return result !== null && 'parents' in result
 }
 
-function resultKey(result: RollResult): string {
+function revealKey(result: RollResult): string {
   if (!result) {
     return 'empty'
   }
 
   if (isHybridResult(result)) {
-    return `hybrid-${result.parents[0].id}+${result.parents[1].id}-${result.seed}`
+    return `hybrid-${result.parents[0].id}+${result.parents[1].id}`
   }
 
   return result.id
+}
+
+function hybridContentKey(result: HybridRollResult): string {
+  return `${result.parents[0].id}+${result.parents[1].id}:${result.seed}`
 }
 
 interface ResultRevealProps {
@@ -118,7 +122,7 @@ function ResultReveal({
       {isHybridResult(result) ? (
         <HybridResultTabs
           result={result}
-          resultKey={resultKey(result)}
+          resultKey={hybridContentKey(result)}
           fusionPhase={fusionPhase}
           fusionError={fusionError}
           onRetryFusion={onRetryFusion}
@@ -141,12 +145,27 @@ function ResultReveal({
         >
           ←
         </button>
+        {isHybridResult(result) ? (
+          <button
+            type="button"
+            className="icon-btn fusion-reroll-btn"
+            onClick={onRetryFusion}
+            disabled={fusionPhase === 'generating'}
+            title={t('fusion.rerollVariant')}
+            aria-label={t('fusion.rerollVariant')}
+          >
+            <span className="fusion-reroll-glyph" aria-hidden="true">
+              ✦
+            </span>
+          </button>
+        ) : null}
         <button
           type="button"
           className="icon-btn strong-icon"
           onClick={onRetry}
-          title={t('nav.retry')}
-          aria-label={t('nav.retry')}
+          disabled={isHybridResult(result) && fusionPhase === 'generating'}
+          title={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
+          aria-label={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
         >
           ↻
         </button>
@@ -165,7 +184,7 @@ function ResultReveal({
 }
 
 export function StepFinalResult(props: StepFinalResultProps) {
-  const key = resultKey(props.result)
+  const key = revealKey(props.result)
 
   return (
     <div className="simple-step result-step result-step-rolling">

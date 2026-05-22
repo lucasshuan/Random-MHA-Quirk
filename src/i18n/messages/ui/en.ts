@@ -3,6 +3,7 @@ export const en = {
     back: 'Back',
     restart: 'Restart',
     retry: 'Retry',
+    retryHybrid: 'Reroll both quirks',
     language: 'Language',
     languageEn: 'English (United States)',
     languagePt: 'Portuguese (Brazil)',
@@ -91,6 +92,7 @@ export const en = {
     notGenerated: 'This fusion has not been forged yet.',
     generateError: 'Could not generate this fusion.',
     retryGenerate: 'Try again',
+    rerollVariant: 'Reroll fusion (same parents)',
     generateHint: 'Or generate via terminal, then reload:',
     generateCommand:
       'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',

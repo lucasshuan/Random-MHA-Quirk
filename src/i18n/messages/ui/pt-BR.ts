@@ -5,6 +5,7 @@ export const ptBR: Messages = {
     back: 'Voltar',
     restart: 'Reiniciar',
     retry: 'Sortear de novo',
+    retryHybrid: 'Sortear o par de novo',
     language: 'Idioma',
     languageEn: 'Inglês (Estados Unidos)',
     languagePt: 'Português (Brasil)',
@@ -98,6 +99,7 @@ export const ptBR: Messages = {
     notGenerated: 'Esta fusão ainda não foi forjada.',
     generateError: 'Não foi possível gerar esta fusão.',
     retryGenerate: 'Tentar novamente',
+    rerollVariant: 'Sortear nova fusão (mesmas origens)',
     generateHint: 'Ou gere no terminal e recarregue:',
     generateCommand:
       'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',

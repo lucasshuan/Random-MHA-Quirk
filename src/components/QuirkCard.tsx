@@ -2,7 +2,18 @@ import { useMemo, useState } from 'react'
 import { resolveQuirk } from '../i18n/quirks'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
-import type { Quirk } from '../types/quirk'
+import type { Quirk, QuirkType } from '../types/quirk'
+
+function typeToneClass(type: QuirkType): string {
+  switch (type) {
+    case 'Emitter':
+      return 'quirk-meta-type-emitter'
+    case 'Transformation':
+      return 'quirk-meta-type-transformation'
+    case 'Mutant':
+      return 'quirk-meta-type-mutant'
+  }
+}
 
 interface QuirkCardProps {
   quirk: Quirk
@@ -23,7 +34,10 @@ export function QuirkCard({ quirk, slotLabel }: QuirkCardProps) {
         </span>
       ) : null}
       <p className="quirk-meta">
-        {meta.type(quirk.type)} ·{' '}
+        <span className={`quirk-meta-type ${typeToneClass(quirk.type)}`}>
+          {meta.type(quirk.type)}
+        </span>{' '}
+        ·{' '}
         <span className="quirk-meta-range">
           <span className="quirk-meta-label">{t('advanced.range')}:</span>{' '}
           {meta.range(quirk.range)}

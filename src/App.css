@@ -1300,11 +1300,34 @@
 }
 
 .quirk-meta {
-  color: var(--accent-strong);
+  color: var(--muted);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.quirk-meta-type {
+  font-weight: 900;
+}
+
+.quirk-meta-type-emitter {
+  color: #9fd0ff;
+  text-shadow: 0 0 14px rgba(70, 170, 255, 0.38);
+}
+
+.quirk-meta-type-transformation {
+  color: #ffc48e;
+  text-shadow: 0 0 14px rgba(255, 145, 60, 0.34);
+}
+
+.quirk-meta-type-mutant {
+  color: #a8f0c8;
+  text-shadow: 0 0 14px rgba(90, 220, 150, 0.34);
+}
+
+.quirk-meta-range {
+  color: var(--accent-strong);
 }
 
 .quirk-meta-label {

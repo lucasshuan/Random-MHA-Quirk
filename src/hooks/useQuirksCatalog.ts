@@ -2,13 +2,32 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
-import type { Locale } from '@/i18n/types'
+import { LOCALES, type Locale } from '@/i18n/types'
 import { fetchQuirks } from '@/lib/quirks/api'
 import { applyFilters } from '@/lib/quirks/engine'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
 
 const catalogCache = new Map<Locale, Quirk[]>()
 const inflight = new Map<Locale, Promise<Quirk[]>>()
+
+function isAbortError(err: unknown): boolean {
+  return err instanceof DOMException
+    ? err.name === 'AbortError'
+    : err instanceof Error && err.name === 'AbortError'
+}
+
+/** True after any locale catalog has loaded (language switches stay in-app). */
+export function isCatalogBootstrapped(): boolean {
+  return catalogCache.size > 0
+}
+
+function prefetchOtherLocales(activeLocale: Locale): void {
+  for (const locale of LOCALES) {
+    if (locale === activeLocale) continue
+    if (catalogCache.has(locale) || inflight.has(locale)) continue
+    void loadCatalog(locale).catch(() => {})
+  }
+}
 
 /** Re-apply localized copy when locale changes (catalog must be loaded). */
 export function resolveQuirk(quirk: Quirk, locale: Locale): Quirk {
@@ -17,17 +36,18 @@ export function resolveQuirk(quirk: Quirk, locale: Locale): Quirk {
   return cached.find((entry) => entry.id === quirk.id) ?? quirk
 }
 
-async function loadCatalog(locale: Locale, signal?: AbortSignal): Promise<Quirk[]> {
+async function loadCatalog(locale: Locale): Promise<Quirk[]> {
   const cached = catalogCache.get(locale)
   if (cached) return cached
 
   const pending = inflight.get(locale)
   if (pending) return pending
 
-  const promise = fetchQuirks(locale, undefined, { signal })
+  const promise = fetchQuirks(locale)
     .then((response) => {
       catalogCache.set(locale, response.quirks)
       inflight.delete(locale)
+      prefetchOtherLocales(locale)
       return response.quirks
     })
     .catch((err) => {
@@ -69,23 +89,25 @@ export function useQuirksCatalog(locale: Locale): UseQuirksCatalogResult {
       return
     }
 
-    const controller = new AbortController()
+    let active = true
     setIsLoading(true)
     setError(null)
 
-    void loadCatalog(locale, controller.signal)
+    void loadCatalog(locale)
       .then((next) => {
-        if (controller.signal.aborted) return
+        if (!active) return
         setQuirks(next)
         setIsLoading(false)
       })
       .catch((err) => {
-        if (controller.signal.aborted) return
+        if (!active || isAbortError(err)) return
         setError(err instanceof Error ? err.message : String(err))
         setIsLoading(false)
       })
 
-    return () => controller.abort()
+    return () => {
+      active = false
+    }
   }, [locale, reloadToken])
 
   return { quirks, isLoading, error, reload }
@@ -136,26 +158,26 @@ export function useRemoteFilteredQuirks(
       return
     }
 
-    const controller = new AbortController()
+    let active = true
     setIsLoading(true)
 
     const timer = window.setTimeout(() => {
-      void fetchQuirks(locale, filters, { signal: controller.signal })
+      void fetchQuirks(locale, filters)
         .then((response) => {
-          if (controller.signal.aborted) return
+          if (!active) return
           setRemoteQuirks(response.quirks)
           setError(null)
           setIsLoading(false)
         })
         .catch((err) => {
-          if (controller.signal.aborted) return
+          if (!active || isAbortError(err)) return
           setError(err instanceof Error ? err.message : String(err))
           setIsLoading(false)
         })
     }, debounceMs)
 
     return () => {
-      controller.abort()
+      active = false
       window.clearTimeout(timer)
     }
   }, [locale, filters, debounceMs, enabled, hasQuery])

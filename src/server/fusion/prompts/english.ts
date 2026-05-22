@@ -20,6 +20,8 @@ ${formatParent(quirkB)}
 Rules:
 - Invent a third mechanism that synergizes or clashes with BOTH source quirks — do NOT just concatenate names or effects.
 - Not a canon character quirk; this is a fan hybrid quirk (origin will be ORIGINAL).
+- MHA singularity: the user is born with exactly ONE Quirk — this entry IS that entire Quirk, not an add-on, gadget, or mode layered on top of some other power. Never write as if they have "their quirk" plus this effect, or that they "lose/can't use their (own) quirk" while doing part of it. Tradeoffs are limits of this same ability only (stamina, focus, range, cooldown, body strain). Suppressing or affecting other people's quirks is fine; do not imply the user normally has multiple quirks besides this one.
+- Still, that single Quirk may include two or more distinct effects that belong together (e.g. Shoto Todoroki's Half-Cold Half-Hot: ice and fire from one birth Quirk). Describe multiple effects as facets of the same Quirk, not as separate quirks or as temporarily shutting off "their real quirk" to use one branch.
 - type must be one of: Emitter, Transformation, Mutant
 - range must be one of: Self, Contact, Short, Medium, Long, Area
 - facets: 1–4 values from: ${QUIRK_FACETS.join(', ')}

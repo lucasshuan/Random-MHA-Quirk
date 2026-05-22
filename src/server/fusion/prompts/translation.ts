@@ -60,6 +60,8 @@ Rules:
 - ${config.nameField}: creative title in natural ${config.languageLabel}; may rephrase the English name (do not transliterate word-for-word unless it sounds right in fandom)
 - ${config.descriptionField}: 2–4 sentences, max ${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation)
 - Preserve the same mechanism, activation, body changes, what moves where, limits, and tradeoffs as the English text — do not add, remove, or soften effects
+- MHA singularity: the user has only ONE Quirk — this entry is that whole Quirk. Never imply a second separate power or that they "lose their quirk" while using part of it; rephrase bad English into limits of the same ability if needed
+- That one Quirk may still have multiple linked effects (like Half-Cold Half-Hot); keep them as branches of the same Quirk, not separate quirks
 - ${config.toneHint}
 - Assume the reader imagines an ordinary human first; keep every visual and behavioral detail clear
 - ${config.termRule}

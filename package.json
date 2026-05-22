@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "country-flag-icons": "^1.6.17",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },

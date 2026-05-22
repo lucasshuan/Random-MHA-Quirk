@@ -1,0 +1,28 @@
+export const QUIRK_IDS = [
+  'air-cannon',
+  'blackwhip',
+  'brainwashing',
+  'creation',
+  'dark-shadow',
+  'decay',
+  'electrification',
+  'engine',
+  'eraser',
+  'fiber-master',
+  'fierce-wings',
+  'foldabody',
+  'frog',
+  'hardening',
+  'hellflame',
+  'manifest',
+  'mind-reading',
+  'permeation',
+  'pop-off',
+  'rabbit',
+  'rewind',
+  'sugar-rush',
+  'tape',
+  'zero-gravity',
+] as const
+
+export type QuirkId = (typeof QUIRK_IDS)[number]

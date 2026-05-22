@@ -30,17 +30,24 @@ export const QUIRK_FACETS = [
 ] as const
 export type QuirkFacet = (typeof QUIRK_FACETS)[number]
 
-export type QuirkId = string
+import type { QuirkId } from '../data/quirk-ids'
 
-export interface Quirk {
-  id: QuirkId
+export type { QuirkId }
+
+export interface QuirkCopy {
   name: string
   description: string
+}
+
+export interface QuirkBase {
+  id: QuirkId
   origin: QuirkOrigin
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
 }
+
+export type Quirk = QuirkBase & QuirkCopy
 
 export interface QuirkFilters {
   origins: QuirkOrigin[]

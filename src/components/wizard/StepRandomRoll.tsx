@@ -1,0 +1,69 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useI18n } from '../../i18n/useI18n'
+import type { ResultMode } from '../../lib/wizardFlow'
+import { rollRandomOutcome } from '../../lib/wizardFlow'
+
+interface StepRandomRollProps {
+  onComplete: (outcome: ResultMode) => void
+}
+
+export function StepRandomRoll({ onComplete }: StepRandomRollProps) {
+  const { t } = useI18n()
+  const onCompleteRef = useRef(onComplete)
+  const [flickerIndex, setFlickerIndex] = useState(0)
+  const [phase, setPhase] = useState<'rolling' | 'reveal'>('rolling')
+  const [outcome, setOutcome] = useState<ResultMode | null>(null)
+
+  const flickerLabels = useMemo(
+    () => [t('randomRoll.oneQuirk'), t('randomRoll.hybrid')] as const,
+    [t],
+  )
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  })
+
+  useEffect(() => {
+    const resolved = rollRandomOutcome()
+
+    const flickerTimer = window.setInterval(() => {
+      setFlickerIndex((value) => (value + 1) % flickerLabels.length)
+    }, 120)
+
+    const revealTimer = window.setTimeout(() => {
+      window.clearInterval(flickerTimer)
+      setOutcome(resolved)
+      setPhase('reveal')
+    }, 1400)
+
+    const doneTimer = window.setTimeout(() => {
+      onCompleteRef.current(resolved)
+    }, 2200)
+
+    return () => {
+      window.clearInterval(flickerTimer)
+      window.clearTimeout(revealTimer)
+      window.clearTimeout(doneTimer)
+    }
+  }, [flickerLabels])
+
+  return (
+    <div className="simple-step random-roll-step">
+      <p className="app-mark">{t('randomRoll.mark')}</p>
+      <h1>{phase === 'rolling' ? t('randomRoll.rolling') : t('randomRoll.result')}</h1>
+
+      <div className={`roll-orb ${phase === 'rolling' ? 'roll-orb-spin' : 'roll-orb-reveal'}`}>
+        <span className="roll-orb-core" />
+        <span className="roll-orb-ring" />
+      </div>
+
+      <p className={`roll-label ${phase === 'reveal' ? 'roll-label-reveal' : ''}`}>
+        {phase === 'rolling'
+          ? flickerLabels[flickerIndex]
+          : outcome === 'hybrid'
+            ? t('randomRoll.hybrid')
+            : t('randomRoll.oneQuirk')}
+      </p>
+    </div>
+  )
+}

@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useI18n } from '../i18n/useI18n'
+import { useMetaLabel } from '../i18n/useMetaLabel'
 import {
   QUIRK_FACETS,
   QUIRK_ORIGINS,
@@ -22,6 +25,7 @@ interface CheckboxGroupProps<T extends string> {
   title: string
   options: readonly T[]
   selected: T[]
+  labelFor: (value: T) => string
   onToggle: (value: T) => void
 }
 
@@ -29,46 +33,62 @@ function CheckboxGroup<T extends string>({
   title,
   options,
   selected,
+  labelFor,
   onToggle,
 }: CheckboxGroupProps<T>) {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
-    <fieldset className="filter-group">
-      <legend>{title}</legend>
-      <div className="check-grid">
-        {options.map((option) => {
-          const id = `${title}-${option}`
-          return (
-            <label key={option} htmlFor={id}>
-              <input
-                id={id}
-                type="checkbox"
-                checked={selected.includes(option)}
-                onChange={() => onToggle(option)}
-              />
-              <span>{option}</span>
-            </label>
-          )
-        })}
-      </div>
-    </fieldset>
+    <section className={`filter-group ${isOpen ? 'filter-group-open' : ''}`}>
+      <button
+        type="button"
+        className="filter-group-trigger"
+        onClick={() => setIsOpen((value) => !value)}
+        aria-expanded={isOpen}
+      >
+        <span>{title}</span>
+        {selected.length > 0 ? <strong>{selected.length}</strong> : null}
+      </button>
+      {isOpen ? (
+        <div className="check-grid">
+          {options.map((option) => {
+            const isSelected = selected.includes(option)
+            return (
+              <button
+                key={option}
+                type="button"
+                className={`filter-toggle ${isSelected ? 'filter-toggle-active' : ''}`}
+                onClick={() => onToggle(option)}
+                aria-pressed={isSelected}
+              >
+                <span>{labelFor(option)}</span>
+              </button>
+            )
+          })}
+        </div>
+      ) : null}
+    </section>
   )
 }
 
 export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
+  const { t } = useI18n()
+  const meta = useMetaLabel()
+
   return (
     <section className="panel">
       <div className="panel-heading">
-        <h2>Filters</h2>
+        <h2>{t('advanced.filters')}</h2>
         <button type="button" onClick={onReset}>
-          Reset
+          {t('advanced.reset')}
         </button>
       </div>
 
       <label className="search-input">
-        <span>Search</span>
+        <span>{t('advanced.search')}</span>
         <input
           type="search"
-          placeholder="Name, effect, or facet"
+          placeholder={t('advanced.searchPlaceholder')}
           value={filters.query}
           onChange={(event) =>
             onChange({ ...filters, query: event.target.value })
@@ -77,36 +97,40 @@ export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
       </label>
 
       <CheckboxGroup
-        title="Origin"
+        title={t('advanced.origin')}
         options={QUIRK_ORIGINS}
         selected={filters.origins}
+        labelFor={meta.origin}
         onToggle={(value) =>
           onChange({ ...filters, origins: toggleValue(filters.origins, value) })
         }
       />
 
       <CheckboxGroup
-        title="Type"
+        title={t('advanced.type')}
         options={QUIRK_TYPES}
         selected={filters.types}
+        labelFor={meta.type}
         onToggle={(value) =>
           onChange({ ...filters, types: toggleValue(filters.types, value) })
         }
       />
 
       <CheckboxGroup
-        title="Range"
+        title={t('advanced.range')}
         options={QUIRK_RANGES}
         selected={filters.ranges}
+        labelFor={meta.range}
         onToggle={(value) =>
           onChange({ ...filters, ranges: toggleValue(filters.ranges, value) })
         }
       />
 
       <CheckboxGroup
-        title="Facets"
+        title={t('advanced.facets')}
         options={QUIRK_FACETS}
         selected={filters.facets}
+        labelFor={meta.facet}
         onToggle={(value) =>
           onChange({ ...filters, facets: toggleValue(filters.facets, value) })
         }
@@ -114,4 +138,3 @@ export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
     </section>
   )
 }
-

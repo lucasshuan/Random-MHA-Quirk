@@ -1,6 +1,14 @@
 import type { Quirk, QuirkFilters } from '../types/quirk'
 
-export function applyFilters(quirks: Quirk[], filters: QuirkFilters): Quirk[] {
+export interface ApplyFiltersOptions {
+  searchableText?: (quirk: Quirk) => string
+}
+
+export function applyFilters(
+  quirks: Quirk[],
+  filters: QuirkFilters,
+  options?: ApplyFiltersOptions,
+): Quirk[] {
   const query = filters.query.trim().toLowerCase()
 
   return quirks.filter((quirk) => {
@@ -27,7 +35,8 @@ export function applyFilters(quirks: Quirk[], filters: QuirkFilters): Quirk[] {
       return true
     }
 
-    const searchable = `${quirk.name} ${quirk.description} ${quirk.facets.join(' ')}`
+    const searchable = (options?.searchableText?.(quirk) ??
+      `${quirk.name} ${quirk.description} ${quirk.facets.join(' ')}`)
       .toLowerCase()
       .trim()
 
@@ -57,5 +66,20 @@ export function pickTwoDistinctRandom<T>(items: T[]): [T, T] | null {
   }
 
   return [items[firstIndex], items[secondIndex]]
+}
+
+export function pickHybridPair(poolA: Quirk[], poolB: Quirk[]): [Quirk, Quirk] | null {
+  const first = pickRandom(poolA)
+  if (!first) {
+    return null
+  }
+
+  const distinctPoolB = poolB.filter((quirk) => quirk.id !== first.id)
+  const second = pickRandom(distinctPoolB.length > 0 ? distinctPoolB : poolB)
+  if (!second) {
+    return null
+  }
+
+  return [first, second]
 }
 

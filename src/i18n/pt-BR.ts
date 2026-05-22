@@ -1,0 +1,115 @@
+import type { Messages } from './en'
+
+export const ptBR: Messages = {
+  nav: {
+    back: 'Voltar',
+    restart: 'Reiniciar',
+    retry: 'Sortear de novo',
+    language: 'Idioma',
+    languageEn: 'Inglês (Estados Unidos)',
+    languagePt: 'Português (Brasil)',
+  },
+  brand: {
+    title: 'Individualidade Aleatória',
+    logoAlt: 'Logo de My Hero Academia',
+  },
+  start: {
+    title: 'Encontre uma individualidade.',
+    action: 'Começar',
+  },
+  mode: {
+    title: 'O que vamos sortear?',
+    tryLuck: 'Tente a Sorte',
+    tryLuckHint:
+      'Deixe a sorte escolher entre uma individualidade ou um par híbrido.',
+    oneQuirk: 'Uma Individualidade',
+    oneQuirkHint:
+      'Sorteie uma individualidade do grupo que você montar em seguida.',
+    hybrid: 'Híbrido',
+    hybridHint:
+      'Escolha dois tipos e sorteie uma individualidade de cada um.',
+    or: 'ou',
+  },
+  randomRoll: {
+    mark: 'Tente a Sorte',
+    rolling: 'O destino está decidindo...',
+    result: 'Resultado',
+    oneQuirk: 'Uma Individualidade',
+    hybrid: 'Híbrido',
+  },
+  type: {
+    filter: 'Filtro',
+    pick: 'Escolha o tipo',
+    first: 'Tipo da primeira individualidade',
+    second: 'Tipo da segunda individualidade',
+    hybridBadge: 'Individualidade {{current}} de 2',
+    advanced: 'Mais filtros',
+    any: 'Qualquer',
+    anyHint:
+      'Sem filtro por tipo. Qualquer individualidade da lista pode sair no sorteio.',
+    emitter: 'Emissor',
+    emitterHint: 'Poderes ativados que projetam efeitos fora do corpo.',
+    transformation: 'Transformação',
+    transformationHint:
+      'Mudanças temporárias no corpo enquanto a individualidade estiver ativa.',
+    mutant: 'Mutante',
+    mutantHint: 'Traços físicos permanentes, sempre presentes.',
+  },
+  advanced: {
+    mark: 'Filtros avançados',
+    title: 'Ajuste a seleção',
+    matches_one: '{{count}} resultado',
+    matches_other: '{{count}} resultados',
+    roll: 'Sortear',
+    filters: 'Filtros',
+    reset: 'Limpar',
+    search: 'Buscar',
+    searchPlaceholder: 'Nome, efeito ou característica',
+    origin: 'Origem',
+    type: 'Tipo',
+    range: 'Alcance',
+    facets: 'Características',
+  },
+  result: {
+    oneQuirk: 'Uma Individualidade',
+    hybrid: 'Híbrido',
+    title: 'Seu resultado',
+    empty: 'Nenhum resultado encontrado.',
+    prefixA: 'A',
+    prefixB: 'B',
+  },
+  meta: {
+    origin: {
+      BNHA: 'BNHA',
+      BNHA_SPINOFF: 'Spin-off do BNHA',
+      ORIGINAL: 'Original',
+    },
+    type: {
+      Emitter: 'Emissor',
+      Transformation: 'Transformação',
+      Mutant: 'Mutante',
+    },
+    range: {
+      Self: 'Próprio',
+      Contact: 'Contato',
+      Short: 'Curto',
+      Medium: 'Médio',
+      Long: 'Longo',
+      Area: 'Área',
+    },
+    facet: {
+      Elemental: 'Elemental',
+      Psychic: 'Psíquica',
+      Enhancement: 'Aprimoramento',
+      Anthropomorphic: 'Antropomórfica',
+      Control: 'Controle',
+      Support: 'Suporte',
+      Defense: 'Defesa',
+      Mobility: 'Mobilidade',
+      Sensory: 'Sensorial',
+      Construct: 'Construção',
+      Emission: 'Emissão',
+      Biological: 'Biológica',
+    },
+  },
+}

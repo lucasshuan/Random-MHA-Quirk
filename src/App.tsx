@@ -1,178 +1,227 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+import { useI18n } from './i18n/useI18n'
+import { buildQuirkSearchText } from './i18n/quirkSearchText'
 import './App.css'
-import { FilterPanel } from './components/FilterPanel'
-import { FusionPreview } from './components/FusionPreview'
-import { QuirkCard } from './components/QuirkCard'
-import { QuirkList } from './components/QuirkList'
-import { quirks } from './data/quirks'
-import { applyFilters, pickRandom, pickTwoDistinctRandom } from './lib/quirkEngine'
-import { DEFAULT_QUIRK_FILTERS, type Quirk } from './types/quirk'
+import { MinimalFrame } from './components/wizard/MinimalFrame'
+import { StepAdvancedFilters } from './components/wizard/StepAdvancedFilters'
+import { BrandMark } from './components/wizard/BrandMark'
+import { StepFinalResult } from './components/wizard/StepFinalResult'
+import { StepModeChoice } from './components/wizard/StepModeChoice'
+import { StepRandomRoll } from './components/wizard/StepRandomRoll'
+import { StepTypeChoice } from './components/wizard/StepTypeChoice'
+import { getQuirks } from './i18n/quirks'
+import {
+  applyFilters,
+  pickHybridPair,
+  pickRandom,
+  pickTwoDistinctRandom,
+} from './lib/quirkEngine'
+import {
+  getPreviousStep,
+  type ModeChoice,
+  type ResultMode,
+  type SimpleTypeChoice,
+  type WizardStep,
+} from './lib/wizardFlow'
+import { DEFAULT_QUIRK_FILTERS, type Quirk, type QuirkFilters } from './types/quirk'
+
+type RollResult = Quirk | [Quirk, Quirk] | null
+
+function filtersForType(type: SimpleTypeChoice): QuirkFilters {
+  return {
+    ...DEFAULT_QUIRK_FILTERS,
+    types: type === 'Any' ? [] : [type],
+  }
+}
 
 function App() {
-  const [mode, setMode] = useState<'random' | 'manual'>('random')
+  const { locale, t } = useI18n()
+  const [currentStep, setCurrentStep] = useState<WizardStep>('start')
+  const [mode, setMode] = useState<ResultMode>('single')
   const [filters, setFilters] = useState(DEFAULT_QUIRK_FILTERS)
-  const [singleRolled, setSingleRolled] = useState<Quirk | null>(null)
-  const [randomFusionPair, setRandomFusionPair] = useState<[Quirk, Quirk] | null>(null)
-  const [manualSelectedIds, setManualSelectedIds] = useState<string[]>([])
+  const [result, setResult] = useState<RollResult>(null)
+  const [resultBackStep, setResultBackStep] = useState<WizardStep>('type')
+  const [hybridTypeStep, setHybridTypeStep] = useState<0 | 1>(0)
+  const [hybridTypes, setHybridTypes] = useState<[SimpleTypeChoice | null, SimpleTypeChoice | null]>(
+    [null, null],
+  )
 
-  const filteredQuirks = useMemo(() => applyFilters(quirks, filters), [filters])
+  const allQuirks = useMemo(() => getQuirks(locale), [locale])
 
-  const activeFilterChips = useMemo(() => {
-    return [
-      ...filters.origins.map((value) => `origin:${value}`),
-      ...filters.types.map((value) => `type:${value}`),
-      ...filters.ranges.map((value) => `range:${value}`),
-      ...filters.facets.map((value) => `facet:${value}`),
-      ...(filters.query ? [`search:${filters.query}`] : []),
-    ]
-  }, [filters])
+  const searchableText = useCallback(
+    (quirk: Quirk) => buildQuirkSearchText(quirk, locale),
+    [locale],
+  )
 
-  const manualFusionPair = useMemo(() => {
-    if (manualSelectedIds.length !== 2) {
-      return null
+  const filteredQuirks = useMemo(
+    () => applyFilters(allQuirks, filters, { searchableText }),
+    [allQuirks, filters, searchableText],
+  )
+
+  function rollFromCurrentSettings() {
+    if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
+      const poolA = applyFilters(allQuirks, filtersForType(hybridTypes[0]))
+      const poolB = applyFilters(allQuirks, filtersForType(hybridTypes[1]))
+      setResult(pickHybridPair(poolA, poolB))
+      return
     }
 
-    const selectedQuirks = manualSelectedIds
-      .map((id) => filteredQuirks.find((quirk) => quirk.id === id))
-      .filter((value): value is Quirk => value !== undefined)
-
-    return selectedQuirks.length === 2
-      ? ([selectedQuirks[0], selectedQuirks[1]] as [Quirk, Quirk])
-      : null
-  }, [filteredQuirks, manualSelectedIds])
-
-  const singleRollDisplay =
-    singleRolled && filteredQuirks.some((quirk) => quirk.id === singleRolled.id)
-      ? singleRolled
-      : null
-  const randomFusionDisplay =
-    randomFusionPair &&
-    filteredQuirks.some((quirk) => quirk.id === randomFusionPair[0].id) &&
-    filteredQuirks.some((quirk) => quirk.id === randomFusionPair[1].id)
-      ? randomFusionPair
-      : null
-
-  const fusionPair = mode === 'manual' ? manualFusionPair : randomFusionDisplay
-
-  function handleToggleManualSelection(quirkId: string) {
-    setManualSelectedIds((previous) => {
-      if (previous.includes(quirkId)) {
-        return previous.filter((id) => id !== quirkId)
-      }
-
-      if (previous.length < 2) {
-        return [...previous, quirkId]
-      }
-
-      return [previous[1], quirkId]
-    })
+    setResult(mode === 'hybrid' ? pickTwoDistinctRandom(filteredQuirks) : pickRandom(filteredQuirks))
   }
 
-  function handleRollSingle() {
-    setSingleRolled(pickRandom(filteredQuirks))
+  function rollWithSettings() {
+    rollFromCurrentSettings()
+    setResultBackStep('advanced')
+    setCurrentStep('result')
   }
 
-  function handleRollFusion() {
-    setRandomFusionPair(pickTwoDistinctRandom(filteredQuirks))
+  function handleModeChoice(choice: ModeChoice) {
+    setResult(null)
+    setHybridTypeStep(0)
+    setHybridTypes([null, null])
+    setFilters(DEFAULT_QUIRK_FILTERS)
+
+    if (choice === 'random') {
+      setCurrentStep('randomRoll')
+      return
+    }
+
+    const nextMode: ResultMode = choice === 'hybrid' ? 'hybrid' : 'single'
+    setMode(nextMode)
+    setCurrentStep('type')
+  }
+
+  function handleRandomRollComplete(outcome: ResultMode) {
+    setMode(outcome)
+    setHybridTypeStep(0)
+    setHybridTypes([null, null])
+    setCurrentStep('type')
+  }
+
+  function handleTypeChoice(type: SimpleTypeChoice) {
+    if (mode === 'hybrid') {
+      if (hybridTypeStep === 0) {
+        setHybridTypes([type, null])
+        setHybridTypeStep(1)
+        return
+      }
+
+      const firstType = hybridTypes[0] ?? 'Any'
+      const poolA = applyFilters(allQuirks, filtersForType(firstType))
+      const poolB = applyFilters(allQuirks, filtersForType(type))
+      setHybridTypes([firstType, type])
+      setFilters(DEFAULT_QUIRK_FILTERS)
+      setResult(pickHybridPair(poolA, poolB))
+      setResultBackStep('type')
+      setCurrentStep('result')
+      return
+    }
+
+    const nextFilters = filtersForType(type)
+    const nextPool = applyFilters(allQuirks, nextFilters)
+    setFilters(nextFilters)
+    setResult(pickRandom(nextPool))
+    setResultBackStep('type')
+    setCurrentStep('result')
+  }
+
+  function handleRestart() {
+    setCurrentStep('start')
+    setMode('single')
+    setFilters(DEFAULT_QUIRK_FILTERS)
+    setResult(null)
+    setResultBackStep('type')
+    setHybridTypeStep(0)
+    setHybridTypes([null, null])
+  }
+
+  function handleBack() {
+    if (currentStep === 'type' && mode === 'hybrid' && hybridTypeStep === 1) {
+      setHybridTypeStep(0)
+      setHybridTypes([hybridTypes[0], null])
+      return
+    }
+
+    if (currentStep === 'type') {
+      setHybridTypeStep(0)
+      setHybridTypes([null, null])
+      setCurrentStep('mode')
+      return
+    }
+
+    setCurrentStep((step) => (step === 'result' ? resultBackStep : getPreviousStep(step)))
   }
 
   function handleResetFilters() {
     setFilters(DEFAULT_QUIRK_FILTERS)
   }
 
-  return (
-    <main className="app-shell">
-      <header className="hero">
-        <p className="eyebrow">Random MHA Quirk</p>
-        <h1>Roll base quirks and preview fusion inputs</h1>
-        <p className="hero-subtitle">
-          Generate one random quirk or a two-quirk pair using optional filters and
-          manual selection mode.
-        </p>
-      </header>
-
-      <section className="panel controls">
-        <div className="mode-toggle">
-          <button
-            type="button"
-            className={mode === 'random' ? 'active' : ''}
-            onClick={() => setMode('random')}
-          >
-            Random Mode
-          </button>
-          <button
-            type="button"
-            className={mode === 'manual' ? 'active' : ''}
-            onClick={() => setMode('manual')}
-          >
-            Manual Mode
+  function renderStep() {
+    if (currentStep === 'start') {
+      return (
+        <div className="simple-step start-step">
+          <BrandMark />
+          <h1>{t('start.title')}</h1>
+          <button type="button" className="big-action" onClick={() => setCurrentStep('mode')}>
+            {t('start.action')}
           </button>
         </div>
+      )
+    }
 
-        <div className="action-row">
-          <button type="button" onClick={handleRollSingle}>
-            Roll Single Quirk
-          </button>
-          <button
-            type="button"
-            onClick={handleRollFusion}
-            disabled={filteredQuirks.length < 2}
-          >
-            Roll Fusion Pair
-          </button>
-          <small>{filteredQuirks.length} quirks in current result set</small>
-        </div>
+    if (currentStep === 'mode') {
+      return <StepModeChoice onChoose={handleModeChoice} />
+    }
 
-        {activeFilterChips.length > 0 ? (
-          <div className="chip-row">
-            {activeFilterChips.map((chip) => (
-              <span key={chip} className="chip chip-subtle">
-                {chip}
-              </span>
-            ))}
-          </div>
-        ) : (
-          <p className="muted">No active filters.</p>
-        )}
-      </section>
+    if (currentStep === 'randomRoll') {
+      return <StepRandomRoll onComplete={handleRandomRollComplete} />
+    }
 
-      <div className="layout-grid">
-        <FilterPanel
+    if (currentStep === 'type') {
+      return (
+        <StepTypeChoice
+          mode={mode}
+          hybridStep={hybridTypeStep}
+          onChoose={handleTypeChoice}
+          onAdvanced={() => setCurrentStep('advanced')}
+        />
+      )
+    }
+
+    if (currentStep === 'advanced') {
+      return (
+        <StepAdvancedFilters
           filters={filters}
           onChange={setFilters}
           onReset={handleResetFilters}
+          filteredCount={filteredQuirks.length}
+          onRoll={rollWithSettings}
         />
+      )
+    }
 
-        <div className="content-column">
-          <section className="panel">
-            <h2>Single Roll Result</h2>
-            {singleRollDisplay ? (
-              <QuirkCard quirk={singleRollDisplay} />
-            ) : (
-              <p>Roll once to get a random quirk from the active result set.</p>
-            )}
-          </section>
+    return (
+      <StepFinalResult
+        mode={mode}
+        result={result}
+        onRetry={() => {
+          rollFromCurrentSettings()
+        }}
+        onBack={handleBack}
+        onRestart={handleRestart}
+      />
+    )
+  }
 
-          <FusionPreview pair={fusionPair} />
-
-          {mode === 'manual' ? (
-            <QuirkList
-              quirks={filteredQuirks}
-              selectedIds={manualSelectedIds}
-              onToggleSelect={handleToggleManualSelection}
-            />
-          ) : (
-            <section className="panel">
-              <h2>Random Mode</h2>
-              <p>
-                Use the roll buttons to generate results. Switch to manual mode to
-                pick exact quirks for fusion testing.
-              </p>
-            </section>
-          )}
-        </div>
-      </div>
-    </main>
+  return (
+    <MinimalFrame
+      canGoBack={currentStep !== 'start' && currentStep !== 'randomRoll'}
+      showRestart={currentStep !== 'start' && currentStep !== 'randomRoll'}
+      onBack={handleBack}
+      onRestart={handleRestart}
+    >
+      {renderStep()}
+    </MinimalFrame>
   )
 }
 

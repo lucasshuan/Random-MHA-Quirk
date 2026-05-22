@@ -16,6 +16,14 @@ export function getSupabaseAdmin(): SupabaseClient {
     )
   }
 
+  if (!/^https?:\/\//i.test(url)) {
+    const hint =
+      url.startsWith('postgresql:') || url.startsWith('postgres:')
+        ? ' SUPABASE_URL deve ser a Project URL (https://<ref>.supabase.co), não a connection string do Postgres.'
+        : ' SUPABASE_URL deve começar com https://'
+    throw new Error(`SUPABASE_URL inválida:${hint}`)
+  }
+
   adminClient = createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
   })

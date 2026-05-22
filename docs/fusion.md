@@ -3,7 +3,7 @@
 ## Configuração
 
 1. Copie `.env.example` → `.env.local`
-2. Configure **Supabase** (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`) e aplique a migration em `supabase/migrations/001_fusion_entries.sql`
+2. Configure **Supabase** (`SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_DB_PASSWORD`) e rode `pnpm db:push` (migrations em `supabase/migrations/`)
 3. Preencha **uma** chave LLM:
    - `OPENAI_API_KEY` (recomendado, `gpt-4o-mini`)
    - ou `GEMINI_API_KEY` (`gemini-2.0-flash`)
@@ -18,8 +18,8 @@ node scripts/seed-fusion-cache.mjs
 ## No app (`pnpm dev` / deploy)
 
 - Modo **Híbrido** sorteia dois pais + um `seed`
-- Se já existir no Supabase → mostra a fusão na hora
-- Se não existir → `POST /api/fusion/generate` chama o LLM e grava no banco (2–10 s)
+- `POST /api/fusion/generate` chama o LLM e grava no Supabase (2–10 s)
+- Se a geração falhar e já existir entrada para o mesmo par + seed → usa fallback do banco
 - Chaves de API ficam **somente no servidor** — nunca no client
 
 ## Terminal (opcional)

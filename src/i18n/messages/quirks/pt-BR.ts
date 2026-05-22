@@ -4,7 +4,7 @@ import type { QuirkCopy } from '../../../types/quirk'
 export const ptBRQuirkCopy = {
   '2d-ify': {
     name: 'Plano 2D',
-    description: 'O 2D-ify permite que o usuário prenda outras pessoas dentro de pinturas. Usando uma moldura, o usuário pode absorver pessoas e objetos, transformando-os em pinturas 2D contidas em molduras.',
+    description: 'Permite ao usuário prenda outras pessoas dentro de pinturas. Usando uma moldura, o usuário pode absorver pessoas e objetos, transformando-os em pinturas 2D contidas em molduras.',
   },
   'absorption-and-release': {
     name: 'Absorção e Liberação',
@@ -12,15 +12,15 @@ export const ptBRQuirkCopy = {
   },
   'accelerator-rings': {
     name: 'Anéis do Acelerador',
-    description: 'Os anéis aceleradores permitem que o usuário gere anéis amarelos de energia de suas mãos e pés. Após um atraso variável, os anéis liberam uma explosão de força em uma única direção antes de se dissipar.',
+    description: 'Permite ao usuário gere anéis amarelos de energia de suas mãos e pés. Após um atraso variável, os anéis liberam uma explosão de força em uma única direção antes de se dissipar.',
   },
   'acid': {
     name: 'Ácido',
-    description: 'O ácido permite que o usuário crie líquido corrosivo a partir de sua pele, sendo naturalmente resistente ao ácido que produz.',
+    description: 'Permite ao usuário crie líquido corrosivo a partir de sua pele, sendo naturalmente resistente ao ácido que produz.',
   },
   'acid-sweat': {
     name: 'Suor Ácido',
-    description: 'O Suor Ácido permite que o usuário segregue um suor ácido com propriedades combustíveis e explosivas das palmas das mãos.',
+    description: 'Permite ao usuário segregue um suor ácido com propriedades combustíveis e explosivas das palmas das mãos.',
   },
   'air-cannon': {
     name: 'Canhão de Ar',
@@ -32,7 +32,7 @@ export const ptBRQuirkCopy = {
   },
   'air-wall': {
     name: 'Parede de ar',
-    description: 'A Parede de Ar permite que o usuário crie escudos circulares feitos de ar comprimido de suas mãos para se proteger.',
+    description: 'Permite ao usuário crie escudos circulares feitos de ar comprimido de suas mãos para se proteger.',
   },
   'alchemy': {
     name: 'Alquimia',
@@ -44,7 +44,7 @@ export const ptBRQuirkCopy = {
   },
   'amplivolt': {
     name: 'Amplivoltação',
-    description: 'A Amplivolt permite que seu usuário conduza e aumente a eletricidade dentro de seu corpo antes de liberá-la depois. Uma vez amplificado o suficiente, o usuário é capaz de disparar rajadas de eletricidade armazenada de suas mãos.',
+    description: 'Permite que seu usuário conduza e aumente a eletricidade dentro de seu corpo antes de liberá-la depois. Uma vez amplificado o suficiente, o usuário é capaz de disparar rajadas de eletricidade armazenada de suas mãos.',
   },
   'anivoice': {
     name: 'Voz Animal',
@@ -52,11 +52,11 @@ export const ptBRQuirkCopy = {
   },
   'anthropomorph': {
     name: 'Antropomorfo',
-    description: 'O Antropomorfo permite que o usuário pegue um objeto de tamanho humano (uma geladeira, uma mesa, etc.) e o transforme em um sósia exato de qualquer pessoa.',
+    description: 'Permite ao usuário pegue um objeto de tamanho humano (uma geladeira, uma mesa, etc.) e o transforme em um sósia exato de qualquer pessoa.',
   },
   'antigen-swap': {
     name: 'Troca de Antígeno',
-    description: 'A Troca de Antígeno permite que o usuário altere seu tipo sanguíneo à vontade.',
+    description: 'Permite ao usuário altere seu tipo sanguíneo à vontade.',
   },
   'arbor': {
     name: 'Arboreto',
@@ -100,15 +100,15 @@ export const ptBRQuirkCopy = {
   },
   'binging-ball': {
     name: 'Bola Devoradora',
-    description: 'Binging Ball permite que o usuário libere pequenas esferas flutuantes com bocas de seu corpo. Essas esferas podem ser usadas como projéteis, movendo-se a velocidades muito altas.',
+    description: 'Permite ao usuário libere pequenas esferas flutuantes com bocas de seu corpo. Essas esferas podem ser usadas como projéteis, movendo-se a velocidades muito altas.',
   },
   'black': {
     name: 'Preto',
-    description: 'O preto permite que o usuário mescle seu corpo em qualquer coisa de cor escura, seja naturalmente escura ou escura por meio de circunstâncias externas, como sombras. Eles também podem se mover livremente pela escuridão.',
+    description: 'Permite ao usuário mescle seu corpo em qualquer coisa de cor escura, seja naturalmente escura ou escura por meio de circunstâncias externas, como sombras. Eles também podem se mover livremente pela escuridão.',
   },
   'black-hole': {
     name: 'Buraco Negro',
-    description: 'O Buraco Negro permite que o usuário crie pequenos buracos negros através de seus dedos. Os buracos negros sugam e desintegram qualquer matéria no nível atômico, bem como certas formas de energia, como a luz.',
+    description: 'Permite ao usuário crie pequenos buracos negros através de seus dedos. Os buracos negros sugam e desintegram qualquer matéria no nível atômico, bem como certas formas de energia, como a luz.',
   },
   'blackwhip': {
     name: 'Chicote Negro',
@@ -116,7 +116,7 @@ export const ptBRQuirkCopy = {
   },
   'blade-tooth': {
     name: 'Dente da Lâmina',
-    description: 'O Blade-Tooth concede ao usuário a capacidade de ampliar e remodelar seus dentes em incisivos afiados. Essas lâminas de barbear podem variar em tamanho e forma. O usuário pode manipular o comprimento e a direção dos dentes à vontade.',
+    description: 'Concede ao usuário a capacidade de ampliar e remodelar seus dentes em incisivos afiados. Essas lâminas de barbear podem variar em tamanho e forma. O usuário pode manipular o comprimento e a direção dos dentes à vontade.',
   },
   'blast': {
     name: 'Explosão',
@@ -180,15 +180,15 @@ export const ptBRQuirkCopy = {
   },
   'bubble': {
     name: 'Bolha',
-    description: 'A bolha permite que o usuário faça bolhas, de vários tamanhos, cheias de um aroma que já cheirou pelo menos uma vez antes.',
+    description: 'Permite ao usuário faça bolhas, de vários tamanhos, cheias de um aroma que já cheirou pelo menos uma vez antes.',
   },
   'bull-head': {
     name: 'Cabeça de Touro',
-    description: 'Bull Head dá ao usuário um par de chifres em forma de touro em sua cabeça.',
+    description: 'Dá ao usuário um par de chifres em forma de touro em sua cabeça.',
   },
   'bullet-laser': {
     name: 'Laser Balístico',
-    description: 'O Bullet Laser permitia que o usuário disparasse lasers de cor roxa da ponta dos dedos, que eles podiam disparar como explosões diretas, bem como curvar os referidos feixes diretamente de seus dedos.',
+    description: 'Permite que o usuário dispare lasers de cor roxa da ponta dos dedos, que eles podem disparar como explosões diretas, bem como curvar os referidos feixes diretamente de seus dedos.',
   },
   'bullhorn': {
     name: 'Megafone',
@@ -200,15 +200,15 @@ export const ptBRQuirkCopy = {
   },
   'cell-activation': {
     name: 'Ativação Celular',
-    description: 'A Ativação Celular permite que seu usuário ative as células em seu corpo ou no corpo de outra pessoa através do toque. Isso aumenta a regeneração, o tempo de recuperação e pode até melhorar a condição física.',
+    description: 'Permite que seu usuário ative as células em seu corpo ou no corpo de outra pessoa através do toque. Isso aumenta a regeneração, o tempo de recuperação e pode até melhorar a condição física.',
   },
   'cemedine': {
     name: 'Cemedina',
-    description: 'A cemedina permite que o usuário pulverize um líquido semelhante a cola a partir dos orifícios em sua cabeça. Uma vez que atinge algo, a cola endurece e prende o que quer que entre em contato ou a torna pegajosa e perigosa ao toque.',
+    description: 'APrmite que o usuário pulverize um líquido semelhante a cola a partir dos orifícios em sua cabeça. Uma vez que atinge algo, a cola endurece e prende o que quer que entre em contato ou a torna pegajosa e perigosa ao toque.',
   },
   'cement': {
     name: 'Cimento',
-    description: 'O cimento dá ao usuário a capacidade de manipular material à base de cimento simplesmente por estar em contato com a superfície. Isso não lhes dá a capacidade de criar novo cimento, eles só podem remodelar o cimento existente.',
+    description: 'Dá ao usuário a capacidade de manipular material à base de cimento simplesmente por estar em contato com a superfície. Isso não lhes dá a capacidade de criar novo cimento, eles só podem remodelar o cimento existente.',
   },
   'centipede': {
     name: 'Quilópode',
@@ -220,7 +220,7 @@ export const ptBRQuirkCopy = {
   },
   'charging-muscles': {
     name: 'Carregando Músculos',
-    description: 'Carregar Músculos permite que o usuário carregue a força em seus músculos, aumentando a força de um ataque em um golpe poderoso.',
+    description: 'Permite que o usuário carregue a força em seus músculos, aumentando a força de um ataque em um golpe poderoso.',
   },
   'chart': {
     name: 'Painel Tático',
@@ -240,7 +240,7 @@ export const ptBRQuirkCopy = {
   },
   'clean-bubbler': {
     name: 'Borbulhador Limpador',
-    description: 'O Clean Bubbler permite que o usuário crie e controle a água com sabão de seu corpo. O riacho é forte o suficiente para manter várias pessoas no ar.',
+    description: 'Permite que o usuário crie e controle a água com sabão de seu corpo. O riacho é forte o suficiente para manter várias pessoas no ar.',
   },
   'cleaning': {
     name: 'Limpar',
@@ -252,11 +252,11 @@ export const ptBRQuirkCopy = {
   },
   'cloud': {
     name: 'Nuvem',
-    description: 'A nuvem permitiu que o usuário criasse nuvens de tamanhos diferentes, de densidades variadas, o suficiente para serem tocadas e até mesmo para suportar o peso de uma ou várias pessoas.',
+    description: 'Permite que o usuário crie nuvens de tamanhos diferentes, de densidades variadas, o suficiente para serem tocadas e até mesmo para suportar o peso de uma ou várias pessoas.',
   },
   'comic': {
     name: 'Quadrinhos',
-    description: 'A história em quadrinhos permite que o usuário materialize a onomatopeia no mundo real na forma de letras japonesas gigantes, falando-as. A onomatopeia se manifesta com os mesmos efeitos do som em que se baseia.',
+    description: 'Permite que o usuário materialize a onomatopeia no mundo real na forma de letras japonesas gigantes, falando-as. A onomatopeia se manifesta com os mesmos efeitos do som em que se baseia.',
   },
   'compress': {
     name: 'Comprimir',
@@ -268,7 +268,7 @@ export const ptBRQuirkCopy = {
   },
   'conjure': {
     name: 'Conjurar',
-    description: 'Conjurar permite que o usuário mire em qualquer objeto relativamente pequeno e o deforma diretamente em sua mão.',
+    description: 'Permite ao usuário mire em qualquer objeto relativamente pequeno e o deforma diretamente em sua mão.',
   },
   'control-glass': {
     name: 'Vidro de Controle',
@@ -284,7 +284,7 @@ export const ptBRQuirkCopy = {
   },
   'cow': {
     name: 'Vaca',
-    description: 'A vaca permite que o usuário altere seu corpo com as características de uma vaca. Isso inclui cascos, chifres e a pele de uma vaca. Isso aumenta a velocidade e a força do usuário em relação à de uma vaca.',
+    description: 'Permite ao usuário altere seu corpo com as características de uma vaca. Isso inclui cascos, chifres e a pele de uma vaca. Isso aumenta a velocidade e a força do usuário em relação à de uma vaca.',
   },
   'creation': {
     name: 'Criação',
@@ -292,11 +292,11 @@ export const ptBRQuirkCopy = {
   },
   'crystallize': {
     name: 'Cristalização',
-    description: 'Cristalizar permite que o usuário desenvolva um grande número de cristais de seu corpo, cobrindo completamente sua pele com eles. Os cristais são mostrados como sendo duráveis e capazes de crescer quase instantaneamente.',
+    description: 'Permite que o usuário desenvolva um grande número de cristais de seu corpo, cobrindo completamente sua pele com eles. Os cristais são mostrados como sendo duráveis e capazes de crescer quase instantaneamente.',
   },
   'cubism': {
     name: 'Cubismo',
-    description: 'O cubismo permite que o usuário transforme outras pessoas em versões 3D da obra de arte cubista.',
+    description: 'Permite que o usuário transforme outras pessoas em versões 3D da obra de arte cubista.',
   },
   'curse': {
     name: 'Amaldiçoar',
@@ -304,7 +304,7 @@ export const ptBRQuirkCopy = {
   },
   'danger-sense': {
     name: 'Senso de Perigo',
-    description: 'O Sentido de Perigo permite que o usuário detecte quaisquer ameaças potenciais na área circundante, dando assim ao usuário a oportunidade de reagir adequadamente a elas rapidamente, essencialmente concedendo-lhes um sexto sentido.',
+    description: 'Permite que o usuário detecte quaisquer ameaças potenciais na área circundante, dando assim ao usuário a oportunidade de reagir adequadamente a elas rapidamente, essencialmente concedendo-lhes um sexto sentido.',
   },
   'dark-ball': {
     name: 'Bola Negra',
@@ -320,7 +320,7 @@ export const ptBRQuirkCopy = {
   },
   'day-dream': {
     name: 'Sonho diurno',
-    description: 'O Sonho Diurno permite que o usuário faça com que qualquer pessoa que olhe caia inconsciente ou seja colocada em um estado hipnótico controlável por um curto período de tempo.',
+    description: 'Permite que o usuário faça com que qualquer pessoa que olhe caia inconsciente ou seja colocada em um estado hipnótico controlável por um curto período de tempo.',
   },
   'decay': {
     name: 'Decadência',
@@ -336,7 +336,7 @@ export const ptBRQuirkCopy = {
   },
   'diesel-engine': {
     name: 'Motor Diesel',
-    description: 'O Motor Diesel transforma a cabeça do usuário e toda a parte superior do corpo na locomotiva de um trem movido a diesel e concede a ele maior velocidade de corrida.',
+    description: 'Transforma a cabeça do usuário e toda a parte superior do corpo na locomotiva de um trem movido a diesel e concede maior velocidade de corrida.',
   },
   'dog': {
     name: 'Cachorro',
@@ -348,7 +348,7 @@ export const ptBRQuirkCopy = {
   },
   'dragon': {
     name: 'Dragão',
-    description: 'Dragão permite que o usuário se transforme em um dragão, uma poderosa criatura mitológica. Essa forma concede habilidades comumente associadas a dragões, incluindo voo, mandíbulas e garras poderosas.',
+    description: 'Permite que o usuário se transforme em um dragão, uma poderosa criatura mitológica. Essa forma concede habilidades comumente associadas a dragões, incluindo voo, mandíbulas e garras poderosas.',
   },
   'dragon-breath': {
     name: 'Sopro de Dragão',
@@ -356,7 +356,7 @@ export const ptBRQuirkCopy = {
   },
   'dupli-arms': {
     name: 'Dupli-Braços',
-    description: 'Dupli-Braços concede ao usuário um conjunto de tentáculos semelhantes a braços que podem se transformar em duplicatas de outras partes do corpo.',
+    description: 'Concede ao usuário um conjunto de tentáculos semelhantes a braços que podem se transformar em duplicatas de outras partes do corpo.',
   },
   'dust': {
     name: 'Pó',
@@ -404,11 +404,11 @@ export const ptBRQuirkCopy = {
   },
   'endurance': {
     name: 'Resistência',
-    description: 'Resistência dá ao usuário a capacidade de converter sua mobilidade e moral em energia física, resultando em um aumento significativo de resistência e stamina, transformando-o efetivamente em uma "besta de resistência".',
+    description: 'Dá ao usuário a capacidade de converter sua mobilidade e moral em energia física, resultando em um aumento significativo de resistência e stamina, transformando-o efetivamente em uma "besta de resistência".',
   },
   'energy-saver': {
     name: 'Economizador de Energia',
-    description: 'Economizador de Energia permite que o corpo do usuário funcione com quantidades muito pequenas de nutrição e hidratação, além de possibilitar que ele processe sem precisar dormir muito.',
+    description: 'Permite que o corpo do usuário funcione com quantidades muito pequenas de nutrição e hidratação, além de possibilitar que ele processe sem precisar dormir muito.',
   },
   'energy-suck': {
     name: 'Absorção de Energia',
@@ -416,7 +416,7 @@ export const ptBRQuirkCopy = {
   },
   'enfeeble': {
     name: 'Enfraquecer',
-    description: 'Enfraquecer permite que o usuário olhe nos olhos de alguém e paralise seus músculos por três segundos. No entanto, o sujeito permanece consciente enquanto está imobilizado.',
+    description: 'Permite ao usuário olhe nos olhos de alguém e paralise seus músculos por três segundos. No entanto, o sujeito permanece consciente enquanto está imobilizado.',
   },
   'engine': {
     name: 'Motor',
@@ -432,11 +432,11 @@ export const ptBRQuirkCopy = {
   },
   'eruption': {
     name: 'Erupção',
-    description: 'Erupção permite que o usuário queime sua gordura para produzir uma substância semelhante a lava, tão quente quanto magma, e a expulse de seu corpo.',
+    description: 'Permite ao usuário queime sua gordura para produzir uma substância semelhante a lava, tão quente quanto magma, e a expulse de seu corpo.',
   },
   'explosion': {
     name: 'Explosão',
-    description: 'Explosão permite que o usuário excrete suor semelhante a nitroglicerina de suas palmas e o acenda à vontade para criar explosões de vários tamanhos.',
+    description: 'Permite ao usuário excrete suor semelhante a nitroglicerina de suas palmas e o acenda à vontade para criar explosões de vários tamanhos.',
   },
   'extend-o-hair': {
     name: 'Cabelo Extensível',
@@ -444,7 +444,7 @@ export const ptBRQuirkCopy = {
   },
   'extra-arms': {
     name: 'Braços Extras',
-    description: 'Braços Extras concede ao usuário um conjunto adicional de braços.',
+    description: 'Concede ao usuário um conjunto adicional de braços.',
   },
   'fa-jin': {
     name: 'Fa Jin',
@@ -452,15 +452,15 @@ export const ptBRQuirkCopy = {
   },
   'fan': {
     name: 'Ventoinha',
-    description: 'Ventoinha permite que o usuário crie vento ou até tornados ao girar os pulsos.',
+    description: 'Permite ao usuário crie vento ou até tornados ao girar os pulsos.',
   },
   'fast-fist': {
     name: 'Soco Rápido',
-    description: 'O usuário de Soco Rápido pode mover suas mãos com uma velocidade extrema, permitindo que ele acerte até 100 vezes em menos de um segundo.',
+    description: 'Permite ao usuário mover as mãos com velocidade extrema, acertando até 100 golpes em menos de um segundo.',
   },
   'fat-absorption': {
     name: 'Absorção de Gordura',
-    description: 'Absorção de Gordura concede ao usuário a habilidade de aderir objetos ao seu corpo e fazê-los afundar na gordura corporal ao entrar em contato.',
+    description: 'Concede ao usuário a habilidade de aderir objetos ao seu corpo e fazê-los afundar na gordura corporal ao entrar em contato.',
   },
   'fiber-master': {
     name: 'Mestre das Fibras',
@@ -508,7 +508,7 @@ export const ptBRQuirkCopy = {
   },
   'foresight': {
     name: 'Previsão',
-    description: 'Previsão concede ao usuário a habilidade de prever com precisão todos os movimentos e ações futuras do alvo por uma hora inteira. A Previsão é ativada ao tocar primeiro o alvo e depois fazer contato visual com ele.',
+    description: 'Permite ao usuário prever com precisão todos os movimentos e ações futuras do alvo por uma hora inteira. Ativada ao tocar primeiro o alvo e depois fazer contato visual com ele.',
   },
   'free-walker': {
     name: 'Caminhante Livre',
@@ -520,7 +520,7 @@ export const ptBRQuirkCopy = {
   },
   'frost': {
     name: 'Gelo',
-    description: 'Gelo dá ao usuário a capacidade de manipular e produzir gelo ao seu redor, podendo se cobrir de gelo e dispará-lo.',
+    description: 'Permite ao usuário manipular e produzir gelo ao redor do corpo, cobrindo-se de gelo e disparando-o.',
   },
   'gale-gale': {
     name: 'Vento Vento',
@@ -536,7 +536,7 @@ export const ptBRQuirkCopy = {
   },
   'gearshift': {
     name: 'Mudança de Marcha',
-    description: 'Mudança de Marcha permite que o usuário altere a velocidade com que os objetos aceleram no espaço. É capaz de mudar as velocidades ignorando as leis da inércia.',
+    description: 'Permite ao usuário altere a velocidade com que os objetos aceleram no espaço. É capaz de mudar as velocidades ignorando as leis da inércia.',
   },
   'gecko': {
     name: 'Geco',
@@ -568,7 +568,7 @@ export const ptBRQuirkCopy = {
   },
   'grasshopper': {
     name: 'Grilo',
-    description: 'Grilo permite que o usuário se transforme em um grande grilo humanoide, aumentando suas capacidades físicas.',
+    description: 'Permite ao usuário se transforme em um grande grilo humanoide, aumentando suas capacidades físicas.',
   },
   'gyrate': {
     name: 'Girar',
@@ -584,7 +584,7 @@ export const ptBRQuirkCopy = {
   },
   'half-cold-half-hot': {
     name: 'Meio Frio Meio Quente',
-    description: 'Meio Frio Meio Quente permite ao usuário gerar gelo, frio e geada do lado direito do corpo, enquanto fogo, chamas e calor são gerados do lado esquerdo.',
+    description: 'Permite ao usuário gerar gelo, frio e geada do lado direito do corpo, enquanto fogo, chamas e calor são gerados do lado esquerdo.',
   },
   'hardening': {
     name: 'Endurecimento',
@@ -596,15 +596,15 @@ export const ptBRQuirkCopy = {
   },
   'heal': {
     name: 'Cura',
-    description: 'Cura permite que o usuário amplifique e acelere o processo natural de cicatrização de seu alvo ao estender os lábios e beijá-lo.',
+    description: 'Permite ao usuário amplifique e acelere o processo natural de cicatrização de seu alvo ao estender os lábios e beijá-lo.',
   },
   'heavy-payload': {
     name: 'Carga Pesada',
-    description: 'Carga Pesada aparentemente aumenta o dano causado pelos ataques do usuário.',
+    description: 'Aparentemente aumenta o dano causado pelos ataques do usuário.',
   },
   'helical-scythe': {
     name: 'Foice Helicoidal',
-    description: 'Foice Helicoidal concede ao usuário grandes apêndices vermelhos nos dedos e na cabeça, que podem ser estendidos e manipulados como tentáculos.',
+    description: 'Concede ao usuário grandes apêndices vermelhos nos dedos e na cabeça, que podem ser estendidos e manipulados como tentáculos.',
   },
   'hellflame': {
     name: 'Chama Infernal',
@@ -612,7 +612,7 @@ export const ptBRQuirkCopy = {
   },
   'high-specs': {
     name: 'Altas Especificações',
-    description: 'Altas Especificações concede ao usuário uma inteligência, percepção, reações e compreensão sem igual, que superam em muito as de qualquer humano.',
+    description: 'Concede ao usuário uma inteligência, percepção, reações e compreensão sem igual, que superam em muito as de qualquer humano.',
   },
   'hologram': {
     name: 'Holograma',
@@ -620,7 +620,7 @@ export const ptBRQuirkCopy = {
   },
   'homing': {
     name: 'Guiado',
-    description: 'Guiado permite que o usuário fixe um alvo que consegue ver a até seiscentos metros de distância e faça qualquer projétil que libere perseguir esse alvo.',
+    description: 'Permite ao usuário fixe um alvo que consegue ver a até seiscentos metros de distância e faça qualquer projétil que libere perseguir esse alvo.',
   },
   'horn-cannon': {
     name: 'Canhão de Chifres',
@@ -632,7 +632,7 @@ export const ptBRQuirkCopy = {
   },
   'hydra': {
     name: 'Hidra',
-    description: 'Hidra permite que o usuário convoque criaturas gigantescas, semelhantes a tubarões serpenteantes, de suas costas, que podem ser controladas à vontade. Essas criaturas são grandes o suficiente para esmagar uma pessoa em suas mandíbulas.',
+    description: 'Permite ao usuário convoque criaturas gigantescas, semelhantes a tubarões serpenteantes, de suas costas, que podem ser controladas à vontade. Essas criaturas são grandes o suficiente para esmagar uma pessoa em suas mandíbulas.',
   },
   'hypertrophy': {
     name: 'Hipertrofia',
@@ -640,7 +640,7 @@ export const ptBRQuirkCopy = {
   },
   'ice-ply': {
     name: 'Camada de Gelo',
-    description: 'Camada de Gelo permite que o usuário manipule livremente qualquer gelo nas proximidades. Eles podem reunir, mover, atacar e se defender com o gelo que controlam.',
+    description: 'Permite ao usuário manipule livremente qualquer gelo nas proximidades. Eles podem reunir, mover, atacar e se defender com o gelo que controlam.',
   },
   'ignition': {
     name: 'Ignição',
@@ -648,7 +648,7 @@ export const ptBRQuirkCopy = {
   },
   'impact-recoil': {
     name: 'Recuo de Impacto',
-    description: 'Recuo de Impacto permite que o usuário reverta o impacto causado por uma força física oposta, causando dano ao oponente em vez disso.',
+    description: 'Permite ao usuário reverta o impacto causado por uma força física oposta, causando dano ao oponente em vez disso.',
   },
   'impure-beam': {
     name: 'Raio Impuro',
@@ -664,11 +664,11 @@ export const ptBRQuirkCopy = {
   },
   'invisibility': {
     name: 'Invisibilidade',
-    description: 'A Invisibilidade faz com que o usuário refrate a luz que o atinge de forma inconsciente, tornando seu corpo completamente invisível.',
+    description: 'Faz com que o usuário refrate inconscientemente a luz que o atinge, tornando o corpo completamente invisível.',
   },
   'iq': {
     name: 'QI',
-    description: 'O QI permite que o usuário aumente seu intelecto multiplicando seu QI, tornando-se um super-gênio temporariamente após consumir chá e fechar os olhos para pensar.',
+    description: 'Permite ao usuário aumente seu intelecto multiplicando seu QI, tornando-se um super-gênio temporariamente após consumir chá e fechar os olhos para pensar.',
   },
   'iron-ball': {
     name: 'Bola de Ferro',
@@ -684,7 +684,7 @@ export const ptBRQuirkCopy = {
   },
   'jet': {
     name: 'Jato',
-    description: 'O Jato concede ao usuário a habilidade de expelir ar de buracos abertos nas solas dos pés. Isso permite que ele voe em um alcance limitado e se mova mais rápido do que o olho pode acompanhar, mesmo no chão.',
+    description: 'Concede ao usuário a habilidade de expelir ar de buracos abertos nas solas dos pés. Isso permite que ele voe em um alcance limitado e se mova mais rápido do que o olho pode acompanhar, mesmo no chão.',
   },
   'kaiju': {
     name: 'Forma Kaiju',
@@ -708,11 +708,11 @@ export const ptBRQuirkCopy = {
   },
   'laser': {
     name: 'Laser',
-    description: 'Laser permite que o usuário dispare feixes de energia de seu olho direito.',
+    description: 'Permite ao usuário dispare feixes de energia de seu olho direito.',
   },
   'leafipulation': {
     name: 'Manipulação de Folhas',
-    description: 'Manipulação de Folhas permite que seu usuário manipule folhas da vegetação ao seu redor e as dispare como projéteis contra seus oponentes.',
+    description: 'Permite que seu usuário manipule folhas da vegetação ao seu redor e as dispare como projéteis contra seus oponentes.',
   },
   'leap': {
     name: 'Salto',
@@ -720,7 +720,7 @@ export const ptBRQuirkCopy = {
   },
   'life-force': {
     name: 'Força Vital',
-    description: 'Força Vital dobra a expectativa de vida do usuário, fazendo com que envelheça mais lentamente e pareça muito mais jovem do que realmente é.',
+    description: 'Dobra a expectativa de vida do usuário, fazendo com que envelheça mais lentamente e pareça muito mais jovem do que realmente é.',
   },
   'lion': {
     name: 'Leão',
@@ -728,11 +728,11 @@ export const ptBRQuirkCopy = {
   },
   'liquification': {
     name: 'Liquefação',
-    description: 'Liquefação permite que o usuário liquefça seu corpo.',
+    description: 'Permite ao usuário liquefça seu corpo.',
   },
   'lizard': {
     name: 'Lagarto',
-    description: 'Lagarto concede ao usuário uma aparência reptiliana, com uma cauda, uma língua bifurcada e um corpo coberto de escamas.',
+    description: 'Concede ao usuário uma aparência reptiliana, com uma cauda, uma língua bifurcada e um corpo coberto de escamas.',
   },
   'lizard-tail-splitter': {
     name: 'Divisão de Cauda de Lagarto',
@@ -748,11 +748,11 @@ export const ptBRQuirkCopy = {
   },
   'longleg': {
     name: 'Perna Longa',
-    description: 'Perna Longa permite que o usuário estenda suas pernas, aumentando seu alcance e mobilidade em combate.',
+    description: 'Permite ao usuário estenda suas pernas, aumentando seu alcance e mobilidade em combate.',
   },
   'love': {
     name: 'Amor',
-    description: 'Amor permite que o usuário potencialize um alvo ao confessar seus sentimentos por ele. Quanto mais intensa for a paixão do usuário, mais forte será o poder transmitido ao alvo.',
+    description: 'Permite ao usuário potencialize um alvo ao confessar seus sentimentos por ele. Quanto mais intensa for a paixão do usuário, mais forte será o poder transmitido ao alvo.',
   },
   'luminescence': {
     name: 'Luminescência',
@@ -760,7 +760,7 @@ export const ptBRQuirkCopy = {
   },
   'mad-gluttony': {
     name: 'Glutonaria Louca',
-    description: 'Glutonaria Louca permite que o usuário devore objetos usando a enorme boca em seu estômago, sendo capaz de inalar, triturar e destruir rapidamente tudo que estiver em seu caminho.',
+    description: 'Permite ao usuário devore objetos usando a enorme boca em seu estômago, sendo capaz de inalar, triturar e destruir rapidamente tudo que estiver em seu caminho.',
   },
   'magic': {
     name: 'Magia',
@@ -780,7 +780,7 @@ export const ptBRQuirkCopy = {
   },
   'meatball': {
     name: 'Manipulação de Carne',
-    description: 'Almôndega concede ao usuário a habilidade de manipular carne humana crua. O usuário pode controlar sua própria carne, permitindo que separe seus membros e os controle à vontade.',
+    description: 'Concede ao usuário a habilidade de manipular carne humana crua. O usuário pode controlar sua própria carne, permitindo que separe seus membros e os controle à vontade.',
   },
   'metal-manipulation': {
     name: 'Manipulação de Metal',
@@ -788,7 +788,7 @@ export const ptBRQuirkCopy = {
   },
   'mimicry': {
     name: 'Mimetismo',
-    description: 'Mimicry permite que o usuário transfira seu corpo e mente para objetos sólidos, manipulando-os como se fossem seu próprio corpo.',
+    description: 'Permite ao usuário transfira seu corpo e mente para objetos sólidos, manipulando-os como se fossem seu próprio corpo.',
   },
   'mind-reading': {
     name: 'Leitura Mental',
@@ -800,11 +800,11 @@ export const ptBRQuirkCopy = {
   },
   'mole': {
     name: 'Toupeira',
-    description: 'Toupera permite que o usuário faça crescer garras longas e afiadas nos dedos, espinhos nas costas e um visor protetor no rosto, facilitando a escavação no solo, assim como uma toupeira.',
+    description: 'Permite ao usuário faça crescer garras longas e afiadas nos dedos, espinhos nas costas e um visor protetor no rosto, facilitando a escavação no solo, assim como uma toupeira.',
   },
   'monster-cat': {
     name: 'Gato Monstro',
-    description: 'Gato Monstro permite que o usuário se funde com um objeto ou máquina, assumindo sua forma e controlando-o completamente. Ele também pode se desassociar do objeto.',
+    description: 'Permite ao usuário se funde com um objeto ou máquina, assumindo sua forma e controlando-o completamente. Ele também pode se desassociar do objeto.',
   },
   'monster-summon': {
     name: 'Invocação de Monstros',
@@ -812,7 +812,7 @@ export const ptBRQuirkCopy = {
   },
   'muddied': {
     name: 'Confusão',
-    description: 'Confusão concede ao usuário a habilidade de causar amnésia leve em uma pessoa ao tocar sua cabeça, tornando suas memórias dos últimos cinco minutos e dos próximos cinco minutos vagas.',
+    description: 'Concede ao usuário a habilidade de causar amnésia leve em uma pessoa ao tocar sua cabeça, tornando suas memórias dos últimos cinco minutos e dos próximos cinco minutos vagas.',
   },
   'multiplier': {
     name: 'Multiplicador',
@@ -828,15 +828,15 @@ export const ptBRQuirkCopy = {
   },
   'muscle-expansion': {
     name: 'Expansão Muscular',
-    description: 'Expansão Muscular permite que o usuário expanda e fortaleça seus músculos, resultando em um aumento significativo na força física.',
+    description: 'Permite ao usuário expanda e fortaleça seus músculos, resultando em um aumento significativo na força física.',
   },
   'mushroom': {
     name: 'Cogumelo',
-    description: 'Cogumelo permite que o usuário gere e espalhe esporos de fungo a partir de seu corpo. Assim que esses esporos entram em contato com uma superfície sólida, eles crescem rapidamente em cogumelos totalmente desenvolvidos.',
+    description: 'Permite ao usuário gere e espalhe esporos de fungo a partir de seu corpo. Assim que esses esporos entram em contato com uma superfície sólida, eles crescem rapidamente em cogumelos totalmente desenvolvidos.',
   },
   'mutant-bovini': {
     name: 'Mutante Bovino',
-    description: 'Mutante Bovino permite que seu usuário dispare lasers de seu rosto. Essa habilidade é poderosa e pode ser usada em combate para atacar inimigos à distância.',
+    description: 'Permite que seu usuário dispare lasers de seu rosto. Essa habilidade é poderosa e pode ser usada em combate para atacar inimigos à distância.',
   },
   'navel-laser': {
     name: 'Laser do Umbigo',
@@ -848,15 +848,15 @@ export const ptBRQuirkCopy = {
   },
   'new-order': {
     name: 'Nova Ordem',
-    description: 'Nova Ordem permite que o usuário estabeleça uma regra em seu entorno após tocar o alvo e chamar seu nome. Isso possibilita manipular e conferir novas propriedades a si mesmo e ao mundo ao seu redor.',
+    description: 'Permite ao usuário estabeleça uma regra em seu entorno após tocar o alvo e chamar seu nome. Isso possibilita manipular e conferir novas propriedades a si mesmo e ao mundo ao seu redor.',
   },
   'octopus': {
     name: 'Polvo',
-    description: 'Polvo fornece ao usuário a fisiologia e habilidades de um polvo, como múltiplos apêndices elásticos, ventosas e a capacidade de expelir tinta de sua boca em forma de sifão.',
+    description: 'Fornece ao usuário a fisiologia e habilidades de um polvo, como múltiplos apêndices elásticos, ventosas e a capacidade de expelir tinta de sua boca em forma de sifão.',
   },
   'octopus-squid': {
     name: 'Polvo (Lula)',
-    description: 'Polvo (Lula) concede ao usuário o mesmo número de membros que uma criatura cefalópode, fazendo com que pareça um polvo ou lula humanoide. Essa habilidade aumenta sua versatilidade em combate.',
+    description: 'Concede ao usuário o mesmo número de membros que uma criatura cefalópode, fazendo com que pareça um polvo ou lula humanoide.',
   },
   'one-for-all': {
     name: 'Um Por Todos',
@@ -864,7 +864,7 @@ export const ptBRQuirkCopy = {
   },
   'orcinus': {
     name: 'Orca',
-    description: 'Orcinus é a soma das muitas habilidades relacionadas a orcas do usuário. Ele pode realizar qualquer coisa que uma orca comum pode fazer, até mesmo em terra firme.',
+    description: 'Resume as muitas habilidades relacionadas a orcas do usuário. Ele pode fazer qualquer coisa que uma orca comum faria, inclusive em terra firme.',
   },
   'outburst': {
     name: 'Explosão',
@@ -900,7 +900,7 @@ export const ptBRQuirkCopy = {
   },
   'plant': {
     name: 'Planta',
-    description: 'Planta permite que o usuário transforme partes de seu corpo em estruturas vegetais. Essas estruturas têm propriedades que podem curar seus aliados.',
+    description: 'Permite ao usuário transforme partes de seu corpo em estruturas vegetais. Essas estruturas têm propriedades que podem curar seus aliados.',
   },
   'playtime': {
     name: 'Hora do Jogo',
@@ -924,7 +924,7 @@ export const ptBRQuirkCopy = {
   },
   'polygraph': {
     name: 'Polígrafo',
-    description: 'Polígrafo permite ao usuário julgar a autenticidade e sinceridade das palavras de seu alvo, informando se estão falando a verdade ou mentindo.',
+    description: 'Permite ao usuário julgar a autenticidade e sinceridade das palavras de seu alvo, informando se estão falando a verdade ou mentindo.',
   },
   'pop-off': {
     name: 'Estouro',
@@ -932,11 +932,11 @@ export const ptBRQuirkCopy = {
   },
   'power': {
     name: 'Poder',
-    description: 'Poder concede ao usuário a habilidade de acumular uma força bruta tremenda em seu corpo, proporcionando uma força incrível capaz de destruir um prédio de concreto reforçado.',
+    description: 'Concede ao usuário a habilidade de acumular uma força bruta tremenda em seu corpo, proporcionando uma força incrível capaz de destruir um prédio de concreto reforçado.',
   },
   'power-stock': {
     name: 'Acúmulo de Poder',
-    description: 'Acúmulo de Poder tem a capacidade de armazenar energia que o usuário pode usar para explosões incríveis de poder e velocidade.',
+    description: 'Permite ao usuário acumular energia, que pode ser liberada em explosões incríveis de força e velocidade.',
   },
   'propagation': {
     name: 'Propagação',
@@ -948,7 +948,7 @@ export const ptBRQuirkCopy = {
   },
   'queen-beam': {
     name: 'Raio Rainha',
-    description: 'Raio Rainha permite ao usuário disparar um feixe de energia em linha reta de seu rosto. Ao ser usado, um coração rosa aparece sobre o rosto do usuário.',
+    description: 'Permite ao usuário disparar um feixe de energia em linha reta de seu rosto. Ao ser usado, um coração rosa aparece sobre o rosto do usuário.',
   },
   'queen-bee': {
     name: 'Abelha Rainha',
@@ -960,7 +960,7 @@ export const ptBRQuirkCopy = {
   },
   'radio-waves': {
     name: 'Ondas de Rádio',
-    description: 'Ondas de Rádio permite ao usuário emitir um pulso eletromagnético de ondas de rádio para desestabilizar aparelhos elétricos e causar falhas em comunicadores.',
+    description: 'Permite ao usuário emitir um pulso eletromagnético de ondas de rádio para desestabilizar aparelhos elétricos e causar falhas em comunicadores.',
   },
   'radio-waves-bombers': {
     name: 'Ondas de Rádio Explosivas',
@@ -972,11 +972,11 @@ export const ptBRQuirkCopy = {
   },
   'reflect-flect-turn': {
     name: 'Reflexo (Giro Flect)',
-    description: 'Refletir permite ao usuário absorver energia e devolvê-la na direção oposta. Quando algo o atinge, uma onda espiral de energia se forma atrás dele, e o mesmo ataque é rebatido de volta para o oponente.',
+    description: 'Permite ao usuário absorver energia e devolvê-la na direção oposta. Quando algo o atinge, uma onda espiral de energia se forma atrás dele, e o mesmo ataque é rebatido de volta ao oponente.',
   },
   'reflect-tomura-shigaraki': {
     name: 'Refletir (Tomura Shigaraki)',
-    description: 'Refletir permite ao usuário copiar qualquer ataque que sofrer e recriar o mesmo ataque com a mesma força. Ele pode absorver múltiplas fontes ao mesmo tempo, mas libera tudo em uma única direção de uma vez.',
+    description: 'Permite ao usuário copiar qualquer ataque que sofrer e recriar o mesmo ataque com a mesma força. Pode absorver múltiplas fontes ao mesmo tempo, mas libera tudo em uma única direção de uma vez.',
   },
   'rewind': {
     name: 'Rebobinar',
@@ -996,15 +996,15 @@ export const ptBRQuirkCopy = {
   },
   'rocket-thrust': {
     name: 'Impulso de Foguete',
-    description: 'Impulso de Foguete permite que os usuários disparem seus punhos direitos contra as pessoas em velocidades muito altas.',
+    description: 'Permite que os usuários disparem seus punhos direitos contra as pessoas em velocidades muito altas.',
   },
   'rupture': {
     name: 'Ruptura',
-    description: 'Ruptura permite ao usuário detonar seu próprio corpo.',
+    description: 'Permite ao usuário detonar seu próprio corpo.',
   },
   'saber': {
     name: 'Sabre',
-    description: 'Sabre permite ao usuário transformar partes de seu corpo em apêndices em forma de espada, que podem ser usados de forma ofensiva.',
+    description: 'Permite ao usuário transformar partes de seu corpo em apêndices em forma de espada, que podem ser usados de forma ofensiva.',
   },
   'sandstorm': {
     name: 'Tempestade de Areia',
@@ -1016,7 +1016,7 @@ export const ptBRQuirkCopy = {
   },
   'scales': {
     name: 'Escamas',
-    description: 'Escamas permite ao usuário formar escamas duras por todo o corpo, que podem ser usadas como armadura protetora ou disparadas como projéteis.',
+    description: 'Permite ao usuário formar escamas duras por todo o corpo, que podem ser usadas como armadura protetora ou disparadas como projéteis.',
   },
   'scanning': {
     name: 'Escaneamento',
@@ -1024,19 +1024,19 @@ export const ptBRQuirkCopy = {
   },
   'scatter': {
     name: 'Dispersão',
-    description: 'Dispersão permite ao usuário dividir e multiplicar projéteis enquanto os dispara, aumentando a força e o alcance dos ataques de longa distância.',
+    description: 'Permite ao usuário dividir e multiplicar projéteis enquanto os dispara, aumentando a força e o alcance dos ataques de longa distância.',
   },
   'search': {
     name: 'Busca',
-    description: 'Busca permite ao usuário monitorar e observar até cem pessoas ao mesmo tempo. Isso inclui saber suas localizações e pontos fracos.',
+    description: 'Permite ao usuário monitorar e observar até cem pessoas ao mesmo tempo. Isso inclui saber suas localizações e pontos fracos.',
   },
   'self-detonation': {
     name: 'Auto-Detonação',
-    description: 'Auto-Detonação concede ao usuário a habilidade de se autodestruir através de uma grande explosão gerada dentro de seu corpo.',
+    description: 'Concede ao usuário a habilidade de se autodestruir através de uma grande explosão gerada dentro de seu corpo.',
   },
   'serpentress': {
     name: 'Serpente',
-    description: 'Serpente concede ao usuário um trio de cobras vivas como parte de seu cabelo, que são implicadas como parte de sua biologia.',
+    description: 'Concede ao usuário um trio de cobras vivas como parte de seu cabelo, que são implicadas como parte de sua biologia.',
   },
   'shame': {
     name: 'Vergonha',
@@ -1044,7 +1044,7 @@ export const ptBRQuirkCopy = {
   },
   'shield': {
     name: 'Escudo',
-    description: 'Escudo permite ao usuário manifestar escudos hexagonais semelhantes a pedra a partir de seu corpo, que podem ser utilizados tanto defensivamente quanto ofensivamente.',
+    description: 'Permite ao usuário manifestar escudos hexagonais semelhantes a pedra a partir de seu corpo, que podem ser utilizados tanto defensivamente quanto ofensivamente.',
   },
   'shock-absorption': {
     name: 'Absorção de Choque',
@@ -1064,11 +1064,11 @@ export const ptBRQuirkCopy = {
   },
   'slide-and-glide': {
     name: 'Deslizar e Flutuar',
-    description: 'Deslizar e Flutuar permite ao usuário projetar uma força repulsiva/atrativa das mãos e pés. A energia repulsiva emite um brilho azul, enquanto a energia atrativa emite um brilho verde.',
+    description: 'Permite ao usuário projetar uma força repulsiva/atrativa das mãos e pés. A energia repulsiva emite um brilho azul, enquanto a energia atrativa emite um brilho verde.',
   },
   'sloshed': {
     name: 'Tonto',
-    description: 'Tonto faz com que qualquer pessoa que se aproxime do usuário perca o senso de equilíbrio, caindo em um estado semelhante à embriaguez.',
+    description: 'Faz com que qualquer pessoa que se aproxime do usuário perca o senso de equilíbrio, caindo em um estado semelhante à embriaguez.',
   },
   'smile': {
     name: 'Sorriso',
@@ -1076,23 +1076,23 @@ export const ptBRQuirkCopy = {
   },
   'smoke': {
     name: 'Fumaça',
-    description: 'Fumaça permite ao usuário expelir grandes quantidades de fumaça rosa através dos buracos em seu corpo, gerando uma densa cortina de fumaça para mascarar e esconder seus movimentos da linha de visão dos inimigos.',
+    description: 'Permite ao usuário expelir grandes quantidades de fumaça rosa através dos buracos em seu corpo, gerando uma densa cortina de fumaça para mascarar e esconder seus movimentos da linha de visão dos inimigos.',
   },
   'smokescreen': {
     name: 'Cortina de Fumaça',
-    description: 'Cortina de Fumaça permite ao usuário gerar uma densa nuvem de fumaça roxa a partir de seu corpo. A fumaça pode ser espalhada para cobrir uma área muito ampla.',
+    description: 'Permite ao usuário gerar uma densa nuvem de fumaça roxa a partir de seu corpo. A fumaça pode ser espalhada para cobrir uma área muito ampla.',
   },
   'snip-clip': {
     name: 'Corta-Corta',
-    description: 'Corta-Corta permite ao usuário cortar quase qualquer coisa que seja colocada entre o dedo indicador e o dedo médio, fazendo um movimento de tesoura com eles.',
+    description: 'Permite ao usuário cortar quase qualquer coisa que seja colocada entre o dedo indicador e o dedo médio, fazendo um movimento de tesoura com eles.',
   },
   'soccer': {
     name: 'Futebol',
-    description: 'Futebol permite que o usuário drible uma bola como um jogador profissional em meio a grandes multidões, sem que isso impeça suas ações de roubo.',
+    description: 'Permite ao usuário drible uma bola como um jogador profissional em meio a grandes multidões, sem que isso impeça suas ações de roubo.',
   },
   'softening': {
     name: 'Amolecimento',
-    description: 'Amolecimento permite que o usuário torne qualquer coisa que toque mais macia, transformando objetos sólidos em semi-líquidos. Funciona em qualquer material sólido, como gelo, metal ou o chão, e possui um grande alcance.',
+    description: 'Permite ao usuário torne qualquer coisa que toque mais macia, transformando objetos sólidos em semi-líquidos. Funciona em qualquer material sólido, como gelo, metal ou o chão, e possui um grande alcance.',
   },
   'solid-air': {
     name: 'Ar Sólido',
@@ -1108,7 +1108,7 @@ export const ptBRQuirkCopy = {
   },
   'spatial-excursion': {
     name: 'Excursão Espacial',
-    description: 'Excursão Espacial permite que o usuário mova livremente objetos e pessoas em qualquer espaço, sem ser restringido pela gravidade.',
+    description: 'Permite ao usuário mova livremente objetos e pessoas em qualquer espaço, sem ser restringido pela gravidade.',
   },
   'spear-hand-missiles': {
     name: 'Mísseis de Mão Lança',
@@ -1116,11 +1116,11 @@ export const ptBRQuirkCopy = {
   },
   'spearlike-bones': {
     name: 'Ossos em Forma de Lança',
-    description: 'Ossos em Forma de Lança permite que o usuário gere lanças em forma de cone feitas de osso em qualquer parte de seu corpo. Elas também podem emergir de outras partes do corpo, como a boca.',
+    description: 'Permite ao usuário gere lanças em forma de cone feitas de osso em qualquer parte de seu corpo. Elas também podem emergir de outras partes do corpo, como a boca.',
   },
   'spike': {
     name: 'Espinho',
-    description: 'Espinho permite que seu usuário faça espinhos brotarem de seu corpo. Os espinhos produzidos parecem ter aproximadamente o tamanho dos dedos do usuário, embora não se saiba até onde podem se estender.',
+    description: 'Permite que seu usuário faça espinhos brotarem de seu corpo. Os espinhos produzidos parecem ter aproximadamente o tamanho dos dedos do usuário, embora não se saiba até onde podem se estender.',
   },
   'spotted-seal': {
     name: 'Foca Malhada',
@@ -1128,7 +1128,7 @@ export const ptBRQuirkCopy = {
   },
   'spray-art': {
     name: 'Arte em Spray',
-    description: 'Spray Art permite ao usuário sprayar nuvens de tinta spray, criando ilusões para qualquer um que esteja dentro delas.',
+    description: 'Permite ao usuário sprayar nuvens de tinta spray, criando ilusões para qualquer um que esteja dentro delas.',
   },
   'spring': {
     name: 'Mola',
@@ -1140,11 +1140,11 @@ export const ptBRQuirkCopy = {
   },
   'squirmy-fingers': {
     name: 'Dedos Ágeis',
-    description: 'Dedos Ágeis permite ao usuário controlar seus dedos de forma precisa e impecável, manipulando qualquer objeto com graça, facilidade, velocidade, precisão e habilidade, além de poder dobrá-los em qualquer direção.',
+    description: 'Permite ao usuário controlar seus dedos de forma precisa e impecável, manipulando qualquer objeto com graça, facilidade, velocidade, precisão e habilidade, além de poder dobrá-los em qualquer direção.',
   },
   'static': {
     name: 'Estática',
-    description: 'Ao esfregar seu corpo para acumular carga elétrica, como no processo de gerar eletricidade estática, o usuário de Estática pode gerar correntes elétricas.',
+    description: 'Ao esfregar o corpo para acumular carga elétrica, como no processo de gerar eletricidade estática, o usuário pode gerar correntes elétricas.',
   },
   'steel': {
     name: 'Aço',
@@ -1164,11 +1164,11 @@ export const ptBRQuirkCopy = {
   },
   'stress': {
     name: 'Estresse',
-    description: 'Estresse concede ao usuário a habilidade de converter estresse, raiva, medo e frustração em poder bruto. Esse poder bruto é capaz de aumentar sua força, resiliência e tamanho.',
+    description: 'Concede ao usuário a habilidade de converter estresse, raiva, medo e frustração em poder bruto. Esse poder bruto é capaz de aumentar sua força, resiliência e tamanho.',
   },
   'strongarm': {
     name: 'Braços Fortes',
-    description: 'Braços Fortes permite que o usuário gire e mova os ombros com grande velocidade e força, proporcionando socos extremamente rápidos e poderosos.',
+    description: 'Permite ao usuário gire e mova os ombros com grande velocidade e força, proporcionando socos extremamente rápidos e poderosos.',
   },
   'sugar-rush': {
     name: 'Corrida do Açúcar',
@@ -1180,15 +1180,15 @@ export const ptBRQuirkCopy = {
   },
   'super-regeneration': {
     name: 'Super Regeneração',
-    description: 'Super Regeneração tem a capacidade de regenerar qualquer tipo de ferimento no corpo do usuário, como membros perdidos, em velocidades incríveis.',
+    description: 'Permite ao usuário regenerar praticamente qualquer ferimento no corpo, como membros perdidos, em velocidades incríveis.',
   },
   'swan': {
     name: 'Cisne',
-    description: 'Cisne concede ao usuário duas grandes asas brancas, semelhantes às de um cisne, em suas costas. Eles podem voar, mas não têm força suficiente para fazê-lo sem primeiro rasgar suas roupas.',
+    description: 'Concede ao usuário duas grandes asas brancas, semelhantes às de um cisne, em suas costas. Eles podem voar, mas não têm força suficiente para fazê-lo sem primeiro rasgar suas roupas.',
   },
   'sword-kill': {
     name: 'Morte com Espada',
-    description: 'Morte com Espada permite que o usuário crie espadas flexíveis a partir de seus braços e ombros, que se dobram para dentro e para fora como um acordeão.',
+    description: 'Permite ao usuário crie espadas flexíveis a partir de seus braços e ombros, que se dobram para dentro e para fora como um acordeão.',
   },
   'tail': {
     name: 'Cauda',
@@ -1212,11 +1212,11 @@ export const ptBRQuirkCopy = {
   },
   'teleportation': {
     name: 'Teletransporte',
-    description: 'Teletransporte permite que o usuário se mova e transporte qualquer material ou ser vivo que esteja tocando para um lugar dentro de sua linha de visão, sendo limitado a transportar apenas para uma área que pode ver.',
+    description: 'Permite ao usuário se mova e transporte qualquer material ou ser vivo que esteja tocando para um lugar dentro de sua linha de visão, sendo limitado a transportar apenas para uma área que pode ver.',
   },
   'telescopic': {
     name: 'Telescópico',
-    description: 'Telescópico permite que o usuário retrai partes do corpo para dentro de si mesmo, semelhante a como uma tartaruga pode se esconder em seu casco.',
+    description: 'Permite ao usuário retrai partes do corpo para dentro de si mesmo, semelhante a como uma tartaruga pode se esconder em seu casco.',
   },
   'tidal-bore': {
     name: 'Maré Alta',
@@ -1224,7 +1224,7 @@ export const ptBRQuirkCopy = {
   },
   'toho': {
     name: 'Toho',
-    description: 'Toho confere ao usuário atributos de um kaiju; além de sua aparência semelhante a um réptil, eles são muito grandes e extremamente fortes.',
+    description: 'Confere ao usuário atributos de um kaiju; além da aparência semelhante a um réptil, o corpo é muito grande e extremamente forte.',
   },
   'tongue-tank': {
     name: 'Tanque Lingual',
@@ -1236,7 +1236,7 @@ export const ptBRQuirkCopy = {
   },
   'traject': {
     name: 'Trajetória',
-    description: 'Trajetória permite que o usuário manipule a trajetória de qualquer coisa que passe por suas ataduras.',
+    description: 'Permite ao usuário manipule a trajetória de qualquer coisa que passe por suas ataduras.',
   },
   'transform': {
     name: 'Transformar',
@@ -1244,11 +1244,11 @@ export const ptBRQuirkCopy = {
   },
   'transforming-arms': {
     name: 'Braços Transformáveis',
-    description: 'Braços Transformáveis permite que seu usuário mude a forma de seus braços, possibilitando ataques elásticos e de longa distância. O usuário também pode separar os braços para cercar o alvo e lançar múltiplos ataques ao mesmo tempo.',
+    description: 'Permite que seu usuário mude a forma de seus braços, possibilitando ataques elásticos e de longa distância. O usuário também pode separar os braços para cercar o alvo e lançar múltiplos ataques ao mesmo tempo.',
   },
   'trap-flex': {
     name: 'Flexão Trapézio',
-    description: 'Flexão Trapézio permite que o usuário flexione seu músculo trapézio a níveis extremos, cobrindo toda a cabeça com os ombros. Essa flexão proporciona uma boa quantidade de velocidade e força.',
+    description: 'Permite ao usuário flexione seu músculo trapézio a níveis extremos, cobrindo toda a cabeça com os ombros. Essa flexão proporciona uma boa quantidade de velocidade e força.',
   },
   'tree-frog': {
     name: 'Rã Arvore',
@@ -1256,11 +1256,11 @@ export const ptBRQuirkCopy = {
   },
   'tripod': {
     name: 'Tripé',
-    description: 'Tripé concede ao usuário uma terceira perna, posicionada entre as outras duas. Essa terceira perna atua como se espera, permitindo que o usuário se estabilize em terrenos instáveis.',
+    description: 'Concede ao usuário uma terceira perna, posicionada entre as outras duas. Essa terceira perna atua como se espera, permitindo que o usuário se estabilize em terrenos instáveis.',
   },
   'twin-impact': {
     name: 'Impacto Duplo',
-    description: 'Impacto Duplo permite ao usuário criar um segundo impacto remotamente no local de qualquer impacto inicial, à sua escolha. O segundo impacto será muitas vezes mais forte do que o primeiro.',
+    description: 'Permite ao usuário criar um segundo impacto remotamente no local de qualquer impacto inicial, à sua escolha. O segundo impacto será muitas vezes mais forte do que o primeiro.',
   },
   'vibrate': {
     name: 'Vibrar',
@@ -1272,7 +1272,7 @@ export const ptBRQuirkCopy = {
   },
   'vines': {
     name: 'Vinhas',
-    description: 'Vinhas concede ao usuário vinhas espinhosas controláveis no lugar de cabelo comum. As vinhas podem ser manipuladas para diversos propósitos, como amarrar inimigos, pegar objetos e criar barreiras defensivas.',
+    description: 'Concede ao usuário vinhas espinhosas controláveis no lugar de cabelo comum. As vinhas podem ser manipuladas para diversos propósitos, como amarrar inimigos, pegar objetos e criar barreiras defensivas.',
   },
   'viral-cosmos': {
     name: 'Cosmos Viral',
@@ -1280,7 +1280,7 @@ export const ptBRQuirkCopy = {
   },
   'voice': {
     name: 'Voz',
-    description: 'Voz permite ao usuário aumentar o volume de sua voz, dando-lhes a capacidade de criar sons altos e agudos.',
+    description: 'Permite ao usuário aumentar o volume de sua voz, dando-lhes a capacidade de criar sons altos e agudos.',
   },
   'voyance': {
     name: 'Clarividência',
@@ -1300,7 +1300,7 @@ export const ptBRQuirkCopy = {
   },
   'water-gun': {
     name: 'Pistola de Água',
-    description: 'Pistola de Água permite ao usuário disparar um jato de água de suas mãos.',
+    description: 'Permite ao usuário disparar um jato de água de suas mãos.',
   },
   'water-pump': {
     name: 'Bomba de Água',
@@ -1308,7 +1308,7 @@ export const ptBRQuirkCopy = {
   },
   'wave-motion': {
     name: 'Movimento de Onda',
-    description: 'Movimento de Onda concede ao usuário a habilidade de converter sua vitalidade em energia que pode ser liberada como ondas de impacto.',
+    description: 'Concede ao usuário a habilidade de converter sua vitalidade em energia que pode ser liberada como ondas de impacto.',
   },
   'weather-manipulation': {
     name: 'Manipulação do Tempo',
@@ -1332,7 +1332,7 @@ export const ptBRQuirkCopy = {
   },
   'whole-body-lens': {
     name: 'Lente Corporal',
-    description: 'Lente Corporal permite ao usuário produzir lentes semelhantes a câmeras em qualquer parte do corpo para tirar fotos. Ele também pode imprimir qualquer imagem que suas câmeras corporais capturaram a partir de seu peito sempre que quiser.',
+    description: 'Permite ao usuário produzir lentes semelhantes a câmeras em qualquer parte do corpo para tirar fotos. Ele também pode imprimir qualquer imagem que suas câmeras corporais capturaram a partir de seu peito sempre que quiser.',
   },
   'wing': {
     name: 'Asa',
@@ -1340,7 +1340,7 @@ export const ptBRQuirkCopy = {
   },
   'wooden-swords-from-his-hands': {
     name: 'Espadas de Madeira das Mãos',
-    description: 'Espadas de Madeira das Mãos permite que o usuário crie espadas de madeira a partir de seus pulsos.',
+    description: 'Permite ao usuário crie espadas de madeira a partir de seus pulsos.',
   },
   'zero-gravity': {
     name: 'Gravidade Zero',
@@ -1348,7 +1348,7 @@ export const ptBRQuirkCopy = {
   },
   'zombie-virus': {
     name: 'Vírus Zumbi',
-    description: 'Vírus Zumbi permite que o usuário libere um gás rosado que, ao ser inalado, transforma temporariamente as vítimas em zumbis.',
+    description: 'Permite ao usuário libere um gás rosado que, ao ser inalado, transforma temporariamente as vítimas em zumbis.',
   },
   'zoom': {
     name: 'Supervelocidade',

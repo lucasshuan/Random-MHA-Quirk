@@ -12,7 +12,10 @@ Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / 
 ## Setup
 
 1. `cp .env.example .env.local` and fill in Supabase + LLM keys
-2. Run [`supabase/migrations/001_fusion_entries.sql`](supabase/migrations/001_fusion_entries.sql) in your Supabase project
+2. Apply DB migrations from this repo:
+   - `pnpm exec supabase login` (once)
+   - set `SUPABASE_DB_PASSWORD` in `.env`
+   - `pnpm db:push`
 3. Optional one-time seed: `node scripts/seed-fusion-cache.mjs`
 4. `pnpm dev` → http://localhost:3000
 
@@ -25,6 +28,7 @@ Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / 
 | `pnpm start` | Production server |
 | `pnpm test` | Unit tests (Vitest) |
 | `pnpm fusion:generate -- --a id1 --b id2` | CLI: generate fusion → Supabase |
+| `pnpm db:push` | Apply `supabase/migrations/` to linked project |
 
 Fusion setup: [`docs/fusion.md`](docs/fusion.md)
 

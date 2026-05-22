@@ -1,9 +1,5 @@
 import { requireOneOf } from '@/lib/server/env-utils'
-import {
-  validateFusionPayload,
-  type ValidateFusionOptions,
-  type ValidatedFusionPayload,
-} from './validate'
+import { validateFusionPayload, type ValidatedFusionPayload } from './validate'
 
 function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
   const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
@@ -91,10 +87,7 @@ async function callGemini(apiKey: string, userPrompt: string): Promise<unknown> 
   return JSON.parse(text)
 }
 
-export async function generateWithLlm(
-  userPrompt: string,
-  options: ValidateFusionOptions = {},
-): Promise<ValidatedFusionPayload> {
+export async function generateWithLlm(userPrompt: string): Promise<ValidatedFusionPayload> {
   const provider = resolveFusionProvider()
   const maxAttempts = 3
 
@@ -104,7 +97,7 @@ export async function generateWithLlm(
         provider.name === 'openai'
           ? await callOpenAI(provider.apiKey, userPrompt)
           : await callGemini(provider.apiKey, userPrompt)
-      return validateFusionPayload(raw, options)
+      return validateFusionPayload(raw)
     } catch (err) {
       if (attempt === maxAttempts) throw err
     }

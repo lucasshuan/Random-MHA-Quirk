@@ -53,9 +53,7 @@ export async function generateFusionEntry({
   const key = fusionCacheKey(parents[0], parents[1], seed)
 
   try {
-    const payload = await generateWithLlm(buildFusionPrompt(quirkA, quirkB, seed), {
-      forbiddenDescriptionTerms: [quirkA.name, quirkB.name, quirkA.id, quirkB.id],
-    })
+    const payload = await generateWithLlm(buildFusionPrompt(quirkA, quirkB, seed))
     const entry = buildFusionEntry(key, parents, seed, payload)
     await upsertFusionEntry(entry)
     return { entry, cached: false, generated: true }

@@ -11,21 +11,7 @@ export interface ValidatedFusionPayload {
   origin: QuirkOrigin
 }
 
-export interface ValidateFusionOptions {
-  forbiddenDescriptionTerms?: string[]
-}
-
-function containsForbiddenTerm(text: string, term: string): boolean {
-  const normalizedText = text.toLowerCase()
-  const normalizedTerm = term.trim().toLowerCase()
-  if (!normalizedTerm) return false
-  return normalizedText.includes(normalizedTerm)
-}
-
-export function validateFusionPayload(
-  raw: unknown,
-  options: ValidateFusionOptions = {},
-): ValidatedFusionPayload {
+export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
   if (!raw || typeof raw !== 'object') {
     throw new Error('Resposta LLM não é um objeto JSON.')
   }
@@ -70,24 +56,6 @@ export function validateFusionPayload(
     throw new Error(
       'pt-BR.description deve usar "individualidade" (não usar "Quirk" ou "Peculiaridade").',
     )
-  }
-
-  const forbiddenTerms =
-    options.forbiddenDescriptionTerms
-      ?.map((term) => term.trim())
-      .filter((term) => term.length >= 3) ?? []
-
-  for (const term of forbiddenTerms) {
-    if (containsForbiddenTerm(enDescription, term)) {
-      throw new Error(
-        `en.description não pode mencionar nomes/ids das quirks parentais (${term}).`,
-      )
-    }
-    if (containsForbiddenTerm(ptDescription, term)) {
-      throw new Error(
-        `pt-BR.description não pode mencionar nomes/ids das quirks parentais (${term}).`,
-      )
-    }
   }
 
   return {

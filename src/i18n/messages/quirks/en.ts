@@ -4,7 +4,7 @@ import type { QuirkId } from '../../../data/quirk-ids'
 export const enQuirkCopy = {
   '2d-ify': {
     name: '2D-ify',
-    description: '2D-ify allows the user to trap others inside paintings. Using a picture frame, the user can absorb people and objects, turning them into 2D paintings that are contained within frames.',
+    description: 'Allows the user to trap others inside paintings. Using a picture frame, the user can absorb people and objects, turning them into 2D paintings that are contained within frames.',
   },
   'absorption-and-release': {
     name: 'Absorption and Release',
@@ -12,15 +12,15 @@ export const enQuirkCopy = {
   },
   'accelerator-rings': {
     name: 'Accelerator Rings',
-    description: 'Accelerator Rings allows the user to generate yellow rings of energy from their hands and feet. After a variable delay, the rings release a burst of force in a single direction before dissipating.',
+    description: 'Allows the user to generate yellow rings of energy from their hands and feet. After a variable delay, the rings release a burst of force in a single direction before dissipating.',
   },
   'acid': {
     name: 'Acid',
-    description: 'Acid allows the user to create corrosive liquid from their skin, with it being naturally resistant to the acid they produce.',
+    description: 'Allows the user to create corrosive liquid from their skin, with it being naturally resistant to the acid they produce.',
   },
   'acid-sweat': {
     name: 'Acid Sweat',
-    description: 'Acid Sweat allows the user to secrete an acidic sweat with combustive and explosive properties from their palms.',
+    description: 'Allows the user to secrete an acidic sweat with combustive and explosive properties from their palms.',
   },
   'air-cannon': {
     name: 'Air Cannon',
@@ -32,7 +32,7 @@ export const enQuirkCopy = {
   },
   'air-wall': {
     name: 'Air Wall',
-    description: 'Air Wall lets the user create circular shields made of compressed air from their hands in order to shield themselves.',
+    description: 'Lets the user create circular shields made of compressed air from their hands in order to shield themselves.',
   },
   'alchemy': {
     name: 'Alchemy',
@@ -44,7 +44,7 @@ export const enQuirkCopy = {
   },
   'amplivolt': {
     name: 'Amplivolt',
-    description: 'Amplivolt allows its user to conduct and enhance electricity within their body before releasing it afterwards. Once amplified enough, the user is able to fire blasts of stored electricity from their hands.',
+    description: 'Allows its user to conduct and enhance electricity within their body before releasing it afterwards. Once amplified enough, the user is able to fire blasts of stored electricity from their hands.',
   },
   'anivoice': {
     name: 'Anivoice',
@@ -52,11 +52,11 @@ export const enQuirkCopy = {
   },
   'anthropomorph': {
     name: 'Anthropomorph',
-    description: 'Anthropomorph allows the user to take a human-sized object (a refrigerator, a desk, etc.) and turn it into an exact lookalike of any given person.',
+    description: 'Allows the user to take a human-sized object (a refrigerator, a desk, etc.) and turn it into an exact lookalike of any given person.',
   },
   'antigen-swap': {
     name: 'Antigen Swap',
-    description: 'Antigen Swap allows the user to change their blood type at will.',
+    description: 'Allows the user to change their blood type at will.',
   },
   'arbor': {
     name: 'Arbor',
@@ -100,15 +100,15 @@ export const enQuirkCopy = {
   },
   'binging-ball': {
     name: 'Binging Ball',
-    description: 'Binging Ball allows the user to release small floating spheres with mouths from their body. These spheres can be used as projectiles, moving at very high speeds.',
+    description: 'Allows the user to release small floating spheres with mouths from their body. These spheres can be used as projectiles, moving at very high speeds.',
   },
   'black': {
     name: 'Black',
-    description: 'Black allows the user to merge their body into anything that is dark-colored, whether naturally dark, or dark via external circumstances, such as shadows. They can also move themself through the darkness freely.',
+    description: 'Allows the user to merge their body into anything that is dark-colored, whether naturally dark, or dark via external circumstances, such as shadows. They can also move themself through the darkness freely.',
   },
   'black-hole': {
     name: 'Black Hole',
-    description: 'Black Hole allows the user to create small black holes through their fingers. The black holes suck in and disintegrate any matter at the atomic level, as well as certain forms of energy, such as light.',
+    description: 'Allows the user to create small black holes through their fingers. The black holes suck in and disintegrate any matter at the atomic level, as well as certain forms of energy, such as light.',
   },
   'blackwhip': {
     name: 'Blackwhip',
@@ -116,7 +116,7 @@ export const enQuirkCopy = {
   },
   'blade-tooth': {
     name: 'Blade-Tooth',
-    description: 'Blade-Tooth grants the user the ability to enlarge and reshape their teeth into sharpened incisors. These razors can vary in both size and shape. The user can manipulate the length and direction of the teeth at will.',
+    description: 'Grants the user the ability to enlarge and reshape their teeth into sharpened incisors. These razors can vary in both size and shape. The user can manipulate the length and direction of the teeth at will.',
   },
   'blast': {
     name: 'Blast',
@@ -180,19 +180,19 @@ export const enQuirkCopy = {
   },
   'bubble': {
     name: 'Bubble',
-    description: 'Bubble allows the user to make bubbles, of various sizes, filled with an aroma that they have smelled at least once before.',
+    description: 'Allows the user to make bubbles, of various sizes, filled with an aroma that they have smelled at least once before.',
   },
   'bull-head': {
     name: 'Bull Head',
-    description: 'Bull Head gives the user a pair of bull-like horns on their head.',
+    description: 'Gives the user a pair of bull-like horns on their head.',
   },
   'bullet-laser': {
     name: 'Bullet Laser',
-    description: 'Bullet Laser allowed the user to fire purple-colored lasers from their fingertips, which they could fire both as direct blasts, as well as curve said beams straight from their fingers.',
+    description: 'Allows the user to fire purple-colored lasers from their fingertips, which they can fire both as direct blasts, as well as curve said beams straight from their fingers.',
   },
   'bullhorn': {
     name: 'Bullhorn',
-    description: 'Not much is known about Bullhorn, but it appears to allow the user\'s voice to become louder than normal.',
+    description: 'It appears to allow the user\'s voice to become louder than normal.',
   },
   'burst': {
     name: 'Burst',
@@ -200,15 +200,15 @@ export const enQuirkCopy = {
   },
   'cell-activation': {
     name: 'Cell Activation',
-    description: 'Cell Activation allows its user to activate the cells in their body or another person\'s body through touch. This increases regeneration, recovery time, and can even improve physical condition.',
+    description: 'Allows its user to activate the cells in their body or another person\'s body through touch. This increases regeneration, recovery time, and can even improve physical condition.',
   },
   'cemedine': {
     name: 'Cemedine',
-    description: 'Cemedine allows the user to spray a glue-like liquid from the holes in their head. Once it hits something, the glue will either harden up and trap whatever it makes contact with or make it sticky and dangerous to touch.',
+    description: 'Allows the user to spray a glue-like liquid from the holes in their head. Once it hits something, the glue will either harden up and trap whatever it makes contact with or make it sticky and dangerous to touch.',
   },
   'cement': {
     name: 'Cement',
-    description: 'Cement gives the user the ability to manipulate cement-based material simply by being in contact with the surface. It does not give them the ability to create new cement, they can only reshape existing cement.',
+    description: 'Gives the user the ability to manipulate cement-based material simply by being in contact with the surface. It does not give them the ability to create new cement, they can only reshape existing cement.',
   },
   'centipede': {
     name: 'Centipede',
@@ -220,7 +220,7 @@ export const enQuirkCopy = {
   },
   'charging-muscles': {
     name: 'Charging Muscles',
-    description: 'Charging Muscles allows the user to charge up strength in their muscles, enhancing the strength of an attack into a powerful blow.',
+    description: 'Allows the user to charge up strength in their muscles, enhancing the strength of an attack into a powerful blow.',
   },
   'chart': {
     name: 'Chart',
@@ -240,7 +240,7 @@ export const enQuirkCopy = {
   },
   'clean-bubbler': {
     name: 'Clean Bubbler',
-    description: 'Clean Bubbler allows the user to create and control soapy water from their body. The stream is strong enough to keep several people in the air.',
+    description: 'Allows the user to create and control soapy water from their body. The stream is strong enough to keep several people in the air.',
   },
   'cleaning': {
     name: 'Cleaning',
@@ -252,11 +252,11 @@ export const enQuirkCopy = {
   },
   'cloud': {
     name: 'Cloud',
-    description: 'Cloud allowed the user to create different-sized clouds, of varying densities, enough to be touched and even to hold up the weight of one or several people.',
+    description: 'Allows the user to create different-sized clouds, of varying densities, enough to be touched and even to hold up the weight of one or several people.',
   },
   'comic': {
     name: 'Comic',
-    description: 'Comic allows the user to materialize onomatopoeia into the real world in the form of giant Japanese letters by speaking them. The onomatopoeia is manifested with the same effects as the sound they\'re based on.',
+    description: 'Allows the user to materialize onomatopoeia into the real world in the form of giant Japanese letters by speaking them. The onomatopoeia is manifested with the same effects as the sound they\'re based on.',
   },
   'compress': {
     name: 'Compress',
@@ -268,7 +268,7 @@ export const enQuirkCopy = {
   },
   'conjure': {
     name: 'Conjure',
-    description: 'Conjure allows the user to target any relatively small object and warp it straight into their hand.',
+    description: 'Allows the user to target any relatively small object and warp it straight into their hand.',
   },
   'control-glass': {
     name: 'Control Glass',
@@ -284,7 +284,7 @@ export const enQuirkCopy = {
   },
   'cow': {
     name: 'Cow',
-    description: 'Cow allows the user to alter their body with the characteristics of a cow. This includes hooves, horns, and the skin of a cow. This increases the user\'s speed and strength relative to that of a cow.',
+    description: 'Allows the user to alter their body with the characteristics of a cow. This includes hooves, horns, and the skin of a cow. This increases the user\'s speed and strength relative to that of a cow.',
   },
   'creation': {
     name: 'Creation',
@@ -292,11 +292,11 @@ export const enQuirkCopy = {
   },
   'crystallize': {
     name: 'Crystallize',
-    description: 'Crystallize allows the user to grow a large number of crystals from their body, completely covering their skin with them. The crystals are shown to be both durable and able to grow near-instantaneously.',
+    description: 'Allows the user to grow a large number of crystals from their body, completely covering their skin with them. The crystals are shown to be both durable and able to grow near-instantaneously.',
   },
   'cubism': {
     name: 'Cubism',
-    description: 'Cubism allows the user to transform others into 3D versions of Cubism artwork.',
+    description: 'Allows the user to transform others into 3D versions of Cubism artwork.',
   },
   'curse': {
     name: 'Curse',
@@ -304,7 +304,7 @@ export const enQuirkCopy = {
   },
   'danger-sense': {
     name: 'Danger Sense',
-    description: 'Danger Sense allows the user to detect any potential threats in the surrounding area, thus giving the user the opportunity to properly react to them quickly, essentially granting them a sixth sense.',
+    description: 'Allows the user to detect any potential threats in the surrounding area, thus giving the user the opportunity to properly react to them quickly, essentially granting them a sixth sense.',
   },
   'dark-ball': {
     name: 'Dark Ball',
@@ -320,7 +320,7 @@ export const enQuirkCopy = {
   },
   'day-dream': {
     name: 'Day Dream',
-    description: 'Day Dream allows the user to make any person they look at fall unconscious, or be put into a controllable, hypnotic state for a short period of time.',
+    description: 'Allows the user to make any person they look at fall unconscious, or be put into a controllable, hypnotic state for a short period of time.',
   },
   'decay': {
     name: 'Decay',
@@ -336,7 +336,7 @@ export const enQuirkCopy = {
   },
   'diesel-engine': {
     name: 'Diesel Engine',
-    description: 'Diesel Engine turns the user\'s head and their entire upper body into the locomotive of a diesel-powered train, and grants him increased running speed.',
+    description: 'Turns the user\'s head and their entire upper body into the locomotive of a diesel-powered train, and grants them increased running speed.',
   },
   'dog': {
     name: 'Dog',
@@ -348,7 +348,7 @@ export const enQuirkCopy = {
   },
   'dragon': {
     name: 'Dragon',
-    description: 'Dragon allows the user to transform into a dragon, a powerful mythological creature. This form grants them abilities commonly associated with dragons, including flight, powerful jaws and claws.',
+    description: 'Allows the user to transform into a dragon, a powerful mythological creature. This form grants them abilities commonly associated with dragons, including flight, powerful jaws and claws.',
   },
   'dragon-breath': {
     name: 'Dragon Breath',
@@ -356,7 +356,7 @@ export const enQuirkCopy = {
   },
   'dupli-arms': {
     name: 'Dupli-Arms',
-    description: 'Dupli-Arms grants the user a set of arm-like tentacles adjacent to their arms that can transform into duplicates of their other body parts.',
+    description: 'Grants the user a set of arm-like tentacles adjacent to their arms that can transform into duplicates of their other body parts.',
   },
   'dust': {
     name: 'Dust',
@@ -404,11 +404,11 @@ export const enQuirkCopy = {
   },
   'endurance': {
     name: 'Endurance',
-    description: 'Endurance gives the user the ability to convert their mobility and morale into physical energy, granting the user a significant increase in stamina and endurance, effectively transforming them into "a stamina beast".',
+    description: 'Gives the user the ability to convert their mobility and morale into physical energy, granting them a significant increase in stamina and endurance, effectively transforming them into "a stamina beast".',
   },
   'energy-saver': {
     name: 'Energy Saver',
-    description: 'Energy Saver allows the user\'s body to function on very small amounts of nutrition and hydration, as well as allow them to process without much sleep.',
+    description: 'Allows the user\'s body to function on very small amounts of nutrition and hydration, as well as allow them to process without much sleep.',
   },
   'energy-suck': {
     name: 'Energy Suck',
@@ -416,7 +416,7 @@ export const enQuirkCopy = {
   },
   'enfeeble': {
     name: 'Enfeeble',
-    description: 'Enfeeble allows the user to stare into someone\'s eyes and paralyze their muscles for three seconds. However, the subject is still conscious while being immobilized.',
+    description: 'Allows the user to stare into someone\'s eyes and paralyze their muscles for three seconds. However, the subject is still conscious while being immobilized.',
   },
   'engine': {
     name: 'Engine',
@@ -432,11 +432,11 @@ export const enQuirkCopy = {
   },
   'eruption': {
     name: 'Eruption',
-    description: 'Eruption allows the user to burn their fat to produce a lava-like substance, that\'s as hot as magma, and eject it from their body.',
+    description: 'Allows the user to burn their fat to produce a lava-like substance, that\'s as hot as magma, and eject it from their body.',
   },
   'explosion': {
     name: 'Explosion',
-    description: 'Explosion allows the user to excrete nitroglycerin-like sweat from their palms and ignite it at will to create explosions of various sizes.',
+    description: 'Allows the user to excrete nitroglycerin-like sweat from their palms and ignite it at will to create explosions of various sizes.',
   },
   'extend-o-hair': {
     name: 'Extend-o-Hair',
@@ -444,7 +444,7 @@ export const enQuirkCopy = {
   },
   'extra-arms': {
     name: 'Extra Arms',
-    description: 'Extra Arms gives the user an extra set of arms.',
+    description: 'Gives the user an extra set of arms.',
   },
   'fa-jin': {
     name: 'Fa Jin',
@@ -452,15 +452,15 @@ export const enQuirkCopy = {
   },
   'fan': {
     name: 'Fan',
-    description: 'Fan allows the user to create wind or even tornadoes by spinning their wrists.',
+    description: 'Allows the user to create wind or even tornadoes by spinning their wrists.',
   },
   'fast-fist': {
     name: 'Fast Fist',
-    description: 'The user of Fast Fist can move at least their hands extremely quickly, allowing them to hit up to 100 times in less than a second.',
+    description: 'Allows the user to move at least their hands extremely quickly, letting them hit up to 100 times in less than a second.',
   },
   'fat-absorption': {
     name: 'Fat Absorption',
-    description: 'Fat Absorption grants the user the ability to adhere any objects to their body and make them sink into their body fat upon contact with it.',
+    description: 'Grants the user the ability to adhere any objects to their body and make them sink into their body fat upon contact with it.',
   },
   'fiber-master': {
     name: 'Fiber Master',
@@ -508,7 +508,7 @@ export const enQuirkCopy = {
   },
   'foresight': {
     name: 'Foresight',
-    description: 'Foresight granted the user the ability to accurately predict all of the target\'s future moves and actions for an entire hour. Foresight activated by first touching a target and then making eye contact with them.',
+    description: 'Allows the user to accurately predict all of a target\'s future moves and actions for an entire hour. Activated by first touching the target and then making eye contact with them.',
   },
   'free-walker': {
     name: 'Free Walker',
@@ -520,7 +520,7 @@ export const enQuirkCopy = {
   },
   'frost': {
     name: 'Frost',
-    description: 'Frost gives the user the capability of manipulating and producing ice around their body, being able to coat themselves in ice and blast it out.',
+    description: 'Allows the user to manipulate and produce ice around their body, coating themselves in ice and blasting it outward.',
   },
   'gale-gale': {
     name: 'Gale Gale',
@@ -536,7 +536,7 @@ export const enQuirkCopy = {
   },
   'gearshift': {
     name: 'Gearshift',
-    description: 'Gearshift allows the user to change the speed at which things accelerate through space. It is even capable of changing speeds while ignoring the laws of inertia.',
+    description: 'Allows the user to change the speed at which things accelerate through space. It is even capable of changing speeds while ignoring the laws of inertia.',
   },
   'gecko': {
     name: 'Gecko',
@@ -568,7 +568,7 @@ export const enQuirkCopy = {
   },
   'grasshopper': {
     name: 'Grasshopper',
-    description: 'Grasshopper allows the user the ability to transform into a large humanoid grasshopper, increasing their physical capabilities.',
+    description: 'Allows the user the ability to transform into a large humanoid grasshopper, increasing their physical capabilities.',
   },
   'gyrate': {
     name: 'Gyrate',
@@ -584,7 +584,7 @@ export const enQuirkCopy = {
   },
   'half-cold-half-hot': {
     name: 'Half-Cold Half-Hot',
-    description: 'Half-Cold Half-Hot allows the user to generate ice, frost, and cold from the right side of their body, and fire, flames, and heat from the left.',
+    description: 'Allows the user to generate ice, frost, and cold from the right side of their body, and fire, flames, and heat from the left.',
   },
   'hardening': {
     name: 'Hardening',
@@ -596,15 +596,15 @@ export const enQuirkCopy = {
   },
   'heal': {
     name: 'Heal',
-    description: 'Heal allows the user to amplify and quicken their target\'s natural healing process by extending their lips and kissing them.',
+    description: 'Allows the user to amplify and quicken their target\'s natural healing process by extending their lips and kissing them.',
   },
   'heavy-payload': {
     name: 'Heavy Payload',
-    description: 'Heavy Payload seemingly increases the damage output of the user\'s attacks.',
+    description: 'Seemingly increases the damage output of the user\'s attacks.',
   },
   'helical-scythe': {
     name: 'Helical Scythe',
-    description: 'Helical Scythe grants the user large, red appendages on their fingers and head, which they are able to extend and manipulate like tendrils.',
+    description: 'Grants the user large, red appendages on their fingers and head, which they are able to extend and manipulate like tendrils.',
   },
   'hellflame': {
     name: 'Hellflame',
@@ -612,7 +612,7 @@ export const enQuirkCopy = {
   },
   'high-specs': {
     name: 'High Specs',
-    description: 'High Specs grants the user unparalleled intelligence, perception, reactions and comprehension that far surpasses that of any human.',
+    description: 'Grants the user unparalleled intelligence, perception, reactions and comprehension that far surpasses that of any human.',
   },
   'hologram': {
     name: 'Hologram',
@@ -620,7 +620,7 @@ export const enQuirkCopy = {
   },
   'homing': {
     name: 'Homing',
-    description: 'Homing allows the user to lock on to any target that they can see within six hundred meters of themselves and make any projectile they release chase after said target.',
+    description: 'Allows the user to lock on to any target that they can see within six hundred meters of themselves and make any projectile they release chase after said target.',
   },
   'horn-cannon': {
     name: 'Horn Cannon',
@@ -632,7 +632,7 @@ export const enQuirkCopy = {
   },
   'hydra': {
     name: 'Hydra',
-    description: 'Hydra allowed the user to summon gigantic, serpentine shark-like creatures from their back that they can control at will. The creatures are large enough to crush a person in their jaws.',
+    description: 'Allows the user to summon gigantic, serpentine shark-like creatures from their back that they can control at will. The creatures are large enough to crush a person in their jaws.',
   },
   'hypertrophy': {
     name: 'Hypertrophy',
@@ -640,7 +640,7 @@ export const enQuirkCopy = {
   },
   'ice-ply': {
     name: 'Ice Ply',
-    description: 'Ice Ply allows the user to freely manipulate any and all nearby ice. They can freely gather, move, attack with, and defend with the ice they control.',
+    description: 'Allows the user to freely manipulate any and all nearby ice. They can freely gather, move, attack with, and defend with the ice they control.',
   },
   'ignition': {
     name: 'Ignition',
@@ -648,7 +648,7 @@ export const enQuirkCopy = {
   },
   'impact-recoil': {
     name: 'Impact Recoil',
-    description: 'Impact Recoil allows the user to reverse the impact caused by an opposing physical force, damaging the opposition instead.',
+    description: 'Allows the user to reverse the impact caused by an opposing physical force, damaging the opposition instead.',
   },
   'impure-beam': {
     name: 'Impure Beam',
@@ -664,11 +664,11 @@ export const enQuirkCopy = {
   },
   'invisibility': {
     name: 'Invisibility',
-    description: 'Invisibility causes the user to unconsciously refract the light that hits them, granting them a completely invisible body.',
+    description: 'Causes the user to unconsciously refract the light that hits them, granting them a completely invisible body.',
   },
   'iq': {
     name: 'IQ',
-    description: 'IQ allows the user to enhance their intellect by multiplying their IQ, and become a super-genius temporarily after consuming tea and closing their eyes to think.',
+    description: 'Allows the user to enhance their intellect by multiplying their IQ, and become a super-genius temporarily after consuming tea and closing their eyes to think.',
   },
   'iron-ball': {
     name: 'Iron Ball',
@@ -684,7 +684,7 @@ export const enQuirkCopy = {
   },
   'jet': {
     name: 'Jet',
-    description: 'Jet grants the user the ability to expel air from open holes on the soles of their feet. This allows them to fly around a limited range as well as move faster than the eye can follow, even on the ground.',
+    description: 'Grants the user the ability to expel air from open holes on the soles of their feet. This allows them to fly around a limited range as well as move faster than the eye can follow, even on the ground.',
   },
   'kaiju': {
     name: 'Kaiju',
@@ -708,11 +708,11 @@ export const enQuirkCopy = {
   },
   'laser': {
     name: 'Laser',
-    description: 'Laser allowed the user to fire energy beams from their right eye.',
+    description: 'Allows the user to fire energy beams from their right eye.',
   },
   'leafipulation': {
     name: 'Leafipulation',
-    description: 'Leafipulation allows its user to manipulate leaves from the plant life around them, and fire them off as projectiles toward the user\'s opponents.',
+    description: 'Allows its user to manipulate leaves from the plant life around them, and fire them off as projectiles toward the user\'s opponents.',
   },
   'leap': {
     name: 'Leap',
@@ -720,7 +720,7 @@ export const enQuirkCopy = {
   },
   'life-force': {
     name: 'Life Force',
-    description: 'Life Force doubles the user\'s life span, causing them to age at a slower rate and making them look much younger than they really are.',
+    description: 'Doubles the user\'s life span, causing them to age at a slower rate and making them look much younger than they really are.',
   },
   'lion': {
     name: 'Lion',
@@ -728,11 +728,11 @@ export const enQuirkCopy = {
   },
   'liquification': {
     name: 'Liquification',
-    description: 'Liquification allows the user to liquefy their body.',
+    description: 'Allows the user to liquefy their body.',
   },
   'lizard': {
     name: 'Lizard',
-    description: 'Lizard grants the user a reptilian appearance, with a tail, a tongue with two tines, and a body covered in scales.',
+    description: 'Grants the user a reptilian appearance, with a tail, a tongue with two tines, and a body covered in scales.',
   },
   'lizard-tail-splitter': {
     name: 'Lizard Tail Splitter',
@@ -748,11 +748,11 @@ export const enQuirkCopy = {
   },
   'longleg': {
     name: 'Longleg',
-    description: 'Longleg allows the user to extend their legs.',
+    description: 'Allows the user to extend their legs.',
   },
   'love': {
     name: 'Love',
-    description: 'Love allows the user to power up a target by confessing their feelings for them. The more intense the user\'s love is, the stronger the power transmitted to the target is.',
+    description: 'Allows the user to power up a target by confessing their feelings for them. The more intense the user\'s love is, the stronger the power transmitted to the target is.',
   },
   'luminescence': {
     name: 'Luminescence',
@@ -760,7 +760,7 @@ export const enQuirkCopy = {
   },
   'mad-gluttony': {
     name: 'Mad Gluttony',
-    description: 'Mad Gluttony allows the user to devour objects using the giant mouth in their stomach, with it being able to quickly inhale, crunch, and destroy whatever is in their path.',
+    description: 'Allows the user to devour objects using the giant mouth in their stomach, with it being able to quickly inhale, crunch, and destroy whatever is in their path.',
   },
   'magic': {
     name: 'Magic',
@@ -780,7 +780,7 @@ export const enQuirkCopy = {
   },
   'meatball': {
     name: 'Meatball',
-    description: 'Meatball grants the user the ability to manipulate raw human flesh. The user can manipulate their own flesh, giving them the ability to separate their limbs and control them at will.',
+    description: 'Grants the user the ability to manipulate raw human flesh. The user can manipulate their own flesh, giving them the ability to separate their limbs and control them at will.',
   },
   'metal-manipulation': {
     name: 'Metal Manipulation',
@@ -788,7 +788,7 @@ export const enQuirkCopy = {
   },
   'mimicry': {
     name: 'Mimicry',
-    description: 'Mimicry allows the user to transfer their own body and mind into solid objects, and manipulate them as though the object was their actual body.',
+    description: 'Allows the user to transfer their own body and mind into solid objects, and manipulate them as though the object was their actual body.',
   },
   'mind-reading': {
     name: 'Mind Reading',
@@ -800,11 +800,11 @@ export const enQuirkCopy = {
   },
   'mole': {
     name: 'Mole',
-    description: 'Mole allows the user to grow long, sharp claws from their fingers, spines on their back, and a shield visor on their face, to help them dig through the Earth, just like a mole.',
+    description: 'Allows the user to grow long, sharp claws from their fingers, spines on their back, and a shield visor on their face, to help them dig through the Earth, just like a mole.',
   },
   'monster-cat': {
     name: 'Monster Cat',
-    description: 'Monster Cat allows the user to merge with an object or machinery, assume its shape, and control it completely. It can also be defused from said object.',
+    description: 'Allows the user to merge with an object or machinery, assume its shape, and control it completely. It can also be defused from said object.',
   },
   'monster-summon': {
     name: 'Monster Summon',
@@ -812,7 +812,7 @@ export const enQuirkCopy = {
   },
   'muddied': {
     name: 'Muddied',
-    description: 'Muddied grants the user the ability to cause minor amnesia to a person if they make contact with their head, making their memories of the previous five minutes and the next five minutes vague.',
+    description: 'Grants the user the ability to cause minor amnesia to a person if they make contact with their head, making their memories of the previous five minutes and the next five minutes vague.',
   },
   'multiplier': {
     name: 'Multiplier',
@@ -828,15 +828,15 @@ export const enQuirkCopy = {
   },
   'muscle-expansion': {
     name: 'Muscle Expansion',
-    description: 'Muscle Expansion allows the user to expand and strengthen their muscles, granting them a significant increase in physical strength.',
+    description: 'Allows the user to expand and strengthen their muscles, granting them a significant increase in physical strength.',
   },
   'mushroom': {
     name: 'Mushroom',
-    description: 'Mushroom allows the user to generate and spread fungus spores from their body. Once these spores make contact with a solid surface, they will quickly grow into full-grown mushrooms.',
+    description: 'Allows the user to generate and spread fungus spores from their body. Once these spores make contact with a solid surface, they will quickly grow into full-grown mushrooms.',
   },
   'mutant-bovini': {
     name: 'Mutant Bovini',
-    description: 'Mutant Bovini allows its user to fire off lasers from their face.',
+    description: 'Allows its user to fire off lasers from their face.',
   },
   'navel-laser': {
     name: 'Navel Laser',
@@ -848,15 +848,15 @@ export const enQuirkCopy = {
   },
   'new-order': {
     name: 'New Order',
-    description: 'New Order allowed the user to set a rule onto their surroundings after touching the target and calling out their name, allowing them to manipulate and bestow new properties onto themselves and the world around them.',
+    description: 'Allows the user to set a rule onto their surroundings after touching the target and calling out their name, allowing them to manipulate and bestow new properties onto themselves and the world around them.',
   },
   'octopus': {
     name: 'Octopus',
-    description: 'Octopus provides the user with the physiology and skills of an octopus, such as multiple elastic appendages, suckers and the ability to spit ink from their siphon-like mouth.',
+    description: 'Provides the user with the physiology and skills of an octopus, such as multiple elastic appendages, suckers and the ability to spit ink from their siphon-like mouth.',
   },
   'octopus-squid': {
     name: 'Octopus (Squid)',
-    description: 'Octopus (Squid) gives the user the same number of limbs as a cephalopod creature, making them appear like a humanoid octopus or squid.',
+    description: 'Gives the user the same number of limbs as a cephalopod creature, making them appear like a humanoid octopus or squid.',
   },
   'one-for-all': {
     name: 'One For All',
@@ -864,7 +864,7 @@ export const enQuirkCopy = {
   },
   'orcinus': {
     name: 'Orcinus',
-    description: 'Orcinus is the summation of the user\'s many Orca-related abilities. They can do anything a regular orca can do, even on land.',
+    description: 'Summarizes the user\'s many orca-related abilities. They can do anything a regular orca can do, even on land.',
   },
   'outburst': {
     name: 'Outburst',
@@ -900,7 +900,7 @@ export const enQuirkCopy = {
   },
   'plant': {
     name: 'Plant',
-    description: 'Plant allows the user to transform their body parts into plant structures. These structures have properties which can heal their allies.',
+    description: 'Allows the user to transform their body parts into plant structures. These structures have properties which can heal their allies.',
   },
   'playtime': {
     name: 'Playtime',
@@ -924,7 +924,7 @@ export const enQuirkCopy = {
   },
   'polygraph': {
     name: 'Polygraph',
-    description: 'Polygraph allows the user to judge the authenticity and genuineness of their target\'s words, telling them if they speak the truth or if they are lying.',
+    description: 'Allows the user to judge the authenticity and genuineness of their target\'s words, telling them if they speak the truth or if they are lying.',
   },
   'pop-off': {
     name: 'Pop Off',
@@ -932,11 +932,11 @@ export const enQuirkCopy = {
   },
   'power': {
     name: 'Power',
-    description: 'Power grants its user the ability to build up tremendous raw power in their body, giving them incredible strength that\'s strong enough to smash through a reinforced concrete building.',
+    description: 'Grants its user the ability to build up tremendous raw power in their body, giving them incredible strength that\'s strong enough to smash through a reinforced concrete building.',
   },
   'power-stock': {
     name: 'Power Stock',
-    description: 'Power Stock has the ability to stockpile power which the user can harness for incredible bursts of power and speed.',
+    description: 'Allows the user to stockpile power, which they can harness for incredible bursts of strength and speed.',
   },
   'propagation': {
     name: 'Propagation',
@@ -948,7 +948,7 @@ export const enQuirkCopy = {
   },
   'queen-beam': {
     name: 'Queen Beam',
-    description: 'Queen Beam allows the user to fire a straight-travelling beam of energy from their face. When used, a pink heart appears over the user\'s face.',
+    description: 'Allows the user to fire a straight-travelling beam of energy from their face. When used, a pink heart appears over the user\'s face.',
   },
   'queen-bee': {
     name: 'Queen Bee',
@@ -960,7 +960,7 @@ export const enQuirkCopy = {
   },
   'radio-waves': {
     name: 'Radio Waves',
-    description: 'Radio Waves allows the user to emit an electromagnetic pulse of radio waves to disrupt electrical appliances and cause communicators to malfunction.',
+    description: 'Allows the user to emit an electromagnetic pulse of radio waves to disrupt electrical appliances and cause communicators to malfunction.',
   },
   'radio-waves-bombers': {
     name: 'Radio Waves (Bombers)',
@@ -972,11 +972,11 @@ export const enQuirkCopy = {
   },
   'reflect-flect-turn': {
     name: 'Reflect (Flect Turn)',
-    description: 'Reflect allows the user to absorb energy and send it back in the opposite direction. When something strikes them, a spiraling wave of energy forms from behind, and the same attack is rebound back at the opponent.',
+    description: 'Allows the user to absorb energy and send it back in the opposite direction. When something strikes them, a spiraling wave of energy forms from behind, and the same attack is rebound back at the opponent.',
   },
   'reflect-tomura-shigaraki': {
     name: 'Reflect (Tomura Shigaraki)',
-    description: 'Reflect allows the user to copy any attack they are hit with and recreate the same attack themselves at the same strength. They can absorb multiple sources at the same time, but it releases in one direction all at once.',
+    description: 'Allows the user to copy any attack they are hit with and recreate the same attack themselves at the same strength. They can absorb multiple sources at the same time, but it releases in one direction all at once.',
   },
   'rewind': {
     name: 'Rewind',
@@ -996,15 +996,15 @@ export const enQuirkCopy = {
   },
   'rocket-thrust': {
     name: 'Rocket Thrust',
-    description: 'Rocket Thrust allows the users to shoot their right fists at people at very high speeds.',
+    description: 'Allows the users to shoot their right fists at people at very high speeds.',
   },
   'rupture': {
     name: 'Rupture',
-    description: 'Rupture allows the user to detonate their own body.',
+    description: 'Allows the user to detonate their own body.',
   },
   'saber': {
     name: 'Saber',
-    description: 'Saber allows the user to transform portions of their body into sword-shaped appendages, which they can use offensively.',
+    description: 'Allows the user to transform portions of their body into sword-shaped appendages, which they can use offensively.',
   },
   'sandstorm': {
     name: 'Sandstorm',
@@ -1016,7 +1016,7 @@ export const enQuirkCopy = {
   },
   'scales': {
     name: 'Scales',
-    description: 'Scales allows the user to form hard scales throughout their entire body, which they can either use as protective armor, or fire them off as projectiles.',
+    description: 'Allows the user to form hard scales throughout their entire body, which they can either use as protective armor, or fire them off as projectiles.',
   },
   'scanning': {
     name: 'Scanning',
@@ -1024,19 +1024,19 @@ export const enQuirkCopy = {
   },
   'scatter': {
     name: 'Scatter',
-    description: 'Scatter allows the user to split up and multiply projectiles while firing them, increasing the strength and radius of long-range attacks.',
+    description: 'Allows the user to split up and multiply projectiles while firing them, increasing the strength and radius of long-range attacks.',
   },
   'search': {
     name: 'Search',
-    description: 'Search allows the user to monitor and observe up to a hundred people at a time. This includes knowing their locations and weak points.',
+    description: 'Allows the user to monitor and observe up to a hundred people at a time. This includes knowing their locations and weak points.',
   },
   'self-detonation': {
     name: 'Self-Detonation',
-    description: 'Self-Detonation grants the user the ability to self-destruct through a large explosion that is generated within their bodies.',
+    description: 'Grants the user the ability to self-destruct through a large explosion that is generated within their bodies.',
   },
   'serpentress': {
     name: 'Serpentress',
-    description: 'Serpentress grants the user a trio of living snakes as part of their hair, which are implied to be a part of their biology.',
+    description: 'Grants the user a trio of living snakes as part of their hair, which are implied to be a part of their biology.',
   },
   'shame': {
     name: 'Shame',
@@ -1044,7 +1044,7 @@ export const enQuirkCopy = {
   },
   'shield': {
     name: 'Shield',
-    description: 'Shield allowed the user to manifest stone-like, hexagonal shields from their body that could be utilized both defensively and offensively.',
+    description: 'Allows the user to manifest stone-like, hexagonal shields from their body that can be utilized both defensively and offensively.',
   },
   'shock-absorption': {
     name: 'Shock Absorption',
@@ -1064,11 +1064,11 @@ export const enQuirkCopy = {
   },
   'slide-and-glide': {
     name: 'Slide and Glide',
-    description: 'Slide and Glide allows the user to project an repulsive/attractive force from their hands and feet. Repulsive energy emits a blue glow , while attractive energy emits a green glow.',
+    description: 'Allows the user to project an repulsive/attractive force from their hands and feet. Repulsive energy emits a blue glow , while attractive energy emits a green glow.',
   },
   'sloshed': {
     name: 'Sloshed',
-    description: 'Sloshed causes anyone who approaches the user to lose their sense of balance, falling into a state similar to inebriation.',
+    description: 'Causes anyone who approaches the user to lose their sense of balance, falling into a state similar to inebriation.',
   },
   'smile': {
     name: 'Smile',
@@ -1076,23 +1076,23 @@ export const enQuirkCopy = {
   },
   'smoke': {
     name: 'Smoke',
-    description: 'Smoke allows the user to expel large amounts of pink smoke through the holes in their body, to generate a thick smoke screen to mask and hide their movement from enemies\' line of sight.',
+    description: 'Allows the user to expel large amounts of pink smoke through the holes in their body, to generate a thick smoke screen to mask and hide their movement from enemies\' line of sight.',
   },
   'smokescreen': {
     name: 'Smokescreen',
-    description: 'Smokescreen allows the user to generate a thick cloud of purple smoke from their body. The smoke can be spread to cover a very wide area.',
+    description: 'Allows the user to generate a thick cloud of purple smoke from their body. The smoke can be spread to cover a very wide area.',
   },
   'snip-clip': {
     name: 'Snip Clip',
-    description: 'Snip Clip allows the user to cut through almost anything that is placed between their index and middle fingers by making a scissor motion with them.',
+    description: 'Allows the user to cut through almost anything that is placed between their index and middle fingers by making a scissor motion with them.',
   },
   'soccer': {
     name: 'Soccer',
-    description: 'Soccer supposedly allows the user to dribble a ball like a professional soccer player among large crowds of people without this preventing them from carrying out their acts of larceny.',
+    description: 'Supposedly allows the user to dribble a ball like a professional soccer player among large crowds of people without this preventing them from carrying out their acts of larceny.',
   },
   'softening': {
     name: 'Softening',
-    description: 'Softening allows the user to soften anything they touch, effectively turning solid objects semi-liquid. Softening works on anything solid, such as ice, metal, or the ground, and it possesses great range.',
+    description: 'Allows the user to soften anything they touch, effectively turning solid objects semi-liquid. Softening works on anything solid, such as ice, metal, or the ground, and it possesses great range.',
   },
   'solid-air': {
     name: 'Solid Air',
@@ -1108,7 +1108,7 @@ export const enQuirkCopy = {
   },
   'spatial-excursion': {
     name: 'Spatial Excursion',
-    description: 'Spatial Excursion allows the user to freely move objects and people in any space without being restricted by gravity.',
+    description: 'Allows the user to freely move objects and people in any space without being restricted by gravity.',
   },
   'spear-hand-missiles': {
     name: 'Spear Hand Missiles',
@@ -1116,11 +1116,11 @@ export const enQuirkCopy = {
   },
   'spearlike-bones': {
     name: 'Spearlike Bones',
-    description: 'Spearlike Bones allows the user to generate cone-shaped spears made of bone on any part of their body. They can also emerge from other parts of the body such as the mouth.',
+    description: 'Allows the user to generate cone-shaped spears made of bone on any part of their body. They can also emerge from other parts of the body such as the mouth.',
   },
   'spike': {
     name: 'Spike',
-    description: 'Spike allows its user to make spikes protrude from their body. The spikes produced naturally appear to be roughly as long as its user\'s fingers, though it is unknown just how long they can extend to.',
+    description: 'Allows its user to make spikes protrude from their body. The spikes produced naturally appear to be roughly as long as its user\'s fingers, though it is unknown just how long they can extend to.',
   },
   'spotted-seal': {
     name: 'Spotted Seal',
@@ -1128,7 +1128,7 @@ export const enQuirkCopy = {
   },
   'spray-art': {
     name: 'Spray Art',
-    description: 'Spray Art allows the user to spray clouds of spray paint, causing illusions for anyone inside them.',
+    description: 'Allows the user to spray clouds of spray paint, causing illusions for anyone inside them.',
   },
   'spring': {
     name: 'Spring',
@@ -1140,11 +1140,11 @@ export const enQuirkCopy = {
   },
   'squirmy-fingers': {
     name: 'Squirmy Fingers',
-    description: 'Squirmy Fingers allows the user to precisely and flawlessly control their fingers, effectively manipulating any object with grace, ease, speed, precision and skill, as well as to bend them in any direction.',
+    description: 'Allows the user to precisely and flawlessly control their fingers, effectively manipulating any object with grace, ease, speed, precision and skill, as well as to bend them in any direction.',
   },
   'static': {
     name: 'Static',
-    description: 'By rubbing their body to build up electric charge, like the process to generate static electricity, the user of Static can generate electrical currents.',
+    description: 'By rubbing their body to build up electric charge, like the process used to generate static electricity, the user can generate electrical currents.',
   },
   'steel': {
     name: 'Steel',
@@ -1164,11 +1164,11 @@ export const enQuirkCopy = {
   },
   'stress': {
     name: 'Stress',
-    description: 'Stress grants the user the ability to convert stress, anger, dread, and frustration into raw power. This raw power is capable of increasing their strength, resilience, and size.',
+    description: 'Grants the user the ability to convert stress, anger, dread, and frustration into raw power. This raw power is capable of increasing their strength, resilience, and size.',
   },
   'strongarm': {
     name: 'Strongarm',
-    description: 'Strongarm allows the user to rotate and move their shoulders at great speed and power, giving them extremely fast and strong punches.',
+    description: 'Allows the user to rotate and move their shoulders at great speed and power, giving them extremely fast and strong punches.',
   },
   'sugar-rush': {
     name: 'Sugar Rush',
@@ -1180,15 +1180,15 @@ export const enQuirkCopy = {
   },
   'super-regeneration': {
     name: 'Super Regeneration',
-    description: 'Super Regeneration has the ability to regenerate any sort of injuries on the user\'s body, such as missing limbs, at incredible speeds.',
+    description: 'Allows the user to regenerate virtually any injury on their body, such as missing limbs, at incredible speeds.',
   },
   'swan': {
     name: 'Swan',
-    description: 'Swan grants the user two large, white, swan-like wings on their back. They can achieve flight but are not strong enough to do so without them stripping off their clothes first.',
+    description: 'Grants the user two large, white, swan-like wings on their back. They can achieve flight but are not strong enough to do so without them stripping off their clothes first.',
   },
   'sword-kill': {
     name: 'Sword Kill',
-    description: 'Sword Kill allows the user to create flexible swords from their arms and shoulders, that fold in and out like an accordion.',
+    description: 'Allows the user to create flexible swords from their arms and shoulders, that fold in and out like an accordion.',
   },
   'tail': {
     name: 'Tail',
@@ -1212,11 +1212,11 @@ export const enQuirkCopy = {
   },
   'teleportation': {
     name: 'Teleportation',
-    description: 'Teleportation allows the user to move themselves and any material or living thing they are touching to somewhere within their line of vision and are limited to only transporting to an area they can see.',
+    description: 'Allows the user to move themselves and any material or living thing they are touching to somewhere within their line of vision and are limited to only transporting to an area they can see.',
   },
   'telescopic': {
     name: 'Telescopic',
-    description: 'Telescopic allows the user to retract their own body parts into themselves, similar to how a turtle can retract itself into its shell.',
+    description: 'Allows the user to retract their own body parts into themselves, similar to how a turtle can retract itself into its shell.',
   },
   'tidal-bore': {
     name: 'Tidal Bore',
@@ -1224,7 +1224,7 @@ export const enQuirkCopy = {
   },
   'toho': {
     name: 'Toho',
-    description: 'Toho gives the user the attributes of a kaiju; in addition to their reptile-like appearance, they are very large and very strong.',
+    description: 'Gives the user the attributes of a kaiju; in addition to their reptile-like appearance, they are very large and very strong.',
   },
   'tongue-tank': {
     name: 'Tongue Tank',
@@ -1236,7 +1236,7 @@ export const enQuirkCopy = {
   },
   'traject': {
     name: 'Traject',
-    description: 'Traject allows the user to manipulate the trajectory of anything that passes through their bandages.',
+    description: 'Allows the user to manipulate the trajectory of anything that passes through their bandages.',
   },
   'transform': {
     name: 'Transform',
@@ -1244,11 +1244,11 @@ export const enQuirkCopy = {
   },
   'transforming-arms': {
     name: 'Transforming Arms',
-    description: 'Transforming Arms allows its user to shape-shift their arms, allowing them to have long-ranged, elastic attacks. The user can also split their arms apart to surround their target and launch multiple attacks at once.',
+    description: 'Allows its user to shape-shift their arms, allowing them to have long-ranged, elastic attacks. The user can also split their arms apart to surround their target and launch multiple attacks at once.',
   },
   'trap-flex': {
     name: 'Trap Flex',
-    description: 'Trap Flex allows the user to flex their trapezius muscle to extreme degrees, allowing them to cover their whole head with their shoulders. The flexing gives them a fair amount of speed and strength.',
+    description: 'Allows the user to flex their trapezius muscle to extreme degrees, allowing them to cover their whole head with their shoulders. The flexing gives them a fair amount of speed and strength.',
   },
   'tree-frog': {
     name: 'Tree Frog',
@@ -1256,11 +1256,11 @@ export const enQuirkCopy = {
   },
   'tripod': {
     name: 'Tripod',
-    description: 'Tripod grants its user a third leg, placed between their other two. This third leg acts as one would expect, including allowing the user to stabilize themselves on otherwise unstable terrain.',
+    description: 'Grants its user a third leg, placed between their other two. This third leg acts as one would expect, including allowing the user to stabilize themselves on otherwise unstable terrain.',
   },
   'twin-impact': {
     name: 'Twin Impact',
-    description: 'Twin Impact allows the user to, at the site of any initial impact, create a second impact remotely and at their discretion. The second impact will be many times stronger than the initial one.',
+    description: 'Allows the user to, at the site of any initial impact, create a second impact remotely and at their discretion. The second impact will be many times stronger than the initial one.',
   },
   'vibrate': {
     name: 'Vibrate',
@@ -1272,7 +1272,7 @@ export const enQuirkCopy = {
   },
   'vines': {
     name: 'Vines',
-    description: 'Vines grants the user controllable, thorny vines in place of regular hair. The vines can be manipulated for various purposes, such as binding foes, snatching objects and creating defensive barriers.',
+    description: 'Grants the user controllable, thorny vines in place of regular hair. The vines can be manipulated for various purposes, such as binding foes, snatching objects and creating defensive barriers.',
   },
   'viral-cosmos': {
     name: 'Viral Cosmos',
@@ -1280,7 +1280,7 @@ export const enQuirkCopy = {
   },
   'voice': {
     name: 'Voice',
-    description: 'Voice allows the user to increase the volume of their voice, giving them the ability to create loud, high-pitched sounds.',
+    description: 'Allows the user to increase the volume of their voice, giving them the ability to create loud, high-pitched sounds.',
   },
   'voyance': {
     name: 'Voyance',
@@ -1300,7 +1300,7 @@ export const enQuirkCopy = {
   },
   'water-gun': {
     name: 'Water Gun',
-    description: 'Water Gun allows the user to shoot a stream of water from their hands.',
+    description: 'Allows the user to shoot a stream of water from their hands.',
   },
   'water-pump': {
     name: 'Water Pump',
@@ -1308,7 +1308,7 @@ export const enQuirkCopy = {
   },
   'wave-motion': {
     name: 'Wave Motion',
-    description: 'Wave Motion grants the user the ability to convert their vitality into energy that they can discharge as blast waves.',
+    description: 'Grants the user the ability to convert their vitality into energy that they can discharge as blast waves.',
   },
   'weather-manipulation': {
     name: 'Weather Manipulation',
@@ -1332,7 +1332,7 @@ export const enQuirkCopy = {
   },
   'whole-body-lens': {
     name: 'Whole-Body Lens',
-    description: 'Whole-Body Lens allows the user to produce camera-like lenses anywhere on their body to take pictures. They can also print any pictures their body cameras have captured out of their chest whenever they want.',
+    description: 'Allows the user to produce camera-like lenses anywhere on their body to take pictures. They can also print any pictures their body cameras have captured out of their chest whenever they want.',
   },
   'wing': {
     name: 'Wing',
@@ -1340,7 +1340,7 @@ export const enQuirkCopy = {
   },
   'wooden-swords-from-his-hands': {
     name: 'Wooden Swords From His Hands',
-    description: 'Wooden Swords From His Hands allows the user to generate wooden swords from their wrist.',
+    description: 'Allows the user to generate wooden swords from their wrist.',
   },
   'zero-gravity': {
     name: 'Zero Gravity',
@@ -1348,7 +1348,7 @@ export const enQuirkCopy = {
   },
   'zombie-virus': {
     name: 'Zombie Virus',
-    description: 'Zombie Virus allows the user to release a pinkish gas that, when inhaled, temporarily transforms victims into zombies.',
+    description: 'Allows the user to release a pinkish gas that, when inhaled, temporarily transforms victims into zombies.',
   },
   'zoom': {
     name: 'Zoom',

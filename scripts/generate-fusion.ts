@@ -51,7 +51,7 @@ async function main() {
   }
 
   const seed = args.seed ?? defaultFusionSeed()
-  const { entry, cached } = await generateFusionEntry({
+  const { entry, cached, generated } = await generateFusionEntry({
     root,
     idA,
     idB,
@@ -59,16 +59,17 @@ async function main() {
     force: args.force,
   })
 
-  if (cached && !args.force) {
-    console.log(`Já existe no cache: ${entry.key}`)
+  if (cached) {
+    console.log(`Fallback do Supabase (geração falhou): ${entry.key}`)
     console.log(`  EN: ${entry.en.name}`)
-    console.log('Use --force para regenerar.')
     return
   }
 
-  console.log(`Salvo no Supabase: ${entry.key}`)
-  console.log(`  EN: ${entry.en.name}`)
-  console.log(`  PT: ${entry['pt-BR'].name}`)
+  if (generated) {
+    console.log(`Salvo no Supabase: ${entry.key}`)
+    console.log(`  EN: ${entry.en.name}`)
+    console.log(`  PT: ${entry['pt-BR'].name}`)
+  }
 }
 
 main().catch((err) => {

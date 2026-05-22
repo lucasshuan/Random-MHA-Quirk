@@ -3,7 +3,7 @@ import type { QuirkBase } from '../types/quirk'
 export const quirksBase = [
   {
     id: '2d-ify',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -147,7 +147,7 @@ export const quirksBase = [
   },
   {
     id: 'bat',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -155,7 +155,7 @@ export const quirksBase = [
   },
   {
     id: 'beams-from-his-eyes',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Long',
@@ -187,7 +187,7 @@ export const quirksBase = [
   },
   {
     id: 'big-monkey',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -235,7 +235,7 @@ export const quirksBase = [
   },
   {
     id: 'blast',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -299,7 +299,7 @@ export const quirksBase = [
   },
   {
     id: 'bombify',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -331,7 +331,7 @@ export const quirksBase = [
   },
   {
     id: 'bristle',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -347,7 +347,7 @@ export const quirksBase = [
   },
   {
     id: 'bruiser',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -379,7 +379,7 @@ export const quirksBase = [
   },
   {
     id: 'bullhorn',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -451,7 +451,7 @@ export const quirksBase = [
   },
   {
     id: 'chest-hair',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -499,7 +499,7 @@ export const quirksBase = [
   },
   {
     id: 'cloud',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -531,7 +531,7 @@ export const quirksBase = [
   },
   {
     id: 'conjure',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -547,7 +547,7 @@ export const quirksBase = [
   },
   {
     id: 'control-horn',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -587,7 +587,7 @@ export const quirksBase = [
   },
   {
     id: 'cubism',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -667,7 +667,7 @@ export const quirksBase = [
   },
   {
     id: 'diesel-engine',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Self',
@@ -699,7 +699,7 @@ export const quirksBase = [
   },
   {
     id: 'dragon-breath',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -747,7 +747,7 @@ export const quirksBase = [
   },
   {
     id: 'eel',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -771,7 +771,7 @@ export const quirksBase = [
   },
   {
     id: 'electric-eel',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -907,7 +907,7 @@ export const quirksBase = [
   },
   {
     id: 'fast-fist',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -963,7 +963,7 @@ export const quirksBase = [
   },
   {
     id: 'flight',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Long',
@@ -979,7 +979,7 @@ export const quirksBase = [
   },
   {
     id: 'fly-swatter',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -1019,7 +1019,7 @@ export const quirksBase = [
   },
   {
     id: 'free-walker',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -1083,7 +1083,7 @@ export const quirksBase = [
   },
   {
     id: 'gigantic-spinning-flying-turtle',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1107,7 +1107,7 @@ export const quirksBase = [
   },
   {
     id: 'glide-and-slide',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -1131,7 +1131,7 @@ export const quirksBase = [
   },
   {
     id: 'grasshopper',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1283,7 +1283,7 @@ export const quirksBase = [
   },
   {
     id: 'ignition',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -1371,7 +1371,7 @@ export const quirksBase = [
   },
   {
     id: 'kaiju',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1427,7 +1427,7 @@ export const quirksBase = [
   },
   {
     id: 'leap',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Short',
@@ -1459,7 +1459,7 @@ export const quirksBase = [
   },
   {
     id: 'lizard',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -1491,7 +1491,7 @@ export const quirksBase = [
   },
   {
     id: 'longleg',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1547,7 +1547,7 @@ export const quirksBase = [
   },
   {
     id: 'mantis',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -1587,7 +1587,7 @@ export const quirksBase = [
   },
   {
     id: 'mind-reaper',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -1603,7 +1603,7 @@ export const quirksBase = [
   },
   {
     id: 'monster-cat',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1707,7 +1707,7 @@ export const quirksBase = [
   },
   {
     id: 'octopus-squid',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -1739,7 +1739,7 @@ export const quirksBase = [
   },
   {
     id: 'overclock',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
@@ -1803,7 +1803,7 @@ export const quirksBase = [
   },
   {
     id: 'playtime',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1819,7 +1819,7 @@ export const quirksBase = [
   },
   {
     id: 'pointer',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Long',
@@ -1827,7 +1827,7 @@ export const quirksBase = [
   },
   {
     id: 'poison-gas',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'A',
     type: 'Emitter',
     range: 'Area',
@@ -1843,7 +1843,7 @@ export const quirksBase = [
   },
   {
     id: 'polygraph',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -1875,7 +1875,7 @@ export const quirksBase = [
   },
   {
     id: 'propagation',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -1899,7 +1899,7 @@ export const quirksBase = [
   },
   {
     id: 'queen-bee',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
@@ -1923,7 +1923,7 @@ export const quirksBase = [
   },
   {
     id: 'radio-waves-bombers',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Long',
@@ -1987,7 +1987,7 @@ export const quirksBase = [
   },
   {
     id: 'rocket-thrust',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -2059,7 +2059,7 @@ export const quirksBase = [
   },
   {
     id: 'self-detonation',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
@@ -2123,7 +2123,7 @@ export const quirksBase = [
   },
   {
     id: 'slide-and-glide',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -2147,7 +2147,7 @@ export const quirksBase = [
   },
   {
     id: 'smoke',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Emitter',
     range: 'Area',
@@ -2163,7 +2163,7 @@ export const quirksBase = [
   },
   {
     id: 'snip-clip',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -2171,7 +2171,7 @@ export const quirksBase = [
   },
   {
     id: 'soccer',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -2219,7 +2219,7 @@ export const quirksBase = [
   },
   {
     id: 'spear-hand-missiles',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -2235,7 +2235,7 @@ export const quirksBase = [
   },
   {
     id: 'spike',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
@@ -2251,7 +2251,7 @@ export const quirksBase = [
   },
   {
     id: 'spray-art',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -2259,7 +2259,7 @@ export const quirksBase = [
   },
   {
     id: 'spring',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -2283,7 +2283,7 @@ export const quirksBase = [
   },
   {
     id: 'static',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
@@ -2307,7 +2307,7 @@ export const quirksBase = [
   },
   {
     id: 'stock',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
@@ -2347,7 +2347,7 @@ export const quirksBase = [
   },
   {
     id: 'suicide-bomb',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -2363,7 +2363,7 @@ export const quirksBase = [
   },
   {
     id: 'swan',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Mutant',
     range: 'Medium',
@@ -2387,7 +2387,7 @@ export const quirksBase = [
   },
   {
     id: 'tank-engine',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'B',
     type: 'Mutant',
     range: 'Self',
@@ -2499,7 +2499,7 @@ export const quirksBase = [
   },
   {
     id: 'tree-frog',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Mutant',
     range: 'Self',
@@ -2507,7 +2507,7 @@ export const quirksBase = [
   },
   {
     id: 'tripod',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_TEAM_UP',
     tier: 'B',
     type: 'Mutant',
     range: 'Medium',
@@ -2675,7 +2675,7 @@ export const quirksBase = [
   },
   {
     id: 'wooden-swords-from-his-hands',
-    origin: 'BNHA_SPINOFF',
+    origin: 'BNHA_VIGILANTES',
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',

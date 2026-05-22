@@ -23,11 +23,15 @@ export interface GenerateFusionOptions {
 
 export interface GenerateFusionResult {
   entry: FusionCacheEntry
+  /** True when an existing Supabase row was returned after generation failed. */
   cached: boolean
+  /** True when the LLM produced a new entry (also persisted). */
+  generated: boolean
 }
 
 /**
- * Generates (or reads from cache) a fusion entry. Persists to Supabase.
+ * Generates a fusion entry via LLM and persists to Supabase.
+ * Uses an existing row only as a fallback when generation fails (unless `force`).
  */
 export async function generateFusionEntry({
   root = process.cwd(),
@@ -48,14 +52,19 @@ export async function generateFusionEntry({
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
 
-  const existing = await findFusionByKey(key)
-  if (existing && !force) {
-    return { entry: existing, cached: true }
+  try {
+    const payload = await generateWithLlm(buildFusionPrompt(quirkA, quirkB, seed), {
+      forbiddenDescriptionTerms: [quirkA.name, quirkB.name, quirkA.id, quirkB.id],
+    })
+    const entry = buildFusionEntry(key, parents, seed, payload)
+    await upsertFusionEntry(entry)
+    return { entry, cached: false, generated: true }
+  } catch (err) {
+    if (force) throw err
+    const existing = await findFusionByKey(key)
+    if (existing) {
+      return { entry: existing, cached: true, generated: false }
+    }
+    throw err
   }
-
-  const payload = await generateWithLlm(buildFusionPrompt(quirkA, quirkB, seed))
-  const entry = buildFusionEntry(key, parents, seed, payload)
-
-  await upsertFusionEntry(entry)
-  return { entry, cached: false }
 }

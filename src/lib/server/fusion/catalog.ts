@@ -16,7 +16,10 @@ export interface FusionCatalogQuirk {
  */
 export function loadQuirksCatalog(srcDir: string): FusionCatalogQuirk[] {
   const baseText = readFileSync(join(srcDir, 'data', 'quirks.base.ts'), 'utf8')
-  const enText = readFileSync(join(srcDir, 'i18n', 'quirks', 'en.ts'), 'utf8')
+  const enText = readFileSync(
+    join(srcDir, 'i18n', 'messages', 'quirks', 'en.ts'),
+    'utf8',
+  )
 
   const baseById = new Map<string, Omit<FusionCatalogQuirk, 'name' | 'description'>>()
   const blockRe =

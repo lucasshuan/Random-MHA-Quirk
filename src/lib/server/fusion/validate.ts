@@ -11,7 +11,21 @@ export interface ValidatedFusionPayload {
   origin: QuirkOrigin
 }
 
-export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
+export interface ValidateFusionOptions {
+  forbiddenDescriptionTerms?: string[]
+}
+
+function containsForbiddenTerm(text: string, term: string): boolean {
+  const normalizedText = text.toLowerCase()
+  const normalizedTerm = term.trim().toLowerCase()
+  if (!normalizedTerm) return false
+  return normalizedText.includes(normalizedTerm)
+}
+
+export function validateFusionPayload(
+  raw: unknown,
+  options: ValidateFusionOptions = {},
+): ValidatedFusionPayload {
   if (!raw || typeof raw !== 'object') {
     throw new Error('Resposta LLM não é um objeto JSON.')
   }
@@ -49,10 +63,36 @@ export function validateFusionPayload(raw: unknown): ValidatedFusionPayload {
 
   const en = obj.en as FusionCopy
   const pt = obj['pt-BR'] as FusionCopy
+  const enDescription = en.description.trim()
+  const ptDescription = pt.description.trim()
+
+  if (/\b(quirk|peculiaridade)\b/i.test(ptDescription)) {
+    throw new Error(
+      'pt-BR.description deve usar "individualidade" (não usar "Quirk" ou "Peculiaridade").',
+    )
+  }
+
+  const forbiddenTerms =
+    options.forbiddenDescriptionTerms
+      ?.map((term) => term.trim())
+      .filter((term) => term.length >= 3) ?? []
+
+  for (const term of forbiddenTerms) {
+    if (containsForbiddenTerm(enDescription, term)) {
+      throw new Error(
+        `en.description não pode mencionar nomes/ids das quirks parentais (${term}).`,
+      )
+    }
+    if (containsForbiddenTerm(ptDescription, term)) {
+      throw new Error(
+        `pt-BR.description não pode mencionar nomes/ids das quirks parentais (${term}).`,
+      )
+    }
+  }
 
   return {
-    en: { name: en.name.trim(), description: en.description.trim() },
-    'pt-BR': { name: pt.name.trim(), description: pt.description.trim() },
+    en: { name: en.name.trim(), description: enDescription },
+    'pt-BR': { name: pt.name.trim(), description: ptDescription },
     type: obj.type as QuirkType,
     range: obj.range as QuirkRange,
     facets: [...new Set(obj.facets as QuirkFacet[])],

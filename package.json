@@ -9,19 +9,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
-    "fusion:generate": "tsx scripts/generate-fusion.ts",
-    "db:seed-fusion": "node scripts/seed-fusion-cache.mjs",
-    "research:wiki-index": "node scripts/sync-wiki-index.mjs",
-    "research:fetch-wiki": "node scripts/fetch-wiki-sources.mjs",
-    "research:build-catalog": "node scripts/build-quirk-catalog.mjs",
-    "research:fix-descriptions": "node scripts/fix-descriptions.mjs",
-    "research:translate-pt": "node scripts/translate-pt-descriptions.mjs",
-    "research:sync-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
-    "research:fix-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
-    "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs",
-    "research:report:en-like-pt": "node scripts/list-en-like-pt-names.mjs",
-    "research:report:untranslated-pt": "node scripts/list-untranslated-pt-names.mjs",
-    "research:report:same-names": "node scripts/list-same-names.mjs"
+    "fusion:generate": "tsx scripts/generate-fusion.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",

@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { entry, cached } = await generateFusionEntry({
+    const { entry, cached, generated } = await generateFusionEntry({
       idA: parentA,
       idB: parentB,
       seed,
@@ -57,6 +57,7 @@ export async function POST(request: Request) {
         parents: entry.parents as [QuirkId, QuirkId],
       },
       cached,
+      generated,
     })
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)

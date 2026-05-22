@@ -1,5 +1,15 @@
-export const QUIRK_ORIGINS = ['BNHA', 'BNHA_SPINOFF', 'ORIGINAL'] as const
+export const QUIRK_ORIGINS = [
+  'BNHA',
+  'BNHA_VIGILANTES',
+  'BNHA_TEAM_UP',
+  'ORIGINAL',
+] as const
 export type QuirkOrigin = (typeof QUIRK_ORIGINS)[number]
+
+/** Canonical series only (excludes fan fusions). */
+export const CANONICAL_QUIRK_ORIGINS = QUIRK_ORIGINS.filter(
+  (origin): origin is Exclude<QuirkOrigin, 'ORIGINAL'> => origin !== 'ORIGINAL',
+)
 
 export const QUIRK_TYPES = ['Emitter', 'Transformation', 'Mutant'] as const
 export type QuirkType = (typeof QUIRK_TYPES)[number]

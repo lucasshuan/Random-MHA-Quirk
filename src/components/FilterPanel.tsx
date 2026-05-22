@@ -3,7 +3,7 @@ import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
 import {
   QUIRK_FACETS,
-  QUIRK_ORIGINS,
+  CANONICAL_QUIRK_ORIGINS,
   QUIRK_RANGES,
   QUIRK_TYPES,
   type QuirkFilters,
@@ -98,7 +98,7 @@ export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
 
       <CheckboxGroup
         title={t('advanced.origin')}
-        options={QUIRK_ORIGINS}
+        options={CANONICAL_QUIRK_ORIGINS}
         selected={filters.origins}
         labelFor={meta.origin}
         onToggle={(value) =>

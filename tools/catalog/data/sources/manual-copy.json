@@ -1,0 +1,2710 @@
+{
+  "en": {
+    "air-cannon": {
+      "name": "Air Cannon",
+      "description": "Releases compressed air blasts that generate directional impact."
+    },
+    "blackwhip": {
+      "name": "Blackwhip",
+      "description": "Produces dark energy tendrils that can capture, swing, and pull targets."
+    },
+    "brainwashing": {
+      "name": "Brainwashing",
+      "description": "Forces compliant responses from a target after vocal interaction."
+    },
+    "creation": {
+      "name": "Creation",
+      "description": "Converts body resources into non-living matter with known composition."
+    },
+    "dark-shadow": {
+      "name": "Dark Shadow",
+      "description": "Manifests an autonomous shadow-like entity with offensive and defensive utility."
+    },
+    "decay": {
+      "name": "Decay",
+      "description": "Disintegrates touched matter through a rapid chain-like breakdown effect."
+    },
+    "electrification": {
+      "name": "Electrification",
+      "description": "Generates and discharges electrical energy to shock nearby targets."
+    },
+    "engine": {
+      "name": "Engine",
+      "description": "Provides propulsion through biological engine structures in the legs."
+    },
+    "eraser": {
+      "name": "Erasure",
+      "description": "Suppresses target quirk activation while visual contact is maintained."
+    },
+    "fiber-master": {
+      "name": "Fiber Master",
+      "description": "Manipulates textile fibers for binding, shaping, and movement control."
+    },
+    "fierce-wings": {
+      "name": "Fierce Wings",
+      "description": "Controls detached feathers individually for flight, attack, and rescue tasks."
+    },
+    "foldabody": {
+      "name": "Foldabody",
+      "description": "Folds and unfolds body sections to alter shape and avoid damage."
+    },
+    "frog": {
+      "name": "Frog",
+      "description": "Grants amphibian traits including wall adhesion, leaping, and tongue extension."
+    },
+    "hardening": {
+      "name": "Hardening",
+      "description": "Temporarily increases body hardness to improve durability and striking power."
+    },
+    "hellflame": {
+      "name": "Hellflame",
+      "description": "Generates and controls high-temperature flames for offense and propulsion."
+    },
+    "manifest": {
+      "name": "Manifest",
+      "description": "Temporarily manifests biological traits from consumed material sources."
+    },
+    "mind-reading": {
+      "name": "Mind Reading",
+      "description": "Receives active thought information from a target under specific conditions."
+    },
+    "permeation": {
+      "name": "Permeation",
+      "description": "Allows body matter to phase through solid objects while active."
+    },
+    "pop-off": {
+      "name": "Pop Off",
+      "description": "Produces detachable adhesive spheres that stick strongly to contacted surfaces."
+    },
+    "rabbit": {
+      "name": "Rabbit",
+      "description": "Enhances leg strength, agility, and sensory responsiveness with lagomorph traits."
+    },
+    "rewind": {
+      "name": "Rewind",
+      "description": "Reverses a living target to a previous biological state over time."
+    },
+    "sugar-rush": {
+      "name": "Sugar Rush",
+      "description": "Temporarily boosts physical output after metabolizing sugar intake."
+    },
+    "tape": {
+      "name": "Tape",
+      "description": "Ejects adhesive tape from elbows for restraint, traversal, and object handling."
+    },
+    "zero-gravity": {
+      "name": "Zero Gravity",
+      "description": "Negates gravitational pull on touched targets until effect release or overload."
+    },
+    "2d-ify": {
+      "name": "2D-ify",
+      "description": "2D-ify allows the user to trap others inside paintings. Using a picture frame, the user can absorb people and objects, turning them into 2D paintings that are contained within frames."
+    },
+    "absorption-and-release": {
+      "name": "Absorption and Release",
+      "description": "Absorbs energy-based emitter attacks that strike the user, stores them briefly, and releases the same force back toward the attacker. Works against directed energy assaults; physical strikes are not absorbed."
+    },
+    "accelerator-rings": {
+      "name": "Accelerator Rings",
+      "description": "Accelerator Rings allows the user to generate yellow rings of energy from their hands and feet. After a variable delay, the rings release a burst of force in a single direction before dissipating."
+    },
+    "acid": {
+      "name": "Acid",
+      "description": "Acid allows the user to create corrosive liquid from their skin, with it being naturally resistant to the acid they produce."
+    },
+    "acid-sweat": {
+      "name": "Acid Sweat",
+      "description": "Acid Sweat allows the user to secrete an acidic sweat with combustive and explosive properties from their palms."
+    },
+    "air-walk": {
+      "name": "Air Walk",
+      "description": "Lets the user stand on and steer pockets of air, achieving levitation and midair repositioning. Improves mobility for evasion and ranged attacks by freeing the user from ground contact."
+    },
+    "air-wall": {
+      "name": "Air Wall",
+      "description": "Air Wall lets the user create circular shields made of compressed air from their hands in order to shield themselves."
+    },
+    "alchemy": {
+      "name": "Alchemy",
+      "description": "Transmutes the matter of any non-living object the user touches into different materials or finished items. The user can produce simple projectiles or complex constructs such as fully operational drones, limited by available source matter."
+    },
+    "all-for-one": {
+      "name": "All For One",
+      "description": "Allows the user to steal other quirks for personal use or transfer stolen quirks to another person. The user can wield multiple stolen quirks at the same time, stacking their effects."
+    },
+    "amplivolt": {
+      "name": "Amplivolt",
+      "description": "Amplivolt allows its user to conduct and enhance electricity within their body before releasing it afterwards. Once amplified enough, the user is able to fire blasts of stored electricity from their hands."
+    },
+    "anivoice": {
+      "name": "Anivoice",
+      "description": "Lets the user speak with and command animals. The mutation also produces a rock-like head and horns that extend vocal commands over longer distances."
+    },
+    "anthropomorph": {
+      "name": "Anthropomorph",
+      "description": "Anthropomorph allows the user to take a human-sized object (a refrigerator, a desk, etc.) and turn it into an exact lookalike of any given person."
+    },
+    "antigen-swap": {
+      "name": "Antigen Swap",
+      "description": "Antigen Swap allows the user to change their blood type at will."
+    },
+    "arbor": {
+      "name": "Arbor",
+      "description": "Generates and controls wooden tendrils from any part of the body. The wood can sprout, extend over long distances, and be shaped for restraint, defense, or structural support."
+    },
+    "assault-dust": {
+      "name": "Assault Dust",
+      "description": "Generates and manipulates dust, firing it at high speed as dense particulate attacks."
+    },
+    "attraction-of-small-objects": {
+      "name": "Attraction of Small Objects",
+      "description": "Exerts a telekinesis-like pull that draws small objects toward the user. The maximum mass or size limit is unclear, but lightweight metal items and similarly small objects can be yanked from a distance."
+    },
+    "barrier": {
+      "name": "Barrier",
+      "description": "Creates a telekinetic dome barrier around the user. The field can be raised quickly and used to block attacks or slow fast-moving targets that strike it."
+    },
+    "bat": {
+      "name": "Bat",
+      "description": "Grants bat-like traits including arm wings, fangs, pointed ears, high-speed running, and flight."
+    },
+    "beams-from-his-eyes": {
+      "name": "Beams From His Eyes",
+      "description": "Fires concentrated laser beams from the eyes when a visor switch is activated. The user must engage the switch to release a blast at whatever they are looking at."
+    },
+    "beast": {
+      "name": "Beast",
+      "description": "Transforms the user into a large, feral beast with oversized fangs, heavy fur, and greatly increased size. In this form the user gains raw strength and animalistic fighting traits."
+    },
+    "big-fist": {
+      "name": "Big Fist",
+      "description": "Enlarges one or both hands to enormous size almost instantly. The expanded limbs greatly increase striking mass and reach in melee combat."
+    },
+    "big-horn": {
+      "name": "Big Horn",
+      "description": "Grants a pair of bull-like horns on the head. The horns can be detached and used to transmit signals or as sturdy striking tools."
+    },
+    "big-monkey": {
+      "name": "Big Monkey",
+      "description": "Under external enhancement, the user can transform into a giant ape-like form with immense size and strength. Its ordinary effect without amplification has not been clearly shown."
+    },
+    "binging-ball": {
+      "name": "Binging Ball",
+      "description": "Binging Ball allows the user to release small floating spheres with mouths from their body. These spheres can be used as projectiles, moving at very high speeds."
+    },
+    "black": {
+      "name": "Black",
+      "description": "Black allows the user to merge their body into anything that is dark-colored, whether naturally dark, or dark via external circumstances, such as shadows. They can also move themself through the darkness freely."
+    },
+    "black-hole": {
+      "name": "Black Hole",
+      "description": "Black Hole allows the user to create small black holes through their fingers. The black holes suck in and disintegrate any matter at the atomic level, as well as certain forms of energy, such as light."
+    },
+    "blade-tooth": {
+      "name": "Blade-Tooth",
+      "description": "Blade-Tooth grants the user the ability to enlarge and reshape their teeth into sharpened incisors. These razors can vary in both size and shape. The user can manipulate the length and direction of the teeth at will."
+    },
+    "blast": {
+      "name": "Blast",
+      "description": "Fires rapid, continuous blasts of energy from the limbs. The user can channel the output through hands and legs, and specialized gear can help focus the discharges for aimed strikes."
+    },
+    "blazing-hair": {
+      "name": "Blazing Hair",
+      "description": "Controls flames growing from the user's head. Chunks of burning hair can be thrown as fireballs or shaped into short-lived blade-like weapons."
+    },
+    "blood-control": {
+      "name": "Blood Control",
+      "description": "Manipulates the user's own blood after it leaves the body, directing its flow in the open air. The blood can be hardened into rigid structures to bind or immobilize targets."
+    },
+    "bloodcurdle": {
+      "name": "Bloodcurdle",
+      "description": "Temporarily paralyzes opponents after the user ingests their blood sample. Also extends the tongue with papillae used to deliver the effect."
+    },
+    "bloodlet": {
+      "name": "Bloodlet",
+      "description": "Expels the user's blood outward and can later reabsorb it. The user tolerates blood loss that would normally be fatal and can shape expelled blood into weapons or tools."
+    },
+    "blueflame": {
+      "name": "Blueflame",
+      "description": "Produces blue flames from the body at will, with a hotter burn than typical fire-based emitters."
+    },
+    "body-bulk": {
+      "name": "Body Bulk",
+      "description": "Lets the user enlarge their entire body, greatly increasing physical strength and overall mass."
+    },
+    "body-morph": {
+      "name": "Body Morph",
+      "description": "Adds a second pair of arms and grants greatly enhanced physical strength."
+    },
+    "bombify": {
+      "name": "Bombify",
+      "description": "Mutates parts of the body to grow explosive charges of varying size. The quirk behaves like an artificial augmentation tied to implanted bomber cells within the user."
+    },
+    "boomerang": {
+      "name": "Boomerang",
+      "description": "Curves the trajectory of thrown objects so they home in on targets. Affected objects and the user's hands may glow purple when active."
+    },
+    "brawn-boost": {
+      "name": "Brawn Boost",
+      "description": "Raises the user's physical strength for a temporary boost. Multiple copies of the same quirk stacked on one user multiply the strength increase further."
+    },
+    "bristle": {
+      "name": "Bristle",
+      "description": "Greatly hardens the user's hair for offense or defense. Further limits have not been clearly documented."
+    },
+    "brown-bear": {
+      "name": "Brown Bear",
+      "description": "Grants bear-like strength, durability, senses, and large sharp claws."
+    },
+    "bruiser": {
+      "name": "Bruiser",
+      "description": "Charges one limb with stored force; longer charging yields a stronger strike."
+    },
+    "bubble": {
+      "name": "Bubble",
+      "description": "Bubble allows the user to make bubbles, of various sizes, filled with an aroma that they have smelled at least once before."
+    },
+    "bull-head": {
+      "name": "Bull Head",
+      "description": "Bull Head gives the user a pair of bull-like horns on their head."
+    },
+    "bullet-laser": {
+      "name": "Bullet Laser",
+      "description": "Bullet Laser allowed the user to fire purple-colored lasers from their fingertips, which they could fire both as direct blasts, as well as curve said beams straight from their fingers."
+    },
+    "bullhorn": {
+      "name": "Bullhorn",
+      "description": "Not much is known about Bullhorn, but it appears to allow the user's voice to become louder than normal."
+    },
+    "burst": {
+      "name": "Burst",
+      "description": "Makes the user explode in a blinding flash of light. Appears to be a one-time, self-destructive activation."
+    },
+    "cell-activation": {
+      "name": "Cell Activation",
+      "description": "Cell Activation allows its user to activate the cells in their body or another person's body through touch. This increases regeneration, recovery time, and can even improve physical condition."
+    },
+    "cemedine": {
+      "name": "Cemedine",
+      "description": "Cemedine allows the user to spray a glue-like liquid from the holes in their head. Once it hits something, the glue will either harden up and trap whatever it makes contact with or make it sticky and dangerous to touch."
+    },
+    "cement": {
+      "name": "Cement",
+      "description": "Cement gives the user the ability to manipulate cement-based material simply by being in contact with the surface. It does not give them the ability to create new cement, they can only reshape existing cement."
+    },
+    "centipede": {
+      "name": "Centipede",
+      "description": "Extends long centipede-like limbs from the arms, legs, and head for ranged grabs and restraint."
+    },
+    "chameleon": {
+      "name": "Chameleon",
+      "description": "Grants chameleon-like traits including wall climbing, independently rotating eyes, and camouflage coloring. The user can blend into surroundings and strike from concealed positions."
+    },
+    "charging-muscles": {
+      "name": "Charging Muscles",
+      "description": "Charging Muscles allows the user to charge up strength in their muscles, enhancing the strength of an attack into a powerful blow."
+    },
+    "chart": {
+      "name": "Chart",
+      "description": "Creates a holographic tracking display that locates and monitors targets. The user can observe a tracked subject's position and movements in real time."
+    },
+    "chest-hair": {
+      "name": "Chest Hair",
+      "description": "Presumably enhances masculine physique traits based on its name; full capabilities are poorly documented."
+    },
+    "chimera": {
+      "name": "Chimera",
+      "description": "Combines traits from multiple animals, enhancing them and allowing monstrous enlargement of any chosen feature."
+    },
+    "chronostasis": {
+      "name": "Chronostasis",
+      "description": "Grants arrow-shaped hair that extends in straight lines to cut targets and slow them on contact. A forward hair cluster acts as the primary striking point above the forehead."
+    },
+    "clean-bubbler": {
+      "name": "Clean Bubbler",
+      "description": "Clean Bubbler allows the user to create and control soapy water from their body. The stream is strong enough to keep several people in the air."
+    },
+    "cleaning": {
+      "name": "Cleaning",
+      "description": "Secretes a soap-like substance that weakens or nullifies other quirks when scrubbed onto targets."
+    },
+    "clones": {
+      "name": "Clones",
+      "description": "Creates clones of the user from a glowing viscous fluid released from the mouth. Dozens of copies can exist at once, though they typically dissipate after taking damage or after a short time."
+    },
+    "cloud": {
+      "name": "Cloud",
+      "description": "Cloud allowed the user to create different-sized clouds, of varying densities, enough to be touched and even to hold up the weight of one or several people."
+    },
+    "comic": {
+      "name": "Comic",
+      "description": "Comic allows the user to materialize onomatopoeia into the real world in the form of giant Japanese letters by speaking them. The onomatopoeia is manifested with the same effects as the sound they're based on."
+    },
+    "compress": {
+      "name": "Compress",
+      "description": "Shrinks anything inside a touched spherical zone into a small marble without damage. Requires hand contact to activate."
+    },
+    "confession": {
+      "name": "Confession",
+      "description": "After the user asks a question, the target is compelled to answer truthfully. The effect reveals thoughts, secrets, and intentions the victim would otherwise conceal."
+    },
+    "conjure": {
+      "name": "Conjure",
+      "description": "Conjure allows the user to target any relatively small object and warp it straight into their hand."
+    },
+    "control-glass": {
+      "name": "Control Glass",
+      "description": "Controls and reshapes large amounts of glass in the surrounding area. The user can shift glass between solid and liquid states and form blades or barriers from it."
+    },
+    "control-horn": {
+      "name": "Control Horn",
+      "description": "Lets the user mind-control cattle within range. Hundreds of animals can be directed at once for stampedes or coordinated movement."
+    },
+    "copy": {
+      "name": "Copy",
+      "description": "Lets the user temporarily wield another person's quirk after touching them, requiring only a few strands of hair."
+    },
+    "cow": {
+      "name": "Cow",
+      "description": "Cow allows the user to alter their body with the characteristics of a cow. This includes hooves, horns, and the skin of a cow. This increases the user's speed and strength relative to that of a cow."
+    },
+    "crystallize": {
+      "name": "Crystallize",
+      "description": "Crystallize allows the user to grow a large number of crystals from their body, completely covering their skin with them. The crystals are shown to be both durable and able to grow near-instantaneously."
+    },
+    "cubism": {
+      "name": "Cubism",
+      "description": "Cubism allows the user to transform others into 3D versions of Cubism artwork."
+    },
+    "curse": {
+      "name": "Curse",
+      "description": "Turns the entire body into paper talismans, making the user extremely light. Paper strips can be launched as sharp strands."
+    },
+    "danger-sense": {
+      "name": "Danger Sense",
+      "description": "Danger Sense allows the user to detect any potential threats in the surrounding area, thus giving the user the opportunity to properly react to them quickly, essentially granting them a sixth sense."
+    },
+    "dark-ball": {
+      "name": "Dark Ball",
+      "description": "Releases clusters of black spheres outlined in purple that emit destructive dark energy. The orbs can be launched as ranged attacks and combined with other emitter effects."
+    },
+    "darkness": {
+      "name": "Darkness",
+      "description": "Manifests a misty dark purple fluid from the fingers and soles that spreads across terrain. Anything coated by the fluid breaks down and collapses into decayed matter."
+    },
+    "day-dream": {
+      "name": "Day Dream",
+      "description": "Day Dream allows the user to make any person they look at fall unconscious, or be put into a controllable, hypnotic state for a short period of time."
+    },
+    "delay-spot": {
+      "name": "Delay Spot",
+      "description": "Creates a semi-spherical bubble that slows everything inside to a crawl, including people and projectiles. Bullets lose most of their speed while trapped in the field."
+    },
+    "despot": {
+      "name": "Despot",
+      "description": "Extrudes control threads that puppeteer other people's bodies; dozens of victims can be guided at once."
+    },
+    "diesel-engine": {
+      "name": "Diesel Engine",
+      "description": "Diesel Engine turns the user's head and their entire upper body into the locomotive of a diesel-powered train, and grants him increased running speed."
+    },
+    "dog": {
+      "name": "Dog",
+      "description": "Greatly enhances hearing and smell. The user can detect distant sounds and estimate how many people are present in a large area such as a forest."
+    },
+    "double": {
+      "name": "Double",
+      "description": "Creates up to two duplicates of anything touched, including people and objects. The copies can fight or assist until dismissed or destroyed."
+    },
+    "dragon": {
+      "name": "Dragon",
+      "description": "Dragon allows the user to transform into a dragon, a powerful mythological creature. This form grants them abilities commonly associated with dragons, including flight, powerful jaws and claws."
+    },
+    "dragon-breath": {
+      "name": "Dragon Breath",
+      "description": "Expels fire from the mouth for ranged attacks. Fueling the flames requires consuming alcohol shortly before use."
+    },
+    "dupli-arms": {
+      "name": "Dupli-Arms",
+      "description": "Dupli-Arms grants the user a set of arm-like tentacles adjacent to their arms that can transform into duplicates of their other body parts."
+    },
+    "dust": {
+      "name": "Dust",
+      "description": "Produces ash-like dust from the body. The cloud can blind and irritate foes when thrown at the eyes, nose, and mouth."
+    },
+    "eagle": {
+      "name": "Eagle",
+      "description": "Grants an eagle-like body plan and presumably avian senses and mobility. The full combat capabilities of the transformation have not been fully documented."
+    },
+    "earphone-jack": {
+      "name": "Earphone Jack",
+      "description": "Extends long, controllable earlobes that function like audio cables. The tips can plug into objects or surfaces to transmit sound, vibration, or shock."
+    },
+    "earth-flow": {
+      "name": "Earth Flow",
+      "description": "Manipulates nearby earth and stone, molding it into walls, pillars, or other shapes. Large-scale constructs can be raised quickly for offense, defense, or terrain control."
+    },
+    "eel": {
+      "name": "Eel",
+      "description": "Lets the user transform into a medium-sized eel suited to aquatic movement. When amplified externally, the form can swell into a huge eel-like body with extremely slick skin."
+    },
+    "elasticity": {
+      "name": "Elasticity",
+      "description": "Makes any touched object rubbery and elastic. The user can stretch, bounce, and redirect items for traps, mobility, or improvised weapons."
+    },
+    "electric-charge": {
+      "name": "Electric Charge",
+      "description": "Collects and manipulates ambient electrical current. Stored electricity can be discharged in attacks or used to jam nearby electronic signals."
+    },
+    "electric-eel": {
+      "name": "Electric Eel",
+      "description": "An evolved form of an eel-type transformation that adds powerful electrical discharge to the aquatic body. The user can attack with high-voltage shocks while in the altered shape."
+    },
+    "electricity-generation": {
+      "name": "Electricity Generation",
+      "description": "Produces and manipulates electricity, firing it as aimed lightning bolts rather than only through direct contact. Unlike simple contact shocks, the user can strike distant targets with concentrated arcs."
+    },
+    "electromagnetic-bullets": {
+      "name": "Electromagnetic Bullets",
+      "description": "Generates an electromagnetic field that boosts the force and impact of thrown objects. Any projectile launched while the field is active hits with amplified power."
+    },
+    "endurance": {
+      "name": "Endurance",
+      "description": "Endurance gives the user the ability to convert their mobility and morale into physical energy, granting the user a significant increase in stamina and endurance, effectively transforming them into \"a stamina beast\"."
+    },
+    "energy-saver": {
+      "name": "Energy Saver",
+      "description": "Energy Saver allows the user's body to function on very small amounts of nutrition and hydration, as well as allow them to process without much sleep."
+    },
+    "energy-suck": {
+      "name": "Energy Suck",
+      "description": "By making physical contact and then inhaling, the user can absorb the vitality of others, not only giving themselves more stamina, but also gaining an increase in size and strength."
+    },
+    "enfeeble": {
+      "name": "Enfeeble",
+      "description": "Enfeeble allows the user to stare into someone's eyes and paralyze their muscles for three seconds. However, the subject is still conscious while being immobilized."
+    },
+    "erasure-spot": {
+      "name": "Erasure Spot",
+      "description": "Creates a dome-shaped energy wave that deactivates the quirks of everyone inside its range."
+    },
+    "eruption": {
+      "name": "Eruption",
+      "description": "Eruption allows the user to burn their fat to produce a lava-like substance, that's as hot as magma, and eject it from their body."
+    },
+    "explosion": {
+      "name": "Explosion",
+      "description": "Explosion allows the user to excrete nitroglycerin-like sweat from their palms and ignite it at will to create explosions of various sizes."
+    },
+    "extend-o-hair": {
+      "name": "Extend-o-Hair",
+      "description": "Controls the length, shape, and movement of all body hair. The hair is extremely tough and effectively indestructible, allowing binding, defense, and striking uses."
+    },
+    "extra-arms": {
+      "name": "Extra Arms",
+      "description": "Extra Arms gives the user an extra set of arms."
+    },
+    "fa-jin": {
+      "name": "Fa Jin",
+      "description": "Builds kinetic energy through repetitive movement, visible as red glowing power that can be stored and released in bursts."
+    },
+    "fan": {
+      "name": "Fan",
+      "description": "Fan allows the user to create wind or even tornadoes by spinning their wrists."
+    },
+    "fast-fist": {
+      "name": "Fast Fist",
+      "description": "The user of Fast Fist can move at least their hands extremely quickly, allowing them to hit up to 100 times in less than a second."
+    },
+    "fat-absorption": {
+      "name": "Fat Absorption",
+      "description": "Fat Absorption grants the user the ability to adhere any objects to their body and make them sink into their body fat upon contact with it."
+    },
+    "fierce-gains": {
+      "name": "Fierce Gains",
+      "description": "Hardens the user's muscles to exceptionally dense, armor-like levels. Works well with other durability effects and pain suppression to sustain prolonged melee combat."
+    },
+    "fire-cracker": {
+      "name": "Fire Cracker",
+      "description": "Lets the user tear off portions of their hair and detonate them like firecrackers. The bursts are strong enough to damage structures and stagger nearby targets."
+    },
+    "flash-bang-sweat": {
+      "name": "Flash Bang Sweat",
+      "description": "Secretes a sweat that flashes brightly and produces a loud detonation on impact. The substance can fill projectiles or gear to create ranged flash-bang effects."
+    },
+    "flight": {
+      "name": "Flight",
+      "description": "Grants high-speed flight and levitation. An aerodynamic barrier can extend over anything in contact with the user, shielding passengers from heat, cold, and physical hazards."
+    },
+    "float": {
+      "name": "Float",
+      "description": "Lets the user levitate and hover in midair. When combined with a large stockpile of borrowed power, the effect becomes true high-speed flight rather than simple hovering."
+    },
+    "fly-swatter": {
+      "name": "Fly Swatter",
+      "description": "Projects concussive energy waves beyond normal arm reach. The user typically swings an arm at high speed to launch the wave toward a distant target."
+    },
+    "flying-squirrel": {
+      "name": "Flying Squirrel",
+      "description": "Glides through the air using wing-like membranes on the arms. The user can carry roughly one additional person's weight on their back while gliding."
+    },
+    "food": {
+      "name": "Food",
+      "description": "Allows the user to bite, chew, and digest virtually any material they can touch. Hard or hazardous objects can be consumed with little resistance from the material itself."
+    },
+    "foresight": {
+      "name": "Foresight",
+      "description": "Foresight granted the user the ability to accurately predict all of the target's future moves and actions for an entire hour. Foresight activated by first touching a target and then making eye contact with them."
+    },
+    "free-walker": {
+      "name": "Free Walker",
+      "description": "The exact limits are undocumented, but the quirk appears to let the user move their legs continuously without fatigue. It primarily enhances sustained running or marching endurance."
+    },
+    "frost": {
+      "name": "Frost",
+      "description": "Frost gives the user the capability of manipulating and producing ice around their body, being able to coat themselves in ice and blast it out."
+    },
+    "gale-gale": {
+      "name": "Gale Gale",
+      "description": "Manipulates wind and wraps it around the body for flight and offense. Concentrated gusts around the user can repel attacks and throw targets off balance despite a harmless appearance."
+    },
+    "gas": {
+      "name": "Gas",
+      "description": "Generates poisonous, sleep-inducing gas from the body. The user can release enough purple fog to blanket a large outdoor area."
+    },
+    "gatling": {
+      "name": "Gatling",
+      "description": "Forms gun-like organs in the arms that fire keratin claw projectiles. The shots are suited for rapid, close-to-mid-range offense."
+    },
+    "gearshift": {
+      "name": "Gearshift",
+      "description": "Gearshift allows the user to change the speed at which things accelerate through space. It is even capable of changing speeds while ignoring the laws of inertia."
+    },
+    "gecko": {
+      "name": "Gecko",
+      "description": "Grants a reptilian body and powerful wall-clinging adhesion. The user can stay attached to sheer surfaces and moving vehicles without slipping."
+    },
+    "gigantic-spinning-flying-turtle": {
+      "name": "Gigantic Spinning Flying Turtle",
+      "description": "Appears to grant turtle-like flight and spinning movement, though its full limits are unclear. It may force exaggerated size or constant rotation when active."
+    },
+    "gigantification": {
+      "name": "Gigantification",
+      "description": "Drastically increases the user's body size to gigantic levels. In this state the user gains overwhelming mass and reach against smaller opponents."
+    },
+    "glamour": {
+      "name": "Glamour",
+      "description": "Creates short-lived visual and auditory illusions. The user releases a mist from the mouth that shapes into false scenery, voices, or disguises."
+    },
+    "glide-and-slide": {
+      "name": "Glide and Slide",
+      "description": "Lets the user skate rapidly along solid surfaces by emitting repulsive force from the palms and soles. Several limb contact points are needed to stay balanced; pushing gestures similar to roller skating build speed."
+    },
+    "glycerin": {
+      "name": "Glycerin",
+      "description": "Secretes a smooth, moisturizing liquid through the skin. The effect keeps skin supple and can maintain a youthful appearance regardless of age."
+    },
+    "good-ear": {
+      "name": "Good Ear",
+      "description": "Extends hearing into ultrasonic ranges beyond normal human perception. The user can pick up distant signals, covert transmissions, and approximate how many people are nearby from sound alone."
+    },
+    "grasshopper": {
+      "name": "Grasshopper",
+      "description": "Grasshopper allows the user the ability to transform into a large humanoid grasshopper, increasing their physical capabilities."
+    },
+    "gyrate": {
+      "name": "Gyrate",
+      "description": "Spins any body part at extreme speed, turning limbs into drill-like weapons. The rotation greatly boosts piercing power in close combat."
+    },
+    "hair-control": {
+      "name": "Hair Control",
+      "description": "Manipulates the user's hair for offense, defense, and fine control. Strands can extend, harden, and be fired like bullets."
+    },
+    "hair-raiser": {
+      "name": "Hair-Raiser",
+      "description": "Extends and hardens strands of the user's hair for melee use. Torn-off locks can be wielded as rigid blades or short spears."
+    },
+    "half-cold-half-hot": {
+      "name": "Half-Cold Half-Hot",
+      "description": "Half-Cold Half-Hot allows the user to generate ice, frost, and cold from the right side of their body, and fire, flames, and heat from the left."
+    },
+    "hardflame-fan": {
+      "name": "Hardflame Fan",
+      "description": "Generates layered walls of fire for defense over parts of the body. The flames can also manifest as a viscous, glowing green liquid in some uses."
+    },
+    "heal": {
+      "name": "Heal",
+      "description": "Heal allows the user to amplify and quicken their target's natural healing process by extending their lips and kissing them."
+    },
+    "heavy-payload": {
+      "name": "Heavy Payload",
+      "description": "Heavy Payload seemingly increases the damage output of the user's attacks."
+    },
+    "helical-scythe": {
+      "name": "Helical Scythe",
+      "description": "Helical Scythe grants the user large, red appendages on their fingers and head, which they are able to extend and manipulate like tendrils."
+    },
+    "high-specs": {
+      "name": "High Specs",
+      "description": "High Specs grants the user unparalleled intelligence, perception, reactions and comprehension that far surpasses that of any human."
+    },
+    "hologram": {
+      "name": "Hologram",
+      "description": "Projects holographic images of anything the user imagines, including enormous constructs visible from far away. The illusions are visual only unless paired with other effects."
+    },
+    "homing": {
+      "name": "Homing",
+      "description": "Homing allows the user to lock on to any target that they can see within six hundred meters of themselves and make any projectile they release chase after said target."
+    },
+    "horn-cannon": {
+      "name": "Horn Cannon",
+      "description": "Detaches and launches the horns as regenerating projectiles. Multiple horns can be fired in succession before a new set regrows on the head."
+    },
+    "hula-hoop": {
+      "name": "Hula Hoop",
+      "description": "After raising their arm, the user can generate a large hoop of energy that they can throw at their opponent to attack them."
+    },
+    "hydra": {
+      "name": "Hydra",
+      "description": "Hydra allowed the user to summon gigantic, serpentine shark-like creatures from their back that they can control at will. The creatures are large enough to crush a person in their jaws."
+    },
+    "hypertrophy": {
+      "name": "Hypertrophy",
+      "description": "Enlarges parts of the body, most commonly an arm, to massive proportions on demand. The growth sharply increases reach and striking mass for melee attacks."
+    },
+    "ice-ply": {
+      "name": "Ice Ply",
+      "description": "Ice Ply allows the user to freely manipulate any and all nearby ice. They can freely gather, move, attack with, and defend with the ice they control."
+    },
+    "ignition": {
+      "name": "Ignition",
+      "description": "Produces fire abilities with a small flame maintained on top of the head. The user can exhale powerful flares from the mouth for ranged attacks."
+    },
+    "impact-recoil": {
+      "name": "Impact Recoil",
+      "description": "Impact Recoil allows the user to reverse the impact caused by an opposing physical force, damaging the opposition instead."
+    },
+    "impure-beam": {
+      "name": "Impure Beam",
+      "description": "Fires a wide, destructive beam of light capable of leveling large areas in a single shot. One of the most devastating long-range emitter attacks when fully charged."
+    },
+    "incite": {
+      "name": "Incite",
+      "description": "Infuses the user's voice with an electromagnetic pulse. Listeners who accept the user as a leader gain a significant boost to physical and mental performance."
+    },
+    "infrared": {
+      "name": "Infrared",
+      "description": "Grants infrared perception that maps heat across the surroundings. The user can sense people, machines, and environmental changes without normal line of sight."
+    },
+    "invisibility": {
+      "name": "Invisibility",
+      "description": "Invisibility causes the user to unconsciously refract the light that hits them, granting them a completely invisible body."
+    },
+    "iq": {
+      "name": "IQ",
+      "description": "IQ allows the user to enhance their intellect by multiplying their IQ, and become a super-genius temporarily after consuming tea and closing their eyes to think."
+    },
+    "iron-ball": {
+      "name": "Iron Ball",
+      "description": "Produces and launches iron spheres from the knuckles. The user can vary each ball's mass from small shot to boulder-sized projectiles."
+    },
+    "iron-claws": {
+      "name": "Iron Claws",
+      "description": "Turns the fingertips into metal claws suited for digging and tearing. The claws can burrow through soil and rip through tough materials in close combat."
+    },
+    "iron-club": {
+      "name": "Iron Club",
+      "description": "Transforms the arms into spiked iron clubs. The clubs can crush stone and deliver heavy blunt force blows."
+    },
+    "jet": {
+      "name": "Jet",
+      "description": "Jet grants the user the ability to expel air from open holes on the soles of their feet. This allows them to fly around a limited range as well as move faster than the eye can follow, even on the ground."
+    },
+    "kaiju": {
+      "name": "Kaiju",
+      "description": "Its ordinary effect is poorly documented, but under external amplification the user becomes a colossal dinosaur-like creature with immense destructive power."
+    },
+    "kinetic-booster": {
+      "name": "Kinetic Booster",
+      "description": "Increases the kinetic energy the user generates and releases in movement and strikes. Stacking multiple copies of the quirk multiplies the boost further."
+    },
+    "king-slam": {
+      "name": "King Slam",
+      "description": "Materializes a large hammer from nowhere and swings or throws it at targets. The weapon appears fully formed and ready to strike without preparation."
+    },
+    "landmine": {
+      "name": "Landmine",
+      "description": "Bestows explosive properties on anything the user touches. Detonations can be triggered at will after the charge is set."
+    },
+    "larceny": {
+      "name": "Larceny",
+      "description": "Instantly pulls any possessed object from a target into the user's hands, including constructs created by other quirks."
+    },
+    "laser": {
+      "name": "Laser",
+      "description": "Laser allowed the user to fire energy beams from their right eye."
+    },
+    "leafipulation": {
+      "name": "Leafipulation",
+      "description": "Leafipulation allows its user to manipulate leaves from the plant life around them, and fire them off as projectiles toward the user's opponents."
+    },
+    "leap": {
+      "name": "Leap",
+      "description": "Propels the user in enormous jumps across great height and distance. It is not true flight; the user still needs a surface to launch from."
+    },
+    "life-force": {
+      "name": "Life Force",
+      "description": "Life Force doubles the user's life span, causing them to age at a slower rate and making them look much younger than they really are."
+    },
+    "lion": {
+      "name": "Lion",
+      "description": "Grants lion-like strength, speed, and reflexes. The user can unleash a powerful roar that disrupts certain sound-based attacks."
+    },
+    "liquification": {
+      "name": "Liquification",
+      "description": "Liquification allows the user to liquefy their body."
+    },
+    "lizard": {
+      "name": "Lizard",
+      "description": "Lizard grants the user a reptilian appearance, with a tail, a tongue with two tines, and a body covered in scales."
+    },
+    "lizard-tail-splitter": {
+      "name": "Lizard Tail Splitter",
+      "description": "Splits the body into telekinetically controlled pieces. Detached segments can move independently for scouting, restraint, or multi-angle attacks."
+    },
+    "lock-down": {
+      "name": "Lock Down",
+      "description": "Anchors anything touched to a fixed point in space, effectively freezing it in place. Activated through contact points on the user's fingers."
+    },
+    "longbow": {
+      "name": "Longbow",
+      "description": "Transforms the thumb and pinky of one hand into a bow that can launch virtually any small object with precise aim. Ammunition can be improvised from nearby items."
+    },
+    "longleg": {
+      "name": "Longleg",
+      "description": "Longleg allows the user to extend their legs."
+    },
+    "love": {
+      "name": "Love",
+      "description": "Love allows the user to power up a target by confessing their feelings for them. The more intense the user's love is, the stronger the power transmitted to the target is."
+    },
+    "luminescence": {
+      "name": "Luminescence",
+      "description": "Emits bright light from the body, even from infancy. The output typically grows stronger as the user matures."
+    },
+    "mad-gluttony": {
+      "name": "Mad Gluttony",
+      "description": "Mad Gluttony allows the user to devour objects using the giant mouth in their stomach, with it being able to quickly inhale, crunch, and destroy whatever is in their path."
+    },
+    "magic": {
+      "name": "Magic",
+      "description": "Creates energy rings from the wrist that can capture and move people or objects. While a target remains inside a ring, the user can change its orbital speed at will."
+    },
+    "magnetism": {
+      "name": "Magnetism",
+      "description": "Magnetizes people within about 4.5 meters of the user. The effect can target the whole body or specific limbs and torso sections."
+    },
+    "mantis": {
+      "name": "Mantis",
+      "description": "Grants mantis-like limbs and combat traits, including bladed forearms and agile striking. Under amplification the form becomes larger and more monstrous."
+    },
+    "meatball": {
+      "name": "Meatball",
+      "description": "Meatball grants the user the ability to manipulate raw human flesh. The user can manipulate their own flesh, giving them the ability to separate their limbs and control them at will."
+    },
+    "metal-manipulation": {
+      "name": "Metal Manipulation",
+      "description": "Controls existing metal the user touches, reshaping it into barriers, weapons, or entangling structures. The effect applies to metal already present in the environment."
+    },
+    "mimicry": {
+      "name": "Mimicry",
+      "description": "Mimicry allows the user to transfer their own body and mind into solid objects, and manipulate them as though the object was their actual body."
+    },
+    "mind-reaper": {
+      "name": "Mind Reaper",
+      "description": "On touch, forces the target to blurt out secrets, shameful memories, or thoughts they want hidden. The revelations continue until the contact ends or the victim collapses."
+    },
+    "mole": {
+      "name": "Mole",
+      "description": "Mole allows the user to grow long, sharp claws from their fingers, spines on their back, and a shield visor on their face, to help them dig through the Earth, just like a mole."
+    },
+    "monster-cat": {
+      "name": "Monster Cat",
+      "description": "Monster Cat allows the user to merge with an object or machinery, assume its shape, and control it completely. It can also be defused from said object."
+    },
+    "monster-summon": {
+      "name": "Monster Summon",
+      "description": "Creates multiple monsters resembling dungeon-game enemies, usually blob-shaped bodies with large mouths and varied designs. The summons can attack independently under the user's direction."
+    },
+    "muddied": {
+      "name": "Muddied",
+      "description": "Muddied grants the user the ability to cause minor amnesia to a person if they make contact with their head, making their memories of the previous five minutes and the next five minutes vague."
+    },
+    "multiplier": {
+      "name": "Multiplier",
+      "description": "Grows additional arms from the torso, multiplying close-range striking options. Each limb can act independently in combat."
+    },
+    "mummification": {
+      "name": "Mummification",
+      "description": "Controls the red bandages wrapped around the user to ensnare objects and wrap them into humanoid mummy puppets. The created mummies can be commanded to fight or move."
+    },
+    "muscle-augmentation": {
+      "name": "Muscle Augmentation",
+      "description": "Amplifies and reshapes muscle tissue inside or outside the body for immense strength, speed, and durability. The user can bulk up selectively for offense or defense."
+    },
+    "muscle-expansion": {
+      "name": "Muscle Expansion",
+      "description": "Muscle Expansion allows the user to expand and strengthen their muscles, granting them a significant increase in physical strength."
+    },
+    "mushroom": {
+      "name": "Mushroom",
+      "description": "Mushroom allows the user to generate and spread fungus spores from their body. Once these spores make contact with a solid surface, they will quickly grow into full-grown mushrooms."
+    },
+    "mutant-bovini": {
+      "name": "Mutant Bovini",
+      "description": "Mutant Bovini allows its user to fire off lasers from their face."
+    },
+    "navel-laser": {
+      "name": "Navel Laser",
+      "description": "Fires bright laser beams from the navel. The rays are precise, flashy, and suited for sustained ranged offense."
+    },
+    "neutralization": {
+      "name": "Neutralization",
+      "description": "Temporarily nullifies another person's quirk through touch from the user's right arm. The suppression lasts while contact is maintained or for a short period afterward."
+    },
+    "new-order": {
+      "name": "New Order",
+      "description": "New Order allowed the user to set a rule onto their surroundings after touching the target and calling out their name, allowing them to manipulate and bestow new properties onto themselves and the world around them."
+    },
+    "octopus": {
+      "name": "Octopus",
+      "description": "Octopus provides the user with the physiology and skills of an octopus, such as multiple elastic appendages, suckers and the ability to spit ink from their siphon-like mouth."
+    },
+    "octopus-squid": {
+      "name": "Octopus (Squid)",
+      "description": "Octopus (Squid) gives the user the same number of limbs as a cephalopod creature, making them appear like a humanoid octopus or squid."
+    },
+    "one-for-all": {
+      "name": "One For All",
+      "description": "Stockpiles power across generations and can be passed to a chosen successor. Grants overwhelming strength, speed, and energy output, but full mastery demands long training and bodily adaptation."
+    },
+    "orcinus": {
+      "name": "Orcinus",
+      "description": "Orcinus is the summation of the user's many Orca-related abilities. They can do anything a regular orca can do, even on land."
+    },
+    "outburst": {
+      "name": "Outburst",
+      "description": "Forces people nearby into intense, uncontrollable laughter that leaves them helpless. The effect spreads to anyone within range who hears the induced laughter."
+    },
+    "overclock": {
+      "name": "Overclock",
+      "description": "Accelerates the user to supersonic speed where the world appears frozen. Perception and reaction keep pace with the movement, enabling rapid strikes and rescues."
+    },
+    "overhaul": {
+      "name": "Overhaul",
+      "description": "Disassembles and reassembles matter touched with bare hands at a near-molecular level. The user can destroy targets, restore them, or reconfigure them into new shapes and weapons."
+    },
+    "overmodification": {
+      "name": "Overmodification",
+      "description": "Boosts a compatible person's quirk beyond its normal limits and may add new sub-abilities. The amplification depends on how well the target's quirk aligns with the user."
+    },
+    "pain-blocker": {
+      "name": "Pain Blocker",
+      "description": "Prevents the user from feeling internal or external pain. Combined with high endurance, this allows continued fighting despite severe injury."
+    },
+    "papyrus": {
+      "name": "Papyrus",
+      "description": "Flattens the user's body into a thin, flexible sheet like paper. The user can stretch and fold limbs for reach, slipping through narrow gaps."
+    },
+    "physical-enhancement": {
+      "name": "Physical Enhancement",
+      "description": "Raises overall physical ability when activated, often shown as a green flame-like aura around the body. Strength, speed, and toughness increase for a limited time."
+    },
+    "plant": {
+      "name": "Plant",
+      "description": "Plant allows the user to transform their body parts into plant structures. These structures have properties which can heal their allies."
+    },
+    "playtime": {
+      "name": "Playtime",
+      "description": "Its normal function is unclear, but under external amplification the user swells to gigantic size while gaining toy-like or distorted body traits similar to gigantification."
+    },
+    "pliabody": {
+      "name": "Pliabody",
+      "description": "Stretches and flattens the user's body at will for extreme flexibility. Useful for slipping through narrow gaps and rescue extraction."
+    },
+    "pointer": {
+      "name": "Pointer",
+      "description": "After spinning in place, the user's limbs involuntarily point toward a sought person, place, or object. The quirk acts like a living compass until the target is found."
+    },
+    "poison-gas": {
+      "name": "Poison Gas",
+      "description": "Generates a toxic fog that sickens anyone who breathes it. If not vented regularly, the gas builds up inside the user's body."
+    },
+    "poltergeist": {
+      "name": "Poltergeist",
+      "description": "Telekinetically moves nearby objects and people without direct contact. Large groups of debris can be lifted and hurled as barrages."
+    },
+    "polygraph": {
+      "name": "Polygraph",
+      "description": "Polygraph allows the user to judge the authenticity and genuineness of their target's words, telling them if they speak the truth or if they are lying."
+    },
+    "power": {
+      "name": "Power",
+      "description": "Power grants its user the ability to build up tremendous raw power in their body, giving them incredible strength that's strong enough to smash through a reinforced concrete building."
+    },
+    "power-stock": {
+      "name": "Power Stock",
+      "description": "Power Stock has the ability to stockpile power which the user can harness for incredible bursts of power and speed."
+    },
+    "propagation": {
+      "name": "Propagation",
+      "description": "Duplicates and grows extra body parts across the user's surface, multiplying strength with each copy. More duplicates mean greater combined power."
+    },
+    "quad-arms": {
+      "name": "Quad Arms",
+      "description": "Adds a second pair of functional arms. The extra limbs improve multitasking, grappling, and hand-to-hand combinations."
+    },
+    "queen-beam": {
+      "name": "Queen Beam",
+      "description": "Queen Beam allows the user to fire a straight-travelling beam of energy from their face. When used, a pink heart appears over the user's face."
+    },
+    "queen-bee": {
+      "name": "Queen Bee",
+      "description": "Centers on a parasitic bee that can invade a host through the eye socket and take control of the body. The swollen abdomen houses the controlling organism."
+    },
+    "radio-waves": {
+      "name": "Radio Waves",
+      "description": "Radio Waves allows the user to emit an electromagnetic pulse of radio waves to disrupt electrical appliances and cause communicators to malfunction."
+    },
+    "radio-waves-bombers": {
+      "name": "Radio Waves (Bombers)",
+      "description": "Emits electromagnetic pulses strong enough to disrupt electronics and communications across an area. Power grids and radio gear fail while the pulse persists."
+    },
+    "razor-sharp": {
+      "name": "Razor Sharp",
+      "description": "Produces large blades from anywhere on the body. Blade shape, size, and angle can be varied for slashing or piercing attacks."
+    },
+    "reflect-flect-turn": {
+      "name": "Reflect (Flect Turn)",
+      "description": "Reflect allows the user to absorb energy and send it back in the opposite direction. When something strikes them, a spiraling wave of energy forms from behind, and the same attack is rebound back at the opponent."
+    },
+    "reflect-tomura-shigaraki": {
+      "name": "Reflect (Tomura Shigaraki)",
+      "description": "Reflect allows the user to copy any attack they are hit with and recreate the same attack themselves at the same strength. They can absorb multiple sources at the same time, but it releases in one direction all at once."
+    },
+    "rifle": {
+      "name": "Rifle",
+      "description": "Extends a functional rifle barrel from the right elbow cavity. The user folds the arm to open the port and fire ballistic shots with normal gun mechanics."
+    },
+    "rivet": {
+      "name": "Rivet",
+      "description": "Generates rivet-like metal growths from the arms that can be launched or used in melee. The exact size and number of rivets can vary between users."
+    },
+    "rivet-stab": {
+      "name": "Rivet Stab",
+      "description": "Produces black tendrils with red fractured lines from the fingers and other body surfaces. The tendrils pierce, bind, and whip targets at range or in melee."
+    },
+    "rocket-thrust": {
+      "name": "Rocket Thrust",
+      "description": "Rocket Thrust allows the users to shoot their right fists at people at very high speeds."
+    },
+    "rupture": {
+      "name": "Rupture",
+      "description": "Rupture allows the user to detonate their own body."
+    },
+    "saber": {
+      "name": "Saber",
+      "description": "Saber allows the user to transform portions of their body into sword-shaped appendages, which they can use offensively."
+    },
+    "sandstorm": {
+      "name": "Sandstorm",
+      "description": "Transforms the upper body into manipulable sand. The user can reshape the sand mass into weapons, shields, or flowing attacks."
+    },
+    "scalemail": {
+      "name": "Scalemail",
+      "description": "Covers the body with sharp armored scales that boost strength and defense. The scales are typically dark red and act as both armor and cutting surfaces."
+    },
+    "scales": {
+      "name": "Scales",
+      "description": "Scales allows the user to form hard scales throughout their entire body, which they can either use as protective armor, or fire them off as projectiles."
+    },
+    "scanning": {
+      "name": "Scanning",
+      "description": "Detects and identifies nearby quirks to a limited degree and estimates power level through heat-signature-like vision."
+    },
+    "scatter": {
+      "name": "Scatter",
+      "description": "Scatter allows the user to split up and multiply projectiles while firing them, increasing the strength and radius of long-range attacks."
+    },
+    "search": {
+      "name": "Search",
+      "description": "Search allows the user to monitor and observe up to a hundred people at a time. This includes knowing their locations and weak points."
+    },
+    "self-detonation": {
+      "name": "Self-Detonation",
+      "description": "Self-Detonation grants the user the ability to self-destruct through a large explosion that is generated within their bodies."
+    },
+    "serpentress": {
+      "name": "Serpentress",
+      "description": "Serpentress grants the user a trio of living snakes as part of their hair, which are implied to be a part of their biology."
+    },
+    "shame": {
+      "name": "Shame",
+      "description": "Grows stronger as the user becomes more embarrassed, converting humiliation into physical power. Deliberate exposure or ridicule can spike output dramatically."
+    },
+    "shield": {
+      "name": "Shield",
+      "description": "Shield allowed the user to manifest stone-like, hexagonal shields from their body that could be utilized both defensively and offensively."
+    },
+    "shock-absorption": {
+      "name": "Shock Absorption",
+      "description": "Dampens the force of physical impacts that hit the user, canceling or weakening many blunt attacks. Does not stop cutting or piercing unless paired with other defenses."
+    },
+    "shoulder-mounted-jets": {
+      "name": "Shoulder-Mounted Jets",
+      "description": "Deploys four retractable jet boosters on the upper back for burst flight and rapid repositioning. The thrusters fold away when not in use."
+    },
+    "size": {
+      "name": "Size",
+      "description": "Changes the size of objects the user touches, shrinking or enlarging them. Activation requires pressing all five fingertips against the target at once."
+    },
+    "slice": {
+      "name": "Slice",
+      "description": "Hardens and sharpens the user's hair for cutting attacks. Strands can be wielded like blades or fired as needle-like projectiles with high penetration."
+    },
+    "slide-and-glide": {
+      "name": "Slide and Glide",
+      "description": "Slide and Glide allows the user to project an repulsive/attractive force from their hands and feet. Repulsive energy emits a blue glow , while attractive energy emits a green glow."
+    },
+    "sloshed": {
+      "name": "Sloshed",
+      "description": "Sloshed causes anyone who approaches the user to lose their sense of balance, falling into a state similar to inebriation."
+    },
+    "smile": {
+      "name": "Smile",
+      "description": "Forces victims who see the user's exposed teeth to laugh uncontrollably for about two hours. Works through direct sight or reflections of the teeth."
+    },
+    "smoke": {
+      "name": "Smoke",
+      "description": "Smoke allows the user to expel large amounts of pink smoke through the holes in their body, to generate a thick smoke screen to mask and hide their movement from enemies' line of sight."
+    },
+    "smokescreen": {
+      "name": "Smokescreen",
+      "description": "Smokescreen allows the user to generate a thick cloud of purple smoke from their body. The smoke can be spread to cover a very wide area."
+    },
+    "snip-clip": {
+      "name": "Snip Clip",
+      "description": "Snip Clip allows the user to cut through almost anything that is placed between their index and middle fingers by making a scissor motion with them."
+    },
+    "soccer": {
+      "name": "Soccer",
+      "description": "Soccer supposedly allows the user to dribble a ball like a professional soccer player among large crowds of people without this preventing them from carrying out their acts of larceny."
+    },
+    "softening": {
+      "name": "Softening",
+      "description": "Softening allows the user to soften anything they touch, effectively turning solid objects semi-liquid. Softening works on anything solid, such as ice, metal, or the ground, and it possesses great range."
+    },
+    "solid-air": {
+      "name": "Solid Air",
+      "description": "Solidifies exhaled air into platforms, walls, or barriers that float in place. Constructs can support the user and allies without collapsing downward."
+    },
+    "somnambulist": {
+      "name": "Somnambulist",
+      "description": "Releases a sleep-inducing aroma from the skin that knocks targets unconscious. The effect is stronger against males than females."
+    },
+    "soul": {
+      "name": "Soul",
+      "description": "Manifests a small pink bird-like companion linked to the user's soul. The companion is always active and reveals the user's true thoughts through its behavior."
+    },
+    "spatial-excursion": {
+      "name": "Spatial Excursion",
+      "description": "Spatial Excursion allows the user to freely move objects and people in any space without being restricted by gravity."
+    },
+    "spear-hand-missiles": {
+      "name": "Spear Hand Missiles",
+      "description": "Fires the small reloadable missile segments that form the user's fingers. Shots are fast but the flight path is erratic and often misses without correction."
+    },
+    "spearlike-bones": {
+      "name": "Spearlike Bones",
+      "description": "Spearlike Bones allows the user to generate cone-shaped spears made of bone on any part of their body. They can also emerge from other parts of the body such as the mouth."
+    },
+    "spike": {
+      "name": "Spike",
+      "description": "Spike allows its user to make spikes protrude from their body. The spikes produced naturally appear to be roughly as long as its user's fingers, though it is unknown just how long they can extend to."
+    },
+    "spotted-seal": {
+      "name": "Spotted Seal",
+      "description": "Combines spotted-seal traits with enhanced strength and agility on land and in water. The user can perform seal-like swimming and powerful physical strikes."
+    },
+    "spray-art": {
+      "name": "Spray Art",
+      "description": "Spray Art allows the user to spray clouds of spray paint, causing illusions for anyone inside them."
+    },
+    "spring": {
+      "name": "Spring",
+      "description": "Makes anything the user touches extremely bouncy. Objects and surfaces rebound with exaggerated elasticity until the effect ends."
+    },
+    "springlike-limbs": {
+      "name": "Springlike Limbs",
+      "description": "Coils the user's muscles like springs to store and release force in explosive strikes. When fully unleashed, the discharge can produce visible energy sparks."
+    },
+    "squirmy-fingers": {
+      "name": "Squirmy Fingers",
+      "description": "Squirmy Fingers allows the user to precisely and flawlessly control their fingers, effectively manipulating any object with grace, ease, speed, precision and skill, as well as to bend them in any direction."
+    },
+    "static": {
+      "name": "Static",
+      "description": "By rubbing their body to build up electric charge, like the process to generate static electricity, the user of Static can generate electrical currents."
+    },
+    "steel": {
+      "name": "Steel",
+      "description": "Turns the entire body into steel for extreme durability. The metal skin resists bullets, blades, and heavy impacts, though weight increases."
+    },
+    "stiffening": {
+      "name": "Stiffening",
+      "description": "Hardens any object kneaded between both hands, up to concrete-like rigidity. Rubber or soft materials can become tough barriers or weapons."
+    },
+    "stock": {
+      "name": "Stock",
+      "description": "Absorbs incoming attacks and stores their energy for later release. Absorbed power appears as a growing mass on the user's back until discharged."
+    },
+    "storage": {
+      "name": "Storage",
+      "description": "Stores objects and even living beings inside the user's body, carrying them discreetly. Stored items can be released intact on command."
+    },
+    "stress": {
+      "name": "Stress",
+      "description": "Stress grants the user the ability to convert stress, anger, dread, and frustration into raw power. This raw power is capable of increasing their strength, resilience, and size."
+    },
+    "strongarm": {
+      "name": "Strongarm",
+      "description": "Strongarm allows the user to rotate and move their shoulders at great speed and power, giving them extremely fast and strong punches."
+    },
+    "suicide-bomb": {
+      "name": "Suicide Bomb",
+      "description": "Little is documented beyond its name, but it appears to trigger massive explosions centered on the user that devastate the surrounding area."
+    },
+    "super-regeneration": {
+      "name": "Super Regeneration",
+      "description": "Super Regeneration has the ability to regenerate any sort of injuries on the user's body, such as missing limbs, at incredible speeds."
+    },
+    "swan": {
+      "name": "Swan",
+      "description": "Swan grants the user two large, white, swan-like wings on their back. They can achieve flight but are not strong enough to do so without them stripping off their clothes first."
+    },
+    "sword-kill": {
+      "name": "Sword Kill",
+      "description": "Sword Kill allows the user to create flexible swords from their arms and shoulders, that fold in and out like an accordion."
+    },
+    "tail": {
+      "name": "Tail",
+      "description": "Grants a long, prehensile tail from the lower back. The appendage is bulky and can grab, balance, or strike like an extra limb."
+    },
+    "tank-engine": {
+      "name": "Tank Engine",
+      "description": "Transforms the head and upper torso into the front of a steam locomotive, including functional smokestack and train mass. The user moves with the momentum of a rail engine."
+    },
+    "telekinesis": {
+      "name": "Telekinesis",
+      "description": "Moves inanimate objects through telekinesis. When amplified by a compatible booster quirk, the number of objects controlled at once rises sharply."
+    },
+    "telepath": {
+      "name": "Telepath",
+      "description": "Grants telepathic communication and instruction through thought. The user can send clear messages to one or multiple people at once."
+    },
+    "teleportation": {
+      "name": "Teleportation",
+      "description": "Teleportation allows the user to move themselves and any material or living thing they are touching to somewhere within their line of vision and are limited to only transporting to an area they can see."
+    },
+    "telescopic": {
+      "name": "Telescopic",
+      "description": "Telescopic allows the user to retract their own body parts into themselves, similar to how a turtle can retract itself into its shell."
+    },
+    "tidal-bore": {
+      "name": "Tidal Bore",
+      "description": "Expels large volumes of water from the mouth for torrent attacks or lifting heavy objects. The stream can be shaped into pressurized blasts."
+    },
+    "toho": {
+      "name": "Toho",
+      "description": "Toho gives the user the attributes of a kaiju; in addition to their reptile-like appearance, they are very large and very strong."
+    },
+    "tongue-tank": {
+      "name": "Tongue Tank",
+      "description": "Transforms the tongue into an extendable tank cannon that fires rock-like shells when the mouth opens. The barrel stretches outward for ranged bombardment."
+    },
+    "tool-arms": {
+      "name": "Tool Arms",
+      "description": "Manifests limbs embedded with tools and weapons such as chainsaws, hammers, and drills. Each arm can carry a different built-in implement."
+    },
+    "traject": {
+      "name": "Traject",
+      "description": "Traject allows the user to manipulate the trajectory of anything that passes through their bandages."
+    },
+    "transform": {
+      "name": "Transform",
+      "description": "After consuming a target's blood, the user can assume their exact appearance and voice. The disguise copies physical details precisely but requires fresh blood to sustain."
+    },
+    "transforming-arms": {
+      "name": "Transforming Arms",
+      "description": "Transforming Arms allows its user to shape-shift their arms, allowing them to have long-ranged, elastic attacks. The user can also split their arms apart to surround their target and launch multiple attacks at once."
+    },
+    "trap-flex": {
+      "name": "Trap Flex",
+      "description": "Trap Flex allows the user to flex their trapezius muscle to extreme degrees, allowing them to cover their whole head with their shoulders. The flexing gives them a fair amount of speed and strength."
+    },
+    "tree-frog": {
+      "name": "Tree Frog",
+      "description": "Extends the tongue outward with limited extra reach compared to stronger tongue quirks. The tongue curls back when not in use and supports basic capture or probing."
+    },
+    "tripod": {
+      "name": "Tripod",
+      "description": "Tripod grants its user a third leg, placed between their other two. This third leg acts as one would expect, including allowing the user to stabilize themselves on otherwise unstable terrain."
+    },
+    "twin-impact": {
+      "name": "Twin Impact",
+      "description": "Twin Impact allows the user to, at the site of any initial impact, create a second impact remotely and at their discretion. The second impact will be many times stronger than the initial one."
+    },
+    "vibrate": {
+      "name": "Vibrate",
+      "description": "Generates vibrations and shockwaves that travel through solids, liquids, and air. The user can shake objects they touch with their hands to destabilize structures or opponents."
+    },
+    "vibration-detection": {
+      "name": "Vibration Detection",
+      "description": "Senses subtle vibrations in the environment similar to echolocation. The user can map nearby movement and obstacles without relying on sight."
+    },
+    "vines": {
+      "name": "Vines",
+      "description": "Vines grants the user controllable, thorny vines in place of regular hair. The vines can be manipulated for various purposes, such as binding foes, snatching objects and creating defensive barriers."
+    },
+    "viral-cosmos": {
+      "name": "Viral Cosmos",
+      "description": "Launches bursts of petals generated from flowers on the head as cutting projectiles. The petals swarm toward enemies and slice on contact."
+    },
+    "voice": {
+      "name": "Voice",
+      "description": "Voice allows the user to increase the volume of their voice, giving them the ability to create loud, high-pitched sounds."
+    },
+    "voyance": {
+      "name": "Voyance",
+      "description": "Sees through solid objects within line of sight, excluding living organisms. The user narrows vision through a finger-frame aperture to focus the effect."
+    },
+    "warp-gate": {
+      "name": "Warp Gate",
+      "description": "Creates dark fog portals that teleport anything touched to another nearby point. Multiple gates can link different locations in quick succession."
+    },
+    "warping": {
+      "name": "Warping",
+      "description": "Produces black ooze from a victim's mouth that coats them and acts as a warp gate, vanishing them to another location. The user can target others remotely once the fluid takes hold."
+    },
+    "water-control": {
+      "name": "Water Control",
+      "description": "Manipulates existing water into claws, waves, or pressurized jets. The user can reshape large bodies of water for offense and mobility."
+    },
+    "water-gun": {
+      "name": "Water Gun",
+      "description": "Water Gun allows the user to shoot a stream of water from their hands."
+    },
+    "water-pump": {
+      "name": "Water Pump",
+      "description": "Generates water from hose-like spigots in place of the hands. The streams can be shaped into barriers, blasts, or sustained floods with fine control."
+    },
+    "wave-motion": {
+      "name": "Wave Motion",
+      "description": "Wave Motion grants the user the ability to convert their vitality into energy that they can discharge as blast waves."
+    },
+    "weather-manipulation": {
+      "name": "Weather Manipulation",
+      "description": "Controls weather on a large scale, summoning storm clouds, lightning, typhoons, and other atmospheric phenomena. Entire islands can be engulfed by generated storms."
+    },
+    "weld": {
+      "name": "Weld",
+      "description": "Fuses organic and inorganic matter together at a subatomic level on touch. Two contacted objects become physically joined into one structure."
+    },
+    "whale": {
+      "name": "Whale",
+      "description": "Transforms part or all of the body into a sperm-whale form with immense mass. In full whale shape the user can expel powerful water jets from the mouth."
+    },
+    "whirlwind": {
+      "name": "Whirlwind",
+      "description": "Controls surrounding air with minimal body movement, creating gales, updrafts, and precise wind blades. The user can fly and repel projectiles using pressure alone."
+    },
+    "whiteline": {
+      "name": "Whiteline",
+      "description": "Animates painted road lane lines into tendrils for binding, lifting, or throwing objects. Any nearby marked pavement becomes an extension of the user's reach."
+    },
+    "whole-body-lens": {
+      "name": "Whole-Body Lens",
+      "description": "Whole-Body Lens allows the user to produce camera-like lenses anywhere on their body to take pictures. They can also print any pictures their body cameras have captured out of their chest whenever they want."
+    },
+    "wing": {
+      "name": "Wing",
+      "description": "Sprouts large black wings that enable free flight at very high speed. Maneuverability in the air is strong, though stamina limits are not fully known."
+    },
+    "wooden-swords-from-his-hands": {
+      "name": "Wooden Swords From His Hands",
+      "description": "Wooden Swords From His Hands allows the user to generate wooden swords from their wrist."
+    },
+    "zombie-virus": {
+      "name": "Zombie Virus",
+      "description": "Zombie Virus allows the user to release a pinkish gas that, when inhaled, temporarily transforms victims into zombies."
+    },
+    "zoom": {
+      "name": "Zoom",
+      "description": "Magnifies distant vision when the user focuses on a point, clearly seeing targets several kilometers away. Works like a biological telescopic lens."
+    }
+  },
+  "pt-BR": {
+    "air-cannon": {
+      "name": "Canhão de Ar",
+      "description": "Libera rajadas de ar comprimido que geram impacto direcional."
+    },
+    "blackwhip": {
+      "name": "Chicote Negro",
+      "description": "Produz tentáculos de energia escura para capturar, balançar e puxar alvos."
+    },
+    "brainwashing": {
+      "name": "Lavagem Cerebral",
+      "description": "Força respostas obedientes de um alvo após interação vocal."
+    },
+    "creation": {
+      "name": "Criação",
+      "description": "Converte recursos do corpo em matéria inanimada de composição conhecida."
+    },
+    "dark-shadow": {
+      "name": "Sombra Escura",
+      "description": "Manifesta uma entidade sombria autônoma com utilidade ofensiva e defensiva."
+    },
+    "decay": {
+      "name": "Decadência",
+      "description": "Desintegra matéria tocada por meio de um efeito rápido em cadeia."
+    },
+    "electrification": {
+      "name": "Eletrização",
+      "description": "Gera e descarrega energia elétrica para eletrocutar alvos próximos."
+    },
+    "engine": {
+      "name": "Motor",
+      "description": "Fornece propulsão por estruturas biológicas de motor nas pernas."
+    },
+    "eraser": {
+      "name": "Apagamento",
+      "description": "Suprime a ativação da individualidade do alvo enquanto o contato visual é mantido."
+    },
+    "fiber-master": {
+      "name": "Mestre das Fibras",
+      "description": "Manipula fibras têxteis para amarrar, moldar e controlar movimento."
+    },
+    "fierce-wings": {
+      "name": "Asas Ferozes",
+      "description": "Controla penas destacadas para voo, ataque e resgate."
+    },
+    "foldabody": {
+      "name": "Corpo Dobrável",
+      "description": "Dobra e desdobra partes do corpo para alterar a forma e evitar dano."
+    },
+    "frog": {
+      "name": "Sapo",
+      "description": "Concede traços anfíbios, incluindo adesão em paredes, saltos e língua extensível."
+    },
+    "hardening": {
+      "name": "Endurecimento",
+      "description": "Aumenta temporariamente a dureza do corpo para melhorar resistência e impacto."
+    },
+    "hellflame": {
+      "name": "Chama Infernal",
+      "description": "Gera e controla chamas de alta temperatura para ataque e propulsão."
+    },
+    "manifest": {
+      "name": "Manifestação",
+      "description": "Manifesta temporariamente traços biológicos de fontes de material consumido."
+    },
+    "mind-reading": {
+      "name": "Leitura Mental",
+      "description": "Recebe informações de pensamento ativo de um alvo sob condições específicas."
+    },
+    "permeation": {
+      "name": "Permeação",
+      "description": "Permite que a matéria do corpo atravesse objetos sólidos enquanto ativa."
+    },
+    "pop-off": {
+      "name": "Estouro",
+      "description": "Produz esferas adesivas destacáveis que grudam fortemente em superfícies."
+    },
+    "rabbit": {
+      "name": "Coelho",
+      "description": "Aprimora força das pernas, agilidade e sentidos com traços de lagomorfos."
+    },
+    "rewind": {
+      "name": "Rebobinar",
+      "description": "Reverte um alvo vivo a um estado biológico anterior ao longo do tempo."
+    },
+    "sugar-rush": {
+      "name": "Corrida do Açúcar",
+      "description": "Aumenta temporariamente o desempenho físico após metabolizar açúcar."
+    },
+    "tape": {
+      "name": "Fita",
+      "description": "Ejeta fita adesiva dos cotovelos para contenção, locomoção e manipulação."
+    },
+    "zero-gravity": {
+      "name": "Gravidade Zero",
+      "description": "Anula a gravidade em alvos tocados até liberar o efeito ou sobrecarga."
+    },
+    "2d-ify": {
+      "name": "Plano 2D",
+      "description": "O 2D-ify permite que o usuário prenda outras pessoas dentro de pinturas. Usando uma moldura, o usuário pode absorver pessoas e objetos, transformando-os em pinturas 2D contidas em molduras."
+    },
+    "absorption-and-release": {
+      "name": "Absorção e Liberação",
+      "description": "Absorve ataques de emissores baseados em energia que atingem o usuário, armazena-os brevemente e devolve a mesma força ao atacante. Funciona contra assaltos de energia direcionada; golpes físicos não são absorvidos."
+    },
+    "accelerator-rings": {
+      "name": "Anéis do Acelerador",
+      "description": "Os anéis aceleradores permitem que o usuário gere anéis amarelos de energia de suas mãos e pés. Após um atraso variável, os anéis liberam uma explosão de força em uma única direção antes de se dissipar."
+    },
+    "acid": {
+      "name": "Ácido",
+      "description": "O ácido permite que o usuário crie líquido corrosivo a partir de sua pele, sendo naturalmente resistente ao ácido que produz."
+    },
+    "acid-sweat": {
+      "name": "Suor Ácido",
+      "description": "O Suor Ácido permite que o usuário segregue um suor ácido com propriedades combustíveis e explosivas das palmas das mãos."
+    },
+    "air-walk": {
+      "name": "Caminhada no Ar",
+      "description": "Permite ao usuário apoiar-se e dirigir bolsões de ar, alcançando levitação e reposicionamento no ar. Melhora a mobilidade para esquiva e ataques à distância ao liberar o usuário do contato com o solo."
+    },
+    "air-wall": {
+      "name": "Parede de ar",
+      "description": "A Parede de Ar permite que o usuário crie escudos circulares feitos de ar comprimido de suas mãos para se proteger."
+    },
+    "alchemy": {
+      "name": "Alquimia",
+      "description": "Transmuta a matéria de qualquer objeto inanimado que o usuário toque em outros materiais ou itens prontos. O usuário pode produzir projéteis simples ou construtos complexos, como drones totalmente operacionais, limitado pela matéria disponível."
+    },
+    "all-for-one": {
+      "name": "Todos por um",
+      "description": "Permite ao usuário roubar outras individualidades para uso próprio ou transferir individualidades roubadas a outra pessoa. O usuário pode empunhar várias individualidades roubadas ao mesmo tempo, acumulando seus efeitos."
+    },
+    "amplivolt": {
+      "name": "Amplivoltação",
+      "description": "A Amplivolt permite que seu usuário conduza e aumente a eletricidade dentro de seu corpo antes de liberá-la depois. Uma vez amplificado o suficiente, o usuário é capaz de disparar rajadas de eletricidade armazenada de suas mãos."
+    },
+    "anivoice": {
+      "name": "Voz Animal",
+      "description": "Permite ao usuário falar com animais e comandá-los. A mutação também produz cabeça semelhante a rocha e chifres que estendem comandos vocais a longas distâncias."
+    },
+    "anthropomorph": {
+      "name": "Antropomorfo",
+      "description": "O Antropomorfo permite que o usuário pegue um objeto de tamanho humano (uma geladeira, uma mesa, etc.) e o transforme em um sósia exato de qualquer pessoa."
+    },
+    "antigen-swap": {
+      "name": "Troca de Antígeno",
+      "description": "A Troca de Antígeno permite que o usuário altere seu tipo sanguíneo à vontade."
+    },
+    "arbor": {
+      "name": "Arboreto",
+      "description": "Gera e controla gavinhas de madeira a partir de qualquer parte do corpo. A madeira pode brotar, estender-se por longas distâncias e ser moldada para contenção, defesa ou suporte estrutural."
+    },
+    "assault-dust": {
+      "name": "Poeira de Assalto",
+      "description": "Permite gerar e manipular poeira, disparando-a em alta velocidade como ataques de partículas densas."
+    },
+    "attraction-of-small-objects": {
+      "name": "Atração de pequenos objetos",
+      "description": "Exerce um puxão semelhante à telecinese que atrai pequenos objetos em direção ao usuário. O limite exato de massa ou tamanho é incerto, mas itens metálicos leves e objetos pequenos semelhantes podem ser puxados à distância."
+    },
+    "barrier": {
+      "name": "Barreira",
+      "description": "Cria uma barreira telecinética em forma de cúpula ao redor do usuário. O campo pode ser erguido rapidamente para bloquear ataques ou desacelerar alvos em movimento rápido."
+    },
+    "bat": {
+      "name": "Rebatida",
+      "description": "Concede traços de morcego, incluindo asas nos braços, presas, orelhas pontudas, corrida em alta velocidade e voo."
+    },
+    "beams-from-his-eyes": {
+      "name": "Raios de Seus Olhos",
+      "description": "Dispara feixes de laser concentrados dos olhos quando um interruptor na viseira é acionado. O usuário precisa ativar o interruptor para liberar um disparo no alvo em que está olhando."
+    },
+    "beast": {
+      "name": "Fera",
+      "description": "Transforma o usuário em uma fera grande, com presas enormes, pelagem densa e tamanho muito aumentado. Nessa forma o usuário ganha força bruta e traços de combate animalescos."
+    },
+    "big-fist": {
+      "name": "Punho Grande",
+      "description": "Amplia uma ou ambas as mãos a tamanho enorme quase instantaneamente. Os membros expandidos aumentam muito a massa de impacto e o alcance no combate corpo a corpo."
+    },
+    "big-horn": {
+      "name": "Chifre Colossal",
+      "description": "Concede um par de chifres semelhantes aos de um touro na cabeça. Os chifres podem ser destacados e usados para transmitir sinais ou como ferramentas de impacto resistentes."
+    },
+    "big-monkey": {
+      "name": "Macaco Gigante",
+      "description": "Sob amplificação externa, o usuário pode se transformar em uma forma gigante semelhante a um macaco, com tamanho e força imensos. O efeito ordinário sem amplificação não foi claramente demonstrado."
+    },
+    "binging-ball": {
+      "name": "Bola Devoradora",
+      "description": "Binging Ball permite que o usuário libere pequenas esferas flutuantes com bocas de seu corpo. Essas esferas podem ser usadas como projéteis, movendo-se a velocidades muito altas."
+    },
+    "black": {
+      "name": "Preto",
+      "description": "O preto permite que o usuário mescle seu corpo em qualquer coisa de cor escura, seja naturalmente escura ou escura por meio de circunstâncias externas, como sombras. Eles também podem se mover livremente pela escuridão."
+    },
+    "black-hole": {
+      "name": "Buraco Negro",
+      "description": "O Buraco Negro permite que o usuário crie pequenos buracos negros através de seus dedos. Os buracos negros sugam e desintegram qualquer matéria no nível atômico, bem como certas formas de energia, como a luz."
+    },
+    "blade-tooth": {
+      "name": "Dente da Lâmina",
+      "description": "O Blade-Tooth concede ao usuário a capacidade de ampliar e remodelar seus dentes em incisivos afiados. Essas lâminas de barbear podem variar em tamanho e forma. O usuário pode manipular o comprimento e a direção dos dentes à vontade."
+    },
+    "blast": {
+      "name": "Explosão",
+      "description": "Dispara explosões contínuas e rápidas de energia pelos membros. O usuário pode canalizar o efeito pelas mãos e pernas, e equipamentos especializados ajudam a focar os disparos para ataques precisos."
+    },
+    "blazing-hair": {
+      "name": "Cabelo Ardente",
+      "description": "Controla chamas que crescem na cabeça do usuário. Pedaços de cabelo em chamas podem ser arremessados como bolas de fogo ou moldados em armas curtas semelhantes a lâminas."
+    },
+    "blood-control": {
+      "name": "Controle Sanguíneo",
+      "description": "Manipula o próprio sangue do usuário depois que ele sai do corpo, controlando seu fluxo no ar. O sangue pode ser endurecido em estruturas rígidas para prender ou imobilizar alvos."
+    },
+    "bloodcurdle": {
+      "name": "Coagulação",
+      "description": "Paralisa temporariamente oponentes depois que o usuário ingere uma amostra do sangue deles. Também alonga a língua com papilas usadas para aplicar o efeito."
+    },
+    "bloodlet": {
+      "name": "Sangue",
+      "description": "Expulsa o sangue do usuário para fora do corpo e pode reabsorvê-lo depois. O usuário suporta perda sanguínea que normalmente seria fatal e pode moldar o sangue expelido em armas ou ferramentas."
+    },
+    "blueflame": {
+      "name": "Chama Azul",
+      "description": "Produz chamas azuis a partir do corpo à vontade, com combustão mais quente que a de emissores de fogo comuns."
+    },
+    "body-bulk": {
+      "name": "Corpulência",
+      "description": "Permite ampliar todo o corpo, aumentando muito a força física e a massa geral."
+    },
+    "body-morph": {
+      "name": "Morfo Corporal",
+      "description": "Acrescenta um segundo par de braços e concede força física muito aumentada."
+    },
+    "bombify": {
+      "name": "Bombificação",
+      "description": "Muta partes do corpo para gerar cargas explosivas de vários tamanhos. A individualidade se comporta como um aprimoramento artificial ligado a células explosivas implantadas no usuário."
+    },
+    "boomerang": {
+      "name": "Bumerangue",
+      "description": "Curva a trajetória de objetos arremessados para que se dirijam aos alvos. Objetos afetados e as mãos do usuário podem brilhar em roxo quando ativa."
+    },
+    "brawn-boost": {
+      "name": "Impulso Muscular",
+      "description": "Aumenta temporariamente a força física do usuário. Várias cópias da mesma individualidade acumuladas em um único usuário multiplicam ainda mais o ganho de força."
+    },
+    "bristle": {
+      "name": "Cerda",
+      "description": "Endurece muito o cabelo do usuário para ataque ou defesa. Limites adicionais não foram claramente documentados."
+    },
+    "brown-bear": {
+      "name": "Urso castanho",
+      "description": "Concede força, resistência, sentidos e garras grandes e afiadas semelhantes aos de um urso."
+    },
+    "bruiser": {
+      "name": "Brutamontes",
+      "description": "Carrega um membro com força acumulada; quanto mais longa a carga, mais forte o golpe."
+    },
+    "bubble": {
+      "name": "Bolha",
+      "description": "A bolha permite que o usuário faça bolhas, de vários tamanhos, cheias de um aroma que já cheirou pelo menos uma vez antes."
+    },
+    "bull-head": {
+      "name": "Cabeça de Touro",
+      "description": "Bull Head dá ao usuário um par de chifres em forma de touro em sua cabeça."
+    },
+    "bullet-laser": {
+      "name": "Laser Balístico",
+      "description": "O Bullet Laser permitia que o usuário disparasse lasers de cor roxa da ponta dos dedos, que eles podiam disparar como explosões diretas, bem como curvar os referidos feixes diretamente de seus dedos."
+    },
+    "bullhorn": {
+      "name": "Megafone",
+      "description": "Não se sabe muito sobre Bullhorn, mas parece permitir que a voz do usuário fique mais alta do que o normal."
+    },
+    "burst": {
+      "name": "Rompimento",
+      "description": "Faz o usuário explodir em um clarão ofuscante de luz. Parece ser uma ativação única e autodestrutiva."
+    },
+    "cell-activation": {
+      "name": "Ativação Celular",
+      "description": "A Ativação Celular permite que seu usuário ative as células em seu corpo ou no corpo de outra pessoa através do toque. Isso aumenta a regeneração, o tempo de recuperação e pode até melhorar a condição física."
+    },
+    "cemedine": {
+      "name": "Cemedina",
+      "description": "A cemedina permite que o usuário pulverize um líquido semelhante a cola a partir dos orifícios em sua cabeça. Uma vez que atinge algo, a cola endurece e prende o que quer que entre em contato ou a torna pegajosa e perigosa ao toque."
+    },
+    "cement": {
+      "name": "Cimento",
+      "description": "O cimento dá ao usuário a capacidade de manipular material à base de cimento simplesmente por estar em contato com a superfície. Isso não lhes dá a capacidade de criar novo cimento, eles só podem remodelar o cimento existente."
+    },
+    "centipede": {
+      "name": "Quilópode",
+      "description": "Estende membros longos semelhantes a centopeias pelos braços, pernas e cabeça para agarrões e contenção à distância."
+    },
+    "chameleon": {
+      "name": "Camaleão",
+      "description": "Concede traços de camaleão, incluindo escalada de paredes, olhos que giram de forma independente e coloração de camuflagem. O usuário pode se misturar ao ambiente e atacar de posições ocultas."
+    },
+    "charging-muscles": {
+      "name": "Carregando Músculos",
+      "description": "Carregar Músculos permite que o usuário carregue a força em seus músculos, aumentando a força de um ataque em um golpe poderoso."
+    },
+    "chart": {
+      "name": "Painel Tático",
+      "description": "Cria uma interface holográfica de rastreamento que localiza e monitora alvos. O usuário pode observar a posição e os movimentos do alvo rastreado em tempo real."
+    },
+    "chest-hair": {
+      "name": "Pelos no peito",
+      "description": "Presumivelmente realça traços físicos masculinos conforme o nome; as capacidades completas são pouco documentadas."
+    },
+    "chimera": {
+      "name": "Quimera",
+      "description": "Combina traços de vários animais, aprimorando-os e permitindo ampliar qualquer característica escolhida a proporções monstruosas."
+    },
+    "chronostasis": {
+      "name": "Cronostase",
+      "description": "Concede pêlos em forma de flecha que se estendem em linhas retas para cortar alvos e reduzir sua velocidade ao atingir. Um aglomerado frontal de pêlos funciona como o principal ponto de ataque acima da testa."
+    },
+    "clean-bubbler": {
+      "name": "Borbulhador Limpador",
+      "description": "O Clean Bubbler permite que o usuário crie e controle a água com sabão de seu corpo. O riacho é forte o suficiente para manter várias pessoas no ar."
+    },
+    "cleaning": {
+      "name": "Limpar",
+      "description": "Secreção de substância semelhante a sabão que enfraquece ou anula outras individualidades ao ser esfregada nos alvos."
+    },
+    "clones": {
+      "name": "Clonagem",
+      "description": "Cria clones do usuário a partir de um fluido viscoso brilhante liberado pela boca. Dezenas de cópias podem existir ao mesmo tempo, embora em geral se dissipem ao sofrer dano ou após pouco tempo."
+    },
+    "cloud": {
+      "name": "Nuvem",
+      "description": "A nuvem permitiu que o usuário criasse nuvens de tamanhos diferentes, de densidades variadas, o suficiente para serem tocadas e até mesmo para suportar o peso de uma ou várias pessoas."
+    },
+    "comic": {
+      "name": "Quadrinhos",
+      "description": "A história em quadrinhos permite que o usuário materialize a onomatopeia no mundo real na forma de letras japonesas gigantes, falando-as. A onomatopeia se manifesta com os mesmos efeitos do som em que se baseia."
+    },
+    "compress": {
+      "name": "Comprimir",
+      "description": "Encolhe qualquer coisa dentro de uma zona esférica tocada em um pequeno mármore sem danificar. Exige contato com a mão para ativar."
+    },
+    "confession": {
+      "name": "Confissão",
+      "description": "Depois que o usuário faz uma pergunta, o alvo é obrigado a responder com sinceridade. O efeito revela pensamentos, segredos e intenções que a vítima tentaria esconder."
+    },
+    "conjure": {
+      "name": "Conjurar",
+      "description": "Conjurar permite que o usuário mire em qualquer objeto relativamente pequeno e o deforma diretamente em sua mão."
+    },
+    "control-glass": {
+      "name": "Vidro de Controle",
+      "description": "Controla e remodela grandes quantidades de vidro na área ao redor. O usuário pode alternar o vidro entre estado sólido e líquido e formar lâminas ou barreiras com ele."
+    },
+    "control-horn": {
+      "name": "Buzina de Controle",
+      "description": "Permite controlar mentalmente gado ao alcance. Centenas de animais podem ser dirigidos de uma vez para investidas ou movimentos coordenados."
+    },
+    "copy": {
+      "name": "Cópia",
+      "description": "Permite ao usuário usar temporariamente a individualidade de outra pessoa após tocá-la, bastando alguns fios de cabelo."
+    },
+    "cow": {
+      "name": "Vaca",
+      "description": "A vaca permite que o usuário altere seu corpo com as características de uma vaca. Isso inclui cascos, chifres e a pele de uma vaca. Isso aumenta a velocidade e a força do usuário em relação à de uma vaca."
+    },
+    "crystallize": {
+      "name": "Cristalização",
+      "description": "Cristalizar permite que o usuário desenvolva um grande número de cristais de seu corpo, cobrindo completamente sua pele com eles. Os cristais são mostrados como sendo duráveis e capazes de crescer quase instantaneamente."
+    },
+    "cubism": {
+      "name": "Cubismo",
+      "description": "O cubismo permite que o usuário transforme outras pessoas em versões 3D da obra de arte cubista."
+    },
+    "curse": {
+      "name": "Amaldiçoar",
+      "description": "Transforma todo o corpo em talismãs de papel, tornando o usuário extremamente leve. Tiras de papel podem ser lançadas como fios cortantes."
+    },
+    "danger-sense": {
+      "name": "Senso de Perigo",
+      "description": "O Sentido de Perigo permite que o usuário detecte quaisquer ameaças potenciais na área circundante, dando assim ao usuário a oportunidade de reagir adequadamente a elas rapidamente, essencialmente concedendo-lhes um sexto sentido."
+    },
+    "dark-ball": {
+      "name": "Bola Negra",
+      "description": "Libera aglomerados de esferas pretas com contorno roxo que emitem energia sombria destrutiva. As esferas podem ser lançadas como ataques à distância e combinadas com outros efeitos de emissão."
+    },
+    "darkness": {
+      "name": "Escuridão",
+      "description": "Manifesta um fluido roxo escuro e enevoado pelos dedos e solas dos pés, que se espalha pelo terreno. Qualquer coisa coberta pelo fluido se decompõe e desmorona em matéria deteriorada."
+    },
+    "day-dream": {
+      "name": "Sonho diurno",
+      "description": "O Sonho Diurno permite que o usuário faça com que qualquer pessoa que olhe caia inconsciente ou seja colocada em um estado hipnótico controlável por um curto período de tempo."
+    },
+    "delay-spot": {
+      "name": "Ponto de Atraso",
+      "description": "Cria uma bolha semiesférica que desacelera tudo em seu interior, incluindo pessoas e projéteis. Balas perdem quase toda a velocidade enquanto presas no campo."
+    },
+    "despot": {
+      "name": "Déspota",
+      "description": "Expelir fios de controle que marionetam corpos alheios; dezenas de vítimas podem ser controladas ao mesmo tempo."
+    },
+    "diesel-engine": {
+      "name": "Motor Diesel",
+      "description": "O Motor Diesel transforma a cabeça do usuário e toda a parte superior do corpo na locomotiva de um trem movido a diesel e concede a ele maior velocidade de corrida."
+    },
+    "dog": {
+      "name": "Cachorro",
+      "description": "Amplia muito a audição e o olfato. O usuário pode detectar sons distantes e estimar quantas pessoas estão presentes numa área ampla, como uma floresta."
+    },
+    "double": {
+      "name": "Duplo",
+      "description": "Cria até duas cópias de qualquer coisa tocada, incluindo pessoas e objetos. As duplicatas podem lutar ou ajudar até serem dispensadas ou destruídas."
+    },
+    "dragon": {
+      "name": "Dragão",
+      "description": "Dragão permite que o usuário se transforme em um dragão, uma poderosa criatura mitológica. Essa forma concede habilidades comumente associadas a dragões, incluindo voo, mandíbulas e garras poderosas."
+    },
+    "dragon-breath": {
+      "name": "Sopro de Dragão",
+      "description": "Expulsa fogo pela boca para ataques à distância. Alimentar as chamas exige consumir álcool pouco antes do uso."
+    },
+    "dupli-arms": {
+      "name": "Dupli-Braços",
+      "description": "Dupli-Braços concede ao usuário um conjunto de tentáculos semelhantes a braços que podem se transformar em duplicatas de outras partes do corpo."
+    },
+    "dust": {
+      "name": "Pó",
+      "description": "Produz poeira semelhante a cinzas a partir do corpo. A nuvem pode cegar e irritar inimigos quando lançada nos olhos, nariz e boca."
+    },
+    "eagle": {
+      "name": "Águia",
+      "description": "Concede um corpo semelhante ao de uma águia e, presumivelmente, sentidos e mobilidade aviários. As capacidades de combate completas da transformação não foram totalmente documentadas."
+    },
+    "earphone-jack": {
+      "name": "Conector de Fone",
+      "description": "Estende orelhas longas e controláveis que funcionam como cabos de áudio. As pontas podem se conectar a objetos ou superfícies para transmitir som, vibração ou choque."
+    },
+    "earth-flow": {
+      "name": "Fluxo da Terra",
+      "description": "Manipula terra e pedra próximas, moldando-as em muros, pilares ou outras formas. Construtos em grande escala podem ser erguidos rapidamente para ataque, defesa ou controle do terreno."
+    },
+    "eel": {
+      "name": "Enguia",
+      "description": "Permite ao usuário se transformar em uma enguia de tamanho médio, adequada ao movimento aquático. Sob amplificação externa, a forma pode crescer até um corpo enorme semelhante a uma enguia com pele muito escorregadia."
+    },
+    "elasticity": {
+      "name": "Elasticidade",
+      "description": "Torna qualquer objeto tocado elástico e borrachudo. O usuário pode esticar, fazer quicar e redirecionar itens para armadilhas, mobilidade ou armas improvisadas."
+    },
+    "electric-charge": {
+      "name": "Carga Elétrica",
+      "description": "Coleta e manipula corrente elétrica do ambiente. A eletricidade armazenada pode ser descarregada em ataques ou usada para interferir em sinais eletrônicos próximos."
+    },
+    "electric-eel": {
+      "name": "Enguia Elétrica",
+      "description": "Uma forma evoluída de transformação tipo enguia que adiciona descargas elétricas potentes ao corpo aquático. O usuário pode atacar com choques de alta voltagem enquanto estiver na forma alterada."
+    },
+    "electricity-generation": {
+      "name": "Geração de Eletricidade",
+      "description": "Produz e manipula eletricidade, disparando-a como raios direcionados em vez de apenas por contato. Diferente de choques por toque, o usuário pode atingir alvos distantes com arcos concentrados."
+    },
+    "electromagnetic-bullets": {
+      "name": "Balas Eletromagnéticas",
+      "description": "Gera um campo eletromagnético que aumenta a força e o impacto de objetos arremessados. Qualquer projétil lançado enquanto o campo está ativo atinge com potência amplificada."
+    },
+    "endurance": {
+      "name": "Resistência",
+      "description": "Resistência dá ao usuário a capacidade de converter sua mobilidade e moral em energia física, resultando em um aumento significativo de resistência e stamina, transformando-o efetivamente em uma \"besta de resistência\"."
+    },
+    "energy-saver": {
+      "name": "Economizador de Energia",
+      "description": "Economizador de Energia permite que o corpo do usuário funcione com quantidades muito pequenas de nutrição e hidratação, além de possibilitar que ele processe sem precisar dormir muito."
+    },
+    "energy-suck": {
+      "name": "Absorção de Energia",
+      "description": "Ao fazer contato físico e inalar, o usuário pode absorver a vitalidade de outros, não apenas aumentando sua própria stamina, mas também ganhando um aumento em tamanho e força."
+    },
+    "enfeeble": {
+      "name": "Enfraquecer",
+      "description": "Enfraquecer permite que o usuário olhe nos olhos de alguém e paralise seus músculos por três segundos. No entanto, o sujeito permanece consciente enquanto está imobilizado."
+    },
+    "erasure-spot": {
+      "name": "Ponto de Anulação",
+      "description": "Cria uma onda de energia em forma de cúpula que desativa as individualidades de todos dentro de seu alcance."
+    },
+    "eruption": {
+      "name": "Erupção",
+      "description": "Erupção permite que o usuário queime sua gordura para produzir uma substância semelhante a lava, tão quente quanto magma, e a expulse de seu corpo."
+    },
+    "explosion": {
+      "name": "Explosão",
+      "description": "Explosão permite que o usuário excrete suor semelhante a nitroglicerina de suas palmas e o acenda à vontade para criar explosões de vários tamanhos."
+    },
+    "extend-o-hair": {
+      "name": "Cabelo Extensível",
+      "description": "Controla o comprimento, a forma e o movimento de todos os pelos do corpo. O cabelo é extremamente resistente e praticamente indestrutível, permitindo contenção, defesa e golpes."
+    },
+    "extra-arms": {
+      "name": "Braços Extras",
+      "description": "Braços Extras concede ao usuário um conjunto adicional de braços."
+    },
+    "fa-jin": {
+      "name": "Fa Jin",
+      "description": "Acumula energia cinética com movimentos repetitivos, visível como energia vermelha brilhante que pode ser armazenada e liberada em rajadas."
+    },
+    "fan": {
+      "name": "Ventoinha",
+      "description": "Ventoinha permite que o usuário crie vento ou até tornados ao girar os pulsos."
+    },
+    "fast-fist": {
+      "name": "Soco Rápido",
+      "description": "O usuário de Soco Rápido pode mover suas mãos com uma velocidade extrema, permitindo que ele acerte até 100 vezes em menos de um segundo."
+    },
+    "fat-absorption": {
+      "name": "Absorção de Gordura",
+      "description": "Absorção de Gordura concede ao usuário a habilidade de aderir objetos ao seu corpo e fazê-los afundar na gordura corporal ao entrar em contato."
+    },
+    "fierce-gains": {
+      "name": "Ganho Intenso",
+      "description": "Endurece os músculos do usuário a níveis excepcionalmente densos, semelhantes a armadura. Combina bem com outros efeitos de resistência e supressão de dor para sustentar combate corpo a corpo prolongado."
+    },
+    "fire-cracker": {
+      "name": "Foguete",
+      "description": "Permite arrancar partes do próprio cabelo e detoná-las como fogos de artifício. As explosões são fortes o bastante para danificar estruturas e desestabilizar alvos próximos."
+    },
+    "flash-bang-sweat": {
+      "name": "Suor Atordoante",
+      "description": "Secreção de um suor que emite clarão intenso e estouro sonoro ao impactar. A substância pode encher projéteis ou equipamentos para criar efeitos de granada de luz e som à distância."
+    },
+    "flight": {
+      "name": "Voo",
+      "description": "Concede voo e levitação em alta velocidade. Uma barreira aerodinâmica pode se estender sobre tudo em contato com o usuário, protegendo passageiros de calor, frio e riscos físicos."
+    },
+    "float": {
+      "name": "Flutuar",
+      "description": "Permite ao usuário levitar e pairar no ar. Quando combinada com um grande reservatório de poder emprestado, o efeito se torna voo em alta velocidade em vez de simples sustentação."
+    },
+    "fly-swatter": {
+      "name": "Raquete de Mosca",
+      "description": "Projeta ondas de energia concussiva além do alcance normal do braço. O usuário em geral balança o braço em alta velocidade para lançar a onda contra um alvo distante."
+    },
+    "flying-squirrel": {
+      "name": "Esquilo Voador",
+      "description": "Planada pelo ar usando membranas semelhantes a asas nos braços. O usuário pode carregar aproximadamente o peso de mais uma pessoa nas costas durante o voo planado."
+    },
+    "food": {
+      "name": "Comida",
+      "description": "Permite morder, mastigar e digerir praticamente qualquer material que o usuário consiga tocar. Objetos duros ou perigosos podem ser consumidos com pouca resistência do próprio material."
+    },
+    "foresight": {
+      "name": "Previsão",
+      "description": "Previsão concede ao usuário a habilidade de prever com precisão todos os movimentos e ações futuras do alvo por uma hora inteira. A Previsão é ativada ao tocar primeiro o alvo e depois fazer contato visual com ele."
+    },
+    "free-walker": {
+      "name": "Caminhante Livre",
+      "description": "Os limites exatos não estão documentados, mas a individualidade parece permitir movimento contínuo das pernas sem fadiga. Melhora principalmente a resistência para corrida ou marcha prolongada."
+    },
+    "frost": {
+      "name": "Gelo",
+      "description": "Gelo dá ao usuário a capacidade de manipular e produzir gelo ao seu redor, podendo se cobrir de gelo e dispará-lo."
+    },
+    "gale-gale": {
+      "name": "Vento Vento",
+      "description": "Manipula o vento e o envolve ao redor do corpo para voo e ataque. Rajadas concentradas ao redor do usuário podem repelir ataques e desequilibrar alvos apesar de uma aparência inofensiva."
+    },
+    "gas": {
+      "name": "Gás",
+      "description": "Gera gás venenoso e indutor de sono a partir do corpo. O usuário pode liberar névoa roxa suficiente para cobrir uma grande área aberta."
+    },
+    "gatling": {
+      "name": "Metralha",
+      "description": "Forma órgãos semelhantes a armas nos braços que disparam projéteis de queratina em forma de garra. Os disparos servem para ataque rápido de curto a médio alcance."
+    },
+    "gearshift": {
+      "name": "Mudança de Marcha",
+      "description": "Mudança de Marcha permite que o usuário altere a velocidade com que os objetos aceleram no espaço. É capaz de mudar as velocidades ignorando as leis da inércia."
+    },
+    "gecko": {
+      "name": "Geco",
+      "description": "Concede corpo reptiliano e aderência forte em paredes. O usuário pode permanecer preso a superfícies verticais e veículos em movimento sem escorregar."
+    },
+    "gigantic-spinning-flying-turtle": {
+      "name": "Tartaruga Gigante Voadora Giratória",
+      "description": "Parece conceder voo e movimento giratório semelhantes aos de uma tartaruga, embora os limites completos sejam incertos. Pode impor tamanho exagerado ou rotação constante quando ativa."
+    },
+    "gigantification": {
+      "name": "Gigantificação",
+      "description": "Aumenta drasticamente o tamanho do corpo do usuário a níveis gigantescos. Nesse estado o usuário ganha massa e alcance esmagadores contra oponentes menores."
+    },
+    "glamour": {
+      "name": "Encanto",
+      "description": "Cria ilusões visuais e sonoras de curta duração. O usuário libera uma névoa pela boca que se molda em cenários falsos, vozes ou disfarces."
+    },
+    "glide-and-slide": {
+      "name": "Deslizar e Escorregar",
+      "description": "Permite ao usuário deslizar rapidamente em superfícies sólidas emitindo força repulsiva das palmas e solas. Vários pontos de contato nos membros são necessários para equilíbrio; gestos de impulso semelhantes aos de patinação aumentam a velocidade."
+    },
+    "glycerin": {
+      "name": "Glicerina",
+      "description": "Secreção de um líquido suave e hidratante pela pele. O efeito mantém a pele macia e pode preservar uma aparência jovem independentemente da idade."
+    },
+    "good-ear": {
+      "name": "Bom Ouvido",
+      "description": "Amplia a audição para faixas ultrassônicas além da percepção humana normal. O usuário capta sinais distantes, transmissões discretas e pode estimar quantas pessoas estão por perto apenas pelo som."
+    },
+    "grasshopper": {
+      "name": "Grilo",
+      "description": "Grilo permite que o usuário se transforme em um grande grilo humanoide, aumentando suas capacidades físicas."
+    },
+    "gyrate": {
+      "name": "Girar",
+      "description": "Gira qualquer parte do corpo em velocidade extrema, transformando membros em armas semelhantes a brocas. A rotação aumenta muito o poder de perfuração em combate próximo."
+    },
+    "hair-control": {
+      "name": "Controle de Cabelo",
+      "description": "Manipula o cabelo do usuário para ataque, defesa e controle fino. Fios podem se estender, endurecer e ser disparados como projéteis."
+    },
+    "hair-raiser": {
+      "name": "Cabelo Elevado",
+      "description": "Estende e endurece mechas do cabelo do usuário para combate corpo a corpo. Fios arrancados podem ser usados como lâminas rígidas ou lanças curtas."
+    },
+    "half-cold-half-hot": {
+      "name": "Meio Frio Meio Quente",
+      "description": "Meio Frio Meio Quente permite ao usuário gerar gelo, frio e geada do lado direito do corpo, enquanto fogo, chamas e calor são gerados do lado esquerdo."
+    },
+    "hardflame-fan": {
+      "name": "Ventania de Chamas",
+      "description": "Gera camadas de paredes de fogo para defesa sobre partes do corpo. As chamas também podem se manifestar como um líquido viscoso verde brilhante em alguns usos."
+    },
+    "heal": {
+      "name": "Cura",
+      "description": "Cura permite que o usuário amplifique e acelere o processo natural de cicatrização de seu alvo ao estender os lábios e beijá-lo."
+    },
+    "heavy-payload": {
+      "name": "Carga Pesada",
+      "description": "Carga Pesada aparentemente aumenta o dano causado pelos ataques do usuário."
+    },
+    "helical-scythe": {
+      "name": "Foice Helicoidal",
+      "description": "Foice Helicoidal concede ao usuário grandes apêndices vermelhos nos dedos e na cabeça, que podem ser estendidos e manipulados como tentáculos."
+    },
+    "high-specs": {
+      "name": "Altas Especificações",
+      "description": "Altas Especificações concede ao usuário uma inteligência, percepção, reações e compreensão sem igual, que superam em muito as de qualquer humano."
+    },
+    "hologram": {
+      "name": "Holograma",
+      "description": "Projeta imagens holográficas de qualquer coisa que o usuário imagine, incluindo construtos enormes visíveis de longe. As ilusões são apenas visuais, salvo se combinadas com outros efeitos."
+    },
+    "homing": {
+      "name": "Guiado",
+      "description": "Guiado permite que o usuário fixe um alvo que consegue ver a até seiscentos metros de distância e faça qualquer projétil que libere perseguir esse alvo."
+    },
+    "horn-cannon": {
+      "name": "Canhão de Chifres",
+      "description": "Destaca e lança os chifres como projéteis regenerativos. Vários chifres podem ser disparados em sequência antes que um novo conjunto brote na cabeça."
+    },
+    "hula-hoop": {
+      "name": "Bambolê",
+      "description": "Após levantar o braço, o usuário pode gerar um grande aro de energia que pode ser lançado contra o oponente para atacá-lo."
+    },
+    "hydra": {
+      "name": "Hidra",
+      "description": "Hidra permite que o usuário convoque criaturas gigantescas, semelhantes a tubarões serpenteantes, de suas costas, que podem ser controladas à vontade. Essas criaturas são grandes o suficiente para esmagar uma pessoa em suas mandíbulas."
+    },
+    "hypertrophy": {
+      "name": "Hipertrofia",
+      "description": "Aumenta partes do corpo, em geral um braço, a proporções enormes sob comando. O crescimento aumenta bastante o alcance e a massa de impacto em ataques corpo a corpo."
+    },
+    "ice-ply": {
+      "name": "Camada de Gelo",
+      "description": "Camada de Gelo permite que o usuário manipule livremente qualquer gelo nas proximidades. Eles podem reunir, mover, atacar e se defender com o gelo que controlam."
+    },
+    "ignition": {
+      "name": "Ignição",
+      "description": "Produz habilidades de fogo com uma pequena chama mantida no topo da cabeça. O usuário pode exalar labaredas potentes pela boca para ataques à distância."
+    },
+    "impact-recoil": {
+      "name": "Recuo de Impacto",
+      "description": "Recuo de Impacto permite que o usuário reverta o impacto causado por uma força física oposta, causando dano ao oponente em vez disso."
+    },
+    "impure-beam": {
+      "name": "Raio Impuro",
+      "description": "Dispara um feixe largo e destrutivo de luz capaz de arrasar grandes áreas em um único disparo. Um dos ataques de emissão à distância mais devastadores quando totalmente carregado."
+    },
+    "incite": {
+      "name": "Incitar",
+      "description": "Infunde a voz do usuário com um pulso eletromagnético. Ouvintes que aceitam o usuário como líder recebem um aumento significativo de desempenho físico e mental."
+    },
+    "infrared": {
+      "name": "Infravermelho",
+      "description": "Concede percepção infravermelha que mapeia calor ao redor. O usuário pode detectar pessoas, máquinas e mudanças no ambiente sem depender da visão comum."
+    },
+    "invisibility": {
+      "name": "Invisibilidade",
+      "description": "A Invisibilidade faz com que o usuário refrate a luz que o atinge de forma inconsciente, tornando seu corpo completamente invisível."
+    },
+    "iq": {
+      "name": "QI",
+      "description": "O QI permite que o usuário aumente seu intelecto multiplicando seu QI, tornando-se um super-gênio temporariamente após consumir chá e fechar os olhos para pensar."
+    },
+    "iron-ball": {
+      "name": "Bola de Ferro",
+      "description": "Produz e lança esferas de ferro a partir dos nós dos dedos. O usuário pode variar a massa de cada esfera, de projéteis pequenos até blocos maiores que pedras."
+    },
+    "iron-claws": {
+      "name": "Garras de Ferro",
+      "description": "Transforma as pontas dos dedos em garras metálicas adequadas para escavação e dilaceração. As garras podem cavar solo e rasgar materiais resistentes em combate próximo."
+    },
+    "iron-club": {
+      "name": "Clava de Ferro",
+      "description": "Transforma os braços em clavas de ferro com espinhos. As clavas podem esmagar pedra e desferir golpes contundentes de grande força."
+    },
+    "jet": {
+      "name": "Jato",
+      "description": "O Jato concede ao usuário a habilidade de expelir ar de buracos abertos nas solas dos pés. Isso permite que ele voe em um alcance limitado e se mova mais rápido do que o olho pode acompanhar, mesmo no chão."
+    },
+    "kaiju": {
+      "name": "Forma Kaiju",
+      "description": "O efeito ordinário é pouco documentado, mas sob amplificação externa o usuário se torna uma criatura colossal semelhante a um dinossauro com poder destrutivo imenso."
+    },
+    "kinetic-booster": {
+      "name": "Acelerador Cinético",
+      "description": "Aumenta a energia cinética que o usuário gera e libera em movimentos e golpes. Acumular várias cópias da individualidade multiplica ainda mais o impulso."
+    },
+    "king-slam": {
+      "name": "Soco do Rei",
+      "description": "Materializa um martelo grande do nada e o usa em golpes diretos ou arremessos. A arma surge totalmente formada e pronta para atacar sem preparação."
+    },
+    "landmine": {
+      "name": "Mina Terrestre",
+      "description": "Confere propriedades explosivas a qualquer coisa que o usuário toque. As detonações podem ser acionadas à vontade depois que a carga é aplicada."
+    },
+    "larceny": {
+      "name": "Ladrão",
+      "description": "Puxa instantaneamente para as mãos do usuário qualquer objeto que o alvo possua, inclusive construtos criados por outras individualidades."
+    },
+    "laser": {
+      "name": "Laser",
+      "description": "Laser permite que o usuário dispare feixes de energia de seu olho direito."
+    },
+    "leafipulation": {
+      "name": "Manipulação de Folhas",
+      "description": "Manipulação de Folhas permite que seu usuário manipule folhas da vegetação ao seu redor e as dispare como projéteis contra seus oponentes."
+    },
+    "leap": {
+      "name": "Salto",
+      "description": "Impulsiona o usuário em saltos enormes, cobrindo grande altura e distância. Não é voo verdadeiro; o usuário ainda precisa de uma superfície para impulsionar-se."
+    },
+    "life-force": {
+      "name": "Força Vital",
+      "description": "Força Vital dobra a expectativa de vida do usuário, fazendo com que envelheça mais lentamente e pareça muito mais jovem do que realmente é."
+    },
+    "lion": {
+      "name": "Leão",
+      "description": "Concede força, velocidade e reflexos semelhantes aos de um leão. O usuário pode soltar um rugido potente que interfere em certos ataques baseados em som."
+    },
+    "liquification": {
+      "name": "Liquefação",
+      "description": "Liquefação permite que o usuário liquefça seu corpo."
+    },
+    "lizard": {
+      "name": "Lagarto",
+      "description": "Lagarto concede ao usuário uma aparência reptiliana, com uma cauda, uma língua bifurcada e um corpo coberto de escamas."
+    },
+    "lizard-tail-splitter": {
+      "name": "Divisão de Cauda de Lagarto",
+      "description": "Divide o corpo em partes controladas por telecinese. Segmentos destacados podem se mover de forma independente para reconhecimento, contenção ou ataques em vários ângulos."
+    },
+    "lock-down": {
+      "name": "Imobilização",
+      "description": "Fixa qualquer coisa tocada a um ponto no espaço, imobilizando-a no lugar. Ativada por pontos de contato nos dedos do usuário."
+    },
+    "longbow": {
+      "name": "Arco Longo",
+      "description": "Transforma o polegar e o mindinho de uma mão em um arco capaz de lançar praticamente qualquer objeto pequeno com mira precisa. A munição pode ser improvisada com itens próximos."
+    },
+    "longleg": {
+      "name": "Perna Longa",
+      "description": "Perna Longa permite que o usuário estenda suas pernas, aumentando seu alcance e mobilidade em combate."
+    },
+    "love": {
+      "name": "Amor",
+      "description": "Amor permite que o usuário potencialize um alvo ao confessar seus sentimentos por ele. Quanto mais intensa for a paixão do usuário, mais forte será o poder transmitido ao alvo."
+    },
+    "luminescence": {
+      "name": "Luminescência",
+      "description": "Emite luz intensa a partir do corpo, inclusive desde a infância. A intensidade em geral aumenta conforme o usuário amadurece."
+    },
+    "mad-gluttony": {
+      "name": "Glutonaria Louca",
+      "description": "Glutonaria Louca permite que o usuário devore objetos usando a enorme boca em seu estômago, sendo capaz de inalar, triturar e destruir rapidamente tudo que estiver em seu caminho."
+    },
+    "magic": {
+      "name": "Magia",
+      "description": "Cria anéis de energia no pulso que podem capturar e mover pessoas ou objetos. Enquanto um alvo permanece dentro do anel, o usuário pode alterar sua velocidade orbital à vontade."
+    },
+    "magnetism": {
+      "name": "Magnetismo",
+      "description": "Magnetiza pessoas em um raio de cerca de 4,5 metros do usuário. O efeito pode atingir o corpo inteiro ou partes específicas dos membros e do tronco."
+    },
+    "mantis": {
+      "name": "Louva-a-Deus",
+      "description": "Concede membros e traços de combate semelhantes aos de um louva-a-deus, incluindo antebraços cortantes e golpes ágeis. Sob amplificação a forma fica maior e mais monstruosa."
+    },
+    "meatball": {
+      "name": "Manipulação de Carne",
+      "description": "Almôndega concede ao usuário a habilidade de manipular carne humana crua. O usuário pode controlar sua própria carne, permitindo que separe seus membros e os controle à vontade."
+    },
+    "metal-manipulation": {
+      "name": "Manipulação de Metal",
+      "description": "Controla metal já existente que o usuário toque, remodelando-o em barreiras, armas ou estruturas de aprisionamento. O efeito se aplica ao metal presente no ambiente."
+    },
+    "mimicry": {
+      "name": "Mimetismo",
+      "description": "Mimicry permite que o usuário transfira seu corpo e mente para objetos sólidos, manipulando-os como se fossem seu próprio corpo."
+    },
+    "mind-reaper": {
+      "name": "Ceifador de Mentes",
+      "description": "Ao toque, obriga o alvo a revelar segredos, memórias vergonhosas ou pensamentos que desejava esconder. As revelações continuam até o contato cessar ou a vítima desmoronar."
+    },
+    "mole": {
+      "name": "Toupeira",
+      "description": "Toupera permite que o usuário faça crescer garras longas e afiadas nos dedos, espinhos nas costas e um visor protetor no rosto, facilitando a escavação no solo, assim como uma toupeira."
+    },
+    "monster-cat": {
+      "name": "Gato Monstro",
+      "description": "Gato Monstro permite que o usuário se funde com um objeto ou máquina, assumindo sua forma e controlando-o completamente. Ele também pode se desassociar do objeto."
+    },
+    "monster-summon": {
+      "name": "Invocação de Monstros",
+      "description": "Cria vários monstros semelhantes a inimigos de jogos de masmorra, em geral com corpos em massa, bocas grandes e designs variados. As invocações atacam de forma independente sob o comando do usuário."
+    },
+    "muddied": {
+      "name": "Confusão",
+      "description": "Confusão concede ao usuário a habilidade de causar amnésia leve em uma pessoa ao tocar sua cabeça, tornando suas memórias dos últimos cinco minutos e dos próximos cinco minutos vagas."
+    },
+    "multiplier": {
+      "name": "Multiplicador",
+      "description": "Faz brotar braços extras do tronco, multiplicando opções de ataque corpo a corpo. Cada membro pode agir de forma independente no combate."
+    },
+    "mummification": {
+      "name": "Mumificação",
+      "description": "Controla as bandagens vermelhas envoltas ao usuário para prender objetos e envolvê-los em marionetes mumificadas humanoides. As múmias criadas podem ser comandadas a lutar ou se mover."
+    },
+    "muscle-augmentation": {
+      "name": "Aumento Muscular",
+      "description": "Amplifica e remodela tecido muscular dentro ou fora do corpo para força, velocidade e resistência imensas. O usuário pode aumentar massa muscular de forma seletiva para ataque ou defesa."
+    },
+    "muscle-expansion": {
+      "name": "Expansão Muscular",
+      "description": "Expansão Muscular permite que o usuário expanda e fortaleça seus músculos, resultando em um aumento significativo na força física."
+    },
+    "mushroom": {
+      "name": "Cogumelo",
+      "description": "Cogumelo permite que o usuário gere e espalhe esporos de fungo a partir de seu corpo. Assim que esses esporos entram em contato com uma superfície sólida, eles crescem rapidamente em cogumelos totalmente desenvolvidos."
+    },
+    "mutant-bovini": {
+      "name": "Mutante Bovino",
+      "description": "Mutante Bovino permite que seu usuário dispare lasers de seu rosto. Essa habilidade é poderosa e pode ser usada em combate para atacar inimigos à distância."
+    },
+    "navel-laser": {
+      "name": "Laser do Umbigo",
+      "description": "Dispara feixes de laser brilhantes a partir do umbigo. Os raios são precisos, chamativos e adequados para ataque à distância sustentado."
+    },
+    "neutralization": {
+      "name": "Neutralização",
+      "description": "Anula temporariamente a individualidade de outra pessoa por toque com o braço direito do usuário. A supressão dura enquanto o contato se mantém ou por um curto período depois."
+    },
+    "new-order": {
+      "name": "Nova Ordem",
+      "description": "Nova Ordem permite que o usuário estabeleça uma regra em seu entorno após tocar o alvo e chamar seu nome. Isso possibilita manipular e conferir novas propriedades a si mesmo e ao mundo ao seu redor."
+    },
+    "octopus": {
+      "name": "Polvo",
+      "description": "Polvo fornece ao usuário a fisiologia e habilidades de um polvo, como múltiplos apêndices elásticos, ventosas e a capacidade de expelir tinta de sua boca em forma de sifão."
+    },
+    "octopus-squid": {
+      "name": "Polvo (Lula)",
+      "description": "Polvo (Lula) concede ao usuário o mesmo número de membros que uma criatura cefalópode, fazendo com que pareça um polvo ou lula humanoide. Essa habilidade aumenta sua versatilidade em combate."
+    },
+    "one-for-all": {
+      "name": "Um Por Todos",
+      "description": "Acumula poder entre gerações e pode ser passada a um sucessor escolhido. Concede força, velocidade e energia esmagadoras, mas o domínio pleno exige longo treino e adaptação do corpo."
+    },
+    "orcinus": {
+      "name": "Orca",
+      "description": "Orcinus é a soma das muitas habilidades relacionadas a orcas do usuário. Ele pode realizar qualquer coisa que uma orca comum pode fazer, até mesmo em terra firme."
+    },
+    "outburst": {
+      "name": "Explosão",
+      "description": "Obriga pessoas próximas a entrar em riso intenso e incontrolável que as deixa indefesas. O efeito se espalha a quem estiver ao alcance e ouvir a risada induzida."
+    },
+    "overclock": {
+      "name": "Hiperaceleração",
+      "description": "Acelera o usuário a velocidade supersônica, fazendo o mundo parecer parado. Percepção e reação acompanham o movimento, permitindo golpes e resgates extremamente rápidos."
+    },
+    "overhaul": {
+      "name": "Reforma",
+      "description": "Desmonta e remonta matéria tocada com as mãos em nível quase molecular. O usuário pode destruir alvos, restaurá-los ou reconfigurá-los em novas formas e armas."
+    },
+    "overmodification": {
+      "name": "Supermodificação",
+      "description": "Potencializa a individualidade de uma pessoa compatível além dos limites normais e pode acrescentar novas sub-habilidades. A amplificação depende de quão bem a individualidade do alvo se alinha ao usuário."
+    },
+    "pain-blocker": {
+      "name": "Bloqueador de Dor",
+      "description": "Impede o usuário de sentir dor interna ou externa. Combinada com alta resistência, permite continuar lutando apesar de ferimentos graves."
+    },
+    "papyrus": {
+      "name": "Papiro",
+      "description": "Achata o corpo do usuário em uma lâmina fina e flexível como papel. O usuário pode esticar e dobrar os membros para alcançar distâncias e passar por frestas estreitas."
+    },
+    "physical-enhancement": {
+      "name": "Aprimoramento Físico",
+      "description": "Eleva a capacidade física geral quando ativada, muitas vezes com uma aura esverdeada semelhante a chamas ao redor do corpo. Força, velocidade e resistência aumentam por tempo limitado."
+    },
+    "plant": {
+      "name": "Planta",
+      "description": "Planta permite que o usuário transforme partes de seu corpo em estruturas vegetais. Essas estruturas têm propriedades que podem curar seus aliados."
+    },
+    "playtime": {
+      "name": "Hora do Jogo",
+      "description": "A função normal é incerta, mas sob amplificação externa o usuário cresce a proporções gigantescas enquanto ganha traços corporais distorcidos semelhantes à gigantificação."
+    },
+    "pliabody": {
+      "name": "Corpo Flexível",
+      "description": "Estica e achata o corpo do usuário à vontade para flexibilidade extrema. Útil para passar por frestas estreitas e resgates em espaços apertados."
+    },
+    "pointer": {
+      "name": "Ponteiro",
+      "description": "Após girar no lugar, os membros do usuário apontam involuntariamente para uma pessoa, local ou objeto procurado. A individualidade funciona como uma bússola viva até o alvo ser encontrado."
+    },
+    "poison-gas": {
+      "name": "Gás Venenoso",
+      "description": "Gera uma névoa tóxica que adoece quem a respira. Se não for liberada regularmente, o gás se acumula dentro do corpo do usuário."
+    },
+    "poltergeist": {
+      "name": "Espírito Poltergeist",
+      "description": "Move telecineticamente objetos e pessoas próximos sem contato direto. Grandes quantidades de detritos podem ser erguidas e arremessadas em salvas."
+    },
+    "polygraph": {
+      "name": "Polígrafo",
+      "description": "Polígrafo permite ao usuário julgar a autenticidade e sinceridade das palavras de seu alvo, informando se estão falando a verdade ou mentindo."
+    },
+    "power": {
+      "name": "Poder",
+      "description": "Poder concede ao usuário a habilidade de acumular uma força bruta tremenda em seu corpo, proporcionando uma força incrível capaz de destruir um prédio de concreto reforçado."
+    },
+    "power-stock": {
+      "name": "Acúmulo de Poder",
+      "description": "Acúmulo de Poder tem a capacidade de armazenar energia que o usuário pode usar para explosões incríveis de poder e velocidade."
+    },
+    "propagation": {
+      "name": "Propagação",
+      "description": "Duplica e faz crescer partes extras do corpo pela superfície do usuário, multiplicando a força a cada cópia. Mais duplicatas significam poder combinado maior."
+    },
+    "quad-arms": {
+      "name": "Braços Quádruplos",
+      "description": "Acrescenta um segundo par de braços funcionais. Os membros extras melhoram multitarefa, agarrões e combinações de luta corpo a corpo."
+    },
+    "queen-beam": {
+      "name": "Raio Rainha",
+      "description": "Raio Rainha permite ao usuário disparar um feixe de energia em linha reta de seu rosto. Ao ser usado, um coração rosa aparece sobre o rosto do usuário."
+    },
+    "queen-bee": {
+      "name": "Abelha Rainha",
+      "description": "Centra-se em uma abelha parasita que pode invadir um hospedeiro pela órbita ocular e assumir o controle do corpo. O abdômen inchado abriga o organismo controlador."
+    },
+    "radio-waves": {
+      "name": "Ondas de Rádio",
+      "description": "Ondas de Rádio permite ao usuário emitir um pulso eletromagnético de ondas de rádio para desestabilizar aparelhos elétricos e causar falhas em comunicadores."
+    },
+    "radio-waves-bombers": {
+      "name": "Ondas de Rádio Explosivas",
+      "description": "Emite pulsos eletromagnéticos capazes de interferir em eletrônicos e comunicações numa área. Redes de energia e equipamentos de rádio falham enquanto o pulso durar."
+    },
+    "razor-sharp": {
+      "name": "Afiado como Lâmina",
+      "description": "Produz grandes lâminas em qualquer parte do corpo. Forma, tamanho e ângulo das lâminas podem variar para cortes ou perfurações."
+    },
+    "reflect-flect-turn": {
+      "name": "Reflexo (Giro Flect)",
+      "description": "Refletir permite ao usuário absorver energia e devolvê-la na direção oposta. Quando algo o atinge, uma onda espiral de energia se forma atrás dele, e o mesmo ataque é rebatido de volta para o oponente."
+    },
+    "reflect-tomura-shigaraki": {
+      "name": "Refletir (Tomura Shigaraki)",
+      "description": "Refletir permite ao usuário copiar qualquer ataque que sofrer e recriar o mesmo ataque com a mesma força. Ele pode absorver múltiplas fontes ao mesmo tempo, mas libera tudo em uma única direção de uma vez."
+    },
+    "rifle": {
+      "name": "Fuzil",
+      "description": "Estende um cano de rifle funcional a partir de uma cavidade no cotovelo direito. O usuário dobra o braço para abrir a abertura e disparar projéteis com mecânica de arma de fogo."
+    },
+    "rivet": {
+      "name": "Rebite",
+      "description": "Gera crescimentos metálicos semelhantes a rebites nos braços, que podem ser lançados ou usados em combate próximo. O tamanho e a quantidade podem variar entre usuários."
+    },
+    "rivet-stab": {
+      "name": "Estocada de Rebite",
+      "description": "Produz tentáculos negros com linhas vermelhas rachadas a partir dos dedos e de outras partes do corpo. Os tentáculos perfuram, prendem e chicoteiam alvos à distância ou de perto."
+    },
+    "rocket-thrust": {
+      "name": "Impulso de Foguete",
+      "description": "Impulso de Foguete permite que os usuários disparem seus punhos direitos contra as pessoas em velocidades muito altas."
+    },
+    "rupture": {
+      "name": "Ruptura",
+      "description": "Ruptura permite ao usuário detonar seu próprio corpo."
+    },
+    "saber": {
+      "name": "Sabre",
+      "description": "Sabre permite ao usuário transformar partes de seu corpo em apêndices em forma de espada, que podem ser usados de forma ofensiva."
+    },
+    "sandstorm": {
+      "name": "Tempestade de Areia",
+      "description": "Transforma a parte superior do corpo em areia manipulável. O usuário pode remodelar a massa de areia em armas, escudos ou ataques fluidos."
+    },
+    "scalemail": {
+      "name": "Escama de Armadura",
+      "description": "Cobre o corpo com escamas armadas e afiadas que aumentam força e defesa. As escamas são em geral vermelho escuro e funcionam como armadura e superfícies cortantes."
+    },
+    "scales": {
+      "name": "Escamas",
+      "description": "Escamas permite ao usuário formar escamas duras por todo o corpo, que podem ser usadas como armadura protetora ou disparadas como projéteis."
+    },
+    "scanning": {
+      "name": "Escaneamento",
+      "description": "Detecta e identifica individualidades próximas em certa medida e estima o nível de poder por uma visão semelhante a assinatura térmica."
+    },
+    "scatter": {
+      "name": "Dispersão",
+      "description": "Dispersão permite ao usuário dividir e multiplicar projéteis enquanto os dispara, aumentando a força e o alcance dos ataques de longa distância."
+    },
+    "search": {
+      "name": "Busca",
+      "description": "Busca permite ao usuário monitorar e observar até cem pessoas ao mesmo tempo. Isso inclui saber suas localizações e pontos fracos."
+    },
+    "self-detonation": {
+      "name": "Auto-Detonação",
+      "description": "Auto-Detonação concede ao usuário a habilidade de se autodestruir através de uma grande explosão gerada dentro de seu corpo."
+    },
+    "serpentress": {
+      "name": "Serpente",
+      "description": "Serpente concede ao usuário um trio de cobras vivas como parte de seu cabelo, que são implicadas como parte de sua biologia."
+    },
+    "shame": {
+      "name": "Vergonha",
+      "description": "Fica mais forte conforme o usuário se sente mais envergonhado, convertendo humilhação em poder físico. Exposição ou ridicularização deliberada pode aumentar muito a potência."
+    },
+    "shield": {
+      "name": "Escudo",
+      "description": "Escudo permite ao usuário manifestar escudos hexagonais semelhantes a pedra a partir de seu corpo, que podem ser utilizados tanto defensivamente quanto ofensivamente."
+    },
+    "shock-absorption": {
+      "name": "Absorção de Choque",
+      "description": "Amortece a força de impactos físicos que atingem o usuário, cancelando ou enfraquecendo muitos golpes contundentes. Não impede cortes ou perfurações sem outras defesas combinadas."
+    },
+    "shoulder-mounted-jets": {
+      "name": "Jatos Montados nos Ombros",
+      "description": "Aciona quatro propulsores retráteis nas costas para voo em impulsos e reposicionamento rápido. Os jatos se recolhem quando não estão em uso."
+    },
+    "size": {
+      "name": "Tamanho",
+      "description": "Altera o tamanho de objetos que o usuário toca, encolhendo ou ampliando-os. A ativação exige pressionar as cinco pontas dos dedos contra o alvo ao mesmo tempo."
+    },
+    "slice": {
+      "name": "Corte",
+      "description": "Endurece e afia o cabelo do usuário para ataques cortantes. Fios podem ser usados como lâminas ou disparados como agulhas com alta penetração."
+    },
+    "slide-and-glide": {
+      "name": "Deslizar e Flutuar",
+      "description": "Deslizar e Flutuar permite ao usuário projetar uma força repulsiva/atrativa das mãos e pés. A energia repulsiva emite um brilho azul, enquanto a energia atrativa emite um brilho verde."
+    },
+    "sloshed": {
+      "name": "Tonto",
+      "description": "Tonto faz com que qualquer pessoa que se aproxime do usuário perca o senso de equilíbrio, caindo em um estado semelhante à embriaguez."
+    },
+    "smile": {
+      "name": "Sorriso",
+      "description": "Obriga vítimas que veem os dentes expostos do usuário a rir incontrolavelmente por cerca de duas horas. Funciona por visão direta ou reflexos dos dentes."
+    },
+    "smoke": {
+      "name": "Fumaça",
+      "description": "Fumaça permite ao usuário expelir grandes quantidades de fumaça rosa através dos buracos em seu corpo, gerando uma densa cortina de fumaça para mascarar e esconder seus movimentos da linha de visão dos inimigos."
+    },
+    "smokescreen": {
+      "name": "Cortina de Fumaça",
+      "description": "Cortina de Fumaça permite ao usuário gerar uma densa nuvem de fumaça roxa a partir de seu corpo. A fumaça pode ser espalhada para cobrir uma área muito ampla."
+    },
+    "snip-clip": {
+      "name": "Corta-Corta",
+      "description": "Corta-Corta permite ao usuário cortar quase qualquer coisa que seja colocada entre o dedo indicador e o dedo médio, fazendo um movimento de tesoura com eles."
+    },
+    "soccer": {
+      "name": "Futebol",
+      "description": "Futebol permite que o usuário drible uma bola como um jogador profissional em meio a grandes multidões, sem que isso impeça suas ações de roubo."
+    },
+    "softening": {
+      "name": "Amolecimento",
+      "description": "Amolecimento permite que o usuário torne qualquer coisa que toque mais macia, transformando objetos sólidos em semi-líquidos. Funciona em qualquer material sólido, como gelo, metal ou o chão, e possui um grande alcance."
+    },
+    "solid-air": {
+      "name": "Ar Sólido",
+      "description": "Solidifica o ar exalado em plataformas, muros ou barreiras que permanecem flutuando. As construções podem sustentar o usuário e aliados sem desabar."
+    },
+    "somnambulist": {
+      "name": "Sonâmbulo",
+      "description": "Libera um aroma indutor de sono pela pele que deixa alvos inconscientes. O efeito é mais forte contra homens do que contra mulheres."
+    },
+    "soul": {
+      "name": "Alma",
+      "description": "Manifesta um pequeno companheiro semelhante a um pássaro rosa ligado à alma do usuário. O companheiro está sempre ativo e revela os pensamentos verdadeiros do usuário por seu comportamento."
+    },
+    "spatial-excursion": {
+      "name": "Excursão Espacial",
+      "description": "Excursão Espacial permite que o usuário mova livremente objetos e pessoas em qualquer espaço, sem ser restringido pela gravidade."
+    },
+    "spear-hand-missiles": {
+      "name": "Mísseis de Mão Lança",
+      "description": "Dispara os pequenos segmentos recarregáveis em forma de míssil que compõem os dedos do usuário. Os tiros são rápidos, mas a trajetória é instável e muitas vezes erra sem correção."
+    },
+    "spearlike-bones": {
+      "name": "Ossos em Forma de Lança",
+      "description": "Ossos em Forma de Lança permite que o usuário gere lanças em forma de cone feitas de osso em qualquer parte de seu corpo. Elas também podem emergir de outras partes do corpo, como a boca."
+    },
+    "spike": {
+      "name": "Espinho",
+      "description": "Espinho permite que seu usuário faça espinhos brotarem de seu corpo. Os espinhos produzidos parecem ter aproximadamente o tamanho dos dedos do usuário, embora não se saiba até onde podem se estender."
+    },
+    "spotted-seal": {
+      "name": "Foca Malhada",
+      "description": "Combina traços de foca-malhada com força e agilidade aumentadas em terra e na água. O usuário pode nadar como uma foca e desferir golpes físicos potentes."
+    },
+    "spray-art": {
+      "name": "Arte em Spray",
+      "description": "Spray Art permite ao usuário sprayar nuvens de tinta spray, criando ilusões para qualquer um que esteja dentro delas."
+    },
+    "spring": {
+      "name": "Mola",
+      "description": "Torna extremamente elástico qualquer objeto que o usuário toque. Superfícies e itens ricocheteiam com elasticidade exagerada até o efeito acabar."
+    },
+    "springlike-limbs": {
+      "name": "Membros Elásticos",
+      "description": "Enrosca os músculos do usuário como molas para armazenar e liberar força em golpes explosivos. Quando totalmente liberada, a descarga pode produzir faíscas de energia visíveis."
+    },
+    "squirmy-fingers": {
+      "name": "Dedos Ágeis",
+      "description": "Dedos Ágeis permite ao usuário controlar seus dedos de forma precisa e impecável, manipulando qualquer objeto com graça, facilidade, velocidade, precisão e habilidade, além de poder dobrá-los em qualquer direção."
+    },
+    "static": {
+      "name": "Estática",
+      "description": "Ao esfregar seu corpo para acumular carga elétrica, como no processo de gerar eletricidade estática, o usuário de Estática pode gerar correntes elétricas."
+    },
+    "steel": {
+      "name": "Aço",
+      "description": "Transforma todo o corpo em aço para durabilidade extrema. A pele metálica resiste a balas, lâminas e impactos pesados, embora o peso aumente."
+    },
+    "stiffening": {
+      "name": "Endurecimento",
+      "description": "Endurece qualquer objeto amassado entre as duas mãos até rigidez semelhante à do concreto. Borracha ou materiais macios podem virar barreiras ou armas resistentes."
+    },
+    "stock": {
+      "name": "Estoque",
+      "description": "Absorve ataques recebidos e armazena sua energia para liberar depois. O poder absorvido aparece como uma massa crescente nas costas do usuário até ser descarregada."
+    },
+    "storage": {
+      "name": "Armazenamento",
+      "description": "Armazena objetos e até seres vivos dentro do corpo do usuário, transportando-os de forma discreta. Itens guardados podem ser liberados intactos sob comando."
+    },
+    "stress": {
+      "name": "Estresse",
+      "description": "Estresse concede ao usuário a habilidade de converter estresse, raiva, medo e frustração em poder bruto. Esse poder bruto é capaz de aumentar sua força, resiliência e tamanho."
+    },
+    "strongarm": {
+      "name": "Braços Fortes",
+      "description": "Braços Fortes permite que o usuário gire e mova os ombros com grande velocidade e força, proporcionando socos extremamente rápidos e poderosos."
+    },
+    "suicide-bomb": {
+      "name": "Bomba Suicida",
+      "description": "Pouco foi documentado além do nome, mas parece provocar explosões massivas centradas no usuário que devastam a área ao redor."
+    },
+    "super-regeneration": {
+      "name": "Super Regeneração",
+      "description": "Super Regeneração tem a capacidade de regenerar qualquer tipo de ferimento no corpo do usuário, como membros perdidos, em velocidades incríveis."
+    },
+    "swan": {
+      "name": "Cisne",
+      "description": "Cisne concede ao usuário duas grandes asas brancas, semelhantes às de um cisne, em suas costas. Eles podem voar, mas não têm força suficiente para fazê-lo sem primeiro rasgar suas roupas."
+    },
+    "sword-kill": {
+      "name": "Morte com Espada",
+      "description": "Morte com Espada permite que o usuário crie espadas flexíveis a partir de seus braços e ombros, que se dobram para dentro e para fora como um acordeão."
+    },
+    "tail": {
+      "name": "Cauda",
+      "description": "Concede uma cauda longa e preênsil na parte inferior das costas. O apêndice é volumoso e pode agarrar, equilibrar ou golpear como um membro extra."
+    },
+    "tank-engine": {
+      "name": "Motor de Tanque",
+      "description": "Transforma a cabeça e o tronco superior na frente de uma locomotiva a vapor, com chaminé funcional e massa de trem. O usuário se desloca com o ímpeto de um trem."
+    },
+    "telekinesis": {
+      "name": "Telecinese",
+      "description": "Move objetos inanimados por telecinese. Quando amplificada por uma individualidade de reforço compatível, a quantidade de objetos controlados de uma vez aumenta bastante."
+    },
+    "telepath": {
+      "name": "Telépata",
+      "description": "Concede comunicação e instrução telepática por pensamento. O usuário pode enviar mensagens claras a uma ou várias pessoas ao mesmo tempo."
+    },
+    "teleportation": {
+      "name": "Teletransporte",
+      "description": "Teletransporte permite que o usuário se mova e transporte qualquer material ou ser vivo que esteja tocando para um lugar dentro de sua linha de visão, sendo limitado a transportar apenas para uma área que pode ver."
+    },
+    "telescopic": {
+      "name": "Telescópico",
+      "description": "Telescópico permite que o usuário retrai partes do corpo para dentro de si mesmo, semelhante a como uma tartaruga pode se esconder em seu casco."
+    },
+    "tidal-bore": {
+      "name": "Maré Alta",
+      "description": "Expulsa grandes volumes de água pela boca para torrentes de ataque ou para erguer objetos pesados. O jato pode ser moldado em explosões pressurizadas."
+    },
+    "toho": {
+      "name": "Toho",
+      "description": "Toho confere ao usuário atributos de um kaiju; além de sua aparência semelhante a um réptil, eles são muito grandes e extremamente fortes."
+    },
+    "tongue-tank": {
+      "name": "Tanque Lingual",
+      "description": "Transforma a língua em um canhão de tanque extensível que dispara projéteis semelhantes a rochas quando a boca se abre. O cano se estende para bombardeio à distância."
+    },
+    "tool-arms": {
+      "name": "Braços Ferramenta",
+      "description": "Manifesta membros com ferramentas e armas embutidas, como motosserras, martelos e furadeiras. Cada braço pode carregar um implemento diferente."
+    },
+    "traject": {
+      "name": "Trajetória",
+      "description": "Trajetória permite que o usuário manipule a trajetória de qualquer coisa que passe por suas ataduras."
+    },
+    "transform": {
+      "name": "Transformar",
+      "description": "Após consumir o sangue de um alvo, o usuário pode assumir a aparência e a voz exatas dessa pessoa. O disfarce copia detalhes físicos com precisão, mas exige sangue fresco para se manter."
+    },
+    "transforming-arms": {
+      "name": "Braços Transformáveis",
+      "description": "Braços Transformáveis permite que seu usuário mude a forma de seus braços, possibilitando ataques elásticos e de longa distância. O usuário também pode separar os braços para cercar o alvo e lançar múltiplos ataques ao mesmo tempo."
+    },
+    "trap-flex": {
+      "name": "Flexão Trapézio",
+      "description": "Flexão Trapézio permite que o usuário flexione seu músculo trapézio a níveis extremos, cobrindo toda a cabeça com os ombros. Essa flexão proporciona uma boa quantidade de velocidade e força."
+    },
+    "tree-frog": {
+      "name": "Rã Arvore",
+      "description": "Estende a língua para fora com alcance limitado em comparação a individualidades de língua mais potentes. A língua se recolhe quando inativa e serve para captura básica ou sondagem."
+    },
+    "tripod": {
+      "name": "Tripé",
+      "description": "Tripé concede ao usuário uma terceira perna, posicionada entre as outras duas. Essa terceira perna atua como se espera, permitindo que o usuário se estabilize em terrenos instáveis."
+    },
+    "twin-impact": {
+      "name": "Impacto Duplo",
+      "description": "Impacto Duplo permite ao usuário criar um segundo impacto remotamente no local de qualquer impacto inicial, à sua escolha. O segundo impacto será muitas vezes mais forte do que o primeiro."
+    },
+    "vibrate": {
+      "name": "Vibrar",
+      "description": "Gera vibrações e ondas de choque que atravessam sólidos, líquidos e ar. O usuário pode agitar objetos que toca com as mãos para desestabilizar estruturas ou oponentes."
+    },
+    "vibration-detection": {
+      "name": "Detecção de Vibrações",
+      "description": "Detecta vibrações sutis no ambiente, semelhante à ecolocalização. O usuário pode mapear movimento e obstáculos próximos sem depender da visão."
+    },
+    "vines": {
+      "name": "Vinhas",
+      "description": "Vinhas concede ao usuário vinhas espinhosas controláveis no lugar de cabelo comum. As vinhas podem ser manipuladas para diversos propósitos, como amarrar inimigos, pegar objetos e criar barreiras defensivas."
+    },
+    "viral-cosmos": {
+      "name": "Cosmos Viral",
+      "description": "Lança salvas de pétalas geradas por flores na cabeça como projéteis cortantes. As pétalas avançam em enxame contra inimigos e cortam ao contato."
+    },
+    "voice": {
+      "name": "Voz",
+      "description": "Voz permite ao usuário aumentar o volume de sua voz, dando-lhes a capacidade de criar sons altos e agudos."
+    },
+    "voyance": {
+      "name": "Clarividência",
+      "description": "Enxerga através de objetos sólidos à vista, exceto organismos vivos. O usuário restringe a visão por uma abertura formada com os dedos para focar o efeito."
+    },
+    "warp-gate": {
+      "name": "Portal de Distorção",
+      "description": "Cria portais de névoa escura que teleportam qualquer coisa tocada para outro ponto próximo. Vários portais podem ligar locais diferentes em sequência rápida."
+    },
+    "warping": {
+      "name": "Distorção",
+      "description": "Produz gosma negra na boca de uma vítima que a envolve e funciona como portal, fazendo-a desaparecer para outro local. O usuário pode mirar em outros à distância depois que o fluido se fixa."
+    },
+    "water-control": {
+      "name": "Controle da Água",
+      "description": "Manipula água existente em garras, ondas ou jatos pressurizados. O usuário pode remodelar grandes volumes de água para ataque e mobilidade."
+    },
+    "water-gun": {
+      "name": "Pistola de Água",
+      "description": "Pistola de Água permite ao usuário disparar um jato de água de suas mãos."
+    },
+    "water-pump": {
+      "name": "Bomba de Água",
+      "description": "Gera água a partir de bicos semelhantes a mangueiras no lugar das mãos. Os jatos podem ser moldados em barreiras, explosões ou inundações contínuas com controle fino."
+    },
+    "wave-motion": {
+      "name": "Movimento de Onda",
+      "description": "Movimento de Onda concede ao usuário a habilidade de converter sua vitalidade em energia que pode ser liberada como ondas de impacto."
+    },
+    "weather-manipulation": {
+      "name": "Manipulação do Tempo",
+      "description": "Controla o clima em grande escala, convocando nuvens de tempestade, raios, tufões e outros fenômenos atmosféricos. Ilhas inteiras podem ser envolvidas por tempestades geradas."
+    },
+    "weld": {
+      "name": "Soldar",
+      "description": "Funde matéria orgânica e inorgânica em nível subatômico ao toque. Dois objetos em contato passam a formar uma única estrutura unida."
+    },
+    "whale": {
+      "name": "Baleia",
+      "description": "Transforma parte ou todo o corpo em forma de cachalote com massa imensa. Na forma completa o usuário pode expelir jatos potentes de água pela boca."
+    },
+    "whirlwind": {
+      "name": "Furacão",
+      "description": "Controla o ar ao redor com pouco movimento corporal, criando vendavais, correntes ascendentes e lâminas de vento precisas. O usuário pode voar e repelir projéteis apenas com pressão."
+    },
+    "whiteline": {
+      "name": "Linha Branca",
+      "description": "Anima linhas de faixa pintadas na via em tentáculos para prender, erguer ou arremessar objetos. Qualquer pavimento marcado próximo se torna uma extensão do alcance do usuário."
+    },
+    "whole-body-lens": {
+      "name": "Lente Corporal",
+      "description": "Lente Corporal permite ao usuário produzir lentes semelhantes a câmeras em qualquer parte do corpo para tirar fotos. Ele também pode imprimir qualquer imagem que suas câmeras corporais capturaram a partir de seu peito sempre que quiser."
+    },
+    "wing": {
+      "name": "Asa",
+      "description": "Faz brotar grandes asas negras que permitem voo livre em velocidade muito alta. A manobrabilidade no ar é forte, embora os limites de resistência não sejam totalmente conhecidos."
+    },
+    "wooden-swords-from-his-hands": {
+      "name": "Espadas de Madeira das Mãos",
+      "description": "Espadas de Madeira das Mãos permite que o usuário crie espadas de madeira a partir de seus pulsos."
+    },
+    "zombie-virus": {
+      "name": "Vírus Zumbi",
+      "description": "Vírus Zumbi permite que o usuário libere um gás rosado que, ao ser inalado, transforma temporariamente as vítimas em zumbis."
+    },
+    "zoom": {
+      "name": "Supervelocidade",
+      "description": "Amplia a visão distante quando o usuário foca em um ponto, enxergando claramente alvos a vários quilômetros. Funciona como uma lente telescópica biológica."
+    }
+  }
+}

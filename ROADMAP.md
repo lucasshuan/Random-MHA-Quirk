@@ -22,7 +22,7 @@ Itens planejados para não perder de vista.
 
 ## Conteúdo / i18n (opcional)
 
-- [ ] Completar PT-BR das quirks ainda em inglês (`pnpm research:sync-pt` com delay, ou `research:translate-pt` com OpenAI válida).
+- [ ] Completar PT-BR das quirks ainda em inglês (`node tools/catalog/bin/sync-pt.mjs` ou `translate-pt.mjs`; ver `tools/catalog/README.md`).
 - [ ] Revisar qualidade das traduções MyMemory vs LLM.
 
 ---

@@ -2,8 +2,8 @@ import { quirksBase } from '../../data/quirks.base'
 import type { Quirk, QuirkCopy } from '../../types/quirk'
 import type { QuirkId } from '../../data/quirk-ids'
 import type { Locale } from '../types'
-import { enQuirkCopy } from './en'
-import { ptBRQuirkCopy } from './pt-BR'
+import { enQuirkCopy } from '../messages/quirks/en'
+import { ptBRQuirkCopy } from '../messages/quirks/pt-BR'
 
 const quirkCopyByLocale: Record<Locale, Record<QuirkId, QuirkCopy>> = {
   en: enQuirkCopy,

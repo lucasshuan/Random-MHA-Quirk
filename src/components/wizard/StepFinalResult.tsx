@@ -4,15 +4,22 @@ import { useI18n } from '../../i18n/useI18n'
 import type { ResultMode } from '../../lib/wizardFlow'
 import type { HybridRollResult } from '../../types/fusion'
 import type { Quirk } from '../../types/quirk'
+import { HybridResultTabs } from './HybridResultTabs'
 import { RollOrb } from './RollOrb'
 
 type RollResult = Quirk | HybridRollResult | null
+
+type FusionPhase = 'idle' | 'generating' | 'error'
 
 interface StepFinalResultProps {
   mode: ResultMode
   result: RollResult
   flickerNames: string[]
+  fusionPhase: FusionPhase
+  fusionError: string | null
+  canGenerateFusionLive: boolean
   onRetry: () => void
+  onRetryFusion: () => void
   onBack: () => void
   onRestart: () => void
 }
@@ -40,7 +47,11 @@ interface ResultRevealProps {
   mode: ResultMode
   result: RollResult
   flickerNames: string[]
+  fusionPhase: FusionPhase
+  fusionError: string | null
+  canGenerateFusionLive: boolean
   onRetry: () => void
+  onRetryFusion: () => void
   onBack: () => void
   onRestart: () => void
 }
@@ -49,7 +60,11 @@ function ResultReveal({
   mode,
   result,
   flickerNames,
+  fusionPhase,
+  fusionError,
+  canGenerateFusionLive,
   onRetry,
+  onRetryFusion,
   onBack,
   onRestart,
 }: ResultRevealProps) {
@@ -104,36 +119,14 @@ function ResultReveal({
       <h1>{t('result.title')}</h1>
 
       {isHybridResult(result) ? (
-        <div className="hybrid-result result-cards-reveal">
-          {result.fusion ? (
-            <div className="fusion-hero">
-              <QuirkCard quirk={result.fusion} hideTier />
-            </div>
-          ) : (
-            <div className="fusion-pending">
-              <p className="mini-copy">{t('fusion.notGenerated')}</p>
-              <p className="fusion-generate-hint">{t('fusion.generateHint')}</p>
-              <code className="fusion-generate-cmd">
-                {t('fusion.generateCommand', {
-                  a: result.parents[0].id,
-                  b: result.parents[1].id,
-                  seed: result.seed,
-                })}
-              </code>
-            </div>
-          )}
-
-          <details className="fusion-parents-details">
-            <summary>{t('fusion.parents')}</summary>
-            <div className="fusion-result fusion-parents-grid">
-              <QuirkCard quirk={result.parents[0]} slotLabel="1" compact />
-              <div className="fusion-plus fusion-plus-reveal" aria-hidden="true">
-                +
-              </div>
-              <QuirkCard quirk={result.parents[1]} slotLabel="2" compact />
-            </div>
-          </details>
-        </div>
+        <HybridResultTabs
+          result={result}
+          resultKey={resultKey(result)}
+          fusionPhase={fusionPhase}
+          fusionError={fusionError}
+          canGenerateFusionLive={canGenerateFusionLive}
+          onRetryFusion={onRetryFusion}
+        />
       ) : result ? (
         <div className="result-cards-reveal">
           <QuirkCard quirk={result} />

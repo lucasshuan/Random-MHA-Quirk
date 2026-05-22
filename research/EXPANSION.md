@@ -28,7 +28,18 @@ pnpm research:build-catalog
 pnpm research:wiki-index
 ```
 
-`research/manual-copy.json` — cópia EN/PT curada (24 originais); o build preserva essas entradas.
+`research/manual-copy.json` — cópia EN/PT curada; o build ignora descrições genéricas antigas.
+
+### Descrições (EN via Fandom, PT-BR)
+
+```bash
+pnpm research:fix-descriptions   # EN: wikitext Fandom → manual-copy
+pnpm research:sync-pt            # PT: MyMemory (grátis), depois rebuild
+pnpm research:translate-pt       # PT: OpenAI/Gemini (melhor; requer .env válido)
+pnpm research:build-catalog
+```
+
+Se `sync-pt` parar por rate limit (429), rode de novo mais tarde — só traduz entradas ainda em inglês.
 
 ## Fluxo por lote (recomendado ~30–50 quirks)
 

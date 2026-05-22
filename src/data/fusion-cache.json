@@ -1,4 +1,30 @@
 {
   "version": 1,
-  "entries": []
+  "entries": [
+    {
+      "key": "gas+shield:pv98o524",
+      "parents": [
+        "gas",
+        "shield"
+      ],
+      "seed": "pv98o524",
+      "en": {
+        "name": "Aegis Mist",
+        "description": "Aegis Mist allows the user to envelop themselves in a shroud of protective mist, forming translucent stone-like shields that not only absorb incoming attacks but also emit a soothing yet potent gas that induces sleep. This powerful combination creates a tactical advantage, as the user can incapacitate opponents while remaining shielded and mobile within their misty barrier."
+      },
+      "pt-BR": {
+        "name": "Névoa Aegis",
+        "description": "Névoa Aegis permite que o usuário se envolva em uma névoa protetora, formando escudos semelhantes a pedras que absorvem ataques enquanto emitem um gás suave, mas potente, que induz ao sono. Essa combinação poderosa cria uma vantagem tática, pois o usuário pode incapacitar os oponentes enquanto permanece protegido e ágil dentro de sua barreira nebulosa."
+      },
+      "type": "Emitter",
+      "range": "Area",
+      "facets": [
+        "Support",
+        "Defense",
+        "Emission",
+        "Control"
+      ],
+      "origin": "ORIGINAL"
+    }
+  ]
 }

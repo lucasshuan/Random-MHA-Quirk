@@ -4,23 +4,23 @@ import type { QuirkCopy } from '../../types/quirk'
 export const ptBRQuirkCopy = {
   '2d-ify': {
     name: '2D-ify',
-    description: 'Canonical quirk from the My Hero Academia universe (2D-ify).',
+    description: 'O 2D-ify permite que o usuário prenda outras pessoas dentro de pinturas. Usando uma moldura, o usuário pode absorver pessoas e objetos, transformando-os em pinturas 2D contidas em molduras.',
   },
   'absorption-and-release': {
-    name: 'Absorption and Release',
-    description: 'Canonical quirk from the My Hero Academia universe (Absorption and Release).',
+    name: 'Absorção e Liberação',
+    description: 'Esta Peculiaridade dá ao usuário a capacidade de absorver ataques de emissores e enviá-los de volta ao oponente. O Nomu de Quatro Olhos usou essa Peculiaridade ao lutar contra o Esforço durante o Incidente Hosu, absorvendo e liberando o...',
   },
   'accelerator-rings': {
-    name: 'Accelerator Rings',
-    description: 'Canonical quirk from the My Hero Academia universe (Accelerator Rings).',
+    name: 'Anéis do Acelerador',
+    description: 'Os anéis aceleradores permitem que o usuário gere anéis amarelos de energia de suas mãos e pés. Após um atraso variável, os anéis liberam uma explosão de força em uma única direção antes de se dissipar.',
   },
   'acid': {
-    name: 'Acid',
-    description: 'Canonical quirk from the My Hero Academia universe (Acid).',
+    name: 'Ácido',
+    description: 'O ácido permite que o usuário crie líquido corrosivo a partir de sua pele, sendo naturalmente resistente ao ácido que produz.',
   },
   'acid-sweat': {
-    name: 'Acid Sweat',
-    description: 'Canonical quirk from the My Hero Academia universe (Acid Sweat).',
+    name: 'Suor Ácido',
+    description: 'O Suor Ácido permite que o usuário segregue um suor ácido com propriedades combustíveis e explosivas das palmas das mãos.',
   },
   'air-cannon': {
     name: 'Canhão de Ar',
@@ -28,371 +28,371 @@ export const ptBRQuirkCopy = {
   },
   'air-walk': {
     name: 'Air Walk',
-    description: 'Canonical quirk from the My Hero Academia universe (Air Walk).',
+    description: 'Air Walk concede ao usuário a capacidade de ficar em pé e controlar o ar ao seu redor, concedendo-lhe levitação. O Air Walk facilita a mobilidade, permitindo ao usuário melhores habilidades ofensivas e evasivas por não ser…',
   },
   'air-wall': {
-    name: 'Air Wall',
-    description: 'Canonical quirk from the My Hero Academia universe (Air Wall).',
+    name: 'Parede de ar',
+    description: 'A Parede de Ar permite que o usuário crie escudos circulares feitos de ar comprimido de suas mãos para se proteger.',
   },
   'alchemy': {
-    name: 'Alchemy',
-    description: 'Canonical quirk from the My Hero Academia universe (Alchemy).',
+    name: 'Alquimia',
+    description: 'A alquimia permite que o usuário transmute a matéria de qualquer objeto não vivo que toque. O usuário pode criar quase tudo o que desejar, desde uma simples bala até objetos mais complexos, como drones totalmente operacionais que...',
   },
   'all-for-one': {
-    name: 'All For One',
-    description: 'Canonical quirk from the My Hero Academia universe (All For One).',
+    name: 'Todos por um',
+    description: 'All For One permite que o usuário roube Peculiaridades para uso pessoal ou transfira as Peculiaridades roubadas para qualquer pessoa. Ele também permite que o usuário empunhe várias Peculiaridades simultaneamente.',
   },
   'amplivolt': {
     name: 'Amplivolt',
-    description: 'Canonical quirk from the My Hero Academia universe (Amplivolt).',
+    description: 'A Amplivolt permite que seu usuário conduza e aumente a eletricidade dentro de seu corpo antes de liberá-la depois. Uma vez amplificado o suficiente, o usuário é capaz de disparar rajadas de eletricidade armazenada de suas mãos.',
   },
   'anivoice': {
     name: 'Anivoice',
-    description: 'Canonical quirk from the My Hero Academia universe (Anivoice).',
+    description: 'O Anivoice permite que o usuário se comunique e comande os animais através da fala. Ele também concede ao usuário uma cabeça de pedra e, eventualmente, chifres que permitem a comunicação de mais longe.',
   },
   'anthropomorph': {
-    name: 'Anthropomorph',
-    description: 'Canonical quirk from the My Hero Academia universe (Anthropomorph).',
+    name: 'Antropomorfo',
+    description: 'O Antropomorfo permite que o usuário pegue um objeto de tamanho humano (uma geladeira, uma mesa, etc.) e o transforme em um sósia exato de qualquer pessoa.',
   },
   'antigen-swap': {
-    name: 'Antigen Swap',
-    description: 'Canonical quirk from the My Hero Academia universe (Antigen Swap).',
+    name: 'Troca de Antígeno',
+    description: 'A Troca de Antígeno permite que o usuário altere seu tipo sanguíneo à vontade.',
   },
   'arbor': {
-    name: 'Arbor',
-    description: 'Canonical quirk from the My Hero Academia universe (Arbor).',
+    name: 'MANDRIL',
+    description: 'O Arbor permite que o usuário gere e controle a madeira de qualquer parte do corpo. Através da Árvore, Kamui Woods é capaz de manifestar gavinhas de madeira que aparentemente brotam de sua pele e depois estendê-las por um longo...',
   },
   'assault-dust': {
-    name: 'Assault Dust',
-    description: 'Canonical quirk from the My Hero Academia universe (Assault Dust).',
+    name: 'Poeira de Assalto',
+    description: 'A Peculiaridade permite ao usuário gerar e manipular poeira, capaz de dispará-la em altas velocidades.',
   },
   'attraction-of-small-objects': {
-    name: 'Attraction of Small Objects',
-    description: 'Canonical quirk from the My Hero Academia universe (Attraction of Small Objects).',
+    name: 'Atração de pequenos objetos',
+    description: 'Esta Peculiaridade concede ao usuário a capacidade de usar um poder semelhante à telecinese que atrai pequenos objetos para eles. O limite exato de tamanho do que Inko pode atrair é desconhecido, mas ela é capaz de puxar uma figura de ação...',
   },
   'barrier': {
-    name: 'Barrier',
-    description: 'Canonical quirk from the My Hero Academia universe (Barrier).',
+    name: 'Barreira',
+    description: 'A barreira permite que o usuário crie uma barreira telecinética ao seu redor, na forma de uma cúpula. Hekiji também pode elevar a barreira rapidamente, sendo capaz de nivelar a velocidade do Braço Forte do Kendo.',
   },
   'bat': {
-    name: 'Bat',
-    description: 'Canonical quirk from the My Hero Academia universe (Bat).',
+    name: 'Rebatida',
+    description: 'A Peculiaridade do Morcego oferece ao usuário características de morcego, como asas nos braços, presas, orelhas pontudas, etc. A Peculiaridade permite que seu usuário corra em altas velocidades, bem como a capacidade de voar.',
   },
   'beams-from-his-eyes': {
-    name: 'Beams From His Eyes',
-    description: 'Canonical quirk from the My Hero Academia universe (Beams From His Eyes).',
+    name: 'Raios de Seus Olhos',
+    description: 'Beams From His Eyes permite que o usuário dispare um feixe de laser concentrado de seus olhos. Para dispará-lo, ele tem que acionar um interruptor em sua viseira, que disparará uma explosão em qualquer alvo que esteja olhando.',
   },
   'beast': {
-    name: 'Beast',
-    description: 'Canonical quirk from the My Hero Academia universe (Beast).',
+    name: 'Fera',
+    description: 'A Besta permite que o usuário se transforme em uma besta grande e monstruosa. Jurota cresce em tamanho, com seu corpo peludo e animalesco se tornando ainda mais parecido com o de uma criatura selvagem, ostentando presas enormes e sendo coberto inteiramente...',
   },
   'big-fist': {
-    name: 'Big Fist',
-    description: 'Canonical quirk from the My Hero Academia universe (Big Fist).',
+    name: 'Punho Grande',
+    description: 'O Punho Grande permite que o usuário aumente uma ou ambas as mãos para tamanhos enormes. As mãos de Itsuka se tornam gigantescas (cerca de três vezes maiores que seu próprio corpo) quase imediatamente.',
   },
   'big-horn': {
     name: 'Big Horn',
-    description: 'Canonical quirk from the My Hero Academia universe (Big Horn).',
+    description: 'Big Horn concede ao usuário um par de chifres semelhantes aos de um touro. Daikaku cortou um de seus chifres para transmitir as notícias com mais facilidade, uma decisão que foi considerada controversa por seus telespectadores.',
   },
   'big-monkey': {
     name: 'Big Monkey',
-    description: 'Canonical quirk from the My Hero Academia universe (Big Monkey).',
+    description: 'Esta Peculiaridade só é vista sob os efeitos de Gatilho, durante o qual Rikiya foi capaz de se transformar em um macaco gigante.',
   },
   'binging-ball': {
     name: 'Binging Ball',
-    description: 'Canonical quirk from the My Hero Academia universe (Binging Ball).',
+    description: 'Binging Ball permite que o usuário libere pequenas esferas flutuantes com bocas de seu corpo. Essas esferas podem ser usadas como projéteis, movendo-se a velocidades muito altas.',
   },
   'black': {
-    name: 'Black',
-    description: 'Canonical quirk from the My Hero Academia universe (Black).',
+    name: 'Preto',
+    description: 'O preto permite que o usuário mescle seu corpo em qualquer coisa de cor escura, seja naturalmente escura ou escura por meio de circunstâncias externas, como sombras. Eles também podem se mover livremente pela escuridão.',
   },
   'black-hole': {
-    name: 'Black Hole',
-    description: 'Canonical quirk from the My Hero Academia universe (Black Hole).',
+    name: 'Buraco Negro',
+    description: 'O Buraco Negro permite que o usuário crie pequenos buracos negros através de seus dedos. Os buracos negros sugam e desintegram qualquer matéria no nível atômico, bem como certas formas de energia, como a luz.',
   },
   'blackwhip': {
     name: 'Chicote Negro',
     description: 'Produz tentáculos de energia escura para capturar, balançar e puxar alvos.',
   },
   'blade-tooth': {
-    name: 'Blade-Tooth',
-    description: 'Canonical quirk from the My Hero Academia universe (Blade-Tooth).',
+    name: 'Dente da Lâmina',
+    description: 'O Blade-Tooth concede ao usuário a capacidade de ampliar e remodelar seus dentes em incisivos afiados. Essas lâminas de barbear podem variar em tamanho e forma. O usuário pode manipular o comprimento e a direção dos dentes à vontade.',
   },
   'blast': {
-    name: 'Blast',
-    description: 'Canonical quirk from the My Hero Academia universe (Blast).',
+    name: 'Explosão',
+    description: 'A explosão permite que o usuário dispare explosões contínuas de energia a uma taxa muito rápida. O traje de Herói de Sensoji permite que ele concentre sua energia em suas mãos e a dispare através de suas mãos e pernas, embora onde sua Peculiaridade...',
   },
   'blazing-hair': {
-    name: 'Blazing Hair',
-    description: 'Canonical quirk from the My Hero Academia universe (Blazing Hair).',
+    name: 'Cabelo Ardente',
+    description: 'Blazing Hair permite que o usuário controle livremente as chamas em sua cabeça. Moe o utiliza principalmente agarrando pedaços de seu cabelo, que ela pode jogar como bolas de fogo ou manipular em armas adicionais, como espadas.',
   },
   'blood-control': {
-    name: 'Blood Control',
-    description: 'Canonical quirk from the My Hero Academia universe (Blood Control).',
+    name: 'Controle Sanguíneo',
+    description: 'O Controle de Sangue permite que o usuário manipule seu próprio sangue depois que ele deixou seu corpo. Uma vez que o sangue está ao ar livre, o usuário pode controlar livremente seu fluxo e movimentos, bem como endurecê-lo para imobilizar...',
   },
   'bloodcurdle': {
     name: 'Bloodcurdle',
-    description: 'Canonical quirk from the My Hero Academia universe (Bloodcurdle).',
+    description: 'Bloodcurdle permite que o usuário paralise temporariamente um oponente ingerindo suas amostras de sangue. A Peculiaridade também concede ao usuário uma língua extraordinariamente longa contaminada com numerosas papilas pequenas.',
   },
   'bloodlet': {
-    name: 'Bloodlet',
-    description: 'Canonical quirk from the My Hero Academia universe (Bloodlet).',
+    name: 'Sangue',
+    description: 'Bloodlet permite que o usuário expulse e, posteriormente, absorva seu próprio sangue de seu corpo. Bloodlet parece permitir que o usuário suporte níveis de perda de sangue que normalmente seriam fatais, como demonstrado por sua capacidade...',
   },
   'blueflame': {
-    name: 'Blueflame',
-    description: 'Canonical quirk from the My Hero Academia universe (Blueflame).',
+    name: 'Chama Azul',
+    description: 'Como a Peculiaridade de seu pai Enji, Chama Infernal, a Chama Azul concedia habilidades baseadas em fogo a Dabi, particularmente criando e gerando fogo de seu corpo à vontade.',
   },
   'body-bulk': {
     name: 'Body Bulk',
-    description: 'Canonical quirk from the My Hero Academia universe (Body Bulk).',
+    description: 'A Peculiaridade permite que seu usuário aumente todo o seu corpo, aumentando muito sua força física e tamanho corporal.',
   },
   'body-morph': {
-    name: 'Body Morph',
-    description: 'Canonical quirk from the My Hero Academia universe (Body Morph).',
+    name: 'Morfo Corporal',
+    description: 'A Peculiaridade concede ao usuário dois braços extras, além de fornecer grande força física.',
   },
   'bombify': {
     name: 'Bombify',
-    description: 'Canonical quirk from the My Hero Academia universe (Bombify).',
+    description: 'Esta Peculiaridade permite que o usuário mute partes de seu corpo para criar bombas de vários tamanhos a partir delas. Parece ser uma aparência de uma peculiaridade artificial, criada devido às células Bomber que residem dentro de seu usuário,...',
   },
   'boomerang': {
-    name: 'Boomerang',
-    description: 'Canonical quirk from the My Hero Academia universe (Boomerang).',
+    name: 'Bumerangue',
+    description: 'O Boomerang aparentemente permite que o usuário controle a trajetória dos objetos jogados. Isso pode permitir que os objetos se concentrem nos alvos. Quando Itejiro o usa, suas mãos e os objetos que ele usa sua Peculiaridade brilham em roxo.',
   },
   'brainwashing': {
     name: 'Lavagem Cerebral',
     description: 'Força respostas obedientes de um alvo após interação vocal.',
   },
   'brawn-boost': {
-    name: 'Brawn Boost',
-    description: 'Canonical quirk from the My Hero Academia universe (Brawn Boost).',
+    name: 'Impulso Brawn',
+    description: 'Daí o nome, esta Peculiaridade dá ao usuário um impulso na força física. All For One possui três cópias desta Peculiaridade, aumentando significativamente seu poder e efeitos.',
   },
   'bristle': {
-    name: 'Bristle',
-    description: 'Canonical quirk from the My Hero Academia universe (Bristle).',
+    name: 'Cerda',
+    description: 'A cerda permite que o usuário endureça muito o cabelo. Tsuyoshi não foi visto usando-o sob nenhuma circunstância, então mais características da Peculiaridade são desconhecidas.',
   },
   'brown-bear': {
-    name: 'Brown Bear',
-    description: 'Canonical quirk from the My Hero Academia universe (Brown Bear).',
+    name: 'Urso castanho',
+    description: 'Esta Peculiaridade dá ao usuário os atributos e habilidades de um urso, incluindo: força aprimorada, grande durabilidade, sentidos aguçados e garras grandes e afiadas.',
   },
   'bruiser': {
     name: 'Bruiser',
-    description: 'Canonical quirk from the My Hero Academia universe (Bruiser).',
+    description: 'A Peculiaridade concede ao usuário a capacidade de energizar um de seus membros, permitindo que eles ataquem com um golpe poderoso. Quanto mais tempo levarem para recarregar, mais forte será o ataque.',
   },
   'bubble': {
     name: 'Bubble',
-    description: 'Canonical quirk from the My Hero Academia universe (Bubble).',
+    description: 'A bolha permite que o usuário faça bolhas, de vários tamanhos, cheias de um aroma que já cheirou pelo menos uma vez antes.',
   },
   'bull-head': {
     name: 'Bull Head',
-    description: 'Canonical quirk from the My Hero Academia universe (Bull Head).',
+    description: 'Bull Head dá ao usuário um par de chifres em forma de touro em sua cabeça.',
   },
   'bullet-laser': {
     name: 'Bullet Laser',
-    description: 'Canonical quirk from the My Hero Academia universe (Bullet Laser).',
+    description: 'O Bullet Laser permitia que o usuário disparasse lasers de cor roxa da ponta dos dedos, que eles podiam disparar como explosões diretas, bem como curvar os referidos feixes diretamente de seus dedos.',
   },
   'bullhorn': {
-    name: 'Bullhorn',
-    description: 'Canonical quirk from the My Hero Academia universe (Bullhorn).',
+    name: 'Megafone',
+    description: 'Não se sabe muito sobre Bullhorn, mas parece permitir que a voz do usuário fique mais alta do que o normal.',
   },
   'burst': {
-    name: 'Burst',
-    description: 'Canonical quirk from the My Hero Academia universe (Burst).',
+    name: 'Rompimento',
+    description: 'A explosão aparentemente permite que o usuário exploda, resultando em uma explosão de luz brilhante. Devido à explosão do usuário, esta Peculiaridade é aparentemente um uso único.',
   },
   'cell-activation': {
-    name: 'Cell Activation',
-    description: 'Canonical quirk from the My Hero Academia universe (Cell Activation).',
+    name: 'Cell Activation.',
+    description: 'A Ativação Celular permite que seu usuário ative as células em seu corpo ou no corpo de outra pessoa através do toque. Isso aumenta a regeneração, o tempo de recuperação e pode até melhorar a condição física.',
   },
   'cemedine': {
-    name: 'Cemedine',
-    description: 'Canonical quirk from the My Hero Academia universe (Cemedine).',
+    name: 'Cemedina',
+    description: 'A cemedina permite que o usuário pulverize um líquido semelhante a cola a partir dos orifícios em sua cabeça. Uma vez que atinge algo, a cola endurece e prende o que quer que entre em contato ou a torna pegajosa e perigosa ao toque.',
   },
   'cement': {
-    name: 'Cement',
-    description: 'Canonical quirk from the My Hero Academia universe (Cement).',
+    name: 'Cimento',
+    description: 'O cimento dá ao usuário a capacidade de manipular material à base de cimento simplesmente por estar em contato com a superfície. Isso não lhes dá a capacidade de criar novo cimento, eles só podem remodelar o cimento existente.',
   },
   'centipede': {
-    name: 'Centipede',
-    description: 'Canonical quirk from the My Hero Academia universe (Centipede).',
+    name: 'Quilópode',
+    description: 'A centopeia concede ao usuário membros longos e semelhantes a centopeias (braços, pernas e cabeça). Juzo pode usar sua Peculiaridade para atacar ou conter inimigos de longe.',
   },
   'chameleon': {
-    name: 'Chameleon',
-    description: 'Canonical quirk from the My Hero Academia universe (Chameleon).',
+    name: 'Camaleão',
+    description: 'O Camaleão concede ao seu usuário a aparência física e as habilidades de um camaleão. Além de uma aparência de camaleão, o usuário é capaz de grudar e escalar paredes, girar os olhos em várias direções e...',
   },
   'charging-muscles': {
-    name: 'Charging Muscles',
-    description: 'Canonical quirk from the My Hero Academia universe (Charging Muscles).',
+    name: 'Carregando Músculos',
+    description: 'Carregar Músculos permite que o usuário carregue a força em seus músculos, aumentando a força de um ataque em um golpe poderoso.',
   },
   'chart': {
-    name: 'Chart',
-    description: 'Canonical quirk from the My Hero Academia universe (Chart).',
+    name: 'Gráfico',
+    description: 'O gráfico permite que o usuário crie uma página holográfica que permite rastrear e detectar inimigos. Isso permite que Kashiko observe a pessoa em ação que ela está rastreando.',
   },
   'chest-hair': {
-    name: 'Chest Hair',
-    description: 'Canonical quirk from the My Hero Academia universe (Chest Hair).',
+    name: 'Pelos no peito',
+    description: 'Não se sabe muito sobre Pêlos Torácicos, mas devido à natureza e ao nome da Peculiaridade, presumivelmente melhora os traços masculinos do usuário.',
   },
   'chimera': {
-    name: 'Chimera',
-    description: 'Canonical quirk from the My Hero Academia universe (Chimera).',
+    name: 'Quimera',
+    description: 'A Peculiaridade concede ao usuário as características de vários animais, aprimorando essas características e permitindo que o usuário as amplie para proporções monstruosas.',
   },
   'chronostasis': {
-    name: 'Chronostasis',
-    description: 'Canonical quirk from the My Hero Academia universe (Chronostasis).',
+    name: 'Cronostase',
+    description: 'A cronostase concede ao usuário pêlos em forma de flecha que podem se estender em linha reta e cortar outros, diminuindo a velocidade dos alvos se atingidos. O "Minute Hand" está localizado na frente do cabelo de Hari, acima da testa.',
   },
   'clean-bubbler': {
-    name: 'Clean Bubbler',
-    description: 'Canonical quirk from the My Hero Academia universe (Clean Bubbler).',
+    name: 'Limpar borbulhador',
+    description: 'O Clean Bubbler permite que o usuário crie e controle a água com sabão de seu corpo. O riacho é forte o suficiente para manter várias pessoas no ar.',
   },
   'cleaning': {
-    name: 'Cleaning',
-    description: 'Canonical quirk from the My Hero Academia universe (Cleaning).',
+    name: 'Limpar',
+    description: 'A limpeza permite que o usuário segregue uma substância semelhante a sabonete em seu corpo que permite enfraquecer ou negar as peculiaridades dos outros, "escovando" ou "limpando" com ela.',
   },
   'clones': {
     name: 'Clones',
-    description: 'Canonical quirk from the My Hero Academia universe (Clones).',
+    description: 'Os clones permitem que o usuário libere uma substância viscosa de sua boca e a transforme em clones de si mesmo. Ao vomitar o que parece ser um fluido brilhante, o Ectoplasma pode criar até trinta clones de cada vez com o...',
   },
   'cloud': {
-    name: 'Cloud',
-    description: 'Canonical quirk from the My Hero Academia universe (Cloud).',
+    name: 'Nuvem',
+    description: 'A nuvem permitiu que o usuário criasse nuvens de tamanhos diferentes, de densidades variadas, o suficiente para serem tocadas e até mesmo para suportar o peso de uma ou várias pessoas.',
   },
   'comic': {
-    name: 'Comic',
-    description: 'Canonical quirk from the My Hero Academia universe (Comic).',
+    name: 'Quadrinhos',
+    description: 'A história em quadrinhos permite que o usuário materialize a onomatopeia no mundo real na forma de letras japonesas gigantes, falando-as. A onomatopeia se manifesta com os mesmos efeitos do som em que se baseia.',
   },
   'compress': {
-    name: 'Compress',
-    description: 'Canonical quirk from the My Hero Academia universe (Compress).',
+    name: 'Comprimir',
+    description: 'A compactação permite que o usuário encolha qualquer coisa dentro de uma área esférica em um pequeno mármore sem realmente danificá-lo. Para ativar sua Peculiaridade, Atsuhiro primeiro precisa tocar o alvo com a mão.',
   },
   'confession': {
-    name: 'Confession',
-    description: 'Canonical quirk from the My Hero Academia universe (Confession).',
+    name: 'Confissão',
+    description: 'Depois de fazer uma pergunta, a Confissão permite que o usuário force a vítima a responder com sinceridade. Com esta peculiaridade, o usuário pode aprender os verdadeiros pensamentos, segredos, intenções e sentimentos de aliados e inimigos,...',
   },
   'conjure': {
-    name: 'Conjure',
-    description: 'Canonical quirk from the My Hero Academia universe (Conjure).',
+    name: 'Conjurar',
+    description: 'Conjurar permite que o usuário mire em qualquer objeto relativamente pequeno e o deforma diretamente em sua mão.',
   },
   'control-glass': {
-    name: 'Control Glass',
-    description: 'Canonical quirk from the My Hero Academia universe (Control Glass).',
+    name: 'Vidro de Controle',
+    description: 'O vidro de controle permite ao usuário controlar e remodelar grandes quantidades de vidro em sua área. Eles também são capazes de alterar sua estrutura e consistência, sendo capazes de alterá-lo de ser um sólido para uma substância líquida, e...',
   },
   'control-horn': {
-    name: 'Control Horn',
-    description: 'Canonical quirk from the My Hero Academia universe (Control Horn).',
+    name: 'Buzina de Controle',
+    description: 'O Chifre de Controle permite que o usuário controle a mente das vacas. Cowboy é visto controlando centenas deles ao mesmo tempo, já que ele estava ameaçando debandar uma província inteira do Japão se suas exigências não fossem atendidas.',
   },
   'copy': {
     name: 'Copy',
-    description: 'Canonical quirk from the My Hero Academia universe (Copy).',
+    description: 'A cópia permite que o usuário utilize uma Peculiaridade depois de entrar em contato com seu respectivo usuário. Neito só precisa tocar alguns fios de cabelo do alvo para que sua Peculiaridade faça efeito.',
   },
   'cow': {
-    name: 'Cow',
-    description: 'Canonical quirk from the My Hero Academia universe (Cow).',
+    name: 'Vaca',
+    description: 'A vaca permite que o usuário altere seu corpo com as características de uma vaca. Isso inclui cascos, chifres e a pele de uma vaca. Isso aumenta a velocidade e a força do usuário em relação à de uma vaca.',
   },
   'creation': {
     name: 'Criação',
     description: 'Converte recursos do corpo em matéria inanimada de composição conhecida.',
   },
   'crystallize': {
-    name: 'Crystallize',
-    description: 'Canonical quirk from the My Hero Academia universe (Crystallize).',
+    name: 'Cristalização',
+    description: 'Cristalizar permite que o usuário desenvolva um grande número de cristais de seu corpo, cobrindo completamente sua pele com eles. Os cristais são mostrados como sendo duráveis e capazes de crescer quase instantaneamente.',
   },
   'cubism': {
-    name: 'Cubism',
-    description: 'Canonical quirk from the My Hero Academia universe (Cubism).',
+    name: 'Cubismo',
+    description: 'O cubismo permite que o usuário transforme outras pessoas em versões 3D da obra de arte cubista.',
   },
   'curse': {
-    name: 'Curse',
-    description: 'Canonical quirk from the My Hero Academia universe (Curse).',
+    name: 'Amaldiçoar',
+    description: 'A Peculiaridade transforma todo o corpo do usuário em runas de papel. Essa peculiaridade também torna seu corpo extremamente leve. O papel pode ser lançado como fios afiados em direção a seus inimigos.',
   },
   'danger-sense': {
-    name: 'Danger Sense',
-    description: 'Canonical quirk from the My Hero Academia universe (Danger Sense).',
+    name: 'Senso de Perigo',
+    description: 'O Sentido de Perigo permite que o usuário detecte quaisquer ameaças potenciais na área circundante, dando assim ao usuário a oportunidade de reagir adequadamente a elas rapidamente, essencialmente concedendo-lhes um sexto sentido.',
   },
   'dark-ball': {
-    name: 'Dark Ball',
-    description: 'Canonical quirk from the My Hero Academia universe (Dark Ball).',
+    name: 'Bola Negra',
+    description: 'A Peculiaridade permite que o usuário libere uma série de bolas pretas com contornos roxos que emitem energia escura. All For One usa a Peculiaridade em conjunto com vários outros em um ataque aleatório durante sua luta contra All...',
   },
   'dark-shadow': {
     name: 'Sombra Escura',
     description: 'Manifesta uma entidade sombria autônoma com utilidade ofensiva e defensiva.',
   },
   'darkness': {
-    name: 'Darkness',
-    description: 'Canonical quirk from the My Hero Academia universe (Darkness).',
+    name: 'Escuridão',
+    description: 'A escuridão permite que o usuário manifeste um líquido roxo escuro e enevoado de seus dedos e solas dos pés. Quando liberado nos arredores, cobrirá a área e o terreno com ele, causando qualquer coisa pulverizada...',
   },
   'day-dream': {
-    name: 'Day Dream',
-    description: 'Canonical quirk from the My Hero Academia universe (Day Dream).',
+    name: 'Sonho diurno',
+    description: 'O Sonho Diurno permite que o usuário faça com que qualquer pessoa que olhe caia inconsciente ou seja colocada em um estado hipnótico controlável por um curto período de tempo.',
   },
   'decay': {
     name: 'Decadência',
     description: 'Desintegra matéria tocada por meio de um efeito rápido em cadeia.',
   },
   'delay-spot': {
-    name: 'Delay Spot',
-    description: 'Canonical quirk from the My Hero Academia universe (Delay Spot).',
+    name: 'Ponto de Atraso',
+    description: 'O Ponto de Atraso concede ao usuário a capacidade de criar uma bolha semelhante a uma semi-esfera sobre uma área, fazendo com que tudo dentro da bolha fique preso em câmera lenta, o suficiente para incapacitar pessoas e diminuir a velocidade das balas para um mero...',
   },
   'despot': {
-    name: 'Despot',
-    description: 'Canonical quirk from the My Hero Academia universe (Despot).',
+    name: 'Déspota',
+    description: 'A Peculiaridade permite que o usuário marionete os corpos de outras pessoas através dos fios que extrudam de seu corpo. Eles podem controlar várias dezenas de pessoas ao mesmo tempo.',
   },
   'diesel-engine': {
-    name: 'Diesel Engine',
-    description: 'Canonical quirk from the My Hero Academia universe (Diesel Engine).',
+    name: 'Motor Diesel',
+    description: 'O Motor Diesel transforma a cabeça do usuário e toda a parte superior do corpo na locomotiva de um trem movido a diesel e concede a ele maior velocidade de corrida.',
   },
   'dog': {
-    name: 'Dog',
-    description: 'Canonical quirk from the My Hero Academia universe (Dog).',
+    name: 'Cachorro',
+    description: 'O cão dá ao usuário um maior senso de audição e olfato. Para Ryo, seu olfato chegava ao ponto em que ele podia dizer quantas pessoas havia dentro de uma floresta do lado de fora.',
   },
   'double': {
-    name: 'Double',
-    description: 'Canonical quirk from the My Hero Academia universe (Double).',
+    name: 'Duplo',
+    description: 'O Double permitia que o usuário criasse uma cópia de qualquer coisa, duas de cada vez, através do toque. Com o Double, Jin poderia produzir réplicas de qualquer pessoa para fornecer suporte em números.',
   },
   'dragon': {
     name: 'Dragon',
-    description: 'Canonical quirk from the My Hero Academia universe (Dragon).',
+    description: 'Dragon allows the user to transform into a dragon, a powerful mythological creature. This form grants them abilities commonly associated with dragons, including flight, powerful jaws and claws.',
   },
   'dragon-breath': {
     name: 'Dragon Breath',
-    description: 'Canonical quirk from the My Hero Academia universe (Dragon Breath).',
+    description: 'Dragon Breath allows the user to expel fire from their mouth and, similar to Sloshed, requires alcohol to be consumed beforehand.',
   },
   'dupli-arms': {
     name: 'Dupli-Arms',
-    description: 'Canonical quirk from the My Hero Academia universe (Dupli-Arms).',
+    description: 'Dupli-Arms grants the user a set of arm-like tentacles adjacent to their arms that can transform into duplicates of their other body parts.',
   },
   'dust': {
     name: 'Dust',
-    description: 'Canonical quirk from the My Hero Academia universe (Dust).',
+    description: 'Dust allows the user to create ash-like dust from their body. Konako often uses it as a distraction, throwing dust at the eyes, nose, and mouth of her foes.',
   },
   'eagle': {
     name: 'Eagle',
-    description: 'Canonical quirk from the My Hero Academia universe (Eagle).',
+    description: 'This Quirk provides the user with an eagle-like appearance, and presumably the same abilities as one. The full capabilities of the Quirk are unknown.',
   },
   'earphone-jack': {
     name: 'Earphone Jack',
-    description: 'Canonical quirk from the My Hero Academia universe (Earphone Jack).',
+    description: 'Earphone Jack grants its user long, controllable earlobes that work like headphone cables. Kyoka\'s earlobes are shaped like jacks at their ends, allowing her to plug them into a variety of objects.',
   },
   'earth-flow': {
     name: 'Earth Flow',
-    description: 'Canonical quirk from the My Hero Academia universe (Earth Flow).',
+    description: 'Earth Flow allows the user to manipulate the earth around them, being able to mold it into anything they want. With Earth Flow, Ryuko is capable of feats of considerable power, as demonstrated by her ability to conjure…',
   },
   'eel': {
     name: 'Eel',
-    description: 'Canonical quirk from the My Hero Academia universe (Eel).',
+    description: 'Eel allowed the user to transform into a medium-sized eel, but under the effects of Trigger, this Quirk transformed Teruo into a large, eel-like creature with incredibly slimy skin.',
   },
   'elasticity': {
     name: 'Elasticity',
-    description: 'Canonical quirk from the My Hero Academia universe (Elasticity).',
+    description: 'Elasticity allows the user to bestow the property of elasticity to anything they touch. By making objects elastic, Danjuro can manipulate them to his advantage.',
   },
   'electric-charge': {
     name: 'Electric Charge',
-    description: 'Canonical quirk from the My Hero Academia universe (Electric Charge).',
+    description: 'Electric Charge allows the user to harvest and manipulate electrical currents. Tesla can use his gathered electricity to attack, and can even use the currents to jam electrical signals.',
   },
   'electric-eel': {
     name: 'Electric Eel',
-    description: 'Canonical quirk from the My Hero Academia universe (Electric Eel).',
+    description: 'After being kidnapped and modified by the Villain Factory, Teruo\'s original Eel Quirk evolved into a more powerful version known as Electric Eel.',
   },
   'electricity-generation': {
     name: 'Electricity Generation',
-    description: 'Canonical quirk from the My Hero Academia universe (Electricity Generation).',
+    description: 'Electricity Generation grants the user the ability to produce and manipulate electricity. Unlike Electrification, the user of this Quirk can aim their discharges by firing them off as bolts of lightning, rather than…',
   },
   'electrification': {
     name: 'Eletrização',
@@ -400,23 +400,23 @@ export const ptBRQuirkCopy = {
   },
   'electromagnetic-bullets': {
     name: 'Electromagnetic Bullets',
-    description: 'Canonical quirk from the My Hero Academia universe (Electromagnetic Bullets).',
+    description: 'This Quirk allows the user to generate an electromagnetic field to enhance the power of thrown objects.',
   },
   'endurance': {
     name: 'Endurance',
-    description: 'Canonical quirk from the My Hero Academia universe (Endurance).',
+    description: 'Endurance gives the user the ability to convert their mobility and morale into physical energy, granting the user a significant increase in stamina and endurance, effectively transforming them into "a stamina beast".',
   },
   'energy-saver': {
     name: 'Energy Saver',
-    description: 'Canonical quirk from the My Hero Academia universe (Energy Saver).',
+    description: 'Energy Saver allows the user\'s body to function on very small amounts of nutrition and hydration, as well as allow them to process without much sleep.',
   },
   'energy-suck': {
     name: 'Energy Suck',
-    description: 'Canonical quirk from the My Hero Academia universe (Energy Suck).',
+    description: 'By making physical contact and then inhaling, the user can absorb the vitality of others, not only giving themselves more stamina, but also gaining an increase in size and strength.',
   },
   'enfeeble': {
     name: 'Enfeeble',
-    description: 'Canonical quirk from the My Hero Academia universe (Enfeeble).',
+    description: 'Enfeeble allows the user to stare into someone\'s eyes and paralyze their muscles for three seconds. However, the subject is still conscious while being immobilized.',
   },
   'engine': {
     name: 'Motor',
@@ -428,39 +428,39 @@ export const ptBRQuirkCopy = {
   },
   'erasure-spot': {
     name: 'Erasure Spot',
-    description: 'Canonical quirk from the My Hero Academia universe (Erasure Spot).',
+    description: 'Erasure Spot allows the user to create a large dome-shaped wave of energy that deactivates the Quirks of anyone within its range.',
   },
   'eruption': {
     name: 'Eruption',
-    description: 'Canonical quirk from the My Hero Academia universe (Eruption).',
+    description: 'Eruption allows the user to burn their fat to produce a lava-like substance, that\'s as hot as magma, and eject it from their body.',
   },
   'explosion': {
     name: 'Explosion',
-    description: 'Canonical quirk from the My Hero Academia universe (Explosion).',
+    description: 'Explosion allows the user to excrete nitroglycerin-like sweat from their palms and ignite it at will to create explosions of various sizes.',
   },
   'extend-o-hair': {
     name: 'Extend-o-Hair',
-    description: 'Canonical quirk from the My Hero Academia universe (Extend-o-Hair).',
+    description: 'While using this Quirk, the user can manipulate the growth and movements of all of their hair. Their hair is unusually resilient and indestructible, making it impervious to any harm or damage.',
   },
   'extra-arms': {
     name: 'Extra Arms',
-    description: 'Canonical quirk from the My Hero Academia universe (Extra Arms).',
+    description: 'Extra Arms gives the user an extra set of arms.',
   },
   'fa-jin': {
     name: 'Fa Jin',
-    description: 'Canonical quirk from the My Hero Academia universe (Fa Jin).',
+    description: 'Fa Jin allows the user to build up kinetic energy by performing repetitive movements, emitting red colored glowing energy and storing it for later use.',
   },
   'fan': {
     name: 'Fan',
-    description: 'Canonical quirk from the My Hero Academia universe (Fan).',
+    description: 'Fan allows the user to create wind or even tornadoes by spinning their wrists.',
   },
   'fast-fist': {
     name: 'Fast Fist',
-    description: 'Canonical quirk from the My Hero Academia universe (Fast Fist).',
+    description: 'The user of Fast Fist can move at least their hands extremely quickly, allowing them to hit up to 100 times in less than a second.',
   },
   'fat-absorption': {
     name: 'Fat Absorption',
-    description: 'Canonical quirk from the My Hero Academia universe (Fat Absorption).',
+    description: 'Fat Absorption grants the user the ability to adhere any objects to their body and make them sink into their body fat upon contact with it.',
   },
   'fiber-master': {
     name: 'Mestre das Fibras',
@@ -468,7 +468,7 @@ export const ptBRQuirkCopy = {
   },
   'fierce-gains': {
     name: 'Fierce Gains',
-    description: 'Canonical quirk from the My Hero Academia universe (Fierce Gains).',
+    description: 'Fierce Gains allows the user\'s muscles to harden at exceptionally tough levels. Gigantomachia uses this Quirk in conjunction with his make-shift body granted by Mole, and his ability to not feel pain to make his skin…',
   },
   'fierce-wings': {
     name: 'Asas Ferozes',
@@ -476,27 +476,27 @@ export const ptBRQuirkCopy = {
   },
   'fire-cracker': {
     name: 'Fire Cracker',
-    description: 'Canonical quirk from the My Hero Academia universe (Fire Cracker).',
+    description: 'The Quirk allows the user the ability to rip off chunks of their hair and explode them like firecrackers. The blasts are strong enough to destroy buildings.',
   },
   'flash-bang-sweat': {
     name: 'Flash Bang Sweat',
-    description: 'Canonical quirk from the My Hero Academia universe (Flash Bang Sweat).',
+    description: 'Flash Bang Sweat allows the user to sweat a substance that produces a bright light and sound on impact. Dadan\'s hero costume can launch missiles that are filled with his Quirk.',
   },
   'flight': {
     name: 'Flight',
-    description: 'Canonical quirk from the My Hero Academia universe (Flight).',
+    description: 'Flight allows the user to levitate and fly at high speeds. Christopher\'s Quirk covers himself and whatever he is in contact with inside an aerodynamic barrier that protects from heat, cold, and physical harm.',
   },
   'float': {
     name: 'Float',
-    description: 'Canonical quirk from the My Hero Academia universe (Float).',
+    description: 'Float allows the user to levitate and suspend themselves in mid-air. With the added enhancement of the stockpiled energy from One For All, Float becomes drastically more powerful, allowing the user to fly at high speeds.',
   },
   'fly-swatter': {
     name: 'Fly Swatter',
-    description: 'Canonical quirk from the My Hero Academia universe (Fly Swatter).',
+    description: 'Fly Swatter allows the user to send energy waves and attack from a farther distance than their normal reach. In order to use the Quirk, Shoko appears to have to swing one of her arms very quickly, in which she could use…',
   },
   'flying-squirrel': {
     name: 'Flying Squirrel',
-    description: 'Canonical quirk from the My Hero Academia universe (Flying Squirrel).',
+    description: 'The Quirk allows the user to glide through the air like a flying squirrel, with wing-like films on her arms. Clair\'s sidekick has enough power to carry the weight of one person on her back during flight.',
   },
   'foldabody': {
     name: 'Corpo Dobrável',
@@ -504,15 +504,15 @@ export const ptBRQuirkCopy = {
   },
   'food': {
     name: 'Food',
-    description: 'Canonical quirk from the My Hero Academia universe (Food).',
+    description: 'Food allows the user to bite, chew, and digest anything that they are able to come into direct contact with. Soramitsu is able to chew through objects with ease, and his targets do not seem to put up much resistance,…',
   },
   'foresight': {
     name: 'Foresight',
-    description: 'Canonical quirk from the My Hero Academia universe (Foresight).',
+    description: 'Foresight granted the user the ability to accurately predict all of the target\'s future moves and actions for an entire hour. Foresight activated by first touching a target and then making eye contact with them.',
   },
   'free-walker': {
     name: 'Free Walker',
-    description: 'Canonical quirk from the My Hero Academia universe (Free Walker).',
+    description: 'It is unknown what this Quirk can do, but based on the name, it can be presumed it allows the user\'s legs to move freely without tiring out.',
   },
   'frog': {
     name: 'Sapo',
@@ -520,71 +520,71 @@ export const ptBRQuirkCopy = {
   },
   'frost': {
     name: 'Frost',
-    description: 'Canonical quirk from the My Hero Academia universe (Frost).',
+    description: 'Frost gives the user the capability of manipulating and producing ice around their body, being able to coat themselves in ice and blast it out.',
   },
   'gale-gale': {
     name: 'Gale Gale',
-    description: 'Canonical quirk from the My Hero Academia universe (Gale Gale).',
+    description: 'Gale Gale gives the user the ability to manipulate wind and whirl it around their body to fly. While the Gale Villain looks relatively harmless, his body surrounded by the powerful blasts of wind is strong enough to…',
   },
   'gas': {
     name: 'Gas',
-    description: 'Canonical quirk from the My Hero Academia universe (Gas).',
+    description: 'Gas grants the user the ability to generate a poisonous, sleep-inducing gas from their body. The user is capable of producing a large amount of purple-colored gas, enough to completely fill The Beast\'s Forest.',
   },
   'gatling': {
     name: 'Gatling',
-    description: 'Canonical quirk from the My Hero Academia universe (Gatling).',
+    description: 'Gatling grants the user gun-like organs in their arms. Gunhead can shoot claw-like objects made out of keratin from his gun-like organs.',
   },
   'gearshift': {
     name: 'Gearshift',
-    description: 'Canonical quirk from the My Hero Academia universe (Gearshift).',
+    description: 'Gearshift allows the user to change the speed at which things accelerate through space. It is even capable of changing speeds while ignoring the laws of inertia.',
   },
   'gecko': {
     name: 'Gecko',
-    description: 'Canonical quirk from the My Hero Academia universe (Gecko).',
+    description: 'Gecko grants the user a reptilian appearance and the ability to cling onto walls and other sheer surfaces. Gecko appears to have strong adherence power, since Shuichi can remain attached even to fast-moving vehicles.',
   },
   'gigantic-spinning-flying-turtle': {
     name: 'Gigantic Spinning Flying Turtle',
-    description: 'Canonical quirk from the My Hero Academia universe (Gigantic Spinning Flying Turtle).',
+    description: 'This Quirk presumably grants the user flying turtle-based powers. However, due to the way that it is shown, it is inconclusive as to whether or not Eiji will always be spinning, or giant.',
   },
   'gigantification': {
     name: 'Gigantification',
-    description: 'Canonical quirk from the My Hero Academia universe (Gigantification).',
+    description: 'Gigantification allows its user to drastically increase their size to gigantic levels. While gigantified, Yu can easily subdue smaller targets and fight similarly-sized foes on equal footing.',
   },
   'glamour': {
     name: 'Glamour',
-    description: 'Canonical quirk from the My Hero Academia universe (Glamour).',
+    description: 'This Quirk allows the user to create both visual and auditory illusions for a short period of time. Camie emits a mist-like substance from her mouth which forms the illusion.',
   },
   'glide-and-slide': {
     name: 'Glide and Slide',
-    description: 'Canonical quirk from the My Hero Academia universe (Glide and Slide).',
+    description: 'Glide and Slide allows its users to glide along the ground as though they had roller skates on. When using this Quirk, the users appear to make gestures that would be akin to a roller skater in order to pick up…',
   },
   'glycerin': {
     name: 'Glycerin',
-    description: 'Canonical quirk from the My Hero Academia universe (Glycerin).',
+    description: 'The Quirk allows the user to produce a smooth liquid from their skin. Its moisturizing effect gives Mitsuki a flawless skin quality which maintains her youthful appearance, despite her age.',
   },
   'good-ear': {
     name: 'Good Ear',
-    description: 'Canonical quirk from the My Hero Academia universe (Good Ear).',
+    description: 'Good Ear allows the user to hear high frequencies that humans normally cannot. Sirius uses it to communicate with Selkie when they are far apart. She can also use it to detect the number of people nearby.',
   },
   'grasshopper': {
     name: 'Grasshopper',
-    description: 'Canonical quirk from the My Hero Academia universe (Grasshopper).',
+    description: 'Grasshopper allows the user the ability to transform into a large humanoid grasshopper, increasing their physical capabilities.',
   },
   'gyrate': {
     name: 'Gyrate',
-    description: 'Canonical quirk from the My Hero Academia universe (Gyrate).',
+    description: 'Gyrate allows the user to rotate any part of their body at high speeds. The effects of Gyrate turn Sen\'s limbs into something akin to a drill. This enhances his hand-to-hand combat capabilities significantly.',
   },
   'hair-control': {
     name: 'Hair Control',
-    description: 'Canonical quirk from the My Hero Academia universe (Hair Control).',
+    description: 'Hair Control allows its user to manipulate their hair in various ways. Needle Hair is able to fire off strands of her hair like bullets.',
   },
   'hair-raiser': {
     name: 'Hair-Raiser',
-    description: 'Canonical quirk from the My Hero Academia universe (Hair-Raiser).',
+    description: 'Hair-Raiser makes the user capable of extending and hardening hair strands that they can tear off from their own head. Mr.',
   },
   'half-cold-half-hot': {
     name: 'Half-Cold Half-Hot',
-    description: 'Canonical quirk from the My Hero Academia universe (Half-Cold Half-Hot).',
+    description: 'Half-Cold Half-Hot allows the user to generate ice, frost, and cold from the right side of their body, and fire, flames, and heat from the left.',
   },
   'hardening': {
     name: 'Endurecimento',
@@ -592,19 +592,19 @@ export const ptBRQuirkCopy = {
   },
   'hardflame-fan': {
     name: 'Hardflame Fan',
-    description: 'Canonical quirk from the My Hero Academia universe (Hardflame Fan).',
+    description: 'Hardflame Fan allows the user to generate a wall, or layers of walls, of fire which they can use to cover a part of their body for defense. In the anime, this appears to be a shiny green liquid they generate.',
   },
   'heal': {
     name: 'Heal',
-    description: 'Canonical quirk from the My Hero Academia universe (Heal).',
+    description: 'Heal allows the user to amplify and quicken their target\'s natural healing process by extending their lips and kissing them.',
   },
   'heavy-payload': {
     name: 'Heavy Payload',
-    description: 'Canonical quirk from the My Hero Academia universe (Heavy Payload).',
+    description: 'Heavy Payload seemingly increases the damage output of the user\'s attacks.',
   },
   'helical-scythe': {
     name: 'Helical Scythe',
-    description: 'Canonical quirk from the My Hero Academia universe (Helical Scythe).',
+    description: 'Helical Scythe grants the user large, red appendages on their fingers and head, which they are able to extend and manipulate like tendrils.',
   },
   'hellflame': {
     name: 'Chama Infernal',
@@ -612,163 +612,163 @@ export const ptBRQuirkCopy = {
   },
   'high-specs': {
     name: 'High Specs',
-    description: 'Canonical quirk from the My Hero Academia universe (High Specs).',
+    description: 'High Specs grants the user unparalleled intelligence, perception, reactions and comprehension that far surpasses that of any human.',
   },
   'hologram': {
     name: 'Hologram',
-    description: 'Canonical quirk from the My Hero Academia universe (Hologram).',
+    description: 'The Quirk allows the user to create holograms of anything they wish, with the largest ones being able to be spotted from a great distance away.',
   },
   'homing': {
     name: 'Homing',
-    description: 'Canonical quirk from the My Hero Academia universe (Homing).',
+    description: 'Homing allows the user to lock on to any target that they can see within six hundred meters of themselves and make any projectile they release chase after said target.',
   },
   'horn-cannon': {
     name: 'Horn Cannon',
-    description: 'Canonical quirk from the My Hero Academia universe (Horn Cannon).',
+    description: 'Horn Cannon allows the user to detach and launch their horns as projectiles. Pony can fire off several horns in succession, with a new set regenerating on her head almost instantly.',
   },
   'hula-hoop': {
     name: 'Hula Hoop',
-    description: 'Canonical quirk from the My Hero Academia universe (Hula Hoop).',
+    description: 'After raising their arm, the user can generate a large hoop of energy that they can throw at their opponent to attack them.',
   },
   'hydra': {
     name: 'Hydra',
-    description: 'Canonical quirk from the My Hero Academia universe (Hydra).',
+    description: 'Hydra allowed the user to summon gigantic, serpentine shark-like creatures from their back that they can control at will. The creatures are large enough to crush a person in their jaws.',
   },
   'hypertrophy': {
     name: 'Hypertrophy',
-    description: 'Canonical quirk from the My Hero Academia universe (Hypertrophy).',
+    description: 'The Quirk allows the user to enlarge their arm at will to enormous sizes. The etymology and medical definition of the word "hypertrophy" also suggest this to be the Quirk\'s effect.',
   },
   'ice-ply': {
     name: 'Ice Ply',
-    description: 'Canonical quirk from the My Hero Academia universe (Ice Ply).',
+    description: 'Ice Ply allows the user to freely manipulate any and all nearby ice. They can freely gather, move, attack with, and defend with the ice they control.',
   },
   'ignition': {
     name: 'Ignition',
-    description: 'Canonical quirk from the My Hero Academia universe (Ignition).',
+    description: 'Ignition grants the user fire abilities, generating a small flame from the top of their head. Moyuru is able to exhale powerful flares through his mouth.',
   },
   'impact-recoil': {
     name: 'Impact Recoil',
-    description: 'Canonical quirk from the My Hero Academia universe (Impact Recoil).',
+    description: 'Impact Recoil allows the user to reverse the impact caused by an opposing physical force, damaging the opposition instead.',
   },
   'impure-beam': {
     name: 'Impure Beam',
-    description: 'Canonical quirk from the My Hero Academia universe (Impure Beam).',
+    description: 'Impure Beam allows the user to unleash a large and destructive beam of light. This Quirk is one of the strongest in All For One\'s arsenal, capable of inflicting massive, widespread damage in a single shot.',
   },
   'incite': {
     name: 'Incite',
-    description: 'Canonical quirk from the My Hero Academia universe (Incite).',
+    description: 'Incite lines the user\'s voice with an electromagnetic pulse. If someone who considers the Meta Ability user a worthy leader hears the user\'s voice, then their physical and mental state will be significantly enhanced.',
   },
   'infrared': {
     name: 'Infrared',
-    description: 'Canonical quirk from the My Hero Academia universe (Infrared).',
+    description: 'Hence the name, this Quirk gives the user infrared senses, to the point where they can sense their entire surroundings by using those senses.',
   },
   'invisibility': {
     name: 'Invisibility',
-    description: 'Canonical quirk from the My Hero Academia universe (Invisibility).',
+    description: 'Invisibility causes the user to unconsciously refract the light that hits them, granting them a completely invisible body.',
   },
   'iq': {
     name: 'IQ',
-    description: 'Canonical quirk from the My Hero Academia universe (IQ).',
+    description: 'IQ allows the user to enhance their intellect by multiplying their IQ, and become a super-genius temporarily after consuming tea and closing their eyes to think.',
   },
   'iron-ball': {
     name: 'Iron Ball',
-    description: 'Canonical quirk from the My Hero Academia universe (Iron Ball).',
+    description: 'The Quirk gives the user the ability to produce and shoot iron balls from their knuckles. Sidero has a fair amount of control over the mass of the iron balls, ranging in size from an egg to bigger than his body.',
   },
   'iron-claws': {
     name: 'Iron Claws',
-    description: 'Canonical quirk from the My Hero Academia universe (Iron Claws).',
+    description: 'The Quirk turns the end of the user\'s fingers into metallic claws. Higari\'s Quirk lets him use his claws to burrow himself underground, like a mole, while Sickle Claw\'s manifestation made his hands into larger, sharper…',
   },
   'iron-club': {
     name: 'Iron Club',
-    description: 'Canonical quirk from the My Hero Academia universe (Iron Club).',
+    description: 'The Quirk gives the user the ability to turn their arms into iron clubs. The iron clubs are covered with spikes and have the power to crush boulders.',
   },
   'jet': {
     name: 'Jet',
-    description: 'Canonical quirk from the My Hero Academia universe (Jet).',
+    description: 'Jet grants the user the ability to expel air from open holes on the soles of their feet. This allows them to fly around a limited range as well as move faster than the eye can follow, even on the ground.',
   },
   'kaiju': {
     name: 'Kaiju',
-    description: 'Canonical quirk from the My Hero Academia universe (Kaiju).',
+    description: 'Kaiju is only seen while Ryuichi is on Trigger, so its normal effects are unknown. What has been shown is that this Quirk allows Ryuichi to turn into a massive dinosaur-like beast resembling Godzilla, with Kuin…',
   },
   'kinetic-booster': {
     name: 'Kinetic Booster',
-    description: 'Canonical quirk from the My Hero Academia universe (Kinetic Booster).',
+    description: 'This Quirk seemingly increases the amount of kinetic energy the user creates and releases. All For One possesses four copies of this Quirk, significantly increasing its effects.',
   },
   'king-slam': {
     name: 'King Slam',
-    description: 'Canonical quirk from the My Hero Academia universe (King Slam).',
+    description: 'This Quirk allows the user to take a large hammer out of nowhere and use it to attack an enemy, either directly or by throwing it at them.',
   },
   'landmine': {
     name: 'Landmine',
-    description: 'Canonical quirk from the My Hero Academia universe (Landmine).',
+    description: 'Landmine allowed the user to bestow explosive properties on anything they touched. The explosions could be detonated at will.',
   },
   'larceny': {
     name: 'Larceny',
-    description: 'Canonical quirk from the My Hero Academia universe (Larceny).',
+    description: 'Larceny allows the user to take any object that their target possesses, instantly bringing it into their hands. The objects that can be "stolen" include even manifestations created from other Quirks.',
   },
   'laser': {
     name: 'Laser',
-    description: 'Canonical quirk from the My Hero Academia universe (Laser).',
+    description: 'Laser allowed the user to fire energy beams from their right eye.',
   },
   'leafipulation': {
     name: 'Leafipulation',
-    description: 'Canonical quirk from the My Hero Academia universe (Leafipulation).',
+    description: 'Leafipulation allows its user to manipulate leaves from the plant life around them, and fire them off as projectiles toward the user\'s opponents.',
   },
   'leap': {
     name: 'Leap',
-    description: 'Canonical quirk from the My Hero Academia universe (Leap).',
+    description: 'Leap allows the user to leap at very high and large distances. This Quirk is not related to flight, so the user needs a foothold to jump off of.',
   },
   'life-force': {
     name: 'Life Force',
-    description: 'Canonical quirk from the My Hero Academia universe (Life Force).',
+    description: 'Life Force doubles the user\'s life span, causing them to age at a slower rate and making them look much younger than they really are.',
   },
   'lion': {
     name: 'Lion',
-    description: 'Canonical quirk from the My Hero Academia universe (Lion).',
+    description: 'This Quirk allows the user to utilize the power and speed of a lion. Through these attributes, the user can even let out a powerful roar that can negate Orcinus\'s hypersonic paralysis waves.',
   },
   'liquification': {
     name: 'Liquification',
-    description: 'Canonical quirk from the My Hero Academia universe (Liquification).',
+    description: 'Liquification allows the user to liquefy their body.',
   },
   'lizard': {
     name: 'Lizard',
-    description: 'Canonical quirk from the My Hero Academia universe (Lizard).',
+    description: 'Lizard grants the user a reptilian appearance, with a tail, a tongue with two tines, and a body covered in scales.',
   },
   'lizard-tail-splitter': {
     name: 'Lizard Tail Splitter',
-    description: 'Canonical quirk from the My Hero Academia universe (Lizard Tail Splitter).',
+    description: 'Lizard Tail Splitter allows the user to split their body into several pieces and control them telekinetically. Setsuna is able to split off pieces from any part of her body.',
   },
   'lock-down': {
     name: 'Lock Down',
-    description: 'Canonical quirk from the My Hero Academia universe (Lock Down).',
+    description: 'Lock Down allows the user to lock objects into a particular point of space, turning the touched object effectively immobile. Rock Lock activates this Quirk through protrusions on his fingers that resemble key teeth.',
   },
   'longbow': {
     name: 'Longbow',
-    description: 'Canonical quirk from the My Hero Academia universe (Longbow).',
+    description: 'The Quirk allows the user to transform their left hand\'s thumb and pinky finger into a bow, with which they can use to shoot anything with absolute control.',
   },
   'longleg': {
     name: 'Longleg',
-    description: 'Canonical quirk from the My Hero Academia universe (Longleg).',
+    description: 'Longleg allows the user to extend their legs.',
   },
   'love': {
     name: 'Love',
-    description: 'Canonical quirk from the My Hero Academia universe (Love).',
+    description: 'Love allows the user to power up a target by confessing their feelings for them. The more intense the user\'s love is, the stronger the power transmitted to the target is.',
   },
   'luminescence': {
     name: 'Luminescence',
-    description: 'Canonical quirk from the My Hero Academia universe (Luminescence).',
+    description: 'Luminescence allowed the user to emit a bright light from their body. This Quirk was activated back when the baby was a newborn and likely became stronger as they grew up.',
   },
   'mad-gluttony': {
     name: 'Mad Gluttony',
-    description: 'Canonical quirk from the My Hero Academia universe (Mad Gluttony).',
+    description: 'Mad Gluttony allows the user to devour objects using the giant mouth in their stomach, with it being able to quickly inhale, crunch, and destroy whatever is in their path.',
   },
   'magic': {
     name: 'Magic',
-    description: 'Canonical quirk from the My Hero Academia universe (Magic).',
+    description: 'Magic allowed the user to create rings out of energy from their wrist to move people or objects. Once within the ring, he could manipulate the speed of it at will.',
   },
   'magnetism': {
     name: 'Magnetism',
-    description: 'Canonical quirk from the My Hero Academia universe (Magnetism).',
+    description: 'Magnetism allowed the user to magnetize people around them, up to a 4.5-meter radius of themselves at will. Kenji can magnetize a person\'s entire body or specific portions.',
   },
   'manifest': {
     name: 'Manifestação',
@@ -776,19 +776,19 @@ export const ptBRQuirkCopy = {
   },
   'mantis': {
     name: 'Mantis',
-    description: 'Canonical quirk from the My Hero Academia universe (Mantis).',
+    description: 'This Quirk presumably grants the user mantis-based powers and abilities, judging by how Kirihito seemed to handle using his Quirk when under the effects of Trigger.',
   },
   'meatball': {
     name: 'Meatball',
-    description: 'Canonical quirk from the My Hero Academia universe (Meatball).',
+    description: 'Meatball grants the user the ability to manipulate raw human flesh. The user can manipulate their own flesh, giving them the ability to separate their limbs and control them at will.',
   },
   'metal-manipulation': {
     name: 'Metal Manipulation',
-    description: 'Canonical quirk from the My Hero Academia universe (Metal Manipulation).',
+    description: 'Metal Manipulation grants the user the ability to control pre-existing metallic material. By just placing his hand on any metallic surface, Wolfram can manipulate any given object in the room to create different types…',
   },
   'mimicry': {
     name: 'Mimicry',
-    description: 'Canonical quirk from the My Hero Academia universe (Mimicry).',
+    description: 'Mimicry allows the user to transfer their own body and mind into solid objects, and manipulate them as though the object was their actual body.',
   },
   'mind-reading': {
     name: 'Leitura Mental',
@@ -796,99 +796,99 @@ export const ptBRQuirkCopy = {
   },
   'mind-reaper': {
     name: 'Mind Reaper',
-    description: 'Canonical quirk from the My Hero Academia universe (Mind Reaper).',
+    description: 'Once the user touches a person, their Quirk will force the person to expose things they don\'t want others to know or embarrassing things about their past that they want to hide.',
   },
   'mole': {
     name: 'Mole',
-    description: 'Canonical quirk from the My Hero Academia universe (Mole).',
+    description: 'Mole allows the user to grow long, sharp claws from their fingers, spines on their back, and a shield visor on their face, to help them dig through the Earth, just like a mole.',
   },
   'monster-cat': {
     name: 'Monster Cat',
-    description: 'Canonical quirk from the My Hero Academia universe (Monster Cat).',
+    description: 'Monster Cat allows the user to merge with an object or machinery, assume its shape, and control it completely. It can also be defused from said object.',
   },
   'monster-summon': {
     name: 'Monster Summon',
-    description: 'Canonical quirk from the My Hero Academia universe (Monster Summon).',
+    description: 'The Quirk allows the user to create various monsters, similar to those found in a dungeon-crawler video game. They all appear to share a similar blob shape, eye-less with a large mouth, with the designs ranging from…',
   },
   'muddied': {
     name: 'Muddied',
-    description: 'Canonical quirk from the My Hero Academia universe (Muddied).',
+    description: 'Muddied grants the user the ability to cause minor amnesia to a person if they make contact with their head, making their memories of the previous five minutes and the next five minutes vague.',
   },
   'multiplier': {
     name: 'Multiplier',
-    description: 'Canonical quirk from the My Hero Academia universe (Multiplier).',
+    description: 'Although never properly described, the Quirk seemingly allows the user to grow multiple arms from their body.',
   },
   'mummification': {
     name: 'Mummification',
-    description: 'Canonical quirk from the My Hero Academia universe (Mummification).',
+    description: 'Mummification allows the user to manipulate the red bandages they are wrapped in to ensnare inanimate objects that get caught in them and turning them into humanoid red mummies that they can control at will and make…',
   },
   'muscle-augmentation': {
     name: 'Muscle Augmentation',
-    description: 'Canonical quirk from the My Hero Academia universe (Muscle Augmentation).',
+    description: 'Muscle Augmentation is a Quirk that gives its user the ability to amplify, manipulate and augment their muscle layers inside or outside their body, granting them increased immense strength, speed, and durability.',
   },
   'muscle-expansion': {
     name: 'Muscle Expansion',
-    description: 'Canonical quirk from the My Hero Academia universe (Muscle Expansion).',
+    description: 'Muscle Expansion allows the user to expand and strengthen their muscles, granting them a significant increase in physical strength.',
   },
   'mushroom': {
     name: 'Mushroom',
-    description: 'Canonical quirk from the My Hero Academia universe (Mushroom).',
+    description: 'Mushroom allows the user to generate and spread fungus spores from their body. Once these spores make contact with a solid surface, they will quickly grow into full-grown mushrooms.',
   },
   'mutant-bovini': {
     name: 'Mutant Bovini',
-    description: 'Canonical quirk from the My Hero Academia universe (Mutant Bovini).',
+    description: 'Mutant Bovini allows its user to fire off lasers from their face.',
   },
   'navel-laser': {
     name: 'Navel Laser',
-    description: 'Canonical quirk from the My Hero Academia universe (Navel Laser).',
+    description: 'Navel Laser gives the user the ability to fire sparkly twinkling laser beams from their navel. Those beams specifically come from Yuga\'s bellybutton.',
   },
   'neutralization': {
     name: 'Neutralization',
-    description: 'Canonical quirk from the My Hero Academia universe (Neutralization).',
+    description: 'Neutralization allows the user to temporarily nullify a target\'s Quirk by touching them, which is activated from the right arm of the user.',
   },
   'new-order': {
     name: 'New Order',
-    description: 'Canonical quirk from the My Hero Academia universe (New Order).',
+    description: 'New Order allowed the user to set a rule onto their surroundings after touching the target and calling out their name, allowing them to manipulate and bestow new properties onto themselves and the world around them.',
   },
   'octopus': {
     name: 'Octopus',
-    description: 'Canonical quirk from the My Hero Academia universe (Octopus).',
+    description: 'Octopus provides the user with the physiology and skills of an octopus, such as multiple elastic appendages, suckers and the ability to spit ink from their siphon-like mouth.',
   },
   'octopus-squid': {
-    name: 'Octopus',
-    description: 'Canonical quirk from the My Hero Academia universe (Octopus).',
+    name: 'Octopus (Squid)',
+    description: 'Octopus (Squid) gives the user the same number of limbs as a cephalopod creature, making them appear like a humanoid octopus or squid.',
   },
   'one-for-all': {
     name: 'One For All',
-    description: 'Canonical quirk from the My Hero Academia universe (One For All).',
+    description: 'One For All was one of the most powerful Quirks in existence; however, it proved very difficult to master fully. It was a transferable Quirk that could be passed on from one user to the next.',
   },
   'orcinus': {
     name: 'Orcinus',
-    description: 'Canonical quirk from the My Hero Academia universe (Orcinus).',
+    description: 'Orcinus is the summation of the user\'s many Orca-related abilities. They can do anything a regular orca can do, even on land.',
   },
   'outburst': {
     name: 'Outburst',
-    description: 'Canonical quirk from the My Hero Academia universe (Outburst).',
+    description: 'Outburst has never been seen being used in action, but its functions have been described by Izuku Midoriya. According to him, this Quirk allows the user to force others around them to burst into laughter so intense that…',
   },
   'overclock': {
     name: 'Overclock',
-    description: 'Canonical quirk from the My Hero Academia universe (Overclock).',
+    description: 'Overclock is a speedster-based Quirk that allows the user to accelerate to supersonic speed, to the point that to the user, it looks like nothing is moving.',
   },
   'overhaul': {
     name: 'Overhaul',
-    description: 'Canonical quirk from the My Hero Academia universe (Overhaul).',
+    description: 'Overhaul gives the user the ability to disassemble and then reassemble matter with their bare hands. Once Kai takes a target apart, he has the option of either leaving it destroyed, restoring it to its original form, or…',
   },
   'overmodification': {
     name: 'Overmodification',
-    description: 'Canonical quirk from the My Hero Academia universe (Overmodification).',
+    description: 'Overmodification can amplify the Quirk of an individual if they are compatible with the user. This boosts the base abilities of the affected Quirk and can even grant brand new ones to the user with enough contact.',
   },
   'pain-blocker': {
     name: 'Pain Blocker',
-    description: 'Canonical quirk from the My Hero Academia universe (Pain Blocker).',
+    description: 'Pain Blocker makes the user unable to detect any pain, both inside and outside their body. Gigantomachia is able to keep this Quirk active in conjunction with his original Endurance Quirk, contributing to his already…',
   },
   'papyrus': {
     name: 'Papyrus',
-    description: 'Canonical quirk from the My Hero Academia universe (Papyrus).',
+    description: 'The Quirk allows the user to flatten their body like papyrus. Salaam is able to stretch and fold his arms, that is demonstrated while helping with Japan’s restoration.',
   },
   'permeation': {
     name: 'Permeação',
@@ -896,35 +896,35 @@ export const ptBRQuirkCopy = {
   },
   'physical-enhancement': {
     name: 'Physical Enhancement',
-    description: 'Canonical quirk from the My Hero Academia universe (Physical Enhancement).',
+    description: 'Given the name, Physical Enhancement likely allowed the user to enhance their physical capabilities. When the user activates the Quirk, their body is enveloped in a green flame-like aura.',
   },
   'plant': {
     name: 'Plant',
-    description: 'Canonical quirk from the My Hero Academia universe (Plant).',
+    description: 'Plant allows the user to transform their body parts into plant structures. These structures have properties which can heal their allies.',
   },
   'playtime': {
     name: 'Playtime',
-    description: 'Canonical quirk from the My Hero Academia universe (Playtime).',
+    description: 'The Quirk\'s proper function isn\'t entirely known, due to it only being shown under the effects of Trigger. Mario\'s Quirk seemingly grows him to gigantic proportions, similar to Gigantification, while also turning his…',
   },
   'pliabody': {
     name: 'Pliabody',
-    description: 'Canonical quirk from the My Hero Academia universe (Pliabody).',
+    description: 'Pliabody allows the user to stretch and flatten their own body at will, granting them enhanced flexibility. Pliabody is useful for rescue operations, allowing Tiger to get through narrow passages.',
   },
   'pointer': {
     name: 'Pointer',
-    description: 'Canonical quirk from the My Hero Academia universe (Pointer).',
+    description: 'Pointer allowed the user to point in the direction of people, places and things that they were looking for. In order to use his Quirk, Compass Kid needed to spin in place before his limbs pointed toward what he needed…',
   },
   'poison-gas': {
     name: 'Poison Gas',
-    description: 'Canonical quirk from the My Hero Academia universe (Poison Gas).',
+    description: 'Poison Gas allows the user to generate a toxic fog that make people feel sick when they breathe it. If Takeshi does not release it, then the poison gas begins to accumulate inside him.',
   },
   'poltergeist': {
     name: 'Poltergeist',
-    description: 'Canonical quirk from the My Hero Academia universe (Poltergeist).',
+    description: 'Poltergeist allows the user to telekinetically manipulate objects and people close to them. Reiko displays great control over her Quirk, being able to move large swarms of objects in order to barrage a target.',
   },
   'polygraph': {
     name: 'Polygraph',
-    description: 'Canonical quirk from the My Hero Academia universe (Polygraph).',
+    description: 'Polygraph allows the user to judge the authenticity and genuineness of their target\'s words, telling them if they speak the truth or if they are lying.',
   },
   'pop-off': {
     name: 'Estouro',
@@ -932,27 +932,27 @@ export const ptBRQuirkCopy = {
   },
   'power': {
     name: 'Power',
-    description: 'Canonical quirk from the My Hero Academia universe (Power).',
+    description: 'Power grants its user the ability to build up tremendous raw power in their body, giving them incredible strength that\'s strong enough to smash through a reinforced concrete building.',
   },
   'power-stock': {
     name: 'Power Stock',
-    description: 'Canonical quirk from the My Hero Academia universe (Power Stock).',
+    description: 'Power Stock has the ability to stockpile power which the user can harness for incredible bursts of power and speed.',
   },
   'propagation': {
     name: 'Propagation',
-    description: 'Canonical quirk from the My Hero Academia universe (Propagation).',
+    description: 'This Quirk allows the user to grow and duplicate parts of their body all over themselves, giving them a multiplied increase in power depending on how many duplicates there are.',
   },
   'quad-arms': {
     name: 'Quad Arms',
-    description: 'Canonical quirk from the My Hero Academia universe (Quad Arms).',
+    description: 'This Quirk grants the user an extra pair of arms. The extra limbs allow Fourth Kind to handle several objects at once while also giving him an advantage in hand-to-hand combat, which he specializes in.',
   },
   'queen-beam': {
     name: 'Queen Beam',
-    description: 'Canonical quirk from the My Hero Academia universe (Queen Beam).',
+    description: 'Queen Beam allows the user to fire a straight-travelling beam of energy from their face. When used, a pink heart appears over the user\'s face.',
   },
   'queen-bee': {
     name: 'Queen Bee',
-    description: 'Canonical quirk from the My Hero Academia universe (Queen Bee).',
+    description: 'Queen Bee is a Quirk possessed by a parasitic bee with an extremely bloated abdomen, capable of invading a host\'s body by burrowing into their eye socket.',
   },
   'rabbit': {
     name: 'Coelho',
@@ -960,23 +960,23 @@ export const ptBRQuirkCopy = {
   },
   'radio-waves': {
     name: 'Radio Waves',
-    description: 'Canonical quirk from the My Hero Academia universe (Radio Waves).',
+    description: 'Radio Waves allows the user to emit an electromagnetic pulse of radio waves to disrupt electrical appliances and cause communicators to malfunction.',
   },
   'radio-waves-bombers': {
-    name: 'Radio Waves',
-    description: 'Canonical quirk from the My Hero Academia universe (Radio Waves).',
+    name: 'Radio Waves (Bombers)',
+    description: 'The Quirk allows the user to generate electromagnetic pulses from their being, that are powerful enough to interfere and shutdown the power and communications within a given area.',
   },
   'razor-sharp': {
     name: 'Razor Sharp',
-    description: 'Canonical quirk from the My Hero Academia universe (Razor Sharp).',
+    description: 'Razor Sharp allows the user to produce large blades from their body. Togaru\'s blades can come in a variety of shapes and sizes, and from any part of his body.',
   },
   'reflect-flect-turn': {
-    name: 'Reflect',
-    description: 'Canonical quirk from the My Hero Academia universe (Reflect).',
+    name: 'Reflect (Flect Turn)',
+    description: 'Reflect allows the user to absorb energy and send it back in the opposite direction. When something strikes them, a spiraling wave of energy forms from behind, and the same attack is rebound back at the opponent.',
   },
   'reflect-tomura-shigaraki': {
-    name: 'Reflect',
-    description: 'Canonical quirk from the My Hero Academia universe (Reflect).',
+    name: 'Reflect (Tomura Shigaraki)',
+    description: 'Reflect allows the user to copy any attack they are hit with and recreate the same attack themselves at the same strength. They can absorb multiple sources at the same time, but it releases in one direction all at once.',
   },
   'rewind': {
     name: 'Rebobinar',
@@ -984,191 +984,191 @@ export const ptBRQuirkCopy = {
   },
   'rifle': {
     name: 'Rifle',
-    description: 'Canonical quirk from the My Hero Academia universe (Rifle).',
+    description: 'With this Quirk, the user can protrude and retract a rifle gun from their right elbow. Kaina bends her arm up so that her hand is to her shoulder and opens a cavity in her elbow, from which the rifle comes out of.',
   },
   'rivet': {
     name: 'Rivet',
-    description: 'Canonical quirk from the My Hero Academia universe (Rivet).',
+    description: 'Although never properly described, the Quirk seemingly allows the user to generate rivet-like growths from their arm.',
   },
   'rivet-stab': {
     name: 'Rivet Stab',
-    description: 'Canonical quirk from the My Hero Academia universe (Rivet Stab).',
+    description: 'Rivet Stab allows its user to generate black tendrils that have red prominent cracked lines that extend from the users\' fingers, although they can also emerge from other parts of the body such as the spine, or palm of…',
   },
   'rocket-thrust': {
     name: 'Rocket Thrust',
-    description: 'Canonical quirk from the My Hero Academia universe (Rocket Thrust).',
+    description: 'Rocket Thrust allows the users to shoot their right fists at people at very high speeds.',
   },
   'rupture': {
     name: 'Rupture',
-    description: 'Canonical quirk from the My Hero Academia universe (Rupture).',
+    description: 'Rupture allows the user to detonate their own body.',
   },
   'saber': {
     name: 'Saber',
-    description: 'Canonical quirk from the My Hero Academia universe (Saber).',
+    description: 'Saber allows the user to transform portions of their body into sword-shaped appendages, which they can use offensively.',
   },
   'sandstorm': {
     name: 'Sandstorm',
-    description: 'Canonical quirk from the My Hero Academia universe (Sandstorm).',
+    description: 'The Quirk gave the user the ability to transform their upper body into sand. Sajin could manipulate this sand freely, allowing him to shape it into different forms.',
   },
   'scalemail': {
     name: 'Scalemail',
-    description: 'Canonical quirk from the My Hero Academia universe (Scalemail).',
+    description: 'Scalemail allows its user to cover their body with sharp armored scales, granting them increased strength and defense. In the anime, the scales that Scalemail grants are colored dark red.',
   },
   'scales': {
     name: 'Scales',
-    description: 'Canonical quirk from the My Hero Academia universe (Scales).',
+    description: 'Scales allows the user to form hard scales throughout their entire body, which they can either use as protective armor, or fire them off as projectiles.',
   },
   'scanning': {
     name: 'Scanning',
-    description: 'Canonical quirk from the My Hero Academia universe (Scanning).',
+    description: 'Scanning allowed the user to search for and identify people\'s Quirks to some extent, as well to measure their level of power using a heat signature-like vision.',
   },
   'scatter': {
     name: 'Scatter',
-    description: 'Canonical quirk from the My Hero Academia universe (Scatter).',
+    description: 'Scatter allows the user to split up and multiply projectiles while firing them, increasing the strength and radius of long-range attacks.',
   },
   'search': {
     name: 'Search',
-    description: 'Canonical quirk from the My Hero Academia universe (Search).',
+    description: 'Search allows the user to monitor and observe up to a hundred people at a time. This includes knowing their locations and weak points.',
   },
   'self-detonation': {
     name: 'Self-Detonation',
-    description: 'Canonical quirk from the My Hero Academia universe (Self-Detonation).',
+    description: 'Self-Detonation grants the user the ability to self-destruct through a large explosion that is generated within their bodies.',
   },
   'serpentress': {
     name: 'Serpentress',
-    description: 'Canonical quirk from the My Hero Academia universe (Serpentress).',
+    description: 'Serpentress grants the user a trio of living snakes as part of their hair, which are implied to be a part of their biology.',
   },
   'shame': {
     name: 'Shame',
-    description: 'Canonical quirk from the My Hero Academia universe (Shame).',
+    description: 'Shame allows the user to become more powerful as they become more embarrassed. Teruo activates his Quirk by removing all his clothes and exhibiting himself to become extremely embarrassed by the populace.',
   },
   'shield': {
     name: 'Shield',
-    description: 'Canonical quirk from the My Hero Academia universe (Shield).',
+    description: 'Shield allowed the user to manifest stone-like, hexagonal shields from their body that could be utilized both defensively and offensively.',
   },
   'shock-absorption': {
     name: 'Shock Absorption',
-    description: 'Canonical quirk from the My Hero Academia universe (Shock Absorption).',
+    description: 'As described by Tomura Shigaraki, Shock Absorption gives the user the ability to reduce the effectiveness of physical blows by absorbing the shocks produced by them, allowing them to cancel out many attacks.',
   },
   'shoulder-mounted-jets': {
     name: 'Shoulder-Mounted Jets',
-    description: 'Canonical quirk from the My Hero Academia universe (Shoulder-Mounted Jets).',
+    description: 'This Quirk allows its user to have four retractable jet boosters mounted on their upper back, which grants them speed-boosted flight.',
   },
   'size': {
     name: 'Size',
-    description: 'Canonical quirk from the My Hero Academia universe (Size).',
+    description: 'This Quirk grants the user the ability to alter the size of objects that they come into contact with. As seen during the Joint Training Battle, Yui can only activate this power by pressing five of her fingertips…',
   },
   'slice': {
     name: 'Slice',
-    description: 'Canonical quirk from the My Hero Academia universe (Slice).',
+    description: 'Slice allows the user to move, harden, and sharpen their own hair. They are able to use their hair as blades as well as fire off individual strands of it like needles, with enough speed and strength to puncture and…',
   },
   'slide-and-glide': {
     name: 'Slide and Glide',
-    description: 'Canonical quirk from the My Hero Academia universe (Slide and Glide).',
+    description: 'Slide and Glide allows the user to project an repulsive/attractive force from their hands and feet. Repulsive energy emits a blue glow , while attractive energy emits a green glow.',
   },
   'sloshed': {
     name: 'Sloshed',
-    description: 'Canonical quirk from the My Hero Academia universe (Sloshed).',
+    description: 'Sloshed causes anyone who approaches the user to lose their sense of balance, falling into a state similar to inebriation.',
   },
   'smile': {
     name: 'Smile',
-    description: 'Canonical quirk from the My Hero Academia universe (Smile).',
+    description: 'This Quirk allows the user to force other people to laugh uncontrollably for two hours. The user activates this Quirk by showing their teeth to the victim; it also works if the user\'s teeth are seen in a mirror or on…',
   },
   'smoke': {
     name: 'Smoke',
-    description: 'Canonical quirk from the My Hero Academia universe (Smoke).',
+    description: 'Smoke allows the user to expel large amounts of pink smoke through the holes in their body, to generate a thick smoke screen to mask and hide their movement from enemies\' line of sight.',
   },
   'smokescreen': {
     name: 'Smokescreen',
-    description: 'Canonical quirk from the My Hero Academia universe (Smokescreen).',
+    description: 'Smokescreen allows the user to generate a thick cloud of purple smoke from their body. The smoke can be spread to cover a very wide area.',
   },
   'snip-clip': {
     name: 'Snip Clip',
-    description: 'Canonical quirk from the My Hero Academia universe (Snip Clip).',
+    description: 'Snip Clip allows the user to cut through almost anything that is placed between their index and middle fingers by making a scissor motion with them.',
   },
   'soccer': {
     name: 'Soccer',
-    description: 'Canonical quirk from the My Hero Academia universe (Soccer).',
+    description: 'Soccer supposedly allows the user to dribble a ball like a professional soccer player among large crowds of people without this preventing them from carrying out their acts of larceny.',
   },
   'softening': {
     name: 'Softening',
-    description: 'Canonical quirk from the My Hero Academia universe (Softening).',
+    description: 'Softening allows the user to soften anything they touch, effectively turning solid objects semi-liquid. Softening works on anything solid, such as ice, metal, or the ground, and it possesses great range.',
   },
   'solid-air': {
     name: 'Solid Air',
-    description: 'Canonical quirk from the My Hero Academia universe (Solid Air).',
+    description: 'Solid Air allows the user to solidify air to form constructs such as walls and platforms through their breath. Air walls do not fall to the ground once solidified and will stay afloat in midair even when another person…',
   },
   'somnambulist': {
     name: 'Somnambulist',
-    description: 'Canonical quirk from the My Hero Academia universe (Somnambulist).',
+    description: 'Somnambulist allowed the user to put targets to sleep by exuding a sleep-inducing aroma from their skin. Somnambulist was described as being more effective on males than on females, giving Nemuri an obvious advantage…',
   },
   'soul': {
     name: 'Soul',
-    description: 'Canonical quirk from the My Hero Academia universe (Soul).',
+    description: 'Soul manifests itself as Pino, a small, pink bird-like creature, and is always active. Pino is connected to the user\'s soul and her actions articulate their true thoughts and feelings.',
   },
   'spatial-excursion': {
     name: 'Spatial Excursion',
-    description: 'Canonical quirk from the My Hero Academia universe (Spatial Excursion).',
+    description: 'Spatial Excursion allows the user to freely move objects and people in any space without being restricted by gravity.',
   },
   'spear-hand-missiles': {
     name: 'Spear Hand Missiles',
-    description: 'Canonical quirk from the My Hero Academia universe (Spear Hand Missiles).',
+    description: 'This Quirk allows the user to fire the small, reloadable missiles that make up their fingers from their hands. While fast, their flight path is very erratic and have a tendency to miss their target.',
   },
   'spearlike-bones': {
     name: 'Spearlike Bones',
-    description: 'Canonical quirk from the My Hero Academia universe (Spearlike Bones).',
+    description: 'Spearlike Bones allows the user to generate cone-shaped spears made of bone on any part of their body. They can also emerge from other parts of the body such as the mouth.',
   },
   'spike': {
     name: 'Spike',
-    description: 'Canonical quirk from the My Hero Academia universe (Spike).',
+    description: 'Spike allows its user to make spikes protrude from their body. The spikes produced naturally appear to be roughly as long as its user\'s fingers, though it is unknown just how long they can extend to.',
   },
   'spotted-seal': {
     name: 'Spotted Seal',
-    description: 'Canonical quirk from the My Hero Academia universe (Spotted Seal).',
+    description: 'Spotted Seal is the summation of Selkie\'s many spotted seal-related abilities. He can do anything a regular spotted seal can do, even on land. Spotted Seal grants its user enhanced strength and agility on land.',
   },
   'spray-art': {
     name: 'Spray Art',
-    description: 'Canonical quirk from the My Hero Academia universe (Spray Art).',
+    description: 'Spray Art allows the user to spray clouds of spray paint, causing illusions for anyone inside them.',
   },
   'spring': {
     name: 'Spring',
-    description: 'Canonical quirk from the My Hero Academia universe (Spring).',
+    description: 'Spring allows the user to make anything bouncy. Little about the Quirk is known, as while Phantom Thief copies it, he does not appear to actually use it.',
   },
   'springlike-limbs': {
     name: 'Springlike Limbs',
-    description: 'Canonical quirk from the My Hero Academia universe (Springlike Limbs).',
+    description: 'Springlike Limbs allows the user to store and release force by coiling their muscles, akin to a coil spring. When All For One activates this Quirk, it seemingly releases black lightning sparks with red outlines around…',
   },
   'squirmy-fingers': {
     name: 'Squirmy Fingers',
-    description: 'Canonical quirk from the My Hero Academia universe (Squirmy Fingers).',
+    description: 'Squirmy Fingers allows the user to precisely and flawlessly control their fingers, effectively manipulating any object with grace, ease, speed, precision and skill, as well as to bend them in any direction.',
   },
   'static': {
     name: 'Static',
-    description: 'Canonical quirk from the My Hero Academia universe (Static).',
+    description: 'By rubbing their body to build up electric charge, like the process to generate static electricity, the user of Static can generate electrical currents.',
   },
   'steel': {
     name: 'Steel',
-    description: 'Canonical quirk from the My Hero Academia universe (Steel).',
+    description: 'Steel allows the user to transform their entire body into steel. Steel makes Tetsutetsu\'s body virtually impenetrable; it is tough enough to protect Tetsutetsu from bullets, blades and tons of falling metal, as well as…',
   },
   'stiffening': {
     name: 'Stiffening',
-    description: 'Canonical quirk from the My Hero Academia universe (Stiffening).',
+    description: 'Stiffening gives the user the ability to harden anything they touch. By kneading objects together with both his hands, Shikkui can harden something like rubber balls to be as tough as concrete, to the point where they…',
   },
   'stock': {
     name: 'Stock',
-    description: 'Canonical quirk from the My Hero Academia universe (Stock).',
+    description: 'Stock allows the user to absorb attacks and store them up to release whenever they want. To do this, Garvey must "devour" the enemy\'s attack, and once this is done, a lump grows in his back.',
   },
   'storage': {
     name: 'Storage',
-    description: 'Canonical quirk from the My Hero Academia universe (Storage).',
+    description: 'This Quirk gives its user the ability to store objects, even living, biological creatures, inside their body, carrying them around and able to release them at will.',
   },
   'stress': {
     name: 'Stress',
-    description: 'Canonical quirk from the My Hero Academia universe (Stress).',
+    description: 'Stress grants the user the ability to convert stress, anger, dread, and frustration into raw power. This raw power is capable of increasing their strength, resilience, and size.',
   },
   'strongarm': {
     name: 'Strongarm',
-    description: 'Canonical quirk from the My Hero Academia universe (Strongarm).',
+    description: 'Strongarm allows the user to rotate and move their shoulders at great speed and power, giving them extremely fast and strong punches.',
   },
   'sugar-rush': {
     name: 'Corrida do Açúcar',
@@ -1176,27 +1176,27 @@ export const ptBRQuirkCopy = {
   },
   'suicide-bomb': {
     name: 'Suicide Bomb',
-    description: 'Canonical quirk from the My Hero Academia universe (Suicide Bomb).',
+    description: 'Nothing is known about the exact functions of this Quirk. However, as its name suggests, this Quirk seems capable of creating huge explosions that surround the user and destroy their surroundings.',
   },
   'super-regeneration': {
     name: 'Super Regeneration',
-    description: 'Canonical quirk from the My Hero Academia universe (Super Regeneration).',
+    description: 'Super Regeneration has the ability to regenerate any sort of injuries on the user\'s body, such as missing limbs, at incredible speeds.',
   },
   'swan': {
     name: 'Swan',
-    description: 'Canonical quirk from the My Hero Academia universe (Swan).',
+    description: 'Swan grants the user two large, white, swan-like wings on their back. They can achieve flight but are not strong enough to do so without them stripping off their clothes first.',
   },
   'sword-kill': {
     name: 'Sword Kill',
-    description: 'Canonical quirk from the My Hero Academia universe (Sword Kill).',
+    description: 'Sword Kill allows the user to create flexible swords from their arms and shoulders, that fold in and out like an accordion.',
   },
   'tail': {
     name: 'Tail',
-    description: 'Canonical quirk from the My Hero Academia universe (Tail).',
+    description: 'Tail grants the user a prehensile appendage that extends from their lower posterior. Mashirao\'s tail is very bulky, being longer and wider than any of his regular human limbs.',
   },
   'tank-engine': {
     name: 'Tank Engine',
-    description: 'Canonical quirk from the My Hero Academia universe (Tank Engine).',
+    description: 'This Quirk turns the user\'s head and their entire upper body into the locomotive of a steam-powered train.',
   },
   'tape': {
     name: 'Fita',
@@ -1204,143 +1204,143 @@ export const ptBRQuirkCopy = {
   },
   'telekinesis': {
     name: 'Telekinesis',
-    description: 'Canonical quirk from the My Hero Academia universe (Telekinesis).',
+    description: 'Telekinesis allows the user to move inanimate objects as they please. When strengthened by Overmodification, the amount of objects Ugo can control at once significantly increases.',
   },
   'telepath': {
     name: 'Telepath',
-    description: 'Canonical quirk from the My Hero Academia universe (Telepath).',
+    description: 'Telepath grants the user telepathy, to the point where they have the ability to communicate with anyone through thought. They can instruct and send messages to multiple people at once.',
   },
   'teleportation': {
     name: 'Teleportation',
-    description: 'Canonical quirk from the My Hero Academia universe (Teleportation).',
+    description: 'Teleportation allows the user to move themselves and any material or living thing they are touching to somewhere within their line of vision and are limited to only transporting to an area they can see.',
   },
   'telescopic': {
     name: 'Telescopic',
-    description: 'Canonical quirk from the My Hero Academia universe (Telescopic).',
+    description: 'Telescopic allows the user to retract their own body parts into themselves, similar to how a turtle can retract itself into its shell.',
   },
   'tidal-bore': {
     name: 'Tidal Bore',
-    description: 'Canonical quirk from the My Hero Academia universe (Tidal Bore).',
+    description: 'Tidal Bore allows the user to produce a large amount of water from their mouth. Big Red Dot boasts enough strength to easily lift up a Trigger Bomb using the Quirk.',
   },
   'toho': {
     name: 'Toho',
-    description: 'Canonical quirk from the My Hero Academia universe (Toho).',
+    description: 'Toho gives the user the attributes of a kaiju; in addition to their reptile-like appearance, they are very large and very strong.',
   },
   'tongue-tank': {
     name: 'Tongue Tank',
-    description: 'Canonical quirk from the My Hero Academia universe (Tongue Tank).',
+    description: 'The Quirk allows the user to transform their tongue into a tank cannon that can extend out of their mouth when opened. It has been shown to be able to shoot out rock-like projectiles.',
   },
   'tool-arms': {
     name: 'Tool Arms',
-    description: 'Canonical quirk from the My Hero Academia universe (Tool Arms).',
+    description: 'The Quirk apparently allows the user to manifest limbs with ingrown tools and weapons, including several fully functional chainsaws, a claw hammer, and a drill.',
   },
   'traject': {
     name: 'Traject',
-    description: 'Canonical quirk from the My Hero Academia universe (Traject).',
+    description: 'Traject allows the user to manipulate the trajectory of anything that passes through their bandages.',
   },
   'transform': {
     name: 'Transform',
-    description: 'Canonical quirk from the My Hero Academia universe (Transform).',
+    description: 'With this Quirk, the user could transform into another person\'s appearance after consuming some of their blood. Transform gave the user the full ability to copy a perfect image of another individual, including tiny…',
   },
   'transforming-arms': {
     name: 'Transforming Arms',
-    description: 'Canonical quirk from the My Hero Academia universe (Transforming Arms).',
+    description: 'Transforming Arms allows its user to shape-shift their arms, allowing them to have long-ranged, elastic attacks. The user can also split their arms apart to surround their target and launch multiple attacks at once.',
   },
   'trap-flex': {
     name: 'Trap Flex',
-    description: 'Canonical quirk from the My Hero Academia universe (Trap Flex).',
+    description: 'Trap Flex allows the user to flex their trapezius muscle to extreme degrees, allowing them to cover their whole head with their shoulders. The flexing gives them a fair amount of speed and strength.',
   },
   'tree-frog': {
     name: 'Tree Frog',
-    description: 'Canonical quirk from the My Hero Academia universe (Tree Frog).',
+    description: 'Tree Frog grants its user an extended tongue, which curls inward when she sticks it out. Tamao\'s tongue is only slightly longer than normal, however, and appears to be much more limited than Quirks with similar…',
   },
   'tripod': {
     name: 'Tripod',
-    description: 'Canonical quirk from the My Hero Academia universe (Tripod).',
+    description: 'Tripod grants its user a third leg, placed between their other two. This third leg acts as one would expect, including allowing the user to stabilize themselves on otherwise unstable terrain.',
   },
   'twin-impact': {
     name: 'Twin Impact',
-    description: 'Canonical quirk from the My Hero Academia universe (Twin Impact).',
+    description: 'Twin Impact allows the user to, at the site of any initial impact, create a second impact remotely and at their discretion. The second impact will be many times stronger than the initial one.',
   },
   'vibrate': {
     name: 'Vibrate',
-    description: 'Canonical quirk from the My Hero Academia universe (Vibrate).',
+    description: 'Vibrate gives the user the ability to generate vibrations, or shockwaves, which can travel through virtually any medium. Yo most notably uses this ability to shake things he touches with his hands.',
   },
   'vibration-detection': {
     name: 'Vibration Detection',
-    description: 'Canonical quirk from the My Hero Academia universe (Vibration Detection).',
+    description: 'The Quirk allows the user to detect subtle vibrations in the area around them, similar to echolocation, making them able to perceive their surroundings, and giving an awareness of the world around the user.',
   },
   'vines': {
     name: 'Vines',
-    description: 'Canonical quirk from the My Hero Academia universe (Vines).',
+    description: 'Vines grants the user controllable, thorny vines in place of regular hair. The vines can be manipulated for various purposes, such as binding foes, snatching objects and creating defensive barriers.',
   },
   'viral-cosmos': {
     name: 'Viral Cosmos',
-    description: 'Canonical quirk from the My Hero Academia universe (Viral Cosmos).',
+    description: 'This Quirk allows the user to throw a bunch of petals generated from the two flowers on their head to attack an enemy and harm them.',
   },
   'voice': {
     name: 'Voice',
-    description: 'Canonical quirk from the My Hero Academia universe (Voice).',
+    description: 'Voice allows the user to increase the volume of their voice, giving them the ability to create loud, high-pitched sounds.',
   },
   'voyance': {
     name: 'Voyance',
-    description: 'Canonical quirk from the My Hero Academia universe (Voyance).',
+    description: 'Voyance allows the user to see through any object within view, except for living organisms. When Clair activates her Quirk, she peers through a hole formed by her fingers to limit her field of vision, which makes her…',
   },
   'warp-gate': {
     name: 'Warp Gate',
-    description: 'Canonical quirk from the My Hero Academia universe (Warp Gate).',
+    description: 'Using this Quirk, the user can create and manipulate a dark fog that acts as a portal. When the user produces a mass of the dark fog, it transports anything it comes in contact with to a nearby location.',
   },
   'warping': {
     name: 'Warping',
-    description: 'Canonical quirk from the My Hero Academia universe (Warping).',
+    description: 'This Quirk allows the user to produce a black ooze-like liquid from other people\'s mouths. The black liquid then envelops the person\'s entire body and acts as a warping portal, vanishing along with the target before…',
   },
   'water-control': {
     name: 'Water Control',
-    description: 'Canonical quirk from the My Hero Academia universe (Water Control).',
+    description: 'The Quirk allows the user to control and manipulate water. Hanzo uses his abilities to execute a plethora of water-based attacks, such as forming water into sharp claws, strong enough to slash through a boat, and…',
   },
   'water-gun': {
     name: 'Water Gun',
-    description: 'Canonical quirk from the My Hero Academia universe (Water Gun).',
+    description: 'Water Gun allows the user to shoot a stream of water from their hands.',
   },
   'water-pump': {
     name: 'Water Pump',
-    description: 'Canonical quirk from the My Hero Academia universe (Water Pump).',
+    description: 'The Quirk allows the user to create water from the hose spigots they have in place of hands. Backdraft has a great level of control over the water, being able to change the form of the water to shape it into a barricade…',
   },
   'wave-motion': {
     name: 'Wave Motion',
-    description: 'Canonical quirk from the My Hero Academia universe (Wave Motion).',
+    description: 'Wave Motion grants the user the ability to convert their vitality into energy that they can discharge as blast waves.',
   },
   'weather-manipulation': {
     name: 'Weather Manipulation',
-    description: 'Canonical quirk from the My Hero Academia universe (Weather Manipulation).',
+    description: 'Weather Manipulation allowed its user to freely manipulate all types of weather. Nine had shown he was capable of creating large storm clouds that enveloped entire islands, summon lightning bolts, and even create giant…',
   },
   'weld': {
     name: 'Weld',
-    description: 'Canonical quirk from the My Hero Academia universe (Weld).',
+    description: 'Weld allows the user to merge things both organic and inorganic at a subatomic level. When Yosetsu activates his Quirk, the two objects he\'s making contact with will become physically connected.',
   },
   'whale': {
     name: 'Whale',
-    description: 'Canonical quirk from the My Hero Academia universe (Whale).',
+    description: 'Whale allows the user to transform parts of or their whole body into that of a sperm whale. While in full whale form, this Quirk allows Curator to shoot streams of water from his mouth.',
   },
   'whirlwind': {
     name: 'Whirlwind',
-    description: 'Canonical quirk from the My Hero Academia universe (Whirlwind).',
+    description: 'Whirlwind grants the user the ability to control the air around them. Inasa is able to manipulate gusts of wind with little to no movement from his body at all, letting him create strong gales and small tornadoes that…',
   },
   'whiteline': {
     name: 'Whiteline',
-    description: 'Canonical quirk from the My Hero Academia universe (Whiteline).',
+    description: 'Whiteline allows the user to manipulate and control any lane lines painted on the road. Ending uses his Quirk like tentacles to entangle and immobilize his target, as well as throw objects, such as cars, through the…',
   },
   'whole-body-lens': {
     name: 'Whole-Body Lens',
-    description: 'Canonical quirk from the My Hero Academia universe (Whole-Body Lens).',
+    description: 'Whole-Body Lens allows the user to produce camera-like lenses anywhere on their body to take pictures. They can also print any pictures their body cameras have captured out of their chest whenever they want.',
   },
   'wing': {
     name: 'Wing',
-    description: 'Canonical quirk from the My Hero Academia universe (Wing).',
+    description: 'The Quirk allows the user to sprout gigantic black wings, that grant them the capabilities of free-form flight. The user can reach blistering levels of speed when flying, though it is unknown if that is thanks to the…',
   },
   'wooden-swords-from-his-hands': {
     name: 'Wooden Swords From His Hands',
-    description: 'Canonical quirk from the My Hero Academia universe (Wooden Swords From His Hands).',
+    description: 'Wooden Swords From His Hands allows the user to generate wooden swords from their wrist.',
   },
   'zero-gravity': {
     name: 'Gravidade Zero',
@@ -1348,10 +1348,10 @@ export const ptBRQuirkCopy = {
   },
   'zombie-virus': {
     name: 'Zombie Virus',
-    description: 'Canonical quirk from the My Hero Academia universe (Zombie Virus).',
+    description: 'Zombie Virus allows the user to release a pinkish gas that, when inhaled, temporarily transforms victims into zombies.',
   },
   'zoom': {
     name: 'Zoom',
-    description: 'Canonical quirk from the My Hero Academia universe (Zoom).',
+    description: 'This Quirk grants the user eyesight that can zoom far away, allowing them to clearly see distant people and objects. By focusing her eyes into a particular spot, Mei is capable of seeing up to 5 kilometers.',
   },
 } as Record<QuirkId, QuirkCopy>

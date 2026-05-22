@@ -84,9 +84,14 @@ export const en = {
   },
   fusion: {
     badge: 'Fusion',
+    tabFusion: 'Fusion',
+    tabParents: 'Rolled quirks',
     parents: 'Parent quirks',
+    forging: 'Forging your fusion…',
     notGenerated: 'This fusion has not been forged yet.',
-    generateHint: 'Generate it locally, then reload the app:',
+    generateError: 'Could not generate this fusion.',
+    retryGenerate: 'Try again',
+    generateHint: 'Or generate via terminal, then reload:',
     generateCommand:
       'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
   },

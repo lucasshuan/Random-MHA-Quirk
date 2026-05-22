@@ -76,7 +76,7 @@ export function FilterPanel({ filters, onChange, onReset }: FilterPanelProps) {
   const meta = useMetaLabel()
 
   return (
-    <section className="panel">
+    <section className="panel inner-scroll-panel">
       <div className="panel-heading">
         <h2>{t('advanced.filters')}</h2>
         <button type="button" onClick={onReset}>

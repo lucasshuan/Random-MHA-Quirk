@@ -91,9 +91,14 @@ export const ptBR: Messages = {
   },
   fusion: {
     badge: 'Fusão',
+    tabFusion: 'Fusão',
+    tabParents: 'Sorteadas',
     parents: 'Individualidades origem',
+    forging: 'Forjando sua fusão…',
     notGenerated: 'Esta fusão ainda não foi forjada.',
-    generateHint: 'Gere localmente e recarregue o app:',
+    generateError: 'Não foi possível gerar esta fusão.',
+    retryGenerate: 'Tentar novamente',
+    generateHint: 'Ou gere no terminal e recarregue:',
     generateCommand:
       'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
   },

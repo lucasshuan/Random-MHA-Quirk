@@ -5,6 +5,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isUsableCopy } from './lib/copy-quality.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const research = join(root, 'research')
@@ -317,36 +318,28 @@ async function main() {
   const enCopy = {}
   const ptCopy = {}
 
+  const genericFallback = (displayName) =>
+    `Canonical quirk from the My Hero Academia universe (${displayName}).`
+
   for (const e of entries) {
-    const manualEn = manual.en?.[e.id] ?? enExisting[e.id]
-    const manualPt = manual['pt-BR']?.[e.id] ?? ptExisting[e.id]
+    const manualEn = manual.en?.[e.id]
+    const existingEn = enExisting[e.id]
+    const manualPt = manual['pt-BR']?.[e.id]
+    const existingPt = ptExisting[e.id]
 
-    enCopy[e.id] = manualEn ?? {
-      name: e.displayName,
-      description:
-        enExtracts.get(e.wikiTitle) ??
-        `Canonical quirk from the My Hero Academia universe (${e.displayName}).`,
-    }
-
-    if (manualPt) {
-      ptCopy[e.id] = manualPt
-    } else {
-      const ptExtract = ptExtracts.get(e.wikiTitle)
-      ptCopy[e.id] = {
+    enCopy[e.id] = (isUsableCopy(manualEn) && manualEn) ||
+      (isUsableCopy(existingEn) && existingEn) || {
         name: e.displayName,
         description:
-          ptExtract ??
-          enCopy[e.id].description,
+          enExtracts.get(e.wikiTitle) ?? genericFallback(e.displayName),
       }
-    }
-  }
 
-  // Corrigir descrição genérica em EN quando extract existe
-  for (const e of entries) {
-    const ext = enExtracts.get(e.wikiTitle)
-    if (ext && !manual.en?.[e.id] && !enExisting[e.id]) {
-      enCopy[e.id].description = ext
-    }
+    const ptExtract = ptExtracts.get(e.wikiTitle)
+    ptCopy[e.id] = (isUsableCopy(manualPt) && manualPt) ||
+      (isUsableCopy(existingPt) && existingPt) || {
+        name: e.displayName,
+        description: ptExtract ?? enCopy[e.id].description,
+      }
   }
 
   const ids = entries.map((e) => e.id)

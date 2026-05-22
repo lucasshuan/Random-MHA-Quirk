@@ -126,7 +126,6 @@ async function main() {
   const enPath = join(src, 'i18n', 'quirks', 'en.ts')
   const enContent = readFileSync(enPath, 'utf8')
 
-  // Find IDs with generic descriptions
   const genericRe = /'([a-z0-9-]+)':\s*\{[^}]*description: 'Canonical quirk from/g
   const genericIds = []
   let m
@@ -162,7 +161,6 @@ async function main() {
       const { id, desc } = result.value
       if (desc) {
         if (!manual.en[id]) manual.en[id] = {}
-        // Preserve existing name if present, otherwise set from wiki title
         if (!manual.en[id].name) {
           const title = wikiTitles.get(id) ?? id
           manual.en[id].name = title.replace(/\s*\(Quirk\)\s*/gi, '').trim()

@@ -8,22 +8,23 @@
    - ou `GEMINI_API_KEY` (`gemini-2.0-flash`)
 3. Opcional: `FUSION_PROVIDER=openai|gemini|auto`
 
-## Gerar uma fusão
+## No app (`pnpm dev`)
+
+- Modo **Híbrido** sorteia dois pais + um `seed`
+- Se já existir no cache → mostra a fusão na hora
+- Se não existir → o **dev server** chama a API (`/api/fusion/generate`) com sua `.env` e forja automaticamente (2–10 s)
+- Reinicie `pnpm dev` após alterar `.env`
+
+Requer `OPENAI_API_KEY` (ou `GEMINI_API_KEY` válida) e `FUSION_PROVIDER=openai` se a Gemini falhar.
+
+## Terminal (opcional)
 
 ```bash
 pnpm fusion:generate -- --a acid --b explosion
 pnpm fusion:generate -- --a acid --b explosion --seed k7x2m9
-pnpm fusion:generate -- --random
-pnpm fusion:generate -- --a acid --b explosion --force
 ```
 
-Grava em `src/data/fusion-cache.json`. Recarregue o app (`pnpm dev`) para ver o card de fusão no modo Híbrido.
-
-## No app
-
-- Modo **Híbrido** sorteia dois pais + um `seed`
-- Se existir entrada `parents+seed` no cache → card **Fusão** (sem tier)
-- Senão → mostra comando para gerar localmente
+Grava em `src/data/fusion-cache.json`. Útil em `pnpm preview`/build estático, onde a API do Vite não existe.
 
 ## Reroll
 

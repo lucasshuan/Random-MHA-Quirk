@@ -14,6 +14,9 @@
     "research:build-catalog": "node scripts/build-quirk-catalog.mjs",
     "research:fix-descriptions": "node scripts/fix-descriptions.mjs",
     "fusion:generate": "node scripts/generate-fusion.mjs",
+    "research:translate-pt": "node scripts/translate-pt-descriptions.mjs",
+    "research:sync-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
+    "research:fix-pt": "node scripts/sync-pt-translations.mjs && node scripts/build-quirk-catalog.mjs",
     "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs"
   },
   "dependencies": {

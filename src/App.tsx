@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useI18n } from './i18n/useI18n'
 import { buildQuirkSearchText } from './i18n/quirkSearchText'
 import './App.css'
@@ -12,6 +12,7 @@ import { StepTierChoice } from './components/wizard/StepTierChoice'
 import { StepTypeChoice } from './components/wizard/StepTypeChoice'
 import { getQuirks } from './i18n/quirks'
 import { ALL_QUIRK_TIERS } from './lib/tierPresets'
+import { canGenerateFusionLive, requestFusionGeneration } from './lib/generateFusion'
 import { rollHybrid } from './lib/hybridRoll'
 import { applyFilters, pickRandom } from './lib/quirkEngine'
 import {
@@ -47,6 +48,14 @@ function filtersForTypeAndTiers(
   }
 }
 
+function isHybridRoll(result: RollResult): result is HybridRollResult {
+  return result !== null && 'parents' in result
+}
+
+function hybridRollKey(result: HybridRollResult): string {
+  return `${result.parents[0].id}+${result.parents[1].id}:${result.seed}`
+}
+
 function App() {
   const { locale, t } = useI18n()
   const [currentStep, setCurrentStep] = useState<WizardStep>('start')
@@ -67,6 +76,9 @@ function App() {
     defaultFilters(),
   ])
   const [hybridReachedSecondType, setHybridReachedSecondType] = useState(false)
+  const [fusionPhase, setFusionPhase] = useState<'idle' | 'generating' | 'error'>('idle')
+  const [fusionError, setFusionError] = useState<string | null>(null)
+  const generatingFusionKeyRef = useRef<string | null>(null)
 
   const allQuirks = useMemo(() => getQuirks(locale), [locale])
 
@@ -89,13 +101,76 @@ function App() {
     setHybridTypes([null, null])
     setHybridSlotFilters([defaultFilters(), defaultFilters()])
     setHybridReachedSecondType(false)
+    setFusionPhase('idle')
+    setFusionError(null)
+    generatingFusionKeyRef.current = null
+  }
+
+  const tryGenerateFusion = useCallback(
+    async (hybrid: HybridRollResult, force = false) => {
+      if (!canGenerateFusionLive() || hybrid.fusion) {
+        return
+      }
+
+      const key = hybridRollKey(hybrid)
+      if (!force && generatingFusionKeyRef.current === key) {
+        return
+      }
+
+      generatingFusionKeyRef.current = key
+      setFusionPhase('generating')
+      setFusionError(null)
+
+      try {
+        const fusion = await requestFusionGeneration(
+          hybrid.parents[0].id,
+          hybrid.parents[1].id,
+          hybrid.seed,
+          locale,
+          { force },
+        )
+        setResult((prev) => {
+          if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
+            return prev
+          }
+          return { ...prev, fusion }
+        })
+        setFusionPhase('idle')
+      } catch (err) {
+        setFusionError(err instanceof Error ? err.message : String(err))
+        setFusionPhase('error')
+      } finally {
+        if (generatingFusionKeyRef.current === key) {
+          generatingFusionKeyRef.current = null
+        }
+      }
+    },
+    [locale],
+  )
+
+  useEffect(() => {
+    if (currentStep !== 'result' || mode !== 'hybrid') {
+      return
+    }
+    if (!result || !isHybridRoll(result) || result.fusion) {
+      return
+    }
+    void tryGenerateFusion(result)
+  }, [currentStep, mode, result, tryGenerateFusion])
+
+  function setHybridRoll(hybrid: HybridRollResult | null) {
+    setResult(hybrid)
+    if (hybrid && !hybrid.fusion && canGenerateFusionLive()) {
+      setFusionPhase('generating')
+      setFusionError(null)
+    }
   }
 
   function rollFromCurrentSettings() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
       const poolA = applyFilters(allQuirks, hybridSlotFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, hybridSlotFilters[1], { searchableText })
-      setResult(rollHybrid(poolA, poolB, locale))
+      setHybridRoll(rollHybrid(poolA, poolB, locale))
       return
     }
 
@@ -137,7 +212,7 @@ function App() {
 
       const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, finalFilters[1], { searchableText })
-      setResult(rollHybrid(poolA, poolB, locale))
+      setHybridRoll(rollHybrid(poolA, poolB, locale))
       setResultBackStep('type')
       setCurrentStep('result')
       return
@@ -294,8 +369,16 @@ function App() {
         mode={mode}
         result={result}
         flickerNames={allQuirks.map((quirk) => quirk.name)}
+        fusionPhase={fusionPhase}
+        fusionError={fusionError}
+        canGenerateFusionLive={canGenerateFusionLive()}
         onRetry={() => {
           rollFromCurrentSettings()
+        }}
+        onRetryFusion={() => {
+          if (result && isHybridRoll(result)) {
+            void tryGenerateFusion(result, true)
+          }
         }}
         onBack={handleBack}
         onRestart={handleRestart}

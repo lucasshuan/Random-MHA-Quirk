@@ -668,32 +668,31 @@
 
 .roll-label {
   margin: 0;
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  width: 100%;
+  max-width: min(100%, 36rem);
+  box-sizing: border-box;
+  padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+  font-size: clamp(1.25rem, 3.6vw, 1.85rem);
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
   transition: color 180ms ease, transform 180ms ease;
 }
 
 .roll-label-reveal {
   color: var(--accent-strong);
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 .roll-label-slot,
 .roll-label-flicker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: min(100%, 20rem);
-  min-height: 2.65em;
-  margin: 0;
-  padding: 0 0.5rem;
-  line-height: 1.2;
-  text-align: center;
-  overflow: hidden;
+  display: block;
+  min-height: 2.75em;
+  overflow: visible;
 }
 
 .roll-label-flicker {
@@ -703,11 +702,9 @@
 @keyframes labelFlicker {
   from {
     opacity: 0.55;
-    transform: scale(0.97);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -715,8 +712,50 @@
   min-height: 0;
 }
 
+.result-step:has(.hybrid-result) {
+  max-height: 100%;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  align-content: start;
+}
+
 .result-step-rolling {
   gap: clamp(0.75rem, 2.2svh, 1.1rem);
+}
+
+/* Scroll interno (filtros avançados, quirks sorteadas, etc.) */
+.inner-scroll-panel {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(248, 216, 73, 0.75) rgba(255, 255, 255, 0.06);
+  scrollbar-gutter: stable;
+}
+
+.inner-scroll-panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.inner-scroll-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+}
+
+.inner-scroll-panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 216, 73, 0.95),
+    rgba(0, 190, 255, 0.7)
+  );
+  border-radius: 999px;
+  border: 2px solid rgba(10, 16, 24, 0.9);
+}
+
+.inner-scroll-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 233, 125, 0.98),
+    rgba(0, 190, 255, 0.88)
+  );
 }
 
 .result-roll-stage {
@@ -1258,43 +1297,11 @@
 .advanced-step .panel {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(248, 216, 73, 0.75) rgba(255, 255, 255, 0.06);
-  scrollbar-gutter: stable;
   max-height: 100%;
 }
 
 .advanced-step .filter-group {
   flex: 0 0 auto;
-}
-
-.advanced-step .panel::-webkit-scrollbar {
-  width: 10px;
-}
-
-.advanced-step .panel::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 999px;
-}
-
-.advanced-step .panel::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgba(248, 216, 73, 0.95),
-    rgba(0, 190, 255, 0.7)
-  );
-  border-radius: 999px;
-  border: 2px solid rgba(10, 16, 24, 0.9);
-}
-
-.advanced-step .panel::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 233, 125, 0.98),
-    rgba(0, 190, 255, 0.88)
-  );
 }
 
 .panel h2 {
@@ -1802,8 +1809,104 @@
 /* === Hybrid / fusion result === */
 .hybrid-result {
   width: 100%;
+  min-height: 0;
+  max-height: 100%;
   display: grid;
   gap: 0.85rem;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.result-view-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  padding: 0.28rem;
+  border-radius: 14px;
+  background: rgba(10, 16, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.result-view-tab {
+  min-height: 2.5rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: rgba(210, 220, 235, 0.55);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.result-view-tab:hover {
+  color: rgba(235, 240, 250, 0.85);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.result-view-tab-active {
+  color: #1a1408;
+  background: linear-gradient(165deg, var(--accent-strong), var(--accent));
+  border-color: rgba(255, 220, 140, 0.45);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(248, 216, 73, 0.18);
+}
+
+.result-view-panel {
+  width: 100%;
+  min-height: 0;
+  animation: resultViewIn 280ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.result-view-panel-fusion {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@keyframes resultViewIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-view-panel-parents {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rolled-quirks-box {
+  width: 100%;
+  min-height: 0;
+  max-height: min(48svh, 380px);
+  padding: 0.65rem 0.5rem 0.65rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(6, 11, 18, 0.45);
+  text-align: left;
+}
+
+.rolled-quirks-box .fusion-parents-grid {
+  margin-top: 0;
+  padding-right: 0.15rem;
+}
+
+.rolled-quirks-box .quirk-card {
+  min-height: 0;
 }
 
 .fusion-hero .quirk-card-fusion {
@@ -1835,6 +1938,31 @@
   border: 1px dashed rgba(255, 190, 100, 0.35);
 }
 
+.fusion-forging {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+}
+
+.fusion-error {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.fusion-error-detail {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 160, 140, 0.9);
+  word-break: break-word;
+}
+
+.fusion-retry-btn {
+  min-width: 160px;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.2rem;
+}
+
 .fusion-generate-hint {
   margin: 0.5rem 0 0.35rem;
   font-size: 0.82rem;
@@ -1853,35 +1981,8 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.fusion-parents-details {
-  width: 100%;
-}
-
-.fusion-parents-details summary {
-  cursor: pointer;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(220, 228, 240, 0.65);
-  list-style: none;
-}
-
-.fusion-parents-details summary::-webkit-details-marker {
-  display: none;
-}
-
 .fusion-parents-grid {
-  margin-top: 0.65rem;
-}
-
-.quirk-card-compact h3 {
-  font-size: 1.05rem;
-}
-
-.quirk-card-compact .quirk-description {
-  font-size: 0.82rem;
-  line-height: 1.4;
+  margin-top: 0;
 }
 
 /* === Fusion result layout === */

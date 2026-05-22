@@ -44,7 +44,10 @@ export const ptBR: Messages = {
     first: 'Tipo da primeira individualidade',
     second: 'Tipo da segunda individualidade',
     hybridBadge: 'Individualidade {{current}} de 2',
-    advanced: 'Mais filtros',
+    advancedOptions: 'Opções avançadas',
+    advancedOptionsHint: 'Ajuste filtros e sorteie de uma seleção personalizada.',
+    chooseManual: 'Escolher individualidade',
+    chooseManualHint: 'Busque, veja detalhes e fixe uma individualidade agora.',
     any: 'Qualquer',
     anyHint:
       'Sem filtro por tipo. Qualquer individualidade da lista pode sair no sorteio.',
@@ -78,6 +81,16 @@ export const ptBR: Messages = {
     type: 'Tipo',
     range: 'Alcance',
     facets: 'Características',
+  },
+  manualPick: {
+    mark: 'Escolha direta',
+    titleSolo: 'Escolha sua individualidade',
+    titleHybridFirst: 'Escolha a primeira individualidade',
+    titleHybridSecond: 'Escolha a segunda individualidade',
+    pickLabel: 'Lista de individualidades',
+    empty: 'Nenhuma individualidade corresponde aos filtros atuais.',
+    cancel: 'Voltar',
+    confirm: 'Usar esta individualidade',
   },
   result: {
     oneQuirk: 'Uma Individualidade',

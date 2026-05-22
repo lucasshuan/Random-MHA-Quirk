@@ -29,7 +29,7 @@ export function LanguageSwitcher() {
             onClick={() => setLocale(option.locale)}
             aria-pressed={isActive}
             aria-label={t(option.labelKey)}
-            title={t(option.labelKey)}
+            data-tooltip={t(option.labelKey)}
           >
             <Flag className="lang-flag" aria-hidden="true" />
           </button>

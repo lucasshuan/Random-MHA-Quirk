@@ -140,8 +140,8 @@ function ResultReveal({
           type="button"
           className="icon-btn"
           onClick={onBack}
-          title={t('nav.back')}
           aria-label={t('nav.back')}
+          data-tooltip={t('nav.back')}
         >
           ←
         </button>
@@ -151,8 +151,8 @@ function ResultReveal({
             className="icon-btn fusion-reroll-btn"
             onClick={onRetryFusion}
             disabled={fusionPhase === 'generating'}
-            title={t('fusion.rerollVariant')}
             aria-label={t('fusion.rerollVariant')}
+            data-tooltip={t('fusion.rerollVariant')}
           >
             <span className="fusion-reroll-glyph" aria-hidden="true">
               ✦
@@ -164,8 +164,8 @@ function ResultReveal({
           className="icon-btn strong-icon"
           onClick={onRetry}
           disabled={isHybridResult(result) && fusionPhase === 'generating'}
-          title={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
           aria-label={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
+          data-tooltip={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
         >
           ↻
         </button>
@@ -173,8 +173,8 @@ function ResultReveal({
           type="button"
           className="icon-btn"
           onClick={onRestart}
-          title={t('nav.restart')}
           aria-label={t('nav.restart')}
+          data-tooltip={t('nav.restart')}
         >
           ⌂
         </button>

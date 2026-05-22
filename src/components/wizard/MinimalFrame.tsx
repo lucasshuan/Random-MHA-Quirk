@@ -30,7 +30,7 @@ export function MinimalFrame({
               onClick={onBack}
               disabled={!canGoBack}
               aria-label={t('nav.back')}
-              title={t('nav.back')}
+              data-tooltip={t('nav.back')}
             >
               ←
             </button>
@@ -40,7 +40,7 @@ export function MinimalFrame({
                 className="icon-btn"
                 onClick={onRestart}
                 aria-label={t('nav.restart')}
-                title={t('nav.restart')}
+                data-tooltip={t('nav.restart')}
               >
                 ⌂
               </button>

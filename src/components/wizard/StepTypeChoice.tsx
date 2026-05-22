@@ -7,7 +7,8 @@ interface StepTypeChoiceProps {
   hybridStep: 0 | 1
   hybridReachedSecondType: boolean
   onChoose: (type: SimpleTypeChoice) => void
-  onAdvanced: () => void
+  onAdvancedOptions: () => void
+  onChooseManual: () => void
 }
 
 const TYPE_KEYS: Array<{
@@ -32,7 +33,8 @@ export function StepTypeChoice({
   hybridStep,
   hybridReachedSecondType,
   onChoose,
-  onAdvanced,
+  onAdvancedOptions,
+  onChooseManual,
 }: StepTypeChoiceProps) {
   const { t } = useI18n()
   const isHybrid = mode === 'hybrid'
@@ -79,9 +81,22 @@ export function StepTypeChoice({
             />
           ))}
         </div>
-        <button type="button" className="text-btn type-step-advanced" onClick={onAdvanced}>
-          {t('type.advanced')}
-        </button>
+        <div className="type-step-routes">
+          <button
+            type="button"
+            className="type-step-route"
+            onClick={onAdvancedOptions}
+          >
+            {t('type.advancedOptions')}
+          </button>
+          <button
+            type="button"
+            className="type-step-route"
+            onClick={onChooseManual}
+          >
+            {t('type.chooseManual')}
+          </button>
+        </div>
       </div>
     </div>
   )

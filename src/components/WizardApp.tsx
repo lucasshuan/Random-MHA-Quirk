@@ -5,6 +5,7 @@ import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { StepAdvancedFilters } from '@/components/wizard/StepAdvancedFilters'
 import { BrandMark } from '@/components/wizard/BrandMark'
 import { StepFinalResult } from '@/components/wizard/StepFinalResult'
+import { StepManualPick } from '@/components/wizard/StepManualPick'
 import { StepModeChoice } from '@/components/wizard/StepModeChoice'
 import { StepRandomRoll } from '@/components/wizard/StepRandomRoll'
 import { StepTierChoice } from '@/components/wizard/StepTierChoice'
@@ -31,7 +32,7 @@ import {
 } from '@/types/quirk'
 
 type RollResult = Quirk | HybridRollResult | null
-type PickPhase = 'type' | 'tier'
+type PickPhase = 'type' | 'tier' | 'manual'
 
 function defaultFilters(): QuirkFilters {
   return { ...DEFAULT_QUIRK_FILTERS }
@@ -67,7 +68,12 @@ export function WizardApp() {
   const [pendingType, setPendingType] = useState<SimpleTypeChoice | null>(null)
   const [selectedTiers, setSelectedTiers] = useState<QuirkTier[]>([...ALL_QUIRK_TIERS])
   const [tierSlideDirection, setTierSlideDirection] = useState<'forward' | 'back'>('forward')
+  const [manualFilters, setManualFilters] = useState(defaultFilters)
   const [hybridTypeStep, setHybridTypeStep] = useState<0 | 1>(0)
+  const [manualHybridParents, setManualHybridParents] = useState<[Quirk | null, Quirk | null]>([
+    null,
+    null,
+  ])
   const [hybridTypes, setHybridTypes] = useState<[SimpleTypeChoice | null, SimpleTypeChoice | null]>(
     [null, null],
   )
@@ -91,13 +97,19 @@ export function WizardApp() {
     () => applyFilters(allQuirks, filters, { searchableText }),
     [allQuirks, filters, searchableText],
   )
+  const manuallyFilteredQuirks = useMemo(
+    () => applyFilters(allQuirks, manualFilters, { searchableText }),
+    [allQuirks, manualFilters, searchableText],
+  )
 
   function resetPickFlow() {
     setPickPhase('type')
     setPendingType(null)
     setSelectedTiers([...ALL_QUIRK_TIERS])
     setTierSlideDirection('forward')
+    setManualFilters(defaultFilters())
     setHybridTypeStep(0)
+    setManualHybridParents([null, null])
     setHybridTypes([null, null])
     setHybridSlotFilters([defaultFilters(), defaultFilters()])
     setHybridReachedSecondType(false)
@@ -184,7 +196,17 @@ export function WizardApp() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
       const poolA = applyFilters(allQuirks, hybridSlotFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, hybridSlotFilters[1], { searchableText })
-      setHybridRoll(rollHybrid(poolA, poolB, locale))
+      const firstParent = manualHybridParents[0] ?? pickRandom(poolA)
+      const secondParent = manualHybridParents[1] ?? pickRandom(poolB)
+      if (firstParent && secondParent) {
+        setHybridRoll({
+          parents: [firstParent, secondParent],
+          seed: randomFusionSeed(),
+          fusionEntry: null,
+        })
+      } else {
+        setHybridRoll(rollHybrid(poolA, poolB, locale))
+      }
       return
     }
 
@@ -198,6 +220,13 @@ export function WizardApp() {
   }
 
   function goToTierStep(type: SimpleTypeChoice) {
+    if (mode === 'hybrid') {
+      if (hybridTypeStep === 0) {
+        setManualHybridParents([null, manualHybridParents[1]])
+      } else {
+        setManualHybridParents([manualHybridParents[0], null])
+      }
+    }
     setPendingType(type)
     setSelectedTiers([...ALL_QUIRK_TIERS])
     setTierSlideDirection('forward')
@@ -210,6 +239,7 @@ export function WizardApp() {
 
     if (mode === 'hybrid') {
       if (hybridTypeStep === 0) {
+        setManualHybridParents([null, manualHybridParents[1]])
         setHybridTypes([type, null])
         setHybridSlotFilters([slotFilters, hybridSlotFilters[1]])
         setHybridTypeStep(1)
@@ -221,12 +251,27 @@ export function WizardApp() {
 
       const firstType = hybridTypes[0] ?? 'Any'
       const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
+      setManualHybridParents([manualHybridParents[0], null])
       setHybridTypes([firstType, type])
       setHybridSlotFilters(finalFilters)
 
-      const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, finalFilters[1], { searchableText })
-      setHybridRoll(rollHybrid(poolA, poolB, locale))
+      const firstManual = manualHybridParents[0]
+      if (firstManual) {
+        const secondParent = pickRandom(poolB)
+        setHybridRoll(
+          secondParent
+            ? {
+                parents: [firstManual, secondParent],
+                seed: randomFusionSeed(),
+                fusionEntry: null,
+              }
+            : null,
+        )
+      } else {
+        const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
+        setHybridRoll(rollHybrid(poolA, poolB, locale))
+      }
       setResultBackStep('type')
       setCurrentStep('result')
       return
@@ -235,6 +280,45 @@ export function WizardApp() {
     setFilters(slotFilters)
     const nextPool = applyFilters(allQuirks, slotFilters, { searchableText })
     setResult(pickRandom(nextPool))
+    setResultBackStep('type')
+    setCurrentStep('result')
+  }
+
+  function handleManualPick(quirk: Quirk) {
+    const slotFilters = filtersForTypeAndTiers(
+      quirk.type,
+      [quirk.tier],
+    )
+
+    if (mode === 'hybrid') {
+      if (hybridTypeStep === 0) {
+        setManualHybridParents([quirk, null])
+        setHybridTypes([quirk.type, null])
+        setHybridSlotFilters([slotFilters, hybridSlotFilters[1]])
+        setPendingType(null)
+        setHybridTypeStep(1)
+        setHybridReachedSecondType(true)
+        setPickPhase('type')
+        return
+      }
+
+      const firstParent = manualHybridParents[0] ?? quirk
+      const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
+      setManualHybridParents([firstParent, quirk])
+      setHybridTypes([firstParent.type, quirk.type])
+      setHybridSlotFilters(finalFilters)
+      setHybridRoll({
+        parents: [firstParent, quirk],
+        seed: randomFusionSeed(),
+        fusionEntry: null,
+      })
+      setResultBackStep('type')
+      setCurrentStep('result')
+      return
+    }
+
+    setFilters(slotFilters)
+    setResult(quirk)
     setResultBackStep('type')
     setCurrentStep('result')
   }
@@ -293,16 +377,17 @@ export function WizardApp() {
       return
     }
 
+    if (currentStep === 'type' && pickPhase === 'manual') {
+      setPickPhase('type')
+      return
+    }
+
     if (currentStep === 'type' && pickPhase === 'type' && mode === 'hybrid' && hybridTypeStep === 1) {
       setHybridTypeStep(0)
+      setManualHybridParents([manualHybridParents[0], null])
       setHybridTypes([hybridTypes[0], null])
-      setPendingType(hybridTypes[0])
-      setSelectedTiers(
-        hybridSlotFilters[0].tiers.length > 0
-          ? [...hybridSlotFilters[0].tiers]
-          : [...ALL_QUIRK_TIERS],
-      )
-      setPickPhase('tier')
+      setPendingType(null)
+      setPickPhase('type')
       setTierSlideDirection('back')
       return
     }
@@ -354,6 +439,19 @@ export function WizardApp() {
           />
         )
       }
+      if (pickPhase === 'manual') {
+        return (
+          <StepManualPick
+            mode={mode}
+            hybridStep={hybridTypeStep}
+            filters={manualFilters}
+            filteredQuirks={manuallyFilteredQuirks}
+            onChangeFilters={setManualFilters}
+            onResetFilters={() => setManualFilters(defaultFilters())}
+            onSelectQuirk={handleManualPick}
+          />
+        )
+      }
 
       return (
         <StepTypeChoice
@@ -361,7 +459,8 @@ export function WizardApp() {
           hybridStep={hybridTypeStep}
           hybridReachedSecondType={hybridReachedSecondType}
           onChoose={handleTypeChoice}
-          onAdvanced={() => setCurrentStep('advanced')}
+          onAdvancedOptions={() => setCurrentStep('advanced')}
+          onChooseManual={() => setPickPhase('manual')}
         />
       )
     }

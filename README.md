@@ -1,35 +1,58 @@
-# Random MHA Quirk
+<p align="center">
+  <img src="public/logo.webp" alt="Random MHA Quirk" width="120" />
+</p>
 
-Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / pt-BR).
+<h1 align="center">Random MHA Quirk</h1>
 
-## Stack
+<p align="center">
+  <strong>Plus Ultra your luck.</strong><br />
+  Roll quirks from My Hero Academia universe — one fate at a time, or two powers forged into one.
+</p>
 
-- **Next.js 16** (App Router)
-- **React 19**
-- **Supabase** — fusion cache (`fusion_entries`)
-- **OpenAI / Gemini** — on-demand hybrid fusion (server-only)
+<p align="center">
+  <a href="https://mha-random-quirk.vercel.app/"><strong>▶ Enter the site</strong></a>
+</p>
 
-## Setup
+<p align="center">
+  <img src="public/mha-logo.png" alt="My Hero Academia" width="200" />
+</p>
 
-1. `cp .env.example .env.local` and fill in Supabase + LLM keys
-2. Apply DB migrations from this repo:
-   - `pnpm exec supabase login` (once)
-   - set `SUPABASE_DB_PASSWORD` in `.env`
-   - `pnpm db:push`
-3. Optional one-time seed: `node scripts/seed-fusion-cache.mjs`
-4. `pnpm dev` → http://localhost:3000
+---
 
-## Scripts
+## What is this?
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Development server |
-| `pnpm build` | Production build |
-| `pnpm start` | Production server |
-| `pnpm test` | Unit tests (Vitest) |
-| `pnpm fusion:generate -- --a id1 --b id2` | CLI: generate fusion → Supabase |
-| `pnpm db:push` | Apply `supabase/migrations/` to linked project |
+**[Random MHA Quirk](https://mha-random-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*. No account, no grind — tap **Start**, follow the path, and let the wheel decide what your next individuality looks like. Filter by type and tier if you want control; leave it wide open if you trust fate.
 
-Fusion setup: [`docs/fusion.md`](docs/fusion.md)
+Available in **English** and **Português (Brasil)**.
 
-Catalog maintenance (optional, not part of the app): [`tools/catalog/README.md`](tools/catalog/README.md)
+---
+
+## Quirks — your individuality, rolled
+
+In *MHA*, a **Quirk** is the power you are born with. This site lets you roll one from a curated pool inspired by canon sources and original entries in the same style.
+
+You can keep it random or narrow the pool by type, tier, and filters. Every result shows the essentials: name, description, type, range, facets, and tier.
+
+---
+
+## Hybrids — when two fates collide
+
+Choose **Hybrid** to roll two parent quirks instead of one. You pick a type (or **Any**) for each side, and the app draws one quirk per side.
+
+From that pair, the site generates a fusion concept inspired by both parent quirks. Parent cards stay visible so you can compare the originals with the fusion result.
+
+---
+
+## Try your luck
+
+| Path | What happens |
+|------|----------------|
+| **One Quirk** | Shape the pool (type, tier, filters), then draw a single individuality. |
+| **Hybrid** | Roll two parent quirks, then witness their fusion. |
+| **Try Your Luck** | Let chance pick solo or hybrid for you. |
+
+---
+
+<p align="center">
+  <em>Fan project. Not affiliated with Kohei Horikoshi, Shueisha, or any official My Hero Academia release.</em>
+</p>

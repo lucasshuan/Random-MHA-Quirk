@@ -55,14 +55,5 @@ export function fusionCopyForLocale(
   entry: FusionCacheEntry,
   locale: Locale,
 ): FusionCopy {
-  if (locale === 'en') {
-    return entry.en
-  }
-
-  const localized = entry[locale]
-  if (localized?.name && localized.description) {
-    return localized
-  }
-
-  return entry.en
+  return entry[locale]
 }

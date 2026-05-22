@@ -66,10 +66,13 @@ export const en = {
   result: {
     oneQuirk: 'One Quirk',
     hybrid: 'Hybrid',
+    rolling: 'Drawing your quirk...',
     title: 'Your result',
     empty: 'No result found.',
     prefixA: 'A',
     prefixB: 'B',
+    showDetails: 'Show details',
+    hideDetails: 'Hide details',
   },
   meta: {
     origin: {

@@ -5,6 +5,7 @@ import { ChoiceOptionButton } from './ChoiceOptionButton'
 interface StepTypeChoiceProps {
   mode: ResultMode
   hybridStep: 0 | 1
+  hybridReachedSecondType: boolean
   onChoose: (type: SimpleTypeChoice) => void
   onAdvanced: () => void
 }
@@ -29,43 +30,59 @@ const TYPE_KEYS: Array<{
 export function StepTypeChoice({
   mode,
   hybridStep,
+  hybridReachedSecondType,
   onChoose,
   onAdvanced,
 }: StepTypeChoiceProps) {
   const { t } = useI18n()
   const isHybrid = mode === 'hybrid'
+
+  const slideDirection = !isHybrid
+    ? 'forward'
+    : hybridStep === 1
+      ? 'forward'
+      : hybridReachedSecondType
+        ? 'back'
+        : 'forward'
+
   const title = isHybrid
     ? hybridStep === 0
       ? t('type.first')
       : t('type.second')
     : t('type.pick')
 
+  const panelKey = isHybrid ? `hybrid-step-${hybridStep}` : 'solo-type'
+
   return (
-    <div className="simple-step">
-      {isHybrid ? (
-        <p className="type-step-badge">
-          {t('type.hybridBadge', { current: hybridStep + 1 })}
-        </p>
-      ) : (
-        <p className="app-mark">{t('type.filter')}</p>
-      )}
-      <h1>{title}</h1>
-      <div className="choice-grid compact-choice-grid">
-        {TYPE_KEYS.map((option) => (
-          <ChoiceOptionButton
-            key={option.type}
-            label={t(option.labelKey)}
-            description={t(option.hintKey)}
-            tone={option.tone}
-            onClick={() => onChoose(option.type)}
-          />
-        ))}
-      </div>
-      {!isHybrid || hybridStep === 0 ? (
-        <button type="button" className="text-btn" onClick={onAdvanced}>
+    <div className="simple-step type-step">
+      <div
+        key={panelKey}
+        className={`type-step-panel type-step-panel-${slideDirection}`}
+      >
+        {isHybrid ? (
+          <p className="type-step-badge">
+            {t('type.hybridBadge', { current: hybridStep + 1 })}
+          </p>
+        ) : (
+          <p className="app-mark">{t('type.filter')}</p>
+        )}
+        <h1>{title}</h1>
+        <div className="choice-grid compact-choice-grid">
+          {TYPE_KEYS.map((option, index) => (
+            <ChoiceOptionButton
+              key={option.type}
+              label={t(option.labelKey)}
+              description={t(option.hintKey)}
+              tone={option.tone}
+              className={`type-step-choice type-step-choice-${index + 1}`}
+              onClick={() => onChoose(option.type)}
+            />
+          ))}
+        </div>
+        <button type="button" className="text-btn type-step-advanced" onClick={onAdvanced}>
           {t('type.advanced')}
         </button>
-      ) : null}
+      </div>
     </div>
   )
 }

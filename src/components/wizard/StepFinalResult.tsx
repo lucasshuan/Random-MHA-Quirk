@@ -1,45 +1,116 @@
+import { useEffect, useMemo, useState } from 'react'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
 import type { ResultMode } from '../../lib/wizardFlow'
 import type { Quirk } from '../../types/quirk'
+import { RollOrb } from './RollOrb'
 
 interface StepFinalResultProps {
   mode: ResultMode
   result: Quirk | [Quirk, Quirk] | null
+  flickerNames: string[]
   onRetry: () => void
   onBack: () => void
   onRestart: () => void
 }
 
-export function StepFinalResult({
+const FLICKER_MS = 95
+const REVEAL_MS = 1150
+
+function resultKey(result: Quirk | [Quirk, Quirk] | null): string {
+  if (!result) {
+    return 'empty'
+  }
+
+  if (Array.isArray(result)) {
+    return `${result[0].id}+${result[1].id}`
+  }
+
+  return result.id
+}
+
+interface ResultRevealProps {
+  mode: ResultMode
+  result: Quirk | [Quirk, Quirk] | null
+  flickerNames: string[]
+  onRetry: () => void
+  onBack: () => void
+  onRestart: () => void
+}
+
+function ResultReveal({
   mode,
   result,
+  flickerNames,
   onRetry,
   onBack,
   onRestart,
-}: StepFinalResultProps) {
+}: ResultRevealProps) {
   const { t } = useI18n()
+  const [revealed, setRevealed] = useState(false)
+  const [flickerIndex, setFlickerIndex] = useState(0)
+
+  const labels = useMemo(() => {
+    if (flickerNames.length > 0) {
+      return flickerNames
+    }
+
+    return ['—']
+  }, [flickerNames])
+
+  useEffect(() => {
+    const flickerTimer = window.setInterval(() => {
+      setFlickerIndex((value) => (value + 1) % labels.length)
+    }, FLICKER_MS)
+
+    const revealTimer = window.setTimeout(() => {
+      window.clearInterval(flickerTimer)
+      setRevealed(true)
+    }, REVEAL_MS)
+
+    return () => {
+      window.clearInterval(flickerTimer)
+      window.clearTimeout(revealTimer)
+    }
+  }, [labels])
+
+  if (!revealed) {
+    return (
+      <>
+        <p className="app-mark">
+          {mode === 'hybrid' ? t('result.hybrid') : t('result.oneQuirk')}
+        </p>
+        <h1 className="result-roll-title">{t('result.rolling')}</h1>
+        <div className="result-roll-stage" aria-hidden="true">
+          <RollOrb phase="rolling" />
+          <p className="roll-label roll-label-flicker">{labels[flickerIndex]}</p>
+        </div>
+      </>
+    )
+  }
 
   return (
-    <div className="simple-step result-step">
+    <>
       <p className="app-mark">
         {mode === 'hybrid' ? t('result.hybrid') : t('result.oneQuirk')}
       </p>
       <h1>{t('result.title')}</h1>
 
       {Array.isArray(result) ? (
-        <div className="fusion-result">
-          <QuirkCard quirk={result[0]} titlePrefix={t('result.prefixA')} />
-          <div className="fusion-plus">+</div>
-          <QuirkCard quirk={result[1]} titlePrefix={t('result.prefixB')} />
+        <div className="fusion-result result-cards-reveal">
+          <QuirkCard quirk={result[0]} slotLabel="A" />
+          <div className="fusion-plus fusion-plus-reveal">+</div>
+          <QuirkCard quirk={result[1]} slotLabel="B" />
         </div>
       ) : result ? (
-        <QuirkCard quirk={result} />
+        <div className="result-cards-reveal">
+          <QuirkCard quirk={result} />
+        </div>
       ) : (
-        <p className="mini-copy">{t('result.empty')}</p>
+        <p className="mini-copy result-cards-reveal">{t('result.empty')}</p>
       )}
 
-      <div className="result-toolbar">
+      <div className="result-toolbar result-toolbar-reveal">
         <button
           type="button"
           className="icon-btn"
@@ -68,6 +139,16 @@ export function StepFinalResult({
           ⌂
         </button>
       </div>
+    </>
+  )
+}
+
+export function StepFinalResult(props: StepFinalResultProps) {
+  const key = resultKey(props.result)
+
+  return (
+    <div className="simple-step result-step result-step-rolling">
+      <ResultReveal key={key} {...props} />
     </div>
   )
 }

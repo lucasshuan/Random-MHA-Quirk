@@ -73,10 +73,13 @@ export const ptBR: Messages = {
   result: {
     oneQuirk: 'Uma Individualidade',
     hybrid: 'Híbrido',
+    rolling: 'Sorteando sua individualidade...',
     title: 'Seu resultado',
     empty: 'Nenhum resultado encontrado.',
     prefixA: 'A',
     prefixB: 'B',
+    showDetails: 'Mostrar detalhes',
+    hideDetails: 'Ocultar detalhes',
   },
   meta: {
     origin: {

@@ -45,6 +45,7 @@ function App() {
   const [hybridTypes, setHybridTypes] = useState<[SimpleTypeChoice | null, SimpleTypeChoice | null]>(
     [null, null],
   )
+  const [hybridReachedSecondType, setHybridReachedSecondType] = useState(false)
 
   const allQuirks = useMemo(() => getQuirks(locale), [locale])
 
@@ -58,10 +59,22 @@ function App() {
     [allQuirks, filters, searchableText],
   )
 
+  function mergeTypeWithFilters(type: SimpleTypeChoice, userFilters: QuirkFilters): QuirkFilters {
+    const typeFilters = filtersForType(type)
+    return {
+      ...userFilters,
+      types: typeFilters.types.length > 0 ? typeFilters.types : userFilters.types,
+    }
+  }
+
   function rollFromCurrentSettings() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
-      const poolA = applyFilters(allQuirks, filtersForType(hybridTypes[0]))
-      const poolB = applyFilters(allQuirks, filtersForType(hybridTypes[1]))
+      const poolA = applyFilters(allQuirks, mergeTypeWithFilters(hybridTypes[0], filters), {
+        searchableText,
+      })
+      const poolB = applyFilters(allQuirks, mergeTypeWithFilters(hybridTypes[1], filters), {
+        searchableText,
+      })
       setResult(pickHybridPair(poolA, poolB))
       return
     }
@@ -79,6 +92,7 @@ function App() {
     setResult(null)
     setHybridTypeStep(0)
     setHybridTypes([null, null])
+    setHybridReachedSecondType(false)
     setFilters(DEFAULT_QUIRK_FILTERS)
 
     if (choice === 'random') {
@@ -95,6 +109,7 @@ function App() {
     setMode(outcome)
     setHybridTypeStep(0)
     setHybridTypes([null, null])
+    setHybridReachedSecondType(false)
     setCurrentStep('type')
   }
 
@@ -103,14 +118,18 @@ function App() {
       if (hybridTypeStep === 0) {
         setHybridTypes([type, null])
         setHybridTypeStep(1)
+        setHybridReachedSecondType(true)
         return
       }
 
       const firstType = hybridTypes[0] ?? 'Any'
-      const poolA = applyFilters(allQuirks, filtersForType(firstType))
-      const poolB = applyFilters(allQuirks, filtersForType(type))
+      const poolA = applyFilters(allQuirks, mergeTypeWithFilters(firstType, filters), {
+        searchableText,
+      })
+      const poolB = applyFilters(allQuirks, mergeTypeWithFilters(type, filters), {
+        searchableText,
+      })
       setHybridTypes([firstType, type])
-      setFilters(DEFAULT_QUIRK_FILTERS)
       setResult(pickHybridPair(poolA, poolB))
       setResultBackStep('type')
       setCurrentStep('result')
@@ -133,9 +152,15 @@ function App() {
     setResultBackStep('type')
     setHybridTypeStep(0)
     setHybridTypes([null, null])
+    setHybridReachedSecondType(false)
   }
 
   function handleBack() {
+    if (currentStep === 'advanced') {
+      setCurrentStep('type')
+      return
+    }
+
     if (currentStep === 'type' && mode === 'hybrid' && hybridTypeStep === 1) {
       setHybridTypeStep(0)
       setHybridTypes([hybridTypes[0], null])
@@ -145,6 +170,7 @@ function App() {
     if (currentStep === 'type') {
       setHybridTypeStep(0)
       setHybridTypes([null, null])
+      setHybridReachedSecondType(false)
       setCurrentStep('mode')
       return
     }
@@ -182,6 +208,7 @@ function App() {
         <StepTypeChoice
           mode={mode}
           hybridStep={hybridTypeStep}
+          hybridReachedSecondType={hybridReachedSecondType}
           onChoose={handleTypeChoice}
           onAdvanced={() => setCurrentStep('advanced')}
         />
@@ -204,6 +231,7 @@ function App() {
       <StepFinalResult
         mode={mode}
         result={result}
+        flickerNames={allQuirks.map((quirk) => quirk.name)}
         onRetry={() => {
           rollFromCurrentSettings()
         }}

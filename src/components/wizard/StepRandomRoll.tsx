@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useI18n } from '../../i18n/useI18n'
 import type { ResultMode } from '../../lib/wizardFlow'
 import { rollRandomOutcome } from '../../lib/wizardFlow'
+import { RollOrb } from './RollOrb'
 
 interface StepRandomRollProps {
   onComplete: (outcome: ResultMode) => void
@@ -52,12 +53,11 @@ export function StepRandomRoll({ onComplete }: StepRandomRollProps) {
       <p className="app-mark">{t('randomRoll.mark')}</p>
       <h1>{phase === 'rolling' ? t('randomRoll.rolling') : t('randomRoll.result')}</h1>
 
-      <div className={`roll-orb ${phase === 'rolling' ? 'roll-orb-spin' : 'roll-orb-reveal'}`}>
-        <span className="roll-orb-core" />
-        <span className="roll-orb-ring" />
-      </div>
+      <RollOrb phase={phase} />
 
-      <p className={`roll-label ${phase === 'reveal' ? 'roll-label-reveal' : ''}`}>
+      <p
+        className={`roll-label roll-label-slot ${phase === 'reveal' ? 'roll-label-reveal' : ''}`}
+      >
         {phase === 'rolling'
           ? flickerLabels[flickerIndex]
           : outcome === 'hybrid'

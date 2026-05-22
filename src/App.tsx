@@ -12,12 +12,8 @@ import { StepTierChoice } from './components/wizard/StepTierChoice'
 import { StepTypeChoice } from './components/wizard/StepTypeChoice'
 import { getQuirks } from './i18n/quirks'
 import { ALL_QUIRK_TIERS } from './lib/tierPresets'
-import {
-  applyFilters,
-  pickHybridPair,
-  pickRandom,
-  pickTwoDistinctRandom,
-} from './lib/quirkEngine'
+import { rollHybrid } from './lib/hybridRoll'
+import { applyFilters, pickRandom } from './lib/quirkEngine'
 import {
   getPreviousStep,
   type ModeChoice,
@@ -25,6 +21,7 @@ import {
   type SimpleTypeChoice,
   type WizardStep,
 } from './lib/wizardFlow'
+import type { HybridRollResult } from './types/fusion'
 import {
   DEFAULT_QUIRK_FILTERS,
   type Quirk,
@@ -32,7 +29,7 @@ import {
   type QuirkTier,
 } from './types/quirk'
 
-type RollResult = Quirk | [Quirk, Quirk] | null
+type RollResult = Quirk | HybridRollResult | null
 type PickPhase = 'type' | 'tier'
 
 function defaultFilters(): QuirkFilters {
@@ -98,11 +95,11 @@ function App() {
     if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
       const poolA = applyFilters(allQuirks, hybridSlotFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, hybridSlotFilters[1], { searchableText })
-      setResult(pickHybridPair(poolA, poolB))
+      setResult(rollHybrid(poolA, poolB, locale))
       return
     }
 
-    setResult(mode === 'hybrid' ? pickTwoDistinctRandom(filteredQuirks) : pickRandom(filteredQuirks))
+    setResult(pickRandom(filteredQuirks))
   }
 
   function rollWithSettings() {
@@ -140,7 +137,7 @@ function App() {
 
       const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
       const poolB = applyFilters(allQuirks, finalFilters[1], { searchableText })
-      setResult(pickHybridPair(poolA, poolB))
+      setResult(rollHybrid(poolA, poolB, locale))
       setResultBackStep('type')
       setCurrentStep('result')
       return

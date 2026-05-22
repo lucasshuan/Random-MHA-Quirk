@@ -2,7 +2,10 @@ import { useMemo, useState } from 'react'
 import { resolveQuirk } from '../i18n/quirks'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
+import type { FusionQuirk } from '../types/fusion'
 import { QUIRK_TIERS, type Quirk, type QuirkType } from '../types/quirk'
+
+export type QuirkCardModel = Quirk | FusionQuirk
 
 function typeThemeClass(type: QuirkType): string {
   switch (type) {
@@ -16,44 +19,71 @@ function typeThemeClass(type: QuirkType): string {
 }
 
 interface QuirkCardProps {
-  quirk: Quirk
+  quirk: QuirkCardModel
   slotLabel?: '1' | '2'
+  /** Fusão gerada: sem escala de tier. */
+  hideTier?: boolean
+  compact?: boolean
 }
 
-export function QuirkCard({ quirk, slotLabel }: QuirkCardProps) {
+function isCanonicalQuirk(quirk: QuirkCardModel): quirk is Quirk {
+  return 'tier' in quirk
+}
+
+export function QuirkCard({ quirk, slotLabel, hideTier = false, compact = false }: QuirkCardProps) {
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
-  const resolved = useMemo(() => resolveQuirk(quirk, locale), [quirk, locale])
+  const resolved = useMemo(
+    () => (isCanonicalQuirk(quirk) ? resolveQuirk(quirk, locale) : quirk),
+    [quirk, locale],
+  )
   const [detailsOpen, setDetailsOpen] = useState(false)
 
   const themeClass = typeThemeClass(quirk.type)
   const slotClass = slotLabel ? `quirk-card-slot-${slotLabel.toLowerCase()}` : ''
 
+  const cardClass = [
+    'quirk-card',
+    themeClass,
+    slotClass,
+    hideTier ? 'quirk-card-fusion' : '',
+    compact ? 'quirk-card-compact' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <article className={`quirk-card ${themeClass} ${slotClass}`.trim()}>
+    <article className={cardClass}>
       <div className="quirk-card-glow" aria-hidden="true" />
       {slotLabel ? (
         <span className={`quirk-slot-badge quirk-slot-badge-${slotLabel.toLowerCase()}`}>
           {slotLabel}
         </span>
       ) : null}
+      {hideTier ? (
+        <span className="quirk-fusion-badge">{t('fusion.badge')}</span>
+      ) : null}
       <p className="quirk-meta">
-        <span
-          className="quirk-tier-scale"
-          role="group"
-          aria-label={meta.tier(quirk.tier)}
-        >
-          {QUIRK_TIERS.map((tier) => (
+        {!hideTier && isCanonicalQuirk(quirk) ? (
+          <>
             <span
-              key={tier}
-              className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
-              aria-current={tier === quirk.tier ? 'true' : undefined}
+              className="quirk-tier-scale"
+              role="group"
+              aria-label={meta.tier(quirk.tier)}
             >
-              {tier}
+              {QUIRK_TIERS.map((tier) => (
+                <span
+                  key={tier}
+                  className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
+                  aria-current={tier === quirk.tier ? 'true' : undefined}
+                >
+                  {tier}
+                </span>
+              ))}
             </span>
-          ))}
-        </span>
-        <span className="quirk-meta-sep" aria-hidden="true" />
+            <span className="quirk-meta-sep" aria-hidden="true" />
+          </>
+        ) : null}
         <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
         <span className="quirk-meta-sep" aria-hidden="true" />
         <span className="quirk-meta-range">

@@ -89,6 +89,14 @@ export const ptBR: Messages = {
     showDetails: 'Mostrar detalhes',
     hideDetails: 'Ocultar detalhes',
   },
+  fusion: {
+    badge: 'Fusão',
+    parents: 'Individualidades origem',
+    notGenerated: 'Esta fusão ainda não foi forjada.',
+    generateHint: 'Gere localmente e recarregue o app:',
+    generateCommand:
+      'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
+  },
   meta: {
     origin: {
       BNHA: 'BNHA',

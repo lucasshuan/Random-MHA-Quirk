@@ -12,6 +12,8 @@
     "research:wiki-index": "node scripts/sync-wiki-index.mjs",
     "research:fetch-wiki": "node scripts/fetch-wiki-sources.mjs",
     "research:build-catalog": "node scripts/build-quirk-catalog.mjs",
+    "research:fix-descriptions": "node scripts/fix-descriptions.mjs",
+    "fusion:generate": "node scripts/generate-fusion.mjs",
     "research:full": "node scripts/fetch-wiki-sources.mjs && node scripts/build-quirk-catalog.mjs && node scripts/sync-wiki-index.mjs"
   },
   "dependencies": {

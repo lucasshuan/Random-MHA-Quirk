@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
 import type { ResultMode } from '../../lib/wizardFlow'
+import type { HybridRollResult } from '../../types/fusion'
 import type { Quirk } from '../../types/quirk'
 import { RollOrb } from './RollOrb'
 
+type RollResult = Quirk | HybridRollResult | null
+
 interface StepFinalResultProps {
   mode: ResultMode
-  result: Quirk | [Quirk, Quirk] | null
+  result: RollResult
   flickerNames: string[]
   onRetry: () => void
   onBack: () => void
@@ -17,13 +20,17 @@ interface StepFinalResultProps {
 const FLICKER_MS = 95
 const REVEAL_MS = 1150
 
-function resultKey(result: Quirk | [Quirk, Quirk] | null): string {
+function isHybridResult(result: RollResult): result is HybridRollResult {
+  return result !== null && 'parents' in result
+}
+
+function resultKey(result: RollResult): string {
   if (!result) {
     return 'empty'
   }
 
-  if (Array.isArray(result)) {
-    return `${result[0].id}+${result[1].id}`
+  if (isHybridResult(result)) {
+    return `hybrid-${result.parents[0].id}+${result.parents[1].id}-${result.seed}`
   }
 
   return result.id
@@ -31,7 +38,7 @@ function resultKey(result: Quirk | [Quirk, Quirk] | null): string {
 
 interface ResultRevealProps {
   mode: ResultMode
-  result: Quirk | [Quirk, Quirk] | null
+  result: RollResult
   flickerNames: string[]
   onRetry: () => void
   onBack: () => void
@@ -96,11 +103,36 @@ function ResultReveal({
       </p>
       <h1>{t('result.title')}</h1>
 
-      {Array.isArray(result) ? (
-        <div className="fusion-result result-cards-reveal">
-          <QuirkCard quirk={result[0]} slotLabel="1" />
-          <div className="fusion-plus fusion-plus-reveal">+</div>
-          <QuirkCard quirk={result[1]} slotLabel="2" />
+      {isHybridResult(result) ? (
+        <div className="hybrid-result result-cards-reveal">
+          {result.fusion ? (
+            <div className="fusion-hero">
+              <QuirkCard quirk={result.fusion} hideTier />
+            </div>
+          ) : (
+            <div className="fusion-pending">
+              <p className="mini-copy">{t('fusion.notGenerated')}</p>
+              <p className="fusion-generate-hint">{t('fusion.generateHint')}</p>
+              <code className="fusion-generate-cmd">
+                {t('fusion.generateCommand', {
+                  a: result.parents[0].id,
+                  b: result.parents[1].id,
+                  seed: result.seed,
+                })}
+              </code>
+            </div>
+          )}
+
+          <details className="fusion-parents-details">
+            <summary>{t('fusion.parents')}</summary>
+            <div className="fusion-result fusion-parents-grid">
+              <QuirkCard quirk={result.parents[0]} slotLabel="1" compact />
+              <div className="fusion-plus fusion-plus-reveal" aria-hidden="true">
+                +
+              </div>
+              <QuirkCard quirk={result.parents[1]} slotLabel="2" compact />
+            </div>
+          </details>
         </div>
       ) : result ? (
         <div className="result-cards-reveal">

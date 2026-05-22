@@ -82,6 +82,14 @@ export const en = {
     showDetails: 'Show details',
     hideDetails: 'Hide details',
   },
+  fusion: {
+    badge: 'Fusion',
+    parents: 'Parent quirks',
+    notGenerated: 'This fusion has not been forged yet.',
+    generateHint: 'Generate it locally, then reload the app:',
+    generateCommand:
+      'pnpm fusion:generate -- --a {{a}} --b {{b}} --seed {{seed}}',
+  },
   meta: {
     origin: {
       BNHA: 'BNHA',

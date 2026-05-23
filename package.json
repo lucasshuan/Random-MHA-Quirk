@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "quirks:generate-es": "tsx scripts/quirks/generate-es.ts",
+    "quirks:list-originals": "tsx scripts/quirks/list-originals.ts",
     "quirks:seed": "tsx scripts/quirks/seed.ts",
     "db:push": "tsx scripts/db/push.ts"
   },

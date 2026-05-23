@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto'
-import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
+import { fusionCacheKey, fusionPairKey, sortedParentPair } from '@/lib/fusion/keys'
 import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkId } from '@/types/quirk-id'
 import { buildFusionAgentInput } from './agent-input'
@@ -17,6 +17,7 @@ import {
   upsertFusionEntry,
 } from './repository'
 import { hasDuplicateFusionName } from './prior-variants'
+import { runWithFusionTrace } from './agents/tracing'
 
 const MAX_DISTINCT_NAME_ATTEMPTS = 3
 
@@ -66,55 +67,63 @@ export async function generateFusionEntry({
     },
   )
   const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
+  const traceContext = {
+    pairKey: fusionPairKey(parents[0], parents[1]),
+    seed,
+    parentA: parents[0],
+    parentB: parents[1],
+  }
 
   try {
-    const promptVariants = [...priorVariants]
-    let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
-      null
+    return await runWithFusionTrace(traceContext, async () => {
+      const promptVariants = [...priorVariants]
+      let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
+        null
 
-    for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
-      const fusionInput = buildFusionAgentInput(
-        quirkA,
-        quirkB,
-        seed,
-        promptVariants,
-        rollContext,
-        attempt,
-      )
-      const candidate = await generateEnglishFusionWithLlm(fusionInput)
+      for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
+        const fusionInput = buildFusionAgentInput(
+          quirkA,
+          quirkB,
+          seed,
+          promptVariants,
+          rollContext,
+          attempt,
+        )
+        const candidate = await generateEnglishFusionWithLlm(fusionInput)
 
-      if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
-        english = candidate
-        break
+        if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
+          english = candidate
+          break
+        }
+
+        promptVariants.push({
+          name: candidate.en.name,
+          description: candidate.en.description,
+          roll: rollContext.roll,
+        })
       }
 
-      promptVariants.push({
-        name: candidate.en.name,
-        description: candidate.en.description,
-        roll: rollContext.roll,
-      })
-    }
+      if (!english) {
+        throw new Error('LLM repeated a fusion name already used for this parent pair.')
+      }
 
-    if (!english) {
-      throw new Error('LLM repeated a fusion name already used for this parent pair.')
-    }
+      const translations = await Promise.all(
+        FUSION_TRANSLATION_LOCALES.map((locale) =>
+          translateFusionToLocaleWithLlm(english, locale, traceContext),
+        ),
+      )
 
-    const translations = await Promise.all(
-      FUSION_TRANSLATION_LOCALES.map((locale) =>
-        translateFusionToLocaleWithLlm(english, locale),
-      ),
-    )
-
-    const payload = mergeFusionPayload(english, ...translations)
-    const entry = buildFusionEntry(
-      key,
-      parents,
-      seed,
-      { ...payload, ...rollContext.outputRoll },
-      { tier: rollContext.tier, roll: rollContext.roll },
-    )
-    await upsertFusionEntry(entry)
-    return { entry, cached: false, generated: true }
+      const payload = mergeFusionPayload(english, ...translations)
+      const entry = buildFusionEntry(
+        key,
+        parents,
+        seed,
+        { ...payload, ...rollContext.outputRoll },
+        { tier: rollContext.tier, roll: rollContext.roll },
+      )
+      await upsertFusionEntry(entry)
+      return { entry, cached: false, generated: true }
+    })
   } catch (err) {
     if (force) throw err
     const existing = await findFusionByKey(key)

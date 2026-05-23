@@ -8,6 +8,7 @@ import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
 import { loadEnv } from '@/server/env/load'
 import { getQuirkById } from '@/server/fusion/catalog'
 import { buildFusionAgentInput } from '@/server/fusion/agent-input'
+import { flushFusionTraces } from '@/server/fusion/agents/tracing'
 import { generateEnglishFusionWithLlm } from '@/server/fusion/llm'
 import { deriveFusionRollContext } from '@/server/fusion/prompts/roll-context'
 import { hasDuplicateFusionName } from '@/server/fusion/prior-variants'
@@ -98,7 +99,11 @@ async function main() {
   console.log(`Wrote ${results.length} results to ${outPath}`)
 }
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : err)
-  process.exit(1)
-})
+main()
+  .catch((err) => {
+    console.error(err instanceof Error ? err.message : err)
+    process.exit(1)
+  })
+  .finally(async () => {
+    await flushFusionTraces()
+  })

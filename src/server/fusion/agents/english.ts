@@ -17,6 +17,7 @@ import {
   resolveFusionAgentMaxTurns,
   resolveFusionWebSearchEnabled,
 } from './tools'
+import { buildEnglishFusionRunConfig } from './tracing'
 
 const USER_TURN =
   'Follow the specification. If helpful, search allowed sites for parent quirk canon (especially myheroacademia.fandom.com) before inventing the hybrid. Then return only the fusion quirk JSON.'
@@ -75,6 +76,7 @@ export async function generateEnglishFusionWithAgent(
       const result = await run(getEnglishAgent(), USER_TURN, {
         context: { fusion },
         maxTurns: resolveFusionAgentMaxTurns(),
+        ...buildEnglishFusionRunConfig(fusion),
       })
 
       const raw = result.finalOutput

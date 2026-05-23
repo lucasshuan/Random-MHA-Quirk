@@ -1,3 +1,4 @@
+import { flushFusionTraces } from '@/server/fusion/agents/tracing'
 import { generateFusionEntry } from '@/server/fusion/generate'
 import { apiErrorJson, rateLimitedJson } from '@/server/http/api-errors'
 import { applyCorsHeaders } from '@/server/http/cors'
@@ -82,6 +83,8 @@ export async function POST(request: Request) {
       500,
       rateHeaders,
     )
+  } finally {
+    await flushFusionTraces()
   }
 }
 

@@ -21,6 +21,7 @@ tools/catalog/output/
 1. Refresh wiki data / build catalog: `node tools/catalog/bin/build-catalog.mjs`
 2. (Optional) Spanish copy: `pnpm quirks:generate-es`
 3. Push to Supabase: `pnpm quirks:seed`
+4. List seeded originals (research dedup): `pnpm quirks:list-originals`
 
 ## Scripts
 
@@ -30,3 +31,4 @@ tools/catalog/output/
 | `translate-pt.mjs` | PT copy assist |
 | `scan-character-mentions.mjs` | QA on descriptions |
 | `sync-wiki-index.mjs` | Wiki index sync |
+| `scripts/quirks/list-originals.ts` | Supabase → ORIGINAL quirks (EN), for research dedup |

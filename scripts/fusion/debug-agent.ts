@@ -6,6 +6,7 @@ import { loadEnv } from '@/server/env/load'
 import { getQuirkById } from '@/server/fusion/catalog'
 import { buildFusionAgentInput } from '@/server/fusion/agent-input'
 import { generateEnglishFusionWithAgent } from '@/server/fusion/agents/english'
+import { flushFusionTraces } from '@/server/fusion/agents/tracing'
 import { resolveFusionOpenAiModel } from '@/server/fusion/agents/config'
 import { resolveFusionProvider } from '@/server/fusion/llm'
 import { getProjectRoot } from '../_shared/root'
@@ -34,4 +35,6 @@ try {
   clearTimeout(timeout)
   console.error('FAILED:', err)
   process.exit(1)
+} finally {
+  await flushFusionTraces()
 }

@@ -5,6 +5,7 @@ import {
   translateFusionWithAgent,
 } from './agents'
 import type { FusionTranslationLocale } from './constants'
+import type { FusionPipelineTraceContext } from './agents/tracing'
 import type {
   ValidatedEnglishFusionPayload,
   ValidatedLocaleFusionCopy,
@@ -64,6 +65,7 @@ export function generateEnglishFusionWithLlm(
 export function translateFusionToLocaleWithLlm(
   english: ValidatedEnglishFusionPayload,
   locale: FusionTranslationLocale,
+  trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy> {
-  return translateFusionWithAgent(english, locale)
+  return translateFusionWithAgent(english, locale, trace)
 }

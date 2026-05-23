@@ -2,9 +2,7 @@
 
 Classificação **objetiva** para o gerador: utilidade em combate e missão, periculosidade, teto de poder, versatilidade e evidência no cânone (manga, anime, filmes, *Vigilantes*, *Team-Up Missions*). Não é “quem eu gosto”, é **impacto real no universo MHA**.
 
-**Fora do escopo:** individualidades abaixo de **C** (ex.: esticar só o olho, ouvir bem, pelos do peito, espadas de madeira nas mãos). Existem no cânone, mas não entram no gerador.
-
-**Fora do escopo (fase atual):** `ORIGINAL` (fan-made do app).
+**Fora do escopo:** `ORIGINAL` (fan-made do app).
 
 ---
 

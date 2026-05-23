@@ -17,6 +17,10 @@ import {
   FusionEsOutputSchema,
   FusionPtBrOutputSchema,
 } from './schemas'
+import {
+  buildTranslationFusionRunConfig,
+  type FusionPipelineTraceContext,
+} from './tracing'
 
 const USER_TURN = 'Return the localized quirk JSON now.'
 
@@ -63,6 +67,7 @@ function getTranslationAgent(
 export async function translateFusionWithAgent(
   source: ValidatedEnglishFusionPayload,
   locale: FusionTranslationLocale,
+  trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy> {
   const context: FusionTranslationRunContext = { locale, source }
 
@@ -71,6 +76,7 @@ export async function translateFusionWithAgent(
       const result = await run(getTranslationAgent(locale), USER_TURN, {
         context,
         maxTurns: 1,
+        ...(trace ? buildTranslationFusionRunConfig(locale, trace) : {}),
       })
 
       const raw = result.finalOutput

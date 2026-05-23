@@ -27,14 +27,17 @@ export type QuirkRange = (typeof QUIRK_RANGES)[number]
 /** Above S — plot/meta quirks (All For One, One For All, etc.). */
 export const QUIRK_TIER_OMEGA = 'Ω' as const
 
-/** Standard ladder shown on tier pickers and S–C scale cells. */
-export const QUIRK_DISPLAY_TIERS = ['S', 'A', 'B', 'C'] as const
+/** Standard ladder on tier scale cells (S weakest playable band through D gag tier). */
+export const QUIRK_DISPLAY_TIERS = ['S', 'A', 'B', 'C', 'D'] as const
 export type QuirkDisplayTier = (typeof QUIRK_DISPLAY_TIERS)[number]
 
 export const QUIRK_TIERS = [
   QUIRK_TIER_OMEGA,
   ...QUIRK_DISPLAY_TIERS,
 ] as const
+
+/** Tiers enabled by default on tier-picker steps (Ω Special and D off). */
+export const DEFAULT_TIER_PICKER_SELECTION = ['S', 'A', 'B', 'C'] as const satisfies readonly QuirkTier[]
 export type QuirkTier = (typeof QUIRK_TIERS)[number]
 
 export function isOmegaTier(tier: QuirkTier): tier is typeof QUIRK_TIER_OMEGA {

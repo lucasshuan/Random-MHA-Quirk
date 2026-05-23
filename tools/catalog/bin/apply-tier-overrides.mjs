@@ -9,7 +9,7 @@ const overrides = JSON.parse(
   readFileSync(join(SOURCES, 'tier-overrides.json'), 'utf8'),
 )
 const tierMap = new Map()
-for (const tier of ['Ω', 'S', 'A', 'B', 'C']) {
+for (const tier of ['Ω', 'S', 'A', 'B', 'C', 'D']) {
   for (const id of overrides[tier] ?? []) {
     tierMap.set(id, tier)
   }

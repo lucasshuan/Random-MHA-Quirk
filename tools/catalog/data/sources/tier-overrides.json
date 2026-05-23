@@ -1,9 +1,6 @@
 {
-  "description": "Tiers curados (Ω/S/A/B/C). Demais entradas do índice wiki recebem B por padrão.",
-  "Ω": [
-    "all-for-one",
-    "one-for-all"
-  ],
+  "description": "Curated tiers (Ω/S/A/B/C/D). Wiki index defaults to B. D = gag / near-useless quirks.",
+  "Ω": ["all-for-one", "one-for-all"],
   "S": [
     "new-order",
     "overhaul",
@@ -79,41 +76,44 @@
     "zombie-virus",
     "hardening",
     "barrier",
-    "neutralization"
+    "neutralization",
+    "tail",
+    "flying-squirrel"
   ],
   "C": [
     "pop-off",
     "sugar-rush",
-    "anivoice",
     "zoom",
     "attraction-of-small-objects",
     "cleaning",
-    "chest-hair",
-    "good-ear",
-    "wooden-swords-from-his-hands",
-    "chart",
-    "comic",
-    "fan",
-    "food",
-    "glycerin",
-    "whole-body-lens",
-    "fly-swatter",
+    "spray-art",
+    "snip-clip"
+  ],
+  "D": [
+    "anivoice",
+    "beams-from-his-eyes",
     "binging-ball",
     "brown-bear",
-    "dog",
-    "swan",
-    "whale",
-    "toho",
-    "papyrus",
-    "spray-art",
-    "2d-ify",
+    "chart",
+    "chest-hair",
+    "comic",
     "cubism",
     "day-dream",
+    "dog",
+    "fan",
+    "fly-swatter",
+    "food",
+    "glycerin",
+    "good-ear",
     "hula-hoop",
+    "papyrus",
     "soccer",
     "stock",
-    "snip-clip",
-    "beams-from-his-eyes",
-    "tail"
+    "swan",
+    "toho",
+    "whale",
+    "whole-body-lens",
+    "wooden-swords-from-his-hands",
+    "2d-ify"
   ]
 }

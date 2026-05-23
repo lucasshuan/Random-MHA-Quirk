@@ -19,6 +19,7 @@ const TIER_TONES: Record<QuirkTier, string> = {
   A: 'tier-a',
   B: 'tier-b',
   C: 'tier-c',
+  D: 'tier-d',
 }
 
 export function StepTierChoice({

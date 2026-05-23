@@ -201,6 +201,7 @@ export const es: Messages = {
       A: 'Nivel A',
       B: 'Nivel B',
       C: 'Nivel C',
+      D: 'Nivel D',
     },
     type: {
       Emitter: 'Emisor',

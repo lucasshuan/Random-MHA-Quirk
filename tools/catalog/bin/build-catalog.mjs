@@ -108,7 +108,7 @@ function displayName(title) {
 function loadTierOverrides() {
   const raw = JSON.parse(readFileSync(join(SOURCES, 'tier-overrides.json'), 'utf8'))
   const map = new Map()
-  for (const tier of ['Ω', 'S', 'A', 'B', 'C']) {
+  for (const tier of ['Ω', 'S', 'A', 'B', 'C', 'D']) {
     for (const slug of raw[tier] ?? []) {
       map.set(slug, tier)
     }

@@ -12,4 +12,5 @@ export const TIER_FILTER_TONE_CLASS: Record<QuirkTier, string> = {
   A: 'filter-toggle-tone-tier-a',
   B: 'filter-toggle-tone-tier-b',
   C: 'filter-toggle-tone-tier-c',
+  D: 'filter-toggle-tone-tier-d',
 }

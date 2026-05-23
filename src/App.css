@@ -436,7 +436,7 @@
 .tier-toggle-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.45rem, 1.2svh, 0.65rem);
   overflow: visible;
 }
@@ -610,22 +610,36 @@
     0 8px 22px rgba(34, 197, 94, 0.34);
 }
 
-/* B — âmbar forte */
+/* B — amarelo forte */
 .tier-toggle-tier-b {
-  --tier-accent: #f59e0b;
-  --tier-label-fg: #3a2808;
-  --tier-hint-fg: rgba(58, 40, 8, 0.58);
-  --tier-inactive-letter: color-mix(in srgb, #fbbf24 34%, rgba(252, 244, 220, 0.8));
-  --tier-inactive-label: color-mix(in srgb, #f59e0b 24%, rgba(198, 178, 140, 0.65));
-  --tier-border: #d97706;
-  --tier-bg: linear-gradient(180deg, #fbbf24 0%, #f59e0b 55%, #d97706 100%);
+  --tier-accent: #eab308;
+  --tier-label-fg: #3a3008;
+  --tier-hint-fg: rgba(58, 48, 8, 0.58);
+  --tier-inactive-letter: color-mix(in srgb, #fde047 34%, rgba(252, 248, 220, 0.8));
+  --tier-inactive-label: color-mix(in srgb, #eab308 24%, rgba(198, 188, 140, 0.65));
+  --tier-border: #ca8a04;
+  --tier-bg: linear-gradient(180deg, #fde047 0%, #eab308 55%, #ca8a04 100%);
   --tier-shadow-active:
     inset 0 1px 0 rgba(255, 255, 255, 0.42),
-    0 8px 22px rgba(245, 158, 11, 0.34);
+    0 8px 22px rgba(234, 179, 8, 0.34);
 }
 
-/* C — vermelho forte (red-500) */
+/* C — laranja forte */
 .tier-toggle-tier-c {
+  --tier-accent: #f97316;
+  --tier-label-fg: #3a1f08;
+  --tier-hint-fg: rgba(58, 31, 8, 0.58);
+  --tier-inactive-letter: color-mix(in srgb, #fb923c 34%, rgba(255, 236, 220, 0.8));
+  --tier-inactive-label: color-mix(in srgb, #f97316 24%, rgba(198, 170, 140, 0.65));
+  --tier-border: #ea580c;
+  --tier-bg: linear-gradient(180deg, #fb923c 0%, #f97316 55%, #ea580c 100%);
+  --tier-shadow-active:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 22px rgba(249, 115, 22, 0.36);
+}
+
+/* D — vermelho forte */
+.tier-toggle-tier-d {
   --tier-accent: #ef4444;
   --tier-label-fg: #3a1218;
   --tier-hint-fg: rgba(58, 18, 24, 0.58);
@@ -1818,18 +1832,38 @@
 
 /* Tier C */
 .filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c:not(.filter-toggle-active) {
-  border-color: rgba(248, 113, 113, 0.22);
+  border-color: rgba(251, 146, 60, 0.22);
   background: rgba(255, 255, 255, 0.035);
   color: #9facbd;
 }
 
 .filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c:not(.filter-toggle-active):hover {
+  border-color: rgba(251, 146, 60, 0.3);
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.06), rgba(255, 255, 255, 0.045));
+  color: #c4b4a8;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c.filter-toggle-active {
+  border-color: rgba(255, 180, 120, 0.62);
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.22), rgba(251, 146, 60, 0.07));
+  color: #ffe8d0;
+  box-shadow: inset 0 0 14px rgba(251, 146, 60, 0.12);
+}
+
+/* Tier D */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-d:not(.filter-toggle-active) {
+  border-color: rgba(248, 113, 113, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-d:not(.filter-toggle-active):hover {
   border-color: rgba(248, 113, 113, 0.3);
   background: linear-gradient(135deg, rgba(248, 113, 113, 0.06), rgba(255, 255, 255, 0.045));
   color: #c4b0b0;
 }
 
-.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c.filter-toggle-active {
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-d.filter-toggle-active {
   border-color: rgba(255, 140, 140, 0.62);
   background: linear-gradient(135deg, rgba(248, 113, 113, 0.22), rgba(248, 113, 113, 0.07));
   color: #ffd4d4;
@@ -2085,13 +2119,18 @@
   --tier-cell-rgb: 118, 220, 130;
 }
 
-/* B — amber */
+/* B — yellow */
 .quirk-tier-cell:nth-child(3)[aria-current='true'] {
-  --tier-cell-rgb: 255, 186, 88;
+  --tier-cell-rgb: 250, 204, 21;
 }
 
-/* C — red */
+/* C — orange */
 .quirk-tier-cell:nth-child(4)[aria-current='true'] {
+  --tier-cell-rgb: 251, 146, 60;
+}
+
+/* D — red */
+.quirk-tier-cell:nth-child(5)[aria-current='true'] {
   --tier-cell-rgb: 255, 92, 108;
 }
 
@@ -3045,7 +3084,7 @@
   }
 
   .tier-toggle-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.35rem;
   }
 

@@ -201,6 +201,7 @@ export const ptBR: Messages = {
       A: 'Nível A',
       B: 'Nível B',
       C: 'Nível C',
+      D: 'Nível D',
     },
     type: {
       Emitter: 'Emissor',

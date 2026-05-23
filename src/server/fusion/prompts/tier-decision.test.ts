@@ -38,7 +38,9 @@ describe('buildFusionTierDecisionRubric', () => {
     expect(rubric).toContain('| **A** | Strong |')
     expect(rubric).toContain('| **B** | Solid |')
     expect(rubric).toContain('| **C** | Weak-ish |')
-    expect(rubric).toContain('Never** return **Ω**')
+    expect(rubric).toContain('| **D** | Gag / useless |')
+    expect(rubric).toContain('never output D')
+    expect(rubric).toContain('Never** return **Ω** (Special) or **D**')
   })
 })
 

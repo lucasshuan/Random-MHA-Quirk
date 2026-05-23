@@ -1,4 +1,4 @@
-# Rubrica de Tier (Ω / S / A / B / C)
+# Rubrica de Tier (Ω / S / A / B / C / D)
 
 Classificação **objetiva** para o gerador: utilidade em combate e missão, periculosidade, teto de poder, versatilidade e evidência no cânone (manga, anime, filmes, *Vigilantes*, *Team-Up Missions*). Não é “quem eu gosto”, é **impacto real no universo MHA**.
 
@@ -56,12 +56,21 @@ Ex.: **Hardening**, **Engine**, **Tape**, **Air Cannon**, **Mind Reading** (inte
 
 ---
 
-## C — Piso do gerador (ainda jogável)
+## C — Fraco, mas ainda jogável
 
 - Útil com criatividade, armadilhas, suporte de equipe ou mobilidade limitada.
-- Teto de combate direto **abaixo** de A, ou custo/recoil forte.
+- Teto de combate direto **abaixo** de B, ou custo/recoil forte.
 
-Ex.: **Pop Off** (controle / adesão), **Anivoice**, **Zoom**, **Attraction of Small Objects**, **Cleaning** (só se considerarmos utilidade heroica — muitas ficam **fora**).
+Ex.: **Pop Off**, **Zoom**, **Attraction of Small Objects**, **Cleaning**, **Sugar Rush**.
+
+---
+
+## D — Gag / inútil (fora do gerador de fusão)
+
+- Quase sem valor em combate ou missão; piada, truque de festa ou nicho absurdo.
+- O gerador de fusão **não** emite D (nem Ω); o catálogo pode ter entradas D para sorteio manual.
+
+Ex.: **Anivoice** (falar com animais), **Dog**, **Whole-Body Lens**, **Comic**, **Beams From His Eyes**, **Hula Hoop**.
 
 ---
 

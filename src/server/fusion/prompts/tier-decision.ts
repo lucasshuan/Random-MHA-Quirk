@@ -46,12 +46,13 @@ Answer each before choosing a tier:
 | **S** | Exceptional | Dominates many situations; high versatility or game-changing utility; still has **meaningful** limits top tiers can exploit. |
 | **A** | Strong | Clearly powerful, good scaling or versatility, not overwhelmingly oppressive. |
 | **B** | Solid | Practical and usable; limited by range, setup, stamina, precision, environment, or narrow role. |
-| **C** | Weak-ish | Niche or support; needs skill, team, or clever use to shine. |
+| **C** | Weak-ish | Niche or support; needs skill, team, or clever use to shine in hero work. |
+| **D** | Gag / useless | Joke quirks with almost no combat or mission value (stretchy eyes, talk to squirrels, party tricks). **Reference only — never output D.** |
 
 ## Output rules
 
 - Return **exactly one** tier: **S**, **A**, **B**, or **C**.
-- **Never** return **Ω** (Special) for hybrids or generated originals.
+- **Never** return **Ω** (Special) or **D** (gag tier) for hybrids or generated originals.
 - Tier the **described hybrid only** — parent tiers are context, not a floor or ceiling by themselves.
 - When in doubt between two adjacent tiers, prefer the **lower** tier unless question 1 or 6 clearly fire.`
 }
@@ -68,7 +69,7 @@ export function formatFusionStrategyTierGuidance(
 Tier **at least one band lower** than you would for the same description as a normal **synergy** hybrid:
 - Do **not** match the stronger parent's tier; stay **below** it unless the text already proves a sub-parent ceiling.
 - **S** is rare — only when explicit, credible limits block war-tier abuse despite strong wording.
-- Typical: **B** or **C** for narrow, unreliable, or cost-heavy survivors; **A** only when clearly strong-but-nerfed, not a full parent fantasy restored.
+- Typical: **B** or **C** for narrow, unreliable, or cost-heavy survivors; **A** only when clearly strong-but-nerfed, not a full parent fantasy restored. Never **D** — that tier is catalog-only gag quirks.
 - If the description still sounds strong, **tier down anyway** — reduced potential is the design even when prose slips upbeat.`
   }
 

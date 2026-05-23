@@ -4,7 +4,7 @@ export const quirksBase = [
   {
     id: '2d-ify',
     origin: 'BNHA_TEAM_UP',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -92,7 +92,7 @@ export const quirksBase = [
   {
     id: 'anivoice',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -156,7 +156,7 @@ export const quirksBase = [
   {
     id: 'beams-from-his-eyes',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Long',
     facets: ['Emission'],
@@ -196,7 +196,7 @@ export const quirksBase = [
   {
     id: 'binging-ball',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -340,7 +340,7 @@ export const quirksBase = [
   {
     id: 'brown-bear',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -444,7 +444,7 @@ export const quirksBase = [
   {
     id: 'chart',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Psychic', 'Emission'],
@@ -452,7 +452,7 @@ export const quirksBase = [
   {
     id: 'chest-hair',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -508,7 +508,7 @@ export const quirksBase = [
   {
     id: 'comic',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic', 'Construct'],
@@ -588,7 +588,7 @@ export const quirksBase = [
   {
     id: 'cubism',
     origin: 'BNHA_TEAM_UP',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -636,7 +636,7 @@ export const quirksBase = [
   {
     id: 'day-dream',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -676,7 +676,7 @@ export const quirksBase = [
   {
     id: 'dog',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -900,7 +900,7 @@ export const quirksBase = [
   {
     id: 'fan',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -980,7 +980,7 @@ export const quirksBase = [
   {
     id: 'fly-swatter',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -1004,7 +1004,7 @@ export const quirksBase = [
   {
     id: 'food',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -1116,7 +1116,7 @@ export const quirksBase = [
   {
     id: 'glycerin',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -1124,7 +1124,7 @@ export const quirksBase = [
   {
     id: 'good-ear',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Sensory', 'Anthropomorphic'],
@@ -1252,7 +1252,7 @@ export const quirksBase = [
   {
     id: 'hula-hoop',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -1772,7 +1772,7 @@ export const quirksBase = [
   {
     id: 'papyrus',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -2172,7 +2172,7 @@ export const quirksBase = [
   {
     id: 'soccer',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -2308,7 +2308,7 @@ export const quirksBase = [
   {
     id: 'stock',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -2364,7 +2364,7 @@ export const quirksBase = [
   {
     id: 'swan',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -2380,7 +2380,7 @@ export const quirksBase = [
   {
     id: 'tail',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'B',
     type: 'Mutant',
     range: 'Self',
     facets: ['Anthropomorphic'],
@@ -2444,7 +2444,7 @@ export const quirksBase = [
   {
     id: 'toho',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -2636,7 +2636,7 @@ export const quirksBase = [
   {
     id: 'whale',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Transformation',
     range: 'Self',
     facets: ['Anthropomorphic'],
@@ -2660,7 +2660,7 @@ export const quirksBase = [
   {
     id: 'whole-body-lens',
     origin: 'BNHA',
-    tier: 'C',
+    tier: 'D',
     type: 'Transformation',
     range: 'Self',
     facets: ['Enhancement'],
@@ -2676,7 +2676,7 @@ export const quirksBase = [
   {
     id: 'wooden-swords-from-his-hands',
     origin: 'BNHA_VIGILANTES',
-    tier: 'C',
+    tier: 'D',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission', 'Construct'],

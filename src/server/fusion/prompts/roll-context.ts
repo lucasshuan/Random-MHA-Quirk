@@ -19,6 +19,7 @@ const PARENT_TIER_SCORE: Record<QuirkTier, number> = {
   A: 1,
   B: 2,
   C: 3,
+  D: 4,
 }
 
 const RANGE_TIER_BIAS: Record<QuirkRange, number> = {

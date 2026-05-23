@@ -194,6 +194,7 @@ export const en = {
       A: 'A-tier',
       B: 'B-tier',
       C: 'C-tier',
+      D: 'D-tier',
     },
     type: {
       Emitter: 'Emitter',

@@ -2,11 +2,11 @@ import { randomBytes } from 'node:crypto'
 import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
 import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkId } from '@/types/quirk-id'
+import { buildFusionAgentInput } from './agent-input'
 import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
-import { buildFusionPrompt, deriveFusionRollContext } from './prompts/english'
-import { buildFusionTranslationPrompt } from './prompts/translation'
+import { deriveFusionRollContext } from './prompts/english'
 import {
   generateEnglishFusionWithLlm,
   translateFusionToLocaleWithLlm,
@@ -73,9 +73,15 @@ export async function generateFusionEntry({
       null
 
     for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
-      const candidate = await generateEnglishFusionWithLlm(
-        buildFusionPrompt(quirkA, quirkB, seed, promptVariants, rollContext),
+      const fusionInput = buildFusionAgentInput(
+        quirkA,
+        quirkB,
+        seed,
+        promptVariants,
+        rollContext,
+        attempt,
       )
+      const candidate = await generateEnglishFusionWithLlm(fusionInput)
 
       if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
         english = candidate
@@ -94,11 +100,8 @@ export async function generateFusionEntry({
     }
 
     const translations = await Promise.all(
-      FUSION_TRANSLATION_LOCALES.map(async (locale) =>
-        translateFusionToLocaleWithLlm(
-          buildFusionTranslationPrompt(english, locale),
-          locale,
-        ),
+      FUSION_TRANSLATION_LOCALES.map((locale) =>
+        translateFusionToLocaleWithLlm(english, locale),
       ),
     )
 

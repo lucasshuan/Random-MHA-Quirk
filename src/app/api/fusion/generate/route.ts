@@ -72,7 +72,10 @@ export async function POST(request: Request) {
       200,
       rateHeaders,
     )
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('[fusion/generate]', err)
+    }
     return apiErrorJson(
       { code: 'FUSION_GENERATE_FAILED' },
       request,

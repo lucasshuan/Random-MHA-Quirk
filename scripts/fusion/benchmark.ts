@@ -7,8 +7,9 @@ import { join } from 'node:path'
 import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
 import { loadEnv } from '@/server/env/load'
 import { getQuirkById } from '@/server/fusion/catalog'
+import { buildFusionAgentInput } from '@/server/fusion/agent-input'
 import { generateEnglishFusionWithLlm } from '@/server/fusion/llm'
-import { buildFusionPrompt, deriveFusionRollContext } from '@/server/fusion/prompts/english'
+import { deriveFusionRollContext } from '@/server/fusion/prompts/english'
 import { hasDuplicateFusionName } from '@/server/fusion/prior-variants'
 import { listFusionPriorVariantsForParentPair } from '@/server/fusion/repository'
 import type { FusionPriorVariant } from '@/types/fusion'
@@ -57,9 +58,15 @@ async function main() {
       let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
         null
       for (let attempt = 0; attempt < 3; attempt++) {
-        const candidate = await generateEnglishFusionWithLlm(
-          buildFusionPrompt(quirkA, quirkB, seed, promptVariants, rollContext),
+        const fusionInput = buildFusionAgentInput(
+          quirkA,
+          quirkB,
+          seed,
+          promptVariants,
+          rollContext,
+          attempt,
         )
+        const candidate = await generateEnglishFusionWithLlm(fusionInput)
         if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
           english = candidate
           break

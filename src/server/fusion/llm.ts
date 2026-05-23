@@ -1,20 +1,20 @@
 import { requireOneOf } from '@/server/env/utils'
+import type { FusionAgentInput, FusionAgentParent } from '@/types/fusion-agent'
+import type { QuirkOrigin } from '@/types/quirk'
+import {
+  generateEnglishFusionWithAgent,
+  translateFusionWithAgent,
+} from './agents'
+import type { FusionCatalogQuirk } from './catalog'
+import type { FusionTranslationLocale } from './constants'
+import { buildFusionPrompt, deriveFusionRollContext } from './prompts/english'
+import { buildFusionTranslationPrompt } from './prompts/translation'
 import {
   validateEnglishFusionPayload,
   validateLocaleFusionTranslation,
   type ValidatedEnglishFusionPayload,
   type ValidatedLocaleFusionCopy,
 } from './validate'
-import type { FusionTranslationLocale } from './constants'
-
-const FUSION_EN_SYSTEM =
-  'You design My Hero Academia fan fusion quirks. en.name must sound like a REAL canon quirk title — often punny, blunt, silly, or absurd — NOT a fantasy RPG skill or technical label; a comma or one question mark is fine when it fits the joke. en.description stays objective and encyclopedic, but short and easy to imagine: one core effect, optional one secondary detail, optional limit only when it adds balance (physical cost OR clear situational scope — what the effect hits vs skips; many entries need none; never stack multiple limits). Keep wording compact and avoid long clause chains. Output strict JSON only.'
-
-const FUSION_LOCALE_SYSTEM: Record<FusionTranslationLocale, string> = {
-  'pt-BR':
-    'You adapt My Hero Academia quirk entries into natural Brazilian Portuguese for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
-  es: 'You adapt My Hero Academia quirk entries into natural Spanish for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
-}
 
 export type FusionLlmPurpose = 'fusion' | 'translation'
 
@@ -62,7 +62,7 @@ function resolveOpenAiOutputTokenCap(model: string): number {
   return Number(process.env.FUSION_MAX_TOKENS ?? 700)
 }
 
-function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
+export function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
   const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
   const openai = process.env.OPENAI_API_KEY?.trim()
   const gemini = process.env.GEMINI_API_KEY?.trim()
@@ -83,13 +83,44 @@ function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } 
   throw new Error('Nenhum provedor LLM configurado.')
 }
 
+const FUSION_EN_SYSTEM =
+  'You design My Hero Academia fan fusion quirks. en.name must sound like a REAL canon quirk title — often punny, blunt, silly, or absurd — NOT a fantasy RPG skill or technical label; a comma or one question mark is fine when it fits the joke. en.description stays objective and encyclopedic, but short and easy to imagine: one core effect, optional one secondary detail, optional limit only when it adds balance (physical cost OR clear situational scope — what the effect hits vs skips; many entries need none; never stack multiple limits). Keep wording compact and avoid long clause chains. Output strict JSON only.'
+
+const FUSION_LOCALE_SYSTEM: Record<FusionTranslationLocale, string> = {
+  'pt-BR':
+    'You adapt My Hero Academia quirk entries into natural Brazilian Portuguese for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
+  es: 'You adapt My Hero Academia quirk entries into natural Spanish for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
+}
+
+function toCatalogQuirk(parent: FusionAgentParent, origin: QuirkOrigin = 'BNHA'): FusionCatalogQuirk {
+  return { ...parent, origin }
+}
+
+function buildLegacyEnglishPrompt(fusion: FusionAgentInput): string {
+  const quirkA = toCatalogQuirk(fusion.parents[0])
+  const quirkB = toCatalogQuirk(fusion.parents[1])
+  const rollContext = deriveFusionRollContext(
+    fusion.meta.seed,
+    quirkA,
+    quirkB,
+    fusion.priorVariants,
+  )
+  return buildFusionPrompt(
+    quirkA,
+    quirkB,
+    fusion.meta.seed,
+    fusion.priorVariants,
+    rollContext,
+  )
+}
+
 async function callOpenAI(
   apiKey: string,
   userPrompt: string,
   systemContent: string,
   purpose: FusionLlmPurpose,
 ): Promise<unknown> {
-  const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini'
+  const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4.1'
   const body: Record<string, unknown> = {
     model,
     response_format: { type: 'json_object' },
@@ -193,18 +224,44 @@ async function callLlmJson<T>(
   throw new Error('Falha na chamada LLM.')
 }
 
+/** English fusion: OpenAI Agents SDK + FusionAgentInput; Gemini uses legacy prose prompt. */
 export function generateEnglishFusionWithLlm(
-  userPrompt: string,
+  fusion: FusionAgentInput,
 ): Promise<ValidatedEnglishFusionPayload> {
-  return callLlmJson(userPrompt, FUSION_EN_SYSTEM, 'fusion', validateEnglishFusionPayload)
+  const provider = resolveFusionProvider()
+  if (provider.name === 'openai') {
+    return generateEnglishFusionWithAgent(fusion)
+  }
+
+  return callLlmJson(
+    buildLegacyEnglishPrompt(fusion),
+    FUSION_EN_SYSTEM,
+    'fusion',
+    (raw) => {
+      const validated = validateEnglishFusionPayload(raw)
+      return {
+        ...validated,
+        type: fusion.mechanics.type,
+        range: fusion.mechanics.range,
+        facets: fusion.mechanics.facets,
+        origin: fusion.mechanics.origin,
+      }
+    },
+  )
 }
 
+/** Locale adaptation: OpenAI agent when available; Gemini uses legacy prompt. */
 export function translateFusionToLocaleWithLlm(
-  userPrompt: string,
+  english: ValidatedEnglishFusionPayload,
   locale: FusionTranslationLocale,
 ): Promise<ValidatedLocaleFusionCopy> {
+  const provider = resolveFusionProvider()
+  if (provider.name === 'openai') {
+    return translateFusionWithAgent(english, locale)
+  }
+
   return callLlmJson(
-    userPrompt,
+    buildFusionTranslationPrompt(english, locale),
     FUSION_LOCALE_SYSTEM[locale],
     'translation',
     (raw) => validateLocaleFusionTranslation(raw, locale),

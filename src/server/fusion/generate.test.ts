@@ -35,6 +35,8 @@ const quirkA = {
   type: 'Emitter',
   range: 'Short',
   facets: ['Elemental'],
+  origin: 'BNHA' as const,
+  tier: 'B' as const,
 }
 
 const quirkB = {
@@ -44,6 +46,8 @@ const quirkB = {
   type: 'Emitter',
   range: 'Long',
   facets: ['Emission'],
+  origin: 'BNHA' as const,
+  tier: 'A' as const,
 }
 
 const cachedEntry: FusionCacheEntry = {
@@ -87,7 +91,7 @@ describe('generateFusionEntry', () => {
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
-      (_prompt: unknown, locale: 'pt-BR' | 'es') => {
+      (_english: unknown, locale: 'pt-BR' | 'es') => {
         if (locale === 'pt-BR') {
           return Promise.resolve({
             'pt-BR': {
@@ -116,11 +120,11 @@ describe('generateFusionEntry', () => {
 
     expect(mockListFusionPriorVariantsForParentPair).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
-    expect(mockGenerateEnglishFusionWithLlm.mock.calls[0][0]).toContain('Cached')
-    expect(mockGenerateEnglishFusionWithLlm.mock.calls[0][0]).toContain(
-      'Cached EN description for prior variant.',
-    )
+    const fusionInput = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
+    expect(fusionInput.priorVariants[0].name).toBe('Cached')
+    expect(fusionInput.meta.seed).toBe('seed1')
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
+    expect(mockTranslateFusionToLocaleWithLlm.mock.calls[0][0]).toEqual(englishPayload)
     expect(mockFindFusionByKey).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()
     expect(result.generated).toBe(true)
@@ -161,6 +165,7 @@ describe('generateFusionEntry', () => {
     })
 
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledTimes(2)
+    expect(mockGenerateEnglishFusionWithLlm.mock.calls[1][0].meta.attempt).toBe(1)
     expect(result.entry.en.name).toBe('Fresh')
   })
 

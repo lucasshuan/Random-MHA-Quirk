@@ -6,7 +6,7 @@ import {
   isOriginAllowed,
 } from '@/server/http/api-response'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (request.method === 'OPTIONS') {
     return corsPreflightResponse(request)
   }

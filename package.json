@@ -14,12 +14,14 @@
     "db:push": "tsx scripts/db/push.ts"
   },
   "dependencies": {
+    "@openai/agents": "^0.11.5",
     "@supabase/supabase-js": "^2.106.1",
     "country-flag-icons": "^1.6.17",
     "next": "^16.2.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "tsx": "^4.22.3"
+    "tsx": "^4.22.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
@@ -31,9 +33,9 @@
     "eslint-config-next": "^16.2.6",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.6.0",
+    "supabase": "^2.101.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "supabase": "^2.101.0",
     "vitest": "^4.0.8"
   }
 }

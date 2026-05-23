@@ -30,7 +30,7 @@ function isFusionQuirk(quirk: QuirkCardModel): quirk is FusionQuirk {
 
 function fusionRollLabel(
   t: (key: string) => string,
-  group: 'strategy' | 'nameRegister' | 'utilityNiche',
+  group: 'strategy' | 'nameRegister' | 'utilityNiche' | 'antiMashupRuleKey',
   value: string,
 ): string {
   const key = `fusion.roll.${group}.${value}`

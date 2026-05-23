@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "seed": "demo-prompt-review",
+    "pairKey": "hardening+permeation",
+    "attempt": 0
+  },
+  "parents": [
+    {
+      "id": "permeation",
+      "name": "Permeation",
+      "tier": "A",
+      "type": "Emitter",
+      "range": "Short",
+      "facets": [
+        "Mobility"
+      ],
+      "description": "Allows the user to phase their body through solid matter, including walls and the ground, by making their molecules spread apart."
+    },
+    {
+      "id": "hardening",
+      "name": "Hardening",
+      "tier": "B",
+      "type": "Transformation",
+      "range": "Contact",
+      "facets": [
+        "Defense",
+        "Enhancement"
+      ],
+      "description": "Hardens any part of the user's body to rock-like durability for offense and defense."
+    }
+  ],
+  "mechanics": {
+    "type": "Transformation",
+    "range": "Contact",
+    "facets": [
+      "Enhancement"
+    ],
+    "origin": "ORIGINAL"
+  },
+  "roll": {
+    "strategyKey": "dominant-a",
+    "strategyInstruction": "Fusion strategy — parent A is dominant and leads: Permeation's Emitter/Short logic is the main engine; Hardening only subtly modifies, limits, or reshapes how that engine expresses.",
+    "antiMashupRule": "Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.",
+    "antiMashupExample": "Avoid this mashup for this strategy: ❌ \"phase through walls while fully armored at all times\"",
+    "nameRegister": "blunt",
+    "nameRegisterInstruction": "Deadpan and plain: 1–3 everyday words, almost boring on purpose — like a nickname someone would actually say out loud.",
+    "nameExamples": [
+      "Comic",
+      "Meatball",
+      "Pop Off",
+      "Zero Gravity",
+      "Blast",
+      "Decay",
+      "Float",
+      "Cement",
+      "Tail",
+      "Zoom",
+      "Smoke",
+      "Heal"
+    ],
+    "utilityNudge": "Simplicity nudge for this variant: direct trigger - state activation in plain terms and avoid multi-step setup chains. Keep the description easy to summarize in one sentence."
+  },
+  "constraints": {
+    "descriptionMinLength": 70,
+    "descriptionMaxLength": 280,
+    "typeDiscipline": [
+      "Core model: the Quirk temporarily changes the user while active.",
+      "State what changes in the body and what returns to normal after use."
+    ],
+    "facetContract": "Facet contract (keep one central mechanism):\n- Enhancement: show raw physical stat boost with a visible tell\nFacet guidance: describe one core effect first. If there is a second facet, keep it as a light extension of the same effect, not a new subsystem.\nSource-faithfulness gate: only express a facet through behavior already supported by these parent descriptions. A tag does not authorize new healing, analgesia, calming, remote senses, stat boosts, or animal anatomy.",
+    "rangeProse": "Range prose check: rolled range is Contact — touch or immediate grappling distance only. en.description must match this band; do not describe a different reach.",
+    "siblingDiversityRequired": true,
+    "namingRules": [
+      "en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.",
+      "en.name must NOT read like a fantasy RPG skill, technical field label, or \"[Parent theme adjective] + [Parent theme noun]\" mashup.",
+      "Punctuation in en.name: commas and a single question mark are allowed when they sell the joke. At most one ? or one comma clause unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.",
+      "Funny names must still land as a joke, phrase twist, mental image, or spoken cadence — not random interjection + mechanic noun (e.g. avoid \"Oops, Cushion\" unless the full phrase is the joke).",
+      "Before finalizing en.name, ask: \"Does this sound like a real anime Quirk title or a phrase someone could say?\" If no, replace once in the SAME name register."
+    ],
+    "canonNameReferences": [
+      "Pop Off",
+      "Comic",
+      "Meatball",
+      "Beams From His Eyes",
+      "Gigantic Spinning Flying Turtle",
+      "Sugar Rush",
+      "Brainwashing",
+      "Zero Gravity"
+    ]
+  },
+  "priorVariants": [
+    {
+      "name": "Phase Shell",
+      "description": "The user can briefly turn their skin into a permeable shell that lets attacks pass through while keeping bones rigid."
+    }
+  ]
+}

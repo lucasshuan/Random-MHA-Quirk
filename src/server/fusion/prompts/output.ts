@@ -1,6 +1,7 @@
 import type { QuirkFacet, QuirkRange, QuirkType } from '@/types/quirk'
 import { QUIRK_FACETS, QUIRK_RANGES, QUIRK_TYPES } from '../constants'
 import { hashSeed } from './seed-hash'
+import { fusionRollKey } from './roll-key'
 
 export interface FusionOutputRoll {
   type: QuirkType
@@ -47,16 +48,12 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
   ],
 }
 
-function sortedParentPairKey(parentA: string, parentB: string): string {
-  return parentA < parentB ? `${parentA}+${parentB}` : `${parentB}+${parentA}`
-}
-
 export function fusionOutputRollKey(
   seed: string,
   parentA: string,
   parentB: string,
 ): string {
-  return `${sortedParentPairKey(parentA, parentB)}:${seed}`
+  return fusionRollKey(seed, parentA, parentB)
 }
 
 function normalizeParentFacets(facets: string[]): QuirkFacet[] {
@@ -136,9 +133,6 @@ function buildFacetPool(
   const parentCompatible = parentFacetHints.filter((facet) =>
     typeFacets.includes(facet),
   )
-  const parentOther = parentFacetHints.filter(
-    (facet) => !typeFacets.includes(facet),
-  )
   const typeOnly = typeFacets.filter((facet) => !parentFacetHints.includes(facet))
 
   if (parentFacetHints.length === 0) return [...typeFacets]
@@ -149,7 +143,6 @@ function buildFacetPool(
     ...parentCompatible,
     ...typeOnly,
     ...typeOnly,
-    ...parentOther,
   ]
 }
 
@@ -179,7 +172,8 @@ function pickFacetsFromSeed(
     const compatibleHints = parentFacetHints.filter((facet) =>
       TYPE_FACET_POOLS[type].includes(facet),
     )
-    const anchorPool = compatibleHints.length > 0 ? compatibleHints : parentFacetHints
+    const anchorPool =
+      compatibleHints.length > 0 ? compatibleHints : TYPE_FACET_POOLS[type]
     picked[0] = anchorPool[hashSeed(rollKey, 'facet-anchor') % anchorPool.length]
   }
 
@@ -194,8 +188,7 @@ export function deriveFusionOutputFromSeed(
   parentFacetHints: string[] = [],
   parentMechanicHints: FusionOutputParentHints = {},
 ): FusionOutputRoll {
-  const rollKey =
-    parentA && parentB ? fusionOutputRollKey(seed, parentA, parentB) : seed
+  const rollKey = fusionRollKey(seed, parentA, parentB)
   const base = hashSeed(rollKey, 'output')
   const type = pickTypeFromSeed(
     rollKey,

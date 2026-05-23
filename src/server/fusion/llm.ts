@@ -210,10 +210,3 @@ export function translateFusionToLocaleWithLlm(
     (raw) => validateLocaleFusionTranslation(raw, locale),
   )
 }
-
-/** @deprecated Use translateFusionToLocaleWithLlm */
-export function translateFusionToPtBrWithLlm(
-  userPrompt: string,
-): Promise<Pick<ValidatedLocaleFusionCopy, 'pt-BR'>> {
-  return translateFusionToLocaleWithLlm(userPrompt, 'pt-BR')
-}

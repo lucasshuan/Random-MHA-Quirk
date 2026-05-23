@@ -1,6 +1,40 @@
 import { describe, expect, it } from 'vitest'
 import { deriveFusionOutputFromSeed } from './output'
 
+const TYPE_FACET_POOLS = {
+  Emitter: [
+    'Elemental',
+    'Psychic',
+    'Control',
+    'Support',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Emission',
+  ],
+  Transformation: [
+    'Elemental',
+    'Enhancement',
+    'Anthropomorphic',
+    'Control',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Biological',
+  ],
+  Mutant: [
+    'Enhancement',
+    'Anthropomorphic',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Biological',
+  ],
+} as const
+
 describe('deriveFusionOutputFromSeed', () => {
   it('is deterministic for the same seed and parent pair', () => {
     const a = deriveFusionOutputFromSeed('seed-abc', 'acid', 'air-cannon', [
@@ -48,7 +82,7 @@ describe('deriveFusionOutputFromSeed', () => {
       deriveFusionOutputFromSeed(`facet-bias-${i}`, 'acid', 'air-cannon', parentFacets),
     ).filter((roll) => roll.facets.some((facet) => parentFacets.includes(facet)))
 
-    expect(hits.length).toBeGreaterThan(20)
+    expect(hits.length).toBeGreaterThan(14)
   })
 
   it('biases type and range toward parent mechanic hints', () => {
@@ -86,6 +120,25 @@ describe('deriveFusionOutputFromSeed', () => {
       if (roll.type === 'Mutant') {
         expect(roll.facets).not.toContain('Emission')
         expect(roll.facets).not.toContain('Psychic')
+      }
+    }
+  })
+
+  it('keeps parent-hint anchors compatible with the rolled type', () => {
+    const rolls = Array.from({ length: 40 }, (_, i) =>
+      deriveFusionOutputFromSeed(
+        `incompatible-hints-${i}`,
+        'acid',
+        'air-cannon',
+        ['Anthropomorphic', 'Biological', 'Emission'],
+        { types: ['Emitter'], ranges: ['Short'] },
+      ),
+    )
+
+    for (const roll of rolls) {
+      const allowed = TYPE_FACET_POOLS[roll.type]
+      for (const facet of roll.facets) {
+        expect(allowed).toContain(facet)
       }
     }
   })

@@ -28,6 +28,26 @@ describe('analyzeParentPair', () => {
 })
 
 describe('selectFusionStrategy', () => {
+  it('can vary across parent ids even when mechanics are identical', () => {
+    const pairA = [
+      mockQuirk({ id: 'alpha-a', name: 'Alpha A' }),
+      mockQuirk({ id: 'alpha-b', name: 'Alpha B' }),
+    ] as const
+    const pairB = [
+      mockQuirk({ id: 'beta-a', name: 'Beta A' }),
+      mockQuirk({ id: 'beta-b', name: 'Beta B' }),
+    ] as const
+
+    const differences = Array.from({ length: 24 }, (_, i) => {
+      const seed = `pair-aware-${i}`
+      const a = selectFusionStrategy(seed, pairA[0], pairA[1]).key
+      const b = selectFusionStrategy(seed, pairB[0], pairB[1]).key
+      return a !== b
+    }).filter(Boolean)
+
+    expect(differences.length).toBeGreaterThan(0)
+  })
+
   it('excludes oscillation when both parents are Mutant', () => {
     const a = mockQuirk({ id: 'beast', name: 'Beast', type: 'Mutant', range: 'Self' })
     const b = mockQuirk({
@@ -57,7 +77,7 @@ describe('selectFusionStrategy', () => {
     })
 
     const keys = new Set(
-      Array.from({ length: 24 }, (_, i) =>
+      Array.from({ length: 80 }, (_, i) =>
         selectFusionStrategy(`other-${i}`, a, b).key,
       ),
     )

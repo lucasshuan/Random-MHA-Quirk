@@ -51,6 +51,9 @@ function lookupPairNegativeExample(
 }
 
 export function formatBaseAntiMashupRule(strategyKey: FusionStrategyKey): string {
+  if (strategyKey === 'synergy') {
+    return 'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.'
+  }
   if (strategyKey === 'failure-mode') {
     return 'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.'
   }
@@ -68,15 +71,4 @@ export function formatStrategyAntiMashupExample(
 
   const example = lookupPairNegativeExample(quirkA, quirkB)
   return `Avoid this mashup for this strategy: ❌ "${example}"`
-}
-
-/** @deprecated Use formatBaseAntiMashupRule + formatStrategyAntiMashupExample */
-export function formatAntiMashupRule(
-  strategyKey: FusionStrategyKey,
-  quirkA: FusionCatalogQuirk,
-  quirkB: FusionCatalogQuirk,
-): string {
-  const base = formatBaseAntiMashupRule(strategyKey)
-  const example = formatStrategyAntiMashupExample(strategyKey, quirkA, quirkB)
-  return example ? `${base}\n${example}` : base
 }

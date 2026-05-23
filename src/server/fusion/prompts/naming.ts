@@ -1,5 +1,5 @@
-import { fusionOutputRollKey } from './output'
 import { hashSeed } from './seed-hash'
+import { fusionRollKey } from './roll-key'
 
 export type FusionNameRegister =
   | 'pun'
@@ -66,7 +66,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
 ]
 
 function resolveRollKey(seed: string, parentA?: string, parentB?: string): string {
-  return parentA && parentB ? fusionOutputRollKey(seed, parentA, parentB) : seed
+  return fusionRollKey(seed, parentA, parentB)
 }
 
 export function selectFusionNameRegister(

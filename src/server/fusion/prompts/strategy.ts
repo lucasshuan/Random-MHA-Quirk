@@ -1,5 +1,6 @@
 import type { FusionCatalogQuirk } from '../catalog'
 import { hashSeed } from './seed-hash'
+import { fusionRollKey } from './roll-key'
 
 export type FusionStrategyKey =
   | 'synergy'
@@ -118,7 +119,7 @@ const NICHE_STRATEGY_KEYS = new Set<FusionStrategyKey>(['byproduct', 'failure-mo
 const NICHE_BOOST_THRESHOLD = 6
 const NICHE_BOOST_COPIES = 4
 
-function pickWeightedStrategy(seed: string, eligible: StrategyDef[]): StrategyDef {
+function pickWeightedStrategy(rollKey: string, eligible: StrategyDef[]): StrategyDef {
   const weighted: StrategyDef[] = []
 
   for (const def of eligible) {
@@ -131,7 +132,7 @@ function pickWeightedStrategy(seed: string, eligible: StrategyDef[]): StrategyDe
     }
   }
 
-  return weighted[hashSeed(seed, 'strategy') % weighted.length] ?? eligible[0]
+  return weighted[hashSeed(rollKey, 'strategy') % weighted.length] ?? eligible[0]
 }
 
 function appendStrategyGuidance(key: FusionStrategyKey, instruction: string): string {
@@ -224,7 +225,8 @@ export function selectFusionStrategy(
 ): SelectedFusionStrategy {
   const ctx = analyzeParentPair(quirkA, quirkB)
   const eligible = STRATEGY_DEFS.filter((def) => def.eligible(ctx))
-  const picked = pickWeightedStrategy(seed, eligible)
+  const rollKey = fusionRollKey(seed, quirkA.id, quirkB.id)
+  const picked = pickWeightedStrategy(rollKey, eligible)
 
   const contextBlock = [
     'Parent fusion context (informs strategy — do not quote parent names in the final description):',

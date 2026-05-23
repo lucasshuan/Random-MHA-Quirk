@@ -35,9 +35,9 @@ function asRecord(raw: unknown): Record<string, unknown> {
   return raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}
 }
 
-function normalizeFusionCopy(block: unknown): FusionCopy {
+function parseFusionCopy(block: unknown, label: string): FusionCopy {
   if (!block || typeof block !== 'object') {
-    return { name: 'Unnamed', description: '—' }
+    throw new Error(`Resposta inválida: bloco ${label} ausente.`)
   }
 
   const record = block as Record<string, unknown>
@@ -45,10 +45,14 @@ function normalizeFusionCopy(block: unknown): FusionCopy {
   const description =
     typeof record.description === 'string' ? record.description.trim() : ''
 
-  return {
-    name: name || 'Unnamed',
-    description: description || '—',
+  if (!name) {
+    throw new Error(`Resposta inválida: ${label}.name vazio.`)
   }
+  if (!description) {
+    throw new Error(`Resposta inválida: ${label}.description vazio.`)
+  }
+
+  return { name, description }
 }
 
 function normalizeFusionMechanics(obj: Record<string, unknown>): {
@@ -86,7 +90,7 @@ function normalizeFusionMechanics(obj: Record<string, unknown>): {
 /** Coerces LLM JSON into a fusion payload — never rejects for length or wording. */
 export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
   const obj = asRecord(raw)
-  const en = normalizeFusionCopy(obj.en)
+  const en = parseFusionCopy(obj.en, 'en')
   const mechanics = normalizeFusionMechanics(obj)
 
   return { en, ...mechanics, origin: 'ORIGINAL' }
@@ -97,17 +101,9 @@ export function validateLocaleFusionTranslation(
   locale: FusionTranslationLocale,
 ): ValidatedLocaleFusionCopy {
   const obj = asRecord(raw)
-  const copy = normalizeFusionCopy(obj[locale])
+  const copy = parseFusionCopy(obj[locale], locale)
 
   return { [locale]: copy } as ValidatedLocaleFusionCopy
-}
-
-/** @deprecated Use validateLocaleFusionTranslation */
-export function validatePtBrFusionTranslation(raw: unknown): Pick<
-  ValidatedFusionPayload,
-  'pt-BR'
-> {
-  return validateLocaleFusionTranslation(raw, 'pt-BR')
 }
 
 export function mergeFusionPayload(

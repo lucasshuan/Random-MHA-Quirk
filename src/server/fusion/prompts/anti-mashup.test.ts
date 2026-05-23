@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { FusionCatalogQuirk } from '../catalog'
 import {
-  formatAntiMashupRule,
   formatBaseAntiMashupRule,
   formatStrategyAntiMashupExample,
 } from './anti-mashup'
@@ -21,9 +20,10 @@ function mockQuirk(
 }
 
 describe('formatBaseAntiMashupRule', () => {
-  it('keeps the global rule short for synergy', () => {
+  it('uses a synergy-safe base rule', () => {
     const rule = formatBaseAntiMashupRule('synergy')
-    expect(rule).toContain('one parent supplies the main loop')
+    expect(rule).toContain('one coherent mechanism')
+    expect(rule).toContain('two independent full-strength kits')
     expect(rule).not.toContain('phase through walls')
   })
 })
@@ -68,14 +68,3 @@ describe('formatStrategyAntiMashupExample', () => {
   })
 })
 
-describe('formatAntiMashupRule', () => {
-  it('combines base rule and strategy example', () => {
-    const rule = formatAntiMashupRule(
-      'synergy',
-      mockQuirk({ id: 'permeation' }),
-      mockQuirk({ id: 'hardening' }),
-    )
-    expect(rule).toContain('one parent supplies the main loop')
-    expect(rule).toContain('phase through walls while fully armored at all times')
-  })
-})

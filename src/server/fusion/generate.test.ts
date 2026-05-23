@@ -4,6 +4,7 @@ import type { FusionCacheEntry } from '@/types/fusion'
 const mockGenerateEnglishFusionWithLlm = vi.fn()
 const mockTranslateFusionToLocaleWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
+const mockListFusionNamesForParentPair = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
 const mockGetQuirkById = vi.fn()
 
@@ -16,6 +17,8 @@ vi.mock('./llm', () => ({
 
 vi.mock('./repository', () => ({
   findFusionByKey: (...args: unknown[]) => mockFindFusionByKey(...args),
+  listFusionNamesForParentPair: (...args: unknown[]) =>
+    mockListFusionNamesForParentPair(...args),
   upsertFusionEntry: (...args: unknown[]) => mockUpsertFusionEntry(...args),
 }))
 
@@ -71,6 +74,7 @@ describe('generateFusionEntry', () => {
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
     mockFindFusionByKey.mockResolvedValue(cachedEntry)
+    mockListFusionNamesForParentPair.mockResolvedValue(['Cached'])
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
@@ -101,7 +105,9 @@ describe('generateFusionEntry', () => {
       seed: 'seed1',
     })
 
+    expect(mockListFusionNamesForParentPair).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
+    expect(mockGenerateEnglishFusionWithLlm.mock.calls[0][0]).toContain('Cached')
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
     expect(mockFindFusionByKey).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()

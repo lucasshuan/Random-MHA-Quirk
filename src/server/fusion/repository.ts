@@ -47,6 +47,39 @@ function entryToRow(entry: FusionCacheEntry): FusionRow {
   }
 }
 
+/** English titles of other variants for the same sorted parent pair (excludes optional key). */
+export async function listFusionNamesForParentPair(
+  parentA: string,
+  parentB: string,
+  options?: { excludeKey?: string },
+): Promise<string[]> {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from('fusion_entries')
+    .select('key, en')
+    .eq('parent_a', parentA)
+    .eq('parent_b', parentB)
+
+  if (error) {
+    throw new Error(`Supabase list by parents failed: ${error.message}`)
+  }
+
+  const seen = new Set<string>()
+  const names: string[] = []
+
+  for (const row of data ?? []) {
+    if (options?.excludeKey && row.key === options.excludeKey) continue
+    const name = (row as FusionRow).en?.name?.trim()
+    if (!name) continue
+    const key = name.toLowerCase()
+    if (seen.has(key)) continue
+    seen.add(key)
+    names.push(name)
+  }
+
+  return names
+}
+
 export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {
   const supabase = getSupabaseAdmin()
   const { data, error } = await supabase

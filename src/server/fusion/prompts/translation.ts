@@ -63,6 +63,7 @@ Rules:
 - ${config.nameField}: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, or meme-adjacent — as long as they still sound like a quirk name in ${config.languageLabel} MHA fandom. ADAPTATION, not literal translation: if a pun, joke, or sharper local nickname works better than mirroring the English title, use it (wordplay that only lands in ${config.languageLabel} is encouraged). Do not transliterate word-for-word unless it already sounds right to fans
 - ${config.descriptionField}: 2–4 sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation)
 - Preserve the same mechanism, activation, body changes, what moves where, limits, and tradeoffs as the English text — do not add, remove, or soften effects
+- Preserve variant identity: keep the same fusion strategy and body/emission/range logic implied by the English. Do not flatten it into a generic all-rounder during localization.
 - MHA singularity: the user has only ONE Quirk — this entry is that whole Quirk. Never imply a second separate power or that they "lose their quirk" while using part of it; rephrase bad English into limits of the same ability if needed
 - That one Quirk may still have multiple linked effects (like Half-Cold Half-Hot); keep them as branches of the same Quirk, not separate quirks
 - ${config.toneHint}
@@ -71,6 +72,7 @@ Rules:
 - Prefer natural word choices over calques (avoid stiff literal renderings of English idioms or physics jargon)
 - If the English used vague wording, clarify what the reader actually sees — still without changing the effect model
 - Do not mention English, translation, fusion, parents, or the source language
+- Name anti-template rule: avoid defaulting to repetitive local equivalents of generic stems like "Corrosive/Feral/Verdant + Noun"; prefer a distinct, memorable hook that sounds native in ${config.languageLabel}.
 
 Reply with ONLY valid JSON (no markdown):
 {

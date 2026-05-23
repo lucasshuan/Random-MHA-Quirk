@@ -146,6 +146,24 @@ describe('generateFusionEntry', () => {
     expect(result.entry).toEqual(cachedEntry)
   })
 
+  it('regenerates when an English title duplicates an existing sibling name', async () => {
+    mockGenerateEnglishFusionWithLlm
+      .mockResolvedValueOnce({
+        ...englishPayload,
+        en: { name: 'Cached', description: 'Duplicate name result.' },
+      })
+      .mockResolvedValueOnce(englishPayload)
+
+    const result = await generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'seed1',
+    })
+
+    expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledTimes(2)
+    expect(result.entry.en.name).toBe('Fresh')
+  })
+
   it('does not fall back when force is true', async () => {
     mockTranslateFusionToLocaleWithLlm.mockRejectedValue(
       new Error('Translation down'),

@@ -9,7 +9,7 @@ import type { FusionStrategyKey } from './strategy'
 import { selectFusionStrategy } from './strategy'
 import type { FusionUtilityNiche } from './utility'
 import { selectFusionUtilityNudge } from './utility'
-import type { FusionRollMeta } from '@/types/fusion'
+import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkRange, QuirkTier } from '@/types/quirk'
 
 const TIER_ORDER: QuirkTier[] = ['S', 'A', 'B', 'C']
@@ -73,6 +73,7 @@ export function deriveFusionRollContext(
   seed: string,
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
+  priorVariants: FusionPriorVariant[] = [],
 ): FusionRollContext {
   const outputRoll = deriveFusionOutputFromSeed(
     seed,
@@ -84,7 +85,11 @@ export function deriveFusionRollContext(
       ranges: [quirkA.range, quirkB.range],
     },
   )
-  const strategy = selectFusionStrategy(seed, quirkA, quirkB)
+  const strategy = selectFusionStrategy(seed, quirkA, quirkB, {
+    priorStrategyKeys: priorVariants
+      .map((variant) => variant.roll?.strategyKey)
+      .filter((key): key is string => Boolean(key)),
+  })
   const nameRegister = selectFusionNameRegister(seed, quirkA.id, quirkB.id)
   const utility = selectFusionUtilityNudge(seed, quirkA.id, quirkB.id)
   const antiMashupRuleKey = resolveAntiMashupRuleKey(strategy.key)

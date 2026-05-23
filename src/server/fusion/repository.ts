@@ -1,5 +1,6 @@
 import { getQuirkById } from './catalog'
 import {
+  pickSiblingVariantsForPrompt,
   pickPriorVariantsForPrompt,
   type FusionPriorVariantMatch,
 } from './prior-variants'
@@ -107,7 +108,7 @@ export async function listFusionPriorVariantsForParentPair(
   parentB: string,
   options: {
     excludeKey?: string
-    match: FusionPriorVariantMatch
+    match?: FusionPriorVariantMatch
     limit?: number
   },
 ): Promise<FusionPriorVariant[]> {
@@ -144,7 +145,14 @@ export async function listFusionPriorVariantsForParentPair(
     }
   })
 
-  return pickPriorVariantsForPrompt(rows, options.match, quirkA, quirkB, {
+  if (options.match) {
+    return pickPriorVariantsForPrompt(rows, options.match, quirkA, quirkB, {
+      excludeKey: options.excludeKey,
+      limit: options.limit,
+    })
+  }
+
+  return pickSiblingVariantsForPrompt(rows, quirkA, quirkB, {
     excludeKey: options.excludeKey,
     limit: options.limit,
   })

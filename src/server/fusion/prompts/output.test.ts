@@ -145,4 +145,27 @@ describe('deriveFusionOutputFromSeed', () => {
       }
     }
   })
+
+  it('does not add unsupported source-bound facets when compatible parent facets exist', () => {
+    const parentFacets = ['Mobility', 'Emission']
+    const rolls = Array.from({ length: 40 }, (_, i) =>
+      deriveFusionOutputFromSeed(
+        `source-bound-${i}`,
+        'air-walk',
+        'tail',
+        parentFacets,
+        { types: ['Emitter'], ranges: ['Medium'] },
+      ),
+    )
+
+    for (const roll of rolls) {
+      if (roll.type === 'Emitter') {
+        expect(roll.facets).not.toContain('Support')
+        expect(roll.facets).not.toContain('Sensory')
+        expect(roll.facets).not.toContain('Psychic')
+        expect(roll.facets).not.toContain('Defense')
+        expect(roll.facets).not.toContain('Elemental')
+      }
+    }
+  })
 })

@@ -9,7 +9,9 @@ import { loadEnv } from '@/server/env/load'
 import { getQuirkById } from '@/server/fusion/catalog'
 import { generateEnglishFusionWithLlm } from '@/server/fusion/llm'
 import { buildFusionPrompt, deriveFusionRollContext } from '@/server/fusion/prompts/english'
+import { hasDuplicateFusionName } from '@/server/fusion/prior-variants'
 import { listFusionPriorVariantsForParentPair } from '@/server/fusion/repository'
+import type { FusionPriorVariant } from '@/types/fusion'
 import { getProjectRoot } from '../_shared/root'
 
 const PAIRS: [string, string][] = [
@@ -35,29 +37,39 @@ async function main() {
       throw new Error(`Missing quirk: ${idA} or ${idB}`)
     }
 
+    const generatedVariants: FusionPriorVariant[] = []
+
     for (const seed of SEEDS) {
       const parents = sortedParentPair(idA as never, idB as never)
       const key = fusionCacheKey(parents[0], parents[1], seed)
-      const rollContext = deriveFusionRollContext(seed, quirkA, quirkB)
-      const priorVariants = await listFusionPriorVariantsForParentPair(
+      const storedVariants = await listFusionPriorVariantsForParentPair(
         parents[0],
         parents[1],
         {
           excludeKey: key,
-          match: {
-            tier: rollContext.tier,
-            type: rollContext.outputRoll.type,
-            range: rollContext.outputRoll.range,
-            facets: rollContext.outputRoll.facets,
-            roll: rollContext.roll,
-          },
         },
       )
+      const priorVariants = [...storedVariants, ...generatedVariants]
+      const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
 
       console.log(`Generating ${parents.join('+')} seed=${seed}...`)
-      const english = await generateEnglishFusionWithLlm(
-        buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext),
-      )
+      const promptVariants = [...priorVariants]
+      let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
+        null
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const candidate = await generateEnglishFusionWithLlm(
+          buildFusionPrompt(quirkA, quirkB, seed, promptVariants, rollContext),
+        )
+        if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
+          english = candidate
+          break
+        }
+        promptVariants.push({ ...candidate.en, roll: rollContext.roll })
+      }
+      if (!english) {
+        throw new Error(`Repeated fusion name for ${parents.join('+')} seed=${seed}`)
+      }
+      generatedVariants.push({ ...english.en, roll: rollContext.roll })
 
       results.push({
         pair: `${parents[0]}+${parents[1]}`,

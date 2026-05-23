@@ -33,7 +33,6 @@ const quirkB: FusionCatalogQuirk = {
 }
 
 const seed = 'demo-prompt-review'
-const rollContext = deriveFusionRollContext(seed, quirkA, quirkB)
 const priorVariants = [
   {
     name: 'Phase Shell',
@@ -41,6 +40,7 @@ const priorVariants = [
       'The user can briefly turn their skin into a permeable shell that lets attacks pass through while keeping bones rigid.',
   },
 ]
+const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
 
 const prompt = buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext)
 

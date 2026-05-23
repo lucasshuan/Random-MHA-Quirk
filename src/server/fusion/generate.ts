@@ -16,6 +16,9 @@ import {
   listFusionPriorVariantsForParentPair,
   upsertFusionEntry,
 } from './repository'
+import { hasDuplicateFusionName } from './prior-variants'
+
+const MAX_DISTINCT_NAME_ATTEMPTS = 3
 
 export function defaultFusionSeed(): string {
   return randomBytes(4).toString('hex')
@@ -55,26 +58,40 @@ export async function generateFusionEntry({
 
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
-  const rollContext = deriveFusionRollContext(seed, quirkA, quirkB)
   const priorVariants = await listFusionPriorVariantsForParentPair(
     parents[0],
     parents[1],
     {
       excludeKey: key,
-      match: {
-        tier: rollContext.tier,
-        type: rollContext.outputRoll.type,
-        range: rollContext.outputRoll.range,
-        facets: rollContext.outputRoll.facets,
-        roll: rollContext.roll,
-      },
     },
   )
+  const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
 
   try {
-    const english = await generateEnglishFusionWithLlm(
-      buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext),
-    )
+    const promptVariants = [...priorVariants]
+    let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
+      null
+
+    for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
+      const candidate = await generateEnglishFusionWithLlm(
+        buildFusionPrompt(quirkA, quirkB, seed, promptVariants, rollContext),
+      )
+
+      if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
+        english = candidate
+        break
+      }
+
+      promptVariants.push({
+        name: candidate.en.name,
+        description: candidate.en.description,
+        roll: rollContext.roll,
+      })
+    }
+
+    if (!english) {
+      throw new Error('LLM repeated a fusion name already used for this parent pair.')
+    }
 
     const translations = await Promise.all(
       FUSION_TRANSLATION_LOCALES.map(async (locale) =>

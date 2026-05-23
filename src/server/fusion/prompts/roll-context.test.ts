@@ -40,6 +40,19 @@ describe('deriveFusionRollContext', () => {
     expect(ctx.roll.antiMashupRuleKey).toBe('coherent-loop')
     expect(ctx.outputRoll.type).toBeTruthy()
   })
+
+  it('avoids a strategy already recorded on a prior sibling when alternatives exist', () => {
+    const first = deriveFusionRollContext('sibling-a', quirkA, quirkB)
+    const next = deriveFusionRollContext('sibling-b', quirkA, quirkB, [
+      {
+        name: 'Prior',
+        description: 'Prior sibling.',
+        roll: first.roll,
+      },
+    ])
+
+    expect(next.roll.strategyKey).not.toBe(first.roll.strategyKey)
+  })
 })
 
 describe('deriveFusionTier', () => {

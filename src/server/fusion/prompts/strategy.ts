@@ -48,6 +48,10 @@ export interface SelectedFusionStrategy {
   contextBlock: string
 }
 
+export interface FusionStrategySelectionOptions {
+  priorStrategyKeys?: readonly string[]
+}
+
 function rangeIndex(range: string): number {
   const index = RANGE_ORDER.indexOf(range as (typeof RANGE_ORDER)[number])
   return index === -1 ? 2 : index
@@ -233,18 +237,14 @@ const STRATEGY_DEFS: StrategyDef[] = [
   },
 ]
 
-export function selectFusionStrategy(
-  seed: string,
+function buildSelectedStrategy(
+  picked: StrategyDef,
+  ctx: ParentFusionContext,
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
 ): SelectedFusionStrategy {
-  const ctx = analyzeParentPair(quirkA, quirkB)
-  const eligible = STRATEGY_DEFS.filter((def) => def.eligible(ctx))
-  const rollKey = fusionRollKey(seed, quirkA.id, quirkB.id)
-  const picked = pickWeightedStrategy(rollKey, eligible)
-
   const contextBlock = [
-    'Parent fusion context (informs strategy — do not quote parent names in the final description):',
+    'Parent fusion context (informs strategy - do not quote parent names in the final description):',
     ...ctx.commonPointLines.map((line) => `- ${line}`),
   ].join('\n')
 
@@ -258,4 +258,48 @@ export function selectFusionStrategy(
     instruction,
     contextBlock,
   }
+}
+
+export function selectFusionStrategy(
+  seed: string,
+  quirkA: FusionCatalogQuirk,
+  quirkB: FusionCatalogQuirk,
+  options: FusionStrategySelectionOptions = {},
+): SelectedFusionStrategy {
+  const ctx = analyzeParentPair(quirkA, quirkB)
+  const eligible = STRATEGY_DEFS.filter((def) => def.eligible(ctx))
+  const rollKey = fusionRollKey(seed, quirkA.id, quirkB.id)
+  const priorCounts = new Map<FusionStrategyKey, number>()
+
+  for (const key of options.priorStrategyKeys ?? []) {
+    if (!isFusionStrategyKey(key)) continue
+    priorCounts.set(key, (priorCounts.get(key) ?? 0) + 1)
+  }
+
+  const lowestUseCount = Math.min(
+    ...eligible.map((def) => priorCounts.get(def.key) ?? 0),
+  )
+  const leastUsed = eligible.filter(
+    (def) => (priorCounts.get(def.key) ?? 0) === lowestUseCount,
+  )
+  const picked = pickWeightedStrategy(rollKey, leastUsed)
+
+  return buildSelectedStrategy(picked, ctx, quirkA, quirkB)
+}
+
+export function resolveFusionStrategyForKey(
+  key: string,
+  quirkA: FusionCatalogQuirk,
+  quirkB: FusionCatalogQuirk,
+): SelectedFusionStrategy {
+  const ctx = analyzeParentPair(quirkA, quirkB)
+  const picked = STRATEGY_DEFS.find(
+    (def) => def.key === key && def.eligible(ctx),
+  )
+
+  if (!picked) {
+    return selectFusionStrategy('fallback-strategy', quirkA, quirkB)
+  }
+
+  return buildSelectedStrategy(picked, ctx, quirkA, quirkB)
 }

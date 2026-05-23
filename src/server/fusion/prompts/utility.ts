@@ -38,6 +38,14 @@ const UTILITY_HINTS: Record<FusionUtilityNiche, string> = {
     'use direct action verbs and avoid jargon unless absolutely necessary',
 }
 
+export function isFusionUtilityNiche(value: string): value is FusionUtilityNiche {
+  return UTILITY_NICHES.includes(value as FusionUtilityNiche)
+}
+
+export function formatFusionUtilityNudge(niche: FusionUtilityNiche): string {
+  return `Simplicity nudge for this variant: ${niche} - ${UTILITY_HINTS[niche]}. Keep the description easy to summarize in one sentence.`
+}
+
 function resolveRollKey(seed: string, parentA?: string, parentB?: string): string {
   return fusionRollKey(seed, parentA, parentB)
 }
@@ -51,6 +59,6 @@ export function selectFusionUtilityNudge(
   const niche = UTILITY_NICHES[hashSeed(rollKey, 'utility') % UTILITY_NICHES.length]
   return {
     niche,
-    line: `Simplicity nudge for this variant: ${niche} — ${UTILITY_HINTS[niche]}. Keep the description easy to summarize in one sentence.`,
+    line: formatFusionUtilityNudge(niche),
   }
 }

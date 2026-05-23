@@ -3,7 +3,7 @@ import { deriveFusionRollContext } from './prompts/roll-context'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkFacet, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
 
-export const MAX_PRIOR_VARIANTS = 3
+export const MAX_PRIOR_VARIANTS = 12
 
 export interface FusionPriorVariantMatch {
   tier: QuirkTier
@@ -31,6 +31,18 @@ interface StoredPriorRow {
 function facetOverlap(a: QuirkFacet[], b: QuirkFacet[]): number {
   const setB = new Set(b)
   return a.filter((facet) => setB.has(facet)).length
+}
+
+function normalizedVariantName(name: string): string {
+  return name.trim().replace(/\s+/g, ' ').toLocaleLowerCase()
+}
+
+export function hasDuplicateFusionName(
+  name: string,
+  priorVariants: FusionPriorVariant[],
+): boolean {
+  const key = normalizedVariantName(name)
+  return priorVariants.some((variant) => normalizedVariantName(variant.name) === key)
 }
 
 /** Higher score = roll parameters closer to the variant being generated. */
@@ -102,11 +114,50 @@ export function pickPriorVariantsForPrompt(
     ranked.push({
       name,
       description,
+      roll: match.roll,
       score: scorePriorVariantSimilarity(match, target),
     })
   }
 
   ranked.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
 
-  return ranked.slice(0, limit).map(({ name, description }) => ({ name, description }))
+  return ranked
+    .slice(0, limit)
+    .map(({ name, description, roll }) => ({ name, description, roll }))
+}
+
+export function pickSiblingVariantsForPrompt(
+  rows: StoredPriorRow[],
+  quirkA: FusionCatalogQuirk,
+  quirkB: FusionCatalogQuirk,
+  options?: { excludeKey?: string; limit?: number },
+): FusionPriorVariant[] {
+  const limit = Math.min(options?.limit ?? MAX_PRIOR_VARIANTS, MAX_PRIOR_VARIANTS)
+  const seenNames = new Set<string>()
+  const siblings: FusionPriorVariant[] = []
+
+  for (const row of rows) {
+    if (options?.excludeKey && row.key === options.excludeKey) continue
+
+    const name = row.en?.name?.trim()
+    const description = row.en?.description?.trim()
+    if (!name || !description) continue
+
+    const nameKey = normalizedVariantName(name)
+    if (seenNames.has(nameKey)) continue
+    seenNames.add(nameKey)
+
+    const tier =
+      row.tier && ['S', 'A', 'B', 'C'].includes(row.tier)
+        ? (row.tier as QuirkTier)
+        : null
+    const match = resolveCandidateMatch(row, quirkA, quirkB, row.roll, tier)
+    if (!match) continue
+
+    siblings.push({ name, description, roll: match.roll })
+  }
+
+  return siblings
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(0, limit)
 }

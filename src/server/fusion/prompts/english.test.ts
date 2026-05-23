@@ -92,11 +92,15 @@ describe('buildFusionPrompt', () => {
     expect(strategyIndex).toBeGreaterThan(namingIndex)
     expect(strategyIndex).toBeLessThan(mechanicsIndex)
     expect(prompt).toContain('Facet contract (keep one central mechanism)')
+    expect(prompt).toContain('Source-faithfulness gate')
+    expect(prompt).toContain('Simplicity nudge for this variant:')
     expect(prompt).toContain('Range prose check')
     expect(prompt).toContain('Type discipline (Emitter only)')
     expect(prompt).toContain('Structure the description in this order')
     expect(prompt).toContain('Old Title')
     expect(prompt).toContain('clears lingering ice')
+    expect(prompt).toContain('never add healing, calming, remote senses, animal anatomy')
+    expect(prompt).toContain('Changing only the title, range, strength')
     const hasStrategyExample =
       prompt.includes('Avoid this mashup for this strategy: ❌') &&
       prompt.includes('phase through walls while fully armored at all times')

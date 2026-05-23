@@ -18,7 +18,12 @@ import {
   deriveFusionRollContext,
   type FusionRollContext,
 } from './roll-context'
-import { selectFusionStrategy, type FusionStrategyKey } from './strategy'
+import { resolveFusionStrategyForKey, type FusionStrategyKey } from './strategy'
+import {
+  formatFusionUtilityNudge,
+  isFusionUtilityNiche,
+  selectFusionUtilityNudge,
+} from './utility'
 
 const TYPE_DISCIPLINE: Record<QuirkType, string[]> = {
   Emitter: [
@@ -50,7 +55,10 @@ export function buildFusionPrompt(
   const { outputRoll, roll } = rollContext
   const formatParent = (q: FusionCatalogQuirk) =>
     `- ${q.name} (${q.id}): tier ${q.tier}, ${q.type}, range ${q.range}, facets [${q.facets.join(', ')}]. ${q.description}`
-  const strategy = selectFusionStrategy(seed, quirkA, quirkB)
+  const strategy = resolveFusionStrategyForKey(roll.strategyKey, quirkA, quirkB)
+  const utilityLine = isFusionUtilityNiche(roll.utilityNiche)
+    ? formatFusionUtilityNudge(roll.utilityNiche)
+    : selectFusionUtilityNudge(seed, quirkA.id, quirkB.id).line
   const namingBlock = formatFusionNamingBlock(
     seed,
     priorVariants,
@@ -58,13 +66,21 @@ export function buildFusionPrompt(
     quirkB.id,
   )
   const typeDiscipline = formatTypeDisciplineBlock(outputRoll.type)
-  const facetContract = formatFacetContractBlock(outputRoll.facets, outputRoll.type)
+  const facetContract = formatFacetContractBlock(
+    outputRoll.facets,
+    outputRoll.type,
+    [quirkA, quirkB],
+  )
   const rangeProse = formatRangeProseBlock(outputRoll.range)
   const strategyAntiMashupExample = formatStrategyAntiMashupExample(
     roll.strategyKey as FusionStrategyKey,
     quirkA,
     quirkB,
   )
+  const siblingDiversityRule =
+    priorVariants.length > 0
+      ? 'Sibling diversity gate: prior variants for this parent pair already exist. Choose a different central carrier, action, manifestation, or everyday role. Changing only the title, range, strength, activation wording, or drawback is NOT a meaningfully different fusion.'
+      : ''
 
   return `
 Create ONE original My Hero Academia-style fusion quirk from two parent quirks.
@@ -73,6 +89,8 @@ ${namingBlock}
 
 ${strategy.instruction}
 ${strategyAntiMashupExample}
+${utilityLine}
+${siblingDiversityRule}
 
 Required result mechanics (fixed for this variant — copy exactly into JSON; write en.description to fit this type, range, and facets):
 - type: ${outputRoll.type}
@@ -104,6 +122,7 @@ Rules:
   2) second sentence = manifestation/activation or one essential secondary detail,
   3) optional last sentence = at most one limit — physical cost OR clear situational scope; omit when the quirk is already weak, narrow, contact-only, failure-mode, or self-limiting by range/type; omit when a limit would feel piled-on.
 - Keep one clear core mechanism. If a second effect exists, it must be a direct consequence of the same mechanism.
+- Fixed facets label how that single mechanism presents; never add healing, calming, remote senses, animal anatomy, or stat boosts solely to satisfy a facet tag.
 - Focus on what the quirk does, not combat roleplay or ally tactics. Narrow scope is fine when it is part of the mechanism (e.g. disrupts active Emitter effects in open space, clears lingering quirk residue but not innate Mutant anatomy) — state as objective fact, not matchup advice.
 - Avoid unnecessary technical or aesthetic detail (exact pressure/temperature/color specs, niche physics jargon, or conditional chains) unless needed to understand behavior.
 - Use direct verbs and caveman clarity: easy to imagine after one read.

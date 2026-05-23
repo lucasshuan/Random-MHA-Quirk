@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import type { FusionCatalogQuirk } from './catalog'
 import {
+  hasDuplicateFusionName,
   MAX_PRIOR_VARIANTS,
+  pickSiblingVariantsForPrompt,
   pickPriorVariantsForPrompt,
   scorePriorVariantSimilarity,
 } from './prior-variants'
+import type { FusionPriorVariantMatch } from './prior-variants'
 
 const quirkA: FusionCatalogQuirk = {
   id: 'acid',
@@ -28,11 +31,11 @@ const quirkB: FusionCatalogQuirk = {
   description: 'B',
 }
 
-const target = {
+const target: FusionPriorVariantMatch = {
   tier: 'A' as const,
   type: 'Emitter' as const,
   range: 'Medium' as const,
-  facets: ['Control'] as const,
+  facets: ['Control'],
   roll: {
     strategyKey: 'synergy',
     nameRegister: 'pun',
@@ -113,5 +116,36 @@ describe('pickPriorVariantsForPrompt', () => {
     const picked = pickPriorVariantsForPrompt(rows, target, quirkA, quirkB, { limit: 1 })
     expect(picked).toHaveLength(1)
     expect(picked[0]?.name).toBe('Close')
+  })
+
+  it('retains stored strategy metadata for sibling coordination', () => {
+    const picked = pickSiblingVariantsForPrompt(
+      [
+        {
+          key: 'k1',
+          seed: 's1',
+          en: { name: 'Used', description: 'A used sibling.' },
+          type: 'Emitter',
+          range: 'Medium',
+          facets: ['Control'],
+          tier: 'A',
+          roll: target.roll,
+        },
+      ],
+      quirkA,
+      quirkB,
+    )
+
+    expect(picked[0]?.roll?.strategyKey).toBe('synergy')
+  })
+})
+
+describe('hasDuplicateFusionName', () => {
+  it('treats whitespace and case-only name changes as duplicates', () => {
+    expect(
+      hasDuplicateFusionName('  bubble   nap ', [
+        { name: 'Bubble Nap', description: 'Existing sibling.' },
+      ]),
+    ).toBe(true)
   })
 })

@@ -18,6 +18,8 @@ export interface FusionCopy {
 export interface FusionPriorVariant {
   name: string
   description: string
+  /** Stored when available so later siblings can avoid repeating the same strategy. */
+  roll?: FusionRollMeta
 }
 
 /** Deterministic prompt rolls persisted with each fusion entry. */

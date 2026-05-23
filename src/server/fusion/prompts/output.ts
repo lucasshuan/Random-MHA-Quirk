@@ -48,6 +48,17 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
   ],
 }
 
+const SOURCE_BOUND_FACETS = new Set<QuirkFacet>([
+  'Elemental',
+  'Psychic',
+  'Enhancement',
+  'Anthropomorphic',
+  'Support',
+  'Defense',
+  'Sensory',
+  'Biological',
+])
+
 export function fusionOutputRollKey(
   seed: string,
   parentA: string,
@@ -133,16 +144,26 @@ function buildFacetPool(
   const parentCompatible = parentFacetHints.filter((facet) =>
     typeFacets.includes(facet),
   )
-  const typeOnly = typeFacets.filter((facet) => !parentFacetHints.includes(facet))
 
   if (parentFacetHints.length === 0) return [...typeFacets]
 
+  const bridgeFacets = typeFacets.filter(
+    (facet) =>
+      !parentFacetHints.includes(facet) && !SOURCE_BOUND_FACETS.has(facet),
+  )
+
+  if (parentCompatible.length > 0) {
+    return [
+      ...parentCompatible,
+      ...parentCompatible,
+      ...parentCompatible,
+      ...bridgeFacets,
+    ]
+  }
+
   return [
-    ...parentCompatible,
-    ...parentCompatible,
-    ...parentCompatible,
-    ...typeOnly,
-    ...typeOnly,
+    ...bridgeFacets,
+    ...bridgeFacets,
   ]
 }
 

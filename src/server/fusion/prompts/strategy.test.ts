@@ -118,4 +118,31 @@ describe('selectFusionStrategy', () => {
 
     expect(simpleCount).toBeGreaterThan(24)
   })
+
+  it('selects unused eligible strategies while siblings still have unused options', () => {
+    const a = mockQuirk({
+      id: 'tail',
+      name: 'Tail',
+      type: 'Mutant',
+      range: 'Self',
+      facets: ['Anthropomorphic'],
+    })
+    const b = mockQuirk({
+      id: 'air-walk',
+      name: 'Air Walk',
+      type: 'Emitter',
+      range: 'Medium',
+      facets: ['Mobility', 'Emission'],
+    })
+
+    const first = selectFusionStrategy('sibling-1', a, b).key
+    const second = selectFusionStrategy('sibling-2', a, b, {
+      priorStrategyKeys: [first],
+    }).key
+    const third = selectFusionStrategy('sibling-3', a, b, {
+      priorStrategyKeys: [first, second],
+    }).key
+
+    expect(new Set([first, second, third]).size).toBe(3)
+  })
 })

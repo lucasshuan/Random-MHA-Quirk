@@ -13,6 +13,19 @@ export const en = {
     title: 'Random Quirk',
     logoAlt: 'My Hero Academia logo',
   },
+  api: {
+    errors: {
+      rateLimitFusion:
+        'Too many fusion generations (10 per 5 minutes). Wait about {{minutes}} minutes before trying again.',
+      rateLimitApi: 'Too many requests. Try again in about {{minutes}} minutes.',
+      invalidJson: 'Invalid request body.',
+      missingFusionFields: 'parentA, parentB, and seed are required.',
+      missingLocale: 'Query param "locale" is required (en, pt-BR, es).',
+      quirkNotFound: 'Quirk not found.',
+      fusionGenerateFailed: 'Could not generate this fusion.',
+      serverError: 'Something went wrong. Try again shortly.',
+    },
+  },
   start: {
     title: 'Find a quirk.',
     action: 'Start',

@@ -11,6 +11,7 @@ import { StepRandomRoll } from '@/components/wizard/StepRandomRoll'
 import { StepTierChoice } from '@/components/wizard/StepTierChoice'
 import { StepTypeChoice } from '@/components/wizard/StepTypeChoice'
 import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
+import { resolveApiErrorMessage } from '@/lib/api/resolve-error'
 import { requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
 import { rollHybrid } from '@/lib/hybrid/roll'
@@ -162,14 +163,14 @@ export function WizardApp() {
       })
       setFusionPhase('idle')
     } catch (err) {
-      setFusionError(err instanceof Error ? err.message : String(err))
+      setFusionError(resolveApiErrorMessage(t, err))
       setFusionPhase('error')
     } finally {
       if (generatingFusionKeyRef.current === key) {
         generatingFusionKeyRef.current = null
       }
     }
-  }, [])
+  }, [t])
 
   useEffect(() => {
     if (currentStep !== 'result' || mode !== 'hybrid') {

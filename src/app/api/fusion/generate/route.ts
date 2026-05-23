@@ -1,9 +1,10 @@
 import { generateFusionEntry } from '@/server/fusion/generate'
+import { apiErrorJson, rateLimitedJson } from '@/server/http/api-errors'
+import { applyCorsHeaders } from '@/server/http/cors'
 import {
   checkFusionGenerateRateLimit,
   rateLimitHeaders,
 } from '@/server/http/rate-limit'
-import { applyCorsHeaders } from '@/server/http/cors'
 import type { QuirkId } from '@/types/quirk-id'
 
 export const runtime = 'nodejs'
@@ -30,28 +31,20 @@ export async function POST(request: Request) {
   const rateHeaders = rateLimitHeaders(rate)
 
   if (!rate.allowed) {
-    return jsonWithHeaders(
-      {
-        message:
-          'Muitas gerações de fusão. Aguarde alguns minutos antes de tentar de novo.',
-      },
-      request,
-      429,
-      rateHeaders,
-    )
+    return rateLimitedJson(request, rate, 'RATE_LIMIT_FUSION', rateHeaders)
   }
 
   let body: FusionRequestBody
   try {
     body = (await request.json()) as FusionRequestBody
   } catch {
-    return jsonWithHeaders({ message: 'JSON inválido.' }, request, 400, rateHeaders)
+    return apiErrorJson({ code: 'INVALID_JSON' }, request, 400, rateHeaders)
   }
 
   const { parentA, parentB, seed, force } = body
   if (!parentA || !parentB || !seed) {
-    return jsonWithHeaders(
-      { message: 'parentA, parentB e seed são obrigatórios.' },
+    return apiErrorJson(
+      { code: 'MISSING_FUSION_FIELDS' },
       request,
       400,
       rateHeaders,
@@ -79,9 +72,13 @@ export async function POST(request: Request) {
       200,
       rateHeaders,
     )
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    return jsonWithHeaders({ message }, request, 500, rateHeaders)
+  } catch {
+    return apiErrorJson(
+      { code: 'FUSION_GENERATE_FAILED' },
+      request,
+      500,
+      rateHeaders,
+    )
   }
 }
 

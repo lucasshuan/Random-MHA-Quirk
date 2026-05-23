@@ -70,8 +70,9 @@ export function HybridResultTabs({
                 </div>
               ) : fusionPhase === 'error' ? (
                 <div className="fusion-pending fusion-error">
-                  <p className="mini-copy">{t('fusion.generateError')}</p>
-                  {fusionError ? <p className="fusion-error-detail">{fusionError}</p> : null}
+                  <p className="mini-copy">
+                    {fusionError ?? t('fusion.generateError')}
+                  </p>
                   <button
                     type="button"
                     className="big-action fusion-retry-btn"

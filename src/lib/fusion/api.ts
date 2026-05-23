@@ -1,3 +1,4 @@
+import { parseApiErrorBody } from '@/lib/api/resolve-error'
 import type { QuirkId } from '@/types/quirk-id'
 import type { FusionCacheEntry } from '@/types/fusion'
 import { upsertFusionCacheEntry } from '@/lib/fusion/cache'
@@ -21,11 +22,13 @@ export async function requestFusionGeneration(
 
   const data = (await res.json().catch(() => ({}))) as {
     entry?: FusionCacheEntry
-    message?: string
+    error?: { code?: string; retryAfterSec?: number; minutes?: number }
   }
 
   if (!res.ok || !data.entry) {
-    throw new Error(data.message ?? `HTTP ${res.status}`)
+    const apiError = parseApiErrorBody(data)
+    if (apiError) throw apiError
+    throw new Error(`HTTP ${res.status}`)
   }
 
   upsertFusionCacheEntry(data.entry)

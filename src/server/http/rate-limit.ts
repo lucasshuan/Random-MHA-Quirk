@@ -27,6 +27,23 @@ function readIntEnv(name: string, fallback: number): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback
 }
 
+/** No cap during `pnpm dev` (NODE_ENV=development). Set RATE_LIMIT_FORCE=1 to test limits locally. */
+export function isRateLimitDisabled(): boolean {
+  if (process.env.RATE_LIMIT_FORCE === '1') return false
+  return process.env.NODE_ENV === 'development'
+}
+
+function unlimitedRateLimitResult(): RateLimitResult {
+  const resetAt = Date.now() + 86_400_000
+  return {
+    allowed: true,
+    limit: 0,
+    remaining: 0,
+    resetAt,
+    retryAfterSec: 0,
+  }
+}
+
 /** Catalog reads — generous but blocks obvious scraping bursts. */
 export const API_READ_RATE_LIMIT: RateLimitConfig = {
   windowMs: readIntEnv('RATE_LIMIT_API_WINDOW_MS', 60_000),
@@ -36,7 +53,7 @@ export const API_READ_RATE_LIMIT: RateLimitConfig = {
 /** Fusion generation — strict (direct LLM cost). */
 export const FUSION_GENERATE_RATE_LIMIT: RateLimitConfig = {
   windowMs: readIntEnv('RATE_LIMIT_FUSION_WINDOW_MS', 300_000),
-  maxRequests: readIntEnv('RATE_LIMIT_FUSION_MAX', 3),
+  maxRequests: readIntEnv('RATE_LIMIT_FUSION_MAX', 10),
 }
 
 function bucketKey(namespace: string, ip: string): string {
@@ -48,6 +65,10 @@ export function checkRateLimit(
   ip: string,
   config: RateLimitConfig,
 ): RateLimitResult {
+  if (isRateLimitDisabled()) {
+    return unlimitedRateLimitResult()
+  }
+
   const now = Date.now()
   const key = bucketKey(namespace, ip)
   const record = buckets.get(key)

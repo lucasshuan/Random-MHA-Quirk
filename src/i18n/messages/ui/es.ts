@@ -15,6 +15,19 @@ export const es: Messages = {
     title: 'Don Aleatorio',
     logoAlt: 'Logo de My Hero Academia',
   },
+  api: {
+    errors: {
+      rateLimitFusion:
+        'Demasiadas generaciones de fusión (máx. 10 cada 5 minutos). Espera unos {{minutes}} min antes de intentar de nuevo.',
+      rateLimitApi: 'Demasiadas solicitudes. Intenta de nuevo en unos {{minutes}} min.',
+      invalidJson: 'Cuerpo de la solicitud inválido.',
+      missingFusionFields: 'parentA, parentB y seed son obligatorios.',
+      missingLocale: 'El parámetro "locale" es obligatorio (en, pt-BR, es).',
+      quirkNotFound: 'Don no encontrado.',
+      fusionGenerateFailed: 'No se pudo generar esta fusión.',
+      serverError: 'Algo salió mal. Intenta de nuevo en un momento.',
+    },
+  },
   start: {
     title: 'Encuentra un don.',
     action: 'Empezar',

@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { apiErrorJson, rateLimitedJson } from '@/server/http/api-errors'
 import { applyCorsHeaders } from '@/server/http/cors'
 import { checkApiReadRateLimit, rateLimitHeaders } from '@/server/http/rate-limit'
 import { parseLocaleParam, parseQuirkFiltersFromSearchParams } from '@/server/quirks/params'
@@ -23,24 +24,17 @@ export async function GET(request: NextRequest) {
   const rateHeaders = rateLimitHeaders(rate)
 
   if (!rate.allowed) {
-    return applyCorsHeaders(
-      Response.json(
-        { message: 'Muitas requisições. Tente novamente em breve.' },
-        { status: 429, headers: rateHeaders },
-      ),
-      request,
-    )
+    return rateLimitedJson(request, rate, 'RATE_LIMIT_API', rateHeaders)
   }
 
   const locale = parseLocaleParam(request.nextUrl.searchParams.get('locale'))
 
   if (!locale) {
-    return applyCorsHeaders(
-      Response.json(
-        { message: 'Query param "locale" is required (en, pt-BR, es).' },
-        { status: 400, headers: rateHeaders },
-      ),
+    return apiErrorJson(
+      { code: 'MISSING_LOCALE' },
       request,
+      400,
+      rateHeaders,
     )
   }
 
@@ -59,11 +53,12 @@ export async function GET(request: NextRequest) {
       ),
       request,
     )
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    return applyCorsHeaders(
-      Response.json({ message }, { status: 500, headers: rateHeaders }),
+  } catch {
+    return apiErrorJson(
+      { code: 'SERVER_ERROR' },
       request,
+      500,
+      rateHeaders,
     )
   }
 }

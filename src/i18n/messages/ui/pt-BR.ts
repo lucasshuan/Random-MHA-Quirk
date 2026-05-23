@@ -15,6 +15,19 @@ export const ptBR: Messages = {
     title: 'Individualidade Aleatória',
     logoAlt: 'Logo de My Hero Academia',
   },
+  api: {
+    errors: {
+      rateLimitFusion:
+        'Muitas gerações de fusão (máx. 10 a cada 5 minutos). Aguarde cerca de {{minutes}} min antes de tentar de novo.',
+      rateLimitApi: 'Muitas requisições. Tente novamente em cerca de {{minutes}} min.',
+      invalidJson: 'Corpo da requisição inválido.',
+      missingFusionFields: 'parentA, parentB e seed são obrigatórios.',
+      missingLocale: 'O parâmetro "locale" é obrigatório (en, pt-BR, es).',
+      quirkNotFound: 'Individualidade não encontrada.',
+      fusionGenerateFailed: 'Não foi possível gerar esta fusão.',
+      serverError: 'Algo deu errado. Tente novamente em instantes.',
+    },
+  },
   start: {
     title: 'Encontre uma individualidade.',
     action: 'Começar',

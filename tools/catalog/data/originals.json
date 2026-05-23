@@ -5,11 +5,23 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Long",
-    "facets": ["Control"],
+    "facets": [
+      "Control"
+    ],
     "source": "https://www.deviantart.com/denebu-kise/art/Michihiko-Mebori-My-Hero-Academia-OC-profile-834881367",
     "inspiration": "Fan OC Michihiko Mebori (All-Eyes/Gorgon).",
     "name": "Gorgon",
-    "description": "Stops the motion of anything in the user's line of sight until they blink or release focus. Larger targets demand more strain and slip free sooner than smaller ones."
+    "description": "Stops the motion of anything in the user's line of sight until they blink or release focus. Larger targets demand more strain and slip free sooner than smaller ones.",
+    "copy": {
+      "pt-BR": {
+        "name": "Olhar da Medusa",
+        "description": "Congela o movimento de qualquer coisa no campo de visão do usuário até que ele pisque ou solte o foco. Alvos maiores exigem mais esforço e escapam mais rápido que os menores. A individualidade depende da linha de visão e do controle ocular."
+      },
+      "es": {
+        "name": "Petravisión",
+        "description": "El don detiene el movimiento de cualquier objetivo que quede en la línea de visión del usuario hasta que parpadee o suelte la concentración. Blancos mayores exigen más esfuerzo y suelen liberarse antes que los pequeños."
+      }
+    }
   },
   {
     "id": "sound-wave",
@@ -17,11 +29,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Emission", "Sensory"],
+    "facets": [
+      "Emission",
+      "Sensory"
+    ],
     "source": "https://www.deviantart.com/orionmaxell17/art/BNHA-OC-Hibiki-Albrecht-859486558",
     "inspiration": "Fan OC Hibiki Albrecht (Queen of Sound / Duchess Wave).",
     "name": "Sound Wave",
-    "description": "Allows the user to perceive and control sound waves, altering pitch, volume, speed, and direction. They can mimic voices, mute nearby hearing, or strike with focused bursts. Must detect the sound; heavy noise and hearing strain are drawbacks."
+    "description": "Allows the user to perceive and control sound waves, altering pitch, volume, speed, and direction. They can mimic voices, mute nearby hearing, or strike with focused bursts. Must detect the sound; heavy noise and hearing strain are drawbacks.",
+    "copy": {
+      "pt-BR": {
+        "name": "Ondas Sonoras",
+        "description": "Permite perceber e manipular ondas sonoras, alterando tom, volume, velocidade e direção. Pode imitar vozes, silenciar audição próxima ou atacar com rajadas focalizadas. A individualidade só funciona sobre sons detectados; ruído intenso e fadiga auditiva são limitações."
+      },
+      "es": {
+        "name": "Ondas de Sonido",
+        "description": "El don permite percibir y moldear ondas sonoras, cambiando tono, volumen, velocidad y dirección. Puede imitar voces, dejar sordo alrededor o lanzar ráfagas focalizadas. Debe detectar el sonido; el ruido intenso y la fatiga auditiva son contras."
+      }
+    }
   },
   {
     "id": "fairy-dust",
@@ -29,11 +54,24 @@
     "tier": "C",
     "type": "Mutant",
     "range": "Medium",
-    "facets": ["Emission", "Mobility"],
+    "facets": [
+      "Emission",
+      "Mobility"
+    ],
     "source": "https://www.deviantart.com/aaliyahgacha2008/art/Norika-Yosei-MHA-OC-1165138109",
     "inspiration": "Fan OC Norika Yosei.",
     "name": "Fairy Dust",
-    "description": "Generates glowing dust the user moves by telekinesis to lift small loads, trace paths, or scatter light. The mutation adds faint wings and short flight. Too light for serious direct combat but useful for support and rescue."
+    "description": "Generates glowing dust the user moves by telekinesis to lift small loads, trace paths, or scatter light. The mutation adds faint wings and short flight. Too light for serious direct combat but useful for support and rescue.",
+    "copy": {
+      "pt-BR": {
+        "name": "Pó de Fada",
+        "description": "Gera partículas luminosas que o usuário move por telecinese para elevar cargas leves, marcar rotas ou dispersar luz. A mutação traz asas frágeis e voo curto. Essa individualidade é pouco efetiva em combate direto, mas excelente para apoio e resgate."
+      },
+      "es": {
+        "name": "Polvo Alado",
+        "description": "El don genera polvo luminoso que el usuario mueve telequinéticamente para elevar cargas ligeras, trazar rutas o esparcir luz; la mutación añade alas tenues y vuelo corto. Demasiado ligero para combate directo, útil en rescate y apoyo."
+      }
+    }
   },
   {
     "id": "memory-projector",
@@ -41,11 +79,24 @@
     "tier": "C",
     "type": "Emitter",
     "range": "Contact",
-    "facets": ["Psychic", "Sensory"],
+    "facets": [
+      "Psychic",
+      "Sensory"
+    ],
     "source": "https://www.deviantart.com/edcom02/art/MHA-DOFP-Lady-Flashback-844153838",
     "inspiration": "Fan OC River Munroe / Lady Flashback (Memory Projector).",
     "name": "Memory Projector",
-    "description": "On fingertip touch, pulls a target's memories and projects them as a hologram from the user's eyes for others to watch from that person's viewpoint. Resistant minds block or blur withheld scenes. The user is blind from reality and locked onto seeing the memories whenever the quirk is being used."
+    "description": "On fingertip touch, pulls a target's memories and projects them as a hologram from the user's eyes for others to watch from that person's viewpoint. Resistant minds block or blur withheld scenes. The user is blind from reality and locked onto seeing the memories whenever the quirk is being used.",
+    "copy": {
+      "pt-BR": {
+        "name": "Projetor de Memórias",
+        "description": "Ao tocar com a ponta do dedo, extrai memórias do alvo e projeta um holograma pelos olhos do usuário para terceiros verem pelo ponto de vista daquela pessoa. Mentes resistentes bloqueiam ou desfocam cenas retidas. Enquanto usada, a individualidade deixa o usuário cego para a realidade e fixo na visualização."
+      },
+      "es": {
+        "name": "Visor de Recuerdos",
+        "description": "Con un toque en la punta de los dedos, el don extrae memorias y las proyecta como hologramas desde los ojos del usuario, mostrando la escena según la perspectiva del recordado. Mentes resistentes bloquean o emborronan imágenes; mientras actúa, el usuario queda ciego a la realidad y fijado en la visión."
+      }
+    }
   },
   {
     "id": "playback",
@@ -53,11 +104,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Contact",
-    "facets": ["Control", "Sensory"],
+    "facets": [
+      "Control",
+      "Sensory"
+    ],
     "source": "https://www.deviantart.com/thejayleedraws/art/Juri-Tatsumi-aka-REPLAY-MHA-OC-873683541",
     "inspiration": "Fan OC Juri Tatsumi (REPLAY).",
     "name": "Playback",
-    "description": "On touch, rewinds a person or object's actions. The user feels whatever pain, emotion, or strain the target underwent in that span; rewound objects relay stored impact and stress instead."
+    "description": "On touch, rewinds a person or object's actions. The user feels whatever pain, emotion, or strain the target underwent in that span; rewound objects relay stored impact and stress instead.",
+    "copy": {
+      "pt-BR": {
+        "name": "Rebobinar",
+        "description": "Regrava ações de uma pessoa ou objeto ao toque, voltando seu estado no tempo. O usuário sente as dores, emoções e o desgaste vividos naquele intervalo; objetos repassam impactos e tensões acumuladas. A individualidade conecta sensorialmente quem a usa ao alvo."
+      },
+      "es": {
+        "name": "Retroceso",
+        "description": "Al tocar, el don rebobina las acciones de una persona u objeto. El usuario sufre el dolor, la emoción o el esfuerzo que el objetivo vivió en ese lapso; los objetos transmiten impactos y tensiones almacenadas."
+      }
+    }
   },
   {
     "id": "water",
@@ -65,11 +129,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Elemental", "Control"],
+    "facets": [
+      "Elemental",
+      "Control"
+    ],
     "source": "https://shapes.inc/miyachi",
     "inspiration": "Fan OC Miya Sairin.",
     "name": "Water",
-    "description": "Allows the user to generate and control water within range. The mass is drawn from their hydration; any volume they lose track of snaps back through the skin as stinging cold until it is recovered."
+    "description": "Allows the user to generate and control water within range. The mass is drawn from their hydration; any volume they lose track of snaps back through the skin as stinging cold until it is recovered.",
+    "copy": {
+      "pt-BR": {
+        "name": "Hidrogênese",
+        "description": "Gera e controla água dentro do alcance, consumindo a própria hidratação como fonte. O volume retirado volta pela pele como frio pungente se o usuário perder a noção do que criou, até ser recuperado. A individualidade exige gestão cuidadosa do estoque hídrico corporal."
+      },
+      "es": {
+        "name": "Hidrogénesis",
+        "description": "El don permite generar y controlar agua dentro de su alcance. La masa proviene de la hidratación del usuario; cualquier volumen que pierda de vista regresa por la piel como un frío punzante hasta ser recuperado."
+      }
+    }
   },
   {
     "id": "ctrl",
@@ -77,11 +154,24 @@
     "tier": "B",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Control", "Support"],
+    "facets": [
+      "Control",
+      "Support"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/109",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #095 Ctrl.",
     "name": "Ctrl",
-    "description": "Within about ten meters, copies, pastes, or undoes small non-living actions by tracing C, V, or Z on their fingers toward the target. Cannot affect living things; undo reaches up to two minutes back."
+    "description": "Within about ten meters, copies, pastes, or undoes small non-living actions by tracing C, V, or Z on their fingers toward the target. Cannot affect living things; undo reaches up to two minutes back.",
+    "copy": {
+      "pt-BR": {
+        "name": "Ctrl",
+        "description": "Dentro de cerca de dez metros, copia, cola ou desfaz ações pequenas em objetos inanimados traçando C, V ou Z com os dedos em direção ao alvo. A individualidade não afeta seres vivos; o desfazer alcança até dois minutos no passado."
+      },
+      "es": {
+        "name": "Ctrl",
+        "description": "A unos diez metros, su don copia, pega o deshace pequeñas acciones sobre objetos inanimados al trazar C, V o Z con los dedos hacia el objetivo. No afecta seres vivos; deshacer retrocede hasta dos minutos."
+      }
+    }
   },
   {
     "id": "future-scenario",
@@ -89,11 +179,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Self",
-    "facets": ["Psychic", "Mobility"],
+    "facets": [
+      "Psychic",
+      "Mobility"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/11",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #007 Future Scenario.",
     "name": "Future Scenario",
-    "description": "Shows possible futures in any mirror. The user may step to a chosen place-time for up to five minutes, then return to the present. Must name the second precisely and stand where they wish to arrive; each jump costs heavy stamina."
+    "description": "Shows possible futures in any mirror. The user may step to a chosen place-time for up to five minutes, then return to the present. Must name the second precisely and stand where they wish to arrive; each jump costs heavy stamina.",
+    "copy": {
+      "pt-BR": {
+        "name": "Espelho do Amanhã",
+        "description": "Mostra futuros possíveis em qualquer espelho. A individualidade permite que o usuário salte ao lugar-tempo visto por até cinco minutos — é preciso nomear o destino com precisão e posicionar-se onde deseja aparecer; cada salto consome muita resistência."
+      },
+      "es": {
+        "name": "Reflejo Futuro",
+        "description": "Su don muestra futuros posibles en cualquier espejo. Puede trasladarse a un lugar-tiempo elegido hasta cinco minutos y luego volver al presente. Debe nombrar el destino con exactitud y situarse donde quiera llegar; cada salto agota mucho."
+      }
+    }
   },
   {
     "id": "cosmos",
@@ -101,11 +204,24 @@
     "tier": "S",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Elemental", "Emission"],
+    "facets": [
+      "Elemental",
+      "Emission"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/39",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #033 Cosmos.",
     "name": "Cosmos",
-    "description": "Generates flowing cosmic dust and nebula-dense clouds the user can shape and propel. The particles are the same kind that gather before stars form and can be packed into far denser masses. Weakens in strong daylight."
+    "description": "Generates flowing cosmic dust and nebula-dense clouds the user can shape and propel. The particles are the same kind that gather before stars form and can be packed into far denser masses. Weakens in strong daylight.",
+    "copy": {
+      "pt-BR": {
+        "name": "Cosmos",
+        "description": "Gera pó cósmico fluido e nuvens densas de nébula que o usuário pode moldar e projetar. As partículas são do tipo que se reúne antes da formação estelar e podem ser compactadas em massas muito mais densas. A individualidade enfraquece sob luz solar intensa."
+      },
+      "es": {
+        "name": "Cosmos",
+        "description": "Su don genera polvo cósmico y nubes densas de nebulosa que puede moldear y propulsar. Las partículas son del tipo que se agrupa antes de nacer una estrella y pueden compactarse en masas mucho más densas. Pierde fuerza a plena luz del día."
+      }
+    }
   },
   {
     "id": "marker",
@@ -113,11 +229,24 @@
     "tier": "B",
     "type": "Transformation",
     "range": "Contact",
-    "facets": ["Construct", "Emission"],
+    "facets": [
+      "Construct",
+      "Emission"
+    ],
     "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
     "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Marker).",
     "name": "Marker",
-    "description": "Turns the fingers into markers whose drawn lines and shapes become real matter once the ink dries. Simple forms are reliable; large or moving constructs demand focus and stamina."
+    "description": "Turns the fingers into markers whose drawn lines and shapes become real matter once the ink dries. Simple forms are reliable; large or moving constructs demand focus and stamina.",
+    "copy": {
+      "pt-BR": {
+        "name": "Marcador",
+        "description": "Transforma os dedos em marcadores cujos traços e formas se tornam matéria real quando a 'tinta' seca. Criações simples são confiáveis; estruturas grandes ou móveis exigem concentração e gasto de resistência do usuário. A individualidade atua por contato."
+      },
+      "es": {
+        "name": "Tinta Viva",
+        "description": "Su don convierte los dedos en marcadores; las líneas y figuras que dibuja se vuelven materia real cuando la tinta seca. Formas simples son fiables; construcciones grandes o móviles exigen concentración y un notable gasto de energía."
+      }
+    }
   },
   {
     "id": "tracker",
@@ -125,11 +254,23 @@
     "tier": "C",
     "type": "Emitter",
     "range": "Long",
-    "facets": ["Sensory"],
+    "facets": [
+      "Sensory"
+    ],
     "source": "https://aminoapps.com/c/mhaocs/page/blog/oc-quirk-ideas/6PoQ_YeZIzuP1GkNpWJDKvxw5Mw0DRnYdjj",
     "inspiration": "Amino MHA OCs — OC Quirk Ideas by CJs-cats (Tracker).",
     "name": "Tracker",
-    "description": "Reveals a glowing trail along one chosen person's past route. Every trail looks the same until the user reaches the current end of that path; switching targets requires a new focus."
+    "description": "Reveals a glowing trail along one chosen person's past route. Every trail looks the same until the user reaches the current end of that path; switching targets requires a new focus.",
+    "copy": {
+      "pt-BR": {
+        "name": "Trilha do Passado",
+        "description": "A individualidade revela um rastro luminoso ao longo do trajeto passado de uma pessoa escolhida. Todos os rastros têm a mesma aparência até o usuário alcançar a ponta atual do caminho; trocar de alvo exige novo foco."
+      },
+      "es": {
+        "name": "Rastro Luminoso",
+        "description": "Su don revela un rastro luminoso por la ruta pasada de una persona elegida, permitiendo seguir su trazado hasta su final. Todos los rastros parecen iguales hasta alcanzar el punto actual del recorrido; cambiar de objetivo exige reenfocar su atención."
+      }
+    }
   },
   {
     "id": "animate",
@@ -137,11 +278,24 @@
     "tier": "B",
     "type": "Emitter",
     "range": "Contact",
-    "facets": ["Psychic", "Control"],
+    "facets": [
+      "Psychic",
+      "Control"
+    ],
     "source": null,
     "inspiration": "Original concept.",
     "name": "Animate",
-    "description": "On touch, awakens non-living objects with a face and will of their own. They may cooperate, refuse, or deceive, and remember what they witnessed while awake. All animated objects return inert when the user falls asleep."
+    "description": "On touch, awakens non-living objects with a face and will of their own. They may cooperate, refuse, or deceive, and remember what they witnessed while awake. All animated objects return inert when the user falls asleep.",
+    "copy": {
+      "pt-BR": {
+        "name": "Despertar de Coisas",
+        "description": "A individualidade, ao toque, desperta objetos inanimados, dando-lhes rosto e vontade própria. Podem cooperar, recusar ordens, enganar e lembram o que presenciaram enquanto despertos; todos voltam a inertes quando o usuário adormece."
+      },
+      "es": {
+        "name": "Despertar",
+        "description": "Al tocar, su don despierta objetos inanimados dotándolos de rostro y voluntad propia. Pueden cooperar, negarse o engañar, y recuerdan lo que presenciaron mientras estuvieron despiertos. Todos vuelven inertes cuando el usuario cae dormido."
+      }
+    }
   },
   {
     "id": "dark-matter",
@@ -149,11 +303,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Construct", "Emission"],
+    "facets": [
+      "Construct",
+      "Emission"
+    ],
     "source": "https://www.deviantart.com/shawnee-etherington/art/Kiseki-Kachi-1101860550",
     "inspiration": "Fan OC Kiseki Kachi (Dark Matter).",
     "name": "Dark Matter",
-    "description": "Reshapes the user's shadow into goopy weapons, animals, or tools within medium range. Prolonged sculpting dulls focus and invites intrusive, anxious thoughts until they rest."
+    "description": "Reshapes the user's shadow into goopy weapons, animals, or tools within medium range. Prolonged sculpting dulls focus and invites intrusive, anxious thoughts until they rest.",
+    "copy": {
+      "pt-BR": {
+        "name": "Sombra Viscosa",
+        "description": "A individualidade molda a sombra do usuário em armas, animais ou ferramentas pegajosas com alcance médio. Esculpir por longos períodos consome a concentração e provoca pensamentos ansiosos e intrusivos até o descanso. As criações exigem foco constante."
+      },
+      "es": {
+        "name": "Sombramasa",
+        "description": "El don convierte la propia sombra en masas viscosas que se moldean en armas, bestias o herramientas a alcance medio. Esculpir durante mucho tiempo reduce la concentración y provoca pensamientos intrusivos y ansiedad; solo remiten con descanso."
+      }
+    }
   },
   {
     "id": "lattice",
@@ -161,11 +328,24 @@
     "tier": "B",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Elemental", "Construct"],
+    "facets": [
+      "Elemental",
+      "Construct"
+    ],
     "source": "https://www.deviantart.com/etsap123/art/Rikara-Kayama-MHA-OC-1098455000",
     "inspiration": "Fan OC Rikara Kayama.",
     "name": "Lattice",
-    "description": "Rearranges nearby atoms into crystal structures the user imagines. Crystals must grow from a surface they are touching, and each patch remembers its last form—forcing a new design there shatters the old lattice into cutting shards."
+    "description": "Rearranges nearby atoms into crystal structures the user imagines. Crystals must grow from a surface they are touching, and each patch remembers its last form—forcing a new design there shatters the old lattice into cutting shards.",
+    "copy": {
+      "pt-BR": {
+        "name": "Malha Cristalina",
+        "description": "A individualidade reorganiza átomos próximos em cristais conforme a imaginação do usuário, com alcance médio. Cristais crescem apenas a partir de uma superfície tocada, e cada área “lembra” sua última forma. Forçar nova estrutura quebra a antiga em lascas cortantes."
+      },
+      "es": {
+        "name": "Red Cristalina",
+        "description": "El don reorganiza átomos cercanos para crecer cristales según la imaginación del usuario. Deben nacer de una superficie que toquen y cada parche recuerda su última forma; imponer un nuevo diseño rompe la red previa en afiladas esquirlas."
+      }
+    }
   },
   {
     "id": "puppeteer",
@@ -173,11 +353,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Psychic", "Control"],
+    "facets": [
+      "Psychic",
+      "Control"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/12",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #008 Puppeteer.",
     "name": "Puppeteer",
-    "description": "Reveals marionette strings on up to two people in line of sight and moves their bodies like puppets within medium range. Strings snap if sight breaks or either target leaves range."
+    "description": "Reveals marionette strings on up to two people in line of sight and moves their bodies like puppets within medium range. Strings snap if sight breaks or either target leaves range.",
+    "copy": {
+      "pt-BR": {
+        "name": "Marionetista",
+        "description": "A individualidade revela cordas marionete em até duas pessoas na linha de visão e move seus corpos como fantoches a alcance médio. As cordas se rompem se a visão for perdida ou se qualquer alvo sair do alcance. Controle depende de visão contínua."
+      },
+      "es": {
+        "name": "Marionetista",
+        "description": "El don revela hilos de marioneta en hasta dos personas en línea de visión y mueve sus cuerpos como títeres a alcance medio. Los hilos se rompen si la vista se pierde o si cualquiera de los objetivos abandona el rango."
+      }
+    }
   },
   {
     "id": "hypnos",
@@ -185,11 +378,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Contact",
-    "facets": ["Psychic", "Control"],
+    "facets": [
+      "Psychic",
+      "Control"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/28",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #022 Hypnos.",
     "name": "Hypnos",
-    "description": "On touch, puts targets to sleep for up to fifteen minutes. Each extra touch the same day blurs the last few minutes they remember."
+    "description": "On touch, puts targets to sleep for up to fifteen minutes. Each extra touch the same day blurs the last few minutes they remember.",
+    "copy": {
+      "pt-BR": {
+        "name": "Toque do Sono",
+        "description": "A individualidade adormece alvos ao toque por até quinze minutos. Cada toque adicional no mesmo dia apaga e embaça os últimos minutos de memória da vítima. O efeito exige contato direto com a pele."
+      },
+      "es": {
+        "name": "Toque Hipnótico",
+        "description": "El don, por contacto, induce sueño en el objetivo durante hasta quince minutos. Cada toque adicional el mismo día borra los últimos minutos que la víctima recuerda."
+      }
+    }
   },
   {
     "id": "kinetic",
@@ -197,11 +403,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Medium",
-    "facets": ["Emission", "Stockpile"],
+    "facets": [
+      "Emission",
+      "Stockpile"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/78",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #065 Kinetic.",
     "name": "Kinetic",
-    "description": "Absorbs kinetic impacts into a personal reserve and must vent them as focused hand beams within ten minutes. Without stored energy the quirk does nothing; overfilling forces painful discharges."
+    "description": "Absorbs kinetic impacts into a personal reserve and must vent them as focused hand beams within ten minutes. Without stored energy the quirk does nothing; overfilling forces painful discharges.",
+    "copy": {
+      "pt-BR": {
+        "name": "Cinética",
+        "description": "A individualidade absorve impactos cinéticos para uma reserva pessoal que deve ser liberada em feixes concentrados pelas mãos dentro de dez minutos. Sem energia armazenada não funciona; ao sobrecarregar, ocorrem descargas involuntárias e dolorosas."
+      },
+      "es": {
+        "name": "Cinética",
+        "description": "El don absorbe impactos cinéticos en una reserva personal que debe expulsarse en haces concentrados desde las manos en menos de diez minutos. Sin energía almacenada no funciona; sobrecargarla provoca descargas dolorosas."
+      }
+    }
   },
   {
     "id": "kitsune",
@@ -209,11 +428,24 @@
     "tier": "A",
     "type": "Transformation",
     "range": "Contact",
-    "facets": ["Anthropomorphic", "Biological"],
+    "facets": [
+      "Anthropomorphic",
+      "Biological"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/29",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #023 Kitsune.",
     "name": "Kitsune",
-    "description": "The user has fox-like traits. After touching an animal once, the user becomes that species—not another person's likeness. Frequent skin contact with humans dulls the fox traits and helps keep a mostly human face and build."
+    "description": "The user has fox-like traits. After touching an animal once, the user becomes that species—not another person's likeness. Frequent skin contact with humans dulls the fox traits and helps keep a mostly human face and build.",
+    "copy": {
+      "pt-BR": {
+        "name": "Kitsune",
+        "description": "A individualidade confere traços de raposa ao usuário e, ao tocar um animal uma vez, transforma-o naquela espécie — não na aparência de outra pessoa. Contato frequente com humanos atenua os traços, ajudando a manter rosto e corpo majoritariamente humanos."
+      },
+      "es": {
+        "name": "Kitsune",
+        "description": "El don otorga rasgos zorros; tras tocar un animal una vez, el usuario adopta esa especie, no la apariencia de otra persona. El contacto frecuente con humanos atenúa los rasgos y mantiene rostro y cuerpo mayormente humanos."
+      }
+    }
   },
   {
     "id": "spinblade",
@@ -221,11 +453,24 @@
     "tier": "B",
     "type": "Transformation",
     "range": "Self",
-    "facets": ["Enhancement", "Construct"],
+    "facets": [
+      "Enhancement",
+      "Construct"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/77",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #064 Spinblade (Ghoulplayzs).",
     "name": "Spinblade",
-    "description": "Arms can turn into spinning blade limbs that cut flesh and wood but not metal or brick. Extended spinning numbs the arms for hours afterward."
+    "description": "Arms can turn into spinning blade limbs that cut flesh and wood but not metal or brick. Extended spinning numbs the arms for hours afterward.",
+    "copy": {
+      "pt-BR": {
+        "name": "Gira‑Lâmina",
+        "description": "A individualidade faz os braços girarem e se transformarem em lâminas rotativas capazes de cortar carne e madeira, mas não metal ou alvenaria. Manter a rotação por muito tempo causa dormência nos braços que pode durar horas."
+      },
+      "es": {
+        "name": "Cuchilla giratoria",
+        "description": "El don Filo Tornado convierte los brazos en apéndices giratorios y cortantes que seccionan carne y madera, pero no metal ni ladrillo. Mantener el giro mucho tiempo deja los brazos entumecidos durante horas."
+      }
+    }
   },
   {
     "id": "cnidocyte",
@@ -233,11 +478,24 @@
     "tier": "B",
     "type": "Mutant",
     "range": "Contact",
-    "facets": ["Biological", "Emission"],
+    "facets": [
+      "Biological",
+      "Emission"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/18",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #014 Cnidarian Sting.",
     "name": "Cnidocyte",
-    "description": "Jellyfish-like mutant flesh with a constant touch sting whose intensity the user chooses. Can eat certain toxins to lace the next contact with matching poison for a short window."
+    "description": "Jellyfish-like mutant flesh with a constant touch sting whose intensity the user chooses. Can eat certain toxins to lace the next contact with matching poison for a short window.",
+    "copy": {
+      "pt-BR": {
+        "name": "Cnidoblasto",
+        "description": "Transforma a pele em tecido tipo água‑viva que aplica uma ferroada constante ao toque, cuja intensidade o usuário regula. Pode metabolizar certas toxinas para impregnar o próximo contato com o mesmo veneno por curto período."
+      },
+      "es": {
+        "name": "Cnidocito",
+        "description": "Transforma la piel en tejido gelatinoso tipo medusa que inflige una picadura al contacto, cuya intensidad el usuario regula. Puede ingerir ciertas toxinas para impregnar el siguiente contacto durante una ventana breve."
+      }
+    }
   },
   {
     "id": "oubliette",
@@ -245,11 +503,24 @@
     "tier": "A",
     "type": "Emitter",
     "range": "Contact",
-    "facets": ["Construct", "Stockpile"],
+    "facets": [
+      "Construct",
+      "Stockpile"
+    ],
     "source": null,
     "inspiration": "Original concept (Abyss rewrite); renamed from Store.",
     "name": "Oubliette",
-    "description": "The right palm opens an inward-spiraling void that swallows touched matter into a weightless pocket where time stalls; the left palm releases stored items in aimed bursts. Total mass is capped, living targets resist entry, and volatile matter such as flames or gases scorch the intake rim until vented—choosing exactly what comes out is unreliable."
+    "description": "The right palm opens an inward-spiraling void that swallows touched matter into a weightless pocket where time stalls; the left palm releases stored items. Total mass is capped, living targets resist entry, and volatile matter such as flames or gases scorch the intake rim or thin nearby air until vented—choosing exactly what comes out is unreliable.",
+    "copy": {
+      "pt-BR": {
+        "name": "Oblívio",
+        "description": "A individualidade abre, pela palma direita, um vórtice em espiral que suga o que toca para um bolso intangível e sem peso onde o tempo quase para; a palma esquerda libera o conteúdo em rajadas direcionadas. Há um limite de massa, seres vivos resistem à entrada e matéria volátil que entra queima a borda do portal até ser ventilada. Escolher exatamente o que sai não é confiável."
+      },
+      "es": {
+        "name": "Foso",
+        "description": "El don Bolsón Abisal crea en la palma derecha un vacío espiral que traga lo tocado hacia un bolsillo ingrávido donde el tiempo se ralentiza. La palma izquierda expulsa lo almacenado en ráfagas. Hay un tope de masa; vivos resisten la entrada; materias volátiles chamuscan el borde y elegir exactamente qué sale es poco fiable."
+      }
+    }
   },
   {
     "id": "safety-first",
@@ -257,10 +528,22 @@
     "tier": "C",
     "type": "Mutant",
     "range": "Long",
-    "facets": ["Sensory"],
+    "facets": [
+      "Sensory"
+    ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/19",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #015 Safety First.",
     "name": "Safety First",
-    "description": "Allows the user to see danger as green, yellow, or red up to miles away. Strong alerts sting the temples."
+    "description": "Allows the user to see danger as green, yellow, or red up to miles away. Strong alerts sting the temples.",
+    "copy": {
+      "pt-BR": {
+        "name": "Segurança Primeiro",
+        "description": "A individualidade permite ver perigos codificados por cor — verde, amarelo ou vermelho — a vários quilômetros de distância. Alertas mais fortes causam pontadas nas têmporas."
+      },
+      "es": {
+        "name": "Semáforo Vital",
+        "description": "El don Semáforo Vital permite ver el peligro codificado en verde, amarillo o rojo hasta a varias millas de distancia. Las alertas intensas provocan un pinchazo doloroso en las sienes."
+      }
+    }
   }
 ]

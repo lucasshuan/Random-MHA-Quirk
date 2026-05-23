@@ -1,4 +1,5 @@
 :root {
+  --app-height: 100dvh;
   --bg: #0b1018;
   --bg-radial-a: rgba(255, 214, 10, 0.08);
   --bg-radial-b: rgba(220, 50, 47, 0.07);
@@ -37,11 +38,13 @@
 
 html,
 body {
-  min-height: 100%;
+  height: var(--app-height);
+  max-height: var(--app-height);
 }
 
 body {
   margin: 0;
+  overflow: hidden;
   background:
     radial-gradient(circle at 20% 0%, var(--bg-radial-a), transparent 34%),
     radial-gradient(circle at 100% 35%, var(--bg-radial-b), transparent 30%),

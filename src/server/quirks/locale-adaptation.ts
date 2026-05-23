@@ -55,13 +55,15 @@ English source (canonical mechanics — do not change the effect model):
 - range: ${range}
 - facets: ${facets.join(', ')}
 
-Your job is ADAPTATION, not literal translation.
+Your job is translation, but sometimes you need to adapt the name or description to fit the local context.
 
 Rules:
 - ${config.jsonKey}.name: ${config.nameRule}
 - ${config.jsonKey}.description: 2–3 short sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters
 - Preserve the same mechanism, activation, limits, and tradeoffs as English — do not add or remove effects
 - One individualidade/don only — never imply a second separate power
+- If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
+- If it's an existing proper noun, prefer using it as is (e.g. "Kitsune" for "Kitsune")
 - ${config.termRule}
 - ${config.toneHint}
 - Do not mention English, translation, fusion, parents, or the source language
@@ -78,12 +80,14 @@ export function buildQuirkLocaleAdaptationBatchPrompt(
 
   return `Adapt these ${kind} My Hero Academia quirks into ${config.languageLabel} for a quirk encyclopedia app.
 
-Your job is ADAPTATION, not literal translation.
+Your job is translation, but sometimes you need to adapt the name or description to fit the local context.
 
 Rules (every entry):
 - name: ${config.nameRule}
 - description: 2–3 short sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters
 - Preserve mechanism, activation, limits, and tradeoffs — do not add or remove effects
+- If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
+- If it's an existing proper noun, prefer using it as is (e.g. "Kitsune" for "Kitsune")
 - ${config.termRule}
 - ${config.toneHint}
 - Do not mention English, translation, or the source language

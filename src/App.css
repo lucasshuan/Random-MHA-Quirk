@@ -1,9 +1,11 @@
 .minimal-shell {
-  height: 100svh;
+  width: 100%;
+  height: var(--app-height);
+  max-height: var(--app-height);
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: clamp(0.5rem, 2svh, 1rem);
+  padding: clamp(0.35rem, 1.5svh, 0.85rem) clamp(0.5rem, 2vw, 1rem);
 }
 
 .minimal-card {
@@ -11,8 +13,10 @@
   width: min(100%, 680px);
   height: 100%;
   min-height: 0;
+  max-height: 100%;
   display: grid;
-  place-items: center;
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
 }
 
 .minimal-topbar {
@@ -90,20 +94,43 @@
 .minimal-screen {
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
+  min-height: 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  padding: clamp(3.2rem, 8svh, 4.5rem) 1.2rem;
+  padding:
+    clamp(2.5rem, 6.5svh, 3.75rem)
+    clamp(0.85rem, 3vw, 1.2rem)
+    clamp(0.5rem, 1.5svh, 1rem);
+}
+
+.minimal-screen > .simple-step {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.minimal-screen > .simple-step.advanced-step,
+.minimal-screen > .simple-step.manual-pick-step,
+.minimal-screen > .simple-step.result-step {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
 }
 
 .simple-step {
   width: 100%;
   max-height: 100%;
+  min-height: 0;
   display: grid;
   justify-items: center;
-  gap: clamp(0.65rem, 2.2svh, 1.35rem);
+  gap: clamp(0.55rem, 1.8svh, 1.2rem);
   text-align: center;
   animation: screenIn 180ms ease-out;
+  overflow: hidden;
 }
 
 @keyframes screenIn {
@@ -752,13 +779,25 @@
 
 .result-step {
   min-height: 0;
+  align-content: start;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
 }
 
 .result-step:has(.hybrid-result) {
   max-height: 100%;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
-  align-content: start;
   min-height: 0;
+}
+
+.result-step .result-cards-reveal {
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.result-step .result-cards-reveal:not(:has(.hybrid-result)) {
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .hybrid-result .segment-tab-panel {
@@ -772,6 +811,11 @@
 
 .result-step-rolling {
   gap: clamp(0.75rem, 2.2svh, 1.1rem);
+}
+
+.result-step.result-step-rolling:not(:has(.result-toolbar-reveal)) {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  align-content: center;
 }
 
 /* Scroll interno (filtros avançados, quirks sorteadas, etc.) */
@@ -1504,8 +1548,10 @@
 
 .advanced-step {
   align-self: stretch;
+  width: 100%;
   height: 100%;
   min-height: 0;
+  align-content: start;
   grid-template-rows: auto auto auto minmax(0, 1fr) auto;
 }
 
@@ -2181,7 +2227,7 @@
 .rolled-quirks-box {
   width: 100%;
   min-height: 0;
-  max-height: min(48svh, 380px);
+  max-height: 100%;
   padding: 0.65rem 0.5rem 0.65rem 0.65rem;
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -2200,6 +2246,8 @@
 
 .fusion-hero {
   width: 100%;
+  min-height: 0;
+  max-height: 100%;
   animation: resultCardPop 420ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -2262,7 +2310,9 @@
 }
 
 .catalog-loading-screen {
-  min-height: 100svh;
+  height: var(--app-height);
+  max-height: var(--app-height);
+  min-height: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -2386,6 +2436,8 @@
 .manual-pick-step {
   width: 100%;
   max-height: 100%;
+  min-height: 0;
+  align-content: start;
   grid-template-rows: auto auto auto minmax(0, 1fr);
 }
 
@@ -2456,12 +2508,22 @@
 .manual-pick-layout {
   width: min(100%, 860px);
   min-height: 0;
-  display: block;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .manual-quirk-panel {
-  max-height: min(48svh, 440px);
+  min-height: 0;
+  max-height: 100%;
   padding: 0.72rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.manual-quirk-panel.inner-scroll-panel {
+  overflow: hidden;
 }
 
 .manual-quirk-panel-heading {
@@ -2480,6 +2542,11 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.62rem;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  align-content: start;
 }
 
 .manual-quirk-card {
@@ -2769,43 +2836,14 @@
   }
 
   .minimal-card {
-    min-height: 100svh;
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
   }
 
-  /* Result pages: let the screen scroll (hybrid cards exceed viewport) */
-  .minimal-screen:has(.result-step) {
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    -webkit-overflow-scrolling: touch;
-    align-content: start;
-    place-items: stretch;
-  }
-
-  .simple-step.result-step,
-  .result-step:has(.hybrid-result) {
-    max-height: none;
-    overflow: visible;
-  }
-
-  .result-step:has(.hybrid-result) {
-    grid-template-rows: auto auto auto auto;
-  }
-
-  .hybrid-result {
-    max-height: none;
-    overflow: visible;
-    grid-template-rows: auto auto;
-  }
-
-  .hybrid-result .segment-tab-panel {
-    max-height: none;
-    overflow: visible;
-  }
-
-  .rolled-quirks-box.inner-scroll-panel {
-    max-height: none;
-    overflow: visible;
+  .minimal-screen {
+    padding-top: clamp(2.35rem, 5.5svh, 3.2rem);
+    padding-bottom: clamp(0.45rem, 1.2svh, 0.75rem);
   }
 
   .choice-grid {
@@ -2834,10 +2872,6 @@
 
   .manual-pick-layout {
     grid-template-columns: 1fr;
-  }
-
-  .manual-quirk-panel {
-    max-height: min(38svh, 340px);
   }
 
   .manual-quirk-grid {

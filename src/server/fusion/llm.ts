@@ -8,12 +8,58 @@ import {
 import type { FusionTranslationLocale } from './constants'
 
 const FUSION_EN_SYSTEM =
-  'You design creative My Hero Academia fusion quirks. Output strict JSON only.'
+  'You design My Hero Academia fan fusion quirks. en.name must sound like a REAL canon quirk title — often punny, blunt, silly, or absurd — NOT a fantasy RPG skill or technical label. en.description stays objective and encyclopedic. Output strict JSON only.'
 
 const FUSION_LOCALE_SYSTEM: Record<FusionTranslationLocale, string> = {
   'pt-BR':
     'You adapt My Hero Academia quirk entries into natural Brazilian Portuguese for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
   es: 'You adapt My Hero Academia quirk entries into natural Spanish for fans. Prioritize adaptation over literal translation. Output strict JSON only.',
+}
+
+export type FusionLlmPurpose = 'fusion' | 'translation'
+
+/** OpenAI reasoning models only accept the default temperature (1); omit the param. */
+export function openAiSupportsCustomTemperature(model: string): boolean {
+  const id = model.trim().toLowerCase()
+  if (id.startsWith('gpt-5-chat')) return true
+  if (id.startsWith('gpt-5') || id.startsWith('o')) return false
+  return true
+}
+
+/** GPT-5 / o-series reasoning models expose reasoning_effort instead of temperature. */
+export function openAiSupportsReasoningEffort(model: string): boolean {
+  const id = model.trim().toLowerCase()
+  if (id.startsWith('gpt-5-chat')) return false
+  if (id.startsWith('gpt-5') || id.startsWith('o')) return true
+  return false
+}
+
+export function resolveOpenAiReasoningEffort(purpose: FusionLlmPurpose): string {
+  if (purpose === 'translation') {
+    return process.env.FUSION_TRANSLATION_REASONING_EFFORT?.trim() || 'minimal'
+  }
+  return process.env.FUSION_REASONING_EFFORT?.trim() || 'low'
+}
+
+function resolveFusionTemperature(): number {
+  return Number(process.env.FUSION_TEMPERATURE ?? 0.9)
+}
+
+function resolveTranslationTemperature(): number {
+  return Number(process.env.FUSION_TRANSLATION_TEMPERATURE ?? 0.5)
+}
+
+function resolveGeminiTemperature(purpose: FusionLlmPurpose): number {
+  return purpose === 'translation'
+    ? resolveTranslationTemperature()
+    : resolveFusionTemperature()
+}
+
+function resolveOpenAiOutputTokenCap(model: string): number {
+  if (openAiSupportsReasoningEffort(model)) {
+    return Number(process.env.FUSION_MAX_COMPLETION_TOKENS ?? 4096)
+  }
+  return Number(process.env.FUSION_MAX_TOKENS ?? 2048)
 }
 
 function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
@@ -41,23 +87,38 @@ async function callOpenAI(
   apiKey: string,
   userPrompt: string,
   systemContent: string,
+  purpose: FusionLlmPurpose,
 ): Promise<unknown> {
   const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini'
+  const body: Record<string, unknown> = {
+    model,
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: systemContent },
+      { role: 'user', content: userPrompt },
+    ],
+  }
+
+  if (openAiSupportsReasoningEffort(model)) {
+    body.reasoning_effort = resolveOpenAiReasoningEffort(purpose)
+    body.max_completion_tokens = resolveOpenAiOutputTokenCap(model)
+  } else {
+    body.max_tokens = resolveOpenAiOutputTokenCap(model)
+    if (openAiSupportsCustomTemperature(model)) {
+      body.temperature =
+        purpose === 'translation'
+          ? resolveTranslationTemperature()
+          : resolveFusionTemperature()
+    }
+  }
+
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      model,
-      temperature: Number(process.env.FUSION_TEMPERATURE ?? 0.9),
-      response_format: { type: 'json_object' },
-      messages: [
-        { role: 'system', content: systemContent },
-        { role: 'user', content: userPrompt },
-      ],
-    }),
+    body: JSON.stringify(body),
   })
 
   if (!res.ok) {
@@ -77,6 +138,7 @@ async function callGemini(
   apiKey: string,
   userPrompt: string,
   systemContent: string,
+  purpose: FusionLlmPurpose,
 ): Promise<unknown> {
   const model = process.env.GEMINI_MODEL?.trim() || 'gemini-2.0-flash'
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
@@ -88,7 +150,7 @@ async function callGemini(
     body: JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
       generationConfig: {
-        temperature: Number(process.env.FUSION_TEMPERATURE ?? 0.9),
+        temperature: resolveGeminiTemperature(purpose),
         responseMimeType: 'application/json',
       },
     }),
@@ -110,6 +172,7 @@ async function callGemini(
 async function callLlmJson<T>(
   userPrompt: string,
   systemContent: string,
+  purpose: FusionLlmPurpose,
   validate: (raw: unknown) => T,
 ): Promise<T> {
   const provider = resolveFusionProvider()
@@ -119,8 +182,8 @@ async function callLlmJson<T>(
     try {
       const raw =
         provider.name === 'openai'
-          ? await callOpenAI(provider.apiKey, userPrompt, systemContent)
-          : await callGemini(provider.apiKey, userPrompt, systemContent)
+          ? await callOpenAI(provider.apiKey, userPrompt, systemContent, purpose)
+          : await callGemini(provider.apiKey, userPrompt, systemContent, purpose)
       return validate(raw)
     } catch (err) {
       if (attempt === maxAttempts) throw err
@@ -133,7 +196,7 @@ async function callLlmJson<T>(
 export function generateEnglishFusionWithLlm(
   userPrompt: string,
 ): Promise<ValidatedEnglishFusionPayload> {
-  return callLlmJson(userPrompt, FUSION_EN_SYSTEM, validateEnglishFusionPayload)
+  return callLlmJson(userPrompt, FUSION_EN_SYSTEM, 'fusion', validateEnglishFusionPayload)
 }
 
 export function translateFusionToLocaleWithLlm(
@@ -143,6 +206,7 @@ export function translateFusionToLocaleWithLlm(
   return callLlmJson(
     userPrompt,
     FUSION_LOCALE_SYSTEM[locale],
+    'translation',
     (raw) => validateLocaleFusionTranslation(raw, locale),
   )
 }

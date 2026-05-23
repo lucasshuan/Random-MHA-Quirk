@@ -8,30 +8,209 @@ export interface FusionOutputRoll {
   facets: QuirkFacet[]
 }
 
-function pickFacetsFromSeed(seed: string, count: number): QuirkFacet[] {
-  const pool = [...QUIRK_FACETS]
+export interface FusionOutputParentHints {
+  types?: string[]
+  ranges?: string[]
+}
+
+const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
+  Emitter: [
+    'Elemental',
+    'Psychic',
+    'Control',
+    'Support',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Emission',
+  ],
+  Transformation: [
+    'Elemental',
+    'Enhancement',
+    'Anthropomorphic',
+    'Control',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Biological',
+  ],
+  Mutant: [
+    'Enhancement',
+    'Anthropomorphic',
+    'Defense',
+    'Mobility',
+    'Sensory',
+    'Construct',
+    'Biological',
+  ],
+}
+
+function sortedParentPairKey(parentA: string, parentB: string): string {
+  return parentA < parentB ? `${parentA}+${parentB}` : `${parentB}+${parentA}`
+}
+
+export function fusionOutputRollKey(
+  seed: string,
+  parentA: string,
+  parentB: string,
+): string {
+  return `${sortedParentPairKey(parentA, parentB)}:${seed}`
+}
+
+function normalizeParentFacets(facets: string[]): QuirkFacet[] {
+  return [
+    ...new Set(
+      facets.filter((facet): facet is QuirkFacet =>
+        QUIRK_FACETS.includes(facet as QuirkFacet),
+      ),
+    ),
+  ]
+}
+
+function normalizeParentTypes(types: string[]): QuirkType[] {
+  return [
+    ...new Set(
+      types.filter((type): type is QuirkType =>
+        QUIRK_TYPES.includes(type as QuirkType),
+      ),
+    ),
+  ]
+}
+
+function normalizeParentRanges(ranges: string[]): QuirkRange[] {
+  return [
+    ...new Set(
+      ranges.filter((range): range is QuirkRange =>
+        QUIRK_RANGES.includes(range as QuirkRange),
+      ),
+    ),
+  ]
+}
+
+function rangeIndex(range: QuirkRange): number {
+  return QUIRK_RANGES.indexOf(range)
+}
+
+function pickTypeFromSeed(rollKey: string, parentTypeHints: QuirkType[]): QuirkType {
+  if (parentTypeHints.length === 0) {
+    return QUIRK_TYPES[hashSeed(rollKey, 'type') % QUIRK_TYPES.length]
+  }
+
+  const pool: QuirkType[] = [...QUIRK_TYPES]
+  for (const type of parentTypeHints) {
+    pool.push(type, type, type)
+  }
+
+  return pool[hashSeed(rollKey, 'type') % pool.length]
+}
+
+function pickRangeFromSeed(
+  rollKey: string,
+  parentRangeHints: QuirkRange[],
+): QuirkRange {
+  if (parentRangeHints.length === 0) {
+    return QUIRK_RANGES[hashSeed(rollKey, 'range') % QUIRK_RANGES.length]
+  }
+
+  const pool: QuirkRange[] = [...QUIRK_RANGES]
+  for (const range of parentRangeHints) {
+    pool.push(range, range, range)
+  }
+
+  if (parentRangeHints.length >= 2) {
+    const indexes = parentRangeHints.map(rangeIndex)
+    const mid = Math.round((Math.min(...indexes) + Math.max(...indexes)) / 2)
+    pool.push(QUIRK_RANGES[mid], QUIRK_RANGES[mid])
+  }
+
+  return pool[hashSeed(rollKey, 'range') % pool.length]
+}
+
+function buildFacetPool(
+  type: QuirkType,
+  parentFacetHints: QuirkFacet[],
+): QuirkFacet[] {
+  const typeFacets = TYPE_FACET_POOLS[type]
+  const parentCompatible = parentFacetHints.filter((facet) =>
+    typeFacets.includes(facet),
+  )
+  const parentOther = parentFacetHints.filter(
+    (facet) => !typeFacets.includes(facet),
+  )
+  const typeOnly = typeFacets.filter((facet) => !parentFacetHints.includes(facet))
+
+  if (parentFacetHints.length === 0) return [...typeFacets]
+
+  return [
+    ...parentCompatible,
+    ...parentCompatible,
+    ...parentCompatible,
+    ...typeOnly,
+    ...typeOnly,
+    ...parentOther,
+  ]
+}
+
+function pickFacetsFromSeed(
+  rollKey: string,
+  count: number,
+  type: QuirkType,
+  parentFacetHints: QuirkFacet[] = [],
+): QuirkFacet[] {
+  const pool = buildFacetPool(type, parentFacetHints)
   const picked: QuirkFacet[] = []
-  let roll = hashSeed(seed, 'facets')
+  let roll = hashSeed(rollKey, 'facets')
 
   while (picked.length < count && pool.length > 0) {
     const index = roll % pool.length
-    picked.push(pool.splice(index, 1)[0])
+    const facet = pool[index]
+    pool.splice(index, 1)
+    if (!picked.includes(facet)) picked.push(facet)
     roll = (roll * 31 + picked.length) >>> 0
+  }
+
+  if (
+    parentFacetHints.length > 0 &&
+    picked.length > 0 &&
+    !picked.some((facet) => parentFacetHints.includes(facet))
+  ) {
+    const compatibleHints = parentFacetHints.filter((facet) =>
+      TYPE_FACET_POOLS[type].includes(facet),
+    )
+    const anchorPool = compatibleHints.length > 0 ? compatibleHints : parentFacetHints
+    picked[0] = anchorPool[hashSeed(rollKey, 'facet-anchor') % anchorPool.length]
   }
 
   return picked
 }
 
-/** Deterministic type, range, and facets for this variant — chosen by seed, not the LLM. */
-export function deriveFusionOutputFromSeed(seed: string): FusionOutputRoll {
-  const base = hashSeed(seed, 'output')
-  const type = QUIRK_TYPES[base % QUIRK_TYPES.length]
-  const range = QUIRK_RANGES[(base >>> 8) % QUIRK_RANGES.length]
+/** Deterministic type, range, and facets for this variant — chosen by seed + parent pair, not the LLM. */
+export function deriveFusionOutputFromSeed(
+  seed: string,
+  parentA?: string,
+  parentB?: string,
+  parentFacetHints: string[] = [],
+  parentMechanicHints: FusionOutputParentHints = {},
+): FusionOutputRoll {
+  const rollKey =
+    parentA && parentB ? fusionOutputRollKey(seed, parentA, parentB) : seed
+  const base = hashSeed(rollKey, 'output')
+  const type = pickTypeFromSeed(
+    rollKey,
+    normalizeParentTypes(parentMechanicHints.types ?? []),
+  )
+  const range = pickRangeFromSeed(
+    rollKey,
+    normalizeParentRanges(parentMechanicHints.ranges ?? []),
+  )
   const facetCount = 1 + ((base >>> 16) % 4)
+  const parentFacets = normalizeParentFacets(parentFacetHints)
 
   return {
     type,
     range,
-    facets: pickFacetsFromSeed(seed, facetCount),
+    facets: pickFacetsFromSeed(rollKey, facetCount, type, parentFacets),
   }
 }

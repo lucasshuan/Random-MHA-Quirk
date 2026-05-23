@@ -1,0 +1,546 @@
+{
+  "generatedAt": "2026-05-23T00:22:46.639Z",
+  "results": [
+    {
+      "pair": "blackwhip+creation",
+      "parentNames": [
+        "Creation",
+        "Blackwhip"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "ally aid",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Long",
+          "facets": [
+            "Mobility",
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Whip It Good",
+          "description": "This quirk allows the user to extend dark, energy-infused tendrils from their body, which can be used to pull themselves or allies rapidly toward a target location, akin to a swing movement. The tendrils can also construct solid objects or barriers mid-motion, providing defensive structures while repositioning allies within a medium range. However, using this quirk puts a strain on the user's body, resulting in a cooldown period where they cannot use the tendrils again until they recover, limiting the frequency of its use in battle."
+        },
+        "type": "Mutant",
+        "range": "Long",
+        "facets": [
+          "Mobility",
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "blackwhip+creation",
+      "parentNames": [
+        "Creation",
+        "Blackwhip"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "burst damage",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Contact",
+          "facets": [
+            "Emission",
+            "Psychic",
+            "Anthropomorphic",
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Fantastic Exploding Tentacle Creation of Overwhelming Sensation",
+          "description": "This quirk allows the user to create explosive tendrils that burst from their body at will. When activated, dark, shadowy energy snakes out, forming along the user's limbs, creating tendrils that can lash out and strike targets, exploding on impact. Each tendril unleashes a powerful force that can knock opponents back and cause concussive damage. However, the explosive abilities leave the user temporarily fatigued, requiring a few moments to rest before they can produce more tendrils."
+        },
+        "type": "Mutant",
+        "range": "Contact",
+        "facets": [
+          "Emission",
+          "Psychic",
+          "Anthropomorphic",
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "blackwhip+creation",
+      "parentNames": [
+        "Creation",
+        "Blackwhip"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "containment",
+        "strategy": "emission-bridge",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Short",
+          "facets": [
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Veil of Shadows",
+          "description": "This quirk envelops the user in a dark, shadowy aura that allows them to project and manipulate solid constructs made of semi-opaque darkness. The user can extend these shadowy constructs as tendrils to create barriers or trap opponents, effectively controlling the battlefield. While active, the user’s presence takes on an ethereal quality, with shadows flowing from their body to create structures that can temporarily ensnare others. However, maintaining the shadow constructs requires concentration, leading to diminished range and precision with prolonged use."
+        },
+        "type": "Emitter",
+        "range": "Short",
+        "facets": [
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "ally aid",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Contact",
+          "facets": [
+            "Anthropomorphic",
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Phase Shell",
+          "description": "When activated, the user rapidly coats their body in a hard, translucent shell that resembles glass. This outer layer grants increased defense and enhances striking power. To activate the quirk, the user must focus and maintain contact with the ground, but any sudden movement risks shattering the shell, causing a temporary loss of protection. The user moves with an animalistic agility, allowing them to slip through obstacles while simultaneously using the hardened exterior to brace against attacks."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Anthropomorphic",
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "burst damage",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Long",
+          "facets": [
+            "Defense",
+            "Mobility",
+            "Psychic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Super Mega Awesome Extra Hard Penetration Experience",
+          "description": "When activated, the user briefly envelops their body in an impenetrable hard shell while simultaneously phasing through solid objects nearby. This transformation allows them to absorb or block incoming damage and reposition rapidly across distances. However, after using this quirk, the user experiences a cooldown period where they cannot phase again, leaving them temporarily vulnerable. During activation, their skin glows with a hardened sheen, and their movements become fluid, as if gliding through the air."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Defense",
+          "Mobility",
+          "Psychic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "containment",
+        "strategy": "body-weave",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Long",
+          "facets": [
+            "Construct",
+            "Defense",
+            "Biological",
+            "Anthropomorphic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Impenetrable Shroud",
+          "description": "This quirk allows the user to transform their body into a hybrid form of solidified matter and ethereal mist. When activated, a dark, swirling aura envelops the user, causing their limbs to become semi-translucent, while their skin hardens like stone for enhanced durability. The user can extend tendrils of mist that reach out long distances, ensnaring opponents and creating barriers that absorb incoming attacks. However, maintaining this form strains their stamina significantly, requiring moments of rest after prolonged use."
+        },
+        "type": "Mutant",
+        "range": "Long",
+        "facets": [
+          "Construct",
+          "Defense",
+          "Biological",
+          "Anthropomorphic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "ally aid",
+        "strategy": "range-meet",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Area",
+          "facets": [
+            "Support",
+            "Sensory",
+            "Biological",
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Explosive Recovery",
+          "description": "This quirk allows the user to emit an energy wave that rejuvenates their allies' stamina while also enhancing their physical abilities. When activated, a shimmering aura envelops the user, visible as sparkles, and pulses outward in a radius, sending energy to teammates. However, the user must consume a significant amount of sugar beforehand, creating a dependency that can drain their own stamina if overused. The empowering effects are strongest within a medium range, and the user experiences a brief cooldown after each activation."
+        },
+        "type": "Emitter",
+        "range": "Area",
+        "facets": [
+          "Support",
+          "Sensory",
+          "Biological",
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "burst damage",
+        "strategy": "emission-bridge",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Short",
+          "facets": [
+            "Emission"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Sugary Explosive Sweet Tooth Detonator of Doom",
+          "description": "When activating this quirk, the user sweats a sweet, syrupy substance that hardens into explosive candy-like projectiles. These projectiles can be launched at medium distance, detonating on impact to create short-range bursts of destructive force. While the user can rapidly produce these sugary bombs, doing so requires them to consume sugar beforehand, limiting their use in sustained combat due to the cooldown period required for digestion and metabolic processing, which leaves them vulnerable during that time."
+        },
+        "type": "Emitter",
+        "range": "Short",
+        "facets": [
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "containment",
+        "strategy": "facet-anchor",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Medium",
+          "facets": [
+            "Biological",
+            "Anthropomorphic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Cocoa Constrictor",
+          "description": "This quirk allows the user to excrete a viscous, chocolate-like liquid from their skin, which hardens into a strong, flexible web upon contact with air. When activated, the user's skin darkens, resembling chocolate, and they gain a slight increase in their physical agility. The hardened web can ensnare objects and opponents, slowing them down significantly. However, using this quirk excessively leads to fatigue and limits the user's mobility until they recover the lost energy."
+        },
+        "type": "Transformation",
+        "range": "Medium",
+        "facets": [
+          "Biological",
+          "Anthropomorphic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "frog+laser",
+      "parentNames": [
+        "Frog",
+        "Laser"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "ally aid",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Contact",
+          "facets": [
+            "Psychic",
+            "Emission",
+            "Support"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Laser Tongue",
+          "description": "This quirk allows the user to extend their tongue like a prehensile whip while emitting focused beams of energy from its tip. Upon activation, the user's tongue grows to an impressive length and glows with energy, becoming capable of lassoing allies to pull them out of danger or redirecting projectiles. The emitted beams can be used to illuminate dark areas or provide distraction, but the user must maintain contact with their target to use the support abilities effectively. Activation comes with a cooldown, limiting the user to a few bursts before needing to recharge their focus."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Psychic",
+          "Emission",
+          "Support"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "frog+laser",
+      "parentNames": [
+        "Frog",
+        "Laser"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "burst damage",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Short",
+          "facets": [
+            "Psychic",
+            "Enhancement",
+            "Biological",
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Radiant Supercharged Leap of Energy Bliss",
+          "description": "The user undergoes a temporary transformation where their legs become elongated, muscular, and coated in a shimmering energy aura, enhancing their jumping capabilities. Upon landing, they can release a concentrated burst of energy from their feet, creating a powerful shockwave that travels forward, damaging anything in its path. This explosive release leaves the user momentarily fatigued, requiring a cooldown period before another leap can be performed effectively."
+        },
+        "type": "Mutant",
+        "range": "Short",
+        "facets": [
+          "Psychic",
+          "Enhancement",
+          "Biological",
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "frog+laser",
+      "parentNames": [
+        "Frog",
+        "Laser"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "containment",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Area",
+          "facets": [
+            "Emission"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Tidal Trap",
+          "description": "This quirk allows the user to manifest a viscous, water-like substance from their skin, creating a slippery terrain that can trap opponents. Upon activation, a shimmering blue sheen coats the user's body, enabling them to shoot streams of gel-like material in all directions. The emitted substance can stick to surfaces and immobilize anyone caught within its grasp. However, maintaining the slippery zone is physically taxing, demanding significant focus, and can only be sustained for a few moments before the user experiences fatigue."
+        },
+        "type": "Mutant",
+        "range": "Area",
+        "facets": [
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "brainwashing+tape",
+      "parentNames": [
+        "Brainwashing",
+        "Tape"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "ally aid",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Short",
+          "facets": [
+            "Emission",
+            "Construct",
+            "Biological",
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Tape Out Loud",
+          "description": "The user can emit long, sticky strips of tape from their palms, which can ensnare or immobilize targets upon contact. Additionally, while the tape is active, the user experiences a temporary boost in agility, allowing for enhanced speed and mobility. However, this agility comes at a cost: after using the tape, they must recover their stamina due to the intense strain on their body. The tape emits a faint, colorful glow while in use, signaling its stickiness and readiness for deployment."
+        },
+        "type": "Mutant",
+        "range": "Short",
+        "facets": [
+          "Emission",
+          "Construct",
+          "Biological",
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "brainwashing+tape",
+      "parentNames": [
+        "Brainwashing",
+        "Tape"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "burst damage",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Area",
+          "facets": [
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "You Will Now Feel Extremely Sticky While Being Advised to Comply with My Requests",
+          "description": "This quirk allows the user to discharge a thick, brightly colored adhesive substance from their forearms after vocal interaction with a target, which forces immediate compliance to simple commands. Once activated, the user temporarily gains elongated, tape-like arms that can extend up to five meters but lose mobility when fully extended, requiring a cooldown period before reuse. The sticky strands can ensnare multiple targets within a limited area, but the user risks being immobilized themselves if not careful, limiting the strategic use of their quirk."
+        },
+        "type": "Mutant",
+        "range": "Area",
+        "facets": [
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "brainwashing+tape",
+      "parentNames": [
+        "Brainwashing",
+        "Tape"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "containment",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Self",
+          "facets": [
+            "Mobility",
+            "Defense"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Lasso of Compliance",
+          "description": "The user possesses the ability to emit a flexible, glowing tape-like strand from their arms, which they can use to ensnare targets and immobilize them. Upon vocal interaction, the tape communicates a suggestion directly into the minds of those it binds, compelling them to comply with the user’s instructions. While this quirk allows for impressive mobility and control over the battlefield, it incurs a tradeoff: the user becomes vulnerable for a brief moment while the tape is in use, leaving them open to counterattacks and requiring a cooldown period before the tape can be deployed again."
+        },
+        "type": "Emitter",
+        "range": "Self",
+        "facets": [
+          "Mobility",
+          "Defense"
+        ],
+        "origin": "ORIGINAL"
+      }
+    }
+  ]
+}

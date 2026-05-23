@@ -114,6 +114,36 @@ type StrategyDef = {
   ) => string
 }
 
+const NICHE_STRATEGY_KEYS = new Set<FusionStrategyKey>(['byproduct', 'failure-mode'])
+const NICHE_BOOST_THRESHOLD = 6
+const NICHE_BOOST_COPIES = 4
+
+function pickWeightedStrategy(seed: string, eligible: StrategyDef[]): StrategyDef {
+  const weighted: StrategyDef[] = []
+
+  for (const def of eligible) {
+    weighted.push(def)
+    if (
+      eligible.length >= NICHE_BOOST_THRESHOLD &&
+      NICHE_STRATEGY_KEYS.has(def.key)
+    ) {
+      for (let i = 0; i < NICHE_BOOST_COPIES; i++) weighted.push(def)
+    }
+  }
+
+  return weighted[hashSeed(seed, 'strategy') % weighted.length] ?? eligible[0]
+}
+
+function appendStrategyGuidance(key: FusionStrategyKey, instruction: string): string {
+  if (key === 'byproduct') {
+    return `${instruction} The primary fantasy must stay narrow or awkward — the secondary byproduct is not a free combat upgrade.`
+  }
+  if (key === 'failure-mode') {
+    return `${instruction} State what was lost, suppressed, or never expressed — do not word around the cap to restore either parent's full fantasy.`
+  }
+  return instruction
+}
+
 const STRATEGY_DEFS: StrategyDef[] = [
   {
     key: 'synergy',
@@ -125,13 +155,13 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'dominant-a',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent A leads: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic is the main engine; ${quirkB.name} only modifies, limits, or reshapes how that engine expresses.`,
+      `Fusion strategy — parent A is dominant and leads: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic is the main engine; ${quirkB.name} only subtly modifies, limits, or reshapes how that engine expresses.`,
   },
   {
     key: 'dominant-b',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent B leads: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic is the main engine; ${quirkA.name} only modifies, limits, or reshapes how that engine expresses.`,
+      `Fusion strategy — parent B is dominant and leads: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic is the main engine; ${quirkA.name} only subtly modifies, limits, or reshapes how that engine expresses.`,
   },
   {
     key: 'facet-anchor',
@@ -183,7 +213,7 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'failure-mode',
     eligible: () => true,
     instruction: () =>
-      'Fusion strategy — high-risk specialist: strong in a narrow situation with a sharp downside — not an always-on hyper-OP mashup of both parents.',
+      'Fusion strategy — failure mode: incomplete genetic fusion — the birth Quirk is weaker or narrower than either parent (less reach, output, reliability, or scope). One parent\'s core barely survives; the other shows up only as loss, friction, or a hard cap — never both parents\' kits at usable strength.',
   },
 ]
 
@@ -194,16 +224,21 @@ export function selectFusionStrategy(
 ): SelectedFusionStrategy {
   const ctx = analyzeParentPair(quirkA, quirkB)
   const eligible = STRATEGY_DEFS.filter((def) => def.eligible(ctx))
-  const picked = eligible[hashSeed(seed) % eligible.length] ?? STRATEGY_DEFS[0]
+  const picked = pickWeightedStrategy(seed, eligible)
 
   const contextBlock = [
     'Parent fusion context (informs strategy — do not quote parent names in the final description):',
     ...ctx.commonPointLines.map((line) => `- ${line}`),
   ].join('\n')
 
+  const instruction = appendStrategyGuidance(
+    picked.key,
+    picked.instruction(ctx, quirkA, quirkB),
+  )
+
   return {
     key: picked.key,
-    instruction: picked.instruction(ctx, quirkA, quirkB),
+    instruction,
     contextBlock,
   }
 }

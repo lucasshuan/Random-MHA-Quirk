@@ -56,7 +56,16 @@ export async function generateFusionEntry({
 
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
-  const outputRoll = deriveFusionOutputFromSeed(seed)
+  const outputRoll = deriveFusionOutputFromSeed(
+    seed,
+    parents[0],
+    parents[1],
+    [...new Set([...(quirkA.facets ?? []), ...(quirkB.facets ?? [])])],
+    {
+      types: [quirkA.type, quirkB.type],
+      ranges: [quirkA.range, quirkB.range],
+    },
+  )
   const priorVariantNames = await listFusionNamesForParentPair(
     parents[0],
     parents[1],

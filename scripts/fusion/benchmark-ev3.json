@@ -1,0 +1,387 @@
+{
+  "generatedAt": "2026-05-23T00:11:11.121Z",
+  "results": [
+    {
+      "pair": "acid+air-cannon",
+      "seed": "ev3-s1",
+      "strategy": "emission-bridge",
+      "outputRoll": {
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ]
+      },
+      "priorVariantNames": [
+        "Corrosive Gale",
+        "Corrosive Blast",
+        "Searing Gale"
+      ],
+      "english": {
+        "en": {
+          "name": "Acidic Zephyr",
+          "description": "The user is able to project dense, corrosive clouds of acid-laden air that can envelop and disorient foes from a distance. When activated, a faint shimmer surrounds the user, indicating the release of this unique mist, which can corrode materials and weaken opponents' resolve. The user can control these clouds with precision, guiding them to ensnare targets, while their body remains coated in a thin layer of protective, translucent vapor. However, deploying this quirk requires a significant buildup of energy and cannot be used again until the user regains focus, limiting its rapid-fire potential."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "acid+air-cannon",
+      "seed": "ev3-s2",
+      "strategy": "range-meet",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Corrosive Gale",
+        "Corrosive Blast",
+        "Searing Gale"
+      ],
+      "english": {
+        "en": {
+          "name": "Gust-Stream Abrasion",
+          "description": "The user transforms their forearms into elongated, feathered appendages that can launch corrosive gusts of air. These gusts can sever or erode materials in their path, while the feathers absorb ambient air pressure to further amplify their power. When within medium range, the air blasts are razor-sharp and highly corrosive, but at long range, the blasts lose their acidic quality, focusing instead on sheer kinetic impact. However, each use strains the user's muscles, requiring brief recharge periods between relentless bursts."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "acid+air-cannon",
+      "seed": "ev3-s3",
+      "strategy": "byproduct",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Corrosive Gale",
+        "Corrosive Blast",
+        "Searing Gale"
+      ],
+      "english": {
+        "en": {
+          "name": "Searing Zephyr",
+          "description": "This quirk transforms the user's hands into conduits for searing vapors that can be emitted in concentrated bursts. Upon activation, a shimmering heat distort emerges around their palms, allowing them to release scalding air blasts that disorient and push back enemies. The vapor trail left in this quirk's wake can also induce a temporary cloud that acts as a minor smokescreen, providing a tactical advantage. However, continuous usage leads to skin irritation and potential burns, limiting sustained combat capacity."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "beast+barrier",
+      "seed": "ev3-s1",
+      "strategy": "dominant-b",
+      "outputRoll": {
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ]
+      },
+      "priorVariantNames": [
+        "Feral Sentinel",
+        "Feral Domination",
+        "Savage Shield",
+        "Feral Fortress"
+      ],
+      "english": {
+        "en": {
+          "name": "Primal Bastion",
+          "description": "The user generates a shimmering barrier that appears as an ethereal blend of solid and liquid, resembling the hide of a mythical beast. When activated, the barrier envelops the user while sprouting out toward threats within their medium-range, forming jagged protrusions resembling claws that can deter or even injure attackers. This quirk enhances the user's instincts, allowing them to sense incoming dangers, but requires intense focus to maintain, leading to mental fatigue with extended use and limiting the user's ability to move freely if overly reliant on the barrier."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "beast+barrier",
+      "seed": "ev3-s2",
+      "strategy": "body-weave",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Feral Sentinel",
+        "Feral Domination",
+        "Savage Shield",
+        "Feral Fortress"
+      ],
+      "english": {
+        "en": {
+          "name": "Ancestral Guardian",
+          "description": "When activated, the user's skin develops a rugged, bark-like texture, and their eyes glow with a primal ferocity. In this empowered state, they can summon shield-like projections made of hardened energy that radiate outwards, forming protective barriers around allies within range. The user also gains heightened senses, allowing them to detect danger from a distance. However, prolonged use causes muscular strain, leaving the user vulnerable after their shields dissipate."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "beast+barrier",
+      "seed": "ev3-s3",
+      "strategy": "emission-bridge",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Feral Sentinel",
+        "Feral Domination",
+        "Savage Shield",
+        "Feral Fortress"
+      ],
+      "english": {
+        "en": {
+          "name": "Horizon Beast",
+          "description": "Upon activation, the user transforms partially, elongating their limbs and enhancing their overall physique with sleek, muscular features and predatory instincts. This change allows the user to emit a shimmering barrier of energy that resonates with their primal essence, capable of deflecting attacks and trapping adversaries within its shimmering radius. While maintaining the barrier, the user can release shockwaves that disorient foes, but must be cautious; overextending the barrier hampers their physical agility and requires a brief cooldown before reactivation."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "absorption-and-release+arbor",
+      "seed": "ev3-s1",
+      "strategy": "dominant-b",
+      "outputRoll": {
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ]
+      },
+      "priorVariantNames": [
+        "Sap Surge",
+        "Verdant Reflection",
+        "Nature's Retaliation",
+        "Verdant Retribution"
+      ],
+      "english": {
+        "en": {
+          "name": "Woodland Barrage",
+          "description": "This quirk allows the user to generate powerful wooden projectiles that are infused with absorbed energy from incoming attacks. When activated, spindling wooden tendrils erupt from the user's arms, reshaping into spear-like bolts that can be launched with considerable force at medium range. The tendrils not only enhance the speed and power of the projectiles but also absorb the impact of energy attacks, storing their energy to amplify the strike. However, the user must maintain focus to keep the tendrils active, as each use relies on a cooldown period proportional to the strength of the absorbed attack, limiting their rapid-fire ability."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "absorption-and-release+arbor",
+      "seed": "ev3-s2",
+      "strategy": "body-weave",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Sap Surge",
+        "Verdant Reflection",
+        "Nature's Retaliation",
+        "Verdant Retribution"
+      ],
+      "english": {
+        "en": {
+          "name": "Barkbound Reprisal",
+          "description": "Upon activation, the user’s skin sprouts intricate bark-like patterns that absorb incoming energy-based attacks, converting them into regenerative wooden armor that covers their body. The user can also extend these wooden tendrils outward, creating a barrier or launching them in swift strikes, effectively transforming part of their body into a flexible weapon. However, while in this hybrid state, the user requires time to recoup from the absorbed energy before they can release it back as an attack, limiting their speed between defensive and offensive maneuvers."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "absorption-and-release+arbor",
+      "seed": "ev3-s3",
+      "strategy": "emission-bridge",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [
+        "Sap Surge",
+        "Verdant Reflection",
+        "Nature's Retaliation",
+        "Verdant Retribution"
+      ],
+      "english": {
+        "en": {
+          "name": "Barkback Barrage",
+          "description": "This quirk manifests as a textured, bark-like armor enveloping the user's forearms, which can absorb energy attacks. Upon activation, the user can release the stored energy in explosive wooden projectiles that fly toward opponents. The wooden projectiles can extend into spiky tendrils upon impact, binding adversaries and coating them with a rapidly growing wooden structure. A key limitation is the cooldown period between energy absorbs, requiring a brief moment of vulnerability after each attack before the user can gather energy again."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "half-cold-half-hot+decay",
+      "seed": "ev3-s1",
+      "strategy": "dominant-a",
+      "outputRoll": {
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ]
+      },
+      "priorVariantNames": [],
+      "english": {
+        "en": {
+          "name": "Entropy Blaze",
+          "description": "The user channels intense flames from their body while simultaneously disintegrating nearby objects into ash with thermal decay. Their skin radiates heat, causing visible distortions in the air around them, and when activated, fiery, spiraling tendrils emerge from their fingertips, lashing out in a medium radius. Each touch ignites surrounding materials while contact can lead to rapid petrification of the user’s own flames into smoking debris. However, the intense output rapidly drains stamina, limiting its use to brief bursts before requiring a cooldown."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Psychic",
+          "Control",
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "half-cold-half-hot+decay",
+      "seed": "ev3-s2",
+      "strategy": "dominant-b",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [],
+      "english": {
+        "en": {
+          "name": "Frostfire Disassembly",
+          "description": "When activated, the user’s right side erupts in icy spikes while the left ignites with blazing flames, creating a dual-threat aura. This quirk allows them to project waves of temperature-adjusted energy across a long range, which can disintegrate anything it touches upon contact. The user emits a chilling mist that visually contrasts with the heat of flames, making it clear when they are using their power. However, the disintegration effect can only be maintained for a limited duration due to a cooldown period between uses, requiring precise control and focus."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Sensory",
+          "Defense",
+          "Anthropomorphic",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "half-cold-half-hot+decay",
+      "seed": "ev3-s3",
+      "strategy": "facet-anchor",
+      "outputRoll": {
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ]
+      },
+      "priorVariantNames": [],
+      "english": {
+        "en": {
+          "name": "Frostflame Decay",
+          "description": "This quirk allows the user to emit a swirling aura of icy flames, which appear as ghostly blue fire enveloped in frost. Upon contact with any material, the flames rapidly decay the material while simultaneously freezing it, creating a unique blend of destruction and preservation. The user manifests this quirk through their right hand, which radiates cold heat and generates freezing embers that can disintegrate objects on contact. However, the user can only maintain the freezing flame for a limited time before being forced to cooldown, risking their own body with severe burns if overextended."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    }
+  ]
+}

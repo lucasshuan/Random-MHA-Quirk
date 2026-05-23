@@ -1,0 +1,767 @@
+{
+  "generatedAt": "2026-05-23T01:06:53.226Z",
+  "pairs": [
+    [
+      "zero-gravity",
+      "decay"
+    ],
+    [
+      "dark-shadow",
+      "earphone-jack"
+    ],
+    [
+      "engine",
+      "fiber-master"
+    ],
+    [
+      "manifest",
+      "pop-off"
+    ],
+    [
+      "warp-gate",
+      "cement"
+    ]
+  ],
+  "seeds": [
+    "div-s1",
+    "div-s2",
+    "div-s3",
+    "div-s4"
+  ],
+  "results": [
+    {
+      "pair": "decay+zero-gravity",
+      "parentNames": [
+        "Zero Gravity",
+        "Decay"
+      ],
+      "seed": "div-s1",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "containment",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Short",
+          "facets": [
+            "Anthropomorphic",
+            "Emission",
+            "Support"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Please Hold Still While I Make Everything Float For A Bit",
+          "description": "The user's body takes on animal traits—slick, feathered sleeves and clawed, digitigrade hands—and they exhale and launch small, glowing pod-like feathers up to ~3 meters. Pods emit a local anti-weight field and a corrosive shimmer that breaks fixed surfaces on contact, creating hovering pockets allies can ride or be lifted from hazards. Activation requires touching the ground as an anchor and each pod corrodes the user's own flesh a little if retained longer than ten seconds; pods recharge slowly, making the quirk a short-range, high-risk containment tool."
+        },
+        "type": "Mutant",
+        "range": "Short",
+        "facets": [
+          "Anthropomorphic",
+          "Emission",
+          "Support"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "decay+zero-gravity",
+      "parentNames": [
+        "Zero Gravity",
+        "Decay"
+      ],
+      "seed": "div-s2",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "repositioning",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Area",
+          "facets": [
+            "Control",
+            "Psychic",
+            "Construct",
+            "Biological"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Bob Around",
+          "description": "The user grows pale, saclike tissue nodules that inflate into detachable, living floaters within a fixed-area bubble around them; the user mentally steers each floater to latch to surfaces or people and negate local weight, letting targets drift or be carried. The floaters are biological constructs that secrete a corrosive enzyme which slowly eats at attached material and burns out the floater after short use, making prolonged holds damaging and one-use. While active the user can bias victims' spatial sense and induce mild vertigo or a false sense of up and down to guide where they drift. Radius is fixed and the user can maintain only a few floaters at once; overuse causes intense nausea and temporary visual blur as feedback."
+        },
+        "type": "Mutant",
+        "range": "Area",
+        "facets": [
+          "Control",
+          "Psychic",
+          "Construct",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "decay+zero-gravity",
+      "parentNames": [
+        "Zero Gravity",
+        "Decay"
+      ],
+      "seed": "div-s3",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "hazard setup",
+        "strategy": "dominant-a",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Self",
+          "facets": [
+            "Construct",
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Lighten Up",
+          "description": "The user sprouts translucent, plate-like constructs from their skin that adhere to and lift any solid they touch, creating a local field of hovering debris anchored to the body. Each plate can be steered and reoriented by the user to form walls, stepping discs or nets; contacted material also undergoes progressive surface breakdown while held, turning rigid surfaces brittle. Plates are limited in number and duration, induce brief instability in the user's own balance while active, and collapse harmlessly after a short cooldown."
+        },
+        "type": "Emitter",
+        "range": "Self",
+        "facets": [
+          "Construct",
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "decay+zero-gravity",
+      "parentNames": [
+        "Zero Gravity",
+        "Decay"
+      ],
+      "seed": "div-s4",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "repositioning",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Contact",
+          "facets": [
+            "Enhancement",
+            "Support",
+            "Biological"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Oops, Weightless",
+          "description": "On contact the user transforms touched flesh into a translucent, gelatinous state and both bodies visibly pulse as muscles harden and limbs bloat, granting powerful springing leaps and near-frictionless slides for rapid repositioning. The effect can be applied to allies to float, be carried, or be slid into cover and briefly heals blunt trauma as tissues rehydrate. Downside: after release the altered tissue fractures into necrotic slough from the contact points proportional to duration, causing acute pain, open wounds and temporary strength loss; effect requires skin contact and has a lengthy recovery window."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Enhancement",
+          "Support",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "dark-shadow+earphone-jack",
+      "parentNames": [
+        "Dark Shadow",
+        "Earphone Jack"
+      ],
+      "seed": "div-s1",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "ally aid",
+        "strategy": "body-weave",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Medium",
+          "facets": [
+            "Construct",
+            "Support",
+            "Elemental"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Long Cord",
+          "description": "The user's skin can sprout flat, ribbon-like tendrils of cold, inky matter on command; these ribbons extend outward up to a medium range and remain anchored to the body. Ribbons can harden into simple constructs—shields, walkways, clamps—or plug onto teammates to transmit stabilizing pulses that steady balance, damp shocks, or deliver brief warming/vibrational aid. Each ribbon set has a fixed total length and constructs last seconds before dissolving; active use bleeds body heat and causes numbness and slowed limbs, forcing periodic cooldowns."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Construct",
+          "Support",
+          "Elemental"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "dark-shadow+earphone-jack",
+      "parentNames": [
+        "Dark Shadow",
+        "Earphone Jack"
+      ],
+      "seed": "div-s2",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "self-sacrifice specialist",
+        "strategy": "dominant-b",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Long",
+          "facets": [
+            "Anthropomorphic",
+            "Psychic",
+            "Construct",
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Plug and Pray",
+          "description": "The user's earlobes and surrounding hair lengthen into anthromorphic, shadow-coated cord-limbs that can extend across long distances as living cables ending in paw- or maw-like tips. These cords can grow constructed anchors, cages, or puppet-limbs at range and the user mentally senses and feels through each tip, gaining sight, sound and emotional feedback from what they touch. The user can steer, shape, and lock constructs remotely, but each active tether siphons the user's senses and strength; severing or overextending a tether causes acute sensory blackout and pain, forcing strict concentration and limiting concurrent anchors."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Anthropomorphic",
+          "Psychic",
+          "Construct",
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "dark-shadow+earphone-jack",
+      "parentNames": [
+        "Dark Shadow",
+        "Earphone Jack"
+      ],
+      "seed": "div-s3",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "containment",
+        "strategy": "dominant-a",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Long",
+          "facets": [
+            "Anthropomorphic",
+            "Psychic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Plug and Creep",
+          "description": "The user's body sprouts long, shadowy ear- and tail-like tendrils that move with catlike, limbic grace and can extend tens of meters; tips forcibly plug into surfaces to form linked shadow-networks that snag and slow targets. Plugged networks emit a faint psychic hiss that causes disorientation, hesitation, and amplified fear in nearby minds, reducing coordination and will to move. Tendrils must anchor to solid material, only one network per active limb can be maintained, strong light weakens links and prolonged network use dulls the user's own senses until rested."
+        },
+        "type": "Mutant",
+        "range": "Long",
+        "facets": [
+          "Anthropomorphic",
+          "Psychic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "dark-shadow+earphone-jack",
+      "parentNames": [
+        "Dark Shadow",
+        "Earphone Jack"
+      ],
+      "seed": "div-s4",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "burst damage",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Contact",
+          "facets": [
+            "Elemental",
+            "Emission",
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Nightcord Cataclysm",
+          "description": "The user grows glossy, anthropomorphic cord-like lobes of black, cold shadow from their head and forearms; these solid umbral cables are tangible constructs that can be wrapped around or pressed into a target at touch range. When a cord is snapped or plucked at the point of contact it emits a compressed burst of freezing, sooty vapor that detonates on the target and then disperses, delivering short explosive damage. Each fired segment is consumed and requires a visible regrowth period and a several-second cooldown, and the blast chills and dulls the user's nearby senses for a moment after detonation."
+        },
+        "type": "Mutant",
+        "range": "Contact",
+        "facets": [
+          "Elemental",
+          "Emission",
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "engine+fiber-master",
+      "parentNames": [
+        "Engine",
+        "Fiber Master"
+      ],
+      "seed": "div-s1",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "hazard setup",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Medium",
+          "facets": [
+            "Emission",
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Sofa So Good",
+          "description": "The user sprouts thick, springy textile tendrils from their limbs and torso and can launch them as corkscrewed fiber bolts up to medium range; bolts detonate on contact, unfurling into woven mats, nets or trip-ropes that cling to surfaces. The emitted fibers remain semi-sentient and the wielder steers and tightens formations by tugging with muscular tension or focused breath, reshaping terrain for entrapment or cover. Deployment locks the user's leg joints and exhausts tissue heat per volley, letting only a few constructs be made before a long cooldown and leaving the user vulnerable while weaving."
+        },
+        "type": "Mutant",
+        "range": "Medium",
+        "facets": [
+          "Emission",
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "engine+fiber-master",
+      "parentNames": [
+        "Engine",
+        "Fiber Master"
+      ],
+      "seed": "div-s2",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "repositioning",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Self",
+          "facets": [
+            "Sensory",
+            "Anthropomorphic",
+            "Mobility"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Sew Me Out of the Situation, Please",
+          "description": "The user's skin sprouts visible textile-like seams and spool-shaped calf muscles; they appear partly animalistic with digitigrade, clawed feet when active. They can extrude, weave and retract tough fibrous threads from their limbs to stitch secure anchor loops into nearby surfaces and then reel their own body short distances, changing angle or closing gaps; threads never detach as independent projectiles. Vision sharpens into slit, needle-like tracking that senses thread tension and surface vibration; each rapid reel requires a short weave time, burns the legs painfully, and causes a multi-second mobility cooldown."
+        },
+        "type": "Mutant",
+        "range": "Self",
+        "facets": [
+          "Sensory",
+          "Anthropomorphic",
+          "Mobility"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "engine+fiber-master",
+      "parentNames": [
+        "Engine",
+        "Fiber Master"
+      ],
+      "seed": "div-s3",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "ally aid",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Contact",
+          "facets": [
+            "Defense",
+            "Mobility",
+            "Control",
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Stitch-Drive",
+          "description": "The user extrudes dense textile filaments from pores on their hands, forearms and soles when those surfaces press against another object; filaments instantly knit into straps, anchors or panels only at the contact point. Anchored weaves absorb and spread incoming impact for protection, form rigid braces or temporary shields, and convert repeated anchor-tugs into short bursts of propulsion that yank or pivot the user along fixed lines. Filaments are steered by hand posture and finger tension, have a 0.5–1s weave time, a hard cap of six active anchors, and each active anchor drains limb endurance and must be rewound before reuse."
+        },
+        "type": "Emitter",
+        "range": "Contact",
+        "facets": [
+          "Defense",
+          "Mobility",
+          "Control",
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "engine+fiber-master",
+      "parentNames": [
+        "Engine",
+        "Fiber Master"
+      ],
+      "seed": "div-s4",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "self-sacrifice specialist",
+        "strategy": "dominant-a",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Long",
+          "facets": [
+            "Control"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Leg Rope",
+          "description": "The user emits long, living cord-like fibers from the skin and musculature of their lower legs; the fibers detach as ropes that can travel hundreds of meters. While emitted the user mentally steers each rope's path and tension to bind, pull, or steer distant objects and people, visible as rippling, sinewy strands. Activation severely reduces the user's own leg propulsion and balance — ropes gain maximum strength only when the user's legs are planted and immobile, and repeated full-power use risks tearing the emitting tissue and temporary loss of leg function."
+        },
+        "type": "Emitter",
+        "range": "Long",
+        "facets": [
+          "Control"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "manifest+pop-off",
+      "parentNames": [
+        "Manifest",
+        "Pop Off"
+      ],
+      "seed": "div-s1",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "self-sacrifice specialist",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Contact",
+          "facets": [
+            "Defense",
+            "Biological"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Sticky Skin",
+          "description": "The user can sprout living adhesive pads of flesh at points of contact by seeding them with recently consumed organic matter; pads form only where the user deliberately presses skin to a surface. Once attached, a pad hardens into sacrificial tissue that absorbs and disperses incoming physical damage instead of internal organs, but each pad remains tethered by raw muscle strands and will tear the user's flesh and cause heavy bleeding if forcibly removed. Pads dissolve after taking a large hit and require time and eaten material to regrow, and the quirk functions only at immediate touch range."
+        },
+        "type": "Emitter",
+        "range": "Contact",
+        "facets": [
+          "Defense",
+          "Biological"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "manifest+pop-off",
+      "parentNames": [
+        "Manifest",
+        "Pop Off"
+      ],
+      "seed": "div-s2",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "containment",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Long",
+          "facets": [
+            "Anthropomorphic",
+            "Enhancement",
+            "Mobility"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Rabbit Hole",
+          "description": "Emitter produces and fires adhesive, fur‑like pods across long distances that stick to surfaces and targets and rapidly sprout tethering tendrils to entangle or seal off zones. Activation partially transforms the user into a hare‑like form—elongated hindlegs, long ears and visible muscle swell—granting powerful jumps and explosive lopes used to reel along or winch targets via the pods. Pods are one‑use, require solid anchor points, and snapping or overloading tethers violently yanks the user and locks the haunches into a long cooldown."
+        },
+        "type": "Emitter",
+        "range": "Long",
+        "facets": [
+          "Anthropomorphic",
+          "Enhancement",
+          "Mobility"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "manifest+pop-off",
+      "parentNames": [
+        "Manifest",
+        "Pop Off"
+      ],
+      "seed": "div-s3",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "burst damage",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Area",
+          "facets": [
+            "Psychic",
+            "Sensory",
+            "Elemental",
+            "Anthropomorphic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Sticky Boom-Bloom",
+          "description": "The user temporarily morphs into a crouched, animal-like form with short, clawed limbs and a maw-lined throat; their skin sprouts dozens of fleshy, adhesive seed-sacs over an area around them. Each sac can be hurled outward as a sticky biological pod that latches to surfaces and, after sensing acute fear or heightened heartbeat in nearby targets via a brief psychic probe, flashes into a blinding thermal burst. Activation requires a one-second wind-up, each use has a small charge cap (eight pods) and a multi-minute cooldown, and the effect radius is fixed to a few meters around the user."
+        },
+        "type": "Transformation",
+        "range": "Area",
+        "facets": [
+          "Psychic",
+          "Sensory",
+          "Elemental",
+          "Anthropomorphic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "manifest+pop-off",
+      "parentNames": [
+        "Manifest",
+        "Pop Off"
+      ],
+      "seed": "div-s4",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "hazard setup",
+        "strategy": "dominant-a",
+        "outputRoll": {
+          "type": "Mutant",
+          "range": "Self",
+          "facets": [
+            "Anthropomorphic"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Graftmire",
+          "description": "The user transforms their skin and limbs into a patchwork of pulpy, armoured nodules and grasping, pawlike appendages that remain physically attached to the body. Each nodule secretes tenacious, bio-adhesive membranes that can unfurl into clinging skirts or barbs to trap anything pressing against the user's perimeter; the nodules move with animal reflexes and small limb motions. Pods form by metabolising swallowed organic matter, require a 6–12 second growth window, and slow the user markedly while heavily produced, causing nausea and reduced joint precision."
+        },
+        "type": "Mutant",
+        "range": "Self",
+        "facets": [
+          "Anthropomorphic"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "cement+warp-gate",
+      "parentNames": [
+        "Warp Gate",
+        "Cement"
+      ],
+      "seed": "div-s1",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "repositioning",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Self",
+          "facets": [
+            "Construct",
+            "Mobility",
+            "Emission",
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Pothole Popper",
+          "description": "The user emits a dark, granular mist that clings to and hardens against rigid ground and their skin into short, stubby anchor-constructs; those anchors act as paired nodes that instantly swap the user’s bodily position along a brief internal link so only the user moves. Activation is marked by a visible pulse of heat and muscle bulging that increases sprint speed and jump strength for the transfer; links last seconds and require direct contact with concrete-like surfaces, with misaligned anchors causing painful recoil and disorientation."
+        },
+        "type": "Emitter",
+        "range": "Self",
+        "facets": [
+          "Construct",
+          "Mobility",
+          "Emission",
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "cement+warp-gate",
+      "parentNames": [
+        "Warp Gate",
+        "Cement"
+      ],
+      "seed": "div-s2",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "hazard setup",
+        "strategy": "byproduct",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Medium",
+          "facets": [
+            "Control",
+            "Sensory"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Greyward Gate",
+          "description": "The user emits seam-like rifts that anchor only to existing cement within medium range, forming short-lived gate-pairs along concrete surfaces; seams glow pale grey and can be steered to pinch, widen or tug the connected slab edges to trap or channel movement. While links persist the user gains a tactile/auditory sense through cement—hearing footsteps, pressure and direction along any linked surface—and their irises cloud with a terrazzo pattern when actively scanning. Each link requires direct line to a cement patch, up to three links at once, lasts seconds and causes increasing vertigo and a cooldown for each additional simultaneous link."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Control",
+          "Sensory"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "cement+warp-gate",
+      "parentNames": [
+        "Warp Gate",
+        "Cement"
+      ],
+      "seed": "div-s3",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "self-sacrifice specialist",
+        "strategy": "dominant-a",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Long",
+          "facets": [
+            "Emission",
+            "Anthropomorphic",
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Stone Dog",
+          "description": "The user temporarily transforms parts of their body into animal-like concrete appendages and a snout-like aperture; these constructs grow from the skin, move with canine posture, then detach and launch as solid projectiles across long distances. Each launched construct acts as a one-way spatial link: anything passing through its mouth-sized aperture is instantaneously spit out at the construct's anchored end when that end is planted against a rigid, man-made surface. Activating and launching costs tissue integrity in the transformed area (detached constructs do not regrow immediately) and links fail if the far end cannot secure to existing solid construction, making high-payoff uses risky and situational."
+        },
+        "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Emission",
+          "Anthropomorphic",
+          "Construct"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "cement+warp-gate",
+      "parentNames": [
+        "Warp Gate",
+        "Cement"
+      ],
+      "seed": "div-s4",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "ally aid",
+        "strategy": "failure-mode",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Contact",
+          "facets": [
+            "Mobility",
+            "Elemental",
+            "Psychic",
+            "Emission"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Concrete Evidence",
+          "description": "The user's skin can liquefy into a grey, cement-like slurry at points of contact and then harden into detachable nodules; they can expel these nodules as heavy pellets that stick to surfaces. While touching a bonded nodule the user can surgically vault their body to another bonded point by sliding their mass through the hardened links, enabling short-range repositioning. Activation imprints a brief kinesthetic and visual echo of the linked location into the user's mind, clarifying orientation but causing nausea if more than three links are active; the effect works only when physically contacting real concrete or mortar, nodes are single-use and curing generates hot exhaust and strain to the limbs."
+        },
+        "type": "Transformation",
+        "range": "Contact",
+        "facets": [
+          "Mobility",
+          "Elemental",
+          "Psychic",
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    }
+  ]
+}

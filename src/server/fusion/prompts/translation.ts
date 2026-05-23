@@ -60,7 +60,7 @@ English source (canonical — do not change the mechanics):
 Your job is ADAPTATION, not translation. Write as if the quirk were authored directly in ${config.languageLabel} for anime fans.
 
 Rules:
-- ${config.nameField}: Quirk names are preferably not rigid or inflexible: they can be funny, tongue-in-cheek, blunt, dramatic, punny, or meme-adjacent — as long as they still sound like a quirk name in ${config.languageLabel} MHA fandom. ADAPTATION, not literal translation: if a pun, joke, or sharper local nickname works better than mirroring the English title, use it (wordplay that only lands in ${config.languageLabel} is encouraged). Do not transliterate word-for-word unless it already sounds right to fans
+- ${config.nameField}: Match the English name's register (punny, blunt, dramatic, absurd-long, or meme-adjacent). ADAPTATION, not literal translation: if a local pun, joke, or sharper nickname works better than mirroring the English title, use it (wordplay that only lands in ${config.languageLabel} is encouraged). Do not flatten a funny English title into a stiff literal compound. Do not transliterate word-for-word unless it already sounds right to fans
 - ${config.descriptionField}: 2–4 sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (count includes spaces and punctuation)
 - Preserve the same mechanism, activation, body changes, what moves where, limits, and tradeoffs as the English text — do not add, remove, or soften effects
 - Preserve variant identity: keep the same fusion strategy and body/emission/range logic implied by the English. Do not flatten it into a generic all-rounder during localization.

@@ -64,4 +64,30 @@ describe('selectFusionStrategy', () => {
 
     expect(keys.has('facet-anchor')).toBe(true)
   })
+
+  it('boosts byproduct and failure-mode when many strategies are eligible', () => {
+    const a = mockQuirk({
+      id: 'acid',
+      name: 'Acid',
+      type: 'Emitter',
+      range: 'Short',
+      facets: ['Elemental', 'Emission'],
+    })
+    const b = mockQuirk({
+      id: 'air-cannon',
+      name: 'Air Cannon',
+      type: 'Emitter',
+      range: 'Long',
+      facets: ['Elemental', 'Control'],
+    })
+
+    const keys = Array.from({ length: 48 }, (_, i) =>
+      selectFusionStrategy(`boost-${i}`, a, b).key,
+    )
+    const nicheCount = keys.filter(
+      (key) => key === 'byproduct' || key === 'failure-mode',
+    ).length
+
+    expect(nicheCount).toBeGreaterThan(8)
+  })
 })

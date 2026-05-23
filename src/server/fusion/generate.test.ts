@@ -62,7 +62,7 @@ const cachedEntry: FusionCacheEntry = {
     strategyKey: 'synergy',
     nameRegister: 'blunt',
     utilityNiche: 'plain wording',
-    antiMashupRule: 'Anti-mashup: test rule.',
+    antiMashupRuleKey: 'modifier-cost',
   },
 }
 

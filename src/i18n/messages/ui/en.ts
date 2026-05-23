@@ -119,6 +119,12 @@ export const en = {
       strategyLabel: 'Fusion strategy',
       nameRegisterLabel: 'Name style',
       utilityLabel: 'Writing focus',
+      antiMashupLabel: 'Anti-mashup rule',
+      antiMashupRuleKey: {
+        'coherent-loop': 'One coherent loop',
+        'failure-reduced': 'Reduced potential',
+        'modifier-cost': 'Modifier or cost',
+      },
       strategy: {
         synergy: 'Synergy',
         'dominant-a': 'Parent A leads',

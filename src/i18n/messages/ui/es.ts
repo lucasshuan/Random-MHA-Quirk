@@ -126,6 +126,12 @@ export const es: Messages = {
       strategyLabel: 'Estrategia de fusión',
       nameRegisterLabel: 'Estilo del nombre',
       utilityLabel: 'Enfoque de redacción',
+      antiMashupLabel: 'Regla anti-mashup',
+      antiMashupRuleKey: {
+        'coherent-loop': 'Un solo bucle coherente',
+        'failure-reduced': 'Potencial reducido',
+        'modifier-cost': 'Modificador o coste',
+      },
       strategy: {
         synergy: 'Sinergia',
         'dominant-a': 'Padre A lidera',

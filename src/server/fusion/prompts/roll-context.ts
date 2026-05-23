@@ -1,5 +1,5 @@
 import type { FusionCatalogQuirk } from '../catalog'
-import { formatBaseAntiMashupRule } from './anti-mashup'
+import { resolveAntiMashupRuleKey } from './anti-mashup'
 import type { FusionNameRegister } from './naming'
 import { selectFusionNameRegister } from './naming'
 import { deriveFusionOutputFromSeed, type FusionOutputRoll } from './output'
@@ -87,7 +87,7 @@ export function deriveFusionRollContext(
   const strategy = selectFusionStrategy(seed, quirkA, quirkB)
   const nameRegister = selectFusionNameRegister(seed, quirkA.id, quirkB.id)
   const utility = selectFusionUtilityNudge(seed, quirkA.id, quirkB.id)
-  const antiMashupRule = formatBaseAntiMashupRule(strategy.key)
+  const antiMashupRuleKey = resolveAntiMashupRuleKey(strategy.key)
   const tier = deriveFusionTier(
     seed,
     quirkA.tier,
@@ -105,7 +105,7 @@ export function deriveFusionRollContext(
       strategyKey: strategy.key,
       nameRegister: nameRegister.key,
       utilityNiche: utility.niche,
-      antiMashupRule,
+      antiMashupRuleKey,
     },
   }
 }

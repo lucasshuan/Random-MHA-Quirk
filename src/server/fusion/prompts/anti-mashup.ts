@@ -2,6 +2,23 @@ import type { FusionCatalogQuirk } from '../catalog'
 import { analyzeParentPair } from './strategy'
 import type { FusionStrategyKey } from './strategy'
 
+export const FUSION_ANTI_MASHUP_RULE_KEYS = [
+  'coherent-loop',
+  'failure-reduced',
+  'modifier-cost',
+] as const
+
+export type FusionAntiMashupRuleKey = (typeof FUSION_ANTI_MASHUP_RULE_KEYS)[number]
+
+const ANTI_MASHUP_RULE_TEXT: Record<FusionAntiMashupRuleKey, string> = {
+  'coherent-loop':
+    'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.',
+  'failure-reduced':
+    'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.',
+  'modifier-cost':
+    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.',
+}
+
 /** Strategies that get one pair-aware ❌ example after the strategy line. */
 const STRATEGIES_WITH_PAIR_EXAMPLE = new Set<FusionStrategyKey>([
   'synergy',
@@ -50,14 +67,32 @@ function lookupPairNegativeExample(
   return `both parents' signature effects at peak power with no tradeoff`
 }
 
-export function formatBaseAntiMashupRule(strategyKey: FusionStrategyKey): string {
-  if (strategyKey === 'synergy') {
-    return 'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.'
-  }
-  if (strategyKey === 'failure-mode') {
-    return 'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.'
-  }
-  return 'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.'
+export function isFusionAntiMashupRuleKey(
+  value: string,
+): value is FusionAntiMashupRuleKey {
+  return (FUSION_ANTI_MASHUP_RULE_KEYS as readonly string[]).includes(value)
+}
+
+/** Deterministic anti-mashup rule key from the fusion strategy. */
+export function resolveAntiMashupRuleKey(
+  strategyKey: FusionStrategyKey,
+): FusionAntiMashupRuleKey {
+  if (strategyKey === 'synergy') return 'coherent-loop'
+  if (strategyKey === 'failure-mode') return 'failure-reduced'
+  return 'modifier-cost'
+}
+
+export function formatBaseAntiMashupRule(
+  ruleKey: FusionAntiMashupRuleKey,
+): string {
+  return ANTI_MASHUP_RULE_TEXT[ruleKey]
+}
+
+/** @deprecated Use resolveAntiMashupRuleKey + formatBaseAntiMashupRule. */
+export function formatBaseAntiMashupRuleForStrategy(
+  strategyKey: FusionStrategyKey,
+): string {
+  return formatBaseAntiMashupRule(resolveAntiMashupRuleKey(strategyKey))
 }
 
 export function formatStrategyAntiMashupExample(

@@ -42,6 +42,7 @@ export function scorePriorVariantSimilarity(
   if (candidate.roll.strategyKey === target.roll.strategyKey) score += 5
   if (candidate.roll.nameRegister === target.roll.nameRegister) score += 4
   if (candidate.roll.utilityNiche === target.roll.utilityNiche) score += 3
+  if (candidate.roll.antiMashupRuleKey === target.roll.antiMashupRuleKey) score += 2
   if (candidate.type === target.type) score += 2
   if (candidate.range === target.range) score += 2
   if (candidate.tier === target.tier) score += 1

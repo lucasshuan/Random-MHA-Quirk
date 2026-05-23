@@ -37,7 +37,7 @@ const target = {
     strategyKey: 'synergy',
     nameRegister: 'pun',
     utilityNiche: 'plain wording',
-    antiMashupRule: 'Anti-mashup: test.',
+    antiMashupRuleKey: 'coherent-loop',
   },
 }
 
@@ -55,7 +55,7 @@ describe('scorePriorVariantSimilarity', () => {
           strategyKey: 'failure-mode',
           nameRegister: 'dramatic',
           utilityNiche: 'clear body tell',
-          antiMashupRule: 'other',
+          antiMashupRuleKey: 'failure-reduced',
         },
       },
       target,
@@ -95,7 +95,7 @@ describe('pickPriorVariantsForPrompt', () => {
           strategyKey: 'failure-mode',
           nameRegister: 'dramatic',
           utilityNiche: 'clear body tell',
-          antiMashupRule: 'x',
+          antiMashupRuleKey: 'modifier-cost',
         },
       },
       {

@@ -5,7 +5,11 @@ import {
   FUSION_DESCRIPTION_MAX_LENGTH,
   FUSION_DESCRIPTION_MIN_LENGTH,
 } from '../constants'
-import { formatStrategyAntiMashupExample } from './anti-mashup'
+import {
+  formatBaseAntiMashupRule,
+  formatStrategyAntiMashupExample,
+  isFusionAntiMashupRuleKey,
+} from './anti-mashup'
 import { formatFacetContractBlock } from './facet-contract'
 import { formatFusionNamingBlock } from './naming'
 import type { FusionOutputRoll } from './output'
@@ -87,7 +91,7 @@ ${formatParent(quirkA)}
 ${formatParent(quirkB)}
 
 Rules:
-- ${roll.antiMashupRule}
+- ${isFusionAntiMashupRuleKey(roll.antiMashupRuleKey) ? formatBaseAntiMashupRule(roll.antiMashupRuleKey) : formatBaseAntiMashupRule('modifier-cost')}
 - Invent a third mechanism that synergizes or clashes with BOTH source quirks — do NOT just concatenate names or effects.
 - Not a canon character quirk; this is a fan hybrid quirk (origin will be ORIGINAL).
 - One-Quirk discipline: this entry is exactly one birth Quirk, not two powers, an add-on, a gadget, or a mode layered on a separate "real quirk".

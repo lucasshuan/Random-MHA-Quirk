@@ -4,6 +4,7 @@ import {
   type FusionPriorVariantMatch,
 } from './prior-variants'
 import { deriveFusionRollContext } from './prompts/roll-context'
+import { parseFusionRollMeta } from './roll-meta'
 import type { FusionCacheEntry, FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
 import { getSupabaseAdmin } from '@/server/db/supabase'
@@ -30,25 +31,7 @@ const DEFAULT_ROLL: FusionRollMeta = {
   strategyKey: 'synergy',
   nameRegister: 'blunt',
   utilityNiche: 'plain wording',
-  antiMashupRule:
-    'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.',
-}
-
-function parseRollMeta(raw: unknown): FusionRollMeta | null {
-  if (!raw || typeof raw !== 'object') return null
-  const record = raw as Record<string, unknown>
-  const strategyKey =
-    typeof record.strategyKey === 'string' ? record.strategyKey.trim() : ''
-  const nameRegister =
-    typeof record.nameRegister === 'string' ? record.nameRegister.trim() : ''
-  const utilityNiche =
-    typeof record.utilityNiche === 'string' ? record.utilityNiche.trim() : ''
-  const antiMashupRule =
-    typeof record.antiMashupRule === 'string' ? record.antiMashupRule.trim() : ''
-  if (!strategyKey || !nameRegister || !utilityNiche || !antiMashupRule) {
-    return null
-  }
-  return { strategyKey, nameRegister, utilityNiche, antiMashupRule }
+  antiMashupRuleKey: 'coherent-loop',
 }
 
 function rowToEntry(row: FusionRow): FusionCacheEntry {
@@ -56,7 +39,7 @@ function rowToEntry(row: FusionRow): FusionCacheEntry {
     row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier)
       ? (row.tier as QuirkTier)
       : 'B'
-  const roll = parseRollMeta(row.roll) ?? DEFAULT_ROLL
+  const roll = parseFusionRollMeta(row.roll) ?? DEFAULT_ROLL
 
   return {
     key: row.key,
@@ -157,7 +140,7 @@ export async function listFusionPriorVariantsForParentPair(
       range: fusionRow.range,
       facets: fusionRow.facets,
       tier: fusionRow.tier,
-      roll: parseRollMeta(fusionRow.roll),
+      roll: parseFusionRollMeta(fusionRow.roll),
     }
   })
 
@@ -182,7 +165,7 @@ export async function findFusionByKey(key: string): Promise<FusionCacheEntry | n
   if (!data) return null
   const row = data as FusionRow
   const hadTier = Boolean(row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier))
-  const hadRoll = parseRollMeta(row.roll) !== null
+  const hadRoll = parseFusionRollMeta(row.roll) !== null
   const entry = rowToEntry(row)
   return enrichFusionEntry(entry, { hadTier, hadRoll })
 }

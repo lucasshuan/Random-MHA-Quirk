@@ -1,5 +1,9 @@
 import { generateFusionEntry } from '@/server/fusion/generate'
-import { checkFusionRateLimit } from '@/server/fusion/rate-limit'
+import {
+  checkFusionGenerateRateLimit,
+  rateLimitHeaders,
+} from '@/server/http/rate-limit'
+import { applyCorsHeaders } from '@/server/http/cors'
 import type { QuirkId } from '@/types/quirk-id'
 
 export const runtime = 'nodejs'
@@ -11,20 +15,29 @@ interface FusionRequestBody {
   force?: boolean
 }
 
-function getClientIp(request: Request): string {
-  const forwarded = request.headers.get('x-forwarded-for')
-  if (forwarded) {
-    return forwarded.split(',')[0]?.trim() ?? 'unknown'
-  }
-  return request.headers.get('x-real-ip') ?? 'unknown'
+function jsonWithHeaders(
+  body: unknown,
+  request: Request,
+  status: number,
+  extraHeaders?: Headers,
+): Response {
+  const headers = new Headers(extraHeaders)
+  return applyCorsHeaders(Response.json(body, { status, headers }), request)
 }
 
 export async function POST(request: Request) {
-  const ip = getClientIp(request)
-  if (!checkFusionRateLimit(ip)) {
-    return Response.json(
-      { message: 'Muitas requisições. Tente novamente em um minuto.' },
-      { status: 429 },
+  const rate = checkFusionGenerateRateLimit(request)
+  const rateHeaders = rateLimitHeaders(rate)
+
+  if (!rate.allowed) {
+    return jsonWithHeaders(
+      {
+        message:
+          'Muitas gerações de fusão. Aguarde alguns minutos antes de tentar de novo.',
+      },
+      request,
+      429,
+      rateHeaders,
     )
   }
 
@@ -32,14 +45,16 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as FusionRequestBody
   } catch {
-    return Response.json({ message: 'JSON inválido.' }, { status: 400 })
+    return jsonWithHeaders({ message: 'JSON inválido.' }, request, 400, rateHeaders)
   }
 
   const { parentA, parentB, seed, force } = body
   if (!parentA || !parentB || !seed) {
-    return Response.json(
+    return jsonWithHeaders(
       { message: 'parentA, parentB e seed são obrigatórios.' },
-      { status: 400 },
+      request,
+      400,
+      rateHeaders,
     )
   }
 
@@ -51,16 +66,25 @@ export async function POST(request: Request) {
       force: force ?? false,
     })
 
-    return Response.json({
-      entry: {
-        ...entry,
-        parents: entry.parents as [QuirkId, QuirkId],
+    return jsonWithHeaders(
+      {
+        entry: {
+          ...entry,
+          parents: entry.parents as [QuirkId, QuirkId],
+        },
+        cached,
+        generated,
       },
-      cached,
-      generated,
-    })
+      request,
+      200,
+      rateHeaders,
+    )
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
-    return Response.json({ message }, { status: 500 })
+    return jsonWithHeaders({ message }, request, 500, rateHeaders)
   }
+}
+
+export async function OPTIONS(request: Request) {
+  return applyCorsHeaders(new Response(null, { status: 204 }), request)
 }

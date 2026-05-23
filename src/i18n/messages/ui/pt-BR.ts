@@ -126,6 +126,12 @@ export const ptBR: Messages = {
       strategyLabel: 'Estratégia de fusão',
       nameRegisterLabel: 'Estilo do nome',
       utilityLabel: 'Foco da redação',
+      antiMashupLabel: 'Regra anti-mashup',
+      antiMashupRuleKey: {
+        'coherent-loop': 'Um loop coerente',
+        'failure-reduced': 'Potencial reduzido',
+        'modifier-cost': 'Modificador ou custo',
+      },
       strategy: {
         synergy: 'Sinergia',
         'dominant-a': 'Pai A domina',

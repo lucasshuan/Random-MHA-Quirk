@@ -128,6 +128,10 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
               <span className="quirk-detail-label">{t('fusion.roll.utilityLabel')}</span>
               {fusionRollLabel(t, 'utilityNiche', quirk.roll.utilityNiche)}
             </p>
+            <p className="quirk-detail-roll">
+              <span className="quirk-detail-label">{t('fusion.roll.antiMashupLabel')}</span>
+              {fusionRollLabel(t, 'antiMashupRuleKey', quirk.roll.antiMashupRuleKey)}
+            </p>
           </>
         ) : null}
         {quirk.facets.length > 0 ? (

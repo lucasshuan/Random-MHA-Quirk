@@ -2,17 +2,24 @@ import type { FusionCatalogQuirk } from '../catalog'
 import { hashSeed } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 
-export type FusionStrategyKey =
-  | 'synergy'
-  | 'dominant-a'
-  | 'dominant-b'
-  | 'facet-anchor'
-  | 'body-weave'
-  | 'emission-bridge'
-  | 'range-meet'
-  | 'oscillation'
-  | 'byproduct'
-  | 'failure-mode'
+export const FUSION_STRATEGY_KEYS = [
+  'synergy',
+  'dominant-a',
+  'dominant-b',
+  'facet-anchor',
+  'body-weave',
+  'emission-bridge',
+  'range-meet',
+  'oscillation',
+  'byproduct',
+  'failure-mode',
+] as const
+
+export type FusionStrategyKey = (typeof FUSION_STRATEGY_KEYS)[number]
+
+export function isFusionStrategyKey(value: string): value is FusionStrategyKey {
+  return (FUSION_STRATEGY_KEYS as readonly string[]).includes(value)
+}
 
 const RANGE_ORDER = ['Self', 'Contact', 'Short', 'Medium', 'Long', 'Area'] as const
 

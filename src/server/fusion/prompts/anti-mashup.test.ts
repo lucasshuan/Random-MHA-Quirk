@@ -3,6 +3,7 @@ import type { FusionCatalogQuirk } from '../catalog'
 import {
   formatBaseAntiMashupRule,
   formatStrategyAntiMashupExample,
+  resolveAntiMashupRuleKey,
 } from './anti-mashup'
 
 function mockQuirk(
@@ -20,9 +21,17 @@ function mockQuirk(
   }
 }
 
+describe('resolveAntiMashupRuleKey', () => {
+  it('maps synergy and failure-mode to distinct keys', () => {
+    expect(resolveAntiMashupRuleKey('synergy')).toBe('coherent-loop')
+    expect(resolveAntiMashupRuleKey('failure-mode')).toBe('failure-reduced')
+    expect(resolveAntiMashupRuleKey('dominant-a')).toBe('modifier-cost')
+  })
+})
+
 describe('formatBaseAntiMashupRule', () => {
-  it('uses a synergy-safe base rule', () => {
-    const rule = formatBaseAntiMashupRule('synergy')
+  it('expands coherent-loop for prompts', () => {
+    const rule = formatBaseAntiMashupRule('coherent-loop')
     expect(rule).toContain('one coherent mechanism')
     expect(rule).toContain('two independent full-strength kits')
     expect(rule).not.toContain('phase through walls')

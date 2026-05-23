@@ -25,7 +25,7 @@ export interface FusionRollMeta {
   strategyKey: string
   nameRegister: string
   utilityNiche: string
-  antiMashupRule: string
+  antiMashupRuleKey: string
 }
 
 export interface FusionCacheEntry {

@@ -86,6 +86,7 @@ export const en = {
     search: 'Search',
     searchPlaceholder: 'Name, effect, or facet',
     origin: 'Origin',
+    tier: 'Tier',
     type: 'Type',
     range: 'Range',
     facets: 'Facets',

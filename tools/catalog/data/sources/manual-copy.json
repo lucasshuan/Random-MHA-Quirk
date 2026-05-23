@@ -1431,7 +1431,7 @@
       "description": "Concede traços de morcego, incluindo asas nos braços, presas, orelhas pontudas, corrida em alta velocidade e voo."
     },
     "beams-from-his-eyes": {
-      "name": "Raios de Seus Olhos",
+      "name": "Raios Oculares",
       "description": "Dispara feixes de laser concentrados dos olhos quando um interruptor na viseira é acionado. O usuário precisa ativar o interruptor para liberar um disparo no alvo em que está olhando."
     },
     "beast": {
@@ -1623,11 +1623,11 @@
       "description": "Permite ao usuário mire em qualquer objeto relativamente pequeno e o deforma diretamente em sua mão."
     },
     "control-glass": {
-      "name": "Vidro de Controle",
+      "name": "Controle de Vidro",
       "description": "Controla e remodela grandes quantidades de vidro na área ao redor. O usuário pode alternar o vidro entre estado sólido e líquido e formar lâminas ou barreiras com ele."
     },
     "control-horn": {
-      "name": "Buzina de Controle",
+      "name": "Controle de Gado",
       "description": "Permite controlar mentalmente gado ao alcance. Centenas de animais podem ser dirigidos de uma vez para investidas ou movimentos coordenados."
     },
     "copy": {
@@ -1719,7 +1719,7 @@
       "description": "Concede um corpo semelhante ao de uma águia e, presumivelmente, sentidos e mobilidade aviários. As capacidades de combate completas da transformação não foram totalmente documentadas."
     },
     "earphone-jack": {
-      "name": "Conector de Fone",
+      "name": "Plug de Ouvido",
       "description": "Estende orelhas longas e controláveis que funcionam como cabos de áudio. As pontas podem se conectar a objetos ou superfícies para transmitir som, vibração ou choque."
     },
     "earth-flow": {
@@ -2691,7 +2691,7 @@
       "description": "Faz brotar grandes asas negras que permitem voo livre em velocidade muito alta. A manobrabilidade no ar é forte, embora os limites de resistência não sejam totalmente conhecidos."
     },
     "wooden-swords-from-his-hands": {
-      "name": "Espadas de Madeira das Mãos",
+      "name": "Espadas de Madeira",
       "description": "Permite ao usuário crie espadas de madeira a partir de seus pulsos."
     },
     "zero-gravity": {

@@ -63,7 +63,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'alchemy',
@@ -71,7 +71,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'all-for-one',
@@ -119,7 +119,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Enhancement'],
+    facets: ['Enhancement', 'Construct'],
   },
   {
     id: 'assault-dust',
@@ -143,7 +143,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'bat',
@@ -359,7 +359,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'bull-head',
@@ -495,7 +495,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'cloud',
@@ -503,7 +503,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'comic',
@@ -511,7 +511,7 @@ export const quirksBase = [
     tier: 'C',
     type: 'Mutant',
     range: 'Medium',
-    facets: ['Anthropomorphic'],
+    facets: ['Anthropomorphic', 'Construct'],
   },
   {
     id: 'compress',
@@ -543,7 +543,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Control'],
+    facets: ['Control', 'Construct'],
   },
   {
     id: 'control-horn',
@@ -575,7 +575,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'crystallize',
@@ -623,7 +623,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'darkness',
@@ -687,7 +687,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'dragon',
@@ -743,7 +743,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'eel',
@@ -1391,7 +1391,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'landmine',
@@ -1567,7 +1567,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Control'],
+    facets: ['Control', 'Construct'],
   },
   {
     id: 'mimicry',
@@ -1615,7 +1615,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'muddied',
@@ -1639,7 +1639,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'muscle-augmentation',
@@ -1751,7 +1751,7 @@ export const quirksBase = [
     tier: 'S',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Control'],
+    facets: ['Control', 'Construct'],
   },
   {
     id: 'overmodification',
@@ -2087,7 +2087,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Biological'],
+    facets: ['Biological', 'Construct'],
   },
   {
     id: 'shock-absorption',
@@ -2191,7 +2191,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'somnambulist',
@@ -2207,7 +2207,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'spatial-excursion',
@@ -2679,7 +2679,7 @@ export const quirksBase = [
     tier: 'C',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Construct'],
   },
   {
     id: 'zero-gravity',

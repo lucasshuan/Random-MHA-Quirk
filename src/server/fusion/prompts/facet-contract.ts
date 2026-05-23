@@ -9,6 +9,7 @@ const FACET_MECHANISM_HINTS: Record<QuirkFacet, string> = {
   Control: 'direct manipulation of an existing material or explicitly produced effect',
   Mobility: 'movement, repositioning, or travel change',
   Sensory: 'awareness or feedback already supported by a parent mechanism, not an extra remote sense',
+  Construct: 'an object, structure, or entity built or formed by the Quirk as its core output',
   Emission: 'something leaving the body as a projectile, beam, or burst',
   Biological: 'flesh, organs, fluids, or living tissue change',
   Stockpile:
@@ -43,6 +44,10 @@ const FACET_CLEAR_WORDING_MODELS: Record<QuirkFacet, readonly [string, string]> 
   Sensory: [
     'The user feels floor vibrations through bare feet.',
     'The user sees temperature differences.',
+  ],
+  Construct: [
+    'The user exhales foam that hardens into solid blocks.',
+    'The user forms walls from sand they touch.',
   ],
   Emission: [
     'Each clap emits a burst that pushes objects backward.',

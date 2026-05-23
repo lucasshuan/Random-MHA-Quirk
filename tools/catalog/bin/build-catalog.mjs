@@ -48,10 +48,36 @@ const FACET_OVERRIDES = new Map([
   ['foldabody', ['Biological']],
   ['rivet', ['Biological']],
   ['rivet-stab', ['Biological']],
-  ['shield', ['Biological']],
+  ['shield', ['Biological', 'Construct']],
   ['shock-absorption', ['Enhancement']],
   ['spike', ['Biological']],
   ['super-regeneration', ['Biological']],
+])
+
+// A construct is an object, structure, or entity the Quirk builds or forms.
+// Curated IDs prevent lasers and body weapons from being mislabeled by name alone.
+const CONSTRUCT_FACET_IDS = new Set([
+  'air-wall',
+  'alchemy',
+  'arbor',
+  'barrier',
+  'bubble',
+  'clones',
+  'cloud',
+  'comic',
+  'control-glass',
+  'creation',
+  'dark-shadow',
+  'double',
+  'earth-flow',
+  'king-slam',
+  'metal-manipulation',
+  'monster-summon',
+  'mummification',
+  'overhaul',
+  'solid-air',
+  'soul',
+  'wooden-swords-from-his-hands',
 ])
 
 function loadMembers(filename) {
@@ -137,6 +163,7 @@ function inferFacets(title, type, slug) {
   }
   if (type === 'Transformation' && facets.size === 0) facets.add('Enhancement')
   if (type === 'Mutant' && !facets.has('Anthropomorphic')) facets.add('Anthropomorphic')
+  if (CONSTRUCT_FACET_IDS.has(slug)) facets.add('Construct')
 
   return [...facets].slice(0, 4)
 }

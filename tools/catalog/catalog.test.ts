@@ -21,4 +21,16 @@ describe('catalog authoring output', () => {
       expect(Object.keys(copy).sort()).toEqual([...QUIRK_IDS].sort())
     }
   })
+
+  it('avoids reversed "Control X" calques in pt-BR names', () => {
+    const bad = [
+      ['control-glass', /vidro de controle/i],
+      ['control-horn', /buzina de controle/i],
+      ['earphone-jack', /conector de fone/i],
+    ] as const
+
+    for (const [id, pattern] of bad) {
+      expect(ptBRQuirkCopy[id].name).not.toMatch(pattern)
+    }
+  })
 })

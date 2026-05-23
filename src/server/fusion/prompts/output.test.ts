@@ -8,6 +8,7 @@ const TYPE_FACET_POOLS = {
     'Control',
     'Mobility',
     'Sensory',
+    'Construct',
     'Emission',
     'Stockpile',
   ],
@@ -18,6 +19,7 @@ const TYPE_FACET_POOLS = {
     'Control',
     'Mobility',
     'Sensory',
+    'Construct',
     'Biological',
     'Stockpile',
   ],
@@ -26,6 +28,7 @@ const TYPE_FACET_POOLS = {
     'Anthropomorphic',
     'Mobility',
     'Sensory',
+    'Construct',
     'Biological',
     'Stockpile',
   ],
@@ -163,7 +166,31 @@ describe('deriveFusionOutputFromSeed', () => {
         expect(roll.facets).not.toContain('Sensory')
         expect(roll.facets).not.toContain('Psychic')
         expect(roll.facets).not.toContain('Elemental')
+        expect(roll.facets).not.toContain('Construct')
       }
+    }
+  })
+
+  it('does not invent source-bound facets when the rolled type cannot carry parent facets', () => {
+    const rolls = Array.from({ length: 80 }, (_, i) =>
+      deriveFusionOutputFromSeed(
+        `incompatible-source-bound-${i}`,
+        'tail',
+        'shield',
+        ['Biological'],
+        { types: ['Emitter'], ranges: ['Medium'] },
+      ),
+    ).filter((roll) => roll.type === 'Emitter')
+
+    expect(rolls.length).toBeGreaterThan(0)
+    for (const roll of rolls) {
+      expect(roll.facets).not.toContain('Elemental')
+      expect(roll.facets).not.toContain('Psychic')
+      expect(roll.facets).not.toContain('Enhancement')
+      expect(roll.facets).not.toContain('Anthropomorphic')
+      expect(roll.facets).not.toContain('Sensory')
+      expect(roll.facets).not.toContain('Construct')
+      expect(roll.facets).not.toContain('Biological')
     }
   })
 })

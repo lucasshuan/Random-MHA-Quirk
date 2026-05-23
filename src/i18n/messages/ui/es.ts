@@ -93,6 +93,7 @@ export const es: Messages = {
     search: 'Buscar',
     searchPlaceholder: 'Nombre, efecto o faceta',
     origin: 'Origen',
+    tier: 'Nivel',
     type: 'Tipo',
     range: 'Alcance',
     facets: 'Facetas',

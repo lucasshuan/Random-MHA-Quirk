@@ -93,6 +93,7 @@ export const ptBR: Messages = {
     search: 'Buscar',
     searchPlaceholder: 'Nome, efeito ou característica',
     origin: 'Origem',
+    tier: 'Tier',
     type: 'Tipo',
     range: 'Alcance',
     facets: 'Características',

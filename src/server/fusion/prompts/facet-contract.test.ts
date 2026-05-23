@@ -32,4 +32,14 @@ describe('formatFacetContractBlock', () => {
     expect(block).not.toContain('moving objects')
     expect(block).toContain('do not append arbitrary targets')
   })
+
+  it('defines constructs by a formed output instead of a tactical role', () => {
+    const block = formatFacetContractBlock(['Construct'], 'Emitter')
+
+    expect(block).toContain('object, structure, or entity built or formed')
+    expect(block).toContain('exhales foam that hardens into solid blocks')
+    expect(block).toContain('forms walls from sand')
+    expect(block).not.toContain('defensive')
+    expect(block).not.toContain('seals small holes')
+  })
 })

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { FilterPanel } from '../FilterPanel'
+import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '../FilterPanel'
 import { useI18n } from '../../i18n/useI18n'
 import { FacetChip } from '../FacetChip'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
@@ -67,6 +67,7 @@ export function StepManualPick({
     onChangeFilters({
       ...filters,
       origins: draftFilters.origins,
+      tiers: draftFilters.tiers,
       types: draftFilters.types,
       ranges: draftFilters.ranges,
       facets: draftFilters.facets,
@@ -78,6 +79,7 @@ export function StepManualPick({
     setDraftFilters((current) => ({
       ...current,
       origins: [],
+      tiers: [],
       types: [],
       ranges: [],
       facets: [],
@@ -92,7 +94,7 @@ export function StepManualPick({
   }, [hybridStep, mode, t])
 
   const activeFilterCount = useMemo(
-    () => countAdvancedFilterSelections(filters),
+    () => countAdvancedFilterSelections(filters, { includeTiers: true }),
     [filters],
   )
 
@@ -196,6 +198,8 @@ export function StepManualPick({
               onChange={setDraftFilters}
               onReset={resetDraftFilters}
               showSearch={false}
+              originOptions={MANUAL_PICK_ORIGIN_OPTIONS}
+              showTiers
             />
             <div className="manual-filter-modal-actions">
               <button

@@ -1,19 +1,32 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
 import {
-  QUIRK_FACETS,
+  TYPE_FILTER_TONE_CLASS,
+  TIER_FILTER_TONE_CLASS,
+} from '@/lib/quirks/filter-tones'
+import {
   CANONICAL_QUIRK_ORIGINS,
+  QUIRK_FACETS,
+  QUIRK_ORIGINS,
   QUIRK_RANGES,
+  QUIRK_TIERS,
   QUIRK_TYPES,
+  tierBadgeGlyph,
   type QuirkFilters,
+  type QuirkOrigin,
+  type QuirkTier,
 } from '../types/quirk'
 
-interface FilterPanelProps {
+export interface FilterPanelProps {
   filters: QuirkFilters
   onChange: (nextFilters: QuirkFilters) => void
   onReset: () => void
   showSearch?: boolean
+  /** Default: canonical series only. Manual pick passes full `QUIRK_ORIGINS`. */
+  originOptions?: readonly QuirkOrigin[]
+  /** Tier toggles (manual pick advanced filters only). */
+  showTiers?: boolean
 }
 
 function toggleValue<T extends string>(items: T[], value: T): T[] {
@@ -28,6 +41,8 @@ interface CheckboxGroupProps<T extends string> {
   selected: T[]
   labelFor: (value: T) => string
   onToggle: (value: T) => void
+  toneClass?: (value: T) => string | undefined
+  renderLabel?: (value: T) => ReactNode
 }
 
 function CheckboxGroup<T extends string>({
@@ -36,6 +51,8 @@ function CheckboxGroup<T extends string>({
   selected,
   labelFor,
   onToggle,
+  toneClass,
+  renderLabel,
 }: CheckboxGroupProps<T>) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -54,15 +71,24 @@ function CheckboxGroup<T extends string>({
         <div className="check-grid">
           {options.map((option) => {
             const isSelected = selected.includes(option)
+            const tone = toneClass?.(option)
             return (
               <button
                 key={option}
                 type="button"
-                className={`filter-toggle ${isSelected ? 'filter-toggle-active' : ''}`}
+                className={[
+                  'filter-toggle',
+                  tone ? 'filter-toggle-toned' : '',
+                  tone ?? '',
+                  isSelected ? 'filter-toggle-active' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
                 onClick={() => onToggle(option)}
                 aria-pressed={isSelected}
+                aria-label={labelFor(option)}
               >
-                <span>{labelFor(option)}</span>
+                <span>{renderLabel ? renderLabel(option) : labelFor(option)}</span>
               </button>
             )
           })}
@@ -77,6 +103,8 @@ export function FilterPanel({
   onChange,
   onReset,
   showSearch = true,
+  originOptions = CANONICAL_QUIRK_ORIGINS,
+  showTiers = false,
 }: FilterPanelProps) {
   const { t } = useI18n()
   const meta = useMetaLabel()
@@ -106,7 +134,7 @@ export function FilterPanel({
 
       <CheckboxGroup
         title={t('advanced.origin')}
-        options={CANONICAL_QUIRK_ORIGINS}
+        options={originOptions}
         selected={filters.origins}
         labelFor={meta.origin}
         onToggle={(value) =>
@@ -114,11 +142,29 @@ export function FilterPanel({
         }
       />
 
+      {showTiers ? (
+        <CheckboxGroup
+          title={t('advanced.tier')}
+          options={QUIRK_TIERS}
+          selected={filters.tiers}
+          labelFor={meta.tier}
+          toneClass={(tier) => TIER_FILTER_TONE_CLASS[tier as QuirkTier]}
+          renderLabel={(tier) => tierBadgeGlyph(tier as QuirkTier)}
+          onToggle={(value) =>
+            onChange({
+              ...filters,
+              tiers: toggleValue(filters.tiers, value as QuirkTier),
+            })
+          }
+        />
+      ) : null}
+
       <CheckboxGroup
         title={t('advanced.type')}
         options={QUIRK_TYPES}
         selected={filters.types}
         labelFor={meta.type}
+        toneClass={(type) => TYPE_FILTER_TONE_CLASS[type]}
         onToggle={(value) =>
           onChange({ ...filters, types: toggleValue(filters.types, value) })
         }
@@ -146,3 +192,6 @@ export function FilterPanel({
     </section>
   )
 }
+
+/** Full origin list including fan ORIGINAL catalog entries (manual pick). */
+export const MANUAL_PICK_ORIGIN_OPTIONS = QUIRK_ORIGINS

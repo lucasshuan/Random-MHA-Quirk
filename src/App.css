@@ -1670,7 +1670,7 @@
     color 220ms ease;
 }
 
-.filter-toggle:hover {
+.filter-toggle:hover:not(.filter-toggle-toned) {
   border-color: var(--accent-border);
   background: rgba(248, 216, 73, 0.09);
   color: var(--text);
@@ -1679,11 +1679,180 @@
     0 0 14px rgba(0, 190, 255, 0.08);
 }
 
-.filter-toggle-active {
+.filter-toggle-active:not(.filter-toggle-toned) {
   border-color: var(--accent-border);
   background:
     linear-gradient(135deg, var(--accent-bg), rgba(0, 190, 255, 0.12));
   color: var(--accent-strong);
+}
+
+/* Tier + Tipo — rgba explícito (meio-termo); evita color-mix que some no tema escuro */
+
+.filter-toggle.filter-toggle-toned[class*='filter-toggle-tone-tier-'] {
+  min-width: 2.55rem;
+  padding-inline: 0.8rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+/* Emissor */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-emitter:not(.filter-toggle-active) {
+  border-color: rgba(94, 176, 255, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-emitter:not(.filter-toggle-active):hover {
+  border-color: rgba(94, 176, 255, 0.3);
+  background: linear-gradient(135deg, rgba(94, 176, 255, 0.06), rgba(255, 255, 255, 0.045));
+  color: #acb8c8;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-emitter.filter-toggle-active {
+  border-color: rgba(126, 192, 255, 0.62);
+  background: linear-gradient(135deg, rgba(94, 176, 255, 0.22), rgba(94, 176, 255, 0.07));
+  color: #c4e2ff;
+  box-shadow: inset 0 0 14px rgba(94, 176, 255, 0.12);
+}
+
+/* Transformação */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-transformation:not(.filter-toggle-active) {
+  border-color: rgba(255, 154, 69, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-transformation:not(.filter-toggle-active):hover {
+  border-color: rgba(255, 154, 69, 0.3);
+  background: linear-gradient(135deg, rgba(255, 154, 69, 0.06), rgba(255, 255, 255, 0.045));
+  color: #c0b0a8;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-transformation.filter-toggle-active {
+  border-color: rgba(255, 176, 110, 0.62);
+  background: linear-gradient(135deg, rgba(255, 154, 69, 0.22), rgba(255, 154, 69, 0.07));
+  color: #ffe8c8;
+  box-shadow: inset 0 0 14px rgba(255, 154, 69, 0.12);
+}
+
+/* Mutante */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-mutant:not(.filter-toggle-active) {
+  border-color: rgba(94, 231, 160, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-mutant:not(.filter-toggle-active):hover {
+  border-color: rgba(94, 231, 160, 0.3);
+  background: linear-gradient(135deg, rgba(94, 231, 160, 0.06), rgba(255, 255, 255, 0.045));
+  color: #b0c4bc;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-mutant.filter-toggle-active {
+  border-color: rgba(130, 240, 185, 0.62);
+  background: linear-gradient(135deg, rgba(94, 231, 160, 0.22), rgba(94, 231, 160, 0.07));
+  color: #d0f8e4;
+  box-shadow: inset 0 0 14px rgba(94, 231, 160, 0.12);
+}
+
+/* Tier S */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-s:not(.filter-toggle-active) {
+  border-color: rgba(34, 211, 238, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-s:not(.filter-toggle-active):hover {
+  border-color: rgba(34, 211, 238, 0.3);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.06), rgba(255, 255, 255, 0.045));
+  color: #aec4cc;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-s.filter-toggle-active {
+  border-color: rgba(80, 220, 245, 0.62);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(34, 211, 238, 0.07));
+  color: #b8ecf8;
+  box-shadow: inset 0 0 14px rgba(34, 211, 238, 0.12);
+}
+
+/* Tier A */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-a:not(.filter-toggle-active) {
+  border-color: rgba(74, 222, 128, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-a:not(.filter-toggle-active):hover {
+  border-color: rgba(74, 222, 128, 0.3);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.06), rgba(255, 255, 255, 0.045));
+  color: #b0c8b8;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-a.filter-toggle-active {
+  border-color: rgba(110, 235, 155, 0.62);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.22), rgba(74, 222, 128, 0.07));
+  color: #d0f8dc;
+  box-shadow: inset 0 0 14px rgba(74, 222, 128, 0.12);
+}
+
+/* Tier B */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-b:not(.filter-toggle-active) {
+  border-color: rgba(251, 191, 36, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-b:not(.filter-toggle-active):hover {
+  border-color: rgba(251, 191, 36, 0.3);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.06), rgba(255, 255, 255, 0.045));
+  color: #c4b8a8;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-b.filter-toggle-active {
+  border-color: rgba(255, 210, 90, 0.64);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.24), rgba(251, 191, 36, 0.07));
+  color: #fff4d0;
+  box-shadow: inset 0 0 14px rgba(251, 191, 36, 0.12);
+}
+
+/* Tier C */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c:not(.filter-toggle-active) {
+  border-color: rgba(248, 113, 113, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c:not(.filter-toggle-active):hover {
+  border-color: rgba(248, 113, 113, 0.3);
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.06), rgba(255, 255, 255, 0.045));
+  color: #c4b0b0;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-c.filter-toggle-active {
+  border-color: rgba(255, 140, 140, 0.62);
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.22), rgba(248, 113, 113, 0.07));
+  color: #ffd4d4;
+  box-shadow: inset 0 0 14px rgba(248, 113, 113, 0.12);
+}
+
+/* Tier Ω */
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-omega:not(.filter-toggle-active) {
+  border-color: rgba(244, 114, 182, 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  color: #9facbd;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-omega:not(.filter-toggle-active):hover {
+  border-color: rgba(244, 114, 182, 0.3);
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.06), rgba(255, 255, 255, 0.045));
+  color: #c4b0bc;
+}
+
+.filter-toggle.filter-toggle-toned.filter-toggle-tone-tier-omega.filter-toggle-active {
+  border-color: rgba(255, 140, 200, 0.62);
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.22), rgba(244, 114, 182, 0.07));
+  color: #ffe0f0;
+  box-shadow: inset 0 0 14px rgba(244, 114, 182, 0.12);
 }
 
 .filter-toggle input {

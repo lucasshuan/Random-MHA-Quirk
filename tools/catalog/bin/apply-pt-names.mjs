@@ -3,7 +3,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { SOURCES, SRC } from '../lib/paths.mjs'
+import { CATALOG_COPY, SOURCES } from '../lib/paths.mjs'
 
 const overrides = JSON.parse(
   readFileSync(join(SOURCES, 'name-overrides-pt.json'), 'utf8'),
@@ -23,7 +23,7 @@ for (const [id, name] of Object.entries(overrides)) {
 
 writeFileSync(manualPath, `${JSON.stringify(manual, null, 2)}\n`)
 
-const ptPath = join(SRC, 'i18n', 'messages', 'quirks', 'pt-BR.ts')
+const ptPath = join(CATALOG_COPY, 'pt-BR.ts')
 let pt = readFileSync(ptPath, 'utf8')
 
 for (const [id, name] of Object.entries(overrides)) {

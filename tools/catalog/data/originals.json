@@ -229,7 +229,8 @@
     "type": "Transformation",
     "range": "Contact",
     "facets": [
-      "Emission"
+      "Emission",
+      "Construct"
     ],
     "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
     "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Marker).",
@@ -302,7 +303,8 @@
     "type": "Emitter",
     "range": "Medium",
     "facets": [
-      "Emission"
+      "Emission",
+      "Construct"
     ],
     "source": "https://www.deviantart.com/shawnee-etherington/art/Kiseki-Kachi-1101860550",
     "inspiration": "Fan OC Kiseki Kachi (Dark Matter).",
@@ -326,7 +328,8 @@
     "type": "Emitter",
     "range": "Medium",
     "facets": [
-      "Elemental"
+      "Elemental",
+      "Construct"
     ],
     "source": "https://www.deviantart.com/etsap123/art/Rikara-Kayama-MHA-OC-1098455000",
     "inspiration": "Fan OC Rikara Kayama.",

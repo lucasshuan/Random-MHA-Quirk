@@ -119,7 +119,9 @@ function buildPrompt(batch) {
   return `Translate these MHA quirks to Brazilian Portuguese (pt-BR).
 
 Rules:
-- "name": common PT fan name when it exists (e.g. Explosion → Explosão), otherwise keep recognizable English name
+- "name": common PT fan name when it exists (e.g. Explosion → Explosão, Earphone Jack → Plug de Ouvido), otherwise keep recognizable English name
+- For "Control X" in English, use "Controle de X" in Portuguese (never "X de Controle")
+- Prefer short natural titles (2–4 words); avoid word-for-word English order
 - "description": 2–4 sentences, natural pt-BR, same facts as English, not a literal calque
 - Keep power-scaling tone from the anime/manga
 - Do not add meta commentary

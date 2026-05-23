@@ -24,7 +24,7 @@ export function isFusionStrategyKey(value: string): value is FusionStrategyKey {
 const RANGE_ORDER = ['Self', 'Contact', 'Short', 'Medium', 'Long', 'Area'] as const
 
 const BODY_FACETS = new Set(['Anthropomorphic', 'Biological'])
-const PROJECTION_FACETS = new Set(['Elemental', 'Emission'])
+const PROJECTION_FACETS = new Set(['Elemental', 'Construct', 'Emission'])
 
 export interface ParentFusionContext {
   typeA: string

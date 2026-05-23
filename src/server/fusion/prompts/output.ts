@@ -21,6 +21,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Control',
     'Mobility',
     'Sensory',
+    'Construct',
     'Emission',
     'Stockpile',
   ],
@@ -31,6 +32,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Control',
     'Mobility',
     'Sensory',
+    'Construct',
     'Biological',
     'Stockpile',
   ],
@@ -39,6 +41,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Anthropomorphic',
     'Mobility',
     'Sensory',
+    'Construct',
     'Biological',
     'Stockpile',
   ],
@@ -50,6 +53,7 @@ const SOURCE_BOUND_FACETS = new Set<QuirkFacet>([
   'Enhancement',
   'Anthropomorphic',
   'Sensory',
+  'Construct',
   'Biological',
 ])
 
@@ -187,9 +191,10 @@ function pickFacetsFromSeed(
     const compatibleHints = parentFacetHints.filter((facet) =>
       TYPE_FACET_POOLS[type].includes(facet),
     )
-    const anchorPool =
-      compatibleHints.length > 0 ? compatibleHints : TYPE_FACET_POOLS[type]
-    picked[0] = anchorPool[hashSeed(rollKey, 'facet-anchor') % anchorPool.length]
+    if (compatibleHints.length > 0) {
+      picked[0] =
+        compatibleHints[hashSeed(rollKey, 'facet-anchor') % compatibleHints.length]
+    }
   }
 
   return picked

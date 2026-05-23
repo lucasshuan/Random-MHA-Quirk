@@ -13,8 +13,11 @@ export interface QuirkDetailResponse {
   quirk: Quirk
 }
 
+/** Bust browser/CDN cache after catalog tier schema changes. */
+const CATALOG_FETCH_VERSION = 'v2-omega'
+
 function filtersToSearchParams(locale: Locale, filters?: QuirkFilters): URLSearchParams {
-  const params = new URLSearchParams({ locale })
+  const params = new URLSearchParams({ locale, catalog: CATALOG_FETCH_VERSION })
 
   if (!filters) return params
 
@@ -36,6 +39,7 @@ export async function fetchQuirks(
   const params = filtersToSearchParams(locale, filters)
   const res = await fetch(`/api/quirks?${params}`, {
     ...init,
+    cache: process.env.NODE_ENV === 'development' ? 'no-store' : init?.cache,
     headers: { Accept: 'application/json', ...init?.headers },
   })
 

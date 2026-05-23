@@ -43,7 +43,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ]
@@ -62,7 +61,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ],
@@ -141,7 +139,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ]
@@ -161,7 +158,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ],
@@ -241,7 +237,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ]
@@ -261,7 +256,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ],
@@ -336,7 +330,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ]
@@ -351,7 +344,6 @@
         "range": "Long",
         "facets": [
           "Sensory",
-          "Defense",
           "Anthropomorphic",
           "Biological"
         ],

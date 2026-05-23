@@ -24,7 +24,7 @@ export function isFusionStrategyKey(value: string): value is FusionStrategyKey {
 const RANGE_ORDER = ['Self', 'Contact', 'Short', 'Medium', 'Long', 'Area'] as const
 
 const BODY_FACETS = new Set(['Anthropomorphic', 'Biological'])
-const PROJECTION_FACETS = new Set(['Elemental', 'Emission', 'Construct'])
+const PROJECTION_FACETS = new Set(['Elemental', 'Emission'])
 
 export interface ParentFusionContext {
   typeA: string
@@ -50,6 +50,85 @@ export interface SelectedFusionStrategy {
 
 export interface FusionStrategySelectionOptions {
   priorStrategyKeys?: readonly string[]
+}
+
+interface StrategyCoherenceGuidance {
+  criteria: string[]
+}
+
+const STRATEGY_COHERENCE_GUIDANCE: Record<
+  FusionStrategyKey,
+  StrategyCoherenceGuidance
+> = {
+  synergy: {
+    criteria: [
+      'Both parent essences must be indispensable parts of one rule; removing either parent should break the concept.',
+      'Combine operations, not just imagery, nouns, colors, or generic force.',
+    ],
+  },
+  'dominant-a': {
+    criteria: [
+      'Parent A supplies the main operation readers immediately recognize.',
+      'Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+    ],
+  },
+  'dominant-b': {
+    criteria: [
+      'Parent B supplies the main operation readers immediately recognize.',
+      'Parent A changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+    ],
+  },
+  'facet-anchor': {
+    criteria: [
+      'Use the shared facet as common ground, then state the distinct operation each parent contributes to the resulting rule.',
+      'A shared tag is not itself a mechanic and cannot excuse losing either parent essence.',
+    ],
+  },
+  'body-weave': {
+    criteria: [
+      'The body trait or temporary form must cause the effect, not appear as unrelated anatomy added to satisfy a tag.',
+      'Any emitted or controlled material must visibly come from that body mechanism.',
+    ],
+  },
+  'emission-bridge': {
+    criteria: [
+      'Define what is emitted and the exact change it causes on contact or within range.',
+      'The emission must carry the other parent operation; a themed blast or pressure wave is not inheritance.',
+    ],
+  },
+  'range-meet': {
+    criteria: [
+      'Change delivery distance only through one understandable rule; preserve the core operation from each parent.',
+      'Do not replace a close-range parent with generic projectiles merely because the output range is longer.',
+    ],
+  },
+  oscillation: {
+    criteria: [
+      'Both phases must be states of the same resource or mechanism, with a plain switch condition.',
+      'The second phase spends, reverses, redirects, or exposes what the first phase produced; it is not a second kit.',
+    ],
+  },
+  byproduct: {
+    criteria: [
+      'The secondary effect must be an inevitable fallout of the primary mechanism, not an added benefit.',
+      'Keep both parent essences in the primary rule even when the byproduct is minor.',
+    ],
+  },
+  'failure-mode': {
+    criteria: [
+      'Choose one recognizable operational essence from each parent.',
+      'Degrade scale, speed, reach, output, reliability, or versatility; never degrade recognizability.',
+      'Name the missing capability through the narrower rule itself, rather than adding vague fatigue to an unrelated effect.',
+    ],
+  },
+}
+
+export function formatStrategyCoherenceGuidance(key: FusionStrategyKey): string {
+  const guidance = STRATEGY_COHERENCE_GUIDANCE[key]
+  return `Coherence criteria (${key}):
+- Preserve a recognizable operational essence from EACH parent; inherit what each power does, not merely its theme.
+- Before prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence. Final wording need not follow this arrow format.
+${guidance.criteria.map((criterion) => `- ${criterion}`).join('\n')}`
 }
 
 function rangeIndex(range: string): number {
@@ -255,7 +334,8 @@ function buildSelectedStrategy(
 
   return {
     key: picked.key,
-    instruction,
+    instruction: `${instruction}
+${formatStrategyCoherenceGuidance(picked.key)}`,
     contextBlock,
   }
 }

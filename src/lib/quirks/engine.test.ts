@@ -19,7 +19,7 @@ const sampleQuirks: Quirk[] = [
     tier: 'B',
     type: 'Emitter',
     range: 'Self',
-    facets: ['Mobility', 'Support'],
+    facets: ['Mobility', 'Control'],
     name: 'Air Walk',
     description: 'Walk on air pockets for mobility.',
   },
@@ -56,7 +56,7 @@ describe('applyFilters', () => {
       tiers: [],
       types: [],
       ranges: [],
-      facets: ['Mobility', 'Support'],
+      facets: ['Mobility', 'Control'],
       query: '',
     })
 

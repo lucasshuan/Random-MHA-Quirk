@@ -124,7 +124,7 @@
     }
   },
   {
-    "id": "water",
+    "id": "aquagenesis",
     "origin": "ORIGINAL",
     "tier": "A",
     "type": "Emitter",
@@ -135,15 +135,15 @@
     ],
     "source": "https://shapes.inc/miyachi",
     "inspiration": "Fan OC Miya Sairin.",
-    "name": "Water",
+    "name": "Aquagenesis",
     "description": "Allows the user to generate and control water within range. The mass is drawn from their hydration; any volume they lose track of snaps back through the skin as stinging cold until it is recovered.",
     "copy": {
       "pt-BR": {
-        "name": "Hidrogênese",
+        "name": "Aquagênese",
         "description": "Gera e controla água dentro do alcance, consumindo a própria hidratação como fonte. O volume retirado volta pela pele como frio pungente se o usuário perder a noção do que criou, até ser recuperado. A individualidade exige gestão cuidadosa do estoque hídrico corporal."
       },
       "es": {
-        "name": "Hidrogénesis",
+        "name": "Aquagénesis",
         "description": "El don permite generar y controlar agua dentro de su alcance. La masa proviene de la hidratación del usuario; cualquier volumen que pierda de vista regresa por la piel como un frío punzante hasta ser recuperado."
       }
     }
@@ -155,8 +155,7 @@
     "type": "Emitter",
     "range": "Medium",
     "facets": [
-      "Control",
-      "Support"
+      "Control"
     ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/109",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #095 Ctrl.",
@@ -230,7 +229,6 @@
     "type": "Transformation",
     "range": "Contact",
     "facets": [
-      "Construct",
       "Emission"
     ],
     "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
@@ -304,7 +302,6 @@
     "type": "Emitter",
     "range": "Medium",
     "facets": [
-      "Construct",
       "Emission"
     ],
     "source": "https://www.deviantart.com/shawnee-etherington/art/Kiseki-Kachi-1101860550",
@@ -329,8 +326,7 @@
     "type": "Emitter",
     "range": "Medium",
     "facets": [
-      "Elemental",
-      "Construct"
+      "Elemental"
     ],
     "source": "https://www.deviantart.com/etsap123/art/Rikara-Kayama-MHA-OC-1098455000",
     "inspiration": "Fan OC Rikara Kayama.",
@@ -454,8 +450,7 @@
     "type": "Transformation",
     "range": "Self",
     "facets": [
-      "Enhancement",
-      "Construct"
+      "Enhancement"
     ],
     "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/77",
     "inspiration": "Quotev 功率 | MHA Quirk Ideas #064 Spinblade (Ghoulplayzs).",
@@ -504,7 +499,6 @@
     "type": "Emitter",
     "range": "Contact",
     "facets": [
-      "Construct",
       "Stockpile"
     ],
     "source": null,
@@ -543,6 +537,31 @@
       "es": {
         "name": "Semáforo Vital",
         "description": "El don Semáforo Vital permite ver el peligro codificado en verde, amarillo o rojo hasta a varias millas de distancia. Las alertas intensas provocan un pinchazo doloroso en las sienes."
+      }
+    }
+  },
+  {
+    "id": "time-manipulation",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Emitter",
+    "range": "Area",
+    "facets": [
+      "Control",
+      "Emission"
+    ],
+    "source": "https://my-hero-academia-fanon.fandom.com/wiki/Time_Manipulation",
+    "inspiration": "Fan quirk (Yukira Katawari OC); catalogued as Special tier.",
+    "name": "Time Manipulation",
+    "description": "Stops, reverses, skips, or accelerates time in a wide area. Stops last ~10s; reversal capped ~1h; heavy fatigue limits chaining.",
+    "copy": {
+      "pt-BR": {
+        "name": "Manipulação do Tempo",
+        "description": "Para, reverte, pula ou acelera o tempo numa área ampla. A parada dura cerca de 10s; a reversão, até ~1h; fadiga forte limita usos seguidos."
+      },
+      "es": {
+        "name": "Manipulación del Tiempo",
+        "description": "Detiene, revierte, salta o acelera el tiempo en un área amplia. La parada dura unos 10s; la reversión, hasta ~1h; la fatiga limita encadenar usos."
       }
     }
   }

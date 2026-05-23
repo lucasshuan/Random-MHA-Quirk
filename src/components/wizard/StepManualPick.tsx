@@ -5,9 +5,9 @@ import { FacetChip } from '../FacetChip'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
 import { translateMatches } from '../../i18n/translate'
 import type { ResultMode } from '@/lib/wizard/flow'
+import { TierBadge, TierScale } from '../TierScale'
 import {
   countAdvancedFilterSelections,
-  QUIRK_TIERS,
   type Quirk,
   type QuirkFilters,
   type QuirkType,
@@ -167,9 +167,7 @@ export function StepManualPick({
                 >
                   <span className="quirk-card-glow" aria-hidden="true" />
                   <p className="quirk-meta manual-quirk-meta">
-                    <span className="manual-quirk-tier-badge" aria-label={meta.tier(quirk.tier)}>
-                      {quirk.tier}
-                    </span>
+                    <TierBadge tier={quirk.tier} />
                     <span className="quirk-meta-sep" aria-hidden="true" />
                     <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
                   </p>
@@ -232,21 +230,7 @@ export function StepManualPick({
               <div className="quirk-card-glow" aria-hidden="true" />
               <div className="quirk-pick-card-scroll">
               <p className="quirk-meta">
-                <span
-                  className="quirk-tier-scale"
-                  role="group"
-                  aria-label={meta.tier(selectedQuirk.tier)}
-                >
-                  {QUIRK_TIERS.map((tier) => (
-                    <span
-                      key={tier}
-                      className={`quirk-tier-cell${tier === selectedQuirk.tier ? ' quirk-tier-cell-active' : ''}`}
-                      aria-current={tier === selectedQuirk.tier ? 'true' : undefined}
-                    >
-                      {tier}
-                    </span>
-                  ))}
-                </span>
+                <TierScale tier={selectedQuirk.tier} />
                 <span className="quirk-meta-sep" aria-hidden="true" />
                 <span className="quirk-meta-type">{meta.type(selectedQuirk.type)}</span>
                 <span className="quirk-meta-sep" aria-hidden="true" />

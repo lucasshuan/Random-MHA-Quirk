@@ -24,8 +24,26 @@ export const QUIRK_RANGES = [
 ] as const
 export type QuirkRange = (typeof QUIRK_RANGES)[number]
 
-export const QUIRK_TIERS = ['S', 'A', 'B', 'C'] as const
+/** Above S — plot/meta quirks (All For One, One For All, etc.). */
+export const QUIRK_TIER_OMEGA = 'Ω' as const
+
+/** Standard ladder shown on tier pickers and S–C scale cells. */
+export const QUIRK_DISPLAY_TIERS = ['S', 'A', 'B', 'C'] as const
+export type QuirkDisplayTier = (typeof QUIRK_DISPLAY_TIERS)[number]
+
+export const QUIRK_TIERS = [
+  QUIRK_TIER_OMEGA,
+  ...QUIRK_DISPLAY_TIERS,
+] as const
 export type QuirkTier = (typeof QUIRK_TIERS)[number]
+
+export function isOmegaTier(tier: QuirkTier): tier is typeof QUIRK_TIER_OMEGA {
+  return tier === QUIRK_TIER_OMEGA
+}
+
+export function tierBadgeGlyph(tier: QuirkTier): string {
+  return isOmegaTier(tier) ? QUIRK_TIER_OMEGA : tier
+}
 
 export const QUIRK_FACETS = [
   'Elemental',
@@ -33,11 +51,8 @@ export const QUIRK_FACETS = [
   'Enhancement',
   'Anthropomorphic',
   'Control',
-  'Support',
-  'Defense',
   'Mobility',
   'Sensory',
-  'Construct',
   'Emission',
   'Biological',
   'Stockpile',
@@ -95,4 +110,3 @@ export function countAdvancedFilterSelections(filters: QuirkFilters): number {
     filters.facets.length
   )
 }
-

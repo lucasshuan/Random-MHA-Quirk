@@ -21,7 +21,7 @@ const quirkB: FusionCatalogQuirk = {
   tier: 'B',
   type: 'Transformation',
   range: 'Contact',
-  facets: ['Defense'],
+  facets: ['Enhancement'],
   description: 'Harden body parts.',
 }
 
@@ -53,6 +53,40 @@ describe('buildFusionEnglishInstructions', () => {
 
     expect(instructions).toContain('myheroacademia.fandom.com')
     expect(instructions).toContain('Scientific synthesis')
-    expect(instructions).toContain('shear-thickening')
+    expect(instructions).not.toContain('Softening + Barrier')
+  })
+
+  it('requires description-first copy and clear naming', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('then write en.description, then en.name last')
+    expect(instructions).toContain('what the user **has**')
+    expect(instructions).toContain(
+      'the title must give a clear idea of what the quirk does',
+    )
+    expect(instructions).toContain('do not add arbitrary targets')
+  })
+
+  it('includes inheritance criteria and treats facets as presentation only', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('recognizable operational essence from EACH parent')
+    expect(instructions).toContain(
+      'Rolled facets describe how the hybrid presents; they never replace',
+    )
+  })
+
+  it('explains only the selected output type in description focus', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions({
+      ...fusion,
+      mechanics: { ...fusion.mechanics, type: 'Emitter' },
+    })
+
+    expect(instructions).toContain('Emitter: state the outward effect')
+    expect(instructions).not.toContain('Mutant: state the permanent body trait')
+    expect(instructions).not.toContain('Transformation: state what changes while active')
   })
 })

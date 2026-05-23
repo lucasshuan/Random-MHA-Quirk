@@ -1,6 +1,19 @@
 import type { Locale } from '@/i18n/types'
 import { getSupabaseAdmin } from '@/server/db/supabase'
-import type { Quirk, QuirkFacet, QuirkId, QuirkOrigin, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
+import {
+  QUIRK_TIERS,
+  type Quirk,
+  type QuirkFacet,
+  type QuirkId,
+  type QuirkOrigin,
+  type QuirkRange,
+  type QuirkTier,
+  type QuirkType,
+} from '@/types/quirk'
+
+function parseTier(value: string): QuirkTier {
+  return QUIRK_TIERS.includes(value as QuirkTier) ? (value as QuirkTier) : 'B'
+}
 
 interface QuirkRow {
   id: string
@@ -23,7 +36,7 @@ function rowToQuirk(base: QuirkRow, translation: TranslationRow): Quirk {
   return {
     id: base.id as QuirkId,
     origin: base.origin as QuirkOrigin,
-    tier: base.tier as QuirkTier,
+    tier: parseTier(base.tier),
     type: base.type as QuirkType,
     range: base.range as QuirkRange,
     facets: base.facets as QuirkFacet[],

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
-import { LOCALES, type Locale } from '@/i18n/types'
+import type { Locale } from '@/i18n/types'
 import { fetchQuirks } from '@/lib/quirks/api'
 import { applyFilters } from '@/lib/quirks/engine'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
@@ -16,17 +16,18 @@ function isAbortError(err: unknown): boolean {
     : err instanceof Error && err.name === 'AbortError'
 }
 
-/** True after any locale catalog has loaded (language switches stay in-app). */
+/** True after the initial locale catalog has loaded (startup gate). */
 export function isCatalogBootstrapped(): boolean {
   return catalogCache.size > 0
 }
 
-function prefetchOtherLocales(activeLocale: Locale): void {
-  for (const locale of LOCALES) {
-    if (locale === activeLocale) continue
-    if (catalogCache.has(locale) || inflight.has(locale)) continue
-    void loadCatalog(locale).catch(() => {})
-  }
+export function hasQuirksCatalog(locale: Locale): boolean {
+  return catalogCache.has(locale)
+}
+
+/** Fetches /api/quirks for `locale` if not cached. Use before switching UI locale. */
+export function ensureQuirksCatalog(locale: Locale): Promise<Quirk[]> {
+  return loadCatalog(locale)
 }
 
 /** Re-apply localized copy when locale changes (catalog must be loaded). */
@@ -47,7 +48,6 @@ async function loadCatalog(locale: Locale): Promise<Quirk[]> {
     .then((response) => {
       catalogCache.set(locale, response.quirks)
       inflight.delete(locale)
-      prefetchOtherLocales(locale)
       return response.quirks
     })
     .catch((err) => {

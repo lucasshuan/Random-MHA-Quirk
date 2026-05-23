@@ -4,7 +4,8 @@ import { resolveQuirk } from '../hooks/useQuirksCatalog'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
 import type { FusionQuirk } from '../types/fusion'
-import { QUIRK_TIERS, type Quirk, type QuirkType } from '../types/quirk'
+import { TierScale } from './TierScale'
+import type { Quirk, QuirkType } from '../types/quirk'
 
 export type QuirkCardModel = Quirk | FusionQuirk
 
@@ -74,21 +75,7 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
         <span className="quirk-fusion-badge">{t('fusion.badge')}</span>
       ) : null}
       <p className="quirk-meta">
-        <span
-          className="quirk-tier-scale"
-          role="group"
-          aria-label={meta.tier(quirk.tier)}
-        >
-          {QUIRK_TIERS.map((tier) => (
-            <span
-              key={tier}
-              className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
-              aria-current={tier === quirk.tier ? 'true' : undefined}
-            >
-              {tier}
-            </span>
-          ))}
-        </span>
+        <TierScale tier={quirk.tier} />
         <span className="quirk-meta-sep" aria-hidden="true" />
         <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
         <span className="quirk-meta-sep" aria-hidden="true" />

@@ -21,6 +21,10 @@ function resolveTranslationTemperature(): number {
   return Number(process.env.FUSION_TRANSLATION_TEMPERATURE ?? 0.5)
 }
 
+function resolveTierTemperature(): number {
+  return Number(process.env.FUSION_TIER_TEMPERATURE ?? 0.35)
+}
+
 export function resolveFusionModelSettings(purpose: FusionLlmPurpose): ModelSettings {
   const model = resolveFusionOpenAiModel()
   const settings: ModelSettings = {}
@@ -31,7 +35,9 @@ export function resolveFusionModelSettings(purpose: FusionLlmPurpose): ModelSett
     settings.temperature =
       purpose === 'translation'
         ? resolveTranslationTemperature()
-        : resolveFusionTemperature()
+        : purpose === 'tier'
+          ? resolveTierTemperature()
+          : resolveFusionTemperature()
   }
 
   return settings

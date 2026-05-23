@@ -7,7 +7,10 @@ import { getFilteredQuirks, getQuirksCatalog } from '@/server/quirks/service'
 
 export const runtime = 'nodejs'
 
-const CACHE_HEADER = 'public, s-maxage=86400, stale-while-revalidate=3600'
+const CACHE_HEADER =
+  process.env.NODE_ENV === 'development'
+    ? 'private, no-store'
+    : 'public, s-maxage=86400, stale-while-revalidate=3600'
 
 function mergeHeaders(rate: Headers, extra?: Record<string, string>): Headers {
   const headers = new Headers(rate)

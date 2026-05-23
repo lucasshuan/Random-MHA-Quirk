@@ -17,27 +17,37 @@ Existing variants for this parent pair — do not reuse these titles or lightly 
 - "Phase Shell": The user can briefly turn their skin into a permeable shell that lets attacks pass through while keeping bones rigid.
 
 Fusion strategy — parent A is dominant and leads: Permeation's Emitter/Short logic is the main engine; Hardening only subtly modifies, limits, or reshapes how that engine expresses.
+Coherence criteria (dominant-a):
+- Preserve a recognizable operational essence from EACH parent; inherit what each power does, not merely its theme.
+- Before prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence. Final wording need not follow this arrow format.
+- Parent A supplies the main operation readers immediately recognize.
+- Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.
 Avoid this mashup for this strategy: ❌ "phase through walls while fully armored at all times"
+Simplicity nudge for this variant: direct trigger - state activation in plain terms and avoid multi-step setup chains. Keep the description easy to summarize in one sentence.
+Sibling diversity gate: prior variants for this parent pair already exist. Choose a different central carrier, action, manifestation, or everyday role. Changing only the title, range, strength, activation wording, or drawback is NOT a meaningfully different fusion.
 
 Required result mechanics (fixed for this variant — copy exactly into JSON; write en.description to fit this type, range, and facets):
 - type: Transformation
 - range: Contact
-- facets: [Defense]
+- facets: [Mobility]
 
 Type discipline (Transformation only):
 - Core model: the Quirk temporarily changes the user while active.
 - State what changes in the body and what returns to normal after use.
+- Clear wording models: "While active, the user converts their skin into adhesive mud." / "While active, the user turns their arms into flexible rubber."
+- Clear wording models illustrate sentence clarity only; do not copy their effect unless supported by the source quirks.
 
 Facet contract (keep one central mechanism):
-- Defense: show blocking, absorbing, or reducing incoming harm
-Facet guidance: describe one core effect first. If there is a second facet, keep it as a light extension of the same effect, not a new subsystem.
+- Mobility: show movement, repositioning, or travel change. Clear wording models: "The user expels air from their soles to propel their body." / "The user becomes weightless while holding their breath."
+Facet guidance: describe one core effect first. Once the mechanism is clear, do not append arbitrary targets, tracking restrictions, or inferred uses just to add detail. Extra facets stay light extensions of that same effect, not separate subsystems. Rolled facets describe how the hybrid presents; they never replace either parent's recognizable operational essence. Clear wording models illustrate sentence clarity only; do not copy their effect unless supported by the source quirks.
+Source-faithfulness gate: only express a facet through behavior already supported by these parent descriptions. A tag does not authorize new healing, analgesia, calming, remote senses, stat boosts, or animal anatomy.
 
 Range prose check: rolled range is Contact — touch or immediate grappling distance only. en.description must match this band; do not describe a different reach.
 
 Parent quirks:
 - Permeation (permeation): tier A, Emitter, range Short, facets [Mobility]. Allows the user to phase their body through solid matter, including walls and the ground, by making their molecules spread apart.
 
-- Hardening (hardening): tier B, Transformation, range Contact, facets [Defense, Enhancement]. Hardens any part of the user's body to rock-like durability for offense and defense.
+- Hardening (hardening): tier B, Transformation, range Contact, facets [Enhancement]. Hardens any part of the user's body to rock-like durability for offense and defense.
 
 Rules:
 - Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.
@@ -50,10 +60,11 @@ Rules:
 - Follow the fusion strategy above for how the two parents combine; do not ignore it for a generic literal merge of both effects.
 - Structure the description in this order:
   1) first sentence = main effect in plain words (what it does),
-  2) second sentence = manifestation/activation or one essential secondary detail,
+  2) second sentence = manifestation, activation, or a rule required to understand that same effect; omit invented consequences,
   3) optional last sentence = at most one limit — physical cost OR clear situational scope; omit when the quirk is already weak, narrow, contact-only, failure-mode, or self-limiting by range/type; omit when a limit would feel piled-on.
 - Keep one clear core mechanism. If a second effect exists, it must be a direct consequence of the same mechanism.
-- Focus on what the quirk does, not combat roleplay or ally tactics. Narrow scope is fine when it is part of the mechanism (e.g. disrupts active Emitter effects in open space, clears lingering quirk residue but not innate Mutant anatomy) — state as objective fact, not matchup advice.
+- Fixed facets label how that single mechanism presents; never add healing, calming, remote senses, animal anatomy, or stat boosts solely to satisfy a facet tag.
+- Focus on what the quirk does, not combat roleplay or ally tactics. State narrow scope only when it comes from the parent mechanism or fixed range; do not invent target restrictions or derived uses after the effect is already clear.
 - Avoid unnecessary technical or aesthetic detail (exact pressure/temperature/color specs, niche physics jargon, or conditional chains) unless needed to understand behavior.
 - Use direct verbs and caveman clarity: easy to imagine after one read.
 - Limits are optional, not mandatory: some canon quirks have none in the entry. When one helps, use at most ONE — either a simple physical cost (dizziness, overheating, recoil, short cooldown, touch requirement) OR one clear situational scope baked into the effect (what it can erase vs leave alone, which quirk expressions it disrupts vs skips, range/surface/target type). Situational limits are valid when obvious from the core idea; do not invent extra physical costs on top. Avoid stacking more than two separate limits in one description.

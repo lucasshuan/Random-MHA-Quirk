@@ -21,7 +21,7 @@ describe('buildFusionPrompt', () => {
       tier: 'B' as const,
       type: 'Transformation' as const,
       range: 'Contact' as const,
-      facets: ['Defense'],
+      facets: ['Enhancement'],
       description: 'B test',
     }
     const rollContext = {
@@ -47,6 +47,7 @@ describe('buildFusionPrompt', () => {
     expect(prompt).toContain('Old Title')
     expect(prompt).toContain('clears lingering ice')
     expect(prompt).toContain('never add healing, calming, remote senses, animal anatomy')
+    expect(prompt).toContain('do not invent target restrictions or derived uses')
     expect(prompt).toContain('Changing only the title, range, strength')
     const hasStrategyExample =
       prompt.includes('Avoid this mashup for this strategy: ❌') &&

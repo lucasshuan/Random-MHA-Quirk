@@ -5,6 +5,8 @@ export type FusionUtilityNiche =
   | 'single core effect'
   | 'clear body tell'
   | 'direct trigger'
+  | 'complete core effect'
+  /** Legacy stored value; accepted but no longer selected for new variants. */
   | 'simple secondary detail'
   | 'one practical limit'
   | 'plain wording'
@@ -14,11 +16,11 @@ export interface FusionUtilityNudge {
   line: string
 }
 
-const UTILITY_NICHES: FusionUtilityNiche[] = [
+const SELECTABLE_UTILITY_NICHES: FusionUtilityNiche[] = [
   'single core effect',
   'clear body tell',
   'direct trigger',
-  'simple secondary detail',
+  'complete core effect',
   'one practical limit',
   'plain wording',
 ]
@@ -30,8 +32,10 @@ const UTILITY_HINTS: Record<FusionUtilityNiche, string> = {
     'show one visible activation sign in the body or posture, then move on',
   'direct trigger':
     'state activation in plain terms and avoid multi-step setup chains',
+  'complete core effect':
+    'stop after the core effect is clear; add another detail only when needed to explain how that same effect works',
   'simple secondary detail':
-    'allow one optional extra detail only if it clearly comes from the same mechanism',
+    'stop after the core effect is clear; add another detail only when needed to explain how that same effect works',
   'one practical limit':
     'use at most one limit when needed — physical cost or one clear situational scope (what it affects vs skips); omit if already weak or narrow; never list multiple limits',
   'plain wording':
@@ -39,7 +43,7 @@ const UTILITY_HINTS: Record<FusionUtilityNiche, string> = {
 }
 
 export function isFusionUtilityNiche(value: string): value is FusionUtilityNiche {
-  return UTILITY_NICHES.includes(value as FusionUtilityNiche)
+  return Object.prototype.hasOwnProperty.call(UTILITY_HINTS, value)
 }
 
 export function formatFusionUtilityNudge(niche: FusionUtilityNiche): string {
@@ -56,7 +60,8 @@ export function selectFusionUtilityNudge(
   parentB?: string,
 ): FusionUtilityNudge {
   const rollKey = resolveRollKey(seed, parentA, parentB)
-  const niche = UTILITY_NICHES[hashSeed(rollKey, 'utility') % UTILITY_NICHES.length]
+  const niche =
+    SELECTABLE_UTILITY_NICHES[hashSeed(rollKey, 'utility') % SELECTABLE_UTILITY_NICHES.length]
   return {
     niche,
     line: formatFusionUtilityNudge(niche),

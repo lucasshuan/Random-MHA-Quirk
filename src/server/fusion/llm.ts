@@ -1,9 +1,13 @@
 import { requireOneOf } from '@/server/env/utils'
 import type { FusionAgentInput } from '@/types/fusion-agent'
 import {
+  decideFusionTierWithAgent,
   generateEnglishFusionWithAgent,
   translateFusionWithAgent,
 } from './agents'
+import type { FusionCatalogQuirk } from './catalog'
+import type { FusionStrategyKey } from './prompts/strategy'
+import type { QuirkDisplayTier } from '@/types/quirk'
 import type { FusionTranslationLocale } from './constants'
 import type { FusionPipelineTraceContext } from './agents/tracing'
 import type {
@@ -11,7 +15,7 @@ import type {
   ValidatedLocaleFusionCopy,
 } from './validate'
 
-export type FusionLlmPurpose = 'fusion' | 'translation'
+export type FusionLlmPurpose = 'fusion' | 'translation' | 'tier'
 
 /** OpenAI reasoning models only accept the default temperature (1); omit the param. */
 export function openAiSupportsCustomTemperature(model: string): boolean {
@@ -32,6 +36,9 @@ export function openAiSupportsReasoningEffort(model: string): boolean {
 export function resolveOpenAiReasoningEffort(purpose: FusionLlmPurpose): string {
   if (purpose === 'translation') {
     return process.env.FUSION_TRANSLATION_REASONING_EFFORT?.trim() || 'minimal'
+  }
+  if (purpose === 'tier') {
+    return process.env.FUSION_TIER_REASONING_EFFORT?.trim() || 'low'
   }
   return process.env.FUSION_REASONING_EFFORT?.trim() || 'low'
 }
@@ -68,4 +75,14 @@ export function translateFusionToLocaleWithLlm(
   trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy> {
   return translateFusionWithAgent(english, locale, trace)
+}
+
+export function decideFusionTierWithLlm(
+  fusion: ValidatedEnglishFusionPayload,
+  parentA: FusionCatalogQuirk,
+  parentB: FusionCatalogQuirk,
+  strategyKey: FusionStrategyKey,
+  trace?: FusionPipelineTraceContext,
+): Promise<QuirkDisplayTier> {
+  return decideFusionTierWithAgent(fusion, parentA, parentB, strategyKey, trace)
 }

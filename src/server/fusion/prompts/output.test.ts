@@ -6,11 +6,8 @@ const TYPE_FACET_POOLS = {
     'Elemental',
     'Psychic',
     'Control',
-    'Support',
-    'Defense',
     'Mobility',
     'Sensory',
-    'Construct',
     'Emission',
     'Stockpile',
   ],
@@ -19,20 +16,16 @@ const TYPE_FACET_POOLS = {
     'Enhancement',
     'Anthropomorphic',
     'Control',
-    'Defense',
     'Mobility',
     'Sensory',
-    'Construct',
     'Biological',
     'Stockpile',
   ],
   Mutant: [
     'Enhancement',
     'Anthropomorphic',
-    'Defense',
     'Mobility',
     'Sensory',
-    'Construct',
     'Biological',
     'Stockpile',
   ],
@@ -167,10 +160,8 @@ describe('deriveFusionOutputFromSeed', () => {
 
     for (const roll of rolls) {
       if (roll.type === 'Emitter') {
-        expect(roll.facets).not.toContain('Support')
         expect(roll.facets).not.toContain('Sensory')
         expect(roll.facets).not.toContain('Psychic')
-        expect(roll.facets).not.toContain('Defense')
         expect(roll.facets).not.toContain('Elemental')
       }
     }

@@ -76,7 +76,7 @@ export const quirksBase = [
   {
     id: 'all-for-one',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'Ω',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -140,10 +140,10 @@ export const quirksBase = [
   {
     id: 'barrier',
     origin: 'BNHA',
-    tier: 'A',
+    tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Defense', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'bat',
@@ -231,7 +231,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Construct'],
+    facets: ['Biological'],
   },
   {
     id: 'blast',
@@ -359,7 +359,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Construct', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'bull-head',
@@ -375,7 +375,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Elemental', 'Construct', 'Emission'],
+    facets: ['Elemental', 'Emission'],
   },
   {
     id: 'bullhorn',
@@ -399,7 +399,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'cemedine',
@@ -415,7 +415,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Control', 'Construct'],
+    facets: ['Control'],
   },
   {
     id: 'centipede',
@@ -479,7 +479,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'cleaning',
@@ -575,7 +575,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Construct', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'crystallize',
@@ -623,7 +623,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Construct', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'darkness',
@@ -844,7 +844,7 @@ export const quirksBase = [
   {
     id: 'eraser',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -852,7 +852,7 @@ export const quirksBase = [
   {
     id: 'erasure-spot',
     origin: 'BNHA',
-    tier: 'B',
+    tier: 'A',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -927,7 +927,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Control', 'Construct'],
+    facets: ['Control'],
   },
   {
     id: 'fierce-gains',
@@ -975,7 +975,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Support', 'Mobility', 'Emission'],
+    facets: ['Mobility', 'Emission'],
   },
   {
     id: 'fly-swatter',
@@ -999,7 +999,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Defense'],
+    facets: ['Biological'],
   },
   {
     id: 'food',
@@ -1172,10 +1172,10 @@ export const quirksBase = [
   {
     id: 'hardening',
     origin: 'BNHA',
-    tier: 'A',
+    tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Enhancement', 'Defense'],
+    facets: ['Enhancement'],
   },
   {
     id: 'hardflame-fan',
@@ -1191,7 +1191,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Support', 'Emission'],
+    facets: ['Emission'],
   },
   {
     id: 'heavy-payload',
@@ -1415,7 +1415,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Elemental', 'Construct', 'Emission'],
+    facets: ['Elemental', 'Emission'],
   },
   {
     id: 'leafipulation',
@@ -1436,7 +1436,7 @@ export const quirksBase = [
   {
     id: 'life-force',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Mutant',
     range: 'Medium',
     facets: ['Anthropomorphic'],
@@ -1644,7 +1644,7 @@ export const quirksBase = [
   {
     id: 'muscle-augmentation',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Transformation',
     range: 'Self',
     facets: ['Enhancement'],
@@ -1679,7 +1679,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Long',
-    facets: ['Elemental', 'Construct', 'Emission'],
+    facets: ['Elemental', 'Emission'],
   },
   {
     id: 'neutralization',
@@ -1716,7 +1716,7 @@ export const quirksBase = [
   {
     id: 'one-for-all',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'Ω',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission', 'Stockpile'],
@@ -1740,7 +1740,7 @@ export const quirksBase = [
   {
     id: 'overclock',
     origin: 'BNHA_VIGILANTES',
-    tier: 'A',
+    tier: 'S',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -1780,10 +1780,10 @@ export const quirksBase = [
   {
     id: 'permeation',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Defense', 'Mobility'],
+    facets: ['Mobility'],
   },
   {
     id: 'physical-enhancement',
@@ -1956,10 +1956,10 @@ export const quirksBase = [
   {
     id: 'rewind',
     origin: 'BNHA',
-    tier: 'A',
+    tier: 'S',
     type: 'Emitter',
     range: 'Contact',
-    facets: ['Control', 'Support', 'Biological', 'Stockpile'],
+    facets: ['Control', 'Biological', 'Stockpile'],
   },
   {
     id: 'rifle',
@@ -1975,7 +1975,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Construct'],
+    facets: ['Biological'],
   },
   {
     id: 'rivet-stab',
@@ -1983,7 +1983,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Construct'],
+    facets: ['Biological'],
   },
   {
     id: 'rocket-thrust',
@@ -2087,7 +2087,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Support', 'Defense'],
+    facets: ['Biological'],
   },
   {
     id: 'shock-absorption',
@@ -2095,7 +2095,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Mutant',
     range: 'Medium',
-    facets: ['Defense', 'Anthropomorphic'],
+    facets: ['Enhancement'],
   },
   {
     id: 'shoulder-mounted-jets',
@@ -2239,7 +2239,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Construct'],
+    facets: ['Biological'],
   },
   {
     id: 'spotted-seal',
@@ -2356,10 +2356,10 @@ export const quirksBase = [
   {
     id: 'super-regeneration',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Defense'],
+    facets: ['Biological'],
   },
   {
     id: 'swan',
@@ -2380,7 +2380,7 @@ export const quirksBase = [
   {
     id: 'tail',
     origin: 'BNHA',
-    tier: 'A',
+    tier: 'C',
     type: 'Mutant',
     range: 'Self',
     facets: ['Anthropomorphic'],
@@ -2399,7 +2399,7 @@ export const quirksBase = [
     tier: 'B',
     type: 'Mutant',
     range: 'Self',
-    facets: ['Anthropomorphic', 'Mobility', 'Construct'],
+    facets: ['Anthropomorphic', 'Mobility'],
   },
   {
     id: 'telekinesis',
@@ -2572,7 +2572,7 @@ export const quirksBase = [
   {
     id: 'warp-gate',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'A',
     type: 'Emitter',
     range: 'Long',
     facets: ['Mobility', 'Emission'],
@@ -2580,7 +2580,7 @@ export const quirksBase = [
   {
     id: 'warping',
     origin: 'BNHA',
-    tier: 'B',
+    tier: 'A',
     type: 'Emitter',
     range: 'Long',
     facets: ['Emission'],
@@ -2687,12 +2687,12 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Contact',
-    facets: ['Control', 'Support'],
+    facets: ['Control'],
   },
   {
     id: 'zombie-virus',
     origin: 'BNHA',
-    tier: 'S',
+    tier: 'B',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Biological', 'Emission'],

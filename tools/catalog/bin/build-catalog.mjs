@@ -37,14 +37,22 @@ const FACET_KEYWORDS = [
   ['Enhancement', /\b(muscle|power|strength|brawn|hardening|gigant|hypertrophy|physical enhancement|fierce gains)\b/i],
   ['Anthropomorphic', /\b(frog|rabbit|bird|wing|tail|engine|tape|horn|bat|cat|dog|bear|monkey|lion|eagle|whale|gecko|lizard|octopus|mantis|centipede|serpent|orcinus|chameleon)\b/i],
   ['Control', /\b(control|master|curdle|zero gravity|magnet|blood|fiber|leaf|metal|cement|compress|brainwash|rewind|decay|overhaul)\b/i],
-  ['Support', /\b(heal|creation|barrier|shield|float|rewind|cell activation|clean|bubble|zero gravity)\b/i],
-  ['Defense', /\b(barrier|shield|hardening|shock absorption|permeation|foldabody|scale|armor|regeneration)\b/i],
   ['Mobility', /\b(flight|float|warp|teleport|engine|jet|leap|glide|slide|permeation|blackwhip|tape|wings)\b/i],
   ['Sensory', /\b(search|scan|infrared|ear|eye|voyance|danger sense|mind reading|pointer)\b/i],
-  ['Construct', /\b(creation|cement|fiber|tape|dark shadow|clone|bubble|blade|spike|rivet|laser)\b/i],
   ['Emission', /\b(blast|beam|cannon|laser|bullet|wave|eruption|decay|gas|poison|smoke|air cannon|navel)\b/i],
   ['Biological', /\b(frog|rabbit|manifest|rewind|acid sweat|pop off|sugar|blood|mushroom|plant|virus)\b/i],
 ]
+
+const FACET_OVERRIDES = new Map([
+  ['blade-tooth', ['Biological']],
+  ['foldabody', ['Biological']],
+  ['rivet', ['Biological']],
+  ['rivet-stab', ['Biological']],
+  ['shield', ['Biological']],
+  ['shock-absorption', ['Enhancement']],
+  ['spike', ['Biological']],
+  ['super-regeneration', ['Biological']],
+])
 
 function loadMembers(filename) {
   const raw = JSON.parse(readFileSync(join(WIKI, filename), 'utf8'))
@@ -74,7 +82,7 @@ function displayName(title) {
 function loadTierOverrides() {
   const raw = JSON.parse(readFileSync(join(SOURCES, 'tier-overrides.json'), 'utf8'))
   const map = new Map()
-  for (const tier of ['S', 'A', 'B', 'C']) {
+  for (const tier of ['Ω', 'S', 'A', 'B', 'C']) {
     for (const slug of raw[tier] ?? []) {
       map.set(slug, tier)
     }
@@ -113,7 +121,10 @@ function inferRange(title, type) {
   return 'Self'
 }
 
-function inferFacets(title, type) {
+function inferFacets(title, type, slug) {
+  const override = FACET_OVERRIDES.get(slug)
+  if (override) return [...override]
+
   const facets = new Set()
   const t = title.toLowerCase()
 
@@ -207,7 +218,7 @@ function buildIndex() {
 
     const type = inferType(title, emitter, transformation, mutant)
     const range = inferRange(title, type)
-    const facets = inferFacets(title, type)
+    const facets = inferFacets(title, type, slug)
 
     bySlug.set(slug, {
       id: slug,

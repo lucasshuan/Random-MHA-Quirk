@@ -98,6 +98,9 @@ async function main() {
   console.log(
     `Seeded ${quirkRows.length} quirks and ${translationRows.length} translations into Supabase.`,
   )
+  console.log(
+    'Restart `pnpm dev` (or hard-refresh) so the catalog API picks up tier changes.',
+  )
 }
 
 main().catch((err) => {

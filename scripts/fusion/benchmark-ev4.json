@@ -16,7 +16,7 @@
           "type": "Transformation",
           "range": "Medium",
           "facets": [
-            "Construct"
+            "Biological"
           ]
         },
         "priorVariantNames": []
@@ -29,7 +29,7 @@
         "type": "Transformation",
         "range": "Medium",
         "facets": [
-          "Construct"
+          "Biological"
         ],
         "origin": "ORIGINAL"
       }
@@ -84,7 +84,7 @@
           "type": "Emitter",
           "range": "Medium",
           "facets": [
-            "Support"
+            "Emission"
           ]
         },
         "priorVariantNames": []
@@ -97,7 +97,7 @@
         "type": "Emitter",
         "range": "Medium",
         "facets": [
-          "Support"
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }
@@ -288,8 +288,7 @@
           "type": "Emitter",
           "range": "Long",
           "facets": [
-            "Emission",
-            "Defense"
+            "Emission"
           ]
         },
         "priorVariantNames": []
@@ -302,8 +301,7 @@
         "type": "Emitter",
         "range": "Long",
         "facets": [
-          "Emission",
-          "Defense"
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }
@@ -323,7 +321,7 @@
           "type": "Transformation",
           "range": "Area",
           "facets": [
-            "Construct"
+            "Biological"
           ]
         },
         "priorVariantNames": []
@@ -336,7 +334,7 @@
         "type": "Transformation",
         "range": "Area",
         "facets": [
-          "Construct"
+          "Biological"
         ],
         "origin": "ORIGINAL"
       }
@@ -389,8 +387,7 @@
           "type": "Emitter",
           "range": "Self",
           "facets": [
-            "Elemental",
-            "Support"
+            "Elemental"
           ]
         },
         "priorVariantNames": []
@@ -403,8 +400,7 @@
         "type": "Emitter",
         "range": "Self",
         "facets": [
-          "Elemental",
-          "Support"
+          "Elemental"
         ],
         "origin": "ORIGINAL"
       }
@@ -424,8 +420,8 @@
           "type": "Emitter",
           "range": "Contact",
           "facets": [
-            "Construct",
-            "Defense"
+            "Psychic",
+            "Emission"
           ]
         },
         "priorVariantNames": []
@@ -438,8 +434,8 @@
         "type": "Emitter",
         "range": "Contact",
         "facets": [
-          "Construct",
-          "Defense"
+          "Psychic",
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }

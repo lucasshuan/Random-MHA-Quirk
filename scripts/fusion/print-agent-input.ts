@@ -27,7 +27,7 @@ const quirkB: FusionCatalogQuirk = {
   tier: 'B',
   type: 'Transformation',
   range: 'Contact',
-  facets: ['Defense', 'Enhancement'],
+  facets: ['Enhancement'],
   description:
     "Hardens any part of the user's body to rock-like durability for offense and defense.",
 }

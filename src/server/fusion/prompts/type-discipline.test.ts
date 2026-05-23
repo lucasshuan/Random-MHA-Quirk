@@ -7,7 +7,25 @@ describe('formatTypeDisciplineBlock', () => {
 
     expect(block).toContain('Type discipline (Emitter only)')
     expect(block).toContain('sends an effect outward from the body')
+    expect(block).toContain('passive or reactive')
+    expect(block).toContain('Any lie the user hears appears as colored smoke.')
+    expect(block).toContain('releases heat from their palms')
     expect(block).not.toContain('temporarily changes the user')
     expect(block).not.toContain('stable unusual anatomy')
+  })
+
+  it('uses concrete clarity models for body-based types', () => {
+    expect(formatTypeDisciplineBlock('Transformation')).toContain(
+      'converts their skin into adhesive mud',
+    )
+    expect(formatTypeDisciplineBlock('Transformation')).toContain(
+      'turns their arms into flexible rubber',
+    )
+    expect(formatTypeDisciplineBlock('Mutant')).toContain(
+      'born with glass wings that reflect light-based attacks',
+    )
+    expect(formatTypeDisciplineBlock('Mutant')).toContain(
+      'born with antennae that detect nearby vibrations',
+    )
   })
 })

@@ -23,7 +23,6 @@
       "type": "Transformation",
       "range": "Contact",
       "facets": [
-        "Defense",
         "Enhancement"
       ],
       "description": "Hardens any part of the user's body to rock-like durability for offense and defense."
@@ -33,13 +32,13 @@
     "type": "Transformation",
     "range": "Contact",
     "facets": [
-      "Enhancement"
+      "Mobility"
     ],
     "origin": "ORIGINAL"
   },
   "roll": {
     "strategyKey": "dominant-a",
-    "strategyInstruction": "Fusion strategy — parent A is dominant and leads: Permeation's Emitter/Short logic is the main engine; Hardening only subtly modifies, limits, or reshapes how that engine expresses.",
+    "strategyInstruction": "Fusion strategy — parent A is dominant and leads: Permeation's Emitter/Short logic is the main engine; Hardening only subtly modifies, limits, or reshapes how that engine expresses.\nCoherence criteria (dominant-a):\n- Preserve a recognizable operational essence from EACH parent; inherit what each power does, not merely its theme.\n- Before prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence. Final wording need not follow this arrow format.\n- Parent A supplies the main operation readers immediately recognize.\n- Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.",
     "antiMashupRule": "Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.",
     "antiMashupExample": "Avoid this mashup for this strategy: ❌ \"phase through walls while fully armored at all times\"",
     "nameRegister": "blunt",
@@ -65,12 +64,15 @@
     "descriptionMaxLength": 280,
     "typeDiscipline": [
       "Core model: the Quirk temporarily changes the user while active.",
-      "State what changes in the body and what returns to normal after use."
+      "State what changes in the body and what returns to normal after use.",
+      "Clear wording models: \"While active, the user converts their skin into adhesive mud.\" / \"While active, the user turns their arms into flexible rubber.\"",
+      "Clear wording models illustrate sentence clarity only; do not copy their effect unless supported by the source quirks."
     ],
-    "facetContract": "Facet contract (keep one central mechanism):\n- Enhancement: show raw physical stat boost with a visible tell\nFacet guidance: describe one core effect first. If there is a second facet, keep it as a light extension of the same effect, not a new subsystem.\nSource-faithfulness gate: only express a facet through behavior already supported by these parent descriptions. A tag does not authorize new healing, analgesia, calming, remote senses, stat boosts, or animal anatomy.",
+    "facetContract": "Facet contract (keep one central mechanism):\n- Mobility: show movement, repositioning, or travel change. Clear wording models: \"The user expels air from their soles to propel their body.\" / \"The user becomes weightless while holding their breath.\"\nFacet guidance: describe one core effect first. Once the mechanism is clear, do not append arbitrary targets, tracking restrictions, or inferred uses just to add detail. Extra facets stay light extensions of that same effect, not separate subsystems. Rolled facets describe how the hybrid presents; they never replace either parent's recognizable operational essence. Clear wording models illustrate sentence clarity only; do not copy their effect unless supported by the source quirks.\nSource-faithfulness gate: only express a facet through behavior already supported by these parent descriptions. A tag does not authorize new healing, analgesia, calming, remote senses, stat boosts, or animal anatomy.",
     "rangeProse": "Range prose check: rolled range is Contact — touch or immediate grappling distance only. en.description must match this band; do not describe a different reach.",
     "siblingDiversityRequired": true,
     "namingRules": [
+      "Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.",
       "en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.",
       "en.name must NOT read like a fantasy RPG skill, technical field label, or \"[Parent theme adjective] + [Parent theme noun]\" mashup.",
       "Punctuation in en.name: commas and a single question mark are allowed when they sell the joke. At most one ? or one comma clause unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.",

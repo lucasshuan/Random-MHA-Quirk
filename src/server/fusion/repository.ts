@@ -26,7 +26,7 @@ interface FusionRow {
   roll: FusionRollMeta | null
 }
 
-const QUIRK_TIERS = ['S', 'A', 'B', 'C'] as const
+import { QUIRK_TIERS } from '@/types/quirk'
 
 const DEFAULT_ROLL: FusionRollMeta = {
   strategyKey: 'synergy',

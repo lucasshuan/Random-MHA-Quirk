@@ -45,8 +45,7 @@
           "range": "Short",
           "facets": [
             "Anthropomorphic",
-            "Emission",
-            "Support"
+            "Emission"
           ]
         },
         "priorVariantNames": []
@@ -60,8 +59,7 @@
         "range": "Short",
         "facets": [
           "Anthropomorphic",
-          "Emission",
-          "Support"
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }
@@ -83,7 +81,6 @@
           "facets": [
             "Control",
             "Psychic",
-            "Construct",
             "Biological"
           ]
         },
@@ -99,7 +96,6 @@
         "facets": [
           "Control",
           "Psychic",
-          "Construct",
           "Biological"
         ],
         "origin": "ORIGINAL"
@@ -120,7 +116,6 @@
           "type": "Emitter",
           "range": "Self",
           "facets": [
-            "Construct",
             "Control"
           ]
         },
@@ -134,7 +129,6 @@
         "type": "Emitter",
         "range": "Self",
         "facets": [
-          "Construct",
           "Control"
         ],
         "origin": "ORIGINAL"
@@ -156,7 +150,6 @@
           "range": "Contact",
           "facets": [
             "Enhancement",
-            "Support",
             "Biological"
           ]
         },
@@ -171,7 +164,6 @@
         "range": "Contact",
         "facets": [
           "Enhancement",
-          "Support",
           "Biological"
         ],
         "origin": "ORIGINAL"
@@ -192,8 +184,6 @@
           "type": "Emitter",
           "range": "Medium",
           "facets": [
-            "Construct",
-            "Support",
             "Elemental"
           ]
         },
@@ -207,8 +197,6 @@
         "type": "Emitter",
         "range": "Medium",
         "facets": [
-          "Construct",
-          "Support",
           "Elemental"
         ],
         "origin": "ORIGINAL"
@@ -231,7 +219,6 @@
           "facets": [
             "Anthropomorphic",
             "Psychic",
-            "Construct",
             "Control"
           ]
         },
@@ -247,7 +234,6 @@
         "facets": [
           "Anthropomorphic",
           "Psychic",
-          "Construct",
           "Control"
         ],
         "origin": "ORIGINAL"
@@ -304,8 +290,7 @@
           "range": "Contact",
           "facets": [
             "Elemental",
-            "Emission",
-            "Construct"
+            "Emission"
           ]
         },
         "priorVariantNames": []
@@ -319,8 +304,7 @@
         "range": "Contact",
         "facets": [
           "Elemental",
-          "Emission",
-          "Construct"
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }
@@ -412,10 +396,8 @@
           "type": "Emitter",
           "range": "Contact",
           "facets": [
-            "Defense",
             "Mobility",
-            "Control",
-            "Construct"
+            "Control"
           ]
         },
         "priorVariantNames": []
@@ -428,10 +410,8 @@
         "type": "Emitter",
         "range": "Contact",
         "facets": [
-          "Defense",
           "Mobility",
-          "Control",
-          "Construct"
+          "Control"
         ],
         "origin": "ORIGINAL"
       }
@@ -484,7 +464,6 @@
           "type": "Emitter",
           "range": "Contact",
           "facets": [
-            "Defense",
             "Biological"
           ]
         },
@@ -498,7 +477,6 @@
         "type": "Emitter",
         "range": "Contact",
         "facets": [
-          "Defense",
           "Biological"
         ],
         "origin": "ORIGINAL"
@@ -628,7 +606,6 @@
           "type": "Emitter",
           "range": "Self",
           "facets": [
-            "Construct",
             "Mobility",
             "Emission",
             "Enhancement"
@@ -644,7 +621,6 @@
         "type": "Emitter",
         "range": "Self",
         "facets": [
-          "Construct",
           "Mobility",
           "Emission",
           "Enhancement"
@@ -703,8 +679,7 @@
           "range": "Long",
           "facets": [
             "Emission",
-            "Anthropomorphic",
-            "Construct"
+            "Anthropomorphic"
           ]
         },
         "priorVariantNames": []
@@ -718,8 +693,7 @@
         "range": "Long",
         "facets": [
           "Emission",
-          "Anthropomorphic",
-          "Construct"
+          "Anthropomorphic"
         ],
         "origin": "ORIGINAL"
       }

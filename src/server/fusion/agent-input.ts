@@ -39,6 +39,7 @@ const CANON_NAME_REFERENCES = [
 ]
 
 const NAMING_RULES = [
+  'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
   'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
   'en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.',
   'Punctuation in en.name: commas and a single question mark are allowed when they sell the joke. At most one ? or one comma clause unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',

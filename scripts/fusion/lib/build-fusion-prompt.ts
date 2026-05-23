@@ -102,11 +102,11 @@ Rules:
 - Follow the fusion strategy above for how the two parents combine; do not ignore it for a generic literal merge of both effects.
 - Structure the description in this order:
   1) first sentence = main effect in plain words (what it does),
-  2) second sentence = manifestation/activation or one essential secondary detail,
+  2) second sentence = manifestation, activation, or a rule required to understand that same effect; omit invented consequences,
   3) optional last sentence = at most one limit — physical cost OR clear situational scope; omit when the quirk is already weak, narrow, contact-only, failure-mode, or self-limiting by range/type; omit when a limit would feel piled-on.
 - Keep one clear core mechanism. If a second effect exists, it must be a direct consequence of the same mechanism.
 - Fixed facets label how that single mechanism presents; never add healing, calming, remote senses, animal anatomy, or stat boosts solely to satisfy a facet tag.
-- Focus on what the quirk does, not combat roleplay or ally tactics. Narrow scope is fine when it is part of the mechanism (e.g. disrupts active Emitter effects in open space, clears lingering quirk residue but not innate Mutant anatomy) — state as objective fact, not matchup advice.
+- Focus on what the quirk does, not combat roleplay or ally tactics. State narrow scope only when it comes from the parent mechanism or fixed range; do not invent target restrictions or derived uses after the effect is already clear.
 - Avoid unnecessary technical or aesthetic detail (exact pressure/temperature/color specs, niche physics jargon, or conditional chains) unless needed to understand behavior.
 - Use direct verbs and caveman clarity: easy to imagine after one read.
 - Limits are optional, not mandatory: some canon quirks have none in the entry. When one helps, use at most ONE — either a simple physical cost (dizziness, overheating, recoil, short cooldown, touch requirement) OR one clear situational scope baked into the effect (what it can erase vs leave alone, which quirk expressions it disrupts vs skips, range/surface/target type). Situational limits are valid when obvious from the core idea; do not invent extra physical costs on top. Avoid stacking more than two separate limits in one description.

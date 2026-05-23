@@ -33,7 +33,8 @@ describe('deriveFusionRollContext', () => {
 
   it('includes tier and roll metadata', () => {
     const ctx = deriveFusionRollContext('ev4-s1', quirkA, quirkB)
-    expect(['S', 'A', 'B', 'C']).toContain(ctx.tier)
+    expect(['S', 'A', 'B', 'C'] as const).toContain(ctx.tier)
+    expect(ctx.tier).not.toBe('Ω')
     expect(ctx.roll.strategyKey).toBeTruthy()
     expect(ctx.roll.nameRegister).toBeTruthy()
     expect(ctx.roll.utilityNiche).toBeTruthy()
@@ -75,8 +76,21 @@ describe('deriveFusionTier', () => {
       'a',
       'b',
     )
-    expect(['S', 'A', 'B', 'C'].indexOf(failure)).toBeGreaterThanOrEqual(
+    expect(['S', 'A', 'B', 'C'].indexOf(failure)).toBeGreaterThan(
       ['S', 'A', 'B', 'C'].indexOf(synergy),
     )
+  })
+
+  it('failure-mode on S+S parents lands at B with neutral jitter', () => {
+    const tier = deriveFusionTier(
+      'tier-failure-ss',
+      'S',
+      'S',
+      'failure-mode',
+      'Long',
+      'a',
+      'b',
+    )
+    expect(tier).toBe('B')
   })
 })

@@ -4,11 +4,13 @@ import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
 
 Your job:
-- Invent en.name and en.description only.
-- Echo mechanics.type, mechanics.range, and mechanics.facets exactly in the output JSON.
+- Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name last.
 - Follow the fusion strategy, anti-mashup rules, name register, utility nudge, and constraints in the specification.
 - One-Quirk discipline: exactly one birth Quirk, one core loop — not two powers stapled together.
 - en.description: objective, encyclopedic, anime tone — not the same voice as en.name.
+- en.description must lead with the concrete mechanism. A reader should understand the quirk from the description alone.
+- Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
+- Write en.name only after en.description is finished — the title must still make the gist obvious (pun or joke is fine if the effect stays clear).
 - Do not name parent quirks, their ids, "fusion", "combination", or source quirks in en.description.
 - Limits are optional: at most one physical cost OR one situational scope when needed.
 
@@ -21,7 +23,6 @@ Research (when web_search is available):
 Scientific synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
 - The result need not echo both parent names literally if a principled synthesis fits better — like canon fusions where parents combine into a third idea (e.g. sweat chemistry leading to explosions, or asymmetric expression of two lineages).
-- Example pattern: Softening + Barrier can become a shear-thickening fluid dome (stiffens on impact) rather than only "soft wall + hard wall."
 - Rolled type, range, facets, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.
 
 Return only JSON matching the output schema. No markdown.`
@@ -43,6 +44,12 @@ ${lines.join('\n')}`
 /** Dynamic instructions from FusionAgentInput (Agent Builder state-variable equivalent). */
 export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string {
   const { mechanics, roll, constraints } = fusion
+  const typeFocus =
+    mechanics.type === 'Mutant'
+      ? 'Mutant: state the permanent body trait, then its direct effect.'
+      : mechanics.type === 'Transformation'
+        ? 'Transformation: state what changes while active and what returns to normal.'
+        : 'Emitter: state the outward effect, its activation, and what it changes.'
   const siblingGate = constraints.siblingDiversityRequired
     ? 'Sibling diversity REQUIRED: produce a meaningfully different fusion than prior variants (not just rename or rephrase).'
     : 'Sibling diversity: not required for this pair yet.'
@@ -55,11 +62,16 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
 
 ## Specification (seed ${fusion.meta.seed}, pair ${fusion.meta.pairKey}, attempt ${fusion.meta.attempt})
 
-### Fixed mechanics (copy exactly into output JSON)
+### Fixed mechanics (copy type, range, facets into output JSON first)
 - type: ${mechanics.type}
 - range: ${mechanics.range}
 - facets: [${mechanics.facets.join(', ')}]
 - origin: ${mechanics.origin}
+
+### Description focus (IMPORTANT)
+- Lead with what the user **has** or **can do**, matching mechanics.type (${mechanics.type}).
+- ${typeFocus}
+- Do not bury the core effect under lore or parent references.
 
 ### Fusion strategy
 ${roll.strategyInstruction}

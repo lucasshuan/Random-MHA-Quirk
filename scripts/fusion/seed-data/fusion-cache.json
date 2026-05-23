@@ -2,25 +2,11 @@
   "version": 1,
   "entries": [
     {
-      "key": "gas+shield:pv98o524",
-      "parents": ["gas", "shield"],
-      "seed": "pv98o524",
-      "en": {
-        "name": "Aegis Mist",
-        "description": "Aegis Mist allows the user to envelop themselves in a shroud of protective mist, forming translucent stone-like shields that not only absorb incoming attacks but also emit a soothing yet potent gas that induces sleep. This powerful combination creates a tactical advantage, as the user can incapacitate opponents while remaining shielded and mobile within their misty barrier."
-      },
-      "pt-BR": {
-        "name": "Névoa Aegis",
-        "description": "Névoa Aegis permite que o usuário se envolva em uma névoa protetora, formando escudos semelhantes a pedras que absorvem ataques enquanto emitem um gás suave, mas potente, que induz ao sono. Essa combinação poderosa cria uma vantagem tática, pois o usuário pode incapacitar os oponentes enquanto permanece protegido e ágil dentro de sua barreira nebulosa."
-      },
-      "type": "Emitter",
-      "range": "Area",
-      "facets": ["Support", "Defense", "Emission", "Control"],
-      "origin": "ORIGINAL"
-    },
-    {
       "key": "compress+mummification:o6nytlxm",
-      "parents": ["compress", "mummification"],
+      "parents": [
+        "compress",
+        "mummification"
+      ],
       "seed": "o6nytlxm",
       "en": {
         "name": "Sarcophagus Squeeze",
@@ -32,12 +18,19 @@
       },
       "type": "Emitter",
       "range": "Medium",
-      "facets": ["Control", "Emission", "Biological"],
+      "facets": [
+        "Control",
+        "Emission",
+        "Biological"
+      ],
       "origin": "ORIGINAL"
     },
     {
       "key": "body-bulk+dragon-breath:rmxt47or",
-      "parents": ["body-bulk", "dragon-breath"],
+      "parents": [
+        "body-bulk",
+        "dragon-breath"
+      ],
       "seed": "rmxt47or",
       "en": {
         "name": "Titanic Inferno",
@@ -49,29 +42,19 @@
       },
       "type": "Transformation",
       "range": "Medium",
-      "facets": ["Enhancement", "Emission", "Elemental"],
-      "origin": "ORIGINAL"
-    },
-    {
-      "key": "life-force+whole-body-lens:g7fl99ka",
-      "parents": ["life-force", "whole-body-lens"],
-      "seed": "g7fl99ka",
-      "en": {
-        "name": "Vital Lens",
-        "description": "With the Vital Lens quirk, the user harnesses the essence of life itself and captures the vitality of individuals within their photos. Each image they print can reveal the life force of the subject, showing a visual representation of their health and energy levels. This unique ability allows them to enhance the life force of allies by projecting their vitality through the lenses, creating an aura of rejuvenation in battle. However, overuse can leave the user feeling drained as they temporarily share their own life force."
-      },
-      "pt-BR": {
-        "name": "Lente Vital",
-        "description": "Com a Lente Vital, o usuário capta a essência da vida e a vitalidade dos indivíduos em suas fotos. Cada imagem impressa pode revelar a força vital do sujeito, mostrando uma representação visual de sua saúde e níveis de energia. Essa habilidade única permite que eles potencializem a força vital de aliados, projetando sua vitalidade através das lentes, criando uma aura de rejuvenescimento durante a batalha. No entanto, o uso excessivo pode deixar o usuário exausto, já que compartilham temporariamente sua própria força vital."
-      },
-      "type": "Mutant",
-      "range": "Self",
-      "facets": ["Enhancement", "Support", "Biological"],
+      "facets": [
+        "Enhancement",
+        "Emission",
+        "Elemental"
+      ],
       "origin": "ORIGINAL"
     },
     {
       "key": "iron-club+poltergeist:pz9s72l5",
-      "parents": ["iron-club", "poltergeist"],
+      "parents": [
+        "iron-club",
+        "poltergeist"
+      ],
       "seed": "pz9s72l5",
       "en": {
         "name": "Ghostly Mauler",
@@ -83,29 +66,20 @@
       },
       "type": "Emitter",
       "range": "Medium",
-      "facets": ["Enhancement", "Control", "Emission", "Psychic"],
-      "origin": "ORIGINAL"
-    },
-    {
-      "key": "stock+whale:os2n8rt9",
-      "parents": ["stock", "whale"],
-      "seed": "os2n8rt9",
-      "en": {
-        "name": "Abyssal Absorption",
-        "description": "The user can absorb and store the kinetic energy from attacks, transforming their limbs into powerful whale appendages for enhanced strength and water manipulation. By channeling collected energy, they unleash massive torrents of superheated water, capable of both offense and defense, mimicking the turbulent depths of the ocean. This unique ability harmonizes the defensive nature of 'Stock' with the fluidity and power of 'Whale', creating a formidable force on the battlefield."
-      },
-      "pt-BR": {
-        "name": "Absorção Abissal",
-        "description": "O usuário consegue absorver e armazenar a energia cinética de ataques, transformando seus membros em poderosos apêndices de baleia para aumentar a força e a manipulação da água. Ao canalizar a energia acumulada, ele libera grandes torrentes de água superaquecida, capazes de ofender e defender, imitando as turbulentas profundezas do oceano. Essa habilidade única integra a natureza defensiva do 'Stock' com a fluidez e o poder do 'Whale', criando uma força formidável no campo de batalha."
-      },
-      "type": "Emitter",
-      "range": "Medium",
-      "facets": ["Elemental", "Anthropomorphic", "Emission", "Defense"],
+      "facets": [
+        "Enhancement",
+        "Control",
+        "Emission",
+        "Psychic"
+      ],
       "origin": "ORIGINAL"
     },
     {
       "key": "sugar-rush+whale:0fg3k0tm",
-      "parents": ["sugar-rush", "whale"],
+      "parents": [
+        "sugar-rush",
+        "whale"
+      ],
       "seed": "0fg3k0tm",
       "en": {
         "name": "Tidal Surge",
@@ -117,7 +91,12 @@
       },
       "type": "Transformation",
       "range": "Medium",
-      "facets": ["Elemental", "Anthropomorphic", "Enhancement", "Emission"],
+      "facets": [
+        "Elemental",
+        "Anthropomorphic",
+        "Enhancement",
+        "Emission"
+      ],
       "origin": "ORIGINAL"
     }
   ]

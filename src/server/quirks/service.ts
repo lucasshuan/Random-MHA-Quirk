@@ -6,17 +6,23 @@ import type { Quirk, QuirkFilters } from '@/types/quirk'
 import { hasActiveFilters } from './params'
 import { getLocalizedQuirkById, listLocalizedQuirks } from './repository'
 
+/** Bump when catalog shape/tiers change to invalidate stale Next.js cache entries. */
+const CATALOG_CACHE_VERSION = 'v2-omega'
+
 const CATALOG_CACHE_SECONDS = 60 * 60 * 24
 
 function getCachedCatalog(locale: Locale): Promise<Quirk[]> {
   return unstable_cache(
     async () => listLocalizedQuirks(locale),
-    ['quirks-catalog', locale],
+    ['quirks-catalog', CATALOG_CACHE_VERSION, locale],
     { revalidate: CATALOG_CACHE_SECONDS, tags: [`quirks-${locale}`] },
   )()
 }
 
 export async function getQuirksCatalog(locale: Locale): Promise<Quirk[]> {
+  if (process.env.NODE_ENV === 'development') {
+    return listLocalizedQuirks(locale)
+  }
   return getCachedCatalog(locale)
 }
 
@@ -37,9 +43,9 @@ export async function getFilteredQuirks(
 }
 
 export async function getQuirkById(locale: Locale, id: string): Promise<Quirk | null> {
-  const cached = await getCachedCatalog(locale)
-  const fromCache = cached.find((quirk) => quirk.id === id)
-  if (fromCache) return fromCache
+  const catalog = await getQuirksCatalog(locale)
+  const fromCatalog = catalog.find((quirk) => quirk.id === id)
+  if (fromCatalog) return fromCatalog
 
   return getLocalizedQuirkById(id, locale)
 }

@@ -2,7 +2,7 @@ import { useI18n } from '../../i18n/useI18n'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
 import type { ResultMode } from '@/lib/wizard/flow'
 import { toggleTier } from '@/lib/quirks/tiers'
-import { QUIRK_TIERS, type QuirkTier } from '../../types/quirk'
+import { tierBadgeGlyph, QUIRK_TIERS, type QuirkTier } from '../../types/quirk'
 
 interface StepTierChoiceProps {
   mode: ResultMode
@@ -14,6 +14,7 @@ interface StepTierChoiceProps {
 }
 
 const TIER_TONES: Record<QuirkTier, string> = {
+  Ω: 'tier-omega',
   S: 'tier-s',
   A: 'tier-a',
   B: 'tier-b',
@@ -71,7 +72,7 @@ export function StepTierChoice({
                 aria-pressed={isSelected}
                 onClick={() => onSelectedTiersChange(toggleTier(selectedTiers, tier))}
               >
-                <span className="tier-toggle-letter">{tier}</span>
+                <span className="tier-toggle-letter">{tierBadgeGlyph(tier)}</span>
                 <span className="tier-toggle-label">{meta.tier(tier)}</span>
               </button>
             )

@@ -20,7 +20,7 @@ const quirkB: FusionCatalogQuirk = {
   tier: 'B',
   type: 'Transformation',
   range: 'Contact',
-  facets: ['Defense'],
+  facets: ['Enhancement'],
   description: 'Harden body parts.',
 }
 

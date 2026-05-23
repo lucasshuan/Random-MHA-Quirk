@@ -124,6 +124,12 @@ export function buildTranslationFusionRunConfig(
   return baseRunConfig(`Fusion locale adaptation (${locale})`, ctx, { locale })
 }
 
+export function buildTierFusionRunConfig(
+  ctx: FusionPipelineTraceContext,
+): RunConfig {
+  return baseRunConfig('Fusion tier decision', ctx)
+}
+
 /** One end-to-end trace for English generation + locale adaptations. */
 export async function runWithFusionTrace<T>(
   ctx: FusionPipelineTraceContext,

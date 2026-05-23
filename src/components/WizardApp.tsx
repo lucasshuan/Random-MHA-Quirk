@@ -16,7 +16,7 @@ import { requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
 import { rollHybrid } from '@/lib/hybrid/roll'
 import { applyFilters, pickRandom } from '@/lib/quirks/engine'
-import { ALL_QUIRK_TIERS } from '@/lib/quirks/tiers'
+import { DEFAULT_SELECTED_TIERS } from '@/lib/quirks/tiers'
 import {
   getPreviousStep,
   type ModeChoice,
@@ -84,7 +84,9 @@ export function WizardApp() {
   const [resultBackStep, setResultBackStep] = useState<WizardStep>('type')
   const [pickPhase, setPickPhase] = useState<PickPhase>('type')
   const [pendingType, setPendingType] = useState<SimpleTypeChoice | null>(null)
-  const [selectedTiers, setSelectedTiers] = useState<QuirkTier[]>([...ALL_QUIRK_TIERS])
+  const [selectedTiers, setSelectedTiers] = useState<QuirkTier[]>([
+    ...DEFAULT_SELECTED_TIERS,
+  ])
   const [tierSlideDirection, setTierSlideDirection] = useState<'forward' | 'back'>('forward')
   const [manualFilters, setManualFilters] = useState(defaultFilters)
   const [hybridTypeStep, setHybridTypeStep] = useState<0 | 1>(0)
@@ -120,7 +122,7 @@ export function WizardApp() {
   function resetPickFlow() {
     setPickPhase('type')
     setPendingType(null)
-    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setSelectedTiers([...DEFAULT_SELECTED_TIERS])
     setTierSlideDirection('forward')
     setManualFilters(defaultFilters())
     setHybridTypeStep(0)
@@ -234,7 +236,7 @@ export function WizardApp() {
 
   function continueFromAdvanced() {
     setPendingType('Any')
-    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setSelectedTiers([...DEFAULT_SELECTED_TIERS])
     setTierSlideDirection('forward')
     setTierEntrySource('advanced')
     setPickPhase('tier')
@@ -250,7 +252,7 @@ export function WizardApp() {
       }
     }
     setPendingType(type)
-    setSelectedTiers([...ALL_QUIRK_TIERS])
+    setSelectedTiers([...DEFAULT_SELECTED_TIERS])
     setTierSlideDirection('forward')
     setTierEntrySource('type')
     setPickPhase('tier')

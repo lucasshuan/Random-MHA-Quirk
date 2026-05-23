@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import type { FusionCatalogQuirk } from '../catalog'
-import { analyzeParentPair, selectFusionStrategy } from './strategy'
+import {
+  analyzeParentPair,
+  formatStrategyCoherenceGuidance,
+  FUSION_STRATEGY_KEYS,
+  selectFusionStrategy,
+} from './strategy'
 
 function mockQuirk(
   partial: Partial<FusionCatalogQuirk> & Pick<FusionCatalogQuirk, 'id' | 'name'>,
@@ -144,5 +149,22 @@ describe('selectFusionStrategy', () => {
     }).key
 
     expect(new Set([first, second, third]).size).toBe(3)
+  })
+})
+
+describe('formatStrategyCoherenceGuidance', () => {
+  it('requires recognizable parental operations in every strategy', () => {
+    for (const key of FUSION_STRATEGY_KEYS) {
+      const guidance = formatStrategyCoherenceGuidance(key)
+      expect(guidance).toContain('recognizable operational essence from EACH parent')
+      expect(guidance).not.toContain('Example')
+    }
+  })
+
+  it('keeps failure mode weaker without erasing parent identity', () => {
+    const guidance = formatStrategyCoherenceGuidance('failure-mode')
+
+    expect(guidance).toContain('never degrade recognizability')
+    expect(guidance).toContain('narrower rule itself')
   })
 })

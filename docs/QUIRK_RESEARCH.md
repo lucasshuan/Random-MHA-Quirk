@@ -2,7 +2,7 @@
 
 **When the user asks to find, search, or generate original / fan quirks and return a list — read this file first.** It contains the workflow, output format, and the **full fan-quirk tier rubric**.
 
-Canon quirks in the app DB use [`tools/catalog/docs/TIER_RUBRIC.md`](../tools/catalog/docs/TIER_RUBRIC.md) (S/A/B/C only). Project overview: [`CONTEXT.md`](../CONTEXT.md).
+Canon quirks in the app DB use [`tools/catalog/docs/TIER_RUBRIC.md`](../tools/catalog/docs/TIER_RUBRIC.md) (Ω/S/A/B/C). Fan research uses the same **Ω (Special)** band for quirks that are too broken to ship. Project overview: [`CONTEXT.md`](../CONTEXT.md).
 
 ---
 
@@ -39,7 +39,7 @@ Rank the **quirk itself**, not the current user.
 | Weak OC, broken quirk | Quirk tier **high**; note user skill only if asked |
 | Strong OC, narrow quirk | Quirk tier by **ceiling and limits**, not character hype |
 
-**War-arc benchmark:** Endgame **All For One** and **Shigaraki** (with stacks of emitter, mutant and transformation quirks) are the overpower ceiling. If a fan quirk would **routinely** make them helpless with a **simple** activation, it is **not** S or A — it is **X** unless the write-up has **severe, credible** limits.
+**War-arc benchmark:** Endgame **All For One** and **Shigaraki** (with stacks of emitter, mutant and transformation quirks) are the overpower ceiling. If a fan quirk would **routinely** make them helpless with a **simple** activation, it is **not** S or A — it is **Ω (Special)** unless the write-up has **severe, credible** limits that drop it to **S** or lower.
 
 **Mirio (Permeation):** Elite results can come from skill, body training, creativity, and support gear even when the one-liner sounds niche.
 
@@ -47,7 +47,7 @@ Rank the **quirk itself**, not the current user.
 
 | Quirk | Why |
 |-------|-----|
-| **Playback** (glance → pause/rewind ~4 min) | **X** — agency removal vs top tiers |
+| **Playback** (glance → pause/rewind ~4 min) | **Ω** — agency removal vs top tiers; too broken for catalog |
 | **Water** (liquify body + create volume) | **S** — high scaling; many physical counters bypassed |
 | **Red Dead of Night** (sword cannot cut living skin) | **B** — explicit hard cap vs people |
 
@@ -80,7 +80,7 @@ If it can **freeze, erase, rewind, mind-trap, steal, disable, teleport, rewrite,
 
 | Outcome | Tier direction |
 |---------|----------------|
-| AFO, Shigaraki, Endeavor, Star and Stripe, Hawks, Mirko **helpless** under simple, reliable activation | **S or X**, not A/B |
+| AFO, Shigaraki, Endeavor, Star and Stripe, Hawks, Mirko **helpless** under simple, reliable activation | **Ω (Special)** or **S** with explicit limits — not A/B |
 | Only civilians, low villains, unprepared targets | Often cap at **B/C** |
 
 ### 3. How easy is activation?
@@ -117,7 +117,7 @@ Judge **potential at mastery**, not day-one OC usage.
 
 ### 6. Does it create instant-win scenarios?
 
-Treat as **S or X** if it consistently:
+Treat as **Ω (Special)** if it consistently:
 
 - Ends fights before the opponent responds
 - Disables quirks or removes agency (pause, steal, erase identity)
@@ -135,9 +135,9 @@ Treat as **S or X** if it consistently:
 
 **Do not** inflate tier because a quirk “sounds cool” or has long lore.
 
-**Do not** deflate **X/S** because the OC is written as gentle — use **Changes?** for balance patches.
+**Do not** deflate **Ω/S** because the OC is written as gentle — use **Changes?** for balance patches.
 
-### Default suspicion (start at S/X until limits prove otherwise)
+### Default suspicion (start at Ω/S until limits prove otherwise)
 
 - Touch + mind effect
 - Glance + time control
@@ -151,8 +151,8 @@ Treat as **S or X** if it consistently:
 
 | Tier | Label | Meaning |
 |------|--------|---------|
-| **X** | Broken | Too strong, too broad, or too hard to counter; war-tier folded under simple activation. Needs major limits, redesign, or discard. |
-| **S** | Exceptional | Dominates many situations; high versatility or game-changing utility; still has **meaningful** limits top tiers can exploit. |
+| **Ω** | **Special** | Too strong, too broad, or too hard to counter; war-tier folded under simple activation. **Do not add to the app catalog** — redesign with credible limits (often **S** or lower) or discard. |
+| **S** | Exceptional | Dominates many situations; high versatility or game-changing utility; still has **meaningful** limits top tiers can exploit. Ship-worthy after review. |
 | **A** | Strong | Clearly powerful and useful, with good scaling or versatility, but not overwhelmingly oppressive. |
 | **B** | Solid | Practical, interesting, and usable, but limited by range, setup, stamina, precision, environment, or narrower applications. |
 | **C** | Weak-ish | Niche/support; needs skill, team, or clever writing to shine. |
@@ -164,10 +164,10 @@ Treat as **S or X** if it consistently:
 
 Leave **empty** if balanced enough for the use case.
 
-For **X**, **S**, or high **A** you would tame, suggest **concrete** patches, e.g.:
+For **Ω**, **S**, or high **A** you would tame, suggest **concrete** patches, e.g.:
 
 - Single target / max duration / LOS break conditions
-- Cannot affect quirks above X output or named effect types
+- Cannot affect quirks above S-tier output or named effect types
 - Cannot copy, steal, or pause quirks — appearance only
 - Reality edits → probability nudges only; no people/death/quirk outcomes
 - Created matter = stabilized constructs, not literal stellar cores
@@ -206,7 +206,7 @@ Use **two sections** when the batch mixes both kinds.
 |--------|-------------|
 | **Name** | Bold quirk name |
 | **Description** | **50–100 characters**; what it does in combat/use, not backstory |
-| **Tier** | Bold: **X**, **S**, **A**, **B**, **C**, **F** |
+| **Tier** | Bold: **Ω**, **S**, **A**, **B**, **C**, **F** |
 | **Type** | Emitter, Mutant, Transformation |
 | **Observation** | Source title, OC name, list #, link when possible |
 | **Changes?** | Empty, or specific limit patches (see above) |
@@ -237,7 +237,7 @@ Each row includes **id**, English **name**, **description**, **tier**, and **typ
 3. **Search / fetch** — confirm effect, range, drawbacks from **page text**, not snippets alone.
 4. **Pick 12–20 quirks** per batch (unless user specifies a count); mix types/tiers unless asked otherwise; **skip catalog duplicates**.
 5. **Write descriptions** — 50–100 chars; combat-relevant limits included.
-6. **Assign tier** — seven questions + scale; fill **Changes?** for X/S or redesign candidates.
+6. **Assign tier** — seven questions + scale; fill **Changes?** for Ω/S or redesign candidates.
 7. **Do not** git-commit unless the user asks.
 
 ---
@@ -260,7 +260,7 @@ Each row includes **id**, English **name**, **description**, **tier**, and **typ
 
 | Name | Description | Tier | Type | Observation | Changes? |
 |------|-------------|------|------|-------------|----------|
-| **Playback** | Glance pauses or rewinds a target’s actions up to ~4 minutes. | **X** | Emitter | OC **Juri Tatsumi** — [DeviantArt](https://www.deviantart.com/thejayleedraws/art/Juri-Tatsumi-aka-REPLAY-MHA-OC-873683541) | No pause; replay-only; 1 target; ≤10s; heavy recoil. |
+| **Playback** | Glance pauses or rewinds a target’s actions up to ~4 minutes. | **Ω** | Emitter | OC **Juri Tatsumi** — [DeviantArt](https://www.deviantart.com/thejayleedraws/art/Juri-Tatsumi-aka-REPLAY-MHA-OC-873683541) | No pause; replay-only; 1 target; ≤10s; heavy recoil. |
 
 ---
 
@@ -277,5 +277,5 @@ Keep prose minimal; **tables are the deliverable**.
 
 When a fan quirk is approved for the Supabase catalog:
 
-- **X** → reject or redesign first
-- Map surviving tiers to catalog policy in `TIER_RUBRIC.md` and encode limits in structured fields
+- **Ω (Special)** → do **not** seed; reject or redesign first
+- Map surviving tiers (**S**–**F**) to catalog policy in `TIER_RUBRIC.md` and encode limits in structured fields

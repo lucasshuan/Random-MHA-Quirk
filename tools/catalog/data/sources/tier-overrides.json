@@ -1,24 +1,28 @@
 {
-  "description": "Tiers curados (S/A/C). Demais entradas do índice wiki recebem B por padrão.",
-  "S": [
+  "description": "Tiers curados (Ω/S/A/B/C). Demais entradas do índice wiki recebem B por padrão.",
+  "Ω": [
     "all-for-one",
-    "one-for-all",
+    "one-for-all"
+  ],
+  "S": [
     "new-order",
     "overhaul",
     "decay",
     "rewind",
+    "copy",
+    "gearshift",
+    "weather-manipulation",
+    "overclock"
+  ],
+  "A": [
     "eraser",
     "permeation",
     "warp-gate",
-    "copy",
-    "weather-manipulation",
     "life-force",
-    "gearshift",
     "muscle-augmentation",
     "super-regeneration",
-    "zombie-virus"
-  ],
-  "A": [
+    "erasure-spot",
+    "warping",
     "explosion",
     "half-cold-half-hot",
     "hellflame",
@@ -33,7 +37,6 @@
     "rabbit",
     "zero-gravity",
     "compress",
-    "overclock",
     "queen-bee",
     "fa-jin",
     "float",
@@ -53,18 +56,13 @@
     "cell-activation",
     "mummification",
     "poison-gas",
-    "barrier",
     "heal",
     "double",
-    "hardening",
-    "tail",
     "navel-laser",
     "earphone-jack",
     "acid",
     "acid-sweat",
-    "blackwhip",
     "invisibility",
-    "brainwashing",
     "laser",
     "wave-motion",
     "landmine",
@@ -75,8 +73,13 @@
     "fat-absorption",
     "liquefaction",
     "transform",
-    "manifest",
-    "rewind"
+    "manifest"
+  ],
+  "B": [
+    "zombie-virus",
+    "hardening",
+    "barrier",
+    "neutralization"
   ],
   "C": [
     "pop-off",
@@ -110,6 +113,7 @@
     "soccer",
     "stock",
     "snip-clip",
-    "beams-from-his-eyes"
+    "beams-from-his-eyes",
+    "tail"
   ]
 }

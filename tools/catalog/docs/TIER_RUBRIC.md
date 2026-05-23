@@ -1,8 +1,19 @@
-# Rubrica de Tier (S / A / B / C)
+# Rubrica de Tier (Ω / S / A / B / C)
 
 Classificação **objetiva** para o gerador: utilidade em combate e missão, periculosidade, teto de poder, versatilidade e evidência no cânone (manga, anime, filmes, *Vigilantes*, *Team-Up Missions*). Não é “quem eu gosto”, é **impacto real no universo MHA**.
 
 **Fora do escopo:** `ORIGINAL` (fan-made do app).
+
+---
+
+## Ω — Special (fora da escala)
+
+Individualidades **meta** do universo — não entram na tabela S–C na UI (faixa rosa **Special** / badge **Ω**).
+
+| Exemplo | Nota |
+|---------|------|
+| **All For One**, **One For All** | Pilares do sistema de quirks |
+| **Time Manipulation** (fan catalog) | Tratada como ORIGINAL no app |
 
 ---
 
@@ -16,13 +27,10 @@ Individualidades que **redefinem conflitos** ou **ameaçam escala cidade / exér
 | Regras impostas à realidade | **New Order** |
 | Desmontagem em massa (toque → cadeia) | **Decay** (despertada) |
 | Reversão / apagamento biológico em escala extrema | **Rewind** (potencial máximo) |
-| Anulação global de Quirks | **Erasure** |
-| Intangibilidade + ofensiva de elite | **Permeation** |
 | Reconstrução / desmontagem “tudo” | **Overhaul** |
-| Teleporte em massa / logística estratégica | **Warp Gate** |
 | Cópia de arsenal alheio (com preparo) | **Copy** |
 | Manipulação climática em escala de desastre | **Weather Manipulation** |
-| Força vital / destruição em massa | **Life Force** |
+| Aceleração temporal supersonica (série *Vigilantes*) | **Overclock** |
 | Controle temporal do movimento (OFAs / elite) | **Gearshift** (com domínio) |
 
 **Regra:** poucas entradas. Se quase tudo virar S, a escala perde sentido.
@@ -35,7 +43,7 @@ Individualidades que **redefinem conflitos** ou **ameaçam escala cidade / exér
 - Ou suporte **decisivo** (barreiras, cura em time, construção versátil).
 - Teto alto com treino; raramente “só utilitário de escritório”.
 
-Ex.: **Hellflame**, **Half-Cold Half-Hot**, **Explosion**, **Creation**, **Dark Shadow**, **Compress**, **Brainwashing** (condicional forte), **Zero Gravity** (mãos experientes), **Queen Bee**, **Overclock**, **Fierce Wings**, **Rabbit**, **Fiber Master**, **Electrification**.
+Ex.: **Erasure**, **Permeation**, **Warp Gate**, **Hellflame**, **Half-Cold Half-Hot**, **Explosion**, **Creation**, **Dark Shadow**, **Compress**, **Brainwashing** (condicional forte), **Zero Gravity** (mãos experientes), **Queen Bee**, **Fierce Wings**, **Rabbit**, **Fiber Master**, **Electrification**, **Life Force**, **Muscle Augmentation**, **Super Regeneration**.
 
 ---
 

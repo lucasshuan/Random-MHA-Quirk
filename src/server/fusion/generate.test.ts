@@ -3,6 +3,7 @@ import type { FusionCacheEntry } from '@/types/fusion'
 
 const mockGenerateEnglishFusionWithLlm = vi.fn()
 const mockTranslateFusionToLocaleWithLlm = vi.fn()
+const mockDecideFusionTierWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
@@ -13,6 +14,8 @@ vi.mock('./llm', () => ({
     mockGenerateEnglishFusionWithLlm(...args),
   translateFusionToLocaleWithLlm: (...args: unknown[]) =>
     mockTranslateFusionToLocaleWithLlm(...args),
+  decideFusionTierWithLlm: (...args: unknown[]) =>
+    mockDecideFusionTierWithLlm(...args),
 }))
 
 vi.mock('./repository', () => ({
@@ -90,6 +93,7 @@ describe('generateFusionEntry', () => {
     ])
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
+    mockDecideFusionTierWithLlm.mockResolvedValue('A')
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
       (_english: unknown, locale: 'pt-BR' | 'es') => {
         if (locale === 'pt-BR') {

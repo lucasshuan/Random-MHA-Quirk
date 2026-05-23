@@ -1,7 +1,7 @@
 import type { FusionCatalogQuirk } from './catalog'
 import { deriveFusionRollContext } from './prompts/roll-context'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
-import type { QuirkFacet, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
+import { QUIRK_TIERS, type QuirkFacet, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
 
 export const MAX_PRIOR_VARIANTS = 12
 
@@ -104,7 +104,7 @@ export function pickPriorVariantsForPrompt(
     seenNames.add(nameKey)
 
     const tier =
-      row.tier && ['S', 'A', 'B', 'C'].includes(row.tier)
+      row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier)
         ? (row.tier as QuirkTier)
         : null
 
@@ -148,7 +148,7 @@ export function pickSiblingVariantsForPrompt(
     seenNames.add(nameKey)
 
     const tier =
-      row.tier && ['S', 'A', 'B', 'C'].includes(row.tier)
+      row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier)
         ? (row.tier as QuirkTier)
         : null
     const match = resolveCandidateMatch(row, quirkA, quirkB, row.roll, tier)

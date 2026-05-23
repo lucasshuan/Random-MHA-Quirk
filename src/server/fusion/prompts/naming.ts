@@ -50,7 +50,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   {
     key: 'absurd-long',
     instruction:
-      'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 7 words.',
+      'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 8 words.',
     examples: [
       'Gigantic Spinning Flying Turtle',
       'Beams From His Eyes',

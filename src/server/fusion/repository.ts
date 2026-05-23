@@ -1,5 +1,11 @@
-import type { FusionCacheEntry } from '@/types/fusion'
-import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
+import { getQuirkById } from './catalog'
+import {
+  pickPriorVariantsForPrompt,
+  type FusionPriorVariantMatch,
+} from './prior-variants'
+import { deriveFusionRollContext } from './prompts/roll-context'
+import type { FusionCacheEntry, FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
+import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
 import { getSupabaseAdmin } from '@/server/db/supabase'
 
 interface FusionRow {
@@ -14,9 +20,44 @@ interface FusionRow {
   range: string
   facets: string[]
   origin: string
+  tier: string | null
+  roll: FusionRollMeta | null
+}
+
+const QUIRK_TIERS = ['S', 'A', 'B', 'C'] as const
+
+const DEFAULT_ROLL: FusionRollMeta = {
+  strategyKey: 'synergy',
+  nameRegister: 'blunt',
+  utilityNiche: 'plain wording',
+  antiMashupRule:
+    'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.',
+}
+
+function parseRollMeta(raw: unknown): FusionRollMeta | null {
+  if (!raw || typeof raw !== 'object') return null
+  const record = raw as Record<string, unknown>
+  const strategyKey =
+    typeof record.strategyKey === 'string' ? record.strategyKey.trim() : ''
+  const nameRegister =
+    typeof record.nameRegister === 'string' ? record.nameRegister.trim() : ''
+  const utilityNiche =
+    typeof record.utilityNiche === 'string' ? record.utilityNiche.trim() : ''
+  const antiMashupRule =
+    typeof record.antiMashupRule === 'string' ? record.antiMashupRule.trim() : ''
+  if (!strategyKey || !nameRegister || !utilityNiche || !antiMashupRule) {
+    return null
+  }
+  return { strategyKey, nameRegister, utilityNiche, antiMashupRule }
 }
 
 function rowToEntry(row: FusionRow): FusionCacheEntry {
+  const tier =
+    row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier)
+      ? (row.tier as QuirkTier)
+      : 'B'
+  const roll = parseRollMeta(row.roll) ?? DEFAULT_ROLL
+
   return {
     key: row.key,
     parents: [row.parent_a, row.parent_b] as FusionCacheEntry['parents'],
@@ -28,6 +69,32 @@ function rowToEntry(row: FusionRow): FusionCacheEntry {
     range: row.range as QuirkRange,
     facets: row.facets as QuirkFacet[],
     origin: row.origin as QuirkOrigin,
+    tier,
+    roll,
+  }
+}
+
+async function enrichFusionEntry(
+  entry: FusionCacheEntry,
+  stored: { hadTier: boolean; hadRoll: boolean },
+): Promise<FusionCacheEntry> {
+  if (stored.hadTier && stored.hadRoll) {
+    return entry
+  }
+
+  const [quirkA, quirkB] = await Promise.all([
+    getQuirkById(entry.parents[0]),
+    getQuirkById(entry.parents[1]),
+  ])
+  if (!quirkA || !quirkB) {
+    return entry
+  }
+
+  const ctx = deriveFusionRollContext(entry.seed, quirkA, quirkB)
+  return {
+    ...entry,
+    tier: stored.hadTier ? entry.tier : ctx.tier,
+    roll: stored.hadRoll ? entry.roll : ctx.roll,
   }
 }
 
@@ -44,19 +111,35 @@ function entryToRow(entry: FusionCacheEntry): FusionRow {
     range: entry.range,
     facets: entry.facets,
     origin: entry.origin,
+    tier: entry.tier,
+    roll: entry.roll,
   }
 }
 
-/** English titles of other variants for the same sorted parent pair (excludes optional key). */
-export async function listFusionNamesForParentPair(
+export type { FusionPriorVariantMatch }
+
+/** Up to 3 prior English variants closest to the target roll (for prompt diversity). */
+export async function listFusionPriorVariantsForParentPair(
   parentA: string,
   parentB: string,
-  options?: { excludeKey?: string },
-): Promise<string[]> {
+  options: {
+    excludeKey?: string
+    match: FusionPriorVariantMatch
+    limit?: number
+  },
+): Promise<FusionPriorVariant[]> {
+  const [quirkA, quirkB] = await Promise.all([
+    getQuirkById(parentA),
+    getQuirkById(parentB),
+  ])
+  if (!quirkA || !quirkB) {
+    return []
+  }
+
   const supabase = getSupabaseAdmin()
   const { data, error } = await supabase
     .from('fusion_entries')
-    .select('key, en')
+    .select('key, seed, en, type, range, facets, tier, roll')
     .eq('parent_a', parentA)
     .eq('parent_b', parentB)
 
@@ -64,20 +147,24 @@ export async function listFusionNamesForParentPair(
     throw new Error(`Supabase list by parents failed: ${error.message}`)
   }
 
-  const seen = new Set<string>()
-  const names: string[] = []
+  const rows = (data ?? []).map((row) => {
+    const fusionRow = row as FusionRow
+    return {
+      key: fusionRow.key,
+      seed: fusionRow.seed,
+      en: fusionRow.en,
+      type: fusionRow.type,
+      range: fusionRow.range,
+      facets: fusionRow.facets,
+      tier: fusionRow.tier,
+      roll: parseRollMeta(fusionRow.roll),
+    }
+  })
 
-  for (const row of data ?? []) {
-    if (options?.excludeKey && row.key === options.excludeKey) continue
-    const name = (row as FusionRow).en?.name?.trim()
-    if (!name) continue
-    const key = name.toLowerCase()
-    if (seen.has(key)) continue
-    seen.add(key)
-    names.push(name)
-  }
-
-  return names
+  return pickPriorVariantsForPrompt(rows, options.match, quirkA, quirkB, {
+    excludeKey: options.excludeKey,
+    limit: options.limit,
+  })
 }
 
 export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {
@@ -93,7 +180,11 @@ export async function findFusionByKey(key: string): Promise<FusionCacheEntry | n
   }
 
   if (!data) return null
-  return rowToEntry(data as FusionRow)
+  const row = data as FusionRow
+  const hadTier = Boolean(row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier))
+  const hadRoll = parseRollMeta(row.roll) !== null
+  const entry = rowToEntry(row)
+  return enrichFusionEntry(entry, { hadTier, hadRoll })
 }
 
 export async function upsertFusionEntry(entry: FusionCacheEntry): Promise<void> {

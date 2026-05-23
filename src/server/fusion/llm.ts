@@ -8,7 +8,7 @@ import {
 import type { FusionTranslationLocale } from './constants'
 
 const FUSION_EN_SYSTEM =
-  'You design My Hero Academia fan fusion quirks. en.name must sound like a REAL canon quirk title — often punny, blunt, silly, or absurd — NOT a fantasy RPG skill or technical label. en.description stays objective and encyclopedic. Output strict JSON only.'
+  'You design My Hero Academia fan fusion quirks. en.name must sound like a REAL canon quirk title — often punny, blunt, silly, or absurd — NOT a fantasy RPG skill or technical label; a comma or one question mark is fine when it fits the joke. en.description stays objective and encyclopedic, but short and easy to imagine: one core effect, optional one secondary detail, optional limit only when it adds balance (physical cost OR clear situational scope — what the effect hits vs skips; many entries need none; never stack multiple limits). Keep wording compact and avoid long clause chains. Output strict JSON only.'
 
 const FUSION_LOCALE_SYSTEM: Record<FusionTranslationLocale, string> = {
   'pt-BR':
@@ -42,7 +42,7 @@ export function resolveOpenAiReasoningEffort(purpose: FusionLlmPurpose): string 
 }
 
 function resolveFusionTemperature(): number {
-  return Number(process.env.FUSION_TEMPERATURE ?? 0.9)
+  return Number(process.env.FUSION_TEMPERATURE ?? 0.7)
 }
 
 function resolveTranslationTemperature(): number {
@@ -57,9 +57,9 @@ function resolveGeminiTemperature(purpose: FusionLlmPurpose): number {
 
 function resolveOpenAiOutputTokenCap(model: string): number {
   if (openAiSupportsReasoningEffort(model)) {
-    return Number(process.env.FUSION_MAX_COMPLETION_TOKENS ?? 4096)
+    return Number(process.env.FUSION_MAX_COMPLETION_TOKENS ?? 1024)
   }
-  return Number(process.env.FUSION_MAX_TOKENS ?? 2048)
+  return Number(process.env.FUSION_MAX_TOKENS ?? 700)
 }
 
 function resolveFusionProvider(): { name: 'openai' | 'gemini'; apiKey: string } {

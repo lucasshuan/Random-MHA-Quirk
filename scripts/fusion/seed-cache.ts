@@ -58,6 +58,8 @@ async function main() {
     range: entry.range,
     facets: entry.facets,
     origin: entry.origin ?? 'ORIGINAL',
+    tier: (entry as { tier?: string }).tier ?? null,
+    roll: (entry as { roll?: unknown }).roll ?? null,
   }))
 
   const { error } = await supabase.from('fusion_entries').upsert(rows, { onConflict: 'key' })

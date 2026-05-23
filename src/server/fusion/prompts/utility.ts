@@ -2,12 +2,12 @@ import { hashSeed } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 
 export type FusionUtilityNiche =
-  | 'containment'
-  | 'repositioning'
-  | 'ally aid'
-  | 'burst damage'
-  | 'hazard setup'
-  | 'self-sacrifice specialist'
+  | 'single core effect'
+  | 'clear body tell'
+  | 'direct trigger'
+  | 'simple secondary detail'
+  | 'one practical limit'
+  | 'plain wording'
 
 export interface FusionUtilityNudge {
   niche: FusionUtilityNiche
@@ -15,27 +15,27 @@ export interface FusionUtilityNudge {
 }
 
 const UTILITY_NICHES: FusionUtilityNiche[] = [
-  'containment',
-  'repositioning',
-  'ally aid',
-  'burst damage',
-  'hazard setup',
-  'self-sacrifice specialist',
+  'single core effect',
+  'clear body tell',
+  'direct trigger',
+  'simple secondary detail',
+  'one practical limit',
+  'plain wording',
 ]
 
 const UTILITY_HINTS: Record<FusionUtilityNiche, string> = {
-  containment:
-    'zone control, trapping, slowing, or denying space — not raw DPS',
-  repositioning:
-    'movement, escape, approach angles, or tempo shifts — not stationary blasting',
-  'ally aid':
-    'supporting teammates, setup, or protection — not solo carry power',
-  'burst damage':
-    'short explosive payoff with clear downtime — not always-on superiority',
-  'hazard setup':
-    'lingering terrain, traps, or environmental pressure — not direct hitscan spam',
-  'self-sacrifice specialist':
-    'high payoff only when the user accepts real self-risk or awkward limits',
+  'single core effect':
+    'center everything on one thing the quirk does; avoid stacking subsystems',
+  'clear body tell':
+    'show one visible activation sign in the body or posture, then move on',
+  'direct trigger':
+    'state activation in plain terms and avoid multi-step setup chains',
+  'simple secondary detail':
+    'allow one optional extra detail only if it clearly comes from the same mechanism',
+  'one practical limit':
+    'use at most one limit when needed — physical cost or one clear situational scope (what it affects vs skips); omit if already weak or narrow; never list multiple limits',
+  'plain wording':
+    'use direct action verbs and avoid jargon unless absolutely necessary',
 }
 
 function resolveRollKey(seed: string, parentA?: string, parentB?: string): string {
@@ -51,6 +51,6 @@ export function selectFusionUtilityNudge(
   const niche = UTILITY_NICHES[hashSeed(rollKey, 'utility') % UTILITY_NICHES.length]
   return {
     niche,
-    line: `Primary niche this variant: ${niche} — ${UTILITY_HINTS[niche]}. Let this niche shape the main fantasy; do not default to a generic all-purpose blaster.`,
+    line: `Simplicity nudge for this variant: ${niche} — ${UTILITY_HINTS[niche]}. Keep the description easy to summarize in one sentence.`,
   }
 }

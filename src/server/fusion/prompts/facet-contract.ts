@@ -6,7 +6,7 @@ const FACET_MECHANISM_HINTS: Record<QuirkFacet, string> = {
   Enhancement: 'raw physical stat boost with a visible tell',
   Anthropomorphic: 'animal-like body traits or movement',
   Control: 'steering, shaping, or restraining the effect',
-  Support: 'helping allies, recovery, setup, or protection',
+  Support: 'stabilizing, recovery, or protective utility tied to the same core effect',
   Defense: 'blocking, absorbing, or reducing incoming harm',
   Mobility: 'movement, repositioning, or travel change',
   Sensory: 'altered sight, hearing, tracking, or awareness',
@@ -42,7 +42,7 @@ export function formatFacetContractBlock(
     (facet) => `- ${facet}: show ${formatFacetMechanismHint(facet, type)}`,
   )
 
-  return `Facet contract (each listed facet must appear as a visible mechanism in en.description):
+  return `Facet contract (keep one central mechanism):
 ${lines.join('\n')}
-Facet validation (mandatory before output): confirm every listed facet has a matching visible mechanism in en.description. If Psychic is listed, one sentence MUST describe a mental, sensory, emotion, or perception effect — not only mist, energy, or aura. If any facet is missing, rewrite en.description before output.`
+Facet guidance: describe one core effect first. If there is a second facet, keep it as a light extension of the same effect, not a new subsystem.`
 }

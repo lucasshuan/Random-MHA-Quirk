@@ -1964,6 +1964,13 @@
   opacity: 1;
 }
 
+.quirk-detail-roll {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-muted, rgba(255, 255, 255, 0.72));
+}
+
 .quirk-detail-origin {
   font-size: 0.8rem;
   color: rgba(220, 228, 240, 0.62);

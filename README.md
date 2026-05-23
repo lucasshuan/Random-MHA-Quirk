@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="public/mha-logo.png" alt="My Hero Academia" width="200" />
+  <img src="public/mha-logo.webp" alt="My Hero Academia" width="200" />
 </p>
 
 ---

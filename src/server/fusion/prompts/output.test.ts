@@ -68,12 +68,15 @@ describe('deriveFusionOutputFromSeed', () => {
     expect(same).toBe(false)
   })
 
-  it('picks 1–4 facets', () => {
+  it('picks 1–2 facets', () => {
+    let oneFacetCount = 0
     for (let i = 0; i < 20; i++) {
       const roll = deriveFusionOutputFromSeed(`facet-seed-${i}`, 'acid', 'explosion')
       expect(roll.facets.length).toBeGreaterThanOrEqual(1)
-      expect(roll.facets.length).toBeLessThanOrEqual(4)
+      expect(roll.facets.length).toBeLessThanOrEqual(2)
+      if (roll.facets.length === 1) oneFacetCount++
     }
+    expect(oneFacetCount).toBeGreaterThan(9)
   })
 
   it('biases facet picks toward parent facet hints when provided', () => {

@@ -198,7 +198,8 @@ export function deriveFusionOutputFromSeed(
     rollKey,
     normalizeParentRanges(parentMechanicHints.ranges ?? []),
   )
-  const facetCount = 1 + ((base >>> 16) % 4)
+  // Keep hybrid mechanics readable: most variants get one core facet, some get two.
+  const facetCount = (base >>> 16) % 100 < 70 ? 1 : 2
   const parentFacets = normalizeParentFacets(parentFacetHints)
 
   return {

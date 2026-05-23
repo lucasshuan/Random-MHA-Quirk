@@ -208,7 +208,10 @@ export function WizardApp() {
   }
 
   function rollFromCurrentSettings() {
-    if (mode === 'hybrid' && hybridTypes[0] && hybridTypes[1]) {
+    const rerollHybrid =
+      mode === 'hybrid' || (result !== null && isHybridRoll(result))
+
+    if (rerollHybrid) {
       const poolA = hybridPoolA
       const poolB = hybridPoolB
       const firstParent = manualHybridParents[0] ?? pickRandom(poolA)

@@ -5,8 +5,7 @@ import type { QuirkId } from '@/types/quirk-id'
 import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
-import { buildFusionPrompt } from './prompts/english'
-import { deriveFusionOutputFromSeed } from './prompts/output'
+import { buildFusionPrompt, deriveFusionRollContext } from './prompts/english'
 import { buildFusionTranslationPrompt } from './prompts/translation'
 import {
   generateEnglishFusionWithLlm,
@@ -14,7 +13,7 @@ import {
 } from './llm'
 import {
   findFusionByKey,
-  listFusionNamesForParentPair,
+  listFusionPriorVariantsForParentPair,
   upsertFusionEntry,
 } from './repository'
 
@@ -56,25 +55,25 @@ export async function generateFusionEntry({
 
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
-  const outputRoll = deriveFusionOutputFromSeed(
-    seed,
+  const rollContext = deriveFusionRollContext(seed, quirkA, quirkB)
+  const priorVariants = await listFusionPriorVariantsForParentPair(
     parents[0],
     parents[1],
-    [...new Set([...(quirkA.facets ?? []), ...(quirkB.facets ?? [])])],
     {
-      types: [quirkA.type, quirkB.type],
-      ranges: [quirkA.range, quirkB.range],
+      excludeKey: key,
+      match: {
+        tier: rollContext.tier,
+        type: rollContext.outputRoll.type,
+        range: rollContext.outputRoll.range,
+        facets: rollContext.outputRoll.facets,
+        roll: rollContext.roll,
+      },
     },
-  )
-  const priorVariantNames = await listFusionNamesForParentPair(
-    parents[0],
-    parents[1],
-    { excludeKey: key },
   )
 
   try {
     const english = await generateEnglishFusionWithLlm(
-      buildFusionPrompt(quirkA, quirkB, seed, outputRoll, priorVariantNames),
+      buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext),
     )
 
     const translations = await Promise.all(
@@ -87,7 +86,13 @@ export async function generateFusionEntry({
     )
 
     const payload = mergeFusionPayload(english, ...translations)
-    const entry = buildFusionEntry(key, parents, seed, { ...payload, ...outputRoll })
+    const entry = buildFusionEntry(
+      key,
+      parents,
+      seed,
+      { ...payload, ...rollContext.outputRoll },
+      { tier: rollContext.tier, roll: rollContext.roll },
+    )
     await upsertFusionEntry(entry)
     return { entry, cached: false, generated: true }
   } catch (err) {

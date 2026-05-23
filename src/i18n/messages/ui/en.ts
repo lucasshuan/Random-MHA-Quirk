@@ -115,6 +115,38 @@ export const en = {
     generateError: 'Could not generate this fusion.',
     retryGenerate: 'Try again',
     rerollVariant: 'Reroll fusion (same parents)',
+    roll: {
+      strategyLabel: 'Fusion strategy',
+      nameRegisterLabel: 'Name style',
+      utilityLabel: 'Writing focus',
+      strategy: {
+        synergy: 'Synergy',
+        'dominant-a': 'Parent A leads',
+        'dominant-b': 'Parent B leads',
+        'facet-anchor': 'Shared facet anchor',
+        'body-weave': 'Body weave',
+        'emission-bridge': 'Emission bridge',
+        'range-meet': 'Range meet',
+        oscillation: 'Oscillation',
+        byproduct: 'Byproduct',
+        'failure-mode': 'Failure mode',
+      },
+      nameRegister: {
+        pun: 'Pun',
+        blunt: 'Blunt',
+        dramatic: 'Dramatic',
+        'absurd-long': 'Absurd long',
+        'meme-adjacent': 'Meme-adjacent',
+      },
+      utilityNiche: {
+        'single core effect': 'Single core effect',
+        'clear body tell': 'Clear body tell',
+        'direct trigger': 'Direct trigger',
+        'simple secondary detail': 'Simple secondary detail',
+        'one practical limit': 'One practical limit',
+        'plain wording': 'Plain wording',
+      },
+    },
   },
   meta: {
     origin: {

@@ -5,7 +5,7 @@ export function BrandMark() {
 
   return (
     <div className="brand-mark" aria-label={t('brand.title')}>
-      <img src="/mha-logo.png" alt={t('brand.logoAlt')} className="brand-logo" />
+      <img src="/mha-logo.webp" alt={t('brand.logoAlt')} className="brand-logo" />
       <span className="brand-text">{t('brand.title')}</span>
     </div>
   )

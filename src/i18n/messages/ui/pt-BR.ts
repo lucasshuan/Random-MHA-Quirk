@@ -122,6 +122,38 @@ export const ptBR: Messages = {
     generateError: 'Não foi possível gerar esta fusão.',
     retryGenerate: 'Tentar novamente',
     rerollVariant: 'Sortear nova fusão (mesmas origens)',
+    roll: {
+      strategyLabel: 'Estratégia de fusão',
+      nameRegisterLabel: 'Estilo do nome',
+      utilityLabel: 'Foco da redação',
+      strategy: {
+        synergy: 'Sinergia',
+        'dominant-a': 'Pai A domina',
+        'dominant-b': 'Pai B domina',
+        'facet-anchor': 'Âncora de faceta',
+        'body-weave': 'Corpo/teia',
+        'emission-bridge': 'Ponte de emissão',
+        'range-meet': 'Encontro de alcance',
+        oscillation: 'Oscilação',
+        byproduct: 'Subproduto',
+        'failure-mode': 'Modo falho',
+      },
+      nameRegister: {
+        pun: 'Trocadilho',
+        blunt: 'Direto',
+        dramatic: 'Dramático',
+        'absurd-long': 'Absurdo longo',
+        'meme-adjacent': 'Meme',
+      },
+      utilityNiche: {
+        'single core effect': 'Um efeito central',
+        'clear body tell': 'Sinal corporal claro',
+        'direct trigger': 'Gatilho direto',
+        'simple secondary detail': 'Detalhe secundário simples',
+        'one practical limit': 'Um limite prático',
+        'plain wording': 'Linguagem simples',
+      },
+    },
   },
   meta: {
     origin: {

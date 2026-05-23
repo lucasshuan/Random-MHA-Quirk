@@ -4,6 +4,7 @@ import type {
   QuirkId,
   QuirkOrigin,
   QuirkRange,
+  QuirkTier,
   QuirkType,
 } from './quirk'
 import type { Locale } from '../i18n/types'
@@ -11,6 +12,20 @@ import type { Locale } from '../i18n/types'
 export interface FusionCopy {
   name: string
   description: string
+}
+
+/** Prior English variant for the same parent pair — fed into fusion prompts for diversity. */
+export interface FusionPriorVariant {
+  name: string
+  description: string
+}
+
+/** Deterministic prompt rolls persisted with each fusion entry. */
+export interface FusionRollMeta {
+  strategyKey: string
+  nameRegister: string
+  utilityNiche: string
+  antiMashupRule: string
 }
 
 export interface FusionCacheEntry {
@@ -24,6 +39,8 @@ export interface FusionCacheEntry {
   range: QuirkRange
   facets: QuirkFacet[]
   origin: QuirkOrigin
+  tier: QuirkTier
+  roll: FusionRollMeta
 }
 
 export interface FusionCacheFile {
@@ -31,15 +48,17 @@ export interface FusionCacheFile {
   entries: FusionCacheEntry[]
 }
 
-/** Fusão exibida no app (sem tier). */
+/** Fusão exibida no app. */
 export interface FusionQuirk {
   id: string
   parents: [QuirkId, QuirkId]
   seed: string
   origin: QuirkOrigin
+  tier: QuirkTier
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
+  roll: FusionRollMeta
   name: string
   description: string
 }

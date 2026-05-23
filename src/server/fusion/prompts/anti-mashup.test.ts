@@ -11,6 +11,7 @@ function mockQuirk(
   return {
     name: partial.id,
     origin: 'BNHA',
+    tier: 'B',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],

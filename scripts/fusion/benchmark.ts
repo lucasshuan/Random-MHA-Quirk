@@ -1,5 +1,5 @@
 /**
- * English-only fusion benchmark (strategy + output roll + prior names).
+ * English-only fusion benchmark (strategy + output roll + prior variants).
  * Usage: pnpm exec tsx scripts/fusion/benchmark.ts
  */
 import { writeFileSync } from 'node:fs'
@@ -8,12 +8,8 @@ import { fusionCacheKey, sortedParentPair } from '@/lib/fusion/keys'
 import { loadEnv } from '@/server/env/load'
 import { getQuirkById } from '@/server/fusion/catalog'
 import { generateEnglishFusionWithLlm } from '@/server/fusion/llm'
-import { buildFusionPrompt } from '@/server/fusion/prompts/english'
-import { selectFusionNameRegister } from '@/server/fusion/prompts/naming'
-import { deriveFusionOutputFromSeed } from '@/server/fusion/prompts/output'
-import { selectFusionStrategy } from '@/server/fusion/prompts/strategy'
-import { selectFusionUtilityNudge } from '@/server/fusion/prompts/utility'
-import { listFusionNamesForParentPair } from '@/server/fusion/repository'
+import { buildFusionPrompt, deriveFusionRollContext } from '@/server/fusion/prompts/english'
+import { listFusionPriorVariantsForParentPair } from '@/server/fusion/repository'
 import { getProjectRoot } from '../_shared/root'
 
 const PAIRS: [string, string][] = [
@@ -42,29 +38,25 @@ async function main() {
     for (const seed of SEEDS) {
       const parents = sortedParentPair(idA as never, idB as never)
       const key = fusionCacheKey(parents[0], parents[1], seed)
-      const parentFacets = [...new Set([...quirkA.facets, ...quirkB.facets])]
-      const outputRoll = deriveFusionOutputFromSeed(
-        seed,
+      const rollContext = deriveFusionRollContext(seed, quirkA, quirkB)
+      const priorVariants = await listFusionPriorVariantsForParentPair(
         parents[0],
         parents[1],
-        parentFacets,
         {
-          types: [quirkA.type, quirkB.type],
-          ranges: [quirkA.range, quirkB.range],
+          excludeKey: key,
+          match: {
+            tier: rollContext.tier,
+            type: rollContext.outputRoll.type,
+            range: rollContext.outputRoll.range,
+            facets: rollContext.outputRoll.facets,
+            roll: rollContext.roll,
+          },
         },
-      )
-      const strategy = selectFusionStrategy(seed, quirkA, quirkB)
-      const nameRegister = selectFusionNameRegister(seed, parents[0], parents[1])
-      const utilityNudge = selectFusionUtilityNudge(seed, parents[0], parents[1])
-      const priorVariantNames = await listFusionNamesForParentPair(
-        parents[0],
-        parents[1],
-        { excludeKey: key },
       )
 
       console.log(`Generating ${parents.join('+')} seed=${seed}...`)
       const english = await generateEnglishFusionWithLlm(
-        buildFusionPrompt(quirkA, quirkB, seed, outputRoll, priorVariantNames),
+        buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext),
       )
 
       results.push({
@@ -72,11 +64,10 @@ async function main() {
         parentNames: [quirkA.name, quirkB.name],
         seed,
         promptRoll: {
-          nameRegister: nameRegister.key,
-          utilityNiche: utilityNudge.niche,
-          strategy: strategy.key,
-          outputRoll,
-          priorVariantNames,
+          tier: rollContext.tier,
+          roll: rollContext.roll,
+          outputRoll: rollContext.outputRoll,
+          priorVariants,
         },
         english,
       })

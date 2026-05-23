@@ -122,6 +122,38 @@ export const es: Messages = {
     generateError: 'No se pudo generar esta fusión.',
     retryGenerate: 'Intentar de nuevo',
     rerollVariant: 'Nueva fusión (mismos orígenes)',
+    roll: {
+      strategyLabel: 'Estrategia de fusión',
+      nameRegisterLabel: 'Estilo del nombre',
+      utilityLabel: 'Enfoque de redacción',
+      strategy: {
+        synergy: 'Sinergia',
+        'dominant-a': 'Padre A lidera',
+        'dominant-b': 'Padre B lidera',
+        'facet-anchor': 'Ancla de faceta',
+        'body-weave': 'Tejido corporal',
+        'emission-bridge': 'Puente de emisión',
+        'range-meet': 'Encuentro de alcance',
+        oscillation: 'Oscilación',
+        byproduct: 'Subproducto',
+        'failure-mode': 'Modo fallido',
+      },
+      nameRegister: {
+        pun: 'Juego de palabras',
+        blunt: 'Directo',
+        dramatic: 'Dramático',
+        'absurd-long': 'Absurdo largo',
+        'meme-adjacent': 'Meme',
+      },
+      utilityNiche: {
+        'single core effect': 'Un efecto central',
+        'clear body tell': 'Señal corporal clara',
+        'direct trigger': 'Disparo directo',
+        'simple secondary detail': 'Detalle secundario simple',
+        'one practical limit': 'Un límite práctico',
+        'plain wording': 'Lenguaje simple',
+      },
+    },
   },
   meta: {
     origin: {

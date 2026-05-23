@@ -115,20 +115,24 @@ type StrategyDef = {
   ) => string
 }
 
-const NICHE_STRATEGY_KEYS = new Set<FusionStrategyKey>(['byproduct', 'failure-mode'])
-const NICHE_BOOST_THRESHOLD = 6
-const NICHE_BOOST_COPIES = 4
+const SIMPLE_STRATEGY_KEYS = new Set<FusionStrategyKey>([
+  'synergy',
+  'dominant-a',
+  'dominant-b',
+  'facet-anchor',
+  'body-weave',
+  'emission-bridge',
+  'failure-mode',
+])
+const SIMPLE_STRATEGY_BOOST_COPIES = 2
 
 function pickWeightedStrategy(rollKey: string, eligible: StrategyDef[]): StrategyDef {
   const weighted: StrategyDef[] = []
 
   for (const def of eligible) {
     weighted.push(def)
-    if (
-      eligible.length >= NICHE_BOOST_THRESHOLD &&
-      NICHE_STRATEGY_KEYS.has(def.key)
-    ) {
-      for (let i = 0; i < NICHE_BOOST_COPIES; i++) weighted.push(def)
+    if (SIMPLE_STRATEGY_KEYS.has(def.key)) {
+      for (let i = 0; i < SIMPLE_STRATEGY_BOOST_COPIES; i++) weighted.push(def)
     }
   }
 
@@ -196,19 +200,23 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'range-meet',
     eligible: (ctx) => !ctx.sameRange,
     instruction: (ctx) =>
-      `Fusion strategy — range meet: parents differ in reach (${ctx.rangeA} vs ${ctx.rangeB}). The hybrid needs one explicit rule for how close vs far effects work (e.g. stronger at one band, shape change by distance, or cost to extend).`,
+      `Fusion strategy — range meet: parents differ in reach (${ctx.rangeA} vs ${ctx.rangeB}). Keep one core effect and one simple distance rule (stronger up close, weaker far away, or the opposite).`,
   },
   {
     key: 'oscillation',
-    eligible: (ctx) => !ctx.sameType && !(ctx.typeA === 'Mutant' && ctx.typeB === 'Mutant'),
+    eligible: (ctx) =>
+      !ctx.sameType &&
+      !ctx.rangeGapLarge &&
+      ctx.sharedFacets.length > 0 &&
+      !(ctx.typeA === 'Mutant' && ctx.typeB === 'Mutant'),
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — oscillation: same Quirk, two modes (not two quirks). One mode echoes ${quirkA.type} behavior, the other ${quirkB.type}; switching has a concrete cost.`,
+      `Fusion strategy — oscillation: same Quirk with a brief delivery shift, not two separate kits. Default behavior stays unified; a short switch can echo ${quirkA.type} or ${quirkB.type} style with one clear cost.`,
   },
   {
     key: 'byproduct',
-    eligible: () => true,
+    eligible: (ctx) => ctx.sharedFacets.length > 0 && !ctx.rangeGapLarge,
     instruction: () =>
-      'Fusion strategy — byproduct: one clear primary effect carries the design, plus a secondary odd or niche effect (situational, awkward, or subtle).',
+      'Fusion strategy — byproduct: one clear primary effect carries the design. Any secondary effect is brief and minor, only as fallout of the same mechanism.',
   },
   {
     key: 'failure-mode',

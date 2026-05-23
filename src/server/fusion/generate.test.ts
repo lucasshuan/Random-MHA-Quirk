@@ -4,7 +4,7 @@ import type { FusionCacheEntry } from '@/types/fusion'
 const mockGenerateEnglishFusionWithLlm = vi.fn()
 const mockTranslateFusionToLocaleWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
-const mockListFusionNamesForParentPair = vi.fn()
+const mockListFusionPriorVariantsForParentPair = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
 const mockGetQuirkById = vi.fn()
 
@@ -17,8 +17,8 @@ vi.mock('./llm', () => ({
 
 vi.mock('./repository', () => ({
   findFusionByKey: (...args: unknown[]) => mockFindFusionByKey(...args),
-  listFusionNamesForParentPair: (...args: unknown[]) =>
-    mockListFusionNamesForParentPair(...args),
+  listFusionPriorVariantsForParentPair: (...args: unknown[]) =>
+    mockListFusionPriorVariantsForParentPair(...args),
   upsertFusionEntry: (...args: unknown[]) => mockUpsertFusionEntry(...args),
 }))
 
@@ -57,6 +57,13 @@ const cachedEntry: FusionCacheEntry = {
   range: 'Medium',
   facets: ['Emission'],
   origin: 'ORIGINAL',
+  tier: 'A',
+  roll: {
+    strategyKey: 'synergy',
+    nameRegister: 'blunt',
+    utilityNiche: 'plain wording',
+    antiMashupRule: 'Anti-mashup: test rule.',
+  },
 }
 
 const englishPayload = {
@@ -74,7 +81,9 @@ describe('generateFusionEntry', () => {
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
     mockFindFusionByKey.mockResolvedValue(cachedEntry)
-    mockListFusionNamesForParentPair.mockResolvedValue(['Cached'])
+    mockListFusionPriorVariantsForParentPair.mockResolvedValue([
+      { name: 'Cached', description: 'Cached EN description for prior variant.' },
+    ])
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
@@ -105,9 +114,12 @@ describe('generateFusionEntry', () => {
       seed: 'seed1',
     })
 
-    expect(mockListFusionNamesForParentPair).toHaveBeenCalledOnce()
+    expect(mockListFusionPriorVariantsForParentPair).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm.mock.calls[0][0]).toContain('Cached')
+    expect(mockGenerateEnglishFusionWithLlm.mock.calls[0][0]).toContain(
+      'Cached EN description for prior variant.',
+    )
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
     expect(mockFindFusionByKey).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()

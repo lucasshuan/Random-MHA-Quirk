@@ -45,9 +45,11 @@ export function entryToFusionQuirk(entry: FusionCacheEntry, locale: Locale): Fus
     parents: entry.parents,
     seed: entry.seed,
     origin: entry.origin,
+    tier: entry.tier,
     type: entry.type,
     range: entry.range,
     facets: entry.facets,
+    roll: entry.roll,
     name: copy.name,
     description: copy.description,
   }

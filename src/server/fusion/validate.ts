@@ -1,4 +1,5 @@
-import type { FusionCopy, FusionCacheEntry } from '@/types/fusion'
+import type { FusionCopy, FusionCacheEntry, FusionRollMeta } from '@/types/fusion'
+import type { QuirkTier } from '@/types/quirk'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
 import {
   FUSION_TRANSLATION_LOCALES,
@@ -125,6 +126,7 @@ export function buildFusionEntry(
   parents: FusionCacheEntry['parents'],
   seed: string,
   payload: ValidatedFusionPayload,
+  meta: { tier: QuirkTier; roll: FusionRollMeta },
 ): FusionCacheEntry {
-  return { key, parents, seed, ...payload }
+  return { key, parents, seed, ...payload, tier: meta.tier, roll: meta.roll }
 }

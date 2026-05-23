@@ -1,5 +1,6 @@
 import { hashSeed } from './seed-hash'
 import { fusionRollKey } from './roll-key'
+import type { FusionPriorVariant } from '@/types/fusion'
 
 export type FusionNameRegister =
   | 'pun'
@@ -28,6 +29,15 @@ const CANON_STYLE_NAMES = [
 const DRAMATIC_STEM_BAN =
   'Avoid generic fantasy stems: "Veil of ...", "Impenetrable ...", "Phase ...", "... Shroud", "Lasso of ...", "... Cataclysm", "... Ward", "... Mire", or invented moody compounds. Prefer canon-dramatic quirk titles (Hellflame, Foldabody), not RPG skill labels.'
 
+const NAME_PUNCTUATION_RULE =
+  'Punctuation in en.name: commas and a single question mark are allowed when they sell the joke or cadence (e.g. "Well, Well, Well", "Got Milk?"). Use at most one ? or one comma clause — not both unless the register is absurd-long. No exclamation marks, ellipses, or quotes in the title. en.description stays declarative (no rhetorical questions).'
+
+const NAME_QUALITY_GATE =
+  'Funny or unusual names must still have a clear joke, phrase twist, mental image, natural spoken cadence, or loose hint of the core mechanic. Do not approve names that only combine a random interjection with a mechanic noun, such as "Oops, Cushion", "Uh Oh, Shield", "Hey, Smoke", "Wow, Punch", or "Oops, Dome", unless the full phrase lands as a joke. Interjections such as "Oops", "Uh Oh", "Who, Me?", "Well, Well, Well", or "Got Milk?" need a reason: a joke, reversal, personality, accident, catchphrase, or ironic effect. If a name would sound awkward when translated literally, prefer a cleaner pun, blunt nickname, or stronger visual phrase. Bad: "Oops, Cushion". Better: "Oops-Proof", "Crash Pad", "Soft Serve", "Bounce House", or "No Hard Feelings".'
+
+const NAME_SELF_CHECK =
+  'Before accepting en.name, ask: "Does this title sound like a real anime Quirk name, a joke that lands, or a phrase someone could actually say?" If no, replace the name once in the SAME selected register. Do not use a random interjection; make the replacement work through wordplay, cadence, image, irony, or direct simplicity.'
+
 const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   {
     key: 'pun',
@@ -43,6 +53,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
       'Bloodcurdle',
       'Fly Swatter',
       'Day Dream',
+      'Copy, Paste',
     ],
   },
   {
@@ -118,6 +129,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
       'Day Dream',
       'Stress',
       'Sloshed',
+      'Who, Me?',
     ],
   },
 ]
@@ -138,21 +150,29 @@ export function selectFusionNameRegister(
 
 export function formatFusionNamingBlock(
   seed: string,
-  priorVariantNames: string[] = [],
+  priorVariants: FusionPriorVariant[] = [],
   parentA?: string,
   parentB?: string,
 ): string {
   const register = selectFusionNameRegister(seed, parentA, parentB)
-  const priorNames = [
-    ...new Set(priorVariantNames.map((name) => name.trim()).filter(Boolean)),
-  ]
+  const priorList = priorVariants
+    .map((variant) => ({
+      name: variant.name.trim(),
+      description: variant.description.trim(),
+    }))
+    .filter((variant) => variant.name && variant.description)
 
   const priorBlock =
-    priorNames.length === 0
+    priorList.length === 0
       ? ''
       : `
-Do not reuse or lightly rephrase these existing titles for this parent pair (pick a different joke/hook/register, not just a new adjective):
-${priorNames.map((name) => `- ${name}`).join('\n')}`
+Existing variants for this parent pair — do not reuse these titles or lightly rephrase them; also avoid repeating the same core mechanism, activation loop, body tell, or situational niche (pick a different register AND a meaningfully different effect idea):
+${priorList
+  .map(
+    (variant) =>
+      `- "${variant.name}": ${variant.description}`,
+  )
+  .join('\n')}`
 
   const dramaticBlock =
     register.key === 'dramatic' ? `\n- ${DRAMATIC_STEM_BAN}` : ''
@@ -168,7 +188,10 @@ ${priorNames.map((name) => `- ${name}`).join('\n')}`
 - en.name MUST match this register even though en.description stays objective and encyclopedic.
 - en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.
 - en.name may be only loosely related to the mechanism — canon names often joke first, explain second.
-- Avoid stiff or moody compounds like "Omni-Kinetic Field", "Corrosive Gale", "Primal Bastion", "Barkbound Reprisal", "Nightcord Cataclysm", "Greyward Gate", or "Graftmire". Prefer names a classmate could say out loud.${dramaticBlock}
+- Avoid stiff or moody compounds like "Omni-Kinetic Field", "Corrosive Gale", "Primal Bastion", "Barkbound Reprisal", "Nightcord Cataclysm", "Greyward Gate", or "Graftmire". Prefer names a classmate could say out loud.
+- ${NAME_PUNCTUATION_RULE}${dramaticBlock}
+- ${NAME_QUALITY_GATE}
+- ${NAME_SELF_CHECK}
 - Canon-style reference names (any register): ${CANON_STYLE_NAMES.join(', ')}
 - Examples in the ${register.key} register: ${register.examples.join(', ')}${nameSafetyBlock}${priorBlock}`
 }

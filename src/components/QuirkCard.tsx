@@ -21,32 +21,41 @@ function typeThemeClass(type: QuirkType): string {
 interface QuirkCardProps {
   quirk: QuirkCardModel
   slotLabel?: '1' | '2'
-  /** Fusão gerada: sem escala de tier. */
-  hideTier?: boolean
   compact?: boolean
 }
 
-function isCanonicalQuirk(quirk: QuirkCardModel): quirk is Quirk {
-  return 'tier' in quirk
+function isFusionQuirk(quirk: QuirkCardModel): quirk is FusionQuirk {
+  return 'roll' in quirk
 }
 
-export function QuirkCard({ quirk, slotLabel, hideTier = false, compact = false }: QuirkCardProps) {
+function fusionRollLabel(
+  t: (key: string) => string,
+  group: 'strategy' | 'nameRegister' | 'utilityNiche',
+  value: string,
+): string {
+  const key = `fusion.roll.${group}.${value}`
+  const translated = t(key)
+  return translated === key ? value : translated
+}
+
+export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps) {
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
   const resolved = useMemo(
-    () => (isCanonicalQuirk(quirk) ? resolveQuirk(quirk, locale) : quirk),
+    () => (isFusionQuirk(quirk) ? quirk : resolveQuirk(quirk, locale)),
     [quirk, locale],
   )
   const [detailsOpen, setDetailsOpen] = useState(false)
 
   const themeClass = typeThemeClass(quirk.type)
   const slotClass = slotLabel ? `quirk-card-slot-${slotLabel.toLowerCase()}` : ''
+  const fusion = isFusionQuirk(quirk)
 
   const cardClass = [
     'quirk-card',
     themeClass,
     slotClass,
-    hideTier ? 'quirk-card-fusion' : '',
+    fusion ? 'quirk-card-fusion' : '',
     compact ? 'quirk-card-compact' : '',
   ]
     .filter(Boolean)
@@ -60,30 +69,26 @@ export function QuirkCard({ quirk, slotLabel, hideTier = false, compact = false 
           {slotLabel}
         </span>
       ) : null}
-      {hideTier ? (
+      {fusion ? (
         <span className="quirk-fusion-badge">{t('fusion.badge')}</span>
       ) : null}
       <p className="quirk-meta">
-        {!hideTier && isCanonicalQuirk(quirk) ? (
-          <>
+        <span
+          className="quirk-tier-scale"
+          role="group"
+          aria-label={meta.tier(quirk.tier)}
+        >
+          {QUIRK_TIERS.map((tier) => (
             <span
-              className="quirk-tier-scale"
-              role="group"
-              aria-label={meta.tier(quirk.tier)}
+              key={tier}
+              className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
+              aria-current={tier === quirk.tier ? 'true' : undefined}
             >
-              {QUIRK_TIERS.map((tier) => (
-                <span
-                  key={tier}
-                  className={`quirk-tier-cell${tier === quirk.tier ? ' quirk-tier-cell-active' : ''}`}
-                  aria-current={tier === quirk.tier ? 'true' : undefined}
-                >
-                  {tier}
-                </span>
-              ))}
+              {tier}
             </span>
-            <span className="quirk-meta-sep" aria-hidden="true" />
-          </>
-        ) : null}
+          ))}
+        </span>
+        <span className="quirk-meta-sep" aria-hidden="true" />
         <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
         <span className="quirk-meta-sep" aria-hidden="true" />
         <span className="quirk-meta-range">
@@ -109,6 +114,22 @@ export function QuirkCard({ quirk, slotLabel, hideTier = false, compact = false 
           <span className="quirk-detail-label">{t('advanced.origin')}</span>
           {meta.origin(quirk.origin)}
         </p>
+        {fusion ? (
+          <>
+            <p className="quirk-detail-roll">
+              <span className="quirk-detail-label">{t('fusion.roll.strategyLabel')}</span>
+              {fusionRollLabel(t, 'strategy', quirk.roll.strategyKey)}
+            </p>
+            <p className="quirk-detail-roll">
+              <span className="quirk-detail-label">{t('fusion.roll.nameRegisterLabel')}</span>
+              {fusionRollLabel(t, 'nameRegister', quirk.roll.nameRegister)}
+            </p>
+            <p className="quirk-detail-roll">
+              <span className="quirk-detail-label">{t('fusion.roll.utilityLabel')}</span>
+              {fusionRollLabel(t, 'utilityNiche', quirk.roll.utilityNiche)}
+            </p>
+          </>
+        ) : null}
         {quirk.facets.length > 0 ? (
           <div className="chip-row quirk-detail-facets">
             {quirk.facets.map((facet) => (

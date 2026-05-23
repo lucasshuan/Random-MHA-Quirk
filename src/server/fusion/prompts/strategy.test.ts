@@ -7,6 +7,7 @@ function mockQuirk(
 ): FusionCatalogQuirk {
   return {
     origin: 'BNHA',
+    tier: 'B',
     type: 'Emitter',
     range: 'Medium',
     facets: ['Emission'],
@@ -85,7 +86,7 @@ describe('selectFusionStrategy', () => {
     expect(keys.has('facet-anchor')).toBe(true)
   })
 
-  it('boosts byproduct and failure-mode when many strategies are eligible', () => {
+  it('biases toward simple strategies when many options are eligible', () => {
     const a = mockQuirk({
       id: 'acid',
       name: 'Acid',
@@ -104,10 +105,17 @@ describe('selectFusionStrategy', () => {
     const keys = Array.from({ length: 48 }, (_, i) =>
       selectFusionStrategy(`boost-${i}`, a, b).key,
     )
-    const nicheCount = keys.filter(
-      (key) => key === 'byproduct' || key === 'failure-mode',
+    const simpleCount = keys.filter(
+      (key) =>
+        key === 'synergy' ||
+        key === 'dominant-a' ||
+        key === 'dominant-b' ||
+        key === 'facet-anchor' ||
+        key === 'body-weave' ||
+        key === 'emission-bridge' ||
+        key === 'failure-mode',
     ).length
 
-    expect(nicheCount).toBeGreaterThan(8)
+    expect(simpleCount).toBeGreaterThan(24)
   })
 })

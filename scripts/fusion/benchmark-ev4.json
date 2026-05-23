@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-23T00:22:46.639Z",
+  "generatedAt": "2026-05-23T03:24:10.421Z",
   "results": [
     {
       "pair": "blackwhip+creation",
@@ -10,85 +10,11 @@
       "seed": "ev4-s1",
       "promptRoll": {
         "nameRegister": "meme-adjacent",
-        "utilityNiche": "ally aid",
+        "utilityNiche": "plain wording",
         "strategy": "failure-mode",
         "outputRoll": {
-          "type": "Mutant",
-          "range": "Long",
-          "facets": [
-            "Mobility",
-            "Control"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Whip It Good",
-          "description": "This quirk allows the user to extend dark, energy-infused tendrils from their body, which can be used to pull themselves or allies rapidly toward a target location, akin to a swing movement. The tendrils can also construct solid objects or barriers mid-motion, providing defensive structures while repositioning allies within a medium range. However, using this quirk puts a strain on the user's body, resulting in a cooldown period where they cannot use the tendrils again until they recover, limiting the frequency of its use in battle."
-        },
-        "type": "Mutant",
-        "range": "Long",
-        "facets": [
-          "Mobility",
-          "Control"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "blackwhip+creation",
-      "parentNames": [
-        "Creation",
-        "Blackwhip"
-      ],
-      "seed": "ev4-s2",
-      "promptRoll": {
-        "nameRegister": "absurd-long",
-        "utilityNiche": "burst damage",
-        "strategy": "byproduct",
-        "outputRoll": {
-          "type": "Mutant",
-          "range": "Contact",
-          "facets": [
-            "Emission",
-            "Psychic",
-            "Anthropomorphic",
-            "Enhancement"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Fantastic Exploding Tentacle Creation of Overwhelming Sensation",
-          "description": "This quirk allows the user to create explosive tendrils that burst from their body at will. When activated, dark, shadowy energy snakes out, forming along the user's limbs, creating tendrils that can lash out and strike targets, exploding on impact. Each tendril unleashes a powerful force that can knock opponents back and cause concussive damage. However, the explosive abilities leave the user temporarily fatigued, requiring a few moments to rest before they can produce more tendrils."
-        },
-        "type": "Mutant",
-        "range": "Contact",
-        "facets": [
-          "Emission",
-          "Psychic",
-          "Anthropomorphic",
-          "Enhancement"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "blackwhip+creation",
-      "parentNames": [
-        "Creation",
-        "Blackwhip"
-      ],
-      "seed": "ev4-s3",
-      "promptRoll": {
-        "nameRegister": "dramatic",
-        "utilityNiche": "containment",
-        "strategy": "emission-bridge",
-        "outputRoll": {
-          "type": "Emitter",
-          "range": "Short",
+          "type": "Transformation",
+          "range": "Medium",
           "facets": [
             "Construct"
           ]
@@ -97,11 +23,11 @@
       },
       "english": {
         "en": {
-          "name": "Veil of Shadows",
-          "description": "This quirk envelops the user in a dark, shadowy aura that allows them to project and manipulate solid constructs made of semi-opaque darkness. The user can extend these shadowy constructs as tendrils to create barriers or trap opponents, effectively controlling the battlefield. While active, the user’s presence takes on an ethereal quality, with shadows flowing from their body to create structures that can temporarily ensnare others. However, maintaining the shadow constructs requires concentration, leading to diminished range and precision with prolonged use."
+          "name": "Dark Noodle",
+          "description": "Grows flexible whip-like constructs of nonliving matter from the user's body that can grab, swing, and lash at medium range. Activation converts the user's tissues into bundled, dark filament ropes that harden on command. The ropes are physical, not true energy, so they have reduced tensile strength and short duration and prolonged use exhausts the user."
         },
-        "type": "Emitter",
-        "range": "Short",
+        "type": "Transformation",
+        "range": "Medium",
         "facets": [
           "Construct"
         ],
@@ -109,240 +35,55 @@
       }
     },
     {
-      "pair": "hardening+permeation",
+      "pair": "blackwhip+creation",
       "parentNames": [
-        "Permeation",
-        "Hardening"
+        "Creation",
+        "Blackwhip"
       ],
-      "seed": "ev4-s1",
+      "seed": "ev4-s2",
       "promptRoll": {
-        "nameRegister": "meme-adjacent",
-        "utilityNiche": "ally aid",
+        "nameRegister": "dramatic",
+        "utilityNiche": "single core effect",
         "strategy": "failure-mode",
         "outputRoll": {
-          "type": "Transformation",
-          "range": "Contact",
-          "facets": [
-            "Anthropomorphic",
-            "Enhancement"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Phase Shell",
-          "description": "When activated, the user rapidly coats their body in a hard, translucent shell that resembles glass. This outer layer grants increased defense and enhances striking power. To activate the quirk, the user must focus and maintain contact with the ground, but any sudden movement risks shattering the shell, causing a temporary loss of protection. The user moves with an animalistic agility, allowing them to slip through obstacles while simultaneously using the hardened exterior to brace against attacks."
-        },
-        "type": "Transformation",
-        "range": "Contact",
-        "facets": [
-          "Anthropomorphic",
-          "Enhancement"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "hardening+permeation",
-      "parentNames": [
-        "Permeation",
-        "Hardening"
-      ],
-      "seed": "ev4-s2",
-      "promptRoll": {
-        "nameRegister": "absurd-long",
-        "utilityNiche": "burst damage",
-        "strategy": "byproduct",
-        "outputRoll": {
-          "type": "Transformation",
-          "range": "Long",
-          "facets": [
-            "Defense",
-            "Mobility",
-            "Psychic"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Super Mega Awesome Extra Hard Penetration Experience",
-          "description": "When activated, the user briefly envelops their body in an impenetrable hard shell while simultaneously phasing through solid objects nearby. This transformation allows them to absorb or block incoming damage and reposition rapidly across distances. However, after using this quirk, the user experiences a cooldown period where they cannot phase again, leaving them temporarily vulnerable. During activation, their skin glows with a hardened sheen, and their movements become fluid, as if gliding through the air."
-        },
-        "type": "Transformation",
-        "range": "Long",
-        "facets": [
-          "Defense",
-          "Mobility",
-          "Psychic"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "hardening+permeation",
-      "parentNames": [
-        "Permeation",
-        "Hardening"
-      ],
-      "seed": "ev4-s3",
-      "promptRoll": {
-        "nameRegister": "dramatic",
-        "utilityNiche": "containment",
-        "strategy": "body-weave",
-        "outputRoll": {
           "type": "Mutant",
-          "range": "Long",
-          "facets": [
-            "Construct",
-            "Defense",
-            "Biological",
-            "Anthropomorphic"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Impenetrable Shroud",
-          "description": "This quirk allows the user to transform their body into a hybrid form of solidified matter and ethereal mist. When activated, a dark, swirling aura envelops the user, causing their limbs to become semi-translucent, while their skin hardens like stone for enhanced durability. The user can extend tendrils of mist that reach out long distances, ensnaring opponents and creating barriers that absorb incoming attacks. However, maintaining this form strains their stamina significantly, requiring moments of rest after prolonged use."
-        },
-        "type": "Mutant",
-        "range": "Long",
-        "facets": [
-          "Construct",
-          "Defense",
-          "Biological",
-          "Anthropomorphic"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "explosion+sugar-rush",
-      "parentNames": [
-        "Sugar Rush",
-        "Explosion"
-      ],
-      "seed": "ev4-s1",
-      "promptRoll": {
-        "nameRegister": "meme-adjacent",
-        "utilityNiche": "ally aid",
-        "strategy": "range-meet",
-        "outputRoll": {
-          "type": "Emitter",
-          "range": "Area",
-          "facets": [
-            "Support",
-            "Sensory",
-            "Biological",
-            "Control"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Explosive Recovery",
-          "description": "This quirk allows the user to emit an energy wave that rejuvenates their allies' stamina while also enhancing their physical abilities. When activated, a shimmering aura envelops the user, visible as sparkles, and pulses outward in a radius, sending energy to teammates. However, the user must consume a significant amount of sugar beforehand, creating a dependency that can drain their own stamina if overused. The empowering effects are strongest within a medium range, and the user experiences a brief cooldown after each activation."
-        },
-        "type": "Emitter",
-        "range": "Area",
-        "facets": [
-          "Support",
-          "Sensory",
-          "Biological",
-          "Control"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "explosion+sugar-rush",
-      "parentNames": [
-        "Sugar Rush",
-        "Explosion"
-      ],
-      "seed": "ev4-s2",
-      "promptRoll": {
-        "nameRegister": "absurd-long",
-        "utilityNiche": "burst damage",
-        "strategy": "emission-bridge",
-        "outputRoll": {
-          "type": "Emitter",
-          "range": "Short",
-          "facets": [
-            "Emission"
-          ]
-        },
-        "priorVariantNames": []
-      },
-      "english": {
-        "en": {
-          "name": "Sugary Explosive Sweet Tooth Detonator of Doom",
-          "description": "When activating this quirk, the user sweats a sweet, syrupy substance that hardens into explosive candy-like projectiles. These projectiles can be launched at medium distance, detonating on impact to create short-range bursts of destructive force. While the user can rapidly produce these sugary bombs, doing so requires them to consume sugar beforehand, limiting their use in sustained combat due to the cooldown period required for digestion and metabolic processing, which leaves them vulnerable during that time."
-        },
-        "type": "Emitter",
-        "range": "Short",
-        "facets": [
-          "Emission"
-        ],
-        "origin": "ORIGINAL"
-      }
-    },
-    {
-      "pair": "explosion+sugar-rush",
-      "parentNames": [
-        "Sugar Rush",
-        "Explosion"
-      ],
-      "seed": "ev4-s3",
-      "promptRoll": {
-        "nameRegister": "dramatic",
-        "utilityNiche": "containment",
-        "strategy": "facet-anchor",
-        "outputRoll": {
-          "type": "Transformation",
           "range": "Medium",
           "facets": [
-            "Biological",
-            "Anthropomorphic"
+            "Mobility",
+            "Sensory"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "Cocoa Constrictor",
-          "description": "This quirk allows the user to excrete a viscous, chocolate-like liquid from their skin, which hardens into a strong, flexible web upon contact with air. When activated, the user's skin darkens, resembling chocolate, and they gain a slight increase in their physical agility. The hardened web can ensnare objects and opponents, slowing them down significantly. However, using this quirk excessively leads to fatigue and limits the user's mobility until they recover the lost energy."
+          "name": "Seamlash",
+          "description": "The user is born with ringed dermal sockets that extrude semi-solid whip-tendons used to swing, anchor, and reel the body across medium distances. The tendons transmit sharp vibration and directional cues, granting extended spatial awareness along each lash. Tendons are stamina-draining and fragile compared to true constructs, with a short recovery after heavy use."
         },
-        "type": "Transformation",
+        "type": "Mutant",
         "range": "Medium",
         "facets": [
-          "Biological",
-          "Anthropomorphic"
+          "Mobility",
+          "Sensory"
         ],
         "origin": "ORIGINAL"
       }
     },
     {
-      "pair": "frog+laser",
+      "pair": "blackwhip+creation",
       "parentNames": [
-        "Frog",
-        "Laser"
+        "Creation",
+        "Blackwhip"
       ],
-      "seed": "ev4-s1",
+      "seed": "ev4-s3",
       "promptRoll": {
-        "nameRegister": "meme-adjacent",
-        "utilityNiche": "ally aid",
-        "strategy": "byproduct",
+        "nameRegister": "blunt",
+        "utilityNiche": "simple secondary detail",
+        "strategy": "failure-mode",
         "outputRoll": {
-          "type": "Transformation",
-          "range": "Contact",
+          "type": "Emitter",
+          "range": "Medium",
           "facets": [
-            "Psychic",
-            "Emission",
             "Support"
           ]
         },
@@ -350,15 +91,252 @@
       },
       "english": {
         "en": {
-          "name": "Laser Tongue",
-          "description": "This quirk allows the user to extend their tongue like a prehensile whip while emitting focused beams of energy from its tip. Upon activation, the user's tongue grows to an impressive length and glows with energy, becoming capable of lassoing allies to pull them out of danger or redirecting projectiles. The emitted beams can be used to illuminate dark areas or provide distraction, but the user must maintain contact with their target to use the support abilities effectively. Activation comes with a cooldown, limiting the user to a few bursts before needing to recharge their focus."
+          "name": "Repair Rope",
+          "description": "Emits thin, manufactured tether-cords that harden on contact to brace, bind, or anchor objects and people, providing quick structural support. Cords unfurl from fingertip ports and can be tightened to steady or reposition targets within medium range. Heavy loads fray the cords and repeated use causes a short cooldown."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Support"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "plain wording",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Long",
+          "facets": [
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Arms That Go Through Walls And Punch",
+          "description": "User temporarily converts limbs into semi-phased, extendable matter that can flow through open space and re-solidify as ultra-dense striking appendages at long range. Activation manifests as rippling translucence along limbs and a metallic clink on harden. Prolonged use causes severe limb numbness and a brief recovery cooldown."
         },
         "type": "Transformation",
+        "range": "Long",
+        "facets": [
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "dramatic",
+        "utilityNiche": "single core effect",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Contact",
+          "facets": [
+            "Mobility",
+            "Sensory"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Steelstep",
+          "description": "Steelstep lets the user slide through solid matter by converting a touched surface into a temporary, semi‑rigid channel they can bore and ride. Activation requires direct touch and a deliberate push and grants acute tactile mapping of the interior structure. Extended use causes disorientation and a brief recovery period."
+        },
+        "type": "Emitter",
         "range": "Contact",
         "facets": [
-          "Psychic",
+          "Mobility",
+          "Sensory"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "hardening+permeation",
+      "parentNames": [
+        "Permeation",
+        "Hardening"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "simple secondary detail",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Short",
+          "facets": [
+            "Sensory",
+            "Enhancement"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Hard Slip",
+          "description": "User shifts into a semi-phased, hardened form that lets limbs slide a few meters through solid matter and deliver amplified, blunt strikes on contact. Activation shows a ridged, metallic sheen and gives short-range tactile sensing through surfaces. Causes brief vertigo and has a short cooldown."
+        },
+        "type": "Transformation",
+        "range": "Short",
+        "facets": [
+          "Sensory",
+          "Enhancement"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "blunt",
+        "utilityNiche": "plain wording",
+        "strategy": "synergy",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Medium",
+          "facets": [
+            "Emission"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Quick Bang",
+          "description": "Emits combustible, sugar-rich vapor bursts that detonate in midair to deliver short, concussive shocks. The user exhales or forces syrupy droplets from their palms into a stream, then ignites the cloud to control blast size. Repeated use quickens metabolism and causes brief dizziness."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
+          "Emission"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s2",
+      "promptRoll": {
+        "nameRegister": "pun",
+        "utilityNiche": "single core effect",
+        "strategy": "range-meet",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Medium",
+          "facets": [
+            "Emission",
+            "Elemental"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Fizzbang",
+          "description": "The user emits a sugar-rich spray from their palms that can be ignited into short, fizzing explosions. Eating sugar amplifies output and turns the spray into volatile, popping droplets. Power peaks at close-to-medium range and heavy use causes a brief stamina crash."
+        },
+        "type": "Emitter",
+        "range": "Medium",
+        "facets": [
           "Emission",
-          "Support"
+          "Elemental"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "explosion+sugar-rush",
+      "parentNames": [
+        "Sugar Rush",
+        "Explosion"
+      ],
+      "seed": "ev4-s3",
+      "promptRoll": {
+        "nameRegister": "meme-adjacent",
+        "utilityNiche": "simple secondary detail",
+        "strategy": "facet-anchor",
+        "outputRoll": {
+          "type": "Emitter",
+          "range": "Long",
+          "facets": [
+            "Emission",
+            "Defense"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Snack Bomb Shield",
+          "description": "Expels sugary, nitro-like sweat as remote explosives that detonate at range to strike or push. By timing micro-detonations the user sculpts blast-pressured syrup into temporary shock-absorbing barriers. Overuse causes rapid hypoglycemia and fatigue."
+        },
+        "type": "Emitter",
+        "range": "Long",
+        "facets": [
+          "Emission",
+          "Defense"
+        ],
+        "origin": "ORIGINAL"
+      }
+    },
+    {
+      "pair": "frog+laser",
+      "parentNames": [
+        "Frog",
+        "Laser"
+      ],
+      "seed": "ev4-s1",
+      "promptRoll": {
+        "nameRegister": "absurd-long",
+        "utilityNiche": "single core effect",
+        "strategy": "range-meet",
+        "outputRoll": {
+          "type": "Transformation",
+          "range": "Area",
+          "facets": [
+            "Construct"
+          ]
+        },
+        "priorVariantNames": []
+      },
+      "english": {
+        "en": {
+          "name": "Long Sticky Tongues That Shoot Bright Light",
+          "description": "User temporarily sprouts dozens of adhesive, limb-like tongue constructs across a wide area; these stiffen into hollow channels that emit focused beams of light from their tips. Beams peak close to the user and weaken with distance. Sustained use causes dizziness and temporary tunnel vision."
+        },
+        "type": "Transformation",
+        "range": "Area",
+        "facets": [
+          "Construct"
         ],
         "origin": "ORIGINAL"
       }
@@ -371,33 +349,27 @@
       ],
       "seed": "ev4-s2",
       "promptRoll": {
-        "nameRegister": "absurd-long",
-        "utilityNiche": "burst damage",
-        "strategy": "failure-mode",
+        "nameRegister": "dramatic",
+        "utilityNiche": "clear body tell",
+        "strategy": "emission-bridge",
         "outputRoll": {
-          "type": "Mutant",
-          "range": "Short",
+          "type": "Emitter",
+          "range": "Self",
           "facets": [
-            "Psychic",
-            "Enhancement",
-            "Biological",
-            "Construct"
+            "Emission"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "Radiant Supercharged Leap of Energy Bliss",
-          "description": "The user undergoes a temporary transformation where their legs become elongated, muscular, and coated in a shimmering energy aura, enhancing their jumping capabilities. Upon landing, they can release a concentrated burst of energy from their feet, creating a powerful shockwave that travels forward, damaging anything in its path. This explosive release leaves the user momentarily fatigued, requiring a cooldown period before another leap can be performed effectively."
+          "name": "Radiant Tongue",
+          "description": "The user emits mucous-like bio-globules that instantly coat and form elastic, adhesive membranes over their tongue, hands, and forearms. A focused right-eye beam ionizes each globule to stiffen or relax the film on command. Prolonged firing causes severe eye strain and temporary blurred vision."
         },
-        "type": "Mutant",
-        "range": "Short",
+        "type": "Emitter",
+        "range": "Self",
         "facets": [
-          "Psychic",
-          "Enhancement",
-          "Biological",
-          "Construct"
+          "Emission"
         ],
         "origin": "ORIGINAL"
       }
@@ -410,27 +382,29 @@
       ],
       "seed": "ev4-s3",
       "promptRoll": {
-        "nameRegister": "dramatic",
-        "utilityNiche": "containment",
-        "strategy": "failure-mode",
+        "nameRegister": "blunt",
+        "utilityNiche": "one practical limit",
+        "strategy": "emission-bridge",
         "outputRoll": {
-          "type": "Mutant",
-          "range": "Area",
+          "type": "Emitter",
+          "range": "Self",
           "facets": [
-            "Emission"
+            "Elemental",
+            "Support"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "Tidal Trap",
-          "description": "This quirk allows the user to manifest a viscous, water-like substance from their skin, creating a slippery terrain that can trap opponents. Upon activation, a shimmering blue sheen coats the user's body, enabling them to shoot streams of gel-like material in all directions. The emitted substance can stick to surfaces and immobilize anyone caught within its grasp. However, maintaining the slippery zone is physically taxing, demanding significant focus, and can only be sustained for a few moments before the user experiences fatigue."
+          "name": "Glow Coat",
+          "description": "The user emits a warm, bioluminescent mucous that spreads over their skin and hardens into a thin radiant film, accelerating tissue recovery and stabilizing body temperature. Droplets are fired from a small oral gland and only coat the user. Prolonged coverage causes mild overheating and light glare."
         },
-        "type": "Mutant",
-        "range": "Area",
+        "type": "Emitter",
+        "range": "Self",
         "facets": [
-          "Emission"
+          "Elemental",
+          "Support"
         ],
         "origin": "ORIGINAL"
       }
@@ -443,33 +417,29 @@
       ],
       "seed": "ev4-s1",
       "promptRoll": {
-        "nameRegister": "meme-adjacent",
-        "utilityNiche": "ally aid",
-        "strategy": "byproduct",
+        "nameRegister": "absurd-long",
+        "utilityNiche": "single core effect",
+        "strategy": "synergy",
         "outputRoll": {
-          "type": "Mutant",
-          "range": "Short",
+          "type": "Emitter",
+          "range": "Contact",
           "facets": [
-            "Emission",
             "Construct",
-            "Biological",
-            "Enhancement"
+            "Defense"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "Tape Out Loud",
-          "description": "The user can emit long, sticky strips of tape from their palms, which can ensnare or immobilize targets upon contact. Additionally, while the tape is active, the user experiences a temporary boost in agility, allowing for enhanced speed and mobility. However, this agility comes at a cost: after using the tape, they must recover their stamina due to the intense strain on their body. The tape emits a faint, colorful glow while in use, signaling its stickiness and readiness for deployment."
+          "name": "Sticky Suggestion Strings From His Elbows",
+          "description": "Ejects adhesive ribbon constructs on direct touch that bind a target and enforce brief, simple compelled actions through patterned restraints. Ribbons form from the user's elbows and lace into sigil-like bands that emit the command while attached. Effects last seconds and repeated use causes nausea and a short cooldown."
         },
-        "type": "Mutant",
-        "range": "Short",
+        "type": "Emitter",
+        "range": "Contact",
         "facets": [
-          "Emission",
           "Construct",
-          "Biological",
-          "Enhancement"
+          "Defense"
         ],
         "origin": "ORIGINAL"
       }
@@ -482,27 +452,27 @@
       ],
       "seed": "ev4-s2",
       "promptRoll": {
-        "nameRegister": "absurd-long",
-        "utilityNiche": "burst damage",
+        "nameRegister": "blunt",
+        "utilityNiche": "clear body tell",
         "strategy": "failure-mode",
         "outputRoll": {
-          "type": "Mutant",
-          "range": "Area",
+          "type": "Transformation",
+          "range": "Self",
           "facets": [
-            "Construct"
+            "Anthropomorphic"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "You Will Now Feel Extremely Sticky While Being Advised to Comply with My Requests",
-          "description": "This quirk allows the user to discharge a thick, brightly colored adhesive substance from their forearms after vocal interaction with a target, which forces immediate compliance to simple commands. Once activated, the user temporarily gains elongated, tape-like arms that can extend up to five meters but lose mobility when fully extended, requiring a cooldown period before reuse. The sticky strands can ensnare multiple targets within a limited area, but the user risks being immobilized themselves if not careful, limiting the strategic use of their quirk."
+          "name": "Sticky Voice",
+          "description": "Transforms the user's limbs into anthropomorphic adhesive appendages that extrude strong tape-like strips for gripping and restraining. The tape carries a low, repeating verbal pattern that nudges simple, instinctive mimicry in anyone held for several seconds. The influence is weak and short-lived, and prolonged use leaves the user dizzy and stiff."
         },
-        "type": "Mutant",
-        "range": "Area",
+        "type": "Transformation",
+        "range": "Self",
         "facets": [
-          "Construct"
+          "Anthropomorphic"
         ],
         "origin": "ORIGINAL"
       }
@@ -515,29 +485,27 @@
       ],
       "seed": "ev4-s3",
       "promptRoll": {
-        "nameRegister": "dramatic",
-        "utilityNiche": "containment",
+        "nameRegister": "pun",
+        "utilityNiche": "one practical limit",
         "strategy": "failure-mode",
         "outputRoll": {
-          "type": "Emitter",
+          "type": "Mutant",
           "range": "Self",
           "facets": [
-            "Mobility",
-            "Defense"
+            "Mobility"
           ]
         },
         "priorVariantNames": []
       },
       "english": {
         "en": {
-          "name": "Lasso of Compliance",
-          "description": "The user possesses the ability to emit a flexible, glowing tape-like strand from their arms, which they can use to ensnare targets and immobilize them. Upon vocal interaction, the tape communicates a suggestion directly into the minds of those it binds, compelling them to comply with the user’s instructions. While this quirk allows for impressive mobility and control over the battlefield, it incurs a tradeoff: the user becomes vulnerable for a brief moment while the tape is in use, leaving them open to counterattacks and requiring a cooldown period before the tape can be deployed again."
+          "name": "Stick to It",
+          "description": "Elbow-mounted adhesive ribbons extrude continuously and lock into sequential anchors that pull, reel, or swing the user's body for unusual self-propelled movement. Activation requires a low, involuntary chant that programs the ribbons' pull pattern. Prolonged chanting causes vocal fatigue and brief disorientation."
         },
-        "type": "Emitter",
+        "type": "Mutant",
         "range": "Self",
         "facets": [
-          "Mobility",
-          "Defense"
+          "Mobility"
         ],
         "origin": "ORIGINAL"
       }

@@ -2,10 +2,12 @@ import {
   getEnglishQuirkForFusion,
   listEnglishQuirksForFusion,
 } from '@/server/quirks/repository'
+import type { QuirkTier } from '@/types/quirk'
 
 export interface FusionCatalogQuirk {
   id: string
   origin: string
+  tier: QuirkTier
   type: string
   range: string
   facets: string[]
@@ -17,6 +19,7 @@ function toFusionCatalogQuirk(quirk: Awaited<ReturnType<typeof listEnglishQuirks
   return {
     id: quirk.id,
     origin: quirk.origin,
+    tier: quirk.tier,
     type: quirk.type,
     range: quirk.range,
     facets: quirk.facets,

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { buildFusionPrompt, formatTypeDisciplineBlock } from './english'
+import {
+  buildFusionPrompt,
+  deriveFusionRollContext,
+  formatTypeDisciplineBlock,
+  type FusionRollContext,
+} from './english'
 import { formatFusionNamingBlock } from './naming'
 
 describe('formatFusionNamingBlock', () => {
@@ -9,15 +14,30 @@ describe('formatFusionNamingBlock', () => {
     )
   })
 
-  it('lists prior variant names when provided', () => {
+  it('lists prior variant names and descriptions when provided', () => {
     const block = formatFusionNamingBlock(
       'seed1',
-      ['Corrosive Gale', 'Searing Gale'],
+      [
+        {
+          name: 'Corrosive Gale',
+          description: 'Emits a corrosive mist that eats metal in open air.',
+        },
+        {
+          name: 'Searing Gale',
+          description: 'Channels hot wind that scorches targets at range.',
+        },
+      ],
       'acid',
       'air-cannon',
     )
     expect(block).toContain('Corrosive Gale')
-    expect(block).toContain('different joke/hook/register')
+    expect(block).toContain('corrosive mist')
+    expect(block).toContain('meaningfully different effect idea')
+    expect(block).toContain('commas and a single question mark')
+    expect(block).toContain('random interjection')
+    expect(block).toContain('"Oops, Cushion"')
+    expect(block).toContain('"Oops-Proof"')
+    expect(block).toContain('SAME selected register')
   })
 
   it('includes dramatic stem ban and name safety for non-meme registers', () => {
@@ -37,40 +57,46 @@ describe('formatFusionNamingBlock', () => {
 
 describe('buildFusionPrompt', () => {
   it('includes diversity guidance before mechanics and prior names', () => {
-    const prompt = buildFusionPrompt(
-      {
-        id: 'permeation',
-        name: 'Permeation',
-        origin: 'BNHA',
-        type: 'Emitter',
-        range: 'Short',
-        facets: ['Elemental'],
-        description: 'A test',
-      },
-      {
-        id: 'hardening',
-        name: 'Hardening',
-        origin: 'BNHA',
-        type: 'Transformation',
-        range: 'Contact',
-        facets: ['Defense'],
-        description: 'B test',
-      },
-      'seed1',
-      { type: 'Emitter', range: 'Medium', facets: ['Control'] },
-      ['Old Title'],
-    )
+    const quirkA = {
+      id: 'permeation',
+      name: 'Permeation',
+      origin: 'BNHA',
+      tier: 'A' as const,
+      type: 'Emitter',
+      range: 'Short',
+      facets: ['Elemental'],
+      description: 'A test',
+    }
+    const quirkB = {
+      id: 'hardening',
+      name: 'Hardening',
+      origin: 'BNHA',
+      tier: 'B' as const,
+      type: 'Transformation',
+      range: 'Contact',
+      facets: ['Defense'],
+      description: 'B test',
+    }
+    const rollContext: FusionRollContext = {
+      ...deriveFusionRollContext('seed1', quirkA, quirkB),
+      outputRoll: { type: 'Emitter', range: 'Medium', facets: ['Control'] },
+    }
+    const prompt = buildFusionPrompt(quirkA, quirkB, 'seed1', [
+      { name: 'Old Title', description: 'Old effect that clears lingering ice in open space.' },
+    ], rollContext)
 
     const namingIndex = prompt.indexOf('Naming (IMPORTANT')
-    const utilityIndex = prompt.indexOf('Primary niche this variant:')
+    const strategyIndex = prompt.indexOf('Fusion strategy —')
     const mechanicsIndex = prompt.indexOf('Required result mechanics')
     expect(namingIndex).toBeGreaterThan(-1)
-    expect(utilityIndex).toBeGreaterThan(namingIndex)
-    expect(utilityIndex).toBeLessThan(mechanicsIndex)
-    expect(prompt).toContain('Facet validation (mandatory before output)')
+    expect(strategyIndex).toBeGreaterThan(namingIndex)
+    expect(strategyIndex).toBeLessThan(mechanicsIndex)
+    expect(prompt).toContain('Facet contract (keep one central mechanism)')
     expect(prompt).toContain('Range prose check')
     expect(prompt).toContain('Type discipline (Emitter only)')
+    expect(prompt).toContain('Structure the description in this order')
     expect(prompt).toContain('Old Title')
+    expect(prompt).toContain('clears lingering ice')
     const hasStrategyExample =
       prompt.includes('Avoid this mashup for this strategy: ❌') &&
       prompt.includes('phase through walls while fully armored at all times')
@@ -82,7 +108,7 @@ describe('buildFusionPrompt', () => {
     const block = formatTypeDisciplineBlock('Emitter')
 
     expect(block).toContain('Type discipline (Emitter only)')
-    expect(block).toContain('emits, projects, controls, or alters')
+    expect(block).toContain('sends an effect outward from the body')
     expect(block).not.toContain('temporarily changes the user')
     expect(block).not.toContain('stable unusual anatomy')
   })

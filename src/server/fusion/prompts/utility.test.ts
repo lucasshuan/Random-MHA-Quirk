@@ -14,9 +14,9 @@ describe('selectFusionUtilityNudge', () => {
     expect(a.niche === b.niche).toBe(false)
   })
 
-  it('returns a primary niche line', () => {
+  it('returns a simplicity nudge line', () => {
     const nudge = selectFusionUtilityNudge('seed-1', 'a', 'b')
-    expect(nudge.line).toContain('Primary niche this variant:')
+    expect(nudge.line).toContain('Simplicity nudge for this variant:')
     expect(nudge.line).toContain(nudge.niche)
   })
 })

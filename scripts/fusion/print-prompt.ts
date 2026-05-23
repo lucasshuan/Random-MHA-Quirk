@@ -4,7 +4,8 @@
  */
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { buildFusionPrompt, deriveFusionRollContext } from '@/server/fusion/prompts/english'
+import { buildFusionPrompt } from './lib/build-fusion-prompt'
+import { deriveFusionRollContext } from '@/server/fusion/prompts/roll-context'
 import type { FusionCatalogQuirk } from '@/server/fusion/catalog'
 import { getProjectRoot } from '../_shared/root'
 

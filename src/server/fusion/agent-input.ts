@@ -11,7 +11,7 @@ import {
   isFusionAntiMashupRuleKey,
 } from './prompts/anti-mashup'
 import { formatFacetContractBlock } from './prompts/facet-contract'
-import { formatTypeDisciplineBlock } from './prompts/english'
+import { formatTypeDisciplineBlock } from './prompts/type-discipline'
 import { selectFusionNameRegister } from './prompts/naming'
 import { formatRangeProseBlock } from './prompts/range-prose'
 import type { FusionRollContext } from './prompts/roll-context'

@@ -37,5 +37,4 @@ export function resolveFusionModelSettings(purpose: FusionLlmPurpose): ModelSett
   return settings
 }
 
-export const FUSION_AGENT_MAX_TURNS = 1
 export const FUSION_AGENT_MAX_ATTEMPTS = 3

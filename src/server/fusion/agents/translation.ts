@@ -8,7 +8,6 @@ import {
 import type { FusionTranslationRunContext } from './context'
 import {
   FUSION_AGENT_MAX_ATTEMPTS,
-  FUSION_AGENT_MAX_TURNS,
   resolveFusionModelSettings,
   resolveFusionOpenAiModel,
 } from './config'
@@ -71,7 +70,7 @@ export async function translateFusionWithAgent(
     try {
       const result = await run(getTranslationAgent(locale), USER_TURN, {
         context,
-        maxTurns: FUSION_AGENT_MAX_TURNS,
+        maxTurns: 1,
       })
 
       const raw = result.finalOutput

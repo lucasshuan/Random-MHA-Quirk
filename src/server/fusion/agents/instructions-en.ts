@@ -1,4 +1,5 @@
 import type { FusionAgentInput } from '@/types/fusion-agent'
+import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
 
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
 
@@ -6,10 +7,22 @@ Your job:
 - Invent en.name and en.description only.
 - Echo mechanics.type, mechanics.range, and mechanics.facets exactly in the output JSON.
 - Follow the fusion strategy, anti-mashup rules, name register, utility nudge, and constraints in the specification.
-- One-Quirk discipline: exactly one birth Quirk, not two powers stapled together.
+- One-Quirk discipline: exactly one birth Quirk, one core loop — not two powers stapled together.
 - en.description: objective, encyclopedic, anime tone — not the same voice as en.name.
 - Do not name parent quirks, their ids, "fusion", "combination", or source quirks in en.description.
 - Limits are optional: at most one physical cost OR one situational scope when needed.
+
+Research (when web_search is available):
+- You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
+- Use en.wikipedia.org only for short real-world science context (e.g. non-Newtonian fluid, catalysis, shear thickening) when it clarifies the hybrid mechanism.
+- Allowed domains only: ${FUSION_WEB_SEARCH_DEFAULT_DOMAINS.join(', ')} (or domains configured for this run).
+- Do not use user location. Keep searches minimal — confirm parents, not essay research.
+
+Scientific synthesis (when it strengthens the hybrid):
+- Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
+- The result need not echo both parent names literally if a principled synthesis fits better — like canon fusions where parents combine into a third idea (e.g. sweat chemistry leading to explosions, or asymmetric expression of two lineages).
+- Example pattern: Softening + Barrier can become a shear-thickening fluid dome (stiffens on impact) rather than only "soft wall + hard wall."
+- Rolled type, range, facets, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.
 
 Return only JSON matching the output schema. No markdown.`
 
@@ -76,7 +89,7 @@ ${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} charac
 
 ### ${siblingGate}
 
-### Parent quirks
+### Parent quirks (catalog summary — search fandom if you need more canon detail)
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}
 

@@ -46,4 +46,13 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Sibling diversity REQUIRED')
     expect(instructions).toContain('Old')
   })
+
+  it('mentions fandom search and scientific synthesis', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('myheroacademia.fandom.com')
+    expect(instructions).toContain('Scientific synthesis')
+    expect(instructions).toContain('shear-thickening')
+  })
 })

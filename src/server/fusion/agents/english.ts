@@ -7,14 +7,19 @@ import {
 import type { FusionEnglishRunContext } from './context'
 import {
   FUSION_AGENT_MAX_ATTEMPTS,
-  FUSION_AGENT_MAX_TURNS,
   resolveFusionModelSettings,
   resolveFusionOpenAiModel,
 } from './config'
 import { buildFusionEnglishInstructions } from './instructions-en'
 import { FusionEnglishOutputSchema } from './schemas'
+import {
+  createFusionWebSearchTool,
+  resolveFusionAgentMaxTurns,
+  resolveFusionWebSearchEnabled,
+} from './tools'
 
-const USER_TURN = 'Generate the fusion quirk JSON now.'
+const USER_TURN =
+  'Follow the specification. If helpful, search allowed sites for parent quirk canon (especially myheroacademia.fandom.com) before inventing the hybrid. Then return only the fusion quirk JSON.'
 
 let englishAgent:
   | Agent<FusionEnglishRunContext, typeof FusionEnglishOutputSchema>
@@ -41,6 +46,9 @@ function getEnglishAgent(): Agent<
       model,
       modelSettings: resolveFusionModelSettings('fusion'),
       outputType: FusionEnglishOutputSchema,
+      ...(resolveFusionWebSearchEnabled()
+        ? { tools: [createFusionWebSearchTool()] }
+        : {}),
     })
   }
   return englishAgent
@@ -66,7 +74,7 @@ export async function generateEnglishFusionWithAgent(
     try {
       const result = await run(getEnglishAgent(), USER_TURN, {
         context: { fusion },
-        maxTurns: FUSION_AGENT_MAX_TURNS,
+        maxTurns: resolveFusionAgentMaxTurns(),
       })
 
       const raw = result.finalOutput

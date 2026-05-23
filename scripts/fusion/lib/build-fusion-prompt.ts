@@ -1,49 +1,32 @@
+/**
+ * Legacy prose user prompt for fusion generation (benchmarking / prompt review).
+ * Production uses OpenAI Agents + FusionAgentInput instead.
+ */
 import type { FusionPriorVariant } from '@/types/fusion'
-import type { QuirkType } from '@/types/quirk'
-import type { FusionCatalogQuirk } from '../catalog'
 import {
   FUSION_DESCRIPTION_MAX_LENGTH,
   FUSION_DESCRIPTION_MIN_LENGTH,
-} from '../constants'
+} from '@/server/fusion/constants'
+import type { FusionCatalogQuirk } from '@/server/fusion/catalog'
 import {
   formatBaseAntiMashupRule,
   formatStrategyAntiMashupExample,
   isFusionAntiMashupRuleKey,
-} from './anti-mashup'
-import { formatFacetContractBlock } from './facet-contract'
-import { formatFusionNamingBlock } from './naming'
-import type { FusionOutputRoll } from './output'
-import { formatRangeProseBlock } from './range-prose'
+} from '@/server/fusion/prompts/anti-mashup'
+import { formatFacetContractBlock } from '@/server/fusion/prompts/facet-contract'
+import { formatFusionNamingBlock } from '@/server/fusion/prompts/naming'
+import { formatRangeProseBlock } from '@/server/fusion/prompts/range-prose'
 import {
   deriveFusionRollContext,
   type FusionRollContext,
-} from './roll-context'
-import { resolveFusionStrategyForKey, type FusionStrategyKey } from './strategy'
+} from '@/server/fusion/prompts/roll-context'
+import { resolveFusionStrategyForKey, type FusionStrategyKey } from '@/server/fusion/prompts/strategy'
+import { formatTypeDisciplineBlock } from '@/server/fusion/prompts/type-discipline'
 import {
   formatFusionUtilityNudge,
   isFusionUtilityNiche,
   selectFusionUtilityNudge,
-} from './utility'
-
-const TYPE_DISCIPLINE: Record<QuirkType, string[]> = {
-  Emitter: [
-    'Core model: the Quirk sends an effect outward from the body.',
-    'Keep body changes minimal: activation tell or small output organ only.',
-  ],
-  Transformation: [
-    'Core model: the Quirk temporarily changes the user while active.',
-    'State what changes in the body and what returns to normal after use.',
-  ],
-  Mutant: [
-    'Core model: the user has stable unusual anatomy from birth.',
-    'Describe the permanent trait first, then what it does in action.',
-  ],
-}
-
-export function formatTypeDisciplineBlock(type: QuirkType): string {
-  return `Type discipline (${type} only):
-${TYPE_DISCIPLINE[type].map((line) => `- ${line}`).join('\n')}`
-}
+} from '@/server/fusion/prompts/utility'
 
 export function buildFusionPrompt(
   quirkA: FusionCatalogQuirk,
@@ -138,7 +121,5 @@ Reply with ONLY valid JSON (no markdown):
   "range": string,
   "facets": string[]
 }
-`;
+`
 }
-
-export { deriveFusionRollContext, type FusionOutputRoll, type FusionRollContext }

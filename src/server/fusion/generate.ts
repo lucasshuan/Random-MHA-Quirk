@@ -6,7 +6,7 @@ import { buildFusionAgentInput } from './agent-input'
 import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
-import { deriveFusionRollContext } from './prompts/english'
+import { deriveFusionRollContext } from './prompts/roll-context'
 import {
   generateEnglishFusionWithLlm,
   translateFusionToLocaleWithLlm,

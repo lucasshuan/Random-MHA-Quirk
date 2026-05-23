@@ -12,6 +12,7 @@ const TYPE_FACET_POOLS = {
     'Sensory',
     'Construct',
     'Emission',
+    'Stockpile',
   ],
   Transformation: [
     'Elemental',
@@ -23,6 +24,7 @@ const TYPE_FACET_POOLS = {
     'Sensory',
     'Construct',
     'Biological',
+    'Stockpile',
   ],
   Mutant: [
     'Enhancement',
@@ -32,6 +34,7 @@ const TYPE_FACET_POOLS = {
     'Sensory',
     'Construct',
     'Biological',
+    'Stockpile',
   ],
 } as const
 
@@ -68,15 +71,19 @@ describe('deriveFusionOutputFromSeed', () => {
     expect(same).toBe(false)
   })
 
-  it('picks 1–2 facets', () => {
+  it('picks 1–3 facets with three as the rarest', () => {
     let oneFacetCount = 0
-    for (let i = 0; i < 20; i++) {
+    let threeFacetCount = 0
+    for (let i = 0; i < 200; i++) {
       const roll = deriveFusionOutputFromSeed(`facet-seed-${i}`, 'acid', 'explosion')
       expect(roll.facets.length).toBeGreaterThanOrEqual(1)
-      expect(roll.facets.length).toBeLessThanOrEqual(2)
+      expect(roll.facets.length).toBeLessThanOrEqual(3)
       if (roll.facets.length === 1) oneFacetCount++
+      if (roll.facets.length === 3) threeFacetCount++
     }
-    expect(oneFacetCount).toBeGreaterThan(9)
+    expect(oneFacetCount).toBeGreaterThan(100)
+    expect(threeFacetCount).toBeGreaterThan(0)
+    expect(threeFacetCount).toBeLessThan(60)
   })
 
   it('biases facet picks toward parent facet hints when provided', () => {

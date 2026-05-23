@@ -1301,12 +1301,14 @@
 }
 
 .icon-btn[data-tooltip],
-.lang-btn[data-tooltip] {
+.lang-btn[data-tooltip],
+.chip-facet[data-tooltip] {
   position: relative;
 }
 
 .icon-btn[data-tooltip]::before,
-.lang-btn[data-tooltip]::before {
+.lang-btn[data-tooltip]::before,
+.chip-facet[data-tooltip]::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -1327,7 +1329,8 @@
 }
 
 .icon-btn[data-tooltip]::after,
-.lang-btn[data-tooltip]::after {
+.lang-btn[data-tooltip]::after,
+.chip-facet[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   left: 50%;
@@ -1372,6 +1375,59 @@
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
+.chip-facet[data-tooltip] {
+  cursor: default;
+}
+
+.chip-facet[data-tooltip]::before {
+  left: 1rem;
+}
+
+.chip-facet[data-tooltip]::after {
+  left: 0;
+  transform: translateX(0) translateY(6px) scale(0.97);
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: 0.7rem;
+  max-width: min(260px, calc(100vw - 2.5rem));
+}
+
+.chip-facet[data-tooltip]:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) rotate(45deg);
+}
+
+.chip-facet[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(0) translateY(0) scale(1);
+}
+
+/* Pick modal: facets sit on the bottom edge — open tips downward into modal gap */
+.quirk-pick-facets .chip-facet[data-tooltip]::before {
+  bottom: auto;
+  top: calc(100% + 4px);
+  border-top: 0;
+  border-left: 0;
+  border-bottom: 1px solid rgba(255, 223, 88, 0.9);
+  border-right: 1px solid rgba(255, 223, 88, 0.9);
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.quirk-pick-facets .chip-facet[data-tooltip]::after {
+  bottom: auto;
+  top: calc(100% + 12px);
+  transform: translateX(0) translateY(-6px) scale(0.97);
+}
+
+.quirk-pick-facets .chip-facet[data-tooltip]:hover::before {
+  transform: translateX(-50%) translateY(0) rotate(225deg);
+}
+
+.quirk-pick-facets .chip-facet[data-tooltip]:hover::after {
+  transform: translateX(0) translateY(0) scale(1);
+}
+
 /* Top bar: tooltips open below (more room under the header) */
 .minimal-topbar .icon-btn[data-tooltip]::before,
 .minimal-topbar .lang-btn[data-tooltip]::before {
@@ -1408,8 +1464,10 @@
 @media (prefers-reduced-motion: reduce) {
   .icon-btn[data-tooltip]::before,
   .lang-btn[data-tooltip]::before,
+  .chip-facet[data-tooltip]::before,
   .icon-btn[data-tooltip]::after,
-  .lang-btn[data-tooltip]::after {
+  .lang-btn[data-tooltip]::after,
+  .chip-facet[data-tooltip]::after {
     transition: opacity 120ms linear;
   }
 }
@@ -1580,16 +1638,20 @@
 }
 
 .check-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.45rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 0.25rem 0.7rem 0;
 }
 
 .filter-toggle {
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
   min-height: 40px;
+  padding: 0.45rem 0.95rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.035);
@@ -1962,6 +2024,7 @@
   padding-top: 0.6rem;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   opacity: 1;
+  overflow: visible;
 }
 
 .quirk-detail-roll {
@@ -2013,6 +2076,18 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.chip-facet {
+  z-index: 1;
+}
+
+.chip-facet[data-tooltip]:hover {
+  z-index: 34;
+}
+
+.quirk-card:has(.quirk-details-open) {
+  overflow: visible;
 }
 
 /* === Hybrid / fusion result === */
@@ -2547,6 +2622,7 @@
 .quirk-pick-card {
   position: relative;
   display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
   gap: 0.75rem;
   min-height: 0;
   max-height: min(calc(86svh - 7rem), 680px);
@@ -2557,14 +2633,21 @@
     linear-gradient(180deg, var(--card-accent-tint) 0%, transparent 55%),
     linear-gradient(180deg, rgba(20, 28, 42, 0.9) 0%, rgba(10, 16, 26, 0.96) 100%);
   isolation: isolate;
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
   text-align: left;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 22px 45px rgba(0, 0, 0, 0.5),
     0 0 34px var(--card-accent-glow);
+}
+
+.quirk-pick-card-scroll {
+  display: grid;
+  gap: 0.75rem;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .quirk-pick-card::before {
@@ -2627,9 +2710,14 @@
 
 .quirk-pick-facets {
   align-items: flex-start;
+  position: relative;
+  z-index: 3;
+  padding-bottom: 0.15rem;
 }
 
 .quirk-pick-modal-actions {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: flex-end;
   gap: 0.65rem;

@@ -40,6 +40,7 @@ export const QUIRK_FACETS = [
   'Construct',
   'Emission',
   'Biological',
+  'Stockpile',
 ] as const
 export type QuirkFacet = (typeof QUIRK_FACETS)[number]
 
@@ -59,6 +60,10 @@ export interface QuirkBase {
   type: QuirkType
   range: QuirkRange
   facets: QuirkFacet[]
+  /** Primary reference URL; mainly ORIGINAL catalog entries. */
+  source?: string | null
+  /** Short attribution / provenance note. */
+  inspiration?: string | null
 }
 
 export type Quirk = QuirkBase & QuirkCopy

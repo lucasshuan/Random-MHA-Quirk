@@ -14,6 +14,8 @@ const FACET_MECHANISM_HINTS: Record<QuirkFacet, string> = {
   Construct: 'built or grown objects/structures from the quirk',
   Emission: 'something leaving the body as a projectile, beam, or burst',
   Biological: 'flesh, organs, fluids, or living tissue change',
+  Stockpile:
+    'energy, mass, or effect stored over time before release; caps and overflow matter',
 }
 
 function formatFacetMechanismHint(
@@ -50,5 +52,5 @@ export function formatFacetContractBlock(
 
   return `Facet contract (keep one central mechanism):
 ${lines.join('\n')}
-Facet guidance: describe one core effect first. If there is a second facet, keep it as a light extension of the same effect, not a new subsystem.${sourceSummary}`
+Facet guidance: describe one core effect first. Extra facets stay light extensions of that same effect, not separate subsystems.${sourceSummary}`
 }

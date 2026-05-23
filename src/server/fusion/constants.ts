@@ -28,4 +28,5 @@ export const QUIRK_FACETS = [
   'Construct',
   'Emission',
   'Biological',
+  'Stockpile',
 ] as const

@@ -24,5 +24,10 @@ export function useMetaLabel() {
 
   const facet = useCallback((value: QuirkFacet) => t(`meta.facet.${value}`), [t])
 
-  return { origin, tier, type, range, facet }
+  const facetTip = useCallback(
+    (value: QuirkFacet) => t(`meta.facetTip.${value}`),
+    [t],
+  )
+
+  return { origin, tier, type, range, facet, facetTip }
 }

@@ -895,7 +895,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Stockpile'],
   },
   {
     id: 'fan',
@@ -919,7 +919,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Transformation',
     range: 'Self',
-    facets: ['Enhancement'],
+    facets: ['Enhancement', 'Stockpile'],
   },
   {
     id: 'fiber-master',
@@ -1719,7 +1719,7 @@ export const quirksBase = [
     tier: 'S',
     type: 'Emitter',
     range: 'Medium',
-    facets: ['Emission'],
+    facets: ['Emission', 'Stockpile'],
   },
   {
     id: 'orcinus',
@@ -1959,7 +1959,7 @@ export const quirksBase = [
     tier: 'A',
     type: 'Emitter',
     range: 'Contact',
-    facets: ['Control', 'Support', 'Biological'],
+    facets: ['Control', 'Support', 'Biological', 'Stockpile'],
   },
   {
     id: 'rifle',

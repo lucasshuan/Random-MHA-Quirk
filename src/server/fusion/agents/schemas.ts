@@ -9,7 +9,7 @@ export const FusionEnglishOutputSchema = z.object({
   }),
   type: z.enum(QUIRK_TYPES),
   range: z.enum(QUIRK_RANGES),
-  facets: z.array(z.enum(QUIRK_FACETS)).min(1).max(2),
+  facets: z.array(z.enum(QUIRK_FACETS)).min(1).max(3),
 })
 
 export type FusionEnglishAgentOutput = z.infer<typeof FusionEnglishOutputSchema>

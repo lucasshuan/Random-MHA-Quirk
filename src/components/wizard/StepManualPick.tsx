@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FilterPanel } from '../FilterPanel'
 import { useI18n } from '../../i18n/useI18n'
+import { FacetChip } from '../FacetChip'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
 import { translateMatches } from '../../i18n/translate'
 import type { ResultMode } from '@/lib/wizard/flow'
@@ -229,6 +230,7 @@ export function StepManualPick({
           >
             <article className={`quirk-pick-card ${toneClass(selectedQuirk.type)}`}>
               <div className="quirk-card-glow" aria-hidden="true" />
+              <div className="quirk-pick-card-scroll">
               <p className="quirk-meta">
                 <span
                   className="quirk-tier-scale"
@@ -258,12 +260,11 @@ export function StepManualPick({
               <p className="quirk-pick-origin">
                 <span>{t('advanced.origin')}:</span> {meta.origin(selectedQuirk.origin)}
               </p>
+              </div>
               {selectedQuirk.facets.length > 0 ? (
                 <div className="chip-row quirk-pick-facets">
                   {selectedQuirk.facets.map((facet) => (
-                    <span key={facet} className="chip chip-muted">
-                      {meta.facet(facet)}
-                    </span>
+                    <FacetChip key={facet} facet={facet} />
                   ))}
                 </div>
               ) : null}

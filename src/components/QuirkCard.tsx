@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { FacetChip } from './FacetChip'
 import { resolveQuirk } from '../hooks/useQuirksCatalog'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
@@ -137,9 +138,7 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
         {quirk.facets.length > 0 ? (
           <div className="chip-row quirk-detail-facets">
             {quirk.facets.map((facet) => (
-              <span key={facet} className="chip chip-muted">
-                {meta.facet(facet)}
-              </span>
+              <FacetChip key={facet} facet={facet} />
             ))}
           </div>
         ) : null}

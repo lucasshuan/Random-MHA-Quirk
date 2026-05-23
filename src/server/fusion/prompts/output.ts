@@ -25,6 +25,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Sensory',
     'Construct',
     'Emission',
+    'Stockpile',
   ],
   Transformation: [
     'Elemental',
@@ -36,6 +37,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Sensory',
     'Construct',
     'Biological',
+    'Stockpile',
   ],
   Mutant: [
     'Enhancement',
@@ -45,6 +47,7 @@ const TYPE_FACET_POOLS: Record<QuirkType, QuirkFacet[]> = {
     'Sensory',
     'Construct',
     'Biological',
+    'Stockpile',
   ],
 }
 
@@ -201,6 +204,14 @@ function pickFacetsFromSeed(
   return picked
 }
 
+/** Weighted 1–3 facet count: ~50% one, ~35% two, ~15% three (lowest). */
+export function pickFusionFacetCountFromSeed(base: number): number {
+  const roll = (base >>> 16) % 100
+  if (roll < 50) return 1
+  if (roll < 85) return 2
+  return 3
+}
+
 /** Deterministic type, range, and facets for this variant — chosen by seed + parent pair, not the LLM. */
 export function deriveFusionOutputFromSeed(
   seed: string,
@@ -219,8 +230,7 @@ export function deriveFusionOutputFromSeed(
     rollKey,
     normalizeParentRanges(parentMechanicHints.ranges ?? []),
   )
-  // Keep hybrid mechanics readable: most variants get one core facet, some get two.
-  const facetCount = (base >>> 16) % 100 < 70 ? 1 : 2
+  const facetCount = pickFusionFacetCountFromSeed(base)
   const parentFacets = normalizeParentFacets(parentFacetHints)
 
   return {

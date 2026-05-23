@@ -20,6 +20,8 @@ export interface CatalogOriginalQuirk {
   description: string
   tier: string
   type: string
+  source: string | null
+  inspiration: string | null
 }
 
 function parseArgs(argv: string[]) {
@@ -55,7 +57,7 @@ async function fetchOriginals(): Promise<CatalogOriginalQuirk[]> {
 
   const { data: quirks, error: quirksError } = await supabase
     .from('quirks')
-    .select('id, tier, type')
+    .select('id, tier, type, source, inspiration')
     .eq('origin', 'ORIGINAL')
     .order('id')
 
@@ -97,6 +99,8 @@ async function fetchOriginals(): Promise<CatalogOriginalQuirk[]> {
       description: en.description,
       tier: quirk.tier,
       type: quirk.type,
+      source: (quirk.source as string | null) ?? null,
+      inspiration: (quirk.inspiration as string | null) ?? null,
     })
   }
 

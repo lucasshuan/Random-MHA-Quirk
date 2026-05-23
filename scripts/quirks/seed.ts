@@ -59,6 +59,8 @@ async function main() {
     type: quirk.type,
     range: quirk.range,
     facets: quirk.facets,
+    source: quirk.source ?? null,
+    inspiration: quirk.inspiration ?? null,
   }))
 
   const translationRows = (Object.keys(COPY_BY_LOCALE) as Locale[]).flatMap((locale) =>

@@ -207,7 +207,7 @@ Use **two sections** when the batch mixes both kinds.
 | **Name** | Bold quirk name |
 | **Description** | **50–100 characters**; what it does in combat/use, not backstory |
 | **Tier** | Bold: **X**, **S**, **A**, **B**, **C**, **F** |
-| **Type** | Emitter, Mutant, Transformation (Accumulation only if source says so) |
+| **Type** | Emitter, Mutant, Transformation |
 | **Observation** | Source title, OC name, list #, link when possible |
 | **Changes?** | Empty, or specific limit patches (see above) |
 

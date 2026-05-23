@@ -2,9 +2,13 @@ import { useEffect, useMemo, useState } from 'react'
 import { SegmentTabs } from '../SegmentTabs'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
+import { translateList } from '../../i18n/translate'
+import { useRotatingMessage } from '@/hooks/useRotatingMessage'
 import { resolveFusionQuirk } from '@/lib/fusion/cache'
 import type { HybridRollResult } from '../../types/fusion'
 import { RollOrb } from './RollOrb'
+
+const FORGING_MESSAGE_MS = 5000
 
 type HybridView = 'fusion' | 'parents'
 type FusionPhase = 'idle' | 'generating' | 'error'
@@ -41,6 +45,12 @@ export function HybridResultTabs({
     [t],
   )
 
+  const forgingMessages = useMemo(
+    () => translateList(locale, 'fusion.forgingMessages'),
+    [locale],
+  )
+  const forgingLabel = useRotatingMessage(forgingMessages, FORGING_MESSAGE_MS)
+
   useEffect(() => {
     setView('fusion')
   }, [resultKey])
@@ -66,7 +76,13 @@ export function HybridResultTabs({
               ) : fusionPhase === 'generating' ? (
                 <div className="fusion-pending fusion-forging">
                   <RollOrb phase="rolling" />
-                  <p className="mini-copy">{t('fusion.forging')}</p>
+                  <p
+                    key={forgingLabel}
+                    className="mini-copy fusion-forging-copy"
+                    aria-live="polite"
+                  >
+                    {forgingLabel}
+                  </p>
                 </div>
               ) : fusionPhase === 'error' ? (
                 <div className="fusion-pending fusion-error">

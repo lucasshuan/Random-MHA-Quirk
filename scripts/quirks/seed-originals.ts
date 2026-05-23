@@ -7,7 +7,6 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { createClient } from '@supabase/supabase-js'
-import { buildQuirkSearchText } from '../../src/i18n/quirkSearchText'
 import { LOCALES, type Locale } from '../../src/i18n/types'
 import { loadEnv } from '../../src/server/env/load'
 import type { FusionTranslationLocale } from '../../src/server/fusion/constants'
@@ -120,24 +119,11 @@ async function main() {
   const translationRows = SEED_LOCALES.flatMap((locale) =>
     rows.map((row) => {
       const { name, description } = resolveCopy(row, locale)
-      const quirk = {
-        id: row.id,
-        origin: row.origin,
-        tier: row.tier,
-        type: row.type,
-        range: row.range,
-        facets: row.facets,
-        source: row.source,
-        inspiration: row.inspiration,
-        name,
-        description,
-      }
       return {
         quirk_id: row.id,
         locale,
         name,
         description,
-        search_text: buildQuirkSearchText(quirk, locale),
       }
     }),
   )

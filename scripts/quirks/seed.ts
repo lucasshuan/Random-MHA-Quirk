@@ -5,7 +5,6 @@
  *   pnpm quirks:seed
  */
 import { createClient } from '@supabase/supabase-js'
-import { buildQuirkSearchText } from '../../src/i18n/quirkSearchText'
 import type { Locale } from '../../src/i18n/types'
 import { loadEnv } from '../../src/server/env/load'
 import type { Quirk, QuirkCopy } from '../../src/types/quirk'
@@ -71,7 +70,6 @@ async function main() {
         locale,
         name: quirk.name,
         description: quirk.description,
-        search_text: buildQuirkSearchText(quirk, locale),
       }
     }),
   )

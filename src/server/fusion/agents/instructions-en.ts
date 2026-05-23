@@ -12,7 +12,8 @@ Your job:
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
 - Write en.name only after en.description is finished — the title must still make the gist obvious (pun or joke is fine if the effect stays clear).
 - Do not name parent quirks, their ids, "fusion", "combination", or source quirks in en.description.
-- Limits are optional: at most one physical cost OR one situational scope when needed.
+- Mechanic tradeoffs are optional: at most one physical cost OR one situational scope when needed — do not pad en.description with extra clauses to sound detailed.
+- en.description length is a hard server-validated limit (see Description length below); prefer 2 short sentences over a third.
 
 Research (when web_search is available):
 - You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
@@ -96,8 +97,8 @@ ${constraints.facetContract}
 ### Range
 ${constraints.rangeProse}
 
-### Description length
-${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} characters (spaces and punctuation count). Prefer 160–260.
+### Description length (HARD — validated server-side; overlong JSON is rejected)
+${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} characters (spaces and punctuation count). Prefer 160–240. Two short sentences beat a third clause.
 
 ### ${siblingGate}
 

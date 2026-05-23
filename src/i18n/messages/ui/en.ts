@@ -121,17 +121,28 @@ export const en = {
     retry: 'Try again',
   },
   fusion: {
-    badge: 'Fusion',
-    tabFusion: 'Fusion',
+    badge: 'Result',
+    tabFusion: 'Result',
     tabParents: 'Rolled quirks',
     parents: 'Parent quirks',
-    forging: 'Forging your fusion…',
-    notGenerated: 'This fusion has not been forged yet.',
-    generateError: 'Could not generate this fusion.',
+    forgingMessages: [
+      'Fusion incoming...',
+      'Forging your result…',
+      'Merging quirks into something new…',
+      'Plus Ultra?',
+      'Cooking...',
+      'Blending parent powers…',
+      'The lab is almost done…',
+      'One quirk, two donors, infinite chaos…',
+      'Stitching abilities together…',
+      'Almost there — hold the pose…',
+    ],
+    notGenerated: 'This result has not been generated yet.',
+    generateError: 'Could not generate this result.',
     retryGenerate: 'Try again',
-    rerollVariant: 'Reroll fusion (same parents)',
+    rerollVariant: 'Reroll result (same parents)',
     roll: {
-      strategyLabel: 'Fusion strategy',
+      strategyLabel: 'Blend strategy',
       nameRegisterLabel: 'Name style',
       utilityLabel: 'Writing focus',
       antiMashupLabel: 'Anti-mashup rule',
@@ -225,7 +236,11 @@ export const en = {
 } as const
 
 type DeepString<T> = {
-  [K in keyof T]: T[K] extends string ? string : DeepString<T[K]>
+  [K in keyof T]: T[K] extends string
+    ? string
+    : T[K] extends readonly string[]
+      ? string[]
+      : DeepString<T[K]>
 }
 
 export type Messages = DeepString<typeof en>

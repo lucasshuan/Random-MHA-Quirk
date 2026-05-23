@@ -1,5 +1,11 @@
 import { z } from 'zod'
-import { QUIRK_FACETS, QUIRK_RANGES, QUIRK_TYPES } from '../constants'
+import {
+  FUSION_DESCRIPTION_MAX_LENGTH,
+  FUSION_DESCRIPTION_MIN_LENGTH,
+  QUIRK_FACETS,
+  QUIRK_RANGES,
+  QUIRK_TYPES,
+} from '../constants'
 import type { FusionTranslationLocale } from '../constants'
 import { FUSION_TIER_DECISION_OUTPUT } from '../prompts/tier-decision'
 
@@ -8,7 +14,10 @@ export const FusionEnglishOutputSchema = z.object({
   range: z.enum(QUIRK_RANGES),
   facets: z.array(z.enum(QUIRK_FACETS)).min(1).max(3),
   en: z.object({
-    description: z.string().min(1),
+    description: z
+      .string()
+      .min(FUSION_DESCRIPTION_MIN_LENGTH)
+      .max(FUSION_DESCRIPTION_MAX_LENGTH),
     name: z.string().min(1),
   }),
 })
@@ -23,7 +32,10 @@ export type FusionTierAgentOutput = z.infer<typeof FusionTierOutputSchema>
 
 const localeCopySchema = z.object({
   name: z.string().min(1),
-  description: z.string().min(1),
+  description: z
+    .string()
+    .min(FUSION_DESCRIPTION_MIN_LENGTH)
+    .max(FUSION_DESCRIPTION_MAX_LENGTH),
 })
 
 export const FusionPtBrOutputSchema = z.object({

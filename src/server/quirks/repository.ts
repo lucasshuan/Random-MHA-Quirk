@@ -29,7 +29,6 @@ interface TranslationRow {
   locale: string
   name: string
   description: string
-  search_text: string
 }
 
 function rowToQuirk(base: QuirkRow, translation: TranslationRow): Quirk {
@@ -59,7 +58,7 @@ export async function listLocalizedQuirks(locale: Locale): Promise<Quirk[]> {
 
   const { data: translations, error: translationError } = await supabase
     .from('quirk_translations')
-    .select('quirk_id, locale, name, description, search_text')
+    .select('quirk_id, locale, name, description')
     .eq('locale', locale)
 
   if (translationError) {
@@ -100,7 +99,7 @@ export async function getLocalizedQuirkById(
 
   const { data: translation, error: translationError } = await supabase
     .from('quirk_translations')
-    .select('quirk_id, locale, name, description, search_text')
+    .select('quirk_id, locale, name, description')
     .eq('quirk_id', id)
     .eq('locale', locale)
     .maybeSingle()

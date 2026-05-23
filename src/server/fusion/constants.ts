@@ -1,6 +1,6 @@
-/** Soft targets for LLM prompts only — not enforced as hard validation. */
+/** Hard limits for fusion copy (en + locale adaptations). */
 export const FUSION_DESCRIPTION_MIN_LENGTH = 70
-export const FUSION_DESCRIPTION_MAX_LENGTH = 280
+export const FUSION_DESCRIPTION_MAX_LENGTH = 300
 
 /** Locales produced by the post-English adaptation LLM step. */
 export const FUSION_TRANSLATION_LOCALES = ['pt-BR', 'es'] as const

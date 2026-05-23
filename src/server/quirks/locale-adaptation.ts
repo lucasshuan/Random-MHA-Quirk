@@ -59,7 +59,7 @@ Your job is translation, but sometimes you need to adapt the name or description
 
 Rules:
 - ${config.jsonKey}.name: ${config.nameRule}
-- ${config.jsonKey}.description: 2–3 short sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters
+- ${config.jsonKey}.description: 2 short sentences preferred, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (hard server limit)
 - Preserve the same mechanism, activation, limits, and tradeoffs as English — do not add or remove effects
 - One individualidade/don only — never imply a second separate power
 - If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
@@ -84,7 +84,7 @@ Your job is translation, but sometimes you need to adapt the name or description
 
 Rules (every entry):
 - name: ${config.nameRule}
-- description: 2–3 short sentences, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters
+- description: 2 short sentences preferred, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (hard server limit)
 - Preserve mechanism, activation, limits, and tradeoffs — do not add or remove effects
 - If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
 - If it's an existing proper noun, prefer using it as is (e.g. "Kitsune" for "Kitsune")

@@ -875,6 +875,7 @@
 .hybrid-result .segment-tab-panel {
   min-height: 0;
   max-height: 100%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -2530,9 +2531,29 @@
 }
 
 .fusion-forging {
-  display: grid;
-  justify-items: center;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 0.75rem;
+}
+
+.fusion-forging-copy {
+  animation: fusionForgingCopyIn 420ms ease;
+}
+
+@keyframes fusionForgingCopyIn {
+  from {
+    opacity: 0.35;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fusion-error {

@@ -2,6 +2,8 @@ import type { FusionCopy, FusionCacheEntry, FusionRollMeta } from '@/types/fusio
 import type { QuirkTier } from '@/types/quirk'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
 import {
+  FUSION_DESCRIPTION_MAX_LENGTH,
+  FUSION_DESCRIPTION_MIN_LENGTH,
   FUSION_TRANSLATION_LOCALES,
   type FusionTranslationLocale,
   QUIRK_FACETS,
@@ -36,6 +38,23 @@ function asRecord(raw: unknown): Record<string, unknown> {
   return raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}
 }
 
+function assertFusionDescriptionLength(
+  description: string,
+  label: string,
+): void {
+  const length = description.length
+  if (length < FUSION_DESCRIPTION_MIN_LENGTH) {
+    throw new Error(
+      `Resposta inválida: ${label}.description curto demais (${length} caracteres; mínimo ${FUSION_DESCRIPTION_MIN_LENGTH}).`,
+    )
+  }
+  if (length > FUSION_DESCRIPTION_MAX_LENGTH) {
+    throw new Error(
+      `Resposta inválida: ${label}.description longo demais (${length} caracteres; máximo ${FUSION_DESCRIPTION_MAX_LENGTH}).`,
+    )
+  }
+}
+
 function parseFusionCopy(block: unknown, label: string): FusionCopy {
   if (!block || typeof block !== 'object') {
     throw new Error(`Resposta inválida: bloco ${label} ausente.`)
@@ -52,6 +71,7 @@ function parseFusionCopy(block: unknown, label: string): FusionCopy {
   if (!description) {
     throw new Error(`Resposta inválida: ${label}.description vazio.`)
   }
+  assertFusionDescriptionLength(description, label)
 
   return { name, description }
 }
@@ -88,7 +108,7 @@ function normalizeFusionMechanics(obj: Record<string, unknown>): {
   }
 }
 
-/** Coerces LLM JSON into a fusion payload — never rejects for length or wording. */
+/** Coerces LLM JSON into a fusion payload (description length enforced). */
 export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
   const obj = asRecord(raw)
   const en = parseFusionCopy(obj.en, 'en')

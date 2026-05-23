@@ -30,16 +30,6 @@ function isFusionQuirk(quirk: QuirkCardModel): quirk is FusionQuirk {
   return 'roll' in quirk
 }
 
-function fusionRollLabel(
-  t: (key: string) => string,
-  group: 'strategy' | 'nameRegister' | 'utilityNiche' | 'antiMashupRuleKey',
-  value: string,
-): string {
-  const key = `fusion.roll.${group}.${value}`
-  const translated = t(key)
-  return translated === key ? value : translated
-}
-
 export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps) {
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
@@ -102,26 +92,6 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
           <span className="quirk-detail-label">{t('advanced.origin')}</span>
           {meta.origin(quirk.origin)}
         </p>
-        {fusion ? (
-          <>
-            <p className="quirk-detail-roll">
-              <span className="quirk-detail-label">{t('fusion.roll.strategyLabel')}</span>
-              {fusionRollLabel(t, 'strategy', quirk.roll.strategyKey)}
-            </p>
-            <p className="quirk-detail-roll">
-              <span className="quirk-detail-label">{t('fusion.roll.nameRegisterLabel')}</span>
-              {fusionRollLabel(t, 'nameRegister', quirk.roll.nameRegister)}
-            </p>
-            <p className="quirk-detail-roll">
-              <span className="quirk-detail-label">{t('fusion.roll.utilityLabel')}</span>
-              {fusionRollLabel(t, 'utilityNiche', quirk.roll.utilityNiche)}
-            </p>
-            <p className="quirk-detail-roll">
-              <span className="quirk-detail-label">{t('fusion.roll.antiMashupLabel')}</span>
-              {fusionRollLabel(t, 'antiMashupRuleKey', quirk.roll.antiMashupRuleKey)}
-            </p>
-          </>
-        ) : null}
         {quirk.facets.length > 0 ? (
           <div className="chip-row quirk-detail-facets">
             {quirk.facets.map((facet) => (

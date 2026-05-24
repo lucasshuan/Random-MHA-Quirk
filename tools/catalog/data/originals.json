@@ -567,5 +567,276 @@
         "description": "Detiene, revierte, salta o acelera el tiempo en un área amplia. La parada dura unos 10s; la reversión, hasta ~1h; la fatiga limita encadenar usos."
       }
     }
+  },
+  {
+    "id": "boombox",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Emission"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
+    "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Boombox).",
+    "name": "Boombox",
+    "description": "The user's head is a boombox that plays songs from memory or blasts loud sound through built-in speakers.",
+    "copy": {
+      "pt-BR": {
+        "name": "Caixa de Som",
+        "description": "A cabeça do usuário é uma caixa de som que toca músicas memorizadas ou dispara ruído alto pelos alto-falantes integrados."
+      },
+      "es": {
+        "name": "Radiocasete",
+        "description": "La cabeza del usuario es un radiocasete que reproduce canciones memorizadas o lanza ruido fuerte por altavoces integrados."
+      }
+    }
+  },
+  {
+    "id": "building-block",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Transformation",
+    "range": "Self",
+    "facets": [
+      "Construct"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
+    "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Building Block).",
+    "name": "Building Block",
+    "description": "Shapeshifts the body into colorful toy-block forms.",
+    "copy": {
+      "pt-BR": {
+        "name": "Bloco de Montar",
+        "description": "Transforma o corpo em formas de blocos coloridos de brinquedo."
+      },
+      "es": {
+        "name": "Bloque de Juguete",
+        "description": "Remodela el cuerpo en formas de bloques de juguete coloridos."
+      }
+    }
+  },
+  {
+    "id": "butterfly",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Anthropomorphic",
+      "Mobility"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
+    "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Butterfly).",
+    "name": "Butterfly",
+    "description": "Grants permanent butterfly traits, including delicate wings and a light frame. The user can flutter and glide short distances.",
+    "copy": {
+      "pt-BR": {
+        "name": "Borboleta",
+        "description": "Concede traços permanentes de borboleta, com asas delicadas e corpo leve. O usuário pode planar e voar distâncias curtas."
+      },
+      "es": {
+        "name": "Mariposa",
+        "description": "Otorga rasgos permanentes de mariposa, con alas delicadas y cuerpo ligero. Puede planear y volar distancias cortas."
+      }
+    }
+  },
+  {
+    "id": "grimm",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Emitter",
+    "range": "Medium",
+    "facets": [
+      "Construct",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/84",
+    "inspiration": "Quotev 功率 | MHA Quirk Ideas #071 Grimm.",
+    "name": "Grimm",
+    "description": "Recreates one inanimate fairytale prop per story the user has read, up to three items per day. Must know the tale; props vanish after use; overuse risks mild self-poisoning.",
+    "copy": {
+      "pt-BR": {
+        "name": "Conto de Fadas",
+        "description": "Recria um objeto inanimado de conto de fadas por história que o usuário leu, até três itens por dia. Exige conhecer a narrativa; os objetos somem após o uso; uso excessivo pode causar autointoxicação leve."
+      },
+      "es": {
+        "name": "Cuento Hecho",
+        "description": "Recrea un objeto inanimado de cuento por cada historia leída, hasta tres al día. Hay que conocer el relato; los objetos desaparecen tras usarse; el abuso puede provocar autointoxicación leve."
+      }
+    }
+  },
+  {
+    "id": "growing-freckles",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Biological",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #10 Glowing Freckles; adapted as Growing Freckles.",
+    "name": "Growing Freckles",
+    "description": "Freckles swell and spread across the user's skin on command, then shed as dry flakes that linger on surfaces for hours.",
+    "copy": {
+      "pt-BR": {
+        "name": "Sardas Crescentes",
+        "description": "As sardas incham e se espalham pela pele do usuário sob comando, depois caem em flocos secos que permanecem em superfícies por horas."
+      },
+      "es": {
+        "name": "Pecas Crecientes",
+        "description": "Las pecas crecen y se extienden por la piel del usuario bajo orden, luego se desprenden como escamas secas que permanecen en superficies durante horas."
+      }
+    }
+  },
+  {
+    "id": "nose-hair-manipulation",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Emitter",
+    "range": "Short",
+    "facets": [
+      "Biological"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #41 Nose Hair Manipulation.",
+    "name": "Nose Hair Manipulation",
+    "description": "Extends the user's own nose hairs to whip nearby targets. Hairs cut or burn easily; plucking them hurts the user; cannot affect anyone else's hair.",
+    "copy": {
+      "pt-BR": {
+        "name": "Pelos Nasais",
+        "description": "Estende os pelos do próprio nariz para chicotear alvos próximos. Cortam-se ou queimam-se com facilidade; arrancá-los dói no usuário; não afeta pelos de outras pessoas."
+      },
+      "es": {
+        "name": "Vello Nasal",
+        "description": "Alarga los pelos de la propia nariz para azotar blancos cercanos. Se cortan o queman con facilidad; arrancarlos duele al usuario; no afecta el vello ajeno."
+      }
+    }
+  },
+  {
+    "id": "prism",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Emission"
+    ],
+    "source": "https://www.deviantart.com/kerwixi/art/BNHA-MHA-OC-Kagami-Hideaki-Reference-823750063",
+    "inspiration": "Fan OC Misaki Hideaki (Prism).",
+    "name": "Prism",
+    "description": "Mutant cells refract and bend light across the body, creating shimmer and colored highlights on the skin.",
+    "copy": {
+      "pt-BR": {
+        "name": "Prisma",
+        "description": "Células mutantes refratam e curvam a luz pelo corpo, criando brilho e destaques coloridos na pele."
+      },
+      "es": {
+        "name": "Prisma",
+        "description": "Células mutantes refractan y curvan la luz por el cuerpo, creando destellos y reflejos de color en la piel."
+      }
+    }
+  },
+  {
+    "id": "sentient-basketballs",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Emitter",
+    "range": "Contact",
+    "facets": [
+      "Control",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #11 Sentient Basketballs.",
+    "name": "Sentient Basketballs",
+    "description": "Touch animates basketballs for about an hour; they obey commands but may refuse. Only basketballs work; balls revert if separated too long.",
+    "copy": {
+      "pt-BR": {
+        "name": "Bolas de Basquete Sencientes",
+        "description": "Ao toque, anima bolas de basquete por cerca de uma hora; obedecem ordens, mas podem recusar. Só funciona com basquetes; voltam ao normal se ficarem longe demais."
+      },
+      "es": {
+        "name": "Balones de Baloncesto Sencientes",
+        "description": "Al tocar, anima balones de baloncesto durante una hora; obedecen órdenes pero pueden negarse. Solo balones de baloncesto; vuelven a lo normal si se separan mucho."
+      }
+    }
+  },
+  {
+    "id": "sheep",
+    "origin": "ORIGINAL",
+    "tier": "C",
+    "type": "Mutant",
+    "range": "Medium",
+    "facets": [
+      "Anthropomorphic",
+      "Biological",
+      "Control"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #8 Sheep; expanded for catalog.",
+    "name": "Sheep",
+    "description": "Sheep mutant traits with fast-regrowing wool on the hair, wrists, and ankles. Shed wool can be woven into snares, mufflers, or pads; flock sense estimates nearby headcounts by scent.",
+    "copy": {
+      "pt-BR": {
+        "name": "Ovelha",
+        "description": "Traços de ovelha com lã de crescimento rápido no cabelo, pulsos e tornozelos. A lã derramada pode ser entrelaçada em laços, abafadores ou amortecedores; o instinto de rebanho estima quantas pessoas estão por perto pelo cheiro."
+      },
+      "es": {
+        "name": "Oveja",
+        "description": "Rasgos de oveja con lana de rápido rebrote en el cabello, muñecas y tobillos. La lana derramada puede tejerse en lazos, silenciadores o cojines; el sentido de rebaño estima cuántas personas hay cerca por el olfato."
+      }
+    }
+  },
+  {
+    "id": "soft-box",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Emitter",
+    "range": "Self",
+    "facets": [
+      "Emission"
+    ],
+    "source": "https://www.deviantart.com/kerwixi/art/BNHA-MHA-OC-Kagami-Hideaki-Reference-823750063",
+    "inspiration": "Fan OC Hinayoshi Hideaki (Soft Box).",
+    "name": "Soft Box",
+    "description": "Emits adjustable soft light from parts of the body, replacing external lamp rigs during shoots.",
+    "copy": {
+      "pt-BR": {
+        "name": "Softbox",
+        "description": "Emite luz difusa ajustável por partes do corpo, substituindo refletores externos em ensaios fotográficos."
+      },
+      "es": {
+        "name": "Softbox",
+        "description": "Emite luz difusa regulable desde partes del cuerpo, sustituyendo focos externos en sesiones fotográficas."
+      }
+    }
+  },
+  {
+    "id": "voice-distortion",
+    "origin": "ORIGINAL",
+    "tier": "D",
+    "type": "Emitter",
+    "range": "Short",
+    "facets": [
+      "Emission",
+      "Sensory"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #23 Voice Distortion.",
+    "name": "Voice Distortion",
+    "description": "While touching the throat, distorts the user's voice on phones and radios; can also distort others' voices through the same contact. Releasing the throat ends the effect and may leave a sore throat.",
+    "copy": {
+      "pt-BR": {
+        "name": "Distorção Vocal",
+        "description": "Enquanto toca a garganta, distorce a voz do usuário em telefones e rádios; também pode distorcer a voz de outros pelo mesmo contato. Soltar a garganta encerra o efeito e pode deixar dor de garganta."
+      },
+      "es": {
+        "name": "Distorsión Vocal",
+        "description": "Al tocar la garganta, distorsiona la voz del usuario en teléfonos y radios; también puede distorsionar la voz ajena con el mismo contacto. Soltar la garganta termina el efecto y puede dejar dolor de garganta."
+      }
+    }
   }
 ]

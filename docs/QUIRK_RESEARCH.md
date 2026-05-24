@@ -156,7 +156,7 @@ Treat as **Ω (Special)** if it consistently:
 | **A** | Strong | Clearly powerful and useful, with good scaling or versatility, but not overwhelmingly oppressive. |
 | **B** | Solid | Practical, interesting, and usable, but limited by range, setup, stamina, precision, environment, or narrower applications. |
 | **C** | Weak-ish | Niche/support; needs skill, team, or clever writing to shine. |
-| **F** | Too weak or too narrow. Needs a creative upgrade, stronger niche, clearer use case, or discard. |
+| **D** | Too weak or too narrow. Needs a creative upgrade, stronger niche, clearer use case, or discard. |
 
 ---
 
@@ -279,3 +279,26 @@ When a fan quirk is approved for the Supabase catalog:
 
 - **Ω (Special)** → do **not** seed; reject or redesign first
 - Map surviving tiers (**S**–**F**) to catalog policy in `TIER_RUBRIC.md` and encode limits in structured fields
+
+## Completion
+
+When asked to add quirks to the project, append rows to [`tools/catalog/data/originals.json`](../tools/catalog/data/originals.json) following the format and examples already in that file.
+
+### Description copy (EN + `copy.pt-BR` + `copy.es`)
+
+Write **what the quirk does** — activation, effect, range, and **mechanical limits** (duration, caps, touch/LOS requirements, valid targets).
+
+**Do not** add editorial tail lines about tier, combat value, or mission utility. Avoid phrases like “useless in a fight”, “no combat output”, “not practical for heroes”, “barely hurts”, or “only good for support” — tier already lives in `tier`; the description is an encyclopedia entry, not a balance review.
+
+| OK in `description` | Not in `description` |
+|---------------------|----------------------|
+| “Touch animates basketballs for about an hour; they may refuse orders.” | “…useless against strong villains.” |
+| “Only basketballs work; effect ends if the ball is destroyed.” | “…too weak for pro hero work.” |
+| “Recreates up to three fairytale props per day from stories the user has read.” | “…party trick with no battlefield use.” |
+
+Apply the same rule to **all three locales** — do not reintroduce combat commentary in pt-BR or es during translation.
+
+### After editing
+
+1. Fill or update `copy.pt-BR` and `copy.es` (manual or `pnpm quirks:translate-originals`).
+2. Seed when ready: `pnpm quirks:seed-originals`.

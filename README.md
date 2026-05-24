@@ -33,8 +33,6 @@ In *MHA*, a **Quirk** is the power you are born with. This site lets you roll on
 
 You can keep it random or narrow the pool by type, tier, and filters. Every result shows the essentials: name, description, type, range, facets, and tier.
 
-The quirk catalog is stored in **Supabase** and loaded via API (`GET /api/quirks`) with server caching. Authoring files live under `tools/catalog/output/`; seed with `pnpm quirks:seed` after `pnpm db:push`.
-
 ---
 
 ## Hybrids — when two fates collide

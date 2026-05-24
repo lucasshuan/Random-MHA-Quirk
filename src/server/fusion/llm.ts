@@ -1,4 +1,9 @@
+import type { ModelSettings } from '@openai/agents'
 import { requireOneOf } from '@/server/env/utils'
+
+type FusionReasoningEffort = NonNullable<
+  NonNullable<ModelSettings['reasoning']>['effort']
+>
 import type { FusionAgentInput } from '@/types/fusion-agent'
 import {
   decideFusionTierWithAgent,
@@ -33,14 +38,39 @@ export function openAiSupportsReasoningEffort(model: string): boolean {
   return false
 }
 
-export function resolveOpenAiReasoningEffort(purpose: FusionLlmPurpose): string {
+const REASONING_EFFORTS = new Set<FusionReasoningEffort>([
+  'none',
+  'minimal',
+  'low',
+  'medium',
+  'high',
+  'xhigh',
+])
+
+function parseReasoningEffort(
+  raw: string | undefined,
+  fallback: FusionReasoningEffort,
+): FusionReasoningEffort {
+  const value = raw?.trim()
+  if (value && REASONING_EFFORTS.has(value as FusionReasoningEffort)) {
+    return value as FusionReasoningEffort
+  }
+  return fallback
+}
+
+export function resolveOpenAiReasoningEffort(
+  purpose: FusionLlmPurpose,
+): FusionReasoningEffort {
   if (purpose === 'translation') {
-    return process.env.FUSION_TRANSLATION_REASONING_EFFORT?.trim() || 'minimal'
+    return parseReasoningEffort(
+      process.env.FUSION_TRANSLATION_REASONING_EFFORT,
+      'minimal',
+    )
   }
   if (purpose === 'tier') {
-    return process.env.FUSION_TIER_REASONING_EFFORT?.trim() || 'low'
+    return parseReasoningEffort(process.env.FUSION_TIER_REASONING_EFFORT, 'low')
   }
-  return process.env.FUSION_REASONING_EFFORT?.trim() || 'low'
+  return parseReasoningEffort(process.env.FUSION_REASONING_EFFORT, 'low')
 }
 
 export function resolveFusionProvider(): { name: 'openai'; apiKey: string } {

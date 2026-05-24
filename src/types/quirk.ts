@@ -56,6 +56,7 @@ export const QUIRK_FACETS = [
   'Control',
   'Mobility',
   'Sensory',
+  'Construct',
   'Emission',
   'Biological',
   'Stockpile',

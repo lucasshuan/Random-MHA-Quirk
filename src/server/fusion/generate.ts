@@ -7,6 +7,7 @@ import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
 import { deriveFusionRollContext } from './prompts/roll-context'
+import { isFusionStrategyKey } from './prompts/strategy'
 import {
   decideFusionTierWithLlm,
   generateEnglishFusionWithLlm,
@@ -116,11 +117,12 @@ export async function generateFusionEntry({
 
       let tier = rollContext.tier
       try {
+        const strategyKey = rollContext.roll.strategyKey
         tier = await decideFusionTierWithLlm(
           english,
           quirkA,
           quirkB,
-          rollContext.roll.strategyKey,
+          isFusionStrategyKey(strategyKey) ? strategyKey : 'synergy',
           traceContext,
         )
       } catch {

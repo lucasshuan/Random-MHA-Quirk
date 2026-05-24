@@ -1066,5 +1066,31 @@
         "description": "Mueve y remodela materia y energía con esfuerzo mental — enfoque, emoción o calma disciplinada. Alcance y carga dependen de la concentración; el exceso provoca migrañas y sangrado nasal."
       }
     }
+  },
+  {
+    "id": "hydrokinesis",
+    "origin": "ORIGINAL",
+    "tier": "S",
+    "type": "Emitter",
+    "range": "Long",
+    "facets": [
+      "Elemental",
+      "Control",
+      "Emission"
+    ],
+    "source": null,
+    "inspiration": "Classic hydrokinesis (water manipulation).",
+    "name": "Hydrokinesis",
+    "description": "Controls water within range—flow, pressure, shape, and phase shifts between liquid, vapor, and ice. Draws from open sources and ambient moisture; arid or sealed spaces cap how much volume can be brought to bear.",
+    "copy": {
+      "pt-BR": {
+        "name": "Hidrocinese",
+        "description": "Controla água no alcance — fluxo, pressão, forma e mudanças de fase entre líquido, vapor e gelo. Puxa de fontes abertas e umidade ambiente; ambientes áridos ou fechados limitam o volume disponível."
+      },
+      "es": {
+        "name": "Hidroquinesis",
+        "description": "Controla el agua en su alcance: flujo, presión, forma y cambios de fase entre líquido, vapor y hielo. Toma de fuentes abiertas y humedad ambiental; espacios áridos o cerrados limitan el volumen disponible."
+      }
+    }
   }
 ]

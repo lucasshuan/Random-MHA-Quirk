@@ -11,7 +11,8 @@ import { StepModeChoice } from '@/components/wizard/StepModeChoice'
 import { StepRandomRoll } from '@/components/wizard/StepRandomRoll'
 import { StepTierChoice } from '@/components/wizard/StepTierChoice'
 import { StepTypeChoice } from '@/components/wizard/StepTypeChoice'
-import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
+import { useLocaleSwitchGuard } from '@/hooks/useLocaleSwitchGuard'
+import { ensureQuirksCatalog, useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
 import { resolveApiErrorMessage } from '@/lib/api/resolve-error'
 import { requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
@@ -222,6 +223,18 @@ export function WizardApp({
     }
     void tryGenerateFusion(result)
   }, [currentStep, mode, result, tryGenerateFusion])
+
+  useLocaleSwitchGuard(
+    useCallback(
+      async (targetLocale) => {
+        if (currentStep !== 'result' || !result) {
+          return
+        }
+        await ensureQuirksCatalog(targetLocale)
+      },
+      [currentStep, result],
+    ),
+  )
 
   useEffect(() => {
     if (currentStep !== 'result' || !result) {

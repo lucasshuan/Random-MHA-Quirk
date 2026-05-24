@@ -1,5 +1,12 @@
 import type { Locale } from '@/i18n/types'
+import { findQuirkInCatalog } from '@/lib/quirks/catalog-client-cache'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
+
+const quirkDetailCache = new Map<string, Quirk>()
+
+function quirkDetailCacheKey(locale: Locale, id: string): string {
+  return `${locale}:${id}`
+}
 
 export interface QuirksListResponse {
   locale: Locale
@@ -56,6 +63,17 @@ export async function fetchQuirkById(
   id: string,
   init?: RequestInit,
 ): Promise<Quirk> {
+  const fromCatalog = findQuirkInCatalog(locale, id)
+  if (fromCatalog) {
+    return fromCatalog
+  }
+
+  const cacheKey = quirkDetailCacheKey(locale, id)
+  const cached = quirkDetailCache.get(cacheKey)
+  if (cached) {
+    return cached
+  }
+
   const params = new URLSearchParams({ locale })
   const res = await fetch(`/api/quirks/${encodeURIComponent(id)}?${params}`, {
     ...init,
@@ -68,5 +86,6 @@ export async function fetchQuirkById(
   }
 
   const data = (await res.json()) as QuirkDetailResponse
+  quirkDetailCache.set(cacheKey, data.quirk)
   return data.quirk
 }

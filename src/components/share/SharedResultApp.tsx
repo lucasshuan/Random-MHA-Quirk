@@ -6,7 +6,10 @@ import { LoadingScreen } from '@/components/LoadingScreen'
 import { QuirksCatalogGate } from '@/components/QuirksCatalogGate'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { StepFinalResult } from '@/components/wizard/StepFinalResult'
+import { useLocaleSwitchGuard } from '@/hooks/useLocaleSwitchGuard'
+import { ensureQuirksCatalog } from '@/hooks/useQuirksCatalog'
 import { useI18n } from '@/i18n/useI18n'
+import type { Locale } from '@/i18n/types'
 import { resolveApiErrorMessage } from '@/lib/api/resolve-error'
 import { fetchFusionFromCache, requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
@@ -30,6 +33,7 @@ import type { Quirk } from '@/types/quirk'
 import type { QuirkId } from '@/types/quirk-id'
 
 type RollResult = Quirk | HybridRollResult | null
+type LocaleResultCache = Map<Locale, RollResult>
 
 function isHybridRoll(result: RollResult): result is HybridRollResult {
   return result !== null && 'parents' in result
@@ -64,10 +68,27 @@ export function SharedResultApp({
   const [fusionError, setFusionError] = useState<string | null>(null)
   const generatingFusionKeyRef = useRef<string | null>(null)
   const strippedLegacyLangRef = useRef(false)
+  const resultLocaleCacheRef = useRef<Map<string, LocaleResultCache>>(new Map())
 
   const routeKey =
     mode === 'single' ? `solo:${quirkId ?? ''}` : `hybrid:${parentA}:${parentB}:${seed}`
   const hydratedRouteRef = useRef<string | null>(null)
+
+  const getRouteLocaleCache = useCallback((): LocaleResultCache => {
+    let cache = resultLocaleCacheRef.current.get(routeKey)
+    if (!cache) {
+      cache = new Map()
+      resultLocaleCacheRef.current.set(routeKey, cache)
+    }
+    return cache
+  }, [routeKey])
+
+  const cacheResultForLocale = useCallback(
+    (targetLocale: Locale, nextResult: RollResult) => {
+      getRouteLocaleCache().set(targetLocale, nextResult)
+    },
+    [getRouteLocaleCache],
+  )
 
   const sharePath = useMemo(() => {
     if (mode === 'single' && result && !isHybridRoll(result)) {
@@ -93,7 +114,14 @@ export function SharedResultApp({
 
     const legacyLang = shareLocaleFromSearchParams(searchParams)
     if (legacyLang) {
-      setLocale(legacyLang)
+      void (async () => {
+        try {
+          await ensureQuirksCatalog(legacyLang)
+          setLocale(legacyLang)
+        } catch {
+          setLocale(legacyLang)
+        }
+      })()
     }
 
     if (searchParams.has(SHARE_LANG_PARAM)) {
@@ -136,7 +164,13 @@ export function SharedResultApp({
           if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
             return prev
           }
-          return { ...prev, fusionEntry }
+          const next = { ...prev, fusionEntry }
+          for (const [cachedLocale, entry] of getRouteLocaleCache()) {
+            if (isHybridRoll(entry) && hybridRollKey(entry) === key) {
+              cacheResultForLocale(cachedLocale, { ...entry, fusionEntry })
+            }
+          }
+          return next
         })
         patchHybridHistoryFusion(
           hybrid.parents[0].id,
@@ -155,13 +189,81 @@ export function SharedResultApp({
         }
       }
     },
-    [locale, t],
+    [cacheResultForLocale, getRouteLocaleCache, t],
+  )
+
+  const loadResultForLocale = useCallback(
+    async (targetLocale: Locale): Promise<RollResult> => {
+      const cached = getRouteLocaleCache().get(targetLocale)
+      if (cached) {
+        return cached
+      }
+
+      if (mode === 'single') {
+        if (!quirkId || !isQuirkId(quirkId)) {
+          throw new Error('invalid')
+        }
+        await ensureQuirksCatalog(targetLocale)
+        const quirk = await fetchQuirkById(targetLocale, quirkId)
+        cacheResultForLocale(targetLocale, quirk)
+        return quirk
+      }
+
+      if (
+        !parentA ||
+        !parentB ||
+        !seed ||
+        !isQuirkId(parentA) ||
+        !isQuirkId(parentB) ||
+        !isFusionSeed(seed) ||
+        parentA === parentB
+      ) {
+        throw new Error('invalid')
+      }
+
+      await ensureQuirksCatalog(targetLocale)
+      const [first, second] = await Promise.all([
+        fetchQuirkById(targetLocale, parentA as QuirkId),
+        fetchQuirkById(targetLocale, parentB as QuirkId),
+      ])
+
+      let fusionEntry: HybridRollResult['fusionEntry'] = null
+      for (const entry of getRouteLocaleCache().values()) {
+        if (isHybridRoll(entry) && entry.seed === seed && entry.fusionEntry) {
+          fusionEntry = entry.fusionEntry
+          break
+        }
+      }
+
+      const hybrid: HybridRollResult = {
+        parents: [first, second],
+        seed,
+        fusionEntry,
+      }
+
+      cacheResultForLocale(targetLocale, hybrid)
+      return hybrid
+    },
+    [cacheResultForLocale, getRouteLocaleCache, mode, parentA, parentB, quirkId, seed],
+  )
+
+  useLocaleSwitchGuard(
+    useCallback(
+      async (targetLocale) => {
+        if (hydratedRouteRef.current !== routeKey || isLoading) {
+          return
+        }
+        await loadResultForLocale(targetLocale)
+      },
+      [isLoading, loadResultForLocale, routeKey],
+    ),
   )
 
   useEffect(() => {
     let cancelled = false
 
     async function loadRoute() {
+      resultLocaleCacheRef.current.delete(routeKey)
       setIsLoading(true)
       setLoadError(null)
       setResult(null)
@@ -170,47 +272,32 @@ export function SharedResultApp({
       generatingFusionKeyRef.current = null
 
       try {
-        if (mode === 'single') {
-          if (!quirkId || !isQuirkId(quirkId)) {
-            setLoadError(t('share.invalidLink'))
-            return
-          }
-          const quirk = await fetchQuirkById(locale, quirkId)
-          if (!cancelled) {
-            setResult(quirk)
-            hydratedRouteRef.current = routeKey
-          }
+        if (mode === 'single' && (!quirkId || !isQuirkId(quirkId))) {
+          setLoadError(t('share.invalidLink'))
           return
         }
 
         if (
-          !parentA ||
-          !parentB ||
-          !seed ||
-          !isQuirkId(parentA) ||
-          !isQuirkId(parentB) ||
-          !isFusionSeed(seed) ||
-          parentA === parentB
+          mode === 'hybrid' &&
+          (!parentA ||
+            !parentB ||
+            !seed ||
+            !isQuirkId(parentA) ||
+            !isQuirkId(parentB) ||
+            !isFusionSeed(seed) ||
+            parentA === parentB)
         ) {
           setLoadError(t('share.invalidLink'))
           return
         }
 
-        const [first, second] = await Promise.all([
-          fetchQuirkById(locale, parentA as QuirkId),
-          fetchQuirkById(locale, parentB as QuirkId),
-        ])
-
-        const hybrid: HybridRollResult = {
-          parents: [first, second],
-          seed,
-          fusionEntry: null,
-        }
-
+        const loaded = await loadResultForLocale(locale)
         if (!cancelled) {
-          setResult(hybrid)
+          setResult(loaded)
           hydratedRouteRef.current = routeKey
-          void tryGenerateFusion(hybrid)
+          if (isHybridRoll(loaded) && !loaded.fusionEntry) {
+            void tryGenerateFusion(loaded)
+          }
         }
       } catch {
         if (!cancelled) {
@@ -228,68 +315,33 @@ export function SharedResultApp({
     return () => {
       cancelled = true
     }
-    // locale read at route change time; language switches use refreshLocale below
+    // locale read at route change time; language switches use cache + prepareLocaleChange
     // eslint-disable-next-line react-hooks/exhaustive-deps -- locale intentionally omitted
-  }, [routeKey, t, tryGenerateFusion, mode, parentA, parentB, quirkId, seed])
+  }, [routeKey, t, tryGenerateFusion, loadResultForLocale])
 
   useEffect(() => {
     if (hydratedRouteRef.current !== routeKey || isLoading) {
       return
     }
 
-    let cancelled = false
+    const cached = getRouteLocaleCache().get(locale)
+    if (!cached) {
+      return
+    }
 
-    async function refreshLocale() {
-      try {
-        if (mode === 'single') {
-          if (!quirkId || !isQuirkId(quirkId)) {
-            return
-          }
-          const quirk = await fetchQuirkById(locale, quirkId)
-          if (!cancelled) {
-            setResult(quirk)
-          }
-          return
-        }
-
-        if (
-          !parentA ||
-          !parentB ||
-          !seed ||
-          !isQuirkId(parentA) ||
-          !isQuirkId(parentB) ||
-          !isFusionSeed(seed)
-        ) {
-          return
-        }
-
-        const [first, second] = await Promise.all([
-          fetchQuirkById(locale, parentA as QuirkId),
-          fetchQuirkById(locale, parentB as QuirkId),
-        ])
-
-        if (!cancelled) {
-          setResult((prev) => {
-            if (!prev || !isHybridRoll(prev) || prev.seed !== seed) {
-              return prev
-            }
-            return {
-              ...prev,
-              parents: [first, second],
-            }
-          })
-        }
-      } catch {
-        // Keep current content visible if locale refresh fails.
+    setResult((prev) => {
+      if (!prev) {
+        return cached
       }
-    }
-
-    void refreshLocale()
-
-    return () => {
-      cancelled = true
-    }
-  }, [locale, routeKey, isLoading, mode, parentA, parentB, quirkId, seed])
+      if (isHybridRoll(prev) && isHybridRoll(cached) && prev.seed === cached.seed) {
+        return {
+          ...cached,
+          fusionEntry: cached.fusionEntry ?? prev.fusionEntry,
+        }
+      }
+      return cached
+    })
+  }, [getRouteLocaleCache, isLoading, locale, routeKey])
 
   function handleRerollFusion() {
     if (!result || !isHybridRoll(result)) {
@@ -303,6 +355,8 @@ export function SharedResultApp({
     }
 
     generatingFusionKeyRef.current = null
+    resultLocaleCacheRef.current.delete(routeKey)
+    cacheResultForLocale(locale, next)
     setResult(next)
     pushHybridHistoryEntry(next.parents[0], next.parents[1], next.seed, locale)
     router.replace(shareHybridPath(next.parents[0].id, next.parents[1].id, next.seed))

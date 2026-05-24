@@ -6,6 +6,7 @@ export type Interpolation = Record<string, string | number>
 export interface I18nContextValue {
   locale: Locale
   setLocale: (locale: Locale) => void
+  prepareLocaleChange: (locale: Locale) => Promise<void>
   t: (key: string, values?: Interpolation) => string
 }
 

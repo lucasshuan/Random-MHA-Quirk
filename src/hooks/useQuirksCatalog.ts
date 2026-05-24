@@ -3,12 +3,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
 import type { Locale } from '@/i18n/types'
+import {
+  findQuirkInCatalog,
+  getCatalogCache,
+  getCatalogInflight,
+  hasQuirksCatalog,
+  isCatalogBootstrapped,
+  resolveQuirkFromCatalog,
+} from '@/lib/quirks/catalog-client-cache'
 import { fetchQuirks } from '@/lib/quirks/api'
 import { applyFilters } from '@/lib/quirks/engine'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
 
-const catalogCache = new Map<Locale, Quirk[]>()
-const inflight = new Map<Locale, Promise<Quirk[]>>()
+const catalogCache = getCatalogCache()
+const inflight = getCatalogInflight()
 
 function isAbortError(err: unknown): boolean {
   return err instanceof DOMException
@@ -16,14 +24,11 @@ function isAbortError(err: unknown): boolean {
     : err instanceof Error && err.name === 'AbortError'
 }
 
-/** True after the initial locale catalog has loaded (startup gate). */
-export function isCatalogBootstrapped(): boolean {
-  return catalogCache.size > 0
-}
-
-export function hasQuirksCatalog(locale: Locale): boolean {
-  return catalogCache.has(locale)
-}
+export {
+  findQuirkInCatalog,
+  hasQuirksCatalog,
+  isCatalogBootstrapped,
+} from '@/lib/quirks/catalog-client-cache'
 
 /** Fetches /api/quirks for `locale` if not cached. Use before switching UI locale. */
 export function ensureQuirksCatalog(locale: Locale): Promise<Quirk[]> {
@@ -32,9 +37,7 @@ export function ensureQuirksCatalog(locale: Locale): Promise<Quirk[]> {
 
 /** Re-apply localized copy when locale changes (catalog must be loaded). */
 export function resolveQuirk(quirk: Quirk, locale: Locale): Quirk {
-  const cached = catalogCache.get(locale)
-  if (!cached) return quirk
-  return cached.find((entry) => entry.id === quirk.id) ?? quirk
+  return resolveQuirkFromCatalog(quirk, locale)
 }
 
 async function loadCatalog(locale: Locale): Promise<Quirk[]> {

@@ -2,23 +2,16 @@ import { useState } from 'react'
 import { LANGUAGE_SWITCHER_OPTIONS } from '../i18n/localeMeta'
 import type { Locale } from '../i18n/types'
 import { useI18n } from '../i18n/useI18n'
-import { ensureQuirksCatalog, hasQuirksCatalog } from '../hooks/useQuirksCatalog'
-
 export function LanguageSwitcher() {
-  const { locale, setLocale, t } = useI18n()
+  const { locale, setLocale, prepareLocaleChange, t } = useI18n()
   const [pendingLocale, setPendingLocale] = useState<Locale | null>(null)
 
   async function handleLocaleClick(nextLocale: Locale) {
     if (nextLocale === locale || pendingLocale) return
 
-    if (hasQuirksCatalog(nextLocale)) {
-      setLocale(nextLocale)
-      return
-    }
-
     setPendingLocale(nextLocale)
     try {
-      await ensureQuirksCatalog(nextLocale)
+      await prepareLocaleChange(nextLocale)
       setLocale(nextLocale)
     } catch {
       // Keep current locale; user can retry

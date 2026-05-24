@@ -525,6 +525,10 @@
   animation: typeStepChoiceIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.type-step-panel .type-step-choice .choice-btn-label {
+  font-size: clamp(1.18rem, 3.8vw, 1.46rem);
+}
+
 .type-step-panel .type-step-choice-1 {
   animation-delay: 80ms;
 }

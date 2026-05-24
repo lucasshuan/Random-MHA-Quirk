@@ -125,10 +125,10 @@ body::after {
   position: fixed;
   z-index: 0;
   pointer-events: none;
-  left: max(-18vw, -8rem);
+  left: max(-18vw, -2rem);
   bottom: 0;
-  width: min(62vw, 820px);
-  height: min(96vh, 920px);
+  width: min(60vw, 792px);
+  height: min(93vh, 890px);
   background-image: url('/bg-render2.webp');
   background-position: left bottom;
   background-size: contain;

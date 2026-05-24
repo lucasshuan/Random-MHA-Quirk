@@ -838,5 +838,233 @@
         "description": "Al tocar la garganta, distorsiona la voz del usuario en teléfonos y radios; también puede distorsionar la voz ajena con el mismo contacto. Soltar la garganta termina el efecto y puede dejar dolor de garganta."
       }
     }
+  },
+  {
+    "id": "ghost",
+    "origin": "ORIGINAL",
+    "tier": "A",
+    "type": "Transformation",
+    "range": "Self",
+    "facets": [
+      "Mobility"
+    ],
+    "source": "https://www.quotev.com/story/15831236/%E5%8A%9F%E7%8E%87-MHA-Quirk-Ideas/72",
+    "inspiration": "Quotev 功率 | MHA Quirk Ideas #059 Ghost.",
+    "name": "Ghost",
+    "description": "Transforms fully into a ghost: intangible, invisible, and without a heartbeat. Can pass through solids and float; the form lasts only while the user holds their breath.",
+    "copy": {
+      "pt-BR": {
+        "name": "Fantasma",
+        "description": "Transforma o usuário por completo em um fantasma: intangível, invisível e sem batimentos cardíacos. Atravessa sólidos e flutua; a forma dura apenas enquanto ele prender a respiração."
+      },
+      "es": {
+        "name": "Fantasma",
+        "description": "Transforma al usuario por completo en un fantasma: intangible, invisible y sin latidos. Atraviesa sólidos y flota; la forma dura solo mientras aguante la respiración."
+      }
+    }
+  },
+  {
+    "id": "exorcise",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Emitter",
+    "range": "Contact",
+    "facets": [
+      "Biological",
+      "Stockpile",
+      "Control"
+    ],
+    "source": "https://www.deviantart.com/feerocomics/art/BNHA-OC-COMMISH-Kaidon-Etorius-Ref-Sheet-872174963",
+    "inspiration": "Fan OC Kaidon Etorius (Exorcise); reworked as life-force and trait theft.",
+    "name": "Exorcise",
+    "description": "Touch with the right hand drains life force, leaving victims as hollow, emotionless husks, while peeling habits, traits, and quirks into the user's body. Stolen quirks tangle messily; outcomes are never precise.",
+    "copy": {
+      "pt-BR": {
+        "name": "Exorcismo",
+        "description": "O toque com a mão direita drena força vital e deixa as vítimas como cascas ocas e sem emoções, enquanto arranca hábitos, traços e individualidades para dentro do usuário. Individualidades roubadas se embaralham; o resultado nunca é preciso."
+      },
+      "es": {
+        "name": "Exorcismo",
+        "description": "El contacto con la mano derecha drena fuerza vital y deja a las víctimas como cáscaras huecas y sin emociones, mientras arranca hábitos, rasgos y dones hacia el usuario. Los dones robados se enredan; el resultado nunca es preciso."
+      }
+    }
+  },
+  {
+    "id": "command",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Emitter",
+    "range": "Long",
+    "facets": [
+      "Psychic",
+      "Control"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #9 Command.",
+    "name": "Command",
+    "description": "Spoken orders to a target the user can see are carried out until finished, then the victim returns to normal. Victims don't look or sound brainwashed, instead they act normally. Psychic immunity ignores the effect, but willpower is useless against it",
+    "copy": {
+      "pt-BR": {
+        "name": "Mando",
+        "description": "Ordens faladas a um alvo que o usuário enxerga são cumpridas até o fim; depois a vítima volta ao normal. As vítimas não parecem estar sofrendo de lavagem cerebral, ao invés disso agem normalmente. Imunidade psíquica ignora o efeito, mas determinação é inútil contra."
+      },
+      "es": {
+        "name": "Mando",
+        "description": "Las órdenes habladas a un blanco que el usuario ve se cumplen hasta terminar; luego la víctima vuelve a la normalidad. Las víctimas no parecen estar sufriendo de lavado cerebral, al contrario, actúan normalmente. Inmunidad psíquica ignora el efecto, pero determina ción es inútil contra."
+      }
+    }
+  },
+  {
+    "id": "voodoo-dolls",
+    "origin": "ORIGINAL",
+    "tier": "S",
+    "type": "Emitter",
+    "range": "Contact",
+    "facets": [
+      "Psychic",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #40 Voodoo Dolls; DNA contact rule.",
+    "name": "Voodoo Dolls",
+    "description": "With contact to a target's DNA—blood, hair, or skin—the user crafts a linked voodoo doll. Touch or harm to a doll reaches the linked person; new dolls can be made without a fixed cap.",
+    "copy": {
+      "pt-BR": {
+        "name": "Bonecos Vodu",
+        "description": "Com contato ao DNA do alvo — sangue, cabelo ou pele — o usuário confecciona um boneco vodu vinculado. Toque ou dano ao boneco atinge a pessoa ligada; novos bonecos podem ser feitos sem limite fixo."
+      },
+      "es": {
+        "name": "Muñecos Vudú",
+        "description": "Con contacto al ADN del blanco — sangre, cabello o piel — el usuario fabrica un muñeco vudú enlazado. El toque o daño al muñeco llega a la persona vinculada; pueden crearse muñecos nuevos sin tope fijo."
+      }
+    }
+  },
+  {
+    "id": "flamestructing",
+    "origin": "ORIGINAL",
+    "tier": "A",
+    "type": "Emitter",
+    "range": "Medium",
+    "facets": [
+      "Elemental",
+      "Construct",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #14 Flamestructing.",
+    "name": "Flamestructing",
+    "description": "Shapes open flames into solid objects, weapons, creatures, or short-lived clones while stamina holds.",
+    "copy": {
+      "pt-BR": {
+        "name": "Flamiformação",
+        "description": "Molda chamas abertas em objetos sólidos, armas, criaturas ou clones de curta duração enquanto a resistência aguentar."
+      },
+      "es": {
+        "name": "Flamiformación",
+        "description": "Moldea llamas abiertas en objetos sólidos, armas, criaturas o clones de corta duración mientras aguante el aguante."
+      }
+    }
+  },
+  {
+    "id": "dollification",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Emitter",
+    "range": "Contact",
+    "facets": [
+      "Control",
+      "Construct"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/art/Quirk-Dollification-769201201",
+    "inspiration": "BlueCola101 Quirk: Dollification.",
+    "name": "Dollification",
+    "description": "Palm touch seals a person inside a doll body they cannot leave under their own power; the user decides whether the captive keeps sight and hearing.",
+    "copy": {
+      "pt-BR": {
+        "name": "Dollificação",
+        "description": "Toque de mão prende alguém num corpo de boneca que não consegue abandonar por conta própria; o usuário decide se o prisioneiro mantém visão e audição."
+      },
+      "es": {
+        "name": "Dollificación",
+        "description": "Un toque de mano encierra a alguien en un cuerpo de muñeca que no puede abandonar por sí solo; el usuario decide si el prisionero conserva vista y oído."
+      }
+    }
+  },
+  {
+    "id": "love-kiss",
+    "origin": "ORIGINAL",
+    "tier": "A",
+    "type": "Emitter",
+    "range": "Contact",
+    "facets": [
+      "Psychic",
+      "Control"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #29 Love Kiss.",
+    "name": "Love Kiss",
+    "description": "A cheek or lip kiss puts one target into a devoted trance where they follow spoken orders; indomitable will breaks free.",
+    "copy": {
+      "pt-BR": {
+        "name": "Beijo do Amor",
+        "description": "Um beijo na bochecha ou nos lábios coloca um alvo num transe devoto em que obedece ordens faladas; vontade inquebrável rompe o efeito."
+      },
+      "es": {
+        "name": "Beso de Amor",
+        "description": "Un beso en la mejilla o los labios pone a un blanco en un trance devoto donde obedece órdenes habladas; la voluntad indomable rompe el efecto."
+      }
+    }
+  },
+  {
+    "id": "plant-manipulation",
+    "origin": "ORIGINAL",
+    "tier": "A",
+    "type": "Emitter",
+    "range": "Medium",
+    "facets": [
+      "Biological",
+      "Control",
+      "Elemental"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #45 Plant Manipulation.",
+    "name": "Plant Manipulation",
+    "description": "Creates and steers plants—growth, motion, genetic tweaks, and reviving dead flora. Large blooms release heavy pollen that triggers violent hay fever in the user; sneezing breaks fine control, and wind can spread the cloud and affect others.",
+    "copy": {
+      "pt-BR": {
+        "name": "Manipulação Vegetal",
+        "description": "Cria e comanda plantas — crescimento, movimento, ajustes genéticos e reviver flora morta. Florações grandes liberam pólen intenso que provoca rinite violenta no usuário; espirros quebram o controle fino, e o vento podem ser levados em uma nuvem e afetar outros."
+      },
+      "es": {
+        "name": "Manipulación Vegetal",
+        "description": "Crea y dirige plantas: crecimiento, movimiento, ajustes genéticos y revivir flora muerta. Floraciones grandes liberan polen intenso que provoca rinitis violenta en el usuario; los estornudos rompen el control fino, y el viento puede ser arrastrado en una nube y afectar a otros."
+      }
+    }
+  },
+  {
+    "id": "psychokinesis",
+    "origin": "ORIGINAL",
+    "tier": "S",
+    "type": "Emitter",
+    "range": "Medium",
+    "facets": [
+      "Psychic",
+      "Control",
+      "Emission"
+    ],
+    "source": "https://www.quotev.com/story/16129972/Quirk-Ideas-My-Hero-Academia",
+    "inspiration": "Quirk Ideas (MHA) #50 Psychokinesis.",
+    "name": "Psychokinesis",
+    "description": "Moves and reshapes matter and energy by mental effort—through focus, emotion, or disciplined calm. Range and load depend on concentration; overexertion causes migraines and nosebleeds.",
+    "copy": {
+      "pt-BR": {
+        "name": "Psicocinese",
+        "description": "Move e remodela matéria e energia por esforço mental — foco, emoção ou calma disciplinada. Alcance e carga dependem da concentração; esforço excessivo causa enxaquecas e sangramento nasal."
+      },
+      "es": {
+        "name": "Psicoquinesis",
+        "description": "Mueve y remodela materia y energía con esfuerzo mental — enfoque, emoción o calma disciplinada. Alcance y carga dependen de la concentración; el exceso provoca migrañas y sangrado nasal."
+      }
+    }
   }
 ]

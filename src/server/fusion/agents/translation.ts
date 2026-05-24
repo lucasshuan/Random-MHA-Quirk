@@ -78,9 +78,13 @@ export async function translateFusionWithAgent(
 ): Promise<ValidatedLocaleFusionCopy> {
   const context: FusionTranslationRunContext = { locale, source };
 
+  let retryHint: string | null = null;
+
   for (let attempt = 1; attempt <= FUSION_AGENT_MAX_ATTEMPTS; attempt++) {
+    const userTurn = retryHint ? `${retryHint}\n\n${USER_TURN}` : USER_TURN;
+
     try {
-      const result = await run(getTranslationAgent(locale), USER_TURN, {
+      const result = await run(getTranslationAgent(locale), userTurn, {
         context,
         maxTurns: 1,
         ...(trace ? buildTranslationFusionRunConfig(locale, trace) : {}),
@@ -93,6 +97,15 @@ export async function translateFusionWithAgent(
       return validateLocaleFusionTranslation(raw, locale);
     } catch (err) {
       if (attempt === FUSION_AGENT_MAX_ATTEMPTS) throw err;
+      const message = err instanceof Error ? err.message : String(err);
+      if (
+        message.includes("description longo demais") ||
+        message.includes("description curto demais")
+      ) {
+        retryHint = message;
+        continue;
+      }
+      throw err;
     }
   }
 

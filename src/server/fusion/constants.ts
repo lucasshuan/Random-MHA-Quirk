@@ -1,4 +1,8 @@
-/** Hard limits for fusion copy (en + locale adaptations). */
+/**
+ * Fusion description length bounds (en + locale adaptations).
+ * Enforced in validate.ts after the agent returns — do NOT put .max() on the
+ * agent Zod schema (structured output may silently truncate strings).
+ */
 export const FUSION_DESCRIPTION_MIN_LENGTH = 70
 export const FUSION_DESCRIPTION_MAX_LENGTH = 300
 

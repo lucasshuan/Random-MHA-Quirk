@@ -68,15 +68,32 @@ function enforceServerMechanics(
   }
 }
 
+function isDescriptionLengthError(err: unknown): boolean {
+  const message = err instanceof Error ? err.message : String(err)
+  return message.includes('description longo demais') || message.includes('description curto demais')
+}
+
+function buildEnglishUserTurn(retryHint: string | null): string {
+  if (!retryHint) return USER_TURN
+  return `${retryHint}\n\n${USER_TURN}`
+}
+
 export async function generateEnglishFusionWithAgent(
   fusion: FusionAgentInput,
 ): Promise<ValidatedEnglishFusionPayload> {
+  let retryHint: string | null = null
+
   for (let attempt = 1; attempt <= FUSION_AGENT_MAX_ATTEMPTS; attempt++) {
+    const fusionAttempt: FusionAgentInput = {
+      ...fusion,
+      meta: { ...fusion.meta, attempt: fusion.meta.attempt + attempt - 1 },
+    }
+
     try {
-      const result = await run(getEnglishAgent(), USER_TURN, {
-        context: { fusion },
+      const result = await run(getEnglishAgent(), buildEnglishUserTurn(retryHint), {
+        context: { fusion: fusionAttempt },
         maxTurns: resolveFusionAgentMaxTurns(),
-        ...buildEnglishFusionRunConfig(fusion),
+        ...buildEnglishFusionRunConfig(fusionAttempt),
       })
 
       const raw = result.finalOutput
@@ -89,6 +106,11 @@ export async function generateEnglishFusionWithAgent(
       return enforceServerMechanics(validated, fusion)
     } catch (err) {
       if (attempt === FUSION_AGENT_MAX_ATTEMPTS) throw err
+      if (isDescriptionLengthError(err) && err instanceof Error) {
+        retryHint = err.message
+        continue
+      }
+      throw err
     }
   }
 

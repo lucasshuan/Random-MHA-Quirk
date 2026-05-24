@@ -108,7 +108,7 @@ function normalizeFusionMechanics(obj: Record<string, unknown>): {
   }
 }
 
-/** Coerces LLM JSON into a fusion payload (description length enforced). */
+/** Coerces LLM JSON into a fusion payload. Rejects bad length (never truncates). */
 export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
   const obj = asRecord(raw)
   const en = parseFusionCopy(obj.en, 'en')

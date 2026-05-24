@@ -26,6 +26,7 @@ import { rerollHybridFromSettings } from '@/lib/hybrid/reroll-from-settings'
 import { rollHybrid } from '@/lib/hybrid/roll'
 import { applyFilters, pickRandom } from '@/lib/quirks/engine'
 import {
+  matchHybridRollSession,
   saveHybridRollSession,
   type HybridRollSessionSettings,
 } from '@/lib/wizard/hybrid-roll-session'
@@ -361,10 +362,28 @@ export function WizardApp({
     }
   }
 
-  function setHybridRoll(hybrid: HybridRollResult | null) {
+  function resolvedHybridRollSettings(): HybridRollSessionSettings {
+    if (result && isHybridRoll(result)) {
+      const saved = matchHybridRollSession(
+        result.parents[0].id,
+        result.parents[1].id,
+        result.seed,
+      )
+      if (saved) {
+        return saved
+      }
+    }
+
+    return currentHybridRollSettings()
+  }
+
+  function setHybridRoll(
+    hybrid: HybridRollResult | null,
+    settingsOverride?: HybridRollSessionSettings,
+  ) {
     setResult(hybrid)
     if (hybrid) {
-      const settings = currentHybridRollSettings()
+      const settings = settingsOverride ?? currentHybridRollSettings()
       saveHybridRollSession(
         hybrid.parents[0].id,
         hybrid.parents[1].id,
@@ -397,6 +416,7 @@ export function WizardApp({
       return
     }
 
+    const settings = resolvedHybridRollSettings()
     const next: HybridRollResult = {
       parents: result.parents,
       seed: randomFusionSeed(),
@@ -404,7 +424,7 @@ export function WizardApp({
     }
 
     generatingFusionKeyRef.current = null
-    setHybridRoll(next)
+    setHybridRoll(next, settings)
     void tryGenerateFusion(next)
   }
 
@@ -421,13 +441,14 @@ export function WizardApp({
       mode === 'hybrid' || (result !== null && isHybridRoll(result))
 
     if (rerollHybrid) {
+      const settings = resolvedHybridRollSettings()
       const next = rerollHybridFromSettings(
         allQuirks,
-        currentHybridRollSettings(),
+        settings,
         locale,
         { searchableText },
       )
-      setHybridRoll(next)
+      setHybridRoll(next, settings)
       return
     }
 
@@ -476,6 +497,10 @@ export function WizardApp({
 
       const firstType = hybridTypes[0] ?? 'Any'
       const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
+      const rollSettings: HybridRollSessionSettings = {
+        slotFilters: finalFilters,
+        manualParentIds: [manualHybridParents[0]?.id ?? null, null],
+      }
       setManualHybridParents([manualHybridParents[0], null])
       setHybridTypes([firstType, type === 'Any' ? null : type])
       setHybridSlotFilters(finalFilters)
@@ -492,10 +517,11 @@ export function WizardApp({
                 fusionEntry: null,
               }
             : null,
+          rollSettings,
         )
       } else {
         const poolA = applyFilters(allQuirks, finalFilters[0], { searchableText })
-        setHybridRoll(rollHybrid(poolA, poolB, locale))
+        setHybridRoll(rollHybrid(poolA, poolB, locale), rollSettings)
       }
       setResultBackStep('type')
       setCurrentStep('result')
@@ -529,14 +555,21 @@ export function WizardApp({
 
       const firstParent = manualHybridParents[0] ?? quirk
       const finalFilters: [QuirkFilters, QuirkFilters] = [hybridSlotFilters[0], slotFilters]
+      const rollSettings: HybridRollSessionSettings = {
+        slotFilters: finalFilters,
+        manualParentIds: [firstParent.id, quirk.id],
+      }
       setManualHybridParents([firstParent, quirk])
       setHybridTypes([firstParent.type, quirk.type])
       setHybridSlotFilters(finalFilters)
-      setHybridRoll({
-        parents: [firstParent, quirk],
-        seed: randomFusionSeed(),
-        fusionEntry: null,
-      })
+      setHybridRoll(
+        {
+          parents: [firstParent, quirk],
+          seed: randomFusionSeed(),
+          fusionEntry: null,
+        },
+        rollSettings,
+      )
       setResultBackStep('type')
       setCurrentStep('result')
       return

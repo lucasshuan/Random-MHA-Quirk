@@ -41,4 +41,29 @@ describe('rerollHybridFromSettings', () => {
     expect(result?.parents[1].type).toBe('Mutant')
     expect(result?.fusionEntry).toBeNull()
   })
+
+  it('respects second-slot filters when both parents are random', () => {
+    const all = [
+      quirk('emitter-1', 'Emitter'),
+      quirk('emitter-2', 'Emitter'),
+      quirk('mutant-1', 'Mutant'),
+      quirk('transformation-1', 'Transformation'),
+    ]
+
+    const result = rerollHybridFromSettings(
+      all,
+      {
+        slotFilters: [
+          { ...DEFAULT_QUIRK_FILTERS, types: ['Emitter'] },
+          { ...DEFAULT_QUIRK_FILTERS, types: ['Mutant'] },
+        ],
+        manualParentIds: [null, null],
+      },
+      'en',
+    )
+
+    expect(result).not.toBeNull()
+    expect(result?.parents[0].type).toBe('Emitter')
+    expect(result?.parents[1].type).toBe('Mutant')
+  })
 })

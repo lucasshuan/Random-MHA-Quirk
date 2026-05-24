@@ -62,8 +62,9 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
 > = {
   synergy: {
     criteria: [
-      'Both parent essences must be indispensable parts of one rule; removing either parent should break the concept.',
+      'Both parent essences must be indispensable parts of one NEW rule; removing either parent should break the concept.',
       'Combine operations, not just imagery, nouns, colors, or generic force.',
+      'The birth Quirk must NOT read as either parent unchanged — synergy still requires a third idea, not one parent with the other as decoration.',
     ],
   },
   'dominant-a': {
@@ -82,13 +83,13 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
   },
   'facet-anchor': {
     criteria: [
-      'Use the shared facet as common ground, then state the distinct operation each parent contributes to the resulting rule.',
-      'A shared tag is not itself a mechanic and cannot excuse losing either parent essence.',
+      'Use the shared facet as common ground, then state the distinct operation each parent contributes to the resulting NEW rule.',
+      'A shared tag is not itself a mechanic and cannot excuse losing either parent essence or copying one parent alone.',
     ],
   },
   'body-weave': {
     criteria: [
-      'The body trait or temporary form must cause the effect, not appear as unrelated anatomy added to satisfy a tag.',
+      'The body trait or temporary form must cause a NEW effect, not reproduce one parent body plan unchanged with a metaphor.',
       'Any emitted or controlled material must visibly come from that body mechanism.',
     ],
   },
@@ -128,6 +129,7 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
 export function formatStrategyCoherenceGuidance(key: FusionStrategyKey): string {
   const guidance = STRATEGY_COHERENCE_GUIDANCE[key]
   return `Coherence criteria (${key}):
+- The birth Quirk must be NEW — a third rule neither parent could claim alone; if the description matches one parent's catalog entry with a rename or analogy, start over.
 - Preserve a recognizable operational essence from EACH parent; inherit what each power does, not merely its theme.
 - Before prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence. Final wording need not follow this arrow format.
 ${guidance.criteria.map((criterion) => `- ${criterion}`).join('\n')}`
@@ -252,7 +254,7 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'synergy',
     eligible: () => true,
     instruction: () =>
-      'Fusion strategy — unified synergy: weave both parents into ONE coherent mechanism (one birth Quirk, one core idea). Do not present two separate powers stapled together.',
+      'Fusion strategy — unified synergy: weave both parents into ONE NEW coherent mechanism (one birth Quirk, one core idea that neither parent already is). Do not present two separate powers stapled together, and do not return either parent unchanged under a new name.',
   },
   {
     key: 'dominant-a',

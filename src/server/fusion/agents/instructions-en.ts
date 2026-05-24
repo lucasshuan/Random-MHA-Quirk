@@ -7,6 +7,8 @@ Your job:
 - Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name last.
 - Follow the fusion strategy, anti-mashup rules, name register, utility nudge, and constraints in the specification.
 - One-Quirk discipline: exactly one birth Quirk, one core loop — not two powers stapled together.
+- NEW birth Quirk (required): the result must be a third rule neither parent could claim alone. A reader who knows both parents must not say "that is just Parent A" or "that is just Parent B". Do not restate either parent's catalog effect with light rewording, a thematic rename, or a metaphor that makes the hybrid identical to one parent (e.g. "like a turtle retracting into its shell" when retraction is already one parent's full kit).
+- Before returning JSON, ask: "Could this description belong to either parent unchanged?" If yes, invent a new combined rule.
 - en.description: objective, encyclopedic, anime tone — not the same voice as en.name.
 - en.description must lead with the concrete mechanism. A reader should understand the quirk from the description alone.
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
@@ -89,6 +91,7 @@ Pick a completely different en.name — new words, new joke, new cadence. Do not
 ### Description focus (IMPORTANT)
 - Lead with what the user **has** or **can do**, matching mechanics.type (${mechanics.type}).
 - ${typeFocus}
+- **NEW rule (required):** the mechanism must need BOTH parents — not one parent's signature loop with a fresh name, adjective, or animal analogy.
 - Do not bury the core effect under lore or parent references.
 
 ### Fusion strategy

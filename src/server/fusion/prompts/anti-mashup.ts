@@ -12,7 +12,7 @@ export type FusionAntiMashupRuleKey = (typeof FUSION_ANTI_MASHUP_RULE_KEYS)[numb
 
 const ANTI_MASHUP_RULE_TEXT: Record<FusionAntiMashupRuleKey, string> = {
   'coherent-loop':
-    'Anti-mashup: keep one coherent mechanism with one governing loop; do not describe two independent full-strength kits running in parallel.',
+    'Anti-mashup: keep one coherent NEW mechanism with one governing loop; do not describe two independent full-strength kits running in parallel, and do not copy one parent alone with a metaphor or rename.',
   'failure-reduced':
     'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.',
   'modifier-cost':
@@ -64,7 +64,7 @@ function lookupPairNegativeExample(
   if (ctx.sharedFacets.length > 0) {
     return `both parents' ${ctx.sharedFacets[0]} power at full strength stapled together`
   }
-  return `both parents' signature effects at peak power with no tradeoff`
+  return `both parents' signature effects at peak power with no tradeoff, or one parent's signature effect unchanged with a fresh name or analogy`
 }
 
 export function isFusionAntiMashupRuleKey(

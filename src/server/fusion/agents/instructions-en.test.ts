@@ -62,6 +62,8 @@ describe('buildFusionEnglishInstructions', () => {
 
     expect(instructions).toContain('then write en.description, then en.name last')
     expect(instructions).toContain('what the user **has**')
+    expect(instructions).toContain('NEW birth Quirk')
+    expect(instructions).toContain('Could this description belong to either parent unchanged?')
     expect(instructions).toContain(
       'the title must give a clear idea of what the quirk does',
     )

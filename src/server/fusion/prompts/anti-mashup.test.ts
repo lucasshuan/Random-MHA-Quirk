@@ -32,7 +32,7 @@ describe('resolveAntiMashupRuleKey', () => {
 describe('formatBaseAntiMashupRule', () => {
   it('expands coherent-loop for prompts', () => {
     const rule = formatBaseAntiMashupRule('coherent-loop')
-    expect(rule).toContain('one coherent mechanism')
+    expect(rule).toContain('one coherent NEW mechanism')
     expect(rule).toContain('two independent full-strength kits')
     expect(rule).not.toContain('phase through walls')
   })

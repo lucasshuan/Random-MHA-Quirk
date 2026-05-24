@@ -42,6 +42,7 @@ const NAMING_RULES = [
   'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
   'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
   'en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.',
+  'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
   'Punctuation in en.name: commas and a single question mark are allowed when they sell the joke. At most one ? or one comma clause unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',
   'Funny names must still land as a joke, phrase twist, mental image, or spoken cadence — not random interjection + mechanic noun (e.g. avoid "Oops, Cushion" unless the full phrase is the joke).',
   'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title or a phrase someone could say?" If no, replace once in the SAME name register.',

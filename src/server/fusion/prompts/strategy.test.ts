@@ -157,6 +157,7 @@ describe('formatStrategyCoherenceGuidance', () => {
     for (const key of FUSION_STRATEGY_KEYS) {
       const guidance = formatStrategyCoherenceGuidance(key)
       expect(guidance).toContain('recognizable operational essence from EACH parent')
+      expect(guidance).toContain('must be NEW')
       expect(guidance).not.toContain('Example')
     }
   })

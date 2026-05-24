@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://mha-random-quirk.vercel.app/"><strong>▶ Enter the site</strong></a>
+  <a href="https://random-mha-quirk.vercel.app/"><strong>▶ Enter the site</strong></a>
 </p>
 
 <p align="center">

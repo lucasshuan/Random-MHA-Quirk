@@ -38,24 +38,18 @@ export function parseApiErrorBody(body: unknown): ApiRequestError | null {
   const errorBlock = record.error
   if (!errorBlock || typeof errorBlock !== 'object') return null
 
-  const code =
-    typeof (errorBlock as Record<string, unknown>).code === 'string'
-      ? (errorBlock as Record<string, unknown>).code.trim()
-      : ''
+  const block = errorBlock as Record<string, unknown>
+  const rawCode = block.code
+  const code = typeof rawCode === 'string' ? rawCode.trim() : ''
   if (!isApiErrorCode(code)) return null
 
   const retryAfterSec =
-    typeof (errorBlock as Record<string, unknown>).retryAfterSec === 'number'
-      ? (errorBlock as Record<string, unknown>).retryAfterSec
-      : undefined
+    typeof block.retryAfterSec === 'number' ? block.retryAfterSec : undefined
 
   const payload = {
     code,
     retryAfterSec,
-    minutes:
-      typeof (errorBlock as Record<string, unknown>).minutes === 'number'
-        ? (errorBlock as Record<string, unknown>).minutes
-        : undefined,
+    minutes: typeof block.minutes === 'number' ? block.minutes : undefined,
   }
 
   return new ApiRequestError(code, apiErrorParams(payload))

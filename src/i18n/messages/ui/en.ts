@@ -248,7 +248,7 @@ type DeepString<T> = {
   [K in keyof T]: T[K] extends string
     ? string
     : T[K] extends readonly string[]
-      ? string[]
+      ? readonly string[]
       : DeepString<T[K]>
 }
 

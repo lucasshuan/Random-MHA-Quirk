@@ -96,18 +96,28 @@ export function formatFusionTierDecisionQuirk(
 }
 
 /** Tier rubric block for the English fusion agent (same rules as the former tier-only step). */
-export function buildFusionEnglishTierBlock(fusion: FusionAgentInput): string {
+export function buildFusionEnglishTierStaticBlock(): string {
+  return `## Tier assignment
+
+${buildFusionTierDecisionRubric()}`
+}
+
+export function buildFusionEnglishTierVariantBlock(fusion: FusionAgentInput): string {
   const strategyKey = isFusionStrategyKey(fusion.roll.strategyKey)
     ? fusion.roll.strategyKey
     : 'synergy'
 
-  return `${buildFusionTierDecisionRubric()}
-
-${formatFusionStrategyTierGuidance(strategyKey)}
+  return `${formatFusionStrategyTierGuidance(strategyKey)}
 
 ### Parent tiers (calibration only — not a floor or ceiling)
 - ${fusion.parents[0].name}: tier ${fusion.parents[0].tier}
 - ${fusion.parents[1].name}: tier ${fusion.parents[1].tier}
 
 Set **tier** in JSON last — after en.description and en.name — from the finished hybrid only.`
+}
+
+export function buildFusionEnglishTierBlock(fusion: FusionAgentInput): string {
+  return `${buildFusionEnglishTierStaticBlock()}
+
+${buildFusionEnglishTierVariantBlock(fusion)}`
 }

@@ -101,6 +101,21 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Set **tier** in JSON last')
   })
 
+  it('keeps the long rubric in a stable prefix before request-specific values', () => {
+    const first = buildFusionEnglishInstructions(
+      buildFusionAgentInput(quirkA, quirkB, 'seed-x'),
+    )
+    const second = buildFusionEnglishInstructions(
+      buildFusionAgentInput(quirkA, quirkB, 'seed-y'),
+    )
+    const requestMarker = '## Request-specific specification'
+    const firstRequestIndex = first.indexOf(requestMarker)
+    const secondRequestIndex = second.indexOf(requestMarker)
+
+    expect(first.indexOf('## Tier assignment')).toBeLessThan(firstRequestIndex)
+    expect(first.slice(0, firstRequestIndex)).toBe(second.slice(0, secondRequestIndex))
+  })
+
   it('explains only the selected output type in description focus', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions({

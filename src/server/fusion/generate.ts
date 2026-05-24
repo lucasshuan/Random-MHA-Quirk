@@ -1,4 +1,4 @@
-import { randomBytes } from 'node:crypto'
+import { randomBytes, randomUUID } from 'node:crypto'
 import { fusionCacheKey, fusionPairKey, sortedParentPair } from '@/lib/fusion/keys'
 import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkId } from '@/types/quirk-id'
@@ -15,7 +15,11 @@ import {
   findFusionByKey,
   findFusionByParentPairAndEnglishName,
   loadFusionSiblingContext,
+  releaseFusionGenerationClaim,
+  renewFusionGenerationClaim,
+  tryClaimFusionGeneration,
   upsertFusionEntry,
+  upsertFusionEntryAlias,
 } from './repository'
 import { runWithFusionTrace } from './agents/tracing'
 
@@ -33,15 +37,27 @@ export interface GenerateFusionOptions {
 
 export interface GenerateFusionResult {
   entry: FusionCacheEntry
-  /** True when an existing Supabase row was returned after generation failed. */
+  /** True when an existing stored result was returned instead of a new result. */
   cached: boolean
   /** True when the LLM produced a new entry (also persisted). */
   generated: boolean
 }
 
+const inFlightFusionGenerations = new Map<string, Promise<GenerateFusionResult>>()
+const FUSION_CLAIM_RETRY_MS = 250
+const FUSION_CLAIM_RENEW_MS = 30_000
+
+function storedResult(entry: FusionCacheEntry): GenerateFusionResult {
+  return { entry, cached: true, generated: false }
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 /**
  * Generates a fusion entry via LLM (English quirk, then locale adaptations) and persists to Supabase.
- * Uses an existing row only as a fallback when generation fails (unless `force`).
+ * Normal requests are idempotent by key; `force` is reserved for internal explicit regeneration.
  */
 export async function generateFusionEntry({
   idA,
@@ -57,64 +73,119 @@ export async function generateFusionEntry({
 
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
-  const siblingContext = await loadFusionSiblingContext(parents[0], parents[1], {
-    excludeKey: key,
-  })
-  const { priorVariants, takenTitles } = siblingContext
-  const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
-  const traceContext = {
-    pairKey: fusionPairKey(parents[0], parents[1]),
-    seed,
-    parentA: parents[0],
-    parentB: parents[1],
+
+  const generateNewEntry = async (): Promise<GenerateFusionResult> => {
+    const siblingContext = await loadFusionSiblingContext(parents[0], parents[1], {
+      excludeKey: key,
+    })
+    const { priorVariants, takenTitles } = siblingContext
+    const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
+    const traceContext = {
+      pairKey: fusionPairKey(parents[0], parents[1]),
+      seed,
+      parentA: parents[0],
+      parentB: parents[1],
+    }
+
+    try {
+      return await runWithFusionTrace(traceContext, async () => {
+        const fusionInput = buildFusionAgentInput(
+          quirkA,
+          quirkB,
+          seed,
+          priorVariants,
+          rollContext,
+          0,
+          undefined,
+          takenTitles,
+        )
+        const english = await generateEnglishFusionWithLlm(fusionInput)
+
+        const existingByName = await findFusionByParentPairAndEnglishName(
+          parents[0],
+          parents[1],
+          english.en.name,
+        )
+        if (existingByName) {
+          await upsertFusionEntryAlias(key, existingByName.key)
+          return storedResult(existingByName)
+        }
+
+        const translations = await Promise.all(
+          FUSION_TRANSLATION_LOCALES.map((locale) =>
+            translateFusionToLocaleWithLlm(english, locale, traceContext),
+          ),
+        )
+
+        const payload = mergeFusionPayload(english, ...translations)
+        const entry = buildFusionEntry(
+          key,
+          parents,
+          seed,
+          { ...payload, ...rollContext.outputRoll },
+          { tier: english.tier, roll: rollContext.roll },
+        )
+        await upsertFusionEntry(entry)
+        return { entry, cached: false, generated: true }
+      })
+    } catch (err) {
+      if (force) throw err
+      const existing = await findFusionByKey(key)
+      if (existing) {
+        return storedResult(existing)
+      }
+      throw err
+    }
   }
 
-  try {
-    return await runWithFusionTrace(traceContext, async () => {
-      const fusionInput = buildFusionAgentInput(
-        quirkA,
-        quirkB,
-        seed,
-        priorVariants,
-        rollContext,
-        0,
-        undefined,
-        takenTitles,
-      )
-      const english = await generateEnglishFusionWithLlm(fusionInput)
+  if (force) {
+    return generateNewEntry()
+  }
 
-      const existingByName = await findFusionByParentPairAndEnglishName(
-        parents[0],
-        parents[1],
-        english.en.name,
-      )
-      if (existingByName) {
-        return { entry: existingByName, cached: true, generated: false }
+  const existingRequest = inFlightFusionGenerations.get(key)
+  if (existingRequest) {
+    return existingRequest
+  }
+
+  const pendingRequest = (async (): Promise<GenerateFusionResult> => {
+    while (true) {
+      const existing = await findFusionByKey(key)
+      if (existing) {
+        return storedResult(existing)
       }
 
-      const translations = await Promise.all(
-        FUSION_TRANSLATION_LOCALES.map((locale) =>
-          translateFusionToLocaleWithLlm(english, locale, traceContext),
-        ),
-      )
+      const claimId = randomUUID()
+      const ownsClaim = await tryClaimFusionGeneration(key, claimId)
+      if (!ownsClaim) {
+        await delay(FUSION_CLAIM_RETRY_MS)
+        continue
+      }
 
-      const payload = mergeFusionPayload(english, ...translations)
-      const entry = buildFusionEntry(
-        key,
-        parents,
-        seed,
-        { ...payload, ...rollContext.outputRoll },
-        { tier: english.tier, roll: rollContext.roll },
-      )
-      await upsertFusionEntry(entry)
-      return { entry, cached: false, generated: true }
-    })
-  } catch (err) {
-    if (force) throw err
-    const existing = await findFusionByKey(key)
-    if (existing) {
-      return { entry: existing, cached: true, generated: false }
+      const renewal = setInterval(() => {
+        void renewFusionGenerationClaim(key, claimId).catch(() => undefined)
+      }, FUSION_CLAIM_RENEW_MS)
+
+      try {
+        const resultStoredWhileClaiming = await findFusionByKey(key)
+        if (resultStoredWhileClaiming) {
+          return storedResult(resultStoredWhileClaiming)
+        }
+
+        return await generateNewEntry()
+      } finally {
+        clearInterval(renewal)
+        await releaseFusionGenerationClaim(key, claimId).catch(() => undefined)
+      }
     }
-    throw err
+  })()
+
+  inFlightFusionGenerations.set(key, pendingRequest)
+
+  try {
+    return await pendingRequest
+  } finally {
+    if (inFlightFusionGenerations.get(key) === pendingRequest) {
+      inFlightFusionGenerations.delete(key)
+    }
   }
 }

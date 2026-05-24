@@ -260,13 +260,13 @@ export function WizardApp({
     generatingFusionKeyRef.current = null
   }
 
-  const tryGenerateFusion = useCallback(async (hybrid: HybridRollResult, force = false) => {
-    if (hybrid.fusionEntry && !force) {
+  const tryGenerateFusion = useCallback(async (hybrid: HybridRollResult) => {
+    if (hybrid.fusionEntry) {
       return
     }
 
     const key = hybridRollKey(hybrid)
-    if (!force && generatingFusionKeyRef.current === key) {
+    if (generatingFusionKeyRef.current === key) {
       return
     }
 
@@ -279,7 +279,6 @@ export function WizardApp({
         hybrid.parents[0].id,
         hybrid.parents[1].id,
         hybrid.seed,
-        { force },
       )
       setResult((prev) => {
         if (!prev || !isHybridRoll(prev) || hybridRollKey(prev) !== key) {
@@ -403,7 +402,15 @@ export function WizardApp({
 
     generatingFusionKeyRef.current = null
     setHybridRoll(next)
-    void tryGenerateFusion(next, true)
+    void tryGenerateFusion(next)
+  }
+
+  function handleRetryFusionGeneration() {
+    if (!result || !isHybridRoll(result)) {
+      return
+    }
+
+    void tryGenerateFusion(result)
   }
 
   function rollFromCurrentSettings() {
@@ -707,7 +714,8 @@ export function WizardApp({
         onRetry={() => {
           rollFromCurrentSettings()
         }}
-        onRetryFusion={handleRerollFusion}
+        onRetryGeneration={handleRetryFusionGeneration}
+        onRerollFusion={handleRerollFusion}
         onBack={handleBack}
         onRestart={handleRestart}
       />

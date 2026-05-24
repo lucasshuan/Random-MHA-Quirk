@@ -18,7 +18,7 @@ interface HybridResultTabsProps {
   resultKey: string
   fusionPhase: FusionPhase
   fusionError: string | null
-  onRetryFusion: () => void
+  onRetryGeneration: () => void
 }
 
 export function HybridResultTabs({
@@ -26,7 +26,7 @@ export function HybridResultTabs({
   resultKey,
   fusionPhase,
   fusionError,
-  onRetryFusion,
+  onRetryGeneration,
 }: HybridResultTabsProps) {
   const { locale, t } = useI18n()
   const [view, setView] = useState<HybridView>('fusion')
@@ -92,7 +92,7 @@ export function HybridResultTabs({
                   <button
                     type="button"
                     className="big-action fusion-retry-btn"
-                    onClick={onRetryFusion}
+                    onClick={onRetryGeneration}
                   >
                     {t('fusion.retryGenerate')}
                   </button>
@@ -103,7 +103,7 @@ export function HybridResultTabs({
                   <button
                     type="button"
                     className="big-action fusion-retry-btn"
-                    onClick={onRetryFusion}
+                    onClick={onRetryGeneration}
                   >
                     {t('fusion.retryGenerate')}
                   </button>

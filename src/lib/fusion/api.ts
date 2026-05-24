@@ -119,7 +119,6 @@ export async function requestFusionGeneration(
   parentA: QuirkId,
   parentB: QuirkId,
   seed: string,
-  options?: { force?: boolean },
 ): Promise<FusionCacheEntry> {
   const res = await fetch('/api/fusion/generate', {
     method: 'POST',
@@ -128,7 +127,6 @@ export async function requestFusionGeneration(
       parentA,
       parentB,
       seed,
-      force: options?.force ?? false,
     }),
   })
 

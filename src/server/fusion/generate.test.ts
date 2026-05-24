@@ -7,7 +7,11 @@ const mockFindFusionByKey = vi.fn()
 const mockFindFusionByParentPairAndEnglishName = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
 const mockLoadFusionSiblingContext = vi.fn()
+const mockTryClaimFusionGeneration = vi.fn()
+const mockRenewFusionGenerationClaim = vi.fn()
+const mockReleaseFusionGenerationClaim = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
+const mockUpsertFusionEntryAlias = vi.fn()
 const mockGetQuirkById = vi.fn()
 
 vi.mock('./llm', () => ({
@@ -25,7 +29,15 @@ vi.mock('./repository', () => ({
     mockListFusionPriorVariantsForParentPair(...args),
   loadFusionSiblingContext: (...args: unknown[]) =>
     mockLoadFusionSiblingContext(...args),
+  tryClaimFusionGeneration: (...args: unknown[]) =>
+    mockTryClaimFusionGeneration(...args),
+  renewFusionGenerationClaim: (...args: unknown[]) =>
+    mockRenewFusionGenerationClaim(...args),
+  releaseFusionGenerationClaim: (...args: unknown[]) =>
+    mockReleaseFusionGenerationClaim(...args),
   upsertFusionEntry: (...args: unknown[]) => mockUpsertFusionEntry(...args),
+  upsertFusionEntryAlias: (...args: unknown[]) =>
+    mockUpsertFusionEntryAlias(...args),
 }))
 
 vi.mock('./catalog', () => ({
@@ -91,7 +103,7 @@ describe('generateFusionEntry', () => {
     mockGetQuirkById.mockImplementation((id: string) =>
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
-    mockFindFusionByKey.mockResolvedValue(cachedEntry)
+    mockFindFusionByKey.mockResolvedValue(null)
     mockFindFusionByParentPairAndEnglishName.mockResolvedValue(null)
     mockLoadFusionSiblingContext.mockResolvedValue({
       priorVariants: [
@@ -99,7 +111,11 @@ describe('generateFusionEntry', () => {
       ],
       takenTitles: ['Cached'],
     })
+    mockTryClaimFusionGeneration.mockResolvedValue(true)
+    mockRenewFusionGenerationClaim.mockResolvedValue(undefined)
+    mockReleaseFusionGenerationClaim.mockResolvedValue(undefined)
     mockUpsertFusionEntry.mockResolvedValue(undefined)
+    mockUpsertFusionEntryAlias.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
       (_english: unknown, locale: 'pt-BR' | 'es') => {
@@ -122,13 +138,34 @@ describe('generateFusionEntry', () => {
     )
   })
 
-  it('generates via English + locale LLM calls even when Supabase already has the key', async () => {
+  it('returns an existing keyed entry without issuing LLM calls', async () => {
+    mockFindFusionByKey.mockResolvedValue(cachedEntry)
+
     const result = await generateFusionEntry({
       idA: 'acid',
       idB: 'explosion',
       seed: 'seed1',
     })
 
+    expect(mockFindFusionByKey).toHaveBeenCalledOnce()
+    expect(mockTryClaimFusionGeneration).not.toHaveBeenCalled()
+    expect(mockLoadFusionSiblingContext).not.toHaveBeenCalled()
+    expect(mockGenerateEnglishFusionWithLlm).not.toHaveBeenCalled()
+    expect(result).toEqual({
+      entry: cachedEntry,
+      cached: true,
+      generated: false,
+    })
+  })
+
+  it('generates and persists a fresh claimed key', async () => {
+    const result = await generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'seed1',
+    })
+
+    expect(mockTryClaimFusionGeneration).toHaveBeenCalledOnce()
     expect(mockLoadFusionSiblingContext).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
     const fusionInput = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
@@ -137,8 +174,8 @@ describe('generateFusionEntry', () => {
     expect(fusionInput.meta.seed).toBe('seed1')
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
     expect(mockTranslateFusionToLocaleWithLlm.mock.calls[0][0]).toEqual(englishPayload)
-    expect(mockFindFusionByKey).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()
+    expect(mockReleaseFusionGenerationClaim).toHaveBeenCalledOnce()
     expect(result.generated).toBe(true)
     expect(result.cached).toBe(false)
     expect(result.entry.en.name).toBe('Fresh')
@@ -148,6 +185,10 @@ describe('generateFusionEntry', () => {
   })
 
   it('falls back to Supabase when generation fails', async () => {
+    mockFindFusionByKey
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(cachedEntry)
     mockGenerateEnglishFusionWithLlm.mockRejectedValue(new Error('LLM down'))
 
     const result = await generateFusionEntry({
@@ -156,8 +197,9 @@ describe('generateFusionEntry', () => {
       seed: 'seed1',
     })
 
-    expect(mockFindFusionByKey).toHaveBeenCalledOnce()
+    expect(mockFindFusionByKey).toHaveBeenCalledTimes(3)
     expect(mockTranslateFusionToLocaleWithLlm).not.toHaveBeenCalled()
+    expect(mockReleaseFusionGenerationClaim).toHaveBeenCalledOnce()
     expect(result.cached).toBe(true)
     expect(result.generated).toBe(false)
     expect(result.entry).toEqual(cachedEntry)
@@ -190,9 +232,63 @@ describe('generateFusionEntry', () => {
     )
     expect(mockTranslateFusionToLocaleWithLlm).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).not.toHaveBeenCalled()
+    expect(mockUpsertFusionEntryAlias).toHaveBeenCalledWith(
+      'acid+explosion:seed1',
+      'acid+explosion:older-seed',
+    )
     expect(result.cached).toBe(true)
     expect(result.generated).toBe(false)
     expect(result.entry).toEqual(siblingEntry)
+  })
+
+  it('shares an in-flight generation for concurrent same-key requests', async () => {
+    let resolveEnglish!: (payload: typeof englishPayload) => void
+    mockGenerateEnglishFusionWithLlm.mockImplementationOnce(
+      () =>
+        new Promise<typeof englishPayload>((resolve) => {
+          resolveEnglish = resolve
+        }),
+    )
+
+    const first = generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'shared-seed',
+    })
+    const second = generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'shared-seed',
+    })
+
+    await vi.waitFor(() => {
+      expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
+    })
+    resolveEnglish(englishPayload)
+
+    const [firstResult, secondResult] = await Promise.all([first, second])
+
+    expect(mockTryClaimFusionGeneration).toHaveBeenCalledOnce()
+    expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
+    expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
+    expect(firstResult).toEqual(secondResult)
+  })
+
+  it('waits for a different claimant to store the same key', async () => {
+    mockTryClaimFusionGeneration.mockResolvedValueOnce(false)
+    mockFindFusionByKey
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(cachedEntry)
+
+    const result = await generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'seed1',
+    })
+
+    expect(mockTryClaimFusionGeneration).toHaveBeenCalledOnce()
+    expect(mockGenerateEnglishFusionWithLlm).not.toHaveBeenCalled()
+    expect(result.entry).toEqual(cachedEntry)
   })
 
   it('does not fall back when force is true', async () => {
@@ -210,5 +306,6 @@ describe('generateFusionEntry', () => {
     ).rejects.toThrow('Translation down')
 
     expect(mockFindFusionByKey).not.toHaveBeenCalled()
+    expect(mockTryClaimFusionGeneration).not.toHaveBeenCalled()
   })
 })

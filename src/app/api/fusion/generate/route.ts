@@ -14,7 +14,6 @@ interface FusionRequestBody {
   parentA?: string
   parentB?: string
   seed?: string
-  force?: boolean
 }
 
 function jsonWithHeaders(
@@ -42,7 +41,7 @@ export async function POST(request: Request) {
     return apiErrorJson({ code: 'INVALID_JSON' }, request, 400, rateHeaders)
   }
 
-  const { parentA, parentB, seed, force } = body
+  const { parentA, parentB, seed } = body
   if (!parentA || !parentB || !seed) {
     return apiErrorJson(
       { code: 'MISSING_FUSION_FIELDS' },
@@ -57,7 +56,6 @@ export async function POST(request: Request) {
       idA: parentA,
       idB: parentB,
       seed,
-      force: force ?? false,
     })
 
     return jsonWithHeaders(

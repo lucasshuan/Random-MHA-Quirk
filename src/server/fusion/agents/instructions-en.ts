@@ -1,5 +1,8 @@
 import type { FusionAgentInput } from '@/types/fusion-agent'
-import { buildFusionEnglishTierBlock } from '../prompts/tier-decision'
+import {
+  buildFusionEnglishTierStaticBlock,
+  buildFusionEnglishTierVariantBlock,
+} from '../prompts/tier-decision'
 import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
 
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
@@ -31,6 +34,10 @@ Scientific synthesis (when it strengthens the hybrid):
 - Rolled type, range, facets, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.
 
 Return only JSON matching the output schema. No markdown.`
+
+const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
+
+${buildFusionEnglishTierStaticBlock()}`
 
 function formatParentBlock(parent: FusionAgentInput['parents'][number]): string {
   return `- ${parent.name} (${parent.id}): tier ${parent.tier}, ${parent.type}, range ${parent.range}, facets [${parent.facets.join(', ')}]. ${parent.description}`
@@ -80,9 +87,9 @@ These titles are already used for this parent pair: ${fusion.takenTitles.map((na
 Pick a completely different en.name — new words, new joke, new cadence. Do not reuse, rephrase, or lightly tweak any of them.`
     : ''
 
-  return `${STATIC_INSTRUCTIONS}
+  return `${STABLE_INSTRUCTIONS_PREFIX}
 
-## Specification (seed ${fusion.meta.seed}, pair ${fusion.meta.pairKey}, attempt ${fusion.meta.attempt})
+## Request-specific specification (seed ${fusion.meta.seed}, pair ${fusion.meta.pairKey}, attempt ${fusion.meta.attempt})
 
 ### Fixed mechanics (copy type, range, facets into output JSON first)
 - type: ${mechanics.type}
@@ -130,7 +137,7 @@ ${formatParentBlock(fusion.parents[1])}
 
 ### ${formatPriorVariantsBlock(fusion)}${formatTakenTitlesBlock(fusion)}${rejectedNameBlock}
 
-## Tier assignment
+## Tier calibration for this variant
 
-${buildFusionEnglishTierBlock(fusion)}`
+${buildFusionEnglishTierVariantBlock(fusion)}`
 }

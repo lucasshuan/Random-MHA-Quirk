@@ -23,7 +23,8 @@ interface StepFinalResultProps {
   shareUrl?: string | null
   canRetryHybrid?: boolean
   onRetry: () => void
-  onRetryFusion: () => void
+  onRetryGeneration: () => void
+  onRerollFusion: () => void
   onBack: () => void
   onRestart: () => void
 }
@@ -61,7 +62,8 @@ interface ResultRevealProps {
   shareUrl?: string | null
   canRetryHybrid?: boolean
   onRetry: () => void
-  onRetryFusion: () => void
+  onRetryGeneration: () => void
+  onRerollFusion: () => void
   onBack: () => void
   onRestart: () => void
 }
@@ -76,7 +78,8 @@ function ResultReveal({
   shareUrl = null,
   canRetryHybrid = false,
   onRetry,
-  onRetryFusion,
+  onRetryGeneration,
+  onRerollFusion,
   onBack,
   onRestart,
 }: ResultRevealProps) {
@@ -179,7 +182,7 @@ function ResultReveal({
           resultKey={hybridContentKey(result)}
           fusionPhase={fusionPhase}
           fusionError={fusionError}
-          onRetryFusion={onRetryFusion}
+          onRetryGeneration={onRetryGeneration}
         />
       ) : result ? (
         <div className="result-cards-reveal">
@@ -203,7 +206,7 @@ function ResultReveal({
           <button
             type="button"
             className="icon-btn fusion-reroll-btn"
-            onClick={onRetryFusion}
+            onClick={onRerollFusion}
             disabled={fusionPhase === 'generating'}
             aria-label={t('fusion.rerollVariant')}
             data-tooltip={t('fusion.rerollVariant')}

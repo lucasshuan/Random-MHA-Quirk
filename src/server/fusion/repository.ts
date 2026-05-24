@@ -30,6 +30,8 @@ interface FusionRow {
   roll: FusionRollMeta | null
 }
 
+const FUSION_GENERATION_CLAIM_TTL_SECONDS = 120
+
 import { QUIRK_TIERS } from '@/types/quirk'
 
 const DEFAULT_ROLL: FusionRollMeta = {
@@ -262,7 +264,7 @@ export async function listAllFusionEntries(): Promise<FusionCacheEntry[]> {
   return (data ?? []).map((row) => rowToEntry(row as FusionRow))
 }
 
-export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {
+async function findFusionRowByKey(key: string): Promise<FusionRow | null> {
   const supabase = getSupabaseAdmin()
   const { data, error } = await supabase
     .from('fusion_entries')
@@ -274,8 +276,30 @@ export async function findFusionByKey(key: string): Promise<FusionCacheEntry | n
     throw new Error(`Supabase lookup failed: ${error.message}`)
   }
 
-  if (!data) return null
-  const row = data as FusionRow
+  return data ? (data as FusionRow) : null
+}
+
+export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {
+  const supabase = getSupabaseAdmin()
+  let row = await findFusionRowByKey(key)
+
+  if (!row) {
+    const { data: alias, error } = await supabase
+      .from('fusion_entry_aliases')
+      .select('entry_key')
+      .eq('key', key)
+      .maybeSingle()
+
+    if (error) {
+      throw new Error(`Supabase alias lookup failed: ${error.message}`)
+    }
+
+    if (alias) {
+      row = await findFusionRowByKey((alias as { entry_key: string }).entry_key)
+    }
+  }
+
+  if (!row) return null
   const hadTier = Boolean(row.tier && QUIRK_TIERS.includes(row.tier as QuirkTier))
   const hadRoll = parseFusionRollMeta(row.roll) !== null
   const entry = rowToEntry(row)
@@ -290,5 +314,70 @@ export async function upsertFusionEntry(entry: FusionCacheEntry): Promise<void> 
 
   if (error) {
     throw new Error(`Supabase upsert failed: ${error.message}`)
+  }
+}
+
+export async function upsertFusionEntryAlias(key: string, entryKey: string): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.from('fusion_entry_aliases').upsert(
+    { key, entry_key: entryKey },
+    { onConflict: 'key' },
+  )
+
+  if (error) {
+    throw new Error(`Supabase alias upsert failed: ${error.message}`)
+  }
+}
+
+export async function tryClaimFusionGeneration(
+  key: string,
+  claimId: string,
+): Promise<boolean> {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase.rpc('claim_fusion_generation', {
+    p_key: key,
+    p_claim_id: claimId,
+    p_lease_seconds: FUSION_GENERATION_CLAIM_TTL_SECONDS,
+  })
+
+  if (error) {
+    throw new Error(`Supabase fusion claim failed: ${error.message}`)
+  }
+
+  return data === true
+}
+
+export async function renewFusionGenerationClaim(
+  key: string,
+  claimId: string,
+): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  const expiresAt = new Date(
+    Date.now() + FUSION_GENERATION_CLAIM_TTL_SECONDS * 1000,
+  ).toISOString()
+  const { error } = await supabase
+    .from('fusion_generation_claims')
+    .update({ expires_at: expiresAt })
+    .eq('key', key)
+    .eq('claim_id', claimId)
+
+  if (error) {
+    throw new Error(`Supabase fusion claim renewal failed: ${error.message}`)
+  }
+}
+
+export async function releaseFusionGenerationClaim(
+  key: string,
+  claimId: string,
+): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase
+    .from('fusion_generation_claims')
+    .delete()
+    .eq('key', key)
+    .eq('claim_id', claimId)
+
+  if (error) {
+    throw new Error(`Supabase fusion claim release failed: ${error.message}`)
   }
 }

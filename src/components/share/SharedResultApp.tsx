@@ -165,13 +165,13 @@ export function SharedResultApp({
   }, [router, searchParams, setLocale])
 
   const tryGenerateFusion = useCallback(
-    async (hybrid: HybridRollResult, force = false) => {
-      if (hybrid.fusionEntry && !force) {
+    async (hybrid: HybridRollResult) => {
+      if (hybrid.fusionEntry) {
         return
       }
 
       const key = hybridRollKey(hybrid)
-      if (!force && generatingFusionKeyRef.current === key) {
+      if (generatingFusionKeyRef.current === key) {
         return
       }
 
@@ -180,7 +180,7 @@ export function SharedResultApp({
       setFusionError(null)
 
       try {
-        let fusionEntry = force ? null : await fetchFusionFromCache(
+        let fusionEntry = await fetchFusionFromCache(
           hybrid.parents[0].id,
           hybrid.parents[1].id,
           hybrid.seed,
@@ -191,7 +191,6 @@ export function SharedResultApp({
             hybrid.parents[0].id,
             hybrid.parents[1].id,
             hybrid.seed,
-            { force },
           )
         }
 
@@ -418,7 +417,7 @@ export function SharedResultApp({
       saveWizardNavigationForShare(nextPath, wizardNavigation)
     }
     router.replace(nextPath)
-    void tryGenerateFusion(next, true)
+    void tryGenerateFusion(next)
   }
 
   function handleRerollFusion() {
@@ -459,7 +458,15 @@ export function SharedResultApp({
       saveWizardNavigationForShare(nextPath, wizardNavigation)
     }
     router.replace(nextPath)
-    void tryGenerateFusion(next, true)
+    void tryGenerateFusion(next)
+  }
+
+  function handleRetryFusionGeneration() {
+    if (!result || !isHybridRoll(result)) {
+      return
+    }
+
+    void tryGenerateFusion(result)
   }
 
   function goStart() {
@@ -519,7 +526,8 @@ export function SharedResultApp({
           }
           goStart()
         }}
-        onRetryFusion={handleRerollFusion}
+        onRetryGeneration={handleRetryFusionGeneration}
+        onRerollFusion={handleRerollFusion}
         onBack={handleBack}
         onRestart={handleRestart}
       />

@@ -1,6 +1,6 @@
 import type { ModelSettings } from '@openai/agents'
 
-export type FusionLlmPurpose = 'fusion' | 'translation' | 'tier'
+export type FusionLlmPurpose = 'fusion' | 'translation'
 
 type FusionReasoningEffort = NonNullable<
   NonNullable<ModelSettings['reasoning']>['effort']
@@ -56,9 +56,6 @@ export function resolveOpenAiReasoningEffort(
       process.env.FUSION_TRANSLATION_REASONING_EFFORT,
       'minimal',
     )
-  }
-  if (purpose === 'tier') {
-    return parseReasoningEffort(process.env.FUSION_TIER_REASONING_EFFORT, 'low')
   }
   return parseReasoningEffort(process.env.FUSION_REASONING_EFFORT, 'low')
 }

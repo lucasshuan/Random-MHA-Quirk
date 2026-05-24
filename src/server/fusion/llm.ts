@@ -1,13 +1,9 @@
 import { requireOneOf } from '@/server/env/utils'
 import type { FusionAgentInput } from '@/types/fusion-agent'
 import {
-  decideFusionTierWithAgent,
   generateEnglishFusionWithAgent,
   translateFusionWithAgent,
 } from './agents'
-import type { FusionCatalogQuirk } from './catalog'
-import type { FusionStrategyKey } from './prompts/strategy'
-import type { QuirkDisplayTier } from '@/types/quirk'
 import type { FusionTranslationLocale } from './constants'
 import type { FusionPipelineTraceContext } from './agents/tracing'
 import type {
@@ -24,23 +20,12 @@ export {
 } from './openai-model'
 
 export function resolveFusionProvider(): { name: 'openai'; apiKey: string } {
-  const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
   const openai = process.env.OPENAI_API_KEY?.trim()
-
-  if (pref === 'gemini') {
-    throw new Error(
-      'Fusão com Gemini foi removida. Use FUSION_PROVIDER=openai e OPENAI_API_KEY.',
-    )
+  if (!openai) {
+    requireOneOf(['OPENAI_API_KEY'], 'Fusão LLM')
+    throw new Error('OPENAI_API_KEY está vazio.')
   }
-  if (pref === 'openai') {
-    if (!openai) throw new Error('FUSION_PROVIDER=openai mas OPENAI_API_KEY está vazio.')
-    return { name: 'openai', apiKey: openai }
-  }
-
-  if (openai) return { name: 'openai', apiKey: openai }
-
-  requireOneOf(['OPENAI_API_KEY'], 'Fusão LLM')
-  throw new Error('Nenhum provedor LLM configurado.')
+  return { name: 'openai', apiKey: openai }
 }
 
 export function generateEnglishFusionWithLlm(
@@ -55,14 +40,4 @@ export function translateFusionToLocaleWithLlm(
   trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy> {
   return translateFusionWithAgent(english, locale, trace)
-}
-
-export function decideFusionTierWithLlm(
-  fusion: ValidatedEnglishFusionPayload,
-  parentA: FusionCatalogQuirk,
-  parentB: FusionCatalogQuirk,
-  strategyKey: FusionStrategyKey,
-  trace?: FusionPipelineTraceContext,
-): Promise<QuirkDisplayTier> {
-  return decideFusionTierWithAgent(fusion, parentA, parentB, strategyKey, trace)
 }

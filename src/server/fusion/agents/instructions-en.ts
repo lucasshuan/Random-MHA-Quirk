@@ -1,10 +1,11 @@
 import type { FusionAgentInput } from '@/types/fusion-agent'
+import { buildFusionEnglishTierBlock } from '../prompts/tier-decision'
 import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
 
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
 
 Your job:
-- Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name last.
+- Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name, then tier last.
 - Follow the fusion strategy, anti-mashup rules, name register, utility nudge, and constraints in the specification.
 - One-Quirk discipline: exactly one birth Quirk, one core loop — not two powers stapled together.
 - NEW birth Quirk (required): the result must be a third rule neither parent could claim alone. A reader who knows both parents must not say "that is just Parent A" or "that is just Parent B". Do not restate either parent's catalog effect with light rewording, a thematic rename, or a metaphor that makes the hybrid identical to one parent (e.g. "like a turtle retracting into its shell" when retraction is already one parent's full kit).
@@ -13,6 +14,7 @@ Your job:
 - en.description must lead with the concrete mechanism. A reader should understand the quirk from the description alone.
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
 - Write en.name only after en.description is finished — the title must still make the gist obvious (pun or joke is fine if the effect stays clear).
+- Set tier only after en.name — rank the finished hybrid using the Tier assignment section below.
 - Do not name parent quirks, their ids, "fusion", "combination", or source quirks in en.description.
 - Mechanic tradeoffs are optional: at most one physical cost OR one situational scope when needed — do not pad en.description with extra clauses to sound detailed.
 - en.description length is a hard server-validated limit (see Description length below); prefer 2 short sentences over a third — never exceed the max character count.
@@ -126,5 +128,9 @@ ${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} charac
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}
 
-### ${formatPriorVariantsBlock(fusion)}${formatTakenTitlesBlock(fusion)}${rejectedNameBlock}`
+### ${formatPriorVariantsBlock(fusion)}${formatTakenTitlesBlock(fusion)}${rejectedNameBlock}
+
+## Tier assignment
+
+${buildFusionEnglishTierBlock(fusion)}`
 }

@@ -1,22 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import { buildFusionTierDecisionInstructions } from '../agents/instructions-tier'
+import { buildFusionAgentInput } from '../agent-input'
+import { deriveFusionRollContext } from './roll-context'
 import {
+  buildFusionEnglishTierBlock,
   buildFusionTierDecisionRubric,
   formatFusionStrategyTierGuidance,
-  formatFusionTierDecisionQuirk,
 } from './tier-decision'
-
-const sampleFusion = {
-  en: {
-    name: 'Shear Dome',
-    description:
-      'The user sweats a non-Newtonian fluid that hardens on impact into a short-lived protective dome.',
-  },
-  type: 'Emitter' as const,
-  range: 'Short' as const,
-  facets: ['Enhancement'] as const,
-  origin: 'ORIGINAL' as const,
-}
 
 describe('buildFusionTierDecisionRubric', () => {
   it('includes seven questions, tier scale, and Special tier guard', () => {
@@ -53,58 +42,52 @@ describe('formatFusionStrategyTierGuidance', () => {
   })
 })
 
-describe('buildFusionTierDecisionInstructions', () => {
-  it('embeds the quirk under test and parent calibration', () => {
-    const text = buildFusionTierDecisionInstructions(sampleFusion, {
-      id: 'permeation',
-      name: 'Permeation',
-      origin: 'BNHA',
-      tier: 'A',
-      type: 'Emitter',
-      range: 'Short',
-      facets: ['Mobility'],
-      description: 'Phasing.',
-    }, {
-      id: 'hardening',
-      name: 'Hardening',
-      origin: 'BNHA',
-      tier: 'B',
-      type: 'Transformation',
-      range: 'Contact',
-      facets: ['Enhancement'],
-      description: 'Hardens skin.',
-    }, 'synergy')
+const quirkA = {
+  id: 'permeation',
+  name: 'Permeation',
+  origin: 'BNHA' as const,
+  tier: 'A' as const,
+  type: 'Emitter' as const,
+  range: 'Short' as const,
+  facets: ['Mobility'] as const,
+  description: 'Phasing.',
+}
 
-    expect(text).toContain(formatFusionTierDecisionQuirk(sampleFusion))
+const quirkB = {
+  id: 'hardening',
+  name: 'Hardening',
+  origin: 'BNHA' as const,
+  tier: 'B' as const,
+  type: 'Transformation' as const,
+  range: 'Contact' as const,
+  facets: ['Enhancement'] as const,
+  description: 'Hardens skin.',
+}
+
+describe('buildFusionEnglishTierBlock', () => {
+  it('embeds parent tier calibration', () => {
+    const fusion = buildFusionAgentInput(
+      quirkA,
+      quirkB,
+      'tier-block-test',
+      [],
+      deriveFusionRollContext('tier-block-test', quirkA, quirkB, []),
+    )
+    const text = buildFusionEnglishTierBlock(fusion)
+
     expect(text).toContain('Permeation: tier A')
     expect(text).toContain('Hardening: tier B')
+    expect(text).toContain('Set **tier** in JSON last')
   })
 
   it('includes failure-mode downgrade when strategy is failure-mode', () => {
-    const text = buildFusionTierDecisionInstructions(
-      sampleFusion,
-      {
-        id: 'a',
-        name: 'A',
-        origin: 'BNHA',
-        tier: 'S',
-        type: 'Emitter',
-        range: 'Long',
-        facets: [],
-        description: '',
-      },
-      {
-        id: 'b',
-        name: 'B',
-        origin: 'BNHA',
-        tier: 'S',
-        type: 'Emitter',
-        range: 'Long',
-        facets: [],
-        description: '',
-      },
-      'failure-mode',
-    )
+    const rollContext = deriveFusionRollContext('tier-block-test', quirkA, quirkB, [])
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'tier-block-test', [], {
+      ...rollContext,
+      roll: { ...rollContext.roll, strategyKey: 'failure-mode' },
+    })
+
+    const text = buildFusionEnglishTierBlock(fusion)
 
     expect(text).toContain('mandatory tier adjustment')
     expect(text).toContain('at least one band lower')

@@ -1,6 +1,6 @@
 /**
  * Traduz descrições EN (manual-copy / Fandom) para PT-BR natural.
- * Requer OPENAI_API_KEY ou GEMINI_API_KEY no .env
+ * Requer OPENAI_API_KEY no .env
  *
  * Uso: node tools/catalog/bin/translate-pt.mjs
  * Depois: node tools/catalog/bin/build-catalog.mjs
@@ -29,40 +29,15 @@ async function probeOpenAI(apiKey) {
   return res.ok
 }
 
-async function probeGemini(apiKey) {
-  const model = process.env.GEMINI_MODEL?.trim() || 'gemini-2.0-flash'
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}?key=${apiKey}`
-  const res = await fetch(url)
-  return res.ok
-}
-
-async function resolveProvider() {
-  const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
-  const openai = process.env.OPENAI_API_KEY?.trim()
-  const gemini = process.env.GEMINI_API_KEY?.trim()
-
-  const tryOpenAI = async () => openai && (await probeOpenAI(openai)) && { name: 'openai', apiKey: openai }
-  const tryGemini = async () => gemini && (await probeGemini(gemini)) && { name: 'gemini', apiKey: gemini }
-
-  if (pref === 'openai') {
-    const p = await tryOpenAI()
-    if (p) return p
+async function resolveOpenAiApiKey() {
+  const apiKey = process.env.OPENAI_API_KEY?.trim()
+  if (!apiKey) {
+    throw new Error('OPENAI_API_KEY ausente no .env')
+  }
+  if (!(await probeOpenAI(apiKey))) {
     throw new Error('OPENAI_API_KEY inválida ou inacessível.')
   }
-  if (pref === 'gemini') {
-    const p = await tryGemini()
-    if (p) return p
-    throw new Error('GEMINI_API_KEY inválida ou inacessível.')
-  }
-
-  const pOpen = await tryOpenAI()
-  if (pOpen) return pOpen
-  const pGem = await tryGemini()
-  if (pGem) return pGem
-
-  throw new Error(
-    'Nenhuma API válida. Corrija OPENAI_API_KEY ou GEMINI_API_KEY no .env, ou rode: node tools/catalog/bin/sync-pt.mjs',
-  )
+  return apiKey
 }
 
 async function callOpenAI(apiKey, userPrompt) {
@@ -91,27 +66,6 @@ async function callOpenAI(apiKey, userPrompt) {
   const data = await res.json()
   const text = data.choices?.[0]?.message?.content
   if (!text) throw new Error('OpenAI resposta vazia')
-  return JSON.parse(text)
-}
-
-async function callGemini(apiKey, userPrompt) {
-  const model = process.env.GEMINI_MODEL?.trim() || 'gemini-2.0-flash'
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-      generationConfig: {
-        temperature: 0.35,
-        responseMimeType: 'application/json',
-      },
-    }),
-  })
-  if (!res.ok) throw new Error(`Gemini HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`)
-  const data = await res.json()
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text
-  if (!text) throw new Error('Gemini resposta vazia')
   return JSON.parse(text)
 }
 
@@ -150,7 +104,7 @@ function validateItems(items, expectedIds) {
   return map
 }
 
-async function translateBatch(provider, batch) {
+async function translateBatch(apiKey, batch) {
   const prompt = buildPrompt(
     batch.map(({ id, en }) => ({ id, name: en.name, description: en.description })),
   )
@@ -158,10 +112,7 @@ async function translateBatch(provider, batch) {
 
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const raw =
-        provider.name === 'openai'
-          ? await callOpenAI(provider.apiKey, prompt)
-          : await callGemini(provider.apiKey, prompt)
+      const raw = await callOpenAI(apiKey, prompt)
       const items = raw.items ?? raw.translations ?? raw
       return validateItems(items, expectedIds)
     } catch (err) {
@@ -196,8 +147,8 @@ async function main() {
     return
   }
 
-  const provider = await resolveProvider()
-  console.log(`Provedor: ${provider.name}`)
+  const apiKey = await resolveOpenAiApiKey()
+  console.log('Provedor: openai')
 
   let done = 0
   let failed = 0
@@ -207,7 +158,7 @@ async function main() {
     const batch = chunkIds.map((id) => ({ id, en: manual.en[id] }))
 
     try {
-      const translated = await translateBatch(provider, batch)
+      const translated = await translateBatch(apiKey, batch)
       for (const [id, copy] of translated) {
         manual['pt-BR'][id] = copy
         done++

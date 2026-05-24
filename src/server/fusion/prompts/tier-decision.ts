@@ -1,5 +1,6 @@
+import type { FusionAgentInput } from '@/types/fusion-agent'
 import type { ValidatedEnglishFusionPayload } from '../validate'
-import type { FusionStrategyKey } from './strategy'
+import { isFusionStrategyKey, type FusionStrategyKey } from './strategy'
 
 /** Tiers the tier-decision agent may output (never Ω). */
 export const FUSION_TIER_DECISION_OUTPUT = ['S', 'A', 'B', 'C'] as const
@@ -92,4 +93,21 @@ export function formatFusionTierDecisionQuirk(
 - type: ${fusion.type}
 - range: ${fusion.range}
 - facets: [${fusion.facets.join(', ')}]`
+}
+
+/** Tier rubric block for the English fusion agent (same rules as the former tier-only step). */
+export function buildFusionEnglishTierBlock(fusion: FusionAgentInput): string {
+  const strategyKey = isFusionStrategyKey(fusion.roll.strategyKey)
+    ? fusion.roll.strategyKey
+    : 'synergy'
+
+  return `${buildFusionTierDecisionRubric()}
+
+${formatFusionStrategyTierGuidance(strategyKey)}
+
+### Parent tiers (calibration only — not a floor or ceiling)
+- ${fusion.parents[0].name}: tier ${fusion.parents[0].tier}
+- ${fusion.parents[1].name}: tier ${fusion.parents[1].tier}
+
+Set **tier** in JSON last — after en.description and en.name — from the finished hybrid only.`
 }

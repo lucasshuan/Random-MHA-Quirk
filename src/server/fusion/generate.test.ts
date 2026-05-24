@@ -3,7 +3,6 @@ import type { FusionCacheEntry } from '@/types/fusion'
 
 const mockGenerateEnglishFusionWithLlm = vi.fn()
 const mockTranslateFusionToLocaleWithLlm = vi.fn()
-const mockDecideFusionTierWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
 const mockFindFusionByParentPairAndEnglishName = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
@@ -16,8 +15,6 @@ vi.mock('./llm', () => ({
     mockGenerateEnglishFusionWithLlm(...args),
   translateFusionToLocaleWithLlm: (...args: unknown[]) =>
     mockTranslateFusionToLocaleWithLlm(...args),
-  decideFusionTierWithLlm: (...args: unknown[]) =>
-    mockDecideFusionTierWithLlm(...args),
 }))
 
 vi.mock('./repository', () => ({
@@ -85,6 +82,7 @@ const englishPayload = {
   range: 'Medium' as const,
   facets: ['Emission'] as const,
   origin: 'ORIGINAL' as const,
+  tier: 'A' as const,
 }
 
 describe('generateFusionEntry', () => {
@@ -103,7 +101,6 @@ describe('generateFusionEntry', () => {
     })
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
-    mockDecideFusionTierWithLlm.mockResolvedValue('A')
     mockTranslateFusionToLocaleWithLlm.mockImplementation(
       (_english: unknown, locale: 'pt-BR' | 'es') => {
         if (locale === 'pt-BR') {
@@ -147,6 +144,7 @@ describe('generateFusionEntry', () => {
     expect(result.entry.en.name).toBe('Fresh')
     expect(result.entry['pt-BR'].name).toBe('Novo')
     expect(result.entry.es.name).toBe('Nuevo')
+    expect(result.entry.tier).toBe('A')
   })
 
   it('falls back to Supabase when generation fails', async () => {

@@ -72,7 +72,7 @@ describe('buildFusionEnglishInstructions', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
-    expect(instructions).toContain('then write en.description, then en.name last')
+    expect(instructions).toContain('then write en.description, then en.name, then tier last')
     expect(instructions).toContain('what the user **has**')
     expect(instructions).toContain('NEW birth Quirk')
     expect(instructions).toContain('Could this description belong to either parent unchanged?')
@@ -90,6 +90,15 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain(
       'Rolled facets describe how the hybrid presents; they never replace',
     )
+  })
+
+  it('includes tier assignment rubric in the same prompt', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('## Tier assignment')
+    expect(instructions).toContain('Seven evaluation questions')
+    expect(instructions).toContain('Set **tier** in JSON last')
   })
 
   it('explains only the selected output type in description focus', () => {

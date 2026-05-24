@@ -7,7 +7,7 @@ Roll random My Hero Academia quirks (solo or hybrid fusion). Bilingual UI (EN / 
 - **Next.js 16** (App Router)
 - **React 19**
 - **Supabase** — fusion cache (`fusion_entries`)
-- **OpenAI / Gemini** — on-demand hybrid fusion (server-only)
+- **OpenAI** — on-demand hybrid fusion (server-only)
 
 ## Setup
 

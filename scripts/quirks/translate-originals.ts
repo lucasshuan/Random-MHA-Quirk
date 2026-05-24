@@ -109,92 +109,47 @@ function saveCheckpoint(
   writeFileSync(checkpointPath(locale), JSON.stringify(copy, null, 2), 'utf8')
 }
 
-function resolveProvider(): { name: 'openai' | 'gemini'; apiKey: string } {
-  const pref = (process.env.FUSION_PROVIDER ?? 'auto').toLowerCase()
-  const openai = process.env.OPENAI_API_KEY?.trim()
-  const gemini = process.env.GEMINI_API_KEY?.trim()
-
-  if (pref === 'openai' && openai) return { name: 'openai', apiKey: openai }
-  if (pref === 'gemini' && gemini) return { name: 'gemini', apiKey: gemini }
-  if (openai) return { name: 'openai', apiKey: openai }
-  if (gemini) return { name: 'gemini', apiKey: gemini }
-
-  throw new Error('Defina OPENAI_API_KEY ou GEMINI_API_KEY no .env')
+function resolveOpenAiApiKey(): string {
+  const apiKey = process.env.OPENAI_API_KEY?.trim()
+  if (!apiKey) throw new Error('Defina OPENAI_API_KEY no .env')
+  return apiKey
 }
 
 async function callLlm(prompt: string): Promise<Record<string, QuirkCopy>> {
-  const provider = resolveProvider()
-
-  if (provider.name === 'openai') {
-    const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini'
-    const res = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${provider.apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model,
-        response_format: { type: 'json_object' },
-        messages: [
-          {
-            role: 'system',
-            content:
-              'You translate My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation; choose terms by domain context, not default dictionary glosses. Output strict JSON only.',
-          },
-          { role: 'user', content: prompt },
-        ],
-      }),
-    })
-
-    if (!res.ok) {
-      throw new Error(`OpenAI HTTP ${res.status}: ${(await res.text()).slice(0, 400)}`)
-    }
-
-    const data = (await res.json()) as {
-      choices?: Array<{ message?: { content?: string } }>
-    }
-    const text = data.choices?.[0]?.message?.content
-    if (!text) throw new Error('OpenAI retornou resposta vazia.')
-    const parsed = JSON.parse(text) as {
-      entries?: Record<string, QuirkCopy>
-    }
-    return parsed.entries ?? {}
-  }
-
-  const model = process.env.GEMINI_MODEL?.trim() || 'gemini-2.0-flash'
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${provider.apiKey}`
-  const res = await fetch(url, {
+  const apiKey = resolveOpenAiApiKey()
+  const model = process.env.OPENAI_MODEL?.trim() || 'gpt-4o-mini'
+  const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
-      contents: [
+      model,
+      response_format: { type: 'json_object' },
+      messages: [
         {
-          role: 'user',
-          parts: [
-            {
-              text: `${'You translate My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation; choose terms by domain context, not default dictionary glosses. Output strict JSON only.'}\n\n${prompt}`,
-            },
-          ],
+          role: 'system',
+          content:
+            'You translate My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation; choose terms by domain context, not default dictionary glosses. Output strict JSON only.',
         },
+        { role: 'user', content: prompt },
       ],
-      generationConfig: {
-        temperature: 0.4,
-        responseMimeType: 'application/json',
-      },
     }),
   })
 
   if (!res.ok) {
-    throw new Error(`Gemini HTTP ${res.status}: ${(await res.text()).slice(0, 400)}`)
+    throw new Error(`OpenAI HTTP ${res.status}: ${(await res.text()).slice(0, 400)}`)
   }
 
   const data = (await res.json()) as {
-    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>
+    choices?: Array<{ message?: { content?: string } }>
   }
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text
-  if (!text) throw new Error('Gemini retornou resposta vazia.')
-  const parsed = JSON.parse(text) as { entries?: Record<string, QuirkCopy> }
+  const text = data.choices?.[0]?.message?.content
+  if (!text) throw new Error('OpenAI retornou resposta vazia.')
+  const parsed = JSON.parse(text) as {
+    entries?: Record<string, QuirkCopy>
+  }
   return parsed.entries ?? {}
 }
 

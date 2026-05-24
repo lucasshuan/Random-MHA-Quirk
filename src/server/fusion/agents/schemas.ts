@@ -11,15 +11,10 @@ export const FusionEnglishOutputSchema = z.object({
     description: z.string().min(FUSION_DESCRIPTION_MIN_LENGTH),
     name: z.string().min(1),
   }),
-})
-
-export type FusionEnglishAgentOutput = z.infer<typeof FusionEnglishOutputSchema>
-
-export const FusionTierOutputSchema = z.object({
   tier: z.enum(FUSION_TIER_DECISION_OUTPUT),
 })
 
-export type FusionTierAgentOutput = z.infer<typeof FusionTierOutputSchema>
+export type FusionEnglishAgentOutput = z.infer<typeof FusionEnglishOutputSchema>
 
 const localeCopySchema = z.object({
   name: z.string().min(1),

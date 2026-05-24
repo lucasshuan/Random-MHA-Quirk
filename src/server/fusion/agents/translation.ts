@@ -8,7 +8,7 @@ import {
 import type { FusionTranslationRunContext } from "./context";
 import {
   resolveFusionModelSettings,
-  resolveFusionOpenAiModel,
+  resolveFusionTranslationOpenAiModel,
 } from "./config";
 import { buildFusionTranslationInstructions } from "./instructions-locale";
 import {
@@ -48,7 +48,7 @@ function buildTranslationInstructions(
 }
 
 function getTranslationAgent(locale: FusionTranslationLocale): TranslationAgent {
-  const model = resolveFusionOpenAiModel();
+  const model = resolveFusionTranslationOpenAiModel();
   if (translationAgentsModel !== model) {
     translationAgents.clear();
     translationAgentsModel = model;

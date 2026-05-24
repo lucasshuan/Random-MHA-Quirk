@@ -1,5 +1,5 @@
 import type { FusionCopy, FusionCacheEntry, FusionRollMeta } from '@/types/fusion'
-import type { QuirkTier } from '@/types/quirk'
+import type { QuirkDisplayTier, QuirkTier } from '@/types/quirk'
 import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkType } from '@/types/quirk'
 import {
   FUSION_DESCRIPTION_MAX_LENGTH,
@@ -10,6 +10,7 @@ import {
   QUIRK_RANGES,
   QUIRK_TYPES,
 } from './constants'
+import { FUSION_TIER_DECISION_OUTPUT } from './prompts/tier-decision'
 
 export interface ValidatedFusionPayload {
   en: FusionCopy
@@ -27,6 +28,7 @@ export interface ValidatedEnglishFusionPayload {
   range: QuirkRange
   facets: QuirkFacet[]
   origin: QuirkOrigin
+  tier: QuirkDisplayTier
 }
 
 export type ValidatedLocaleFusionCopy = Pick<
@@ -136,13 +138,27 @@ function normalizeFusionMechanics(obj: Record<string, unknown>): {
   }
 }
 
+function normalizeFusionTier(raw: unknown): QuirkDisplayTier {
+  if (
+    typeof raw === 'string' &&
+    (FUSION_TIER_DECISION_OUTPUT as readonly string[]).includes(raw)
+  ) {
+    return raw as QuirkDisplayTier
+  }
+
+  throw new Error(
+    `Resposta inválida: tier deve ser ${FUSION_TIER_DECISION_OUTPUT.join(', ')}.`,
+  )
+}
+
 /** Coerces LLM JSON into a fusion payload. Overlong descriptions are clamped server-side. */
 export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
   const obj = asRecord(raw)
   const en = parseFusionCopy(obj.en, 'en')
   const mechanics = normalizeFusionMechanics(obj)
+  const tier = normalizeFusionTier(obj.tier)
 
-  return { en, ...mechanics, origin: 'ORIGINAL' }
+  return { en, ...mechanics, origin: 'ORIGINAL', tier }
 }
 
 export function validateLocaleFusionTranslation(

@@ -7,15 +7,19 @@ import { getQuirkById } from '@/server/fusion/catalog'
 import { buildFusionAgentInput } from '@/server/fusion/agent-input'
 import { generateEnglishFusionWithAgent } from '@/server/fusion/agents/english'
 import { flushFusionTraces } from '@/server/fusion/agents/tracing'
-import { resolveFusionOpenAiModel } from '@/server/fusion/agents/config'
+import {
+  resolveFusionOpenAiModel,
+  resolveFusionTranslationOpenAiModel,
+} from '@/server/fusion/agents/config'
 import { resolveFusionProvider } from '@/server/fusion/llm'
 import { getProjectRoot } from '../_shared/root'
 
 loadEnv(getProjectRoot())
 
-const model = resolveFusionOpenAiModel()
 const provider = resolveFusionProvider()
-console.log('provider:', provider.name, 'model:', model)
+console.log('provider:', provider.name)
+console.log('fusion model:', resolveFusionOpenAiModel())
+console.log('translation model:', resolveFusionTranslationOpenAiModel())
 
 const quirkA = await getQuirkById('permeation')
 const quirkB = await getQuirkById('hardening')

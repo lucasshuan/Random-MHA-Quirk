@@ -35,7 +35,8 @@ function getEnglishAgent(): Agent<
     englishAgentModel = model
     englishAgent = new Agent({
       name: 'Hybrid MHA Quirk Generator',
-      handoffDescription: 'Generates English MHA hybrid quirk name and description.',
+      handoffDescription:
+        'Generates English MHA hybrid quirk name, description, and tier.',
       instructions: (runContext) => {
         const fusion = runContext.context?.fusion
         if (!fusion) {

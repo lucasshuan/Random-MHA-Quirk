@@ -75,12 +75,20 @@ export const ptBR: Messages = {
   },
   tier: {
     mark: 'Tier',
-    pick: 'Escolha os tiers',
-    first: 'Tiers da primeira individualidade',
-    second: 'Tiers da segunda individualidade',
+    pick: 'Possíveis níveis de individualidade',
+    first: 'Possíveis níveis da primeira individualidade',
+    second: 'Possíveis níveis da segunda individualidade',
     individualLabel: 'Tiers individuais',
     advance: 'Avançar',
     specialLabel: 'Especial',
+    tips: {
+      'Ω': 'Fortes demais ou estranhas demais para um tier justo.',
+      S: 'Redefine o possível; amplo alcance e teto alto, com limites claros.',
+      A: 'Individualidade forte e versátil; bom desempenho e espaço para evoluir.',
+      B: 'Individualidade útil com nicho, alcance ou custo definido—não faz tudo.',
+      C: 'Nicho ou fraca; brilha com criatividade.',
+      D: 'Piada, truque de festa ou uso absurdamente estreito.',
+    },
   },
   advanced: {
     mark: 'Filtros avançados',

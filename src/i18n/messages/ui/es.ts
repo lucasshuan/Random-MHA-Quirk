@@ -81,6 +81,14 @@ export const es: Messages = {
     individualLabel: 'Tiers individuales',
     advance: 'Continuar',
     specialLabel: 'Especial',
+    tips: {
+      'Ω': 'Demasiado fuertes o raros para un tier justo.',
+      S: 'Redefine lo posible; amplio alcance y techo alto, con límites claros.',
+      A: 'Don fuerte y versátil; buen rendimiento y margen para crecer.',
+      B: 'Don útil con nicho, alcance o coste claro—no lo resuelve todo.',
+      C: 'Nicho o débil; rinde con creatividad.',
+      D: 'Broma, truco de fiesta o uso absurdamente limitado.',
+    },
   },
   advanced: {
     mark: 'Avanzado',

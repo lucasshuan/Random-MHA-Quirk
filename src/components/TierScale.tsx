@@ -33,6 +33,7 @@ export function TierScale({ tier }: TierScaleProps) {
       {QUIRK_DISPLAY_TIERS.map((cell) => (
         <span
           key={cell}
+          data-tier={cell}
           className={`quirk-tier-cell${cell === tier ? ' quirk-tier-cell-active' : ''}`}
           aria-current={cell === tier ? 'true' : undefined}
         >
@@ -55,6 +56,7 @@ export function TierBadge({ tier, className = 'manual-quirk-tier-badge' }: TierB
 
   return (
     <span
+      data-tier={tier}
       className={`${className}${omega ? ' manual-quirk-tier-badge-omega' : ''}`}
       aria-label={meta.tier(tier)}
     >

@@ -65,17 +65,26 @@ export function StepTierChoice({
         >
           {QUIRK_TIERS.map((tier, index) => {
             const isSelected = selectedTiers.includes(tier)
+            const tipId = `tier-tip-${panelKey}-${tier}`
             return (
-              <button
+              <div
                 key={tier}
-                type="button"
-                className={`tier-toggle tier-toggle-${TIER_TONES[tier]} ${isSelected ? 'tier-toggle-active' : ''} type-step-choice type-step-choice-${index + 1}`}
-                aria-pressed={isSelected}
-                onClick={() => onSelectedTiersChange(toggleTier(selectedTiers, tier))}
+                className={`tier-toggle-wrap type-step-choice type-step-choice-${index + 1}`}
               >
-                <span className="tier-toggle-letter">{tierBadgeGlyph(tier)}</span>
-                <span className="tier-toggle-label">{meta.tier(tier)}</span>
-              </button>
+                <span className="tier-toggle-tip" id={tipId} role="tooltip">
+                  {t(`tier.tips.${tier}`)}
+                </span>
+                <button
+                  type="button"
+                  className={`tier-toggle tier-toggle-${TIER_TONES[tier]} ${isSelected ? 'tier-toggle-active' : ''}`}
+                  aria-pressed={isSelected}
+                  aria-describedby={tipId}
+                  onClick={() => onSelectedTiersChange(toggleTier(selectedTiers, tier))}
+                >
+                  <span className="tier-toggle-letter">{tierBadgeGlyph(tier)}</span>
+                  <span className="tier-toggle-label">{meta.tier(tier)}</span>
+                </button>
+              </div>
             )
           })}
         </div>

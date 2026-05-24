@@ -433,12 +433,25 @@
   margin-top: var(--fluid-after-title);
 }
 
+.tier-step .type-step-panel {
+  overflow: visible;
+}
+
 .tier-toggle-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.45rem, 1.2svh, 0.65rem);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1svh, 0.55rem);
   overflow: visible;
+}
+
+.tier-toggle-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.tier-toggle-wrap .tier-toggle {
+  width: 100%;
 }
 
 /* === Tier toggle — inactive = dark veil + tier tint; active = full color === */
@@ -580,6 +593,55 @@
 
 .tier-toggle-active .tier-toggle-label {
   color: var(--tier-hint-fg);
+}
+
+.tier-toggle-tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px) scale(0.97);
+  min-width: max-content;
+  max-width: min(11rem, 42vw);
+  padding: 0.38rem 0.55rem;
+  border: 1px solid rgba(255, 223, 88, 0.96);
+  border-radius: 10px;
+  background: #ffd84d;
+  color: #1b1300;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-wrap: balance;
+  white-space: normal;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.tier-toggle-tip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -1px;
+  border: 1px solid rgba(255, 223, 88, 0.9);
+  border-top: 0;
+  border-left: 0;
+  background: #ffd84d;
+  transform: rotate(45deg);
+}
+
+.tier-toggle-wrap:hover .tier-toggle-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 /* S — ciano forte */
@@ -1483,7 +1545,8 @@
   .chip-facet[data-tooltip]::before,
   .icon-btn[data-tooltip]::after,
   .lang-btn[data-tooltip]::after,
-  .chip-facet[data-tooltip]::after {
+  .chip-facet[data-tooltip]::after,
+  .tier-toggle-tip {
     transition: opacity 120ms linear;
   }
 }
@@ -2101,41 +2164,40 @@
     box-shadow 200ms ease;
 }
 
-.quirk-tier-cell[aria-current='true'] {
-  color: #0d1218;
-  background: rgb(var(--tier-cell-rgb));
-  box-shadow:
-    0 0 8px rgba(var(--tier-cell-rgb), 0.7),
-    0 0 16px rgba(var(--tier-cell-rgb), 0.35);
+/* Shared tier palette (tier toggles, card scale, manual-pick badges) */
+.quirk-tier-cell[data-tier='S'],
+.manual-quirk-tier-badge[data-tier='S'],
+.manual-quirk-card[data-tier='S'] .manual-quirk-tier-badge {
+  --tier-rgb: 52, 228, 196;
 }
 
-/* S — cyan-teal */
-.quirk-tier-cell:nth-child(1)[aria-current='true'] {
-  --tier-cell-rgb: 52, 228, 196;
+.quirk-tier-cell[data-tier='A'],
+.manual-quirk-tier-badge[data-tier='A'],
+.manual-quirk-card[data-tier='A'] .manual-quirk-tier-badge {
+  --tier-rgb: 118, 220, 130;
 }
 
-/* A — green */
-.quirk-tier-cell:nth-child(2)[aria-current='true'] {
-  --tier-cell-rgb: 118, 220, 130;
+.quirk-tier-cell[data-tier='B'],
+.manual-quirk-tier-badge[data-tier='B'],
+.manual-quirk-card[data-tier='B'] .manual-quirk-tier-badge {
+  --tier-rgb: 250, 204, 21;
 }
 
-/* B — yellow */
-.quirk-tier-cell:nth-child(3)[aria-current='true'] {
-  --tier-cell-rgb: 250, 204, 21;
+.quirk-tier-cell[data-tier='C'],
+.manual-quirk-tier-badge[data-tier='C'],
+.manual-quirk-card[data-tier='C'] .manual-quirk-tier-badge {
+  --tier-rgb: 251, 146, 60;
 }
 
-/* C — orange */
-.quirk-tier-cell:nth-child(4)[aria-current='true'] {
-  --tier-cell-rgb: 251, 146, 60;
+.quirk-tier-cell[data-tier='D'],
+.manual-quirk-tier-badge[data-tier='D'],
+.manual-quirk-card[data-tier='D'] .manual-quirk-tier-badge {
+  --tier-rgb: 255, 92, 108;
 }
 
-/* D — red */
-.quirk-tier-cell:nth-child(5)[aria-current='true'] {
-  --tier-cell-rgb: 255, 92, 108;
-}
-
-/* keep the old class name working for any non-aria usage */
+.quirk-tier-cell[aria-current='true'],
 .quirk-tier-cell-active {
+  --tier-cell-rgb: var(--tier-rgb);
   color: #0d1218;
   background: rgb(var(--tier-cell-rgb));
   box-shadow:
@@ -2831,7 +2893,7 @@
 }
 
 .manual-quirk-tier-badge {
-  --tier-badge-rgb: 200, 215, 240;
+  --tier-badge-rgb: var(--tier-rgb, 200, 215, 240);
 
   display: inline-grid;
   place-items: center;
@@ -2848,23 +2910,12 @@
   box-shadow: 0 0 8px rgba(var(--tier-badge-rgb), 0.55);
 }
 
-/* Per-tier colors matching the tier-toggle palette */
-.quirk-card-type-emitter .manual-quirk-tier-badge,
-.quirk-card-type-transformation .manual-quirk-tier-badge,
-.quirk-card-type-mutant .manual-quirk-tier-badge {
-  /* resolved below per tier letter via data or nth-child isn't available here,
-     so we use a parent data attribute approach — simpler: set per-tier class on card */
-}
-
+.manual-quirk-tier-badge[data-tier='Ω'],
 .manual-quirk-card[data-tier='Ω'] .manual-quirk-tier-badge,
 .manual-quirk-tier-badge-omega {
-  --tier-badge-rgb: 255, 110, 190;
+  --tier-rgb: 255, 110, 190;
+  --tier-badge-rgb: var(--tier-rgb);
 }
-
-.manual-quirk-card[data-tier='S'] .manual-quirk-tier-badge { --tier-badge-rgb: 52, 228, 196; }
-.manual-quirk-card[data-tier='A'] .manual-quirk-tier-badge { --tier-badge-rgb: 118, 220, 130; }
-.manual-quirk-card[data-tier='B'] .manual-quirk-tier-badge { --tier-badge-rgb: 255, 186, 88; }
-.manual-quirk-card[data-tier='C'] .manual-quirk-tier-badge { --tier-badge-rgb: 255, 92, 108; }
 
 .manual-quirk-name {
   margin: 0;
@@ -3090,7 +3141,7 @@
 
   .tier-toggle {
     min-height: var(--fluid-tier-min-h);
-    padding: clamp(0.4rem, 1svh, 0.5rem) 0.2rem clamp(0.35rem, 0.9svh, 0.45rem);
+    padding: clamp(0.4rem, 1svh, 0.5rem) 0.15rem clamp(0.35rem, 0.9svh, 0.45rem);
     border-radius: 14px;
   }
 
@@ -3100,7 +3151,7 @@
 
   .tier-toggle-label {
     font-size: 0.52rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
   }
 
   .manual-pick-controls {

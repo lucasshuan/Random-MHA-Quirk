@@ -74,6 +74,14 @@ export const en = {
     individualLabel: 'Individual tiers',
     advance: 'Continue',
     specialLabel: 'Special',
+    tips: {
+      'Ω': 'Too strong or too weird for a fair tier list.',
+      S: 'Redefines what is possible; wide reach and a high ceiling, with clear limits.',
+      A: 'Strong, versatile quirk; high output and room to grow with skill.',
+      B: 'Useful quirk with a clear niche, range, or cost—not a catch-all.',
+      C: 'Niche or weak; shines with creativity.',
+      D: 'Gag quirk, party trick, or absurdly narrow everyday use.',
+    },
   },
   advanced: {
     mark: 'Advanced',

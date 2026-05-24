@@ -1,6 +1,7 @@
 import { getQuirkById } from './catalog'
 import {
   collectSiblingNames,
+  isSiblingNameTaken,
   pickSiblingVariantsForPrompt,
   pickPriorVariantsForPrompt,
   MAX_PRIOR_VARIANTS_IN_PROMPT,
@@ -213,6 +214,38 @@ export async function listFusionPriorVariantsForParentPair(
     excludeKey: options.excludeKey,
     limit: options.limit ?? MAX_PRIOR_VARIANTS_IN_PROMPT,
   })
+}
+
+export async function findFusionByParentPairAndEnglishName(
+  parentA: string,
+  parentB: string,
+  englishName: string,
+): Promise<FusionCacheEntry | null> {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from('fusion_entries')
+    .select('*')
+    .eq('parent_a', parentA)
+    .eq('parent_b', parentB)
+
+  if (error) {
+    throw new Error(`Supabase lookup by parent pair failed: ${error.message}`)
+  }
+
+  for (const row of data ?? []) {
+    const fusionRow = row as FusionRow
+    const storedName = fusionRow.en?.name?.trim()
+    if (!storedName || !isSiblingNameTaken(englishName, [storedName])) continue
+
+    const hadTier = Boolean(
+      fusionRow.tier && QUIRK_TIERS.includes(fusionRow.tier as QuirkTier),
+    )
+    const hadRoll = parseFusionRollMeta(fusionRow.roll) !== null
+    const entry = rowToEntry(fusionRow)
+    return enrichFusionEntry(entry, { hadTier, hadRoll })
+  }
+
+  return null
 }
 
 export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {

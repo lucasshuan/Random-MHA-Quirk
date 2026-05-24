@@ -72,7 +72,8 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
   const rejectedNameBlock = fusion.meta.lastRejectedName
     ? `
 ### Name retry (REQUIRED)
-The title "${fusion.meta.lastRejectedName}" is already used for this parent pair. Pick a completely different en.name — new words, new joke, new cadence. Do not reuse, rephrase, or lightly tweak that title.`
+These titles are already used for this parent pair: ${fusion.takenTitles.map((name) => `"${name}"`).join(', ')}.
+Pick a completely different en.name — new words, new joke, new cadence. Do not reuse, rephrase, or lightly tweak any of them.`
     : ''
 
   return `${STATIC_INSTRUCTIONS}

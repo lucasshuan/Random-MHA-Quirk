@@ -15,13 +15,11 @@ import {
 } from './llm'
 import {
   findFusionByKey,
+  findFusionByParentPairAndEnglishName,
   loadFusionSiblingContext,
   upsertFusionEntry,
 } from './repository'
-import { isSiblingNameTaken } from './prior-variants'
 import { runWithFusionTrace } from './agents/tracing'
-
-const MAX_DISTINCT_NAME_ATTEMPTS = 5
 
 export function defaultFusionSeed(): string {
   return randomBytes(4).toString('hex')
@@ -75,41 +73,25 @@ export async function generateFusionEntry({
 
   try {
     return await runWithFusionTrace(traceContext, async () => {
-      const promptVariants = [...priorVariants]
-      const reservedNames = [...takenTitles]
-      let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
-        null
-      let lastRejectedName: string | undefined
+      const fusionInput = buildFusionAgentInput(
+        quirkA,
+        quirkB,
+        seed,
+        priorVariants,
+        rollContext,
+        0,
+        undefined,
+        takenTitles,
+      )
+      const english = await generateEnglishFusionWithLlm(fusionInput)
 
-      for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
-        const fusionInput = buildFusionAgentInput(
-          quirkA,
-          quirkB,
-          seed,
-          promptVariants,
-          rollContext,
-          attempt,
-          lastRejectedName,
-          takenTitles,
-        )
-        const candidate = await generateEnglishFusionWithLlm(fusionInput)
-
-        if (!isSiblingNameTaken(candidate.en.name, reservedNames)) {
-          english = candidate
-          break
-        }
-
-        lastRejectedName = candidate.en.name
-        reservedNames.push(candidate.en.name)
-        promptVariants.push({
-          name: candidate.en.name,
-          description: candidate.en.description,
-          roll: rollContext.roll,
-        })
-      }
-
-      if (!english) {
-        throw new Error('LLM repeated a fusion name already used for this parent pair.')
+      const existingByName = await findFusionByParentPairAndEnglishName(
+        parents[0],
+        parents[1],
+        english.en.name,
+      )
+      if (existingByName) {
+        return { entry: existingByName, cached: true, generated: false }
       }
 
       const translations = await Promise.all(

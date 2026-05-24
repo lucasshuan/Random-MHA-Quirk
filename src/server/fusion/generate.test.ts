@@ -5,6 +5,7 @@ const mockGenerateEnglishFusionWithLlm = vi.fn()
 const mockTranslateFusionToLocaleWithLlm = vi.fn()
 const mockDecideFusionTierWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
+const mockFindFusionByParentPairAndEnglishName = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
 const mockLoadFusionSiblingContext = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
@@ -21,6 +22,8 @@ vi.mock('./llm', () => ({
 
 vi.mock('./repository', () => ({
   findFusionByKey: (...args: unknown[]) => mockFindFusionByKey(...args),
+  findFusionByParentPairAndEnglishName: (...args: unknown[]) =>
+    mockFindFusionByParentPairAndEnglishName(...args),
   listFusionPriorVariantsForParentPair: (...args: unknown[]) =>
     mockListFusionPriorVariantsForParentPair(...args),
   loadFusionSiblingContext: (...args: unknown[]) =>
@@ -91,6 +94,7 @@ describe('generateFusionEntry', () => {
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
     mockFindFusionByKey.mockResolvedValue(cachedEntry)
+    mockFindFusionByParentPairAndEnglishName.mockResolvedValue(null)
     mockLoadFusionSiblingContext.mockResolvedValue({
       priorVariants: [
         { name: 'Cached', description: 'Cached EN description for prior variant.' },
@@ -161,13 +165,18 @@ describe('generateFusionEntry', () => {
     expect(result.entry).toEqual(cachedEntry)
   })
 
-  it('regenerates when an English title duplicates an existing sibling name', async () => {
-    mockGenerateEnglishFusionWithLlm
-      .mockResolvedValueOnce({
-        ...englishPayload,
-        en: { name: 'Cached', description: 'Duplicate name result.' },
-      })
-      .mockResolvedValueOnce(englishPayload)
+  it('returns the existing sibling when the English title already exists', async () => {
+    const siblingEntry: FusionCacheEntry = {
+      ...cachedEntry,
+      key: 'acid+explosion:older-seed',
+      seed: 'older-seed',
+    }
+
+    mockGenerateEnglishFusionWithLlm.mockResolvedValue({
+      ...englishPayload,
+      en: { name: 'Cached', description: 'Duplicate name result.' },
+    })
+    mockFindFusionByParentPairAndEnglishName.mockResolvedValue(siblingEntry)
 
     const result = await generateFusionEntry({
       idA: 'acid',
@@ -175,12 +184,17 @@ describe('generateFusionEntry', () => {
       seed: 'seed1',
     })
 
-    expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledTimes(2)
-    expect(mockGenerateEnglishFusionWithLlm.mock.calls[1][0].meta.attempt).toBe(1)
-    expect(mockGenerateEnglishFusionWithLlm.mock.calls[1][0].meta.lastRejectedName).toBe(
+    expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
+    expect(mockFindFusionByParentPairAndEnglishName).toHaveBeenCalledWith(
+      'acid',
+      'explosion',
       'Cached',
     )
-    expect(result.entry.en.name).toBe('Fresh')
+    expect(mockTranslateFusionToLocaleWithLlm).not.toHaveBeenCalled()
+    expect(mockUpsertFusionEntry).not.toHaveBeenCalled()
+    expect(result.cached).toBe(true)
+    expect(result.generated).toBe(false)
+    expect(result.entry).toEqual(siblingEntry)
   })
 
   it('does not fall back when force is true', async () => {

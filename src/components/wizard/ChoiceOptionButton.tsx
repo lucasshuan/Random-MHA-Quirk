@@ -1,3 +1,5 @@
+import { useChoiceButtonPress } from '../../hooks/useChoiceButtonPress'
+
 interface ChoiceOptionButtonProps {
   label: string
   description: string
@@ -17,10 +19,14 @@ export function ChoiceOptionButton({
   iconSrc,
   iconAlt = '',
 }: ChoiceOptionButtonProps) {
+  const { isPeek, handleClick, handlePointerDown, handlePointerCancel } =
+    useChoiceButtonPress(onClick)
+
   const classes = [
     'choice-btn',
     `choice-btn-${tone}`,
     iconSrc ? 'choice-btn-with-art' : '',
+    isPeek ? 'is-peek' : '',
     className,
   ]
     .filter(Boolean)
@@ -30,7 +36,9 @@ export function ChoiceOptionButton({
     <button
       type="button"
       className={classes}
-      onClick={onClick}
+      onPointerDown={handlePointerDown}
+      onPointerCancel={handlePointerCancel}
+      onClick={handleClick}
     >
       {iconSrc ? (
         <span className="choice-btn-art" aria-hidden="true">

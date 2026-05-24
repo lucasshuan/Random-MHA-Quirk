@@ -35,7 +35,6 @@
   --fluid-title-advanced: clamp(2rem, 8vw, 3rem);
   --fluid-brand-logo: clamp(170px, 42vw, 300px);
   --fluid-brand-glow-h: clamp(120px, 22svh, 170px);
-  --fluid-brand-text: clamp(0.95rem, 2.4vw, 1.32rem);
   --fluid-choice-min-h: clamp(98px, 13.8svh, 122px);
   --fluid-choice-label: clamp(1.14rem, 3.6vw, 1.28rem);
   --fluid-choice-main-label: clamp(1.22rem, 4.2vw, 1.42rem);
@@ -155,17 +154,17 @@ body::after {
 
 @media (max-width: 1100px) {
   body::before {
-    right: max(-10vw, -5rem);
+    right: max(-10vw, -2rem);
   }
 
   body::after {
-    left: max(-24vw, -14rem);
+    left: max(-24vw, -4rem);
   }
 }
 
 @media (max-width: 900px) {
   body::before {
-    right: max(-18vw, -8rem);
+    right: max(-18vw, -2rem);
     opacity: 0.13;
     -webkit-mask-image:
       linear-gradient(to left, #000 11%, transparent 75%),
@@ -178,7 +177,7 @@ body::after {
   }
 
   body::after {
-    left: max(-32vw, -18rem);
+    left: max(-32vw, -4rem);
     opacity: 0.13;
     -webkit-mask-image:
       linear-gradient(to right, #000 11%, transparent 75%),

@@ -72,7 +72,7 @@ export function StepTierChoice({
                 className={`tier-toggle-wrap type-step-choice type-step-choice-${index + 1}`}
               >
                 <span className="tier-toggle-tip" id={tipId} role="tooltip">
-                  {t(`tier.tips.${tier}`)}
+                  <span className="tier-toggle-tip-text">{t(`tier.tips.${tier}`)}</span>
                 </span>
                 <button
                   type="button"

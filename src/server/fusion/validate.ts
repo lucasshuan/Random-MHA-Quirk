@@ -175,11 +175,20 @@ export function mergeFusionPayload(
   english: ValidatedEnglishFusionPayload,
   ...translations: ValidatedLocaleFusionCopy[]
 ): ValidatedFusionPayload {
-  const merged = { ...english } as ValidatedFusionPayload
+  const { tier: _tier, en, type, range, facets, origin } = english
+  const merged: ValidatedFusionPayload = {
+    en,
+    type,
+    range,
+    facets,
+    origin,
+    'pt-BR': en,
+    es: en,
+  }
 
   for (const locale of FUSION_TRANSLATION_LOCALES) {
     const block = translations.find((item) => locale in item)?.[locale]
-    merged[locale] = block ?? english.en
+    if (block) merged[locale] = block
   }
 
   return merged

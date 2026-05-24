@@ -2860,9 +2860,7 @@
 }
 
 .fusion-hero .quirk-card-fusion {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.45),
-    0 0 48px rgba(167, 139, 250, 0.16);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 .quirk-fusion-badge {

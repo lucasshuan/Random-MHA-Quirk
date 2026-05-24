@@ -1,4 +1,4 @@
-import { FilterPanel } from '../FilterPanel'
+import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '../FilterPanel'
 import { useI18n } from '../../i18n/useI18n'
 import { translateMatches } from '../../i18n/translate'
 import type { QuirkFilters } from '../../types/quirk'
@@ -25,7 +25,12 @@ export function StepAdvancedFilters({
       <p className="app-mark">{t('advanced.mark')}</p>
       <h1>{t('advanced.title')}</h1>
       <p className="mini-copy">{translateMatches(locale, filteredCount)}</p>
-      <FilterPanel filters={filters} onChange={onChange} onReset={onReset} />
+      <FilterPanel
+        filters={filters}
+        onChange={onChange}
+        onReset={onReset}
+        originOptions={MANUAL_PICK_ORIGIN_OPTIONS}
+      />
       <button
         type="button"
         className="big-action"

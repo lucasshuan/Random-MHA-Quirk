@@ -142,9 +142,13 @@ export function selectFusionNameRegister(
   seed: string,
   parentA?: string,
   parentB?: string,
+  attempt = 0,
 ): SelectedFusionNameRegister {
   const rollKey = resolveRollKey(seed, parentA, parentB)
-  const picked = REGISTER_DEFS[hashSeed(rollKey, 'name-register') % REGISTER_DEFS.length]
+  const picked =
+    REGISTER_DEFS[
+      (hashSeed(rollKey, 'name-register') + attempt) % REGISTER_DEFS.length
+    ]
   return picked ?? REGISTER_DEFS[0]
 }
 

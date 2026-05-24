@@ -6,6 +6,7 @@ const mockTranslateFusionToLocaleWithLlm = vi.fn()
 const mockDecideFusionTierWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
+const mockLoadFusionSiblingContext = vi.fn()
 const mockUpsertFusionEntry = vi.fn()
 const mockGetQuirkById = vi.fn()
 
@@ -22,6 +23,8 @@ vi.mock('./repository', () => ({
   findFusionByKey: (...args: unknown[]) => mockFindFusionByKey(...args),
   listFusionPriorVariantsForParentPair: (...args: unknown[]) =>
     mockListFusionPriorVariantsForParentPair(...args),
+  loadFusionSiblingContext: (...args: unknown[]) =>
+    mockLoadFusionSiblingContext(...args),
   upsertFusionEntry: (...args: unknown[]) => mockUpsertFusionEntry(...args),
 }))
 
@@ -88,9 +91,12 @@ describe('generateFusionEntry', () => {
       id === 'acid' ? quirkA : id === 'explosion' ? quirkB : null,
     )
     mockFindFusionByKey.mockResolvedValue(cachedEntry)
-    mockListFusionPriorVariantsForParentPair.mockResolvedValue([
-      { name: 'Cached', description: 'Cached EN description for prior variant.' },
-    ])
+    mockLoadFusionSiblingContext.mockResolvedValue({
+      priorVariants: [
+        { name: 'Cached', description: 'Cached EN description for prior variant.' },
+      ],
+      takenTitles: ['Cached'],
+    })
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
     mockDecideFusionTierWithLlm.mockResolvedValue('A')
@@ -122,10 +128,11 @@ describe('generateFusionEntry', () => {
       seed: 'seed1',
     })
 
-    expect(mockListFusionPriorVariantsForParentPair).toHaveBeenCalledOnce()
+    expect(mockLoadFusionSiblingContext).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
     const fusionInput = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
     expect(fusionInput.priorVariants[0].name).toBe('Cached')
+    expect(fusionInput.takenTitles).toEqual(['Cached'])
     expect(fusionInput.meta.seed).toBe('seed1')
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
     expect(mockTranslateFusionToLocaleWithLlm.mock.calls[0][0]).toEqual(englishPayload)
@@ -170,6 +177,9 @@ describe('generateFusionEntry', () => {
 
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledTimes(2)
     expect(mockGenerateEnglishFusionWithLlm.mock.calls[1][0].meta.attempt).toBe(1)
+    expect(mockGenerateEnglishFusionWithLlm.mock.calls[1][0].meta.lastRejectedName).toBe(
+      'Cached',
+    )
     expect(result.entry.en.name).toBe('Fresh')
   })
 

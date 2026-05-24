@@ -4,6 +4,10 @@ import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import { QUIRK_TIERS, type QuirkFacet, QuirkRange, QuirkTier, QuirkType } from '@/types/quirk'
 
 export const MAX_PRIOR_VARIANTS = 12
+/** Prior variants with descriptions shown in the fusion prompt (diversity guidance). */
+export const MAX_PRIOR_VARIANTS_IN_PROMPT = 3
+/** English titles listed in the fusion prompt as already taken for this parent pair. */
+export const MAX_SIBLING_NAMES_IN_PROMPT = 10
 
 export interface FusionPriorVariantMatch {
   tier: QuirkTier
@@ -43,6 +47,42 @@ export function hasDuplicateFusionName(
 ): boolean {
   const key = normalizedVariantName(name)
   return priorVariants.some((variant) => normalizedVariantName(variant.name) === key)
+}
+
+export function isSiblingNameTaken(
+  name: string,
+  takenNames: readonly string[],
+): boolean {
+  const key = normalizedVariantName(name)
+  return takenNames.some((taken) => normalizedVariantName(taken) === key)
+}
+
+export function collectSiblingNames(
+  rows: StoredPriorRow[],
+  options?: { excludeKey?: string; limit?: number },
+): string[] {
+  const seen = new Set<string>()
+  const names: string[] = []
+
+  for (const row of rows) {
+    if (options?.excludeKey && row.key === options.excludeKey) continue
+
+    const name = row.en?.name?.trim()
+    if (!name) continue
+
+    const nameKey = normalizedVariantName(name)
+    if (seen.has(nameKey)) continue
+    seen.add(nameKey)
+    names.push(name)
+  }
+
+  names.sort((a, b) => a.localeCompare(b))
+
+  if (options?.limit === undefined) {
+    return names
+  }
+
+  return names.slice(0, options.limit)
 }
 
 /** Higher score = roll parameters closer to the variant being generated. */
@@ -132,7 +172,10 @@ export function pickSiblingVariantsForPrompt(
   quirkB: FusionCatalogQuirk,
   options?: { excludeKey?: string; limit?: number },
 ): FusionPriorVariant[] {
-  const limit = Math.min(options?.limit ?? MAX_PRIOR_VARIANTS, MAX_PRIOR_VARIANTS)
+  const limit = Math.min(
+    options?.limit ?? MAX_PRIOR_VARIANTS_IN_PROMPT,
+    MAX_PRIOR_VARIANTS_IN_PROMPT,
+  )
   const seenNames = new Set<string>()
   const siblings: FusionPriorVariant[] = []
 

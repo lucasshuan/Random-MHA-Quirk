@@ -16,7 +16,7 @@ const ANTI_MASHUP_RULE_TEXT: Record<FusionAntiMashupRuleKey, string> = {
   'failure-reduced':
     'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.',
   'modifier-cost':
-    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.',
+    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost. For dominant-a or dominant-b, the result must still be a distinct birth Quirk — not either parent unchanged.',
 }
 
 /** Strategies that get one pair-aware ❌ example after the strategy line. */

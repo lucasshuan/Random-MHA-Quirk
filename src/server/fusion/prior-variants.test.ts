@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import type { FusionCatalogQuirk } from './catalog'
 import {
+  collectSiblingNames,
   hasDuplicateFusionName,
+  isSiblingNameTaken,
   MAX_PRIOR_VARIANTS,
+  MAX_PRIOR_VARIANTS_IN_PROMPT,
+  MAX_SIBLING_NAMES_IN_PROMPT,
   pickSiblingVariantsForPrompt,
   pickPriorVariantsForPrompt,
   scorePriorVariantSimilarity,
@@ -64,6 +68,49 @@ describe('scorePriorVariantSimilarity', () => {
       target,
     )
     expect(same).toBeGreaterThan(different)
+  })
+})
+
+describe('collectSiblingNames', () => {
+  it('returns unique sorted names up to the prompt limit', () => {
+    const rows = Array.from({ length: 12 }, (_, index) => ({
+      key: `k${index}`,
+      seed: `seed-${index}`,
+      en: { name: `Variant ${index}`, description: `Description ${index}.` },
+      type: 'Emitter',
+      range: 'Medium',
+      facets: ['Control'],
+      tier: 'A',
+      roll: target.roll,
+    }))
+
+    expect(collectSiblingNames(rows, { limit: MAX_SIBLING_NAMES_IN_PROMPT })).toHaveLength(
+      MAX_SIBLING_NAMES_IN_PROMPT,
+    )
+  })
+})
+
+describe('isSiblingNameTaken', () => {
+  it('treats whitespace and case-only name changes as duplicates', () => {
+    expect(isSiblingNameTaken('  bubble   nap ', ['Bubble Nap'])).toBe(true)
+  })
+})
+
+describe('pickSiblingVariantsForPrompt', () => {
+  it('returns at most MAX_PRIOR_VARIANTS_IN_PROMPT entries', () => {
+    const rows = Array.from({ length: 12 }, (_, index) => ({
+      key: `k${index}`,
+      seed: `seed-${index}`,
+      en: { name: `Variant ${index}`, description: `Description ${index}.` },
+      type: 'Emitter',
+      range: 'Medium',
+      facets: ['Control'],
+      tier: 'A',
+      roll: target.roll,
+    }))
+
+    const picked = pickSiblingVariantsForPrompt(rows, quirkA, quirkB)
+    expect(picked.length).toBeLessThanOrEqual(MAX_PRIOR_VARIANTS_IN_PROMPT)
   })
 })
 

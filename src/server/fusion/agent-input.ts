@@ -76,10 +76,17 @@ export function buildFusionAgentInput(
     priorVariants,
   ),
   attempt = 0,
+  lastRejectedName?: string,
+  takenTitles: string[] = [],
 ): FusionAgentInput {
   const { outputRoll, roll } = rollContext
   const strategy = resolveFusionStrategyForKey(roll.strategyKey, quirkA, quirkB)
-  const nameRegister = selectFusionNameRegister(seed, quirkA.id, quirkB.id)
+  const nameRegister = selectFusionNameRegister(
+    seed,
+    quirkA.id,
+    quirkB.id,
+    attempt,
+  )
   const utilityLine = isFusionUtilityNiche(roll.utilityNiche)
     ? formatFusionUtilityNudge(roll.utilityNiche)
     : selectFusionUtilityNudge(seed, quirkA.id, quirkB.id).line
@@ -103,6 +110,7 @@ export function buildFusionAgentInput(
       seed,
       pairKey: pairKey(quirkA.id, quirkB.id),
       attempt,
+      ...(lastRejectedName ? { lastRejectedName } : {}),
     },
     parents: [toAgentParent(quirkA), toAgentParent(quirkB)],
     mechanics: {
@@ -140,6 +148,7 @@ export function buildFusionAgentInput(
       description: variant.description.trim(),
       roll: variant.roll,
     })),
+    takenTitles: takenTitles.map((name) => name.trim()).filter(Boolean),
   }
 }
 

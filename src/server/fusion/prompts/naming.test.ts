@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { formatFusionNamingBlock } from './naming'
+import { formatFusionNamingBlock, selectFusionNameRegister } from './naming'
+
+describe('selectFusionNameRegister', () => {
+  it('rotates register on dedup retry attempts', () => {
+    const first = selectFusionNameRegister('seed-1', 'acid', 'explosion', 0)
+    const retry = selectFusionNameRegister('seed-1', 'acid', 'explosion', 1)
+    expect(retry.key).not.toBe(first.key)
+  })
+})
 
 describe('formatFusionNamingBlock', () => {
   it('is deterministic for the same seed and parent pair', () => {

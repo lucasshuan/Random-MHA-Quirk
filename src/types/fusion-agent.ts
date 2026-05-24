@@ -20,6 +20,8 @@ export interface FusionAgentInput {
     pairKey: string
     /** 0-based name-dedup attempt when prior variants already include rejected names. */
     attempt: number
+    /** Last rejected en.name on a dedup retry — model must avoid reusing or lightly rephrasing it. */
+    lastRejectedName?: string
   }
   parents: [FusionAgentParent, FusionAgentParent]
   /** Server-fixed mechanics — model must echo exactly in output. */
@@ -50,4 +52,6 @@ export interface FusionAgentInput {
     canonNameReferences: string[]
   }
   priorVariants: FusionPriorVariant[]
+  /** English titles already used for this parent pair (shown in prompt; up to 10). */
+  takenTitles: string[]
 }

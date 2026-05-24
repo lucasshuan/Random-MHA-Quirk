@@ -167,4 +167,14 @@ describe('formatStrategyCoherenceGuidance', () => {
     expect(guidance).toContain('never degrade recognizability')
     expect(guidance).toContain('narrower rule itself')
   })
+
+  it('forbids cloning either parent in dominant strategies', () => {
+    const dominantA = formatStrategyCoherenceGuidance('dominant-a')
+    const dominantB = formatStrategyCoherenceGuidance('dominant-b')
+
+    expect(dominantA).toContain('must NOT be parent A unchanged')
+    expect(dominantA).toContain('distinct third rule')
+    expect(dominantB).toContain('must NOT be parent B unchanged')
+    expect(dominantB).toContain('distinct third rule')
+  })
 })

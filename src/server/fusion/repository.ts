@@ -1,7 +1,10 @@
 import { getQuirkById } from './catalog'
 import {
+  collectSiblingNames,
   pickSiblingVariantsForPrompt,
   pickPriorVariantsForPrompt,
+  MAX_PRIOR_VARIANTS_IN_PROMPT,
+  MAX_SIBLING_NAMES_IN_PROMPT,
   type FusionPriorVariantMatch,
 } from './prior-variants'
 import { deriveFusionRollContext } from './prompts/roll-context'
@@ -102,7 +105,84 @@ function entryToRow(entry: FusionCacheEntry): FusionRow {
 
 export type { FusionPriorVariantMatch }
 
-/** Up to 3 prior English variants closest to the target roll (for prompt diversity). */
+export interface FusionSiblingContext {
+  /** Up to MAX_PRIOR_VARIANTS_IN_PROMPT prior variants (name + description) for diversity guidance. */
+  priorVariants: FusionPriorVariant[]
+  /** Up to MAX_SIBLING_NAMES_IN_PROMPT English titles shown in the prompt and used for dedup. */
+  takenTitles: string[]
+}
+
+async function fetchFusionRowsForParentPair(
+  parentA: string,
+  parentB: string,
+): Promise<
+  Array<{
+    key: string
+    seed: string
+    en: { name: string; description: string }
+    type: string
+    range: string
+    facets: string[]
+    tier: string | null
+    roll: FusionRollMeta | null
+  }>
+> {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from('fusion_entries')
+    .select('key, seed, en, type, range, facets, tier, roll')
+    .eq('parent_a', parentA)
+    .eq('parent_b', parentB)
+
+  if (error) {
+    throw new Error(`Supabase list by parents failed: ${error.message}`)
+  }
+
+  return (data ?? []).map((row) => {
+    const fusionRow = row as FusionRow
+    return {
+      key: fusionRow.key,
+      seed: fusionRow.seed,
+      en: fusionRow.en,
+      type: fusionRow.type,
+      range: fusionRow.range,
+      facets: fusionRow.facets,
+      tier: fusionRow.tier,
+      roll: parseFusionRollMeta(fusionRow.roll),
+    }
+  })
+}
+
+/** Prior siblings for prompt diversity + taken-title dedup for a parent pair. */
+export async function loadFusionSiblingContext(
+  parentA: string,
+  parentB: string,
+  options?: { excludeKey?: string },
+): Promise<FusionSiblingContext> {
+  const [quirkA, quirkB] = await Promise.all([
+    getQuirkById(parentA),
+    getQuirkById(parentB),
+  ])
+  if (!quirkA || !quirkB) {
+    return { priorVariants: [], takenTitles: [] }
+  }
+
+  const rows = await fetchFusionRowsForParentPair(parentA, parentB)
+  const excludeKey = options?.excludeKey
+
+  return {
+    priorVariants: pickSiblingVariantsForPrompt(rows, quirkA, quirkB, {
+      excludeKey,
+      limit: MAX_PRIOR_VARIANTS_IN_PROMPT,
+    }),
+    takenTitles: collectSiblingNames(rows, {
+      excludeKey,
+      limit: MAX_SIBLING_NAMES_IN_PROMPT,
+    }),
+  }
+}
+
+/** Up to MAX_PRIOR_VARIANTS_IN_PROMPT prior English variants for prompt diversity. */
 export async function listFusionPriorVariantsForParentPair(
   parentA: string,
   parentB: string,
@@ -120,30 +200,7 @@ export async function listFusionPriorVariantsForParentPair(
     return []
   }
 
-  const supabase = getSupabaseAdmin()
-  const { data, error } = await supabase
-    .from('fusion_entries')
-    .select('key, seed, en, type, range, facets, tier, roll')
-    .eq('parent_a', parentA)
-    .eq('parent_b', parentB)
-
-  if (error) {
-    throw new Error(`Supabase list by parents failed: ${error.message}`)
-  }
-
-  const rows = (data ?? []).map((row) => {
-    const fusionRow = row as FusionRow
-    return {
-      key: fusionRow.key,
-      seed: fusionRow.seed,
-      en: fusionRow.en,
-      type: fusionRow.type,
-      range: fusionRow.range,
-      facets: fusionRow.facets,
-      tier: fusionRow.tier,
-      roll: parseFusionRollMeta(fusionRow.roll),
-    }
-  })
+  const rows = await fetchFusionRowsForParentPair(parentA, parentB)
 
   if (options.match) {
     return pickPriorVariantsForPrompt(rows, options.match, quirkA, quirkB, {
@@ -154,7 +211,7 @@ export async function listFusionPriorVariantsForParentPair(
 
   return pickSiblingVariantsForPrompt(rows, quirkA, quirkB, {
     excludeKey: options.excludeKey,
-    limit: options.limit,
+    limit: options.limit ?? MAX_PRIOR_VARIANTS_IN_PROMPT,
   })
 }
 

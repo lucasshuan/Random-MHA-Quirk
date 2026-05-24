@@ -28,6 +28,10 @@ const LOCALE_RULES = {
   },
 } as const
 
+/** Shared rule: domain/context beats default dictionary glosses. */
+const CONTEXT_MEANING_RULE =
+  'Preserve meaning over literal glosses: pick the term native speakers would use in that domain (sports, medicine, mechanics, etc.). Read the full entry — name, description, type, range, and facets — before choosing a word (e.g. English "Goal" in a sports quirk → Portuguese "Gol", not "Objetivo").'
+
 export type QuirkLocaleAdaptationKind = 'fusion hybrid' | 'catalog original'
 
 export interface QuirkLocaleAdaptationSource {
@@ -63,6 +67,7 @@ Rules:
 - Preserve the same mechanism, activation, limits, and tradeoffs as English — do not add or remove effects
 - One individualidade/don only — never imply a second separate power
 - If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
+- ${CONTEXT_MEANING_RULE}
 - If it's an existing proper noun, prefer using it as is (e.g. "Kitsune" for "Kitsune")
 - ${config.termRule}
 - ${config.toneHint}
@@ -87,6 +92,7 @@ Rules (every entry):
 - description: 2 short sentences preferred, ${FUSION_DESCRIPTION_MIN_LENGTH}–${FUSION_DESCRIPTION_MAX_LENGTH} characters (hard server limit)
 - Preserve mechanism, activation, limits, and tradeoffs — do not add or remove effects
 - If simple cognate exists and serves its purpose, use and prefer it over racking your brain to find a better translation (e.g. "Mago" for "Magician", "Cnidocito" for "Cnidocyte", etc.)
+- ${CONTEXT_MEANING_RULE}
 - If it's an existing proper noun, prefer using it as is (e.g. "Kitsune" for "Kitsune")
 - ${config.termRule}
 - ${config.toneHint}

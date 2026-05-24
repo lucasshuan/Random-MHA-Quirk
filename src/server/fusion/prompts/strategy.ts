@@ -70,12 +70,14 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
     criteria: [
       'Parent A supplies the main operation readers immediately recognize.',
       'Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+      'The birth Quirk must NOT be parent A unchanged, parent B alone, or either parent copied verbatim from the catalog — the result is a distinct third rule led by A.',
     ],
   },
   'dominant-b': {
     criteria: [
       'Parent B supplies the main operation readers immediately recognize.',
       'Parent A changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+      'The birth Quirk must NOT be parent B unchanged, parent A alone, or either parent copied verbatim from the catalog — the result is a distinct third rule led by B.',
     ],
   },
   'facet-anchor': {
@@ -230,6 +232,12 @@ function pickWeightedStrategy(rollKey: string, eligible: StrategyDef[]): Strateg
 }
 
 function appendStrategyGuidance(key: FusionStrategyKey, instruction: string): string {
+  if (key === 'dominant-a') {
+    return `${instruction} CRITICAL: the fused Quirk cannot be the same thing as either parent — not parent A unchanged, not parent B alone, and not a catalog copy of either signature effect. Parent B must materially reshape how A's engine works.`
+  }
+  if (key === 'dominant-b') {
+    return `${instruction} CRITICAL: the fused Quirk cannot be the same thing as either parent — not parent B unchanged, not parent A alone, and not a catalog copy of either signature effect. Parent A must materially reshape how B's engine works.`
+  }
   if (key === 'byproduct') {
     return `${instruction} The primary fantasy must stay narrow or awkward — the secondary byproduct is not a free combat upgrade.`
   }
@@ -250,13 +258,13 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'dominant-a',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent A is dominant and leads: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic is the main engine; ${quirkB.name} only subtly modifies, limits, or reshapes how that engine expresses.`,
+      `Fusion strategy — parent A is dominant and leads: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic is the main engine; ${quirkB.name} only subtly modifies, limits, or reshapes how that engine expresses. The birth Quirk must be a new third power — never ${quirkA.name} or ${quirkB.name} unchanged.`,
   },
   {
     key: 'dominant-b',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent B is dominant and leads: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic is the main engine; ${quirkA.name} only subtly modifies, limits, or reshapes how that engine expresses.`,
+      `Fusion strategy — parent B is dominant and leads: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic is the main engine; ${quirkA.name} only subtly modifies, limits, or reshapes how that engine expresses. The birth Quirk must be a new third power — never ${quirkB.name} or ${quirkA.name} unchanged.`,
   },
   {
     key: 'facet-anchor',

@@ -32,6 +32,16 @@ function formatParentBlock(parent: FusionAgentInput['parents'][number]): string 
   return `- ${parent.name} (${parent.id}): tier ${parent.tier}, ${parent.type}, range ${parent.range}, facets [${parent.facets.join(', ')}]. ${parent.description}`
 }
 
+function formatTakenTitlesBlock(input: FusionAgentInput): string {
+  if (input.takenTitles.length === 0) return ''
+
+  const lines = input.takenTitles.map((name) => `- "${name}"`)
+  return `
+### Taken titles (do not reuse)
+These en.name values are already used for this parent pair — pick a different title; do not reuse or lightly rephrase any of them:
+${lines.join('\n')}`
+}
+
 function formatPriorVariantsBlock(input: FusionAgentInput): string {
   if (input.priorVariants.length === 0) return 'Prior variants: none.'
 
@@ -57,6 +67,12 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
 
   const antiMashupExample = roll.antiMashupExample
     ? `\n${roll.antiMashupExample}`
+    : ''
+
+  const rejectedNameBlock = fusion.meta.lastRejectedName
+    ? `
+### Name retry (REQUIRED)
+The title "${fusion.meta.lastRejectedName}" is already used for this parent pair. Pick a completely different en.name — new words, new joke, new cadence. Do not reuse, rephrase, or lightly tweak that title.`
     : ''
 
   return `${STATIC_INSTRUCTIONS}
@@ -106,5 +122,5 @@ ${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} charac
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}
 
-### ${formatPriorVariantsBlock(fusion)}`
+### ${formatPriorVariantsBlock(fusion)}${formatTakenTitlesBlock(fusion)}${rejectedNameBlock}`
 }

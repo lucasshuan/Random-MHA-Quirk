@@ -15,13 +15,13 @@ import {
 } from './llm'
 import {
   findFusionByKey,
-  listFusionPriorVariantsForParentPair,
+  loadFusionSiblingContext,
   upsertFusionEntry,
 } from './repository'
-import { hasDuplicateFusionName } from './prior-variants'
+import { isSiblingNameTaken } from './prior-variants'
 import { runWithFusionTrace } from './agents/tracing'
 
-const MAX_DISTINCT_NAME_ATTEMPTS = 3
+const MAX_DISTINCT_NAME_ATTEMPTS = 5
 
 export function defaultFusionSeed(): string {
   return randomBytes(4).toString('hex')
@@ -61,13 +61,10 @@ export async function generateFusionEntry({
 
   const parents = sortedParentPair(idA as QuirkId, idB as QuirkId)
   const key = fusionCacheKey(parents[0], parents[1], seed)
-  const priorVariants = await listFusionPriorVariantsForParentPair(
-    parents[0],
-    parents[1],
-    {
-      excludeKey: key,
-    },
-  )
+  const siblingContext = await loadFusionSiblingContext(parents[0], parents[1], {
+    excludeKey: key,
+  })
+  const { priorVariants, takenTitles } = siblingContext
   const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
   const traceContext = {
     pairKey: fusionPairKey(parents[0], parents[1]),
@@ -79,8 +76,10 @@ export async function generateFusionEntry({
   try {
     return await runWithFusionTrace(traceContext, async () => {
       const promptVariants = [...priorVariants]
+      const reservedNames = [...takenTitles]
       let english: Awaited<ReturnType<typeof generateEnglishFusionWithLlm>> | null =
         null
+      let lastRejectedName: string | undefined
 
       for (let attempt = 0; attempt < MAX_DISTINCT_NAME_ATTEMPTS; attempt++) {
         const fusionInput = buildFusionAgentInput(
@@ -90,14 +89,18 @@ export async function generateFusionEntry({
           promptVariants,
           rollContext,
           attempt,
+          lastRejectedName,
+          takenTitles,
         )
         const candidate = await generateEnglishFusionWithLlm(fusionInput)
 
-        if (!hasDuplicateFusionName(candidate.en.name, promptVariants)) {
+        if (!isSiblingNameTaken(candidate.en.name, reservedNames)) {
           english = candidate
           break
         }
 
+        lastRejectedName = candidate.en.name
+        reservedNames.push(candidate.en.name)
         promptVariants.push({
           name: candidate.en.name,
           description: candidate.en.description,

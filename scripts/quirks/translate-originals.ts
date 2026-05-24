@@ -140,7 +140,7 @@ async function callLlm(prompt: string): Promise<Record<string, QuirkCopy>> {
           {
             role: 'system',
             content:
-              'You adapt My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation. Output strict JSON only.',
+              'You translate My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation; choose terms by domain context, not default dictionary glosses. Output strict JSON only.',
           },
           { role: 'user', content: prompt },
         ],
@@ -173,7 +173,7 @@ async function callLlm(prompt: string): Promise<Record<string, QuirkCopy>> {
           role: 'user',
           parts: [
             {
-              text: `${'You adapt My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation. Output strict JSON only.'}\n\n${prompt}`,
+              text: `${'You translate My Hero Academia quirk encyclopedia entries. Prioritize adaptation over literal translation; choose terms by domain context, not default dictionary glosses. Output strict JSON only.'}\n\n${prompt}`,
             },
           ],
         },

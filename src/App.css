@@ -36,7 +36,135 @@
 .minimal-topbar-start {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
+}
+
+.minimal-topbar-start .icon-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    transform 180ms ease,
+    opacity 120ms ease;
+}
+
+.minimal-topbar-start .icon-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+}
+
+.minimal-topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.social-btn {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    transform 180ms ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+}
+
+.social-btn-github:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12);
+}
+
+.social-btn-kofi {
+  position: relative;
+  border-color: transparent;
+  color: #fff;
+  background: linear-gradient(
+    115deg,
+    #ff5e5b 0%,
+    #ff8a3d 25%,
+    #ffd84d 50%,
+    #ff8a3d 75%,
+    #ff5e5b 100%
+  );
+  background-size: 220% 220%;
+  animation:
+    kofi-shimmer 4.5s ease-in-out infinite,
+    kofi-glow 4.5s ease-in-out infinite;
+  box-shadow:
+    0 0 0 1px rgba(255, 94, 91, 0.45),
+    0 4px 14px rgba(255, 94, 91, 0.28);
+}
+
+.social-btn-kofi:hover {
+  animation-duration: 2s, 2s;
+}
+
+@keyframes kofi-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes kofi-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 94, 91, 0.45),
+      0 4px 14px rgba(255, 94, 91, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 138, 61, 0.65),
+      0 4px 18px rgba(255, 138, 61, 0.42),
+      0 0 22px rgba(255, 216, 77, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-btn-kofi {
+    animation: none;
+    box-shadow:
+      0 0 0 1px rgba(255, 94, 91, 0.45),
+      0 4px 14px rgba(255, 94, 91, 0.28);
+  }
 }
 
 .lang-switcher {
@@ -1380,12 +1508,14 @@
 
 .icon-btn[data-tooltip],
 .lang-btn[data-tooltip],
+.social-btn[data-tooltip],
 .chip-facet[data-tooltip] {
   position: relative;
 }
 
 .icon-btn[data-tooltip]::before,
 .lang-btn[data-tooltip]::before,
+.social-btn[data-tooltip]::before,
 .chip-facet[data-tooltip]::before {
   content: '';
   position: absolute;
@@ -1408,6 +1538,7 @@
 
 .icon-btn[data-tooltip]::after,
 .lang-btn[data-tooltip]::after,
+.social-btn[data-tooltip]::after,
 .chip-facet[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -1440,7 +1571,9 @@
 .icon-btn[data-tooltip]:hover:not(:disabled)::before,
 .icon-btn[data-tooltip]:focus-visible::before,
 .lang-btn[data-tooltip]:hover::before,
-.lang-btn[data-tooltip]:focus-visible::before {
+.lang-btn[data-tooltip]:focus-visible::before,
+.social-btn[data-tooltip]:hover::before,
+.social-btn[data-tooltip]:focus-visible::before {
   opacity: 1;
   transform: translateX(-50%) translateY(0) rotate(45deg);
 }
@@ -1448,7 +1581,9 @@
 .icon-btn[data-tooltip]:hover:not(:disabled)::after,
 .icon-btn[data-tooltip]:focus-visible::after,
 .lang-btn[data-tooltip]:hover::after,
-.lang-btn[data-tooltip]:focus-visible::after {
+.lang-btn[data-tooltip]:focus-visible::after,
+.social-btn[data-tooltip]:hover::after,
+.social-btn[data-tooltip]:focus-visible::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0) scale(1);
 }
@@ -1508,7 +1643,8 @@
 
 /* Top bar: tooltips open below (more room under the header) */
 .minimal-topbar .icon-btn[data-tooltip]::before,
-.minimal-topbar .lang-btn[data-tooltip]::before {
+.minimal-topbar .lang-btn[data-tooltip]::before,
+.minimal-topbar .social-btn[data-tooltip]::before {
   bottom: auto;
   top: calc(100% + 4px);
   border-top: 0;
@@ -1519,7 +1655,8 @@
 }
 
 .minimal-topbar .icon-btn[data-tooltip]::after,
-.minimal-topbar .lang-btn[data-tooltip]::after {
+.minimal-topbar .lang-btn[data-tooltip]::after,
+.minimal-topbar .social-btn[data-tooltip]::after {
   bottom: auto;
   top: calc(100% + 14px);
   transform: translateX(-50%) translateY(-6px) scale(0.97);
@@ -1528,23 +1665,29 @@
 .minimal-topbar .icon-btn[data-tooltip]:hover:not(:disabled)::before,
 .minimal-topbar .icon-btn[data-tooltip]:focus-visible::before,
 .minimal-topbar .lang-btn[data-tooltip]:hover::before,
-.minimal-topbar .lang-btn[data-tooltip]:focus-visible::before {
+.minimal-topbar .lang-btn[data-tooltip]:focus-visible::before,
+.minimal-topbar .social-btn[data-tooltip]:hover::before,
+.minimal-topbar .social-btn[data-tooltip]:focus-visible::before {
   transform: translateX(-50%) translateY(0) rotate(225deg);
 }
 
 .minimal-topbar .icon-btn[data-tooltip]:hover:not(:disabled)::after,
 .minimal-topbar .icon-btn[data-tooltip]:focus-visible::after,
 .minimal-topbar .lang-btn[data-tooltip]:hover::after,
-.minimal-topbar .lang-btn[data-tooltip]:focus-visible::after {
+.minimal-topbar .lang-btn[data-tooltip]:focus-visible::after,
+.minimal-topbar .social-btn[data-tooltip]:hover::after,
+.minimal-topbar .social-btn[data-tooltip]:focus-visible::after {
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .icon-btn[data-tooltip]::before,
   .lang-btn[data-tooltip]::before,
+  .social-btn[data-tooltip]::before,
   .chip-facet[data-tooltip]::before,
   .icon-btn[data-tooltip]::after,
   .lang-btn[data-tooltip]::after,
+  .social-btn[data-tooltip]::after,
   .chip-facet[data-tooltip]::after,
   .tier-toggle-tip {
     transition: opacity 120ms linear;

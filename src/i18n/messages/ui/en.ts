@@ -8,6 +8,8 @@ export const en = {
     languageEn: 'English (United States)',
     languagePt: 'Portuguese (Brazil)',
     languageEs: 'Spanish',
+    viewSource: 'View source on GitHub',
+    buyCoffee: 'Buy me a coffee',
   },
   brand: {
     title: 'Random Quirk',

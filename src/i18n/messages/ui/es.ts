@@ -10,6 +10,8 @@ export const es: Messages = {
     languageEn: 'Inglés (Estados Unidos)',
     languagePt: 'Portugués (Brasil)',
     languageEs: 'Español',
+    viewSource: 'Ver el repositorio en GitHub',
+    buyCoffee: 'Cómprame un café',
   },
   brand: {
     title: 'Don Aleatorio',

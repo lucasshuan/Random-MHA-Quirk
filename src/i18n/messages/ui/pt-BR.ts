@@ -10,6 +10,8 @@ export const ptBR: Messages = {
     languageEn: 'Inglês (Estados Unidos)',
     languagePt: 'Português (Brasil)',
     languageEs: 'Espanhol',
+    viewSource: 'Ver repositório no GitHub',
+    buyCoffee: 'Me compre um café',
   },
   brand: {
     title: 'Individualidade Aleatória',

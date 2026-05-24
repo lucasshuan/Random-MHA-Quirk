@@ -74,7 +74,7 @@ export function HybridResultTabs({
                   <QuirkCard quirk={fusion} />
                 </div>
               ) : fusionPhase === 'generating' ? (
-                <div className="fusion-pending fusion-forging">
+                <div className="fusion-forging">
                   <RollOrb phase="rolling" />
                   <p
                     key={forgingLabel}

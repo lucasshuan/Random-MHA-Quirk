@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { LanguageSwitcher } from '../LanguageSwitcher'
+import { SocialLinks } from '../SocialLinks'
 import { useI18n } from '../../i18n/useI18n'
 
 interface MinimalFrameProps {
@@ -46,7 +47,10 @@ export function MinimalFrame({
               </button>
             ) : null}
           </div>
-          <LanguageSwitcher />
+          <div className="minimal-topbar-end">
+            <SocialLinks />
+            <LanguageSwitcher />
+          </div>
         </div>
         <div className="minimal-screen">{children}</div>
       </section>

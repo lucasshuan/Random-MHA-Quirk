@@ -1,5 +1,4 @@
 import type { FusionAgentInput } from '@/types/fusion-agent'
-import type { ValidatedEnglishFusionPayload } from '../validate'
 import { isFusionStrategyKey, type FusionStrategyKey } from './strategy'
 
 /** Tiers the tier-decision agent may output (never Ω). */
@@ -85,16 +84,6 @@ Tier **at least one band lower** than you would for the same description as a no
 Strategy: **${strategyKey}**. Tier from the description and rubric; only **failure-mode** forces a routine downgrade.`
 }
 
-export function formatFusionTierDecisionQuirk(
-  fusion: ValidatedEnglishFusionPayload,
-): string {
-  return `- name: ${fusion.en.name}
-- description: ${fusion.en.description}
-- type: ${fusion.type}
-- range: ${fusion.range}
-- facets: [${fusion.facets.join(', ')}]`
-}
-
 /** Tier rubric block for the English fusion agent (same rules as the former tier-only step). */
 export function buildFusionEnglishTierStaticBlock(): string {
   return `## Tier assignment
@@ -114,10 +103,4 @@ export function buildFusionEnglishTierVariantBlock(fusion: FusionAgentInput): st
 - ${fusion.parents[1].name}: tier ${fusion.parents[1].tier}
 
 Set **tier** in JSON last — after en.description and en.name — from the finished hybrid only.`
-}
-
-export function buildFusionEnglishTierBlock(fusion: FusionAgentInput): string {
-  return `${buildFusionEnglishTierStaticBlock()}
-
-${buildFusionEnglishTierVariantBlock(fusion)}`
 }

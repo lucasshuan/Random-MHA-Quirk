@@ -31,6 +31,7 @@ describe('buildFusionEnglishInstructions', () => {
     const instructions = buildFusionEnglishInstructions(fusion)
 
     expect(instructions).toContain(`type: ${fusion.mechanics.type}`)
+    expect(instructions).not.toContain('- origin:')
     expect(instructions).toContain(fusion.roll.strategyInstruction)
     expect(instructions).toContain(fusion.roll.utilityNudge)
     expect(instructions).toContain('Permeation')
@@ -38,7 +39,7 @@ describe('buildFusionEnglishInstructions', () => {
   })
 
   it('lists parent catalog names in not allowed names block', () => {
-    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x', [], undefined, 0, undefined, [
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x', [], undefined, 0, [
       'Old Hybrid',
     ])
     const instructions = buildFusionEnglishInstructions(fusion)
@@ -73,7 +74,7 @@ describe('buildFusionEnglishInstructions', () => {
     const instructions = buildFusionEnglishInstructions(fusion)
 
     expect(instructions).toContain('then write en.description, then en.name, then tier last')
-    expect(instructions).toContain('what the user **has**')
+    expect(instructions).toContain('Lead with the concrete mechanism')
     expect(instructions).toContain('NEW birth Quirk')
     expect(instructions).toContain('Could this description belong to either parent unchanged?')
     expect(instructions).toContain(
@@ -128,6 +129,10 @@ describe('buildFusionEnglishInstructions', () => {
 
     expect(first.indexOf('## Tier assignment')).toBeLessThan(firstRequestIndex)
     expect(first.slice(0, firstRequestIndex)).toBe(second.slice(0, secondRequestIndex))
+    expect(first.indexOf('Question marks in en.name are exceptional')).toBeLessThan(
+      firstRequestIndex,
+    )
+    expect(first).not.toContain('seed seed-x')
   })
 
   it('explains only the selected output type in description focus', () => {
@@ -140,5 +145,23 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Emitter: state the outward effect')
     expect(instructions).not.toContain('Mutant: state the permanent body trait')
     expect(instructions).not.toContain('Transformation: state what changes while active')
+  })
+
+  it('lists described prior titles once instead of repeating them as forbidden names', () => {
+    const instructions = buildFusionEnglishInstructions(
+      buildFusionAgentInput(
+        quirkA,
+        quirkB,
+        'seed-x',
+        [{ name: 'Old Hybrid', description: 'Prior idea.' }],
+        undefined,
+        0,
+        ['Old Hybrid', 'Unused Sibling'],
+      ),
+    )
+
+    expect(instructions.match(/"Old Hybrid"/g)).toHaveLength(1)
+    expect(instructions).toContain('- "Unused Sibling"')
+    expect(instructions).toContain('### Prior variants (titles are forbidden)')
   })
 })

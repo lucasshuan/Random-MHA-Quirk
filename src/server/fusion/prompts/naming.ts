@@ -1,7 +1,5 @@
 import { pickUniformFromHash } from './seed-hash'
 import { fusionRollKey } from './roll-key'
-import type { FusionPriorVariant } from '@/types/fusion'
-import { mergeForbiddenFusionTitles } from '../prior-variants'
 
 export type FusionNameRegister =
   | 'pun'
@@ -16,7 +14,7 @@ export interface SelectedFusionNameRegister {
   examples: string[]
 }
 
-const CANON_STYLE_NAMES = [
+export const FUSION_CANON_NAME_REFERENCES = [
   'Pop Off',
   'Comic',
   'Meatball',
@@ -27,17 +25,16 @@ const CANON_STYLE_NAMES = [
   'Zero Gravity',
 ]
 
-const DRAMATIC_STEM_BAN =
-  'Avoid generic fantasy stems: "Veil of ...", "Impenetrable ...", "Phase ...", "... Shroud", "Lasso of ...", "... Cataclysm", "... Ward", "... Mire", or invented moody compounds. Prefer canon-dramatic quirk titles (Hellflame, Foldabody), not RPG skill labels.'
-
-const NAME_PUNCTUATION_RULE =
-  'Question marks in en.name are exceptional: default to a non-question title. Use one ? only when the title is a naturally phrased, punny question whose joke is made relevant by the finished quirk mechanism. "Got Milk?" and "Who, Me?" are good models only when the new quirk makes that question unexpectedly apt. Never force a question or add ? merely for cadence, attitude, or meme flavor; choose a stronger non-question name instead. A single comma clause may sell spoken cadence unless the register is absurd-long. No exclamation marks, ellipses, or quotes in the title. en.description stays declarative (no rhetorical questions).'
-
-const NAME_QUALITY_GATE =
-  'Funny or unusual names must still have a clear joke, phrase twist, mental image, natural spoken cadence, or loose hint of the core mechanic. Do not approve names that only combine a random interjection with a mechanic noun, such as "Oops, Cushion", "Uh Oh, Shield", "Hey, Smoke", "Wow, Punch", or "Oops, Dome", unless the full phrase lands as a joke. Interjections or question phrases such as "Oops", "Uh Oh", "Well, Well, Well", "Who, Me?", or "Got Milk?" need a reason: a joke, reversal, personality, accident, catchphrase, or ironic effect grounded in the new mechanism. If a name would sound awkward when translated literally, prefer a cleaner pun, blunt nickname, or stronger visual phrase. Bad: "Oops, Cushion". Better: "Oops-Proof", "Crash Pad", "Soft Serve", "Bounce House", or "No Hard Feelings".'
-
-const NAME_SELF_CHECK =
-  'Before accepting en.name, ask: "Does this title sound like a real anime Quirk name, a joke that lands, or a phrase someone could actually say?" If no, replace the name once in the SAME selected register. Do not use a random interjection; make the replacement work through wordplay, cadence, image, irony, or direct simplicity.'
+export const FUSION_NAMING_RULES = [
+  'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
+  'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
+  'en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.',
+  'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
+  'Question marks in en.name are exceptional: default to a non-question title. Use one ? only when the title is a naturally phrased, punny question whose joke is made relevant by the finished quirk mechanism. "Got Milk?" and "Who, Me?" are good models only when the new quirk makes that question unexpectedly apt. Never force a question or add ? merely for cadence, attitude, or meme flavor; choose a stronger non-question name instead.',
+  'Other punctuation in en.name: one comma clause may sell spoken cadence unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',
+  'Funny names must still land as a joke, phrase twist, mental image, or spoken cadence — not random interjection + mechanic noun (e.g. avoid "Oops, Cushion" unless the full phrase is the joke).',
+  'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title or a phrase someone could say?" If no, replace once in the SAME name register.',
+]
 
 export const FUSION_NAME_REGISTER_KEYS = [
   'pun',
@@ -165,67 +162,4 @@ export function selectFusionNameRegister(
   ]
 
   return pickUniformFromHash(rollKey, 'name-register', rotated)
-}
-
-export function formatFusionNamingBlock(
-  seed: string,
-  priorVariants: FusionPriorVariant[] = [],
-  parentA?: string,
-  parentB?: string,
-  parentDisplayNames?: { a: string; b: string },
-): string {
-  const register = selectFusionNameRegister(seed, parentA, parentB)
-  const priorList = priorVariants
-    .map((variant) => ({
-      name: variant.name.trim(),
-      description: variant.description.trim(),
-    }))
-    .filter((variant) => variant.name && variant.description)
-
-  const forbiddenNames = parentDisplayNames
-    ? mergeForbiddenFusionTitles(
-        parentDisplayNames.a,
-        parentDisplayNames.b,
-        priorList.map((variant) => variant.name),
-      )
-    : priorList.map((variant) => variant.name)
-
-  const forbiddenNamesBlock =
-    forbiddenNames.length === 0
-      ? ''
-      : `
-- Not allowed names (do not use for en.name — parent catalog quirks and prior fusion variants): ${forbiddenNames.map((name) => `"${name}"`).join(', ')}`
-
-  const priorBlock =
-    priorList.length === 0
-      ? ''
-      : `
-Existing variants for this parent pair — do not reuse these titles or lightly rephrase them; also avoid repeating the same core mechanism, activation loop, body tell, or situational niche (pick a different register AND a meaningfully different effect idea):
-${priorList
-  .map(
-    (variant) =>
-      `- "${variant.name}": ${variant.description}`,
-  )
-  .join('\n')}`
-
-  const dramaticBlock =
-    register.key === 'dramatic' ? `\n- ${DRAMATIC_STEM_BAN}` : ''
-
-  const nameSafetyBlock =
-    register.key === 'meme-adjacent'
-      ? ''
-      : `
-- Name safety: avoid accidental double entendres, sexual innuendo, or awkward readings unless the joke is clearly intentional.`
-
-  return `Naming (IMPORTANT — en.name uses a different voice than en.description):
-- Target name register for this variant: ${register.key.toUpperCase()} — ${register.instruction}
-- en.name MUST match this register even though en.description stays objective and encyclopedic.
-- en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.
-- en.name may be only loosely related to the mechanism — canon names often joke first, explain second.
-- Avoid stiff or moody compounds like "Omni-Kinetic Field", "Corrosive Gale", "Primal Bastion", "Barkbound Reprisal", "Nightcord Cataclysm", "Greyward Gate", or "Graftmire". Prefer names a classmate could say out loud.
-- ${NAME_PUNCTUATION_RULE}${dramaticBlock}
-- ${NAME_QUALITY_GATE}
-- ${NAME_SELF_CHECK}
-- Canon-style reference names (any register): ${CANON_STYLE_NAMES.join(', ')}
-- Examples in the ${register.key} register: ${register.examples.join(', ')}${nameSafetyBlock}${forbiddenNamesBlock}${priorBlock}`
 }

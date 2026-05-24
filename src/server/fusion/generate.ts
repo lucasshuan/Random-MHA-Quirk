@@ -96,7 +96,6 @@ export async function generateFusionEntry({
           priorVariants,
           rollContext,
           0,
-          undefined,
           takenTitles,
         )
         const english = await generateEnglishFusionWithLlm(fusionInput)

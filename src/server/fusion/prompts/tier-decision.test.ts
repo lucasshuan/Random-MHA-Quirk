@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { buildFusionAgentInput } from '../agent-input'
 import { deriveFusionRollContext } from './roll-context'
 import {
-  buildFusionEnglishTierBlock,
+  buildFusionEnglishTierVariantBlock,
   buildFusionTierDecisionRubric,
   formatFusionStrategyTierGuidance,
 } from './tier-decision'
@@ -64,7 +64,7 @@ const quirkB = {
   description: 'Hardens skin.',
 }
 
-describe('buildFusionEnglishTierBlock', () => {
+describe('buildFusionEnglishTierVariantBlock', () => {
   it('embeds parent tier calibration', () => {
     const fusion = buildFusionAgentInput(
       quirkA,
@@ -73,7 +73,7 @@ describe('buildFusionEnglishTierBlock', () => {
       [],
       deriveFusionRollContext('tier-block-test', quirkA, quirkB, []),
     )
-    const text = buildFusionEnglishTierBlock(fusion)
+    const text = buildFusionEnglishTierVariantBlock(fusion)
 
     expect(text).toContain('Permeation: tier A')
     expect(text).toContain('Hardening: tier B')
@@ -87,7 +87,7 @@ describe('buildFusionEnglishTierBlock', () => {
       roll: { ...rollContext.roll, strategyKey: 'failure-mode' },
     })
 
-    const text = buildFusionEnglishTierBlock(fusion)
+    const text = buildFusionEnglishTierVariantBlock(fusion)
 
     expect(text).toContain('mandatory tier adjustment')
     expect(text).toContain('at least one band lower')

@@ -1,13 +1,10 @@
 /**
- * Prints one fusion user prompt (no LLM call).
+ * Prints one production English fusion instruction prompt (no LLM call).
  * Usage: pnpm exec tsx scripts/fusion/print-prompt.ts
  */
-import { writeFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { buildFusionPrompt } from './lib/build-fusion-prompt'
-import { deriveFusionRollContext } from '@/server/fusion/prompts/roll-context'
+import { buildFusionAgentInput } from '@/server/fusion/agent-input'
+import { buildFusionEnglishInstructions } from '@/server/fusion/agents/instructions-en'
 import type { FusionCatalogQuirk } from '@/server/fusion/catalog'
-import { getProjectRoot } from '../_shared/root'
 
 const quirkA: FusionCatalogQuirk = {
   id: 'permeation',
@@ -41,11 +38,7 @@ const priorVariants = [
       'The user can briefly turn their skin into a permeable shell that lets attacks pass through while keeping bones rigid.',
   },
 ]
-const rollContext = deriveFusionRollContext(seed, quirkA, quirkB, priorVariants)
 
-const prompt = buildFusionPrompt(quirkA, quirkB, seed, priorVariants, rollContext)
-
-const root = getProjectRoot()
-const outPath = join(root, 'scripts/fusion/sample-prompt.txt')
-writeFileSync(outPath, prompt, 'utf8')
+const input = buildFusionAgentInput(quirkA, quirkB, seed, priorVariants)
+const prompt = buildFusionEnglishInstructions(input)
 process.stdout.write(prompt)

@@ -45,7 +45,6 @@ export interface ParentFusionContext {
 export interface SelectedFusionStrategy {
   key: FusionStrategyKey
   instruction: string
-  contextBlock: string
 }
 
 export interface FusionStrategySelectionOptions {
@@ -64,21 +63,18 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
     criteria: [
       'Both parent essences must be indispensable parts of one NEW rule; removing either parent should break the concept.',
       'Combine operations, not just imagery, nouns, colors, or generic force.',
-      'The birth Quirk must NOT read as either parent unchanged — synergy still requires a third idea, not one parent with the other as decoration.',
     ],
   },
   'dominant-a': {
     criteria: [
       'Parent A supplies the main operation readers immediately recognize.',
       'Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
-      'The birth Quirk must NOT be parent A unchanged, parent B alone, or either parent copied verbatim from the catalog — the result is a distinct third rule led by A.',
     ],
   },
   'dominant-b': {
     criteria: [
       'Parent B supplies the main operation readers immediately recognize.',
       'Parent A changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
-      'The birth Quirk must NOT be parent B unchanged, parent A alone, or either parent copied verbatim from the catalog — the result is a distinct third rule led by B.',
     ],
   },
   'facet-anchor': {
@@ -128,10 +124,7 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
 
 export function formatStrategyCoherenceGuidance(key: FusionStrategyKey): string {
   const guidance = STRATEGY_COHERENCE_GUIDANCE[key]
-  return `Coherence criteria (${key}):
-- The birth Quirk must be NEW — a third rule neither parent could claim alone; if the description matches one parent's catalog entry with a rename or analogy, start over.
-- Preserve a recognizable operational essence from EACH parent; inherit what each power does, not merely its theme.
-- Before prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence. Final wording need not follow this arrow format.
+  return `Strategy-specific requirements (${key}):
 ${guidance.criteria.map((criterion) => `- ${criterion}`).join('\n')}`
 }
 
@@ -213,40 +206,24 @@ function pickUniformStrategy(rollKey: string, eligible: StrategyDef[]): Strategy
   return pickUniformFromHash(rollKey, 'strategy', eligible)
 }
 
-function appendStrategyGuidance(key: FusionStrategyKey, instruction: string): string {
-  if (key === 'dominant-a') {
-    return `${instruction} CRITICAL: the fused Quirk cannot be the same thing as either parent — not parent A unchanged, not parent B alone, and not a catalog copy of either signature effect. Parent B must materially reshape how A's engine works.`
-  }
-  if (key === 'dominant-b') {
-    return `${instruction} CRITICAL: the fused Quirk cannot be the same thing as either parent — not parent B unchanged, not parent A alone, and not a catalog copy of either signature effect. Parent A must materially reshape how B's engine works.`
-  }
-  if (key === 'byproduct') {
-    return `${instruction} The primary fantasy must stay narrow or awkward — the secondary byproduct is not a free combat upgrade.`
-  }
-  if (key === 'failure-mode') {
-    return `${instruction} State what was lost, suppressed, or never expressed — do not word around the cap to restore either parent's full fantasy.`
-  }
-  return instruction
-}
-
 const STRATEGY_DEFS: StrategyDef[] = [
   {
     key: 'synergy',
     eligible: () => true,
     instruction: () =>
-      'Fusion strategy — unified synergy: weave both parents into ONE NEW coherent mechanism (one birth Quirk, one core idea that neither parent already is). Do not present two separate powers stapled together, and do not return either parent unchanged under a new name.',
+      'Fusion strategy — unified synergy: weave both parents into one coherent mechanism.',
   },
   {
     key: 'dominant-a',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent A is dominant and leads: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic is the main engine; ${quirkB.name} only subtly modifies, limits, or reshapes how that engine expresses. The birth Quirk must be a new third power — never ${quirkA.name} or ${quirkB.name} unchanged.`,
+      `Fusion strategy — parent A is dominant: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic leads; ${quirkB.name} modifies, limits, or reshapes its expression.`,
   },
   {
     key: 'dominant-b',
     eligible: () => true,
     instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — parent B is dominant and leads: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic is the main engine; ${quirkA.name} only subtly modifies, limits, or reshapes how that engine expresses. The birth Quirk must be a new third power — never ${quirkB.name} or ${quirkA.name} unchanged.`,
+      `Fusion strategy — parent B is dominant: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic leads; ${quirkA.name} modifies, limits, or reshapes its expression.`,
   },
   {
     key: 'facet-anchor',
@@ -296,13 +273,13 @@ const STRATEGY_DEFS: StrategyDef[] = [
     key: 'byproduct',
     eligible: (ctx) => ctx.sharedFacets.length > 0 && !ctx.rangeGapLarge,
     instruction: () =>
-      'Fusion strategy — byproduct: one clear primary effect carries the design. Any secondary effect is brief and minor, only as fallout of the same mechanism.',
+      'Fusion strategy — byproduct: one clear primary effect carries the design; any secondary effect is brief, minor fallout, not a free combat upgrade.',
   },
   {
     key: 'failure-mode',
     eligible: () => true,
     instruction: () =>
-      'Fusion strategy — failure mode: incomplete genetic fusion — the birth Quirk is weaker or narrower than either parent (less reach, output, reliability, or scope). One parent\'s core barely survives; the other shows up only as loss, friction, or a hard cap — never both parents\' kits at usable strength.',
+      'Fusion strategy — failure mode: incomplete genetic fusion, weaker or narrower than either parent. State what was lost, suppressed, or never expressed.',
   },
 ]
 
@@ -312,21 +289,10 @@ function buildSelectedStrategy(
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
 ): SelectedFusionStrategy {
-  const contextBlock = [
-    'Parent fusion context (informs strategy - do not quote parent names in the final description):',
-    ...ctx.commonPointLines.map((line) => `- ${line}`),
-  ].join('\n')
-
-  const instruction = appendStrategyGuidance(
-    picked.key,
-    picked.instruction(ctx, quirkA, quirkB),
-  )
-
   return {
     key: picked.key,
-    instruction: `${instruction}
+    instruction: `${picked.instruction(ctx, quirkA, quirkB)}
 ${formatStrategyCoherenceGuidance(picked.key)}`,
-    contextBlock,
   }
 }
 

@@ -40,7 +40,7 @@ describe('buildFusionAgentInput', () => {
   })
 
   it('includes parent catalog names in takenTitles', () => {
-    const input = buildFusionAgentInput(quirkA, quirkB, 'seed-1', [], undefined, 0, undefined, [
+    const input = buildFusionAgentInput(quirkA, quirkB, 'seed-1', [], undefined, 0, [
       'Sibling Title',
     ])
     expect(input.takenTitles).toEqual(['Permeation', 'Hardening', 'Sibling Title'])
@@ -56,17 +56,12 @@ describe('buildFusionAgentInput', () => {
     expect(withPrior.priorVariants).toHaveLength(1)
   })
 
-  it('makes question-mark names exceptional and mechanism-dependent', () => {
+  it('contains request-specific data rather than invariant prompt policy', () => {
     const input = buildFusionAgentInput(quirkA, quirkB, 'seed-1')
-    const rules = input.constraints.namingRules.join('\n')
 
-    expect(rules).toContain('Question marks in en.name are exceptional')
-    expect(rules).toContain('default to a non-question title')
-    expect(rules).toContain('naturally phrased, punny question')
-    expect(rules).toContain('finished quirk mechanism')
-    expect(rules).toContain('"Got Milk?"')
-    expect(rules).toContain('"Who, Me?"')
-    expect(rules).toContain('unexpectedly apt')
-    expect(rules).toContain('Never force a question')
+    expect(input.roll.nameRegister).toBeTruthy()
+    expect(input.roll.nameExamples.length).toBeGreaterThan(0)
+    expect(input.constraints).not.toHaveProperty('namingRules')
+    expect(input.constraints).not.toHaveProperty('canonNameReferences')
   })
 })

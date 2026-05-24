@@ -16,7 +16,6 @@ import { selectFusionNameRegister } from './prompts/naming'
 import { formatRangeProseBlock } from './prompts/range-prose'
 import type { FusionRollContext } from './prompts/roll-context'
 import { deriveFusionRollContext } from './prompts/roll-context'
-import { fusionRollKey } from './prompts/roll-key'
 import {
   formatFusionUtilityNudge,
   isFusionUtilityNiche,
@@ -27,28 +26,6 @@ import {
   type FusionStrategyKey,
 } from './prompts/strategy'
 import { mergeForbiddenFusionTitles } from './prior-variants'
-
-const CANON_NAME_REFERENCES = [
-  'Pop Off',
-  'Comic',
-  'Meatball',
-  'Beams From His Eyes',
-  'Gigantic Spinning Flying Turtle',
-  'Sugar Rush',
-  'Brainwashing',
-  'Zero Gravity',
-]
-
-const NAMING_RULES = [
-  'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
-  'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
-  'en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.',
-  'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
-  'Question marks in en.name are exceptional: default to a non-question title. Use one ? only when the title is a naturally phrased, punny question whose joke is made relevant by the finished quirk mechanism. "Got Milk?" and "Who, Me?" are good models only when the new quirk makes that question unexpectedly apt. Never force a question or add ? merely for cadence, attitude, or meme flavor; choose a stronger non-question name instead.',
-  'Other punctuation in en.name: one comma clause may sell spoken cadence unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',
-  'Funny names must still land as a joke, phrase twist, mental image, or spoken cadence — not random interjection + mechanic noun (e.g. avoid "Oops, Cushion" unless the full phrase is the joke).',
-  'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title or a phrase someone could say?" If no, replace once in the SAME name register.',
-]
 
 function toAgentParent(quirk: FusionCatalogQuirk): FusionAgentParent {
   return {
@@ -79,7 +56,6 @@ export function buildFusionAgentInput(
     priorVariants,
   ),
   attempt = 0,
-  lastRejectedName?: string,
   takenTitles: string[] = [],
 ): FusionAgentInput {
   const { outputRoll, roll } = rollContext
@@ -113,7 +89,6 @@ export function buildFusionAgentInput(
       seed,
       pairKey: pairKey(quirkA.id, quirkB.id),
       attempt,
-      ...(lastRejectedName ? { lastRejectedName } : {}),
     },
     parents: [toAgentParent(quirkA), toAgentParent(quirkB)],
     mechanics: {
@@ -143,8 +118,6 @@ export function buildFusionAgentInput(
       ),
       rangeProse: formatRangeProseBlock(outputRoll.range),
       siblingDiversityRequired: priorVariants.length > 0,
-      namingRules: NAMING_RULES,
-      canonNameReferences: CANON_NAME_REFERENCES,
     },
     priorVariants: priorVariants.map((variant) => ({
       name: variant.name.trim(),
@@ -157,8 +130,4 @@ export function buildFusionAgentInput(
       takenTitles,
     ),
   }
-}
-
-export function fusionAgentInputRollKey(input: FusionAgentInput): string {
-  return fusionRollKey(input.meta.seed, input.parents[0].id, input.parents[1].id)
 }

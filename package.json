@@ -30,18 +30,13 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^10.0.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^10.3.0",
+    "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.6.0",
     "supabase": "^2.101.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.59.2",
     "vitest": "^4.0.8"
   }
 }

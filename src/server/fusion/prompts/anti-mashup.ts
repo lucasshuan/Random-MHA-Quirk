@@ -12,11 +12,11 @@ export type FusionAntiMashupRuleKey = (typeof FUSION_ANTI_MASHUP_RULE_KEYS)[numb
 
 const ANTI_MASHUP_RULE_TEXT: Record<FusionAntiMashupRuleKey, string> = {
   'coherent-loop':
-    'Anti-mashup: keep one coherent NEW mechanism with one governing loop; do not describe two independent full-strength kits running in parallel, and do not copy one parent alone with a metaphor or rename.',
+    'Anti-mashup: do not describe two independent full-strength kits running in parallel.',
   'failure-reduced':
     'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.',
   'modifier-cost':
-    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost. For dominant-a or dominant-b, the result must still be a distinct birth Quirk — not either parent unchanged.',
+    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.',
 }
 
 /** Strategies that get one pair-aware ❌ example after the strategy line. */
@@ -86,13 +86,6 @@ export function formatBaseAntiMashupRule(
   ruleKey: FusionAntiMashupRuleKey,
 ): string {
   return ANTI_MASHUP_RULE_TEXT[ruleKey]
-}
-
-/** @deprecated Use resolveAntiMashupRuleKey + formatBaseAntiMashupRule. */
-export function formatBaseAntiMashupRuleForStrategy(
-  strategyKey: FusionStrategyKey,
-): string {
-  return formatBaseAntiMashupRule(resolveAntiMashupRuleKey(strategyKey))
 }
 
 export function formatStrategyAntiMashupExample(

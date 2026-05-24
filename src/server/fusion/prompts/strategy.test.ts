@@ -148,11 +148,12 @@ describe('selectFusionStrategy', () => {
 })
 
 describe('formatStrategyCoherenceGuidance', () => {
-  it('requires recognizable parental operations in every strategy', () => {
+  it('contains only strategy-specific rules after global rules move to instructions', () => {
     for (const key of FUSION_STRATEGY_KEYS) {
       const guidance = formatStrategyCoherenceGuidance(key)
-      expect(guidance).toContain('recognizable operational essence from EACH parent')
-      expect(guidance).toContain('must be NEW')
+      expect(guidance).toContain(`Strategy-specific requirements (${key})`)
+      expect(guidance).not.toContain('recognizable operational essence from EACH parent')
+      expect(guidance).not.toContain('must be NEW')
       expect(guidance).not.toContain('Example')
     }
   })
@@ -168,9 +169,9 @@ describe('formatStrategyCoherenceGuidance', () => {
     const dominantA = formatStrategyCoherenceGuidance('dominant-a')
     const dominantB = formatStrategyCoherenceGuidance('dominant-b')
 
-    expect(dominantA).toContain('must NOT be parent A unchanged')
-    expect(dominantA).toContain('distinct third rule')
-    expect(dominantB).toContain('must NOT be parent B unchanged')
-    expect(dominantB).toContain('distinct third rule')
+    expect(dominantA).toContain('Parent A supplies the main operation')
+    expect(dominantA).toContain('Parent B changes exactly one')
+    expect(dominantB).toContain('Parent B supplies the main operation')
+    expect(dominantB).toContain('Parent A changes exactly one')
   })
 })

@@ -5,8 +5,8 @@
 <h1 align="center">Random MHA Quirk</h1>
 
 <p align="center">
-  <strong>Plus Ultra your luck.</strong><br />
-  Roll quirks from My Hero Academia universe — one fate at a time, or two powers forged into one.
+  <strong>Roll a quirk and Plus Ultra!</strong><br />
+  Roll quirks from My Hero Academia universe — one at a time, or two forged into one.
 </p>
 
 <p align="center">

@@ -144,7 +144,8 @@ export function DatabasePageApp() {
   }
 
   function renderQuirksPanel() {
-    const { quirks, total, page, pageCount, pageSize, setPage, isLoading, error } = quirksList
+    const { quirks, total, page, pageCount, pageSize, setPage, prefetchPage, isLoading, error } =
+      quirksList
 
     return (
       <div className="manual-pick-layout history-pick-layout">
@@ -189,6 +190,7 @@ export function DatabasePageApp() {
             pageSize={pageSize}
             pageCount={pageCount}
             onPageChange={setPage}
+            onPrefetchPage={prefetchPage}
           />
         </section>
       </div>

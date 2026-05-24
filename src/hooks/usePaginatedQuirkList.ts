@@ -2,18 +2,43 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { Locale } from '@/i18n/types'
-import { fetchPaginatedQuirks } from '@/lib/quirks/api'
-import { seedQuirkLocalesEntries } from '@/lib/quirks/catalog-client-cache'
+import {
+  getCachedPaginatedPage,
+  loadPaginatedQuirkPage,
+  prefetchPaginatedQuirkNeighbors,
+  prefetchPaginatedQuirkPage,
+} from '@/lib/quirks/paginated-cache'
 import {
   mapQuirkLocalesEntries,
   type QuirkLocalesEntry,
 } from '@/types/quirk-list'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
+import type { PaginatedQuirksListResponse } from '@/lib/quirks/api'
 
 function isAbortError(err: unknown): boolean {
   return err instanceof DOMException
     ? err.name === 'AbortError'
     : err instanceof Error && err.name === 'AbortError'
+}
+
+function applyPaginatedResponse(
+  response: PaginatedQuirksListResponse,
+  locale: Locale,
+  setters: {
+    setEntries: (entries: QuirkLocalesEntry[]) => void
+    setQuirks: (quirks: Quirk[]) => void
+    setTotal: (total: number) => void
+    setPageCount: (pageCount: number) => void
+    setPageSize: (pageSize: number) => void
+    setPage: (page: number) => void
+  },
+): void {
+  setters.setEntries(response.entries)
+  setters.setQuirks(mapQuirkLocalesEntries(response.entries, locale))
+  setters.setTotal(response.total)
+  setters.setPageCount(response.pageCount)
+  setters.setPageSize(response.pageSize)
+  setters.setPage(response.page)
 }
 
 export interface UsePaginatedQuirkListResult {
@@ -23,6 +48,7 @@ export interface UsePaginatedQuirkListResult {
   pageCount: number
   pageSize: number
   setPage: (page: number) => void
+  prefetchPage: (page: number) => void
   isLoading: boolean
   error: string | null
 }
@@ -42,6 +68,7 @@ export function usePaginatedQuirkList(
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const filtersKey = useMemo(() => JSON.stringify(filters), [filters])
+
   useEffect(() => {
     setPage(1)
   }, [filtersKey, enabled])
@@ -58,20 +85,35 @@ export function usePaginatedQuirkList(
 
     let active = true
     const controller = new AbortController()
+    const setters = {
+      setEntries,
+      setQuirks,
+      setTotal,
+      setPageCount,
+      setPageSize,
+      setPage,
+    }
+
+    const cached = getCachedPaginatedPage(locale, filters, page)
+    if (cached) {
+      applyPaginatedResponse(cached, locale, setters)
+      setIsLoading(false)
+      setError(null)
+      prefetchPaginatedQuirkNeighbors(locale, filters, cached.page, cached.pageCount)
+      return () => {
+        active = false
+      }
+    }
+
     setIsLoading(true)
     setError(null)
 
-    void fetchPaginatedQuirks(locale, filters, page, { signal: controller.signal })
+    void loadPaginatedQuirkPage(locale, filters, page, { signal: controller.signal })
       .then((response) => {
         if (!active) return
-        seedQuirkLocalesEntries(response.entries)
-        setEntries(response.entries)
-        setQuirks(mapQuirkLocalesEntries(response.entries, locale))
-        setTotal(response.total)
-        setPageCount(response.pageCount)
-        setPageSize(response.pageSize)
-        setPage(response.page)
+        applyPaginatedResponse(response, locale, setters)
         setIsLoading(false)
+        prefetchPaginatedQuirkNeighbors(locale, filters, response.page, response.pageCount)
       })
       .catch((err) => {
         if (!active || isAbortError(err)) return
@@ -90,6 +132,13 @@ export function usePaginatedQuirkList(
     setPage(Math.max(1, nextPage))
   }, [])
 
+  const prefetchPage = useCallback(
+    (targetPage: number) => {
+      prefetchPaginatedQuirkPage(locale, filters, targetPage, pageCount)
+    },
+    [filters, locale, pageCount],
+  )
+
   return {
     quirks,
     total,
@@ -97,6 +146,7 @@ export function usePaginatedQuirkList(
     pageCount,
     pageSize,
     setPage: setPageSafe,
+    prefetchPage,
     isLoading,
     error,
   }

@@ -15,6 +15,7 @@ interface QuirkListFooterProps {
   pageSize: number
   pageCount: number
   onPageChange: (page: number) => void
+  onPrefetchPage?: (page: number) => void
 }
 
 export function QuirkListFooter({
@@ -23,6 +24,7 @@ export function QuirkListFooter({
   pageSize,
   pageCount,
   onPageChange,
+  onPrefetchPage,
 }: QuirkListFooterProps) {
   const { t } = useI18n()
   const { from, to } = listRangeLabel(page, pageSize, total)
@@ -44,6 +46,8 @@ export function QuirkListFooter({
             type="button"
             className="manual-quirk-page-btn"
             disabled={!canFirst}
+            onMouseEnter={() => onPrefetchPage?.(1)}
+            onFocus={() => onPrefetchPage?.(1)}
             onClick={() => onPageChange(1)}
             aria-label={t('pagination.first')}
           >
@@ -53,6 +57,8 @@ export function QuirkListFooter({
             type="button"
             className="manual-quirk-page-btn"
             disabled={!canPrev}
+            onMouseEnter={() => onPrefetchPage?.(page - 1)}
+            onFocus={() => onPrefetchPage?.(page - 1)}
             onClick={() => onPageChange(page - 1)}
             aria-label={t('pagination.prev')}
           >
@@ -65,6 +71,8 @@ export function QuirkListFooter({
             type="button"
             className="manual-quirk-page-btn"
             disabled={!canNext}
+            onMouseEnter={() => onPrefetchPage?.(page + 1)}
+            onFocus={() => onPrefetchPage?.(page + 1)}
             onClick={() => onPageChange(page + 1)}
             aria-label={t('pagination.next')}
           >
@@ -74,6 +82,8 @@ export function QuirkListFooter({
             type="button"
             className="manual-quirk-page-btn"
             disabled={!canLast}
+            onMouseEnter={() => onPrefetchPage?.(pageCount)}
+            onFocus={() => onPrefetchPage?.(pageCount)}
             onClick={() => onPageChange(pageCount)}
             aria-label={t('pagination.last')}
           >

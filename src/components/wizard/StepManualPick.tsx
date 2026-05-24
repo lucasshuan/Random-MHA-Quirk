@@ -60,6 +60,7 @@ export function StepManualPick({
     pageCount,
     pageSize,
     setPage,
+    prefetchPage,
     isLoading,
     error,
   } = usePaginatedQuirkList(locale, filters)
@@ -202,6 +203,7 @@ export function StepManualPick({
             pageSize={pageSize}
             pageCount={pageCount}
             onPageChange={setPage}
+            onPrefetchPage={prefetchPage}
           />
         </section>
       </div>

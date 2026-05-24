@@ -6,10 +6,14 @@ import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { BrandMark } from '@/components/wizard/BrandMark'
 import { useHasResultHistory } from '@/hooks/useHasResultHistory'
 import { useI18n } from '@/i18n/useI18n'
+import {
+  preloadQuirksForDatabase,
+  preloadQuirksForWizard,
+} from '@/lib/quirks/route-preload'
 
 export default function HomePage() {
   const router = useRouter()
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const hasHistory = useHasResultHistory()
 
   return (
@@ -26,6 +30,8 @@ export default function HomePage() {
           <button
             type="button"
             className="big-action big-action-with-icon start-step-primary-action"
+            onMouseEnter={() => preloadQuirksForWizard(locale)}
+            onFocus={() => preloadQuirksForWizard(locale)}
             onClick={() => router.push('/start')}
           >
             <LuSparkles aria-hidden="true" />
@@ -35,6 +41,8 @@ export default function HomePage() {
             <button
               type="button"
               className="big-action secondary-big-action big-action-with-icon"
+              onMouseEnter={() => preloadQuirksForDatabase(locale)}
+              onFocus={() => preloadQuirksForDatabase(locale)}
               onClick={() => router.push('/database')}
             >
               <LuLayoutGrid aria-hidden="true" />

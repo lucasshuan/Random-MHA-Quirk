@@ -5,8 +5,8 @@
 <h1 align="center">Random MHA Quirk</h1>
 
 <p align="center">
-  <strong>Plus Ultra your luck.</strong><br />
-  Roll quirks from My Hero Academia universe — one fate at a time, or two powers forged into one.
+  <strong>Roll a quirk and Plus Ultra!</strong><br />
+  Roll quirks from My Hero Academia universe — one at a time, or two forged into one.
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@
 
 ## What is this?
 
-**[Random MHA Quirk](https://random-mha-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*. No account, no grind — tap **Start**, follow the path, and let the wheel decide what your next individuality looks like. Filter by type and tier if you want control; leave it wide open if you trust fate.
+**[Random MHA Quirk](https://random-mha-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*.
 
 Available in **English**, **Português (Brasil)**, and **Español**.
 
@@ -32,8 +32,6 @@ Available in **English**, **Português (Brasil)**, and **Español**.
 In *MHA*, a **Quirk** is the power you are born with. This site lets you roll one from a curated pool inspired by canon sources and original entries in the same style.
 
 You can keep it random or narrow the pool by type, tier, and filters. Every result shows the essentials: name, description, type, range, facets, and tier.
-
-The quirk catalog is stored in **Supabase** and loaded via API (`GET /api/quirks`) with server caching. Authoring files live under `tools/catalog/output/`; seed with `pnpm quirks:seed` after `pnpm db:push`.
 
 ---
 

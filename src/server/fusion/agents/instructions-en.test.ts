@@ -82,6 +82,20 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('do not add arbitrary targets')
   })
 
+  it('instructs the model to use question-mark names only for natural relevant puns', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('Question marks in en.name are exceptional')
+    expect(instructions).toContain('default to a non-question title')
+    expect(instructions).toContain('naturally phrased, punny question')
+    expect(instructions).toContain('finished quirk mechanism')
+    expect(instructions).toContain('"Got Milk?"')
+    expect(instructions).toContain('"Who, Me?"')
+    expect(instructions).toContain('unexpectedly apt')
+    expect(instructions).toContain('Never force a question')
+  })
+
   it('includes inheritance criteria and treats facets as presentation only', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)

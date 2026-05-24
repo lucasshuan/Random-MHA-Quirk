@@ -64,11 +64,23 @@ describe('formatFusionNamingBlock', () => {
     expect(block).toContain('Corrosive Gale')
     expect(block).toContain('corrosive mist')
     expect(block).toContain('meaningfully different effect idea')
-    expect(block).toContain('commas and a single question mark')
+    expect(block).toContain('Question marks in en.name are exceptional')
+    expect(block).toContain('default to a non-question title')
+    expect(block).toContain('naturally phrased, punny question')
+    expect(block).toContain('Never force a question')
     expect(block).toContain('random interjection')
     expect(block).toContain('"Oops, Cushion"')
     expect(block).toContain('"Oops-Proof"')
     expect(block).toContain('SAME selected register')
+  })
+
+  it('keeps fun question examples behind the exceptional-use guard', () => {
+    const block = formatFusionNamingBlock('questions', [], 'a', 'b')
+
+    expect(block).toContain('"Who, Me?"')
+    expect(block).toContain('"Got Milk?"')
+    expect(block).toContain('only when the new quirk makes that question unexpectedly apt')
+    expect(block).toContain('Never force a question')
   })
 
   it('includes dramatic stem ban and name safety for non-meme registers', () => {

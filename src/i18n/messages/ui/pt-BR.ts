@@ -18,8 +18,9 @@ export const ptBR: Messages = {
   api: {
     errors: {
       rateLimitFusion:
-        'Muitas gerações de fusão (máx. 10 a cada 5 minutos). Aguarde cerca de {{minutes}} min antes de tentar de novo.',
+        'Muitas gerações de fusão (máx. 15 a cada 5 minutos). Aguarde cerca de {{minutes}} min antes de tentar de novo.',
       rateLimitApi: 'Muitas requisições. Tente novamente em cerca de {{minutes}} min.',
+      forbidden: 'Requisição bloqueada.',
       invalidJson: 'Corpo da requisição inválido.',
       missingFusionFields: 'parentA, parentB e seed são obrigatórios.',
       missingLocale: 'O parâmetro "locale" é obrigatório (en, pt-BR, es).',

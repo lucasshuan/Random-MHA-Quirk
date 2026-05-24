@@ -18,8 +18,9 @@ export const es: Messages = {
   api: {
     errors: {
       rateLimitFusion:
-        'Demasiadas generaciones de fusión (máx. 10 cada 5 minutos). Espera unos {{minutes}} min antes de intentar de nuevo.',
+        'Demasiadas generaciones de fusión (máx. 15 cada 5 minutos). Espera unos {{minutes}} min antes de intentar de nuevo.',
       rateLimitApi: 'Demasiadas solicitudes. Intenta de nuevo en unos {{minutes}} min.',
+      forbidden: 'Solicitud bloqueada.',
       invalidJson: 'Cuerpo de la solicitud inválido.',
       missingFusionFields: 'parentA, parentB y seed son obligatorios.',
       missingLocale: 'El parámetro "locale" es obligatorio (en, pt-BR, es).',

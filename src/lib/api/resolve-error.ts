@@ -9,6 +9,7 @@ import {
 const ERROR_I18N_KEYS: Record<ApiErrorCode, string> = {
   RATE_LIMIT_FUSION: 'api.errors.rateLimitFusion',
   RATE_LIMIT_API: 'api.errors.rateLimitApi',
+  FORBIDDEN: 'api.errors.forbidden',
   INVALID_JSON: 'api.errors.invalidJson',
   MISSING_FUSION_FIELDS: 'api.errors.missingFusionFields',
   MISSING_LOCALE: 'api.errors.missingLocale',

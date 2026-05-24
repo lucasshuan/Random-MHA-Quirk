@@ -16,8 +16,9 @@ export const en = {
   api: {
     errors: {
       rateLimitFusion:
-        'Too many fusion generations (10 per 5 minutes). Wait about {{minutes}} minutes before trying again.',
+        'Too many fusion generations (15 per 5 minutes). Wait about {{minutes}} minutes before trying again.',
       rateLimitApi: 'Too many requests. Try again in about {{minutes}} minutes.',
+      forbidden: 'Request blocked.',
       invalidJson: 'Invalid request body.',
       missingFusionFields: 'parentA, parentB, and seed are required.',
       missingLocale: 'Query param "locale" is required (en, pt-BR, es).',

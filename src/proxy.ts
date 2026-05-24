@@ -11,7 +11,7 @@ export function proxy(request: NextRequest) {
     return corsPreflightResponse(request)
   }
 
-  if (!isOriginAllowed(request.headers.get('origin'))) {
+  if (!isOriginAllowed(request.headers.get('origin'), request)) {
     return corsForbiddenResponse(request)
   }
 

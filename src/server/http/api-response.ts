@@ -9,7 +9,7 @@ export function corsPreflightResponse(request: Request): Response {
 }
 
 export function corsForbiddenResponse(request: Request): Response {
-  return apiErrorJson({ code: 'RATE_LIMIT_API' }, request, 403)
+  return apiErrorJson({ code: 'FORBIDDEN' }, request, 403)
 }
 
 export function withCors(json: unknown, request: Request, init?: ResponseInit): Response {

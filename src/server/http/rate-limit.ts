@@ -53,7 +53,7 @@ export const API_READ_RATE_LIMIT: RateLimitConfig = {
 /** Fusion generation — strict (direct LLM cost). */
 export const FUSION_GENERATE_RATE_LIMIT: RateLimitConfig = {
   windowMs: readIntEnv('RATE_LIMIT_FUSION_WINDOW_MS', 300_000),
-  maxRequests: readIntEnv('RATE_LIMIT_FUSION_MAX', 10),
+  maxRequests: readIntEnv('RATE_LIMIT_FUSION_MAX', 15),
 }
 
 function bucketKey(namespace: string, ip: string): string {

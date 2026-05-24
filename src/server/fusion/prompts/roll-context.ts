@@ -4,7 +4,7 @@ import type { FusionNameRegister } from './naming'
 import { selectFusionNameRegister } from './naming'
 import { deriveFusionOutputFromSeed, type FusionOutputRoll } from './output'
 import { fusionRollKey } from './roll-key'
-import { hashSeed } from './seed-hash'
+import { pickWeightedFromHash } from './seed-hash'
 import type { FusionStrategyKey } from './strategy'
 import { selectFusionStrategy } from './strategy'
 import type { FusionUtilityNiche } from './utility'
@@ -12,17 +12,23 @@ import { selectFusionUtilityNudge } from './utility'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkDisplayTier, QuirkRange, QuirkTier } from '@/types/quirk'
 
-const FUSION_TIER_ORDER: QuirkDisplayTier[] = ['S', 'A', 'B', 'C']
-const PARENT_TIER_SCORE: Record<QuirkTier, number> = {
-  Ω: -1,
+/** Generated bands only; parent Ω is weighted as S and parent D is weighted as C. */
+export const FUSION_GENERATED_TIERS = [
+  'S',
+  'A',
+  'B',
+  'C',
+] as const satisfies readonly QuirkDisplayTier[]
+const PARENT_TIER_INDEX: Record<QuirkTier, number> = {
+  Ω: 0,
   S: 0,
   A: 1,
   B: 2,
   C: 3,
-  D: 4,
+  D: 3,
 }
 
-const RANGE_TIER_BIAS: Record<QuirkRange, number> = {
+const RANGE_TIER_SHIFT: Record<QuirkRange, number> = {
   Self: 0.35,
   Contact: 0.2,
   Short: 0,
@@ -31,20 +37,23 @@ const RANGE_TIER_BIAS: Record<QuirkRange, number> = {
   Area: -0.3,
 }
 
-const STRATEGY_TIER_BIAS: Partial<Record<FusionStrategyKey, number>> = {
-  /** Higher score → lower tier band; failure-mode should usually sit below parent average. */
-  'failure-mode': 1.8,
-  byproduct: 0.45,
-  oscillation: 0.25,
-  synergy: -0.35,
-  'dominant-a': -0.15,
-  'dominant-b': -0.15,
+const STRATEGY_TIER_SHIFT: Partial<Record<FusionStrategyKey, number>> = {
+  /** Positive shifts favor weaker bands; failure-mode should often land below its parents. */
+  'failure-mode': 0.85,
+  byproduct: 0.3,
+  oscillation: 0.2,
+  synergy: -0.15,
+  'dominant-a': -0.1,
+  'dominant-b': -0.1,
   'facet-anchor': -0.1,
 }
+const TIER_WEIGHT_AT_CENTER = 50
+const TIER_DISTANCE_PENALTY = 18
+const TIER_MIN_WEIGHT = 2
 
 export interface FusionRollContext {
   outputRoll: FusionOutputRoll
-  tier: QuirkTier
+  tier: QuirkDisplayTier
   roll: FusionRollMeta
 }
 
@@ -52,12 +61,37 @@ function parentFacetHints(quirkA: FusionCatalogQuirk, quirkB: FusionCatalogQuirk
   return [...new Set([...quirkA.facets, ...quirkB.facets])]
 }
 
-function scoreToTier(score: number): QuirkDisplayTier {
-  const clamped = Math.max(0, Math.min(3, Math.round(score)))
-  return FUSION_TIER_ORDER[clamped] ?? 'B'
+function clampTierCenter(value: number): number {
+  return Math.max(0, Math.min(FUSION_GENERATED_TIERS.length - 1, value))
 }
 
-/** Deterministic fusion rank from parents, strategy, range, and seed. */
+export function buildFusionTierWeights(
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+  strategyKey: FusionStrategyKey,
+  range: QuirkRange,
+): Array<{ tier: QuirkDisplayTier; weight: number }> {
+  const parentCenter =
+    (PARENT_TIER_INDEX[parentA] + PARENT_TIER_INDEX[parentB]) / 2
+  const targetCenter = clampTierCenter(
+    parentCenter +
+      (STRATEGY_TIER_SHIFT[strategyKey] ?? 0) +
+      RANGE_TIER_SHIFT[range],
+  )
+
+  return FUSION_GENERATED_TIERS.map((tier, index) => ({
+    tier,
+    weight: Math.max(
+      TIER_MIN_WEIGHT,
+      Math.round(
+        TIER_WEIGHT_AT_CENTER -
+          Math.abs(index - targetCenter) * TIER_DISTANCE_PENALTY,
+      ),
+    ),
+  }))
+}
+
+/** Deterministic weighted fusion tier from normalized parents, strategy, range, and seed. */
 export function deriveFusionTier(
   seed: string,
   parentA: QuirkTier,
@@ -68,12 +102,8 @@ export function deriveFusionTier(
   parentBId: string,
 ): QuirkDisplayTier {
   const rollKey = fusionRollKey(seed, parentAId, parentBId)
-  let score = (PARENT_TIER_SCORE[parentA] + PARENT_TIER_SCORE[parentB]) / 2
-  score += STRATEGY_TIER_BIAS[strategyKey] ?? 0
-  score += RANGE_TIER_BIAS[range]
-  const jitter = (hashSeed(rollKey, 'fusion-tier') % 81) / 81
-  score += (jitter - 0.5) * 0.75
-  return scoreToTier(score)
+  const weights = buildFusionTierWeights(parentA, parentB, strategyKey, range)
+  return pickWeightedFromHash(rollKey, 'fusion-tier', weights).tier
 }
 
 /** All deterministic prompt rolls for one fusion variant. */

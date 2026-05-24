@@ -1,5 +1,12 @@
 import type { FusionPriorVariant } from './fusion'
-import type { QuirkFacet, QuirkOrigin, QuirkRange, QuirkTier, QuirkType } from './quirk'
+import type {
+  QuirkDisplayTier,
+  QuirkFacet,
+  QuirkOrigin,
+  QuirkRange,
+  QuirkTier,
+  QuirkType,
+} from './quirk'
 
 /** One parent quirk as sent to the fusion agent (English catalog fields). */
 export interface FusionAgentParent {
@@ -22,12 +29,13 @@ export interface FusionAgentInput {
     attempt: number
   }
   parents: [FusionAgentParent, FusionAgentParent]
-  /** Server-fixed mechanics — model must echo exactly in output. */
+  /** Server-fixed constraints; type/range/facets are echoed, while tier guides design. */
   mechanics: {
     type: QuirkType
     range: QuirkRange
     facets: QuirkFacet[]
     origin: QuirkOrigin
+    tier: QuirkDisplayTier
   }
   roll: {
     strategyKey: string

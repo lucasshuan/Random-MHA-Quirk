@@ -6,7 +6,7 @@ import { buildFusionAgentInput } from './agent-input'
 import { getQuirkById } from './catalog'
 import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
-import { deriveFusionRollContext } from './prompts/roll-context'
+import { deriveFusionRollContext, type FusionRollContext } from './prompts/roll-context'
 import {
   generateEnglishFusionWithLlm,
   translateFusionToLocaleWithLlm,
@@ -53,6 +53,20 @@ function storedResult(entry: FusionCacheEntry): GenerateFusionResult {
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function matchesRolledConstraints(
+  entry: FusionCacheEntry,
+  rollContext: FusionRollContext,
+): boolean {
+  const output = rollContext.outputRoll
+  return (
+    entry.tier === rollContext.tier &&
+    entry.type === output.type &&
+    entry.range === output.range &&
+    entry.facets.length === output.facets.length &&
+    entry.facets.every((facet, index) => facet === output.facets[index])
+  )
 }
 
 /**
@@ -105,7 +119,7 @@ export async function generateFusionEntry({
           parents[1],
           english.en.name,
         )
-        if (existingByName) {
+        if (existingByName && matchesRolledConstraints(existingByName, rollContext)) {
           await upsertFusionEntryAlias(key, existingByName.key)
           return storedResult(existingByName)
         }
@@ -122,7 +136,7 @@ export async function generateFusionEntry({
           parents,
           seed,
           { ...payload, ...rollContext.outputRoll },
-          { tier: english.tier, roll: rollContext.roll },
+          { tier: rollContext.tier, roll: rollContext.roll },
         )
         await upsertFusionEntry(entry)
         return { entry, cached: false, generated: true }

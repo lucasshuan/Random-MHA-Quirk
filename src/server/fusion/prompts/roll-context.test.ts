@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import type { FusionCatalogQuirk } from '../catalog'
-import { deriveFusionRollContext, deriveFusionTier } from './roll-context'
+import {
+  buildFusionTierWeights,
+  deriveFusionRollContext,
+  deriveFusionTier,
+} from './roll-context'
 
 const quirkA: FusionCatalogQuirk = {
   id: 'acid',
@@ -59,40 +63,43 @@ describe('deriveFusionRollContext', () => {
 })
 
 describe('deriveFusionTier', () => {
-  it('biases failure-mode below parent average', () => {
-    const synergy = deriveFusionTier(
-      't1',
-      'S',
-      'S',
-      'synergy',
-      'Long',
-      'a',
-      'b',
-    )
-    const failure = deriveFusionTier(
-      't1',
-      'S',
-      'S',
-      'failure-mode',
-      'Long',
-      'a',
-      'b',
-    )
-    expect(['S', 'A', 'B', 'C'].indexOf(failure)).toBeGreaterThan(
-      ['S', 'A', 'B', 'C'].indexOf(synergy),
+  it('is deterministic and generates only playable fusion tiers', () => {
+    const first = deriveFusionTier('tier-seed', 'A', 'B', 'synergy', 'Short', 'a', 'b')
+    const second = deriveFusionTier('tier-seed', 'A', 'B', 'synergy', 'Short', 'a', 'b')
+
+    expect(second).toBe(first)
+    expect(['S', 'A', 'B', 'C']).toContain(first)
+  })
+
+  it('weights equal parent tiers toward their shared tier', () => {
+    const sWeights = buildFusionTierWeights('S', 'S', 'synergy', 'Short')
+    const cWeights = buildFusionTierWeights('C', 'C', 'synergy', 'Short')
+
+    expect(sWeights[0].weight).toBeGreaterThan(sWeights[1].weight)
+    expect(cWeights[3].weight).toBeGreaterThan(cWeights[2].weight)
+  })
+
+  it('weights tiers between separated parent tiers more heavily', () => {
+    const weights = buildFusionTierWeights('S', 'C', 'synergy', 'Short')
+
+    expect(weights[1].weight).toBeGreaterThan(weights[0].weight)
+    expect(weights[2].weight).toBeGreaterThan(weights[3].weight)
+  })
+
+  it('normalizes Special as S and D as C for tier weighting', () => {
+    expect(buildFusionTierWeights('Ω', 'D', 'synergy', 'Short')).toEqual(
+      buildFusionTierWeights('S', 'C', 'synergy', 'Short'),
     )
   })
 
-  it('failure-mode on S+S parents lands at B with neutral jitter', () => {
-    const tier = deriveFusionTier(
-      'tier-failure-ss',
-      'S',
-      'S',
-      'failure-mode',
-      'Long',
-      'a',
-      'b',
-    )
-    expect(tier).toBe('B')
+  it('shifts failure-mode weight toward weaker tiers', () => {
+    const score = (weights: Array<{ weight: number }>) =>
+      weights.reduce((total, item, index) => total + item.weight * index, 0) /
+      weights.reduce((total, item) => total + item.weight, 0)
+
+    const synergy = buildFusionTierWeights('S', 'S', 'synergy', 'Short')
+    const failure = buildFusionTierWeights('S', 'S', 'failure-mode', 'Short')
+
+    expect(score(failure)).toBeGreaterThan(score(synergy))
   })
 })

@@ -1,17 +1,11 @@
 import type { FusionAgentInput } from '@/types/fusion-agent'
-import { isFusionStrategyKey, type FusionStrategyKey } from './strategy'
-
-/** Tiers the tier-decision agent may output (never Ω). */
-export const FUSION_TIER_DECISION_OUTPUT = ['S', 'A', 'B', 'C'] as const
-export type FusionTierDecisionOutput =
-  (typeof FUSION_TIER_DECISION_OUTPUT)[number]
 
 /**
- * Shared rubric for LLM tier assignment (fusion hybrids and similar).
+ * Shared rubric for calibrating generated fusion behavior to a server-assigned tier.
  * Methodology from docs/QUIRK_RESEARCH.md; catalog scale from TIER_RUBRIC.md.
  */
-export function buildFusionTierDecisionRubric(): string {
-  return `You assign a tier to one My Hero Academia quirk.
+export function buildFusionTierCalibrationRubric(): string {
+  return `Use this rubric to keep one My Hero Academia quirk consistent with its assigned tier.
 
 ## Core principles
 
@@ -22,7 +16,7 @@ export function buildFusionTierDecisionRubric(): string {
 
 ## Seven evaluation questions
 
-Answer each before choosing a tier:
+Use each question to calibrate the mechanism, scope, and explicit limits:
 
 1. **Does it bypass durability?** — If it can freeze, erase, rewind, mind-trap, steal, disable, teleport, rewrite, or neutralize regardless of strength or stacked mutations → starts high unless limits are severe and explicit in the description.
 2. **Can it affect top-tier enemies?** — Would AFO, Shigaraki, Endeavor, Star and Stripe, Hawks, or Mirko be **helpless** under simple, reliable activation? → **S**, not A/B. Only civilians, low villains, or unprepared targets → often cap at **B/C**.
@@ -38,69 +32,35 @@ Answer each before choosing a tier:
 - Liquify body + create water volume → high scaling → **S** if limits weak.
 - Sword cannot cut living skin (hard cap in text) → **B**.
 
-## Tier scale (output)
+## Tier scale (calibration reference)
 
 | Tier | Label | Meaning |
 |------|--------|---------|
-| **Ω** | **Special** | Meta / plot pillars outside normal play (e.g. All For One, One For All). **Reference only — never output Ω.** |
+| **Ω** | **Special** | Meta / plot pillars outside normal play (e.g. All For One, One For All). **Reference only — never assigned to a generated fusion.** |
 | **S** | Exceptional | Dominates many situations; high versatility or game-changing utility; still has **meaningful** limits top tiers can exploit. |
 | **A** | Strong | Clearly powerful, good scaling or versatility, not overwhelmingly oppressive. |
 | **B** | Solid | Practical and usable; limited by range, setup, stamina, precision, environment, or narrow role. |
 | **C** | Weak-ish | Niche or support; needs skill, team, or clever use to shine in hero work. |
-| **D** | Gag / useless | Joke quirks with almost no combat or mission value (stretchy eyes, talk to squirrels, party tricks). **Reference only — never output D.** |
+| **D** | Gag / useless | Joke quirks with almost no combat or mission value (stretchy eyes, talk to squirrels, party tricks). **Reference only — never assigned to a generated fusion.** |
 
-## Output rules
+## Calibration rules
 
-- Return **exactly one** tier: **S**, **A**, **B**, or **C**.
-- **Never** return **Ω** (Special) or **D** (gag tier) for hybrids or generated originals.
-- Tier the **described hybrid only** — parent tiers are context, not a floor or ceiling by themselves.
-- When in doubt between two adjacent tiers, prefer the **lower** tier unless question 1 or 6 clearly fire.`
+- The server supplies one fixed generated tier: **S**, **A**, **B**, or **C**. Do not output or override it.
+- **Ω** (Special) and **D** (gag tier) remain reference bands only; do not design a generated fusion at those extremes.
+- Match the **described hybrid** to the assigned tier; parent tiers are context, not a floor or ceiling by themselves.
+- If the first concept fits another tier, revise its scope, activation, ceiling, or counterplay until it credibly fits the assigned tier.`
 }
 
-/** Strategy-specific tier caps (failure-mode downgrade is mandatory). */
-export function formatFusionStrategyTierGuidance(
-  strategyKey: FusionStrategyKey,
-): string {
-  if (strategyKey === 'failure-mode') {
-    return `## Fusion strategy (mandatory tier adjustment)
-
-**failure-mode** — incomplete genetic fusion: weaker or narrower than either parent (less reach, output, reliability, or scope). One parent's core barely survives; the other appears as loss, friction, or a hard cap — not both kits at usable strength.
-
-Tier **at least one band lower** than you would for the same description as a normal **synergy** hybrid:
-- Do **not** match the stronger parent's tier; stay **below** it unless the text already proves a sub-parent ceiling.
-- **S** is rare — only when explicit, credible limits block war-tier abuse despite strong wording.
-- Typical: **B** or **C** for narrow, unreliable, or cost-heavy survivors; **A** only when clearly strong-but-nerfed, not a full parent fantasy restored. Never **D** — that tier is catalog-only gag quirks.
-- If the description still sounds strong, **tier down anyway** — reduced potential is the design even when prose slips upbeat.`
-  }
-
-  if (strategyKey === 'synergy') {
-    return `## Fusion strategy note
-
-**synergy** — unified combination. No automatic downgrade; use the seven questions and tier scale.`
-  }
-
-  return `## Fusion strategy note
-
-Strategy: **${strategyKey}**. Tier from the description and rubric; only **failure-mode** forces a routine downgrade.`
-}
-
-/** Tier rubric block for the English fusion agent (same rules as the former tier-only step). */
+/** Stable tier knowledge supplied to the English fusion agent for mechanism calibration. */
 export function buildFusionEnglishTierStaticBlock(): string {
-  return `## Tier assignment
+  return `## Tier calibration reference
 
-${buildFusionTierDecisionRubric()}`
+${buildFusionTierCalibrationRubric()}`
 }
 
 export function buildFusionEnglishTierVariantBlock(fusion: FusionAgentInput): string {
-  const strategyKey = isFusionStrategyKey(fusion.roll.strategyKey)
-    ? fusion.roll.strategyKey
-    : 'synergy'
+  return `### Assigned tier (server-fixed; do not output)
+- tier: ${fusion.mechanics.tier}
 
-  return `${formatFusionStrategyTierGuidance(strategyKey)}
-
-### Parent tiers (calibration only — not a floor or ceiling)
-- ${fusion.parents[0].name}: tier ${fusion.parents[0].tier}
-- ${fusion.parents[1].name}: tier ${fusion.parents[1].tier}
-
-Set **tier** in JSON last — after en.description and en.name — from the finished hybrid only.`
+Use the rubric above to make the mechanism, ceiling, and explicit limits credible at **${fusion.mechanics.tier}**. The tier roll already incorporates parent tiers, the selected strategy, and rolled range; do not recalculate or override it.`
 }

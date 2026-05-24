@@ -96,6 +96,7 @@ export function buildFusionAgentInput(
       range: outputRoll.range,
       facets: outputRoll.facets,
       origin: 'ORIGINAL',
+      tier: rollContext.tier,
     },
     roll: {
       strategyKey: roll.strategyKey,

@@ -33,7 +33,6 @@ describe('validateEnglishFusionPayload', () => {
       type: 'Emitter',
       range: 'Short',
       facets: ['Emission'],
-      tier: 'B',
     })
 
     expect(result.en.description).toHaveLength(FUSION_DESCRIPTION_MIN_LENGTH)
@@ -51,7 +50,6 @@ describe('validateEnglishFusionPayload', () => {
       type: 'Emitter',
       range: 'Short',
       facets: ['Emission'],
-      tier: 'C',
     })
 
     expect(result.en.description.length).toBeLessThanOrEqual(
@@ -84,16 +82,16 @@ describe('validateEnglishFusionPayload', () => {
     ).toThrow('en.name vazio')
   })
 
-  it('rejects invalid tier values', () => {
-    expect(() =>
-      validateEnglishFusionPayload({
-        en: { name: 'Test Fusion', description: validDescription },
-        type: 'Emitter',
-        range: 'Short',
-        facets: ['Emission'],
-        tier: 'Ω',
-      }),
-    ).toThrow('tier deve ser')
+  it('does not accept a model-supplied tier as English payload data', () => {
+    const result = validateEnglishFusionPayload({
+      en: { name: 'Test Fusion', description: validDescription },
+      type: 'Emitter',
+      range: 'Short',
+      facets: ['Emission'],
+      tier: 'Ω',
+    })
+
+    expect(result).not.toHaveProperty('tier')
   })
 })
 

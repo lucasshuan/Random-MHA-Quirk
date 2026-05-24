@@ -34,6 +34,7 @@ describe('buildFusionAgentInput', () => {
   it('echoes fixed mechanics from roll context', () => {
     const input = buildFusionAgentInput(quirkA, quirkB, 'seed-1')
     expect(input.mechanics.origin).toBe('ORIGINAL')
+    expect(['S', 'A', 'B', 'C']).toContain(input.mechanics.tier)
     expect(input.mechanics.type).toBeTruthy()
     expect(input.mechanics.facets.length).toBeGreaterThan(0)
     expect(input.roll.strategyInstruction).toContain('Fusion strategy')

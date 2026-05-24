@@ -12,7 +12,7 @@ export const DEFAULT_FUSION_OPENAI_MODEL = 'gpt-4o-mini'
 /** Default locale adaptation model when OPENAI_TRANSLATION_MODEL is unset. */
 export const DEFAULT_FUSION_TRANSLATION_OPENAI_MODEL = 'gpt-4.1-nano'
 
-/** English generation (name, description, tier). */
+/** English generation (name and description against server-rolled mechanics). */
 export function resolveFusionOpenAiModel(): string {
   return (
     process.env.OPENAI_FUSION_MODEL?.trim() ||

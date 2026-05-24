@@ -111,6 +111,7 @@ export function buildEnglishFusionRunConfig(fusion: FusionAgentInput): RunConfig
       type: fusion.mechanics.type,
       range: fusion.mechanics.range,
       facets: fusion.mechanics.facets.join(','),
+      tier: fusion.mechanics.tier,
       priorVariantCount: fusion.priorVariants.length,
       webSearch: resolveFusionWebSearchEnabled(),
     },

@@ -110,7 +110,6 @@ export const REGISTER_DEFS = [
       'Blackwhip',
       'Explosion',
       'Erasure',
-      'Bloodcurdle',
     ],
   },
   {

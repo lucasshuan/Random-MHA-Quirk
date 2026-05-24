@@ -14,8 +14,8 @@ const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from 
 ## Output contract
 
 - Return only JSON matching the output schema. No markdown.
-- Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name, then tier last.
-- Set tier last using the Tier assignment section below.
+- Fill output JSON in order: copy type, range, and facets exactly, then write en.description, then en.name.
+- Do not include tier in JSON. Tier is server-assigned; use the Tier calibration reference to keep the mechanism at the required strength.
 
 ## Core design contract
 
@@ -46,7 +46,7 @@ Research (when web_search is available):
 Scientific synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
 - The result need not echo both parent names literally if a principled synthesis fits better — like canon fusions where parents combine into a third idea (e.g. sweat chemistry leading to explosions, or asymmetric expression of two lineages).
-- Rolled type, range, facets, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.`
+- Rolled type, range, facets, tier, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.`
 
 const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
 
@@ -143,7 +143,7 @@ ${formatTakenTitlesBlock(fusion)}
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}
 
-## Tier calibration for this variant
+## Tier target for this variant
 
 ${buildFusionEnglishTierVariantBlock(fusion)}`
 }

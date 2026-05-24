@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest'
 import { buildFusionAgentInput } from '../agent-input'
+import type { FusionCatalogQuirk } from '../catalog'
 import { deriveFusionRollContext } from './roll-context'
 import {
   buildFusionEnglishTierVariantBlock,
-  buildFusionTierDecisionRubric,
-  formatFusionStrategyTierGuidance,
+  buildFusionTierCalibrationRubric,
 } from './tier-decision'
 
-describe('buildFusionTierDecisionRubric', () => {
+describe('buildFusionTierCalibrationRubric', () => {
   it('includes seven questions, tier scale, and Special tier guard', () => {
-    const rubric = buildFusionTierDecisionRubric()
+    const rubric = buildFusionTierCalibrationRubric()
 
     expect(rubric).toContain('Seven evaluation questions')
     expect(rubric).toContain('Does it bypass durability?')
@@ -22,50 +22,41 @@ describe('buildFusionTierDecisionRubric', () => {
     expect(rubric).toContain('War-arc benchmark')
     expect(rubric).toMatch(/\*\*Ω\*\*/)
     expect(rubric).toContain('Special')
-    expect(rubric).toContain('never output Ω')
+    expect(rubric).toContain('never assigned to a generated fusion')
     expect(rubric).toContain('| **S** | Exceptional |')
     expect(rubric).toContain('| **A** | Strong |')
     expect(rubric).toContain('| **B** | Solid |')
     expect(rubric).toContain('| **C** | Weak-ish |')
     expect(rubric).toContain('| **D** | Gag / useless |')
-    expect(rubric).toContain('never output D')
-    expect(rubric).toContain('Never** return **Ω** (Special) or **D**')
+    expect(rubric).toContain('server supplies one fixed generated tier')
+    expect(rubric).toContain('Do not output or override it')
   })
 })
 
-describe('formatFusionStrategyTierGuidance', () => {
-  it('requires a downgrade for failure-mode', () => {
-    const guidance = formatFusionStrategyTierGuidance('failure-mode')
-    expect(guidance).toContain('at least one band lower')
-    expect(guidance).toContain('failure-mode')
-    expect(guidance).not.toContain('automatic downgrade')
-  })
-})
-
-const quirkA = {
+const quirkA: FusionCatalogQuirk = {
   id: 'permeation',
   name: 'Permeation',
-  origin: 'BNHA' as const,
-  tier: 'A' as const,
-  type: 'Emitter' as const,
-  range: 'Short' as const,
-  facets: ['Mobility'] as const,
+  origin: 'BNHA',
+  tier: 'A',
+  type: 'Emitter',
+  range: 'Short',
+  facets: ['Mobility'],
   description: 'Phasing.',
 }
 
-const quirkB = {
+const quirkB: FusionCatalogQuirk = {
   id: 'hardening',
   name: 'Hardening',
-  origin: 'BNHA' as const,
-  tier: 'B' as const,
-  type: 'Transformation' as const,
-  range: 'Contact' as const,
-  facets: ['Enhancement'] as const,
+  origin: 'BNHA',
+  tier: 'B',
+  type: 'Transformation',
+  range: 'Contact',
+  facets: ['Enhancement'],
   description: 'Hardens skin.',
 }
 
 describe('buildFusionEnglishTierVariantBlock', () => {
-  it('embeds parent tier calibration', () => {
+  it('embeds the server-assigned target tier without repeating parent summaries', () => {
     const fusion = buildFusionAgentInput(
       quirkA,
       quirkB,
@@ -75,12 +66,13 @@ describe('buildFusionEnglishTierVariantBlock', () => {
     )
     const text = buildFusionEnglishTierVariantBlock(fusion)
 
-    expect(text).toContain('Permeation: tier A')
-    expect(text).toContain('Hardening: tier B')
-    expect(text).toContain('Set **tier** in JSON last')
+    expect(text).toContain(`- tier: ${fusion.mechanics.tier}`)
+    expect(text).toContain('server-fixed; do not output')
+    expect(text).not.toContain('Permeation: tier A')
+    expect(text).not.toContain('Hardening: tier B')
   })
 
-  it('includes failure-mode downgrade when strategy is failure-mode', () => {
+  it('does not instruct the model to recalculate a strategy-adjusted tier', () => {
     const rollContext = deriveFusionRollContext('tier-block-test', quirkA, quirkB, [])
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'tier-block-test', [], {
       ...rollContext,
@@ -89,7 +81,8 @@ describe('buildFusionEnglishTierVariantBlock', () => {
 
     const text = buildFusionEnglishTierVariantBlock(fusion)
 
-    expect(text).toContain('mandatory tier adjustment')
-    expect(text).toContain('at least one band lower')
+    expect(text).toContain('tier roll already incorporates parent tiers')
+    expect(text).toContain('do not recalculate or override it')
+    expect(text).not.toContain('mandatory tier adjustment')
   })
 })

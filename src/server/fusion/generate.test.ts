@@ -94,7 +94,6 @@ const englishPayload = {
   range: 'Medium' as const,
   facets: ['Emission'] as const,
   origin: 'ORIGINAL' as const,
-  tier: 'A' as const,
 }
 
 describe('generateFusionEntry', () => {
@@ -181,7 +180,7 @@ describe('generateFusionEntry', () => {
     expect(result.entry.en.name).toBe('Fresh')
     expect(result.entry['pt-BR'].name).toBe('Novo')
     expect(result.entry.es.name).toBe('Nuevo')
-    expect(result.entry.tier).toBe('A')
+    expect(result.entry.tier).toBe(fusionInput.mechanics.tier)
   })
 
   it('falls back to Supabase when generation fails', async () => {
@@ -206,17 +205,25 @@ describe('generateFusionEntry', () => {
   })
 
   it('returns the existing sibling when the English title already exists', async () => {
-    const siblingEntry: FusionCacheEntry = {
-      ...cachedEntry,
-      key: 'acid+explosion:older-seed',
-      seed: 'older-seed',
-    }
+    let siblingEntry!: FusionCacheEntry
 
     mockGenerateEnglishFusionWithLlm.mockResolvedValue({
       ...englishPayload,
       en: { name: 'Cached', description: 'Duplicate name result.' },
     })
-    mockFindFusionByParentPairAndEnglishName.mockResolvedValue(siblingEntry)
+    mockFindFusionByParentPairAndEnglishName.mockImplementation(async () => {
+      const input = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
+      siblingEntry = {
+        ...cachedEntry,
+        key: 'acid+explosion:older-seed',
+        seed: 'older-seed',
+        type: input.mechanics.type,
+        range: input.mechanics.range,
+        facets: input.mechanics.facets,
+        tier: input.mechanics.tier,
+      }
+      return siblingEntry
+    })
 
     const result = await generateFusionEntry({
       idA: 'acid',
@@ -239,6 +246,35 @@ describe('generateFusionEntry', () => {
     expect(result.cached).toBe(true)
     expect(result.generated).toBe(false)
     expect(result.entry).toEqual(siblingEntry)
+  })
+
+  it('does not alias a duplicate title whose stored rolled constraints differ', async () => {
+    mockGenerateEnglishFusionWithLlm.mockResolvedValue({
+      ...englishPayload,
+      en: { name: 'Cached', description: 'Duplicate name result.' },
+    })
+    mockFindFusionByParentPairAndEnglishName.mockImplementation(async () => {
+      const input = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
+      return {
+        ...cachedEntry,
+        type: input.mechanics.type,
+        range: input.mechanics.range,
+        facets: input.mechanics.facets,
+        tier: input.mechanics.tier === 'S' ? 'C' : 'S',
+      }
+    })
+
+    const result = await generateFusionEntry({
+      idA: 'acid',
+      idB: 'explosion',
+      seed: 'seed1',
+    })
+    const input = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
+
+    expect(mockUpsertFusionEntryAlias).not.toHaveBeenCalled()
+    expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()
+    expect(result.generated).toBe(true)
+    expect(result.entry.tier).toBe(input.mechanics.tier)
   })
 
   it('shares an in-flight generation for concurrent same-key requests', async () => {

@@ -1,7 +1,6 @@
 import { z } from 'zod'
 import { FUSION_DESCRIPTION_MIN_LENGTH, QUIRK_FACETS, QUIRK_RANGES, QUIRK_TYPES } from '../constants'
 import type { FusionTranslationLocale } from '../constants'
-import { FUSION_TIER_DECISION_OUTPUT } from '../prompts/tier-decision'
 
 export const FusionEnglishOutputSchema = z.object({
   type: z.enum(QUIRK_TYPES),
@@ -11,7 +10,6 @@ export const FusionEnglishOutputSchema = z.object({
     description: z.string().min(FUSION_DESCRIPTION_MIN_LENGTH),
     name: z.string().min(1),
   }),
-  tier: z.enum(FUSION_TIER_DECISION_OUTPUT),
 })
 
 export type FusionEnglishAgentOutput = z.infer<typeof FusionEnglishOutputSchema>

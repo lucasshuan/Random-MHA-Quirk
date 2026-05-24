@@ -31,6 +31,7 @@ describe('buildFusionEnglishInstructions', () => {
     const instructions = buildFusionEnglishInstructions(fusion)
 
     expect(instructions).toContain(`type: ${fusion.mechanics.type}`)
+    expect(instructions).toContain(`- tier: ${fusion.mechanics.tier}`)
     expect(instructions).not.toContain('- origin:')
     expect(instructions).toContain(fusion.roll.strategyInstruction)
     expect(instructions).toContain(fusion.roll.utilityNudge)
@@ -73,7 +74,8 @@ describe('buildFusionEnglishInstructions', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
-    expect(instructions).toContain('then write en.description, then en.name, then tier last')
+    expect(instructions).toContain('then write en.description, then en.name')
+    expect(instructions).not.toContain('then tier last')
     expect(instructions).toContain('Lead with the concrete mechanism')
     expect(instructions).toContain('NEW birth Quirk')
     expect(instructions).toContain('Could this description belong to either parent unchanged?')
@@ -107,13 +109,15 @@ describe('buildFusionEnglishInstructions', () => {
     )
   })
 
-  it('includes tier assignment rubric in the same prompt', () => {
+  it('includes tier calibration rubric while keeping the server tier authoritative', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
-    expect(instructions).toContain('## Tier assignment')
+    expect(instructions).toContain('## Tier calibration reference')
     expect(instructions).toContain('Seven evaluation questions')
-    expect(instructions).toContain('Set **tier** in JSON last')
+    expect(instructions).toContain('Assigned tier (server-fixed; do not output)')
+    expect(instructions).toContain('Do not include tier in JSON')
+    expect(instructions).not.toContain('Set **tier** in JSON last')
   })
 
   it('keeps the long rubric in a stable prefix before request-specific values', () => {
@@ -127,7 +131,7 @@ describe('buildFusionEnglishInstructions', () => {
     const firstRequestIndex = first.indexOf(requestMarker)
     const secondRequestIndex = second.indexOf(requestMarker)
 
-    expect(first.indexOf('## Tier assignment')).toBeLessThan(firstRequestIndex)
+    expect(first.indexOf('## Tier calibration reference')).toBeLessThan(firstRequestIndex)
     expect(first.slice(0, firstRequestIndex)).toBe(second.slice(0, secondRequestIndex))
     expect(first.indexOf('Question marks in en.name are exceptional')).toBeLessThan(
       firstRequestIndex,

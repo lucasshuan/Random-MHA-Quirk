@@ -1,6 +1,11 @@
 import type { Locale } from '@/i18n/types'
-import { findQuirkInCatalog } from '@/lib/quirks/catalog-client-cache'
+import {
+  findQuirkInCatalog,
+  getCatalogCache,
+} from '@/lib/quirks/catalog-client-cache'
+import { QUIRK_LIST_PAGE_SIZE } from '@/lib/quirks/pagination'
 import type { Quirk, QuirkFilters } from '@/types/quirk'
+import type { QuirkLocalesEntry } from '@/types/quirk-list'
 
 const quirkDetailCache = new Map<string, Quirk>()
 
@@ -15,6 +20,13 @@ export interface QuirksListResponse {
   filtered: boolean
 }
 
+export interface PaginatedQuirksListResponse extends QuirksListResponse {
+  entries: QuirkLocalesEntry[]
+  page: number
+  pageSize: number
+  pageCount: number
+}
+
 export interface QuirkDetailResponse {
   locale: Locale
   quirk: Quirk
@@ -23,8 +35,18 @@ export interface QuirkDetailResponse {
 /** Bust browser/CDN cache after catalog tier schema changes. */
 const CATALOG_FETCH_VERSION = 'v2-omega'
 
-function filtersToSearchParams(locale: Locale, filters?: QuirkFilters): URLSearchParams {
+function filtersToSearchParams(
+  locale: Locale,
+  filters?: QuirkFilters,
+  pagination?: { page: number; pageSize?: number },
+): URLSearchParams {
   const params = new URLSearchParams({ locale, catalog: CATALOG_FETCH_VERSION })
+
+  if (pagination) {
+    params.set('paginate', '1')
+    params.set('page', String(pagination.page))
+    params.set('limit', String(pagination.pageSize ?? QUIRK_LIST_PAGE_SIZE))
+  }
 
   if (!filters) return params
 
@@ -58,6 +80,27 @@ export async function fetchQuirks(
   return res.json() as Promise<QuirksListResponse>
 }
 
+export async function fetchPaginatedQuirks(
+  locale: Locale,
+  filters: QuirkFilters,
+  page: number,
+  init?: RequestInit,
+): Promise<PaginatedQuirksListResponse> {
+  const params = filtersToSearchParams(locale, filters, { page })
+  const res = await fetch(`/api/quirks?${params}`, {
+    ...init,
+    cache: 'no-store',
+    headers: { Accept: 'application/json', ...init?.headers },
+  })
+
+  if (!res.ok) {
+    const body = (await res.json().catch(() => null)) as { message?: string } | null
+    throw new Error(body?.message ?? `Failed to load quirks (${res.status}).`)
+  }
+
+  return res.json() as Promise<PaginatedQuirksListResponse>
+}
+
 export async function fetchQuirkById(
   locale: Locale,
   id: string,
@@ -87,5 +130,12 @@ export async function fetchQuirkById(
 
   const data = (await res.json()) as QuirkDetailResponse
   quirkDetailCache.set(cacheKey, data.quirk)
+
+  const catalog = getCatalogCache()
+  const list = catalog.get(locale) ?? []
+  if (!list.some((entry) => entry.id === data.quirk.id)) {
+    catalog.set(locale, [...list, data.quirk])
+  }
+
   return data.quirk
 }

@@ -69,9 +69,13 @@ export interface UseQuirksCatalogResult {
   reload: () => void
 }
 
-export function useQuirksCatalog(locale: Locale): UseQuirksCatalogResult {
+export function useQuirksCatalog(
+  locale: Locale,
+  options?: { enabled?: boolean },
+): UseQuirksCatalogResult {
+  const enabled = options?.enabled ?? true
   const [quirks, setQuirks] = useState<Quirk[]>(() => catalogCache.get(locale) ?? [])
-  const [isLoading, setIsLoading] = useState(() => !catalogCache.has(locale))
+  const [isLoading, setIsLoading] = useState(() => enabled && !catalogCache.has(locale))
   const [error, setError] = useState<string | null>(null)
   const [reloadToken, setReloadToken] = useState(0)
   const localeRef = useRef(locale)
@@ -84,6 +88,13 @@ export function useQuirksCatalog(locale: Locale): UseQuirksCatalogResult {
 
   useEffect(() => {
     localeRef.current = locale
+    if (!enabled) {
+      setQuirks(catalogCache.get(locale) ?? [])
+      setIsLoading(false)
+      setError(null)
+      return
+    }
+
     const cached = catalogCache.get(locale)
     if (cached) {
       setQuirks(cached)
@@ -111,7 +122,7 @@ export function useQuirksCatalog(locale: Locale): UseQuirksCatalogResult {
     return () => {
       active = false
     }
-  }, [locale, reloadToken])
+  }, [enabled, locale, reloadToken])
 
   return { quirks, isLoading, error, reload }
 }

@@ -2909,7 +2909,7 @@
 
 .catalog-loading-screen-embedded {
   height: auto;
-  min-height: min(320px, 52svh);
+  min-height: 0;
   flex: 1 1 auto;
   background: none;
   background-image: none;
@@ -3153,16 +3153,73 @@
   overflow: hidden;
 }
 
-.manual-quirk-panel-heading {
+.manual-quirk-panel-body {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0.55rem;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.manual-quirk-panel-heading span {
+.manual-quirk-panel-body > .mini-copy {
+  margin: auto 0;
+}
+
+.manual-quirk-panel-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.55rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(120, 140, 170, 0.14);
+}
+
+.manual-quirk-panel-count {
   color: rgba(180, 195, 215, 0.62);
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.manual-quirk-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.manual-quirk-page-btn {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(120, 140, 170, 0.28);
+  background: rgba(12, 18, 28, 0.55);
+  color: rgba(220, 230, 245, 0.9);
+  border-radius: 0.45rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.manual-quirk-page-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.manual-quirk-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.manual-quirk-page-indicator {
+  color: rgba(180, 195, 215, 0.62);
+  font-size: 0.72rem;
+  font-weight: 700;
+  min-width: 3.2rem;
+  text-align: center;
 }
 
 .manual-quirk-grid {

@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '../FilterPanel'
+import { QuirkListFooter } from '../QuirkListFooter'
+import { LoadingScreen } from '../LoadingScreen'
 import { useI18n } from '../../i18n/useI18n'
 import { FacetChip } from '../FacetChip'
 import { useMetaLabel } from '../../i18n/useMetaLabel'
-import { translateMatches } from '../../i18n/translate'
+import { usePaginatedQuirkList } from '@/hooks/usePaginatedQuirkList'
 import type { ResultMode } from '@/lib/wizard/flow'
 import { TierBadge, TierScale } from '../TierScale'
 import {
@@ -17,7 +19,6 @@ interface StepManualPickProps {
   mode: ResultMode
   hybridStep: 0 | 1
   filters: QuirkFilters
-  filteredQuirks: Quirk[]
   onChangeFilters: (filters: QuirkFilters) => void
   onSelectQuirk: (quirk: Quirk) => void
 }
@@ -44,7 +45,6 @@ export function StepManualPick({
   mode,
   hybridStep,
   filters,
-  filteredQuirks,
   onChangeFilters,
   onSelectQuirk,
 }: StepManualPickProps) {
@@ -53,6 +53,16 @@ export function StepManualPick({
   const [selectedQuirk, setSelectedQuirk] = useState<Quirk | null>(null)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [draftFilters, setDraftFilters] = useState<QuirkFilters>(filters)
+  const {
+    quirks,
+    total,
+    page,
+    pageCount,
+    pageSize,
+    setPage,
+    isLoading,
+    error,
+  } = usePaginatedQuirkList(locale, filters)
 
   const openFiltersModal = useCallback(() => {
     setDraftFilters({ ...filters })
@@ -152,14 +162,18 @@ export function StepManualPick({
 
       <div className="manual-pick-layout">
         <section className="panel inner-scroll-panel manual-quirk-panel">
-          <div className="manual-quirk-panel-heading">
-            <span>{translateMatches(locale, filteredQuirks.length)}</span>
-          </div>
-          {filteredQuirks.length === 0 ? (
-            <p className="mini-copy">{t('manualPick.empty')}</p>
-          ) : (
-            <div className="manual-quirk-grid">
-              {filteredQuirks.map((quirk) => (
+          <div className="manual-quirk-panel-body">
+            {isLoading ? (
+              <LoadingScreen label={t('quirks.loading')} embedded />
+            ) : error ? (
+              <p className="mini-copy" role="alert">
+                {error}
+              </p>
+            ) : quirks.length === 0 ? (
+              <p className="mini-copy">{t('manualPick.empty')}</p>
+            ) : (
+              <div className="manual-quirk-grid">
+                {quirks.map((quirk) => (
                 <button
                   key={quirk.id}
                   type="button"
@@ -178,9 +192,17 @@ export function StepManualPick({
                     {shortDescription(quirk.description, 72)}
                   </p>
                 </button>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
+          <QuirkListFooter
+            total={total}
+            page={page}
+            pageSize={pageSize}
+            pageCount={pageCount}
+            onPageChange={setPage}
+          />
         </section>
       </div>
 

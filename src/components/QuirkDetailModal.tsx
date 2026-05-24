@@ -1,16 +1,17 @@
 'use client'
 
-import { useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { FacetChip } from './FacetChip'
 import type { QuirkCardModel } from '@/types/quirk-card'
 import { findQuirkInCatalog } from '@/lib/quirks/catalog-client-cache'
+import { fetchQuirkById } from '@/lib/quirks/api'
 import { quirkTypeThemeClass } from '@/lib/quirks/type-theme'
 import { resolveQuirk } from '@/hooks/useQuirksCatalog'
 import { useI18n } from '@/i18n/useI18n'
 import { useMetaLabel } from '@/i18n/useMetaLabel'
 import type { FusionQuirk } from '@/types/fusion'
 import { TierBadge, TierScale } from './TierScale'
-import type { Quirk } from '@/types/quirk'
+import type { Quirk, QuirkId } from '@/types/quirk'
 
 function isFusionQuirk(quirk: QuirkCardModel): quirk is FusionQuirk {
   return 'roll' in quirk
@@ -21,12 +22,40 @@ interface HybridParentsSectionProps {
   onParentOpen: (parent: Quirk) => void
 }
 
+function useHybridParent(id: QuirkId, locale: ReturnType<typeof useI18n>['locale']) {
+  const [parent, setParent] = useState<Quirk | null>(() => findQuirkInCatalog(locale, id) ?? null)
+
+  useEffect(() => {
+    const cached = findQuirkInCatalog(locale, id)
+    if (cached) {
+      setParent(cached)
+      return
+    }
+
+    let active = true
+
+    void fetchQuirkById(locale, id)
+      .then((quirk) => {
+        if (active) setParent(quirk)
+      })
+      .catch(() => {
+        if (active) setParent(null)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [id, locale])
+
+  return parent
+}
+
 function HybridParentsSection({ fusion, onParentOpen }: HybridParentsSectionProps) {
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
 
-  const parentA = findQuirkInCatalog(locale, fusion.parents[0])
-  const parentB = findQuirkInCatalog(locale, fusion.parents[1])
+  const parentA = useHybridParent(fusion.parents[0], locale)
+  const parentB = useHybridParent(fusion.parents[1], locale)
   const parentAName = parentA?.name ?? fusion.parents[0]
   const parentBName = parentB?.name ?? fusion.parents[1]
 

@@ -112,6 +112,16 @@ export const es: Messages = {
     range: 'Alcance',
     facets: 'Facetas',
   },
+  pagination: {
+    showing: '{{from}}–{{to}} de {{total}}',
+    none: 'Sin resultados',
+    nav: 'Paginación',
+    first: 'Primera página',
+    prev: 'Página anterior',
+    next: 'Página siguiente',
+    last: 'Última página',
+    page: '{{page}} / {{pageCount}}',
+  },
   manualPick: {
     mark: 'Elección directa',
     titleSolo: 'Elige tu don',

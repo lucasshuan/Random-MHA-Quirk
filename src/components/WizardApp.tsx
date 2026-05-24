@@ -154,7 +154,15 @@ export function WizardApp({
   const restoredNavigationRef = useRef(false)
   const pendingNavigationRestoreRef = useRef<WizardNavigationSnapshot | null>(null)
 
-  const { quirks: allQuirks } = useQuirksCatalog(locale)
+  const catalogEnabled =
+    currentStep === 'advanced' ||
+    currentStep === 'result' ||
+    currentStep === 'randomRoll' ||
+    (currentStep === 'type' && pickPhase !== 'manual')
+
+  const { quirks: allQuirks } = useQuirksCatalog(locale, {
+    enabled: catalogEnabled,
+  })
 
   function manualParentsFromIds(
     ids: [QuirkId | null, QuirkId | null],
@@ -232,7 +240,6 @@ export function WizardApp({
   )
 
   const filteredQuirks = useFilteredQuirks(allQuirks, locale, filters)
-  const manuallyFilteredQuirks = useFilteredQuirks(allQuirks, locale, manualFilters)
   const hybridPoolA = useFilteredQuirks(allQuirks, locale, hybridSlotFilters[0])
   const hybridPoolB = useFilteredQuirks(allQuirks, locale, hybridSlotFilters[1])
 
@@ -659,7 +666,6 @@ export function WizardApp({
             mode={mode}
             hybridStep={hybridTypeStep}
             filters={manualFilters}
-            filteredQuirks={manuallyFilteredQuirks}
             onChangeFilters={setManualFilters}
             onSelectQuirk={handleManualPick}
           />

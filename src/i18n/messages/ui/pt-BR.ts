@@ -112,6 +112,16 @@ export const ptBR: Messages = {
     range: 'Alcance',
     facets: 'Características',
   },
+  pagination: {
+    showing: '{{from}}–{{to}} de {{total}}',
+    none: 'Nenhum resultado',
+    nav: 'Paginação',
+    first: 'Primeira página',
+    prev: 'Página anterior',
+    next: 'Próxima página',
+    last: 'Última página',
+    page: '{{page}} / {{pageCount}}',
+  },
   manualPick: {
     mark: 'Escolha direta',
     titleSolo: 'Escolha sua individualidade',

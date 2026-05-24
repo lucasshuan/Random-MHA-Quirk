@@ -2,8 +2,13 @@ import { NextRequest } from 'next/server'
 import { apiErrorJson, rateLimitedJson } from '@/server/http/api-errors'
 import { applyCorsHeaders } from '@/server/http/cors'
 import { checkApiReadRateLimit, rateLimitHeaders } from '@/server/http/rate-limit'
-import { listAllFusionEntries } from '@/server/fusion/repository'
-import { parseLocaleParam } from '@/server/quirks/params'
+import { getPaginatedFusionEntries } from '@/server/fusion/list'
+import {
+  parseLocaleParam,
+  parsePageParam,
+  parsePageSizeParam,
+  parseQuirkFiltersFromSearchParams,
+} from '@/server/quirks/params'
 
 export const runtime = 'nodejs'
 
@@ -26,6 +31,39 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const params = request.nextUrl.searchParams
+    const paginate = params.get('paginate') === '1' || params.has('page')
+
+    if (paginate) {
+      const filters = parseQuirkFiltersFromSearchParams(params)
+      const page = parsePageParam(params.get('page'))
+      const pageSize = parsePageSizeParam(params.get('limit'))
+      const result = await getPaginatedFusionEntries(locale, filters, page, pageSize)
+
+      return applyCorsHeaders(
+        Response.json(
+          {
+            locale: result.locale,
+            entries: result.entries,
+            parentLabels: result.parentLabels,
+            total: result.total,
+            page: result.page,
+            pageSize: result.pageSize,
+            pageCount: result.pageCount,
+            filtered: result.filtered,
+          },
+          {
+            headers: new Headers({
+              ...Object.fromEntries(rateHeaders.entries()),
+              'Cache-Control': 'private, no-store',
+            }),
+          },
+        ),
+        request,
+      )
+    }
+
+    const { listAllFusionEntries } = await import('@/server/fusion/repository')
     const entries = await listAllFusionEntries()
 
     return applyCorsHeaders(

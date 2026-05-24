@@ -54,3 +54,5 @@ export function hasActiveFilters(filters: QuirkFilters): boolean {
     filters.query.length > 0
   )
 }
+
+export { parsePageParam, parsePageSizeParam } from '@/lib/quirks/pagination'

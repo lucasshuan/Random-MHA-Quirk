@@ -1,8 +1,11 @@
 import type { Locale } from '@/i18n/types'
+import { LOCALES } from '@/i18n/types'
 import { getSupabaseAdmin } from '@/server/db/supabase'
+import type { QuirkLocalesEntry } from '@/types/quirk-list'
 import {
   QUIRK_TIERS,
   type Quirk,
+  type QuirkCopy,
   type QuirkFacet,
   type QuirkId,
   type QuirkOrigin,
@@ -42,6 +45,58 @@ function rowToQuirk(base: QuirkRow, translation: TranslationRow): Quirk {
     name: translation.name,
     description: translation.description,
   }
+}
+
+export async function listQuirksWithLocales(): Promise<QuirkLocalesEntry[]> {
+  const supabase = getSupabaseAdmin()
+
+  const { data: bases, error: baseError } = await supabase
+    .from('quirks')
+    .select('id, origin, tier, type, range, facets')
+    .order('id')
+
+  if (baseError) {
+    throw new Error(`Supabase quirks list failed: ${baseError.message}`)
+  }
+
+  const { data: translations, error: translationError } = await supabase
+    .from('quirk_translations')
+    .select('quirk_id, locale, name, description')
+    .in('locale', [...LOCALES])
+
+  if (translationError) {
+    throw new Error(`Supabase quirk translations failed: ${translationError.message}`)
+  }
+
+  const translationsByQuirk = new Map<string, Partial<Record<Locale, QuirkCopy>>>()
+  for (const row of translations ?? []) {
+    const typed = row as TranslationRow
+    if (!isLocale(typed.locale)) continue
+    const bundle = translationsByQuirk.get(typed.quirk_id) ?? {}
+    bundle[typed.locale] = { name: typed.name, description: typed.description }
+    translationsByQuirk.set(typed.quirk_id, bundle)
+  }
+
+  const entries: QuirkLocalesEntry[] = []
+  for (const base of bases ?? []) {
+    const locales = translationsByQuirk.get(base.id)
+    if (!locales?.en) continue
+    entries.push({
+      id: base.id as QuirkId,
+      origin: base.origin as QuirkOrigin,
+      tier: parseTier(base.tier),
+      type: base.type as QuirkType,
+      range: base.range as QuirkRange,
+      facets: base.facets as QuirkFacet[],
+      locales,
+    })
+  }
+
+  return entries
+}
+
+function isLocale(value: string): value is Locale {
+  return (LOCALES as readonly string[]).includes(value)
 }
 
 export async function listLocalizedQuirks(locale: Locale): Promise<Quirk[]> {

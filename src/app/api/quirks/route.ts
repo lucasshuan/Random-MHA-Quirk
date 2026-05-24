@@ -2,8 +2,13 @@ import { NextRequest } from 'next/server'
 import { apiErrorJson, rateLimitedJson } from '@/server/http/api-errors'
 import { applyCorsHeaders } from '@/server/http/cors'
 import { checkApiReadRateLimit, rateLimitHeaders } from '@/server/http/rate-limit'
-import { parseLocaleParam, parseQuirkFiltersFromSearchParams } from '@/server/quirks/params'
-import { getFilteredQuirks, getQuirksCatalog } from '@/server/quirks/service'
+import {
+  parseLocaleParam,
+  parsePageParam,
+  parsePageSizeParam,
+  parseQuirkFiltersFromSearchParams,
+} from '@/server/quirks/params'
+import { getFilteredQuirks, getPaginatedQuirks, getQuirksCatalog } from '@/server/quirks/service'
 
 export const runtime = 'nodejs'
 
@@ -42,7 +47,37 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const filters = parseQuirkFiltersFromSearchParams(request.nextUrl.searchParams)
+    const params = request.nextUrl.searchParams
+    const filters = parseQuirkFiltersFromSearchParams(params)
+    const paginate = params.get('paginate') === '1' || params.has('page')
+
+    if (paginate) {
+      const page = parsePageParam(params.get('page'))
+      const pageSize = parsePageSizeParam(params.get('limit'))
+      const result = await getPaginatedQuirks(locale, filters, page, pageSize)
+
+      return applyCorsHeaders(
+        Response.json(
+          {
+            locale: result.locale,
+            quirks: result.quirks,
+            entries: result.entries,
+            total: result.total,
+            page: result.page,
+            pageSize: result.pageSize,
+            pageCount: result.pageCount,
+            filtered: result.filtered,
+          },
+          {
+            headers: mergeHeaders(rateHeaders, {
+              'Cache-Control': 'private, no-store',
+            }),
+          },
+        ),
+        request,
+      )
+    }
+
     const { quirks, total, filtered } = await getFilteredQuirks(locale, filters)
 
     return applyCorsHeaders(

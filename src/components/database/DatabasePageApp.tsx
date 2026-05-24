@@ -1,21 +1,19 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '@/components/FilterPanel'
 import { QuirkDetailModal } from '@/components/QuirkDetailModal'
+import { QuirkListFooter } from '@/components/QuirkListFooter'
 import { SegmentTabs } from '@/components/SegmentTabs'
 import { TierBadge } from '@/components/TierScale'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
-import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
+import { usePaginatedFusionList } from '@/hooks/usePaginatedFusionList'
+import { usePaginatedQuirkList } from '@/hooks/usePaginatedQuirkList'
 import { useI18n } from '@/i18n/useI18n'
 import { useMetaLabel } from '@/i18n/useMetaLabel'
-import { translateMatches } from '@/i18n/translate'
-import { fetchFusionCatalog } from '@/lib/fusion/api'
-import { filterFusionEntries } from '@/lib/fusion/database-filters'
 import { resolveFusionQuirk } from '@/lib/fusion/cache'
-import { findQuirkInCatalog } from '@/lib/quirks/catalog-client-cache'
 import type { FusionCacheEntry } from '@/types/fusion'
 import {
   countAdvancedFilterSelections,
@@ -59,29 +57,25 @@ export function DatabasePageApp() {
   const router = useRouter()
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
-  const { quirks: allQuirks } = useQuirksCatalog(locale)
   const [tab, setTab] = useState<DatabaseTab>('quirks')
   const [filters, setFilters] = useState<QuirkFilters>({ ...DEFAULT_QUIRK_FILTERS })
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [draftFilters, setDraftFilters] = useState<QuirkFilters>({ ...DEFAULT_QUIRK_FILTERS })
   const [selectedQuirk, setSelectedQuirk] = useState<Quirk | null>(null)
   const [selectedHybrid, setSelectedHybrid] = useState<FusionCacheEntry | null>(null)
-  const [fusionEntries, setFusionEntries] = useState<FusionCacheEntry[]>([])
-  const [isFusionCatalogLoading, setIsFusionCatalogLoading] = useState(true)
-  const [fusionCatalogError, setFusionCatalogError] = useState<string | null>(null)
 
-  const filteredQuirks = useFilteredQuirks(allQuirks, locale, filters)
-  const filteredHybrids = useMemo(
-    () => filterFusionEntries(fusionEntries, filters, locale),
-    [fusionEntries, filters, locale],
-  )
+  const quirksList = usePaginatedQuirkList(locale, filters, {
+    enabled: tab === 'quirks',
+  })
+  const hybridsList = usePaginatedFusionList(locale, filters, {
+    enabled: tab === 'hybrids',
+  })
 
   const selectedHybridFusion = useMemo(
     () => (selectedHybrid ? resolveFusionQuirk(selectedHybrid, locale) : null),
     [locale, selectedHybrid],
   )
 
-  const activeCount = tab === 'quirks' ? filteredQuirks.length : filteredHybrids.length
   const activeFilterCount = useMemo(
     () => countAdvancedFilterSelections(filters, { includeTiers: true }),
     [filters],
@@ -95,21 +89,6 @@ export function DatabasePageApp() {
       ] as const,
     [t],
   )
-
-  const loadFusionCatalog = useCallback(async () => {
-    setIsFusionCatalogLoading(true)
-    setFusionCatalogError(null)
-
-    try {
-      const entries = await fetchFusionCatalog(locale)
-      setFusionEntries(entries)
-    } catch {
-      setFusionCatalogError(t('database.hybridLoadError'))
-      setFusionEntries([])
-    } finally {
-      setIsFusionCatalogLoading(false)
-    }
-  }, [locale, t])
 
   const openFiltersModal = useCallback(() => {
     setDraftFilters({
@@ -160,12 +139,144 @@ export function DatabasePageApp() {
     }))
   }, [])
 
-  useEffect(() => {
-    void loadFusionCatalog()
-  }, [loadFusionCatalog])
-
   function goHome() {
     router.push('/')
+  }
+
+  function renderQuirksPanel() {
+    const { quirks, total, page, pageCount, pageSize, setPage, isLoading, error } = quirksList
+
+    return (
+      <div className="manual-pick-layout history-pick-layout">
+        <section className="panel inner-scroll-panel manual-quirk-panel history-list-panel">
+          <div className="manual-quirk-panel-body">
+            {isLoading ? (
+              <LoadingScreen label={t('quirks.loading')} embedded />
+            ) : error ? (
+              <p className="mini-copy" role="alert">
+                {error}
+              </p>
+            ) : quirks.length === 0 ? (
+              <p className="mini-copy">{t('database.emptyQuirks')}</p>
+            ) : (
+              <div className="manual-quirk-grid">
+                {quirks.map((quirk) => (
+                <button
+                  key={quirk.id}
+                  type="button"
+                  className={`manual-quirk-card ${toneClass(quirk.type)}`}
+                  data-tier={quirk.tier}
+                  onClick={() => setSelectedQuirk(quirk)}
+                >
+                  <span className="quirk-card-glow" aria-hidden="true" />
+                  <p className="quirk-meta manual-quirk-meta">
+                    <TierBadge tier={quirk.tier} />
+                    <span className="quirk-meta-sep" aria-hidden="true" />
+                    <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
+                  </p>
+                  <h3 className="manual-quirk-name">{quirk.name}</h3>
+                  <p className="manual-quirk-description">
+                    {shortDescription(quirk.description, 72)}
+                  </p>
+                </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <QuirkListFooter
+            total={total}
+            page={page}
+            pageSize={pageSize}
+            pageCount={pageCount}
+            onPageChange={setPage}
+          />
+        </section>
+      </div>
+    )
+  }
+
+  function renderHybridsPanel() {
+    const {
+      entries,
+      parentName,
+      total,
+      page,
+      pageCount,
+      pageSize,
+      setPage,
+      isLoading,
+      error,
+    } = hybridsList
+
+    return (
+      <div className="manual-pick-layout history-pick-layout">
+        <section className="panel inner-scroll-panel manual-quirk-panel history-list-panel">
+          <div className="manual-quirk-panel-body">
+            {isLoading ? (
+              <LoadingScreen label={t('database.hybridLoading')} embedded />
+            ) : error ? (
+              <p className="mini-copy" role="alert">
+                {error}
+              </p>
+            ) : entries.length === 0 ? (
+              <p className="mini-copy">{t('database.emptyHybrids')}</p>
+            ) : (
+              <div className="manual-quirk-grid">
+                {entries.map((entry) => {
+                const fusion = resolveFusionQuirk(entry, locale)
+                if (!fusion) {
+                  return null
+                }
+
+                const parentAName = parentName(entry.parents[0]) ?? entry.parents[0]
+                const parentBName = parentName(entry.parents[1]) ?? entry.parents[1]
+
+                return (
+                  <button
+                    key={entry.key}
+                    type="button"
+                    className={`manual-quirk-card history-entry-card-hybrid ${toneClass(fusion.type)}`}
+                    data-tier={fusion.tier}
+                    onClick={() => setSelectedHybrid(entry)}
+                  >
+                    <span className="quirk-card-glow" aria-hidden="true" />
+                    <span className="quirk-fusion-badge">Hybrid</span>
+                    <p className="quirk-meta manual-quirk-meta">
+                      <TierBadge tier={fusion.tier} />
+                      <span className="quirk-meta-sep" aria-hidden="true" />
+                      <span className="quirk-meta-type">{meta.type(fusion.type)}</span>
+                    </p>
+                    <h3 className="manual-quirk-name">{fusion.name}</h3>
+                    <p className="manual-quirk-description">
+                      {shortDescription(fusion.description, 72)}
+                    </p>
+                    <p className="hybrid-parent-tags" aria-label={t('database.hybridParents')}>
+                      <span className="chip chip-muted hybrid-parent-tag">
+                        {shortDescription(parentAName, 24)}
+                      </span>
+                      <span className="hybrid-parent-sep" aria-hidden="true">
+                        +
+                      </span>
+                      <span className="chip chip-muted hybrid-parent-tag">
+                        {shortDescription(parentBName, 24)}
+                      </span>
+                    </p>
+                  </button>
+                )
+                })}
+              </div>
+            )}
+          </div>
+          <QuirkListFooter
+            total={total}
+            page={page}
+            pageSize={pageSize}
+            pageCount={pageCount}
+            onPageChange={setPage}
+          />
+        </section>
+      </div>
+    )
   }
 
   return (
@@ -217,107 +328,7 @@ export function DatabasePageApp() {
               </section>
             }
           >
-            {(activeTab) =>
-              activeTab === 'quirks' ? (
-                <div className="manual-pick-layout history-pick-layout">
-                  <section className="panel inner-scroll-panel manual-quirk-panel history-list-panel">
-                    <div className="manual-quirk-panel-heading">
-                      <span>{translateMatches(locale, activeCount)}</span>
-                    </div>
-                    {filteredQuirks.length === 0 ? (
-                      <p className="mini-copy">{t('database.emptyQuirks')}</p>
-                    ) : (
-                      <div className="manual-quirk-grid">
-                        {filteredQuirks.map((quirk) => (
-                          <button
-                            key={quirk.id}
-                            type="button"
-                            className={`manual-quirk-card ${toneClass(quirk.type)}`}
-                            data-tier={quirk.tier}
-                            onClick={() => setSelectedQuirk(quirk)}
-                          >
-                            <span className="quirk-card-glow" aria-hidden="true" />
-                            <p className="quirk-meta manual-quirk-meta">
-                              <TierBadge tier={quirk.tier} />
-                              <span className="quirk-meta-sep" aria-hidden="true" />
-                              <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
-                            </p>
-                            <h3 className="manual-quirk-name">{quirk.name}</h3>
-                            <p className="manual-quirk-description">
-                              {shortDescription(quirk.description, 72)}
-                            </p>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </section>
-                </div>
-              ) : (
-                <div className="manual-pick-layout history-pick-layout">
-                  <section className="panel inner-scroll-panel manual-quirk-panel history-list-panel">
-                    <div className="manual-quirk-panel-heading">
-                      <span>{translateMatches(locale, activeCount)}</span>
-                    </div>
-                    {isFusionCatalogLoading ? (
-                      <LoadingScreen label={t('database.hybridLoading')} embedded />
-                    ) : fusionCatalogError ? (
-                      <p className="mini-copy" role="alert">
-                        {fusionCatalogError}
-                      </p>
-                    ) : filteredHybrids.length === 0 ? (
-                      <p className="mini-copy">{t('database.emptyHybrids')}</p>
-                    ) : (
-                      <div className="manual-quirk-grid">
-                        {filteredHybrids.map((entry) => {
-                          const fusion = resolveFusionQuirk(entry, locale)
-                          if (!fusion) {
-                            return null
-                          }
-
-                          const parentA = findQuirkInCatalog(locale, entry.parents[0])
-                          const parentB = findQuirkInCatalog(locale, entry.parents[1])
-                          const parentAName = parentA?.name ?? entry.parents[0]
-                          const parentBName = parentB?.name ?? entry.parents[1]
-
-                          return (
-                            <button
-                              key={entry.key}
-                              type="button"
-                              className={`manual-quirk-card history-entry-card-hybrid ${toneClass(fusion.type)}`}
-                              data-tier={fusion.tier}
-                              onClick={() => setSelectedHybrid(entry)}
-                            >
-                              <span className="quirk-card-glow" aria-hidden="true" />
-                              <span className="quirk-fusion-badge">Hybrid</span>
-                              <p className="quirk-meta manual-quirk-meta">
-                                <TierBadge tier={fusion.tier} />
-                                <span className="quirk-meta-sep" aria-hidden="true" />
-                                <span className="quirk-meta-type">{meta.type(fusion.type)}</span>
-                              </p>
-                              <h3 className="manual-quirk-name">{fusion.name}</h3>
-                              <p className="manual-quirk-description">
-                                {shortDescription(fusion.description, 72)}
-                              </p>
-                              <p className="hybrid-parent-tags" aria-label={t('database.hybridParents')}>
-                                <span className="chip chip-muted hybrid-parent-tag">
-                                  {shortDescription(parentAName, 24)}
-                                </span>
-                                <span className="hybrid-parent-sep" aria-hidden="true">
-                                  +
-                                </span>
-                                <span className="chip chip-muted hybrid-parent-tag">
-                                  {shortDescription(parentBName, 24)}
-                                </span>
-                              </p>
-                            </button>
-                          )
-                        })}
-                      </div>
-                    )}
-                  </section>
-                </div>
-              )
-            }
+            {(activeTab) => (activeTab === 'quirks' ? renderQuirksPanel() : renderHybridsPanel())}
           </SegmentTabs>
         </div>
       </div>

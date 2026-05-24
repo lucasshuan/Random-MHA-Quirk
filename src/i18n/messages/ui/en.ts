@@ -105,6 +105,16 @@ export const en = {
     range: 'Range',
     facets: 'Facets',
   },
+  pagination: {
+    showing: '{{from}}–{{to}} of {{total}}',
+    none: 'No matches',
+    nav: 'Pagination',
+    first: 'First page',
+    prev: 'Previous page',
+    next: 'Next page',
+    last: 'Last page',
+    page: '{{page}} / {{pageCount}}',
+  },
   manualPick: {
     mark: 'Direct pick',
     titleSolo: 'Choose your quirk',

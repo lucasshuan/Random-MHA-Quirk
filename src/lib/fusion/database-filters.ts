@@ -2,22 +2,41 @@ import { resolveFusionQuirk } from '@/lib/fusion/cache'
 import { findQuirkInCatalog } from '@/lib/quirks/catalog-client-cache'
 import type { Locale } from '@/i18n/types'
 import type { FusionCacheEntry } from '@/types/fusion'
-import type { QuirkFilters } from '@/types/quirk'
+import type { QuirkFilters, QuirkId } from '@/types/quirk'
 
-function hybridSearchText(entry: FusionCacheEntry, locale: Locale): string {
+export interface FusionFilterOptions {
+  parentName?: (id: QuirkId) => string | undefined
+}
+
+function resolveParentName(
+  locale: Locale,
+  id: QuirkId,
+  options?: FusionFilterOptions,
+): string | undefined {
+  if (options?.parentName) {
+    return options.parentName(id)
+  }
+  return findQuirkInCatalog(locale, id)?.name
+}
+
+function hybridSearchText(
+  entry: FusionCacheEntry,
+  locale: Locale,
+  options?: FusionFilterOptions,
+): string {
   const fusion = resolveFusionQuirk(entry, locale)
   if (!fusion) {
     return ''
   }
 
-  const parentA = findQuirkInCatalog(locale, entry.parents[0])
-  const parentB = findQuirkInCatalog(locale, entry.parents[1])
+  const parentA = resolveParentName(locale, entry.parents[0], options)
+  const parentB = resolveParentName(locale, entry.parents[1], options)
 
   return [
     fusion.name,
     fusion.description,
-    parentA?.name,
-    parentB?.name,
+    parentA,
+    parentB,
     fusion.type,
     fusion.range,
     fusion.origin,
@@ -32,6 +51,7 @@ export function filterFusionEntries(
   entries: FusionCacheEntry[],
   filters: QuirkFilters,
   locale: Locale,
+  options?: FusionFilterOptions,
 ): FusionCacheEntry[] {
   const query = filters.query.trim().toLowerCase()
 
@@ -68,6 +88,6 @@ export function filterFusionEntries(
       return true
     }
 
-    return hybridSearchText(entry, locale).includes(query)
+    return hybridSearchText(entry, locale, options).includes(query)
   })
 }

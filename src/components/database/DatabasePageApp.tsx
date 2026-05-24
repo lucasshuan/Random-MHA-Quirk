@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { FacetChip } from '@/components/FacetChip'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '@/components/FilterPanel'
+import { QuirkDetailModal } from '@/components/QuirkDetailModal'
 import { SegmentTabs } from '@/components/SegmentTabs'
-import { TierBadge, TierScale } from '@/components/TierScale'
+import { TierBadge } from '@/components/TierScale'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
 import { useI18n } from '@/i18n/useI18n'
@@ -361,104 +361,14 @@ export function DatabasePageApp() {
       ) : null}
 
       {selectedQuirk ? (
-        <div className="quirk-pick-modal-backdrop" onClick={() => setSelectedQuirk(null)}>
-          <div
-            className={`quirk-pick-modal ${toneClass(selectedQuirk.type)}`}
-            role="dialog"
-            aria-modal="true"
-            aria-label={selectedQuirk.name}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <article className={`quirk-pick-card ${toneClass(selectedQuirk.type)}`}>
-              <div className="quirk-card-glow" aria-hidden="true" />
-              <div className="quirk-pick-card-scroll">
-                <p className="quirk-meta">
-                  <TierScale tier={selectedQuirk.tier} />
-                  <span className="quirk-meta-sep" aria-hidden="true" />
-                  <span className="quirk-meta-type">{meta.type(selectedQuirk.type)}</span>
-                  <span className="quirk-meta-sep" aria-hidden="true" />
-                  <span className="quirk-meta-range">
-                    <span className="quirk-meta-range-icon" aria-hidden="true" />
-                    {meta.range(selectedQuirk.range)}
-                  </span>
-                </p>
-                <h2 className="quirk-pick-card-name">{selectedQuirk.name}</h2>
-                <p className="quirk-pick-modal-description">{selectedQuirk.description}</p>
-                <p className="quirk-pick-origin">
-                  <span>{t('advanced.origin')}:</span> {meta.origin(selectedQuirk.origin)}
-                </p>
-              </div>
-              {selectedQuirk.facets.length > 0 ? (
-                <div className="chip-row quirk-pick-facets">
-                  {selectedQuirk.facets.map((facet) => (
-                    <FacetChip key={facet} facet={facet} />
-                  ))}
-                </div>
-              ) : null}
-            </article>
-            <div className="quirk-pick-modal-actions modal-actions-readonly">
-              <button
-                type="button"
-                className="manual-secondary-action"
-                onClick={() => setSelectedQuirk(null)}
-              >
-                {t('nav.back')}
-              </button>
-            </div>
-          </div>
-        </div>
+        <QuirkDetailModal quirk={selectedQuirk} onClose={() => setSelectedQuirk(null)} />
       ) : null}
 
-      {selectedHybrid && selectedHybridFusion ? (
-        <div className="quirk-pick-modal-backdrop" onClick={() => setSelectedHybrid(null)}>
-          <div
-            className={`quirk-pick-modal ${toneClass(selectedHybridFusion.type)}`}
-            role="dialog"
-            aria-modal="true"
-            aria-label={selectedHybridFusion.name}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <article className={`quirk-pick-card ${toneClass(selectedHybridFusion.type)}`}>
-              <div className="quirk-card-glow" aria-hidden="true" />
-              <div className="quirk-pick-card-scroll">
-                <p className="quirk-meta">
-                  <TierScale tier={selectedHybridFusion.tier} />
-                  <span className="quirk-meta-sep" aria-hidden="true" />
-                  <span className="quirk-meta-type">{meta.type(selectedHybridFusion.type)}</span>
-                  <span className="quirk-meta-sep" aria-hidden="true" />
-                  <span className="quirk-meta-range">
-                    <span className="quirk-meta-range-icon" aria-hidden="true" />
-                    {meta.range(selectedHybridFusion.range)}
-                  </span>
-                </p>
-                <h2 className="quirk-pick-card-name">{selectedHybridFusion.name}</h2>
-                <p className="quirk-pick-modal-description">{selectedHybridFusion.description}</p>
-                <p className="quirk-pick-origin">
-                  <span>{t('database.hybridParents')}:</span>{' '}
-                  {findQuirkInCatalog(locale, selectedHybrid.parents[0])?.name ?? selectedHybrid.parents[0]}
-                  {' + '}
-                  {findQuirkInCatalog(locale, selectedHybrid.parents[1])?.name ?? selectedHybrid.parents[1]}
-                </p>
-              </div>
-              {selectedHybridFusion.facets.length > 0 ? (
-                <div className="chip-row quirk-pick-facets">
-                  {selectedHybridFusion.facets.map((facet) => (
-                    <FacetChip key={facet} facet={facet} />
-                  ))}
-                </div>
-              ) : null}
-            </article>
-            <div className="quirk-pick-modal-actions modal-actions-readonly">
-              <button
-                type="button"
-                className="manual-secondary-action"
-                onClick={() => setSelectedHybrid(null)}
-              >
-                {t('nav.back')}
-              </button>
-            </div>
-          </div>
-        </div>
+      {selectedHybridFusion ? (
+        <QuirkDetailModal
+          quirk={selectedHybridFusion}
+          onClose={() => setSelectedHybrid(null)}
+        />
       ) : null}
     </MinimalFrame>
   )

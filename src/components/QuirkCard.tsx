@@ -1,24 +1,15 @@
 import { useMemo, useState } from 'react'
-import { FacetChip } from './FacetChip'
+import { LuExpand } from 'react-icons/lu'
+import { QuirkDetailModal } from './QuirkDetailModal'
 import { resolveQuirk } from '../hooks/useQuirksCatalog'
+import { quirkTypeThemeClass } from '@/lib/quirks/type-theme'
 import { useI18n } from '../i18n/useI18n'
 import { useMetaLabel } from '../i18n/useMetaLabel'
 import type { FusionQuirk } from '../types/fusion'
+import type { QuirkCardModel } from '../types/quirk-card'
 import { TierScale } from './TierScale'
-import type { Quirk, QuirkType } from '../types/quirk'
 
-export type QuirkCardModel = Quirk | FusionQuirk
-
-function typeThemeClass(type: QuirkType): string {
-  switch (type) {
-    case 'Emitter':
-      return 'quirk-card-type-emitter'
-    case 'Transformation':
-      return 'quirk-card-type-transformation'
-    case 'Mutant':
-      return 'quirk-card-type-mutant'
-  }
-}
+export type { QuirkCardModel } from '../types/quirk-card'
 
 interface QuirkCardProps {
   quirk: QuirkCardModel
@@ -37,14 +28,15 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
     () => (isFusionQuirk(quirk) ? quirk : resolveQuirk(quirk, locale)),
     [quirk, locale],
   )
-  const [detailsOpen, setDetailsOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const themeClass = typeThemeClass(quirk.type)
+  const themeClass = quirkTypeThemeClass(quirk.type)
   const slotClass = slotLabel ? `quirk-card-slot-${slotLabel.toLowerCase()}` : ''
   const fusion = isFusionQuirk(quirk)
 
   const cardClass = [
     'quirk-card',
+    'quirk-card-has-modal-trigger',
     themeClass,
     slotClass,
     fusion ? 'quirk-card-fusion' : '',
@@ -54,52 +46,42 @@ export function QuirkCard({ quirk, slotLabel, compact = false }: QuirkCardProps)
     .join(' ')
 
   return (
-    <article className={cardClass}>
-      <div className="quirk-card-glow" aria-hidden="true" />
-      {slotLabel ? (
-        <span className={`quirk-slot-badge quirk-slot-badge-${slotLabel.toLowerCase()}`}>
-          {slotLabel}
-        </span>
-      ) : null}
-      {fusion ? (
-        <span className="quirk-fusion-badge">{t('fusion.badge')}</span>
-      ) : null}
-      <p className="quirk-meta">
-        <TierScale tier={quirk.tier} />
-        <span className="quirk-meta-sep" aria-hidden="true" />
-        <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
-        <span className="quirk-meta-sep" aria-hidden="true" />
-        <span className="quirk-meta-range">
-          <span className="quirk-meta-range-icon" aria-hidden="true" />
-          {meta.range(quirk.range)}
-        </span>
-      </p>
-      <h3>{resolved.name}</h3>
-      <p className="quirk-description">{resolved.description}</p>
-
-      <button
-        type="button"
-        className={`quirk-details-trigger ${detailsOpen ? 'quirk-details-trigger-open' : ''}`}
-        onClick={() => setDetailsOpen((open) => !open)}
-        aria-expanded={detailsOpen}
-      >
-        <span>{detailsOpen ? t('result.hideDetails') : t('result.showDetails')}</span>
-        <span className="quirk-details-chevron" aria-hidden="true" />
-      </button>
-
-      <div className={`quirk-details ${detailsOpen ? 'quirk-details-open' : ''}`}>
-        <p className="quirk-detail-origin">
-          <span className="quirk-detail-label">{t('advanced.origin')}</span>
-          {meta.origin(quirk.origin)}
-        </p>
-        {quirk.facets.length > 0 ? (
-          <div className="chip-row quirk-detail-facets">
-            {quirk.facets.map((facet) => (
-              <FacetChip key={facet} facet={facet} />
-            ))}
-          </div>
+    <>
+      <article className={cardClass}>
+        <div className="quirk-card-glow" aria-hidden="true" />
+        {slotLabel ? (
+          <span className={`quirk-slot-badge quirk-slot-badge-${slotLabel.toLowerCase()}`}>
+            {slotLabel}
+          </span>
         ) : null}
-      </div>
-    </article>
+        {fusion ? (
+          <span className="quirk-fusion-badge">{t('fusion.badge')}</span>
+        ) : null}
+        <p className="quirk-meta">
+          <TierScale tier={quirk.tier} />
+          <span className="quirk-meta-sep" aria-hidden="true" />
+          <span className="quirk-meta-type">{meta.type(quirk.type)}</span>
+          <span className="quirk-meta-sep" aria-hidden="true" />
+          <span className="quirk-meta-range">
+            <span className="quirk-meta-range-icon" aria-hidden="true" />
+            {meta.range(quirk.range)}
+          </span>
+        </p>
+        <h3>{resolved.name}</h3>
+        <p className="quirk-description">{resolved.description}</p>
+        <button
+          type="button"
+          className="quirk-modal-trigger"
+          onClick={() => setModalOpen(true)}
+          aria-label={t('result.showDetails')}
+        >
+          <LuExpand aria-hidden="true" />
+        </button>
+      </article>
+
+      {modalOpen ? (
+        <QuirkDetailModal quirk={quirk} onClose={() => setModalOpen(false)} />
+      ) : null}
+    </>
   )
 }

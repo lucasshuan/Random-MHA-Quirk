@@ -70,7 +70,7 @@ export function HybridResultTabs({
           activeView === 'fusion' ? (
             <>
               {fusion ? (
-                <div className="fusion-hero inner-scroll-panel" key={resultKey}>
+                <div className="fusion-hero" key={resultKey}>
                   <QuirkCard quirk={fusion} />
                 </div>
               ) : fusionPhase === 'generating' ? (
@@ -111,14 +111,12 @@ export function HybridResultTabs({
               )}
             </>
           ) : (
-            <div className="rolled-quirks-box inner-scroll-panel">
-              <div className="fusion-result fusion-parents-grid">
-                <QuirkCard quirk={result.parents[0]} slotLabel="1" />
-                <div className="fusion-plus fusion-plus-reveal" aria-hidden="true">
-                  +
-                </div>
-                <QuirkCard quirk={result.parents[1]} slotLabel="2" />
+            <div className="fusion-result fusion-parents-grid">
+              <QuirkCard quirk={result.parents[0]} slotLabel="1" />
+              <div className="fusion-plus fusion-plus-reveal" aria-hidden="true">
+                +
               </div>
+              <QuirkCard quirk={result.parents[1]} slotLabel="2" />
             </div>
           )
         }

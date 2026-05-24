@@ -29,6 +29,8 @@ import {
   saveHybridRollSession,
   type HybridRollSessionSettings,
 } from '@/lib/wizard/hybrid-roll-session'
+import { saveShareResultHandoff } from '@/lib/share/share-result-handoff'
+import { RESULT_SHARE_NAVIGATE_MS } from '@/lib/wizard/reveal-timing'
 import {
   clearWizardNavigationSession,
   consumeWizardNavigationRestore,
@@ -340,8 +342,9 @@ export function WizardApp({
       if (onExitStart) {
         saveWizardNavigationForShare(path, buildNavigationSnapshot())
       }
+      saveShareResultHandoff(path, result, { animateEntrance: false })
       router.replace(path)
-    }, 1150)
+    }, RESULT_SHARE_NAVIGATE_MS)
 
     return () => {
       window.clearTimeout(timer)

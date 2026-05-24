@@ -6,6 +6,7 @@ import { copyTextToClipboard } from '@/lib/share/clipboard'
 import type { ResultMode } from '@/lib/wizard/flow'
 import type { HybridRollResult } from '../../types/fusion'
 import type { Quirk } from '../../types/quirk'
+import { RESULT_FLICKER_MS, RESULT_REVEAL_MS } from '@/lib/wizard/reveal-timing'
 import { HybridResultTabs } from './HybridResultTabs'
 import { RollOrb } from './RollOrb'
 
@@ -20,6 +21,8 @@ interface StepFinalResultProps {
   fusionPhase: FusionPhase
   fusionError: string | null
   skipReveal?: boolean
+  /** Omit outer step shell when parent already provides `.result-step-static`. */
+  bare?: boolean
   shareUrl?: string | null
   canRetryHybrid?: boolean
   onRetry: () => void
@@ -28,9 +31,6 @@ interface StepFinalResultProps {
   onBack: () => void
   onRestart: () => void
 }
-
-const FLICKER_MS = 95
-const REVEAL_MS = 1150
 
 function isHybridResult(result: RollResult): result is HybridRollResult {
   return result !== null && 'parents' in result
@@ -106,12 +106,12 @@ function ResultReveal({
 
     const flickerTimer = window.setInterval(() => {
       setFlickerIndex((value) => (value + 1) % labels.length)
-    }, FLICKER_MS)
+    }, RESULT_FLICKER_MS)
 
     const revealTimer = window.setTimeout(() => {
       window.clearInterval(flickerTimer)
       setRevealed(true)
-    }, REVEAL_MS)
+    }, RESULT_REVEAL_MS)
 
     return () => {
       window.clearInterval(flickerTimer)
@@ -254,12 +254,21 @@ function ResultReveal({
   )
 }
 
-export function StepFinalResult(props: StepFinalResultProps) {
+export function StepFinalResult({
+  bare = false,
+  skipReveal = false,
+  ...props
+}: StepFinalResultProps) {
   const key = revealKey(props.result)
+  const body = <ResultReveal key={key} skipReveal={skipReveal} {...props} />
 
-  return (
-    <div className="simple-step result-step result-step-rolling">
-      <ResultReveal key={key} {...props} />
-    </div>
-  )
+  if (bare) {
+    return body
+  }
+
+  const stepClass = skipReveal
+    ? 'simple-step result-step result-step-static'
+    : 'simple-step result-step result-step-rolling'
+
+  return <div className={stepClass}>{body}</div>
 }

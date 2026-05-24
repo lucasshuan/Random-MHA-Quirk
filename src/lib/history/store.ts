@@ -1,6 +1,7 @@
 import type { Locale } from '@/i18n/types'
 import { fusionQuirkId } from '@/lib/fusion/keys'
 import { shareHybridPath, shareQuirkPath } from '@/lib/share/paths'
+import type { ShareResultHandoff } from '@/lib/share/share-result-handoff'
 import type { FusionCacheEntry } from '@/types/fusion'
 import { fusionCopyForLocale } from '@/types/fusion'
 import type { Quirk, QuirkId } from '@/types/quirk'
@@ -133,6 +134,37 @@ export function historyPathForEntry(entry: ResultHistoryEntry): string {
     entry.hybrid.parentB.id,
     entry.hybrid.seed,
   )
+}
+
+function previewToQuirk(
+  preview: HistoryQuirkPreview & { id: QuirkId },
+): Quirk {
+  return {
+    id: preview.id,
+    name: preview.name,
+    description: preview.description ?? '',
+    origin: preview.origin,
+    tier: preview.tier,
+    type: preview.type,
+    range: preview.range,
+    facets: preview.facets,
+  }
+}
+
+/** Instant share-page hydrate when opening a result from history. */
+export function historyShareHandoff(entry: ResultHistoryEntry): ShareResultHandoff {
+  if (entry.mode === 'single') {
+    return previewToQuirk(entry.single.quirk)
+  }
+
+  return {
+    parents: [
+      previewToQuirk(entry.hybrid.parentA),
+      previewToQuirk(entry.hybrid.parentB),
+    ],
+    seed: entry.hybrid.seed,
+    fusionEntry: null,
+  }
 }
 
 export function pushSingleHistoryEntry(quirk: Quirk, locale: Locale): ResultHistoryEntry {

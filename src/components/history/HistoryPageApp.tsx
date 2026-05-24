@@ -10,7 +10,13 @@ import { useMetaLabel } from '@/i18n/useMetaLabel'
 import { translateMatches } from '@/i18n/translate'
 import { fetchFusionFromCache } from '@/lib/fusion/api'
 import { lookupFusion } from '@/lib/fusion/cache'
-import { historyPathForEntry, loadResultHistory, patchHybridHistoryFusion } from '@/lib/history/store'
+import {
+  historyPathForEntry,
+  historyShareHandoff,
+  loadResultHistory,
+  patchHybridHistoryFusion,
+} from '@/lib/history/store'
+import { saveShareResultHandoff } from '@/lib/share/share-result-handoff'
 import {
   matchesHistoryFilters,
   matchesHistoryMode,
@@ -300,7 +306,11 @@ export function HistoryPageApp() {
                       .filter(Boolean)
                       .join(' ')}
                     data-tier={primary.tier}
-                    onClick={() => router.push(historyPathForEntry(entry))}
+                    onClick={() => {
+                      const path = historyPathForEntry(entry)
+                      saveShareResultHandoff(path, historyShareHandoff(entry))
+                      router.push(path)
+                    }}
                   >
                     <span className="quirk-card-glow" aria-hidden="true" />
                     {isHybrid ? (

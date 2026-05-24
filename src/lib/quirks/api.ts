@@ -101,18 +101,21 @@ export async function fetchPaginatedQuirks(
   return res.json() as Promise<PaginatedQuirksListResponse>
 }
 
-export async function fetchQuirkById(
-  locale: Locale,
-  id: string,
-  init?: RequestInit,
-): Promise<Quirk> {
+export function peekQuirkById(locale: Locale, id: string): Quirk | undefined {
   const fromCatalog = findQuirkInCatalog(locale, id)
   if (fromCatalog) {
     return fromCatalog
   }
 
-  const cacheKey = quirkDetailCacheKey(locale, id)
-  const cached = quirkDetailCache.get(cacheKey)
+  return quirkDetailCache.get(quirkDetailCacheKey(locale, id))
+}
+
+export async function fetchQuirkById(
+  locale: Locale,
+  id: string,
+  init?: RequestInit,
+): Promise<Quirk> {
+  const cached = peekQuirkById(locale, id)
   if (cached) {
     return cached
   }
@@ -129,7 +132,7 @@ export async function fetchQuirkById(
   }
 
   const data = (await res.json()) as QuirkDetailResponse
-  quirkDetailCache.set(cacheKey, data.quirk)
+  quirkDetailCache.set(quirkDetailCacheKey(locale, id), data.quirk)
 
   const catalog = getCatalogCache()
   const list = catalog.get(locale) ?? []

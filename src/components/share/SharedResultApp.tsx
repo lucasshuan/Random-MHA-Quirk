@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { QuirksCatalogGate } from '@/components/QuirksCatalogGate'
@@ -29,6 +29,14 @@ import {
   shareLocaleFromSearchParams,
   shareQuirkPath,
 } from '@/lib/share/paths'
+import { consumeShareResultHandoff, saveShareResultHandoff } from '@/lib/share/share-result-handoff'
+import {
+  getShareRouteCachedResult,
+  isShareRouteResult,
+  setShareRouteCachedResult,
+  trySyncResolveShareRoute,
+  type ShareRouteResult,
+} from '@/lib/share/share-route-cache'
 import {
   matchHybridRollSession,
   saveHybridRollSession,
@@ -45,7 +53,33 @@ import type { Quirk } from '@/types/quirk'
 import type { QuirkId } from '@/types/quirk-id'
 
 type RollResult = Quirk | HybridRollResult | null
-type LocaleResultCache = Map<Locale, RollResult>
+
+interface ShareRouteParams {
+  mode: ResultMode
+  quirkId?: string
+  parentA?: string
+  parentB?: string
+  seed?: string
+}
+
+function readReadyShareRouteResult(
+  routeKey: string,
+  locale: Locale,
+  params: ShareRouteParams,
+): ShareRouteResult | null {
+  const cached = getShareRouteCachedResult(routeKey, locale)
+  if (cached && isShareRouteResult(cached, params)) {
+    return cached
+  }
+
+  const sync = trySyncResolveShareRoute({ locale, ...params })
+  if (sync) {
+    setShareRouteCachedResult(routeKey, locale, sync)
+    return sync
+  }
+
+  return null
+}
 
 function isHybridRoll(result: RollResult): result is HybridRollResult {
   return result !== null && 'parents' in result
@@ -74,33 +108,57 @@ export function SharedResultApp({
   const searchParams = useSearchParams()
   const { locale, setLocale, t } = useI18n()
   const { quirks: allQuirks } = useQuirksCatalog(locale)
-  const [result, setResult] = useState<RollResult>(null)
-  const [loadError, setLoadError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
   const [fusionPhase, setFusionPhase] = useState<'idle' | 'generating' | 'error'>('idle')
   const [fusionError, setFusionError] = useState<string | null>(null)
   const generatingFusionKeyRef = useRef<string | null>(null)
   const strippedLegacyLangRef = useRef(false)
-  const resultLocaleCacheRef = useRef<Map<string, LocaleResultCache>>(new Map())
 
   const routeKey =
     mode === 'single' ? `solo:${quirkId ?? ''}` : `hybrid:${parentA}:${parentB}:${seed}`
   const hydratedRouteRef = useRef<string | null>(null)
+  const routeParams = useMemo<ShareRouteParams>(
+    () => ({ mode, quirkId, parentA, parentB, seed }),
+    [mode, parentA, parentB, quirkId, seed],
+  )
 
-  const getRouteLocaleCache = useCallback((): LocaleResultCache => {
-    let cache = resultLocaleCacheRef.current.get(routeKey)
-    if (!cache) {
-      cache = new Map()
-      resultLocaleCacheRef.current.set(routeKey, cache)
+  const [result, setResult] = useState<RollResult>(() =>
+    readReadyShareRouteResult(routeKey, locale, routeParams),
+  )
+  const [loadError, setLoadError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(
+    () => readReadyShareRouteResult(routeKey, locale, routeParams) === null,
+  )
+  const [shellMotion, setShellMotion] = useState<'static' | 'entrance'>('static')
+
+  const routeSharePath = useMemo(() => {
+    if (mode === 'single' && quirkId && isShareQuirkId(quirkId)) {
+      return shareQuirkPath(quirkId)
     }
-    return cache
-  }, [routeKey])
+
+    if (
+      mode === 'hybrid' &&
+      parentA &&
+      parentB &&
+      seed &&
+      isShareQuirkId(parentA) &&
+      isShareQuirkId(parentB) &&
+      isFusionSeed(seed) &&
+      parentA !== parentB
+    ) {
+      return shareHybridPath(parentA, parentB, seed)
+    }
+
+    return null
+  }, [mode, parentA, parentB, quirkId, seed])
 
   const cacheResultForLocale = useCallback(
     (targetLocale: Locale, nextResult: RollResult) => {
-      getRouteLocaleCache().set(targetLocale, nextResult)
+      if (!nextResult) {
+        return
+      }
+      setShareRouteCachedResult(routeKey, targetLocale, nextResult)
     },
-    [getRouteLocaleCache],
+    [routeKey],
   )
 
   const sharePath = useMemo(() => {
@@ -199,11 +257,7 @@ export function SharedResultApp({
             return prev
           }
           const next = { ...prev, fusionEntry }
-          for (const [cachedLocale, entry] of getRouteLocaleCache()) {
-            if (isHybridRoll(entry) && hybridRollKey(entry) === key) {
-              cacheResultForLocale(cachedLocale, { ...entry, fusionEntry })
-            }
-          }
+          cacheResultForLocale(locale, next)
           return next
         })
         patchHybridHistoryFusion(
@@ -223,12 +277,12 @@ export function SharedResultApp({
         }
       }
     },
-    [cacheResultForLocale, getRouteLocaleCache, t],
+    [cacheResultForLocale, locale, t],
   )
 
   const loadResultForLocale = useCallback(
     async (targetLocale: Locale): Promise<RollResult> => {
-      const cached = getRouteLocaleCache().get(targetLocale)
+      const cached = getShareRouteCachedResult(routeKey, targetLocale)
       if (cached) {
         return cached
       }
@@ -262,11 +316,9 @@ export function SharedResultApp({
       ])
 
       let fusionEntry: HybridRollResult['fusionEntry'] = null
-      for (const entry of getRouteLocaleCache().values()) {
-        if (isHybridRoll(entry) && entry.seed === seed && entry.fusionEntry) {
-          fusionEntry = entry.fusionEntry
-          break
-        }
+      const cachedHybrid = getShareRouteCachedResult(routeKey, targetLocale)
+      if (isHybridRoll(cachedHybrid) && cachedHybrid.seed === seed && cachedHybrid.fusionEntry) {
+        fusionEntry = cachedHybrid.fusionEntry
       }
 
       const hybrid: HybridRollResult = {
@@ -278,7 +330,7 @@ export function SharedResultApp({
       cacheResultForLocale(targetLocale, hybrid)
       return hybrid
     },
-    [cacheResultForLocale, getRouteLocaleCache, mode, parentA, parentB, quirkId, seed],
+    [cacheResultForLocale, mode, parentA, parentB, quirkId, routeKey, seed],
   )
 
   useLocaleSwitchGuard(
@@ -293,14 +345,62 @@ export function SharedResultApp({
     ),
   )
 
+  const applyReadyRoute = useCallback(
+    (ready: ShareRouteResult) => {
+      cacheResultForLocale(locale, ready)
+      setResult(ready)
+      hydratedRouteRef.current = routeKey
+      setIsLoading(false)
+      setLoadError(null)
+
+      if (isHybridRoll(ready) && !ready.fusionEntry) {
+        void tryGenerateFusion(ready)
+      }
+    },
+    [cacheResultForLocale, locale, routeKey, tryGenerateFusion],
+  )
+
   useEffect(() => {
+    setShellMotion('static')
+  }, [routeKey])
+
+  useLayoutEffect(() => {
+    if (hydratedRouteRef.current === routeKey) {
+      return
+    }
+
+    if (routeSharePath) {
+      const handoff = consumeShareResultHandoff(routeSharePath)
+      if (handoff) {
+        applyReadyRoute(handoff.result)
+        setShellMotion(handoff.animateEntrance ? 'entrance' : 'static')
+        return
+      }
+    }
+
+    const ready = readReadyShareRouteResult(routeKey, locale, routeParams)
+    if (ready) {
+      applyReadyRoute(ready)
+    }
+  }, [applyReadyRoute, locale, routeKey, routeParams, routeSharePath])
+
+  useEffect(() => {
+    if (hydratedRouteRef.current === routeKey) {
+      return
+    }
+
+    const ready = readReadyShareRouteResult(routeKey, locale, routeParams)
+    if (ready) {
+      applyReadyRoute(ready)
+      return
+    }
+
     let cancelled = false
 
     async function loadRoute() {
-      resultLocaleCacheRef.current.delete(routeKey)
+      setResult(null)
       setIsLoading(true)
       setLoadError(null)
-      setResult(null)
       setFusionPhase('idle')
       setFusionError(null)
       generatingFusionKeyRef.current = null
@@ -326,12 +426,8 @@ export function SharedResultApp({
         }
 
         const loaded = await loadResultForLocale(locale)
-        if (!cancelled) {
-          setResult(loaded)
-          hydratedRouteRef.current = routeKey
-          if (isHybridRoll(loaded) && !loaded.fusionEntry) {
-            void tryGenerateFusion(loaded)
-          }
+        if (!cancelled && loaded) {
+          applyReadyRoute(loaded)
         }
       } catch {
         if (!cancelled) {
@@ -351,14 +447,14 @@ export function SharedResultApp({
     }
     // locale read at route change time; language switches use cache + prepareLocaleChange
     // eslint-disable-next-line react-hooks/exhaustive-deps -- locale intentionally omitted
-  }, [routeKey, t, tryGenerateFusion, loadResultForLocale])
+  }, [applyReadyRoute, routeKey, routeParams, locale, t, loadResultForLocale, routeSharePath])
 
   useEffect(() => {
     if (hydratedRouteRef.current !== routeKey || isLoading) {
       return
     }
 
-    const cached = getRouteLocaleCache().get(locale)
+    const cached = getShareRouteCachedResult(routeKey, locale)
     if (!cached) {
       return
     }
@@ -375,7 +471,7 @@ export function SharedResultApp({
       }
       return cached
     })
-  }, [getRouteLocaleCache, isLoading, locale, routeKey])
+  }, [isLoading, locale, routeKey])
 
   function handleRetryHybrid() {
     if (
@@ -402,7 +498,6 @@ export function SharedResultApp({
     }
 
     generatingFusionKeyRef.current = null
-    resultLocaleCacheRef.current.delete(routeKey)
     cacheResultForLocale(locale, next)
     setResult(next)
     saveHybridRollSession(
@@ -416,6 +511,7 @@ export function SharedResultApp({
     if (wizardNavigation) {
       saveWizardNavigationForShare(nextPath, wizardNavigation)
     }
+    saveShareResultHandoff(nextPath, next, { animateEntrance: false })
     router.replace(nextPath)
     void tryGenerateFusion(next)
   }
@@ -441,7 +537,6 @@ export function SharedResultApp({
     }
 
     generatingFusionKeyRef.current = null
-    resultLocaleCacheRef.current.delete(routeKey)
     cacheResultForLocale(locale, next)
     setResult(next)
     if (settings) {
@@ -457,6 +552,7 @@ export function SharedResultApp({
     if (wizardNavigation) {
       saveWizardNavigationForShare(nextPath, wizardNavigation)
     }
+    saveShareResultHandoff(nextPath, next, { animateEntrance: false })
     router.replace(nextPath)
     void tryGenerateFusion(next)
   }
@@ -492,45 +588,44 @@ export function SharedResultApp({
   }
 
   function renderBody() {
-    if (isLoading) {
-      return <LoadingScreen label={t('share.loading')} embedded />
-    }
-
-    if (loadError) {
-      return (
-        <div className="simple-step result-step" role="alert">
-          <p className="mini-copy">{loadError}</p>
-          <button type="button" className="big-action" onClick={goStart}>
-            {t('share.goRoll')}
-          </button>
-        </div>
-      )
-    }
-
     return (
-      <StepFinalResult
-        mode={mode}
-        result={result}
-        flickerNames={[]}
-        fusionPhase={fusionPhase}
-        fusionError={fusionError}
-        skipReveal
-        shareUrl={shareUrl}
-        canRetryHybrid={canRetryHybrid}
-        onRetry={() => {
-          if (mode === 'hybrid') {
-            if (canRetryHybrid) {
-              handleRetryHybrid()
-            }
-            return
-          }
-          goStart()
-        }}
-        onRetryGeneration={handleRetryFusionGeneration}
-        onRerollFusion={handleRerollFusion}
-        onBack={handleBack}
-        onRestart={handleRestart}
-      />
+      <div className={`simple-step result-step result-step-${shellMotion}`}>
+        {isLoading ? (
+          <LoadingScreen label={t('share.loading')} embedded />
+        ) : loadError ? (
+          <div role="alert">
+            <p className="mini-copy">{loadError}</p>
+            <button type="button" className="big-action" onClick={goStart}>
+              {t('share.goRoll')}
+            </button>
+          </div>
+        ) : (
+          <StepFinalResult
+            bare
+            mode={mode}
+            result={result}
+            flickerNames={[]}
+            fusionPhase={fusionPhase}
+            fusionError={fusionError}
+            skipReveal
+            shareUrl={shareUrl}
+            canRetryHybrid={canRetryHybrid}
+            onRetry={() => {
+              if (mode === 'hybrid') {
+                if (canRetryHybrid) {
+                  handleRetryHybrid()
+                }
+                return
+              }
+              goStart()
+            }}
+            onRetryGeneration={handleRetryFusionGeneration}
+            onRerollFusion={handleRerollFusion}
+            onBack={handleBack}
+            onRestart={handleRestart}
+          />
+        )}
+      </div>
     )
   }
 

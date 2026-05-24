@@ -10,8 +10,7 @@ export const FUSION_WEB_SEARCH_DEFAULT_DOMAINS = [
 
 export function resolveFusionWebSearchEnabled(): boolean {
   const raw = process.env.FUSION_AGENT_WEB_SEARCH?.trim().toLowerCase()
-  if (raw === '0' || raw === 'false' || raw === 'off') return false
-  return true
+  return raw === '1' || raw === 'true' || raw === 'on'
 }
 
 export function resolveFusionWebSearchDomains(): string[] {

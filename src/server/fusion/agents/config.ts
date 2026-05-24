@@ -7,7 +7,7 @@ import {
 } from '../openai-model'
 
 /** Default fusion model when OPENAI_MODEL is unset. */
-export const DEFAULT_FUSION_OPENAI_MODEL = 'gpt-4.1-mini'
+export const DEFAULT_FUSION_OPENAI_MODEL = 'gpt-4o-mini'
 
 export function resolveFusionOpenAiModel(): string {
   return process.env.OPENAI_MODEL?.trim() || DEFAULT_FUSION_OPENAI_MODEL

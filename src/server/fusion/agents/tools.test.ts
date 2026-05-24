@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   FUSION_WEB_SEARCH_DEFAULT_DOMAINS,
   resolveFusionAgentMaxTurns,
@@ -7,14 +7,21 @@ import {
 } from './tools'
 
 describe('fusion web search tools', () => {
-  it('defaults to enabled with fandom + wikipedia domains', () => {
-    expect(resolveFusionWebSearchEnabled()).toBe(true)
+  it('defaults to disabled', () => {
+    expect(resolveFusionWebSearchEnabled()).toBe(false)
+    expect(resolveFusionAgentMaxTurns()).toBe(1)
+  })
+
+  it('resolves default fandom + wikipedia domains', () => {
     expect(resolveFusionWebSearchDomains()).toEqual([
       ...FUSION_WEB_SEARCH_DEFAULT_DOMAINS,
     ])
   })
 
-  it('uses more max turns when web search is on', () => {
-    expect(resolveFusionAgentMaxTurns()).toBeGreaterThan(1)
+  it('enables web search when FUSION_AGENT_WEB_SEARCH=1', () => {
+    vi.stubEnv('FUSION_AGENT_WEB_SEARCH', '1')
+    expect(resolveFusionWebSearchEnabled()).toBe(true)
+    expect(resolveFusionAgentMaxTurns()).toBe(5)
+    vi.unstubAllEnvs()
   })
 })

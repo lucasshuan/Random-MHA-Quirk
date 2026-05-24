@@ -3,17 +3,33 @@ import {
   FUSION_CANON_NAME_REFERENCES,
   FUSION_NAMING_RULES,
   FUSION_NAME_REGISTER_KEYS,
+  REGISTER_DEFS,
   selectFusionNameRegister,
 } from './naming'
 
 describe('selectFusionNameRegister', () => {
-  it('rotates register on dedup retry attempts', () => {
-    const first = selectFusionNameRegister('seed-1', 'acid', 'explosion', 0)
-    const retry = selectFusionNameRegister('seed-1', 'acid', 'explosion', 1)
-    expect(retry.key).not.toBe(first.key)
+  it('cycles through every register on dedup retry attempts', () => {
+    const keys = FUSION_NAME_REGISTER_KEYS.map(
+      (_, attempt) => selectFusionNameRegister('seed-1', 'acid', 'explosion', attempt).key,
+    )
+
+    expect(new Set(keys)).toEqual(new Set(FUSION_NAME_REGISTER_KEYS))
   })
 
-  it('gives each register equal weight when no prior siblings', () => {
+  it('uses modestly higher initial weights for pun, blunt, and dramatic names', () => {
+    expect(
+      Object.fromEntries(REGISTER_DEFS.map((definition) => [definition.key, definition.weight])),
+    ).toEqual({
+      pun: 22,
+      blunt: 22,
+      dramatic: 22,
+      'absurd-long': 17,
+      'meme-adjacent': 17,
+    })
+    expect(REGISTER_DEFS.reduce((sum, definition) => sum + definition.weight, 0)).toBe(100)
+  })
+
+  it('continues producing every configured register', () => {
     const counts = new Map<string, number>()
     for (let i = 0; i < 250; i++) {
       const key = selectFusionNameRegister(`reg-${i}`, 'acid', 'explosion').key
@@ -63,5 +79,27 @@ describe('naming policy', () => {
     }
 
     expect(examples).toContain('Who, Me?')
+  })
+
+  it('uses the curated cheeky canon and spin-off meme-adjacent examples', () => {
+    const memeAdjacent = REGISTER_DEFS.find(
+      (definition) => definition.key === 'meme-adjacent',
+    )
+
+    expect(memeAdjacent?.examples).toEqual([
+      'Sugar Rush',
+      'Chest Hair',
+      'Binging Ball',
+      'Stress',
+      'Sloshed',
+      'Who, Me?',
+      'Shame',
+      'Smile',
+      'Food',
+      'Dog',
+      'Soccer',
+      'Playtime',
+      'Squirmy Fingers',
+    ])
   })
 })

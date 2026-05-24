@@ -22,6 +22,9 @@
   --btn-bg: #172131;
   --input-bg: #0d1520;
   --elev-1: 0 10px 30px rgba(1, 6, 15, 0.42);
+  --bg-render-opacity: 0.09;
+  --bg-render-filter: saturate(0.8) brightness(0.6) contrast(0.9);
+  --bg-render-bottom-mask: linear-gradient(to top, transparent 0%, #000 20%, #000 100%);
 
   /* Fluid scale: generous defaults (vw / original clamps); tightened only in App.css @media max-height */
   --fluid-screen-pad-top: clamp(2.5rem, 6.5svh, 3.75rem);
@@ -82,4 +85,115 @@ body {
     radial-gradient(circle at 0% 90%, var(--bg-radial-c), transparent 28%),
     var(--bg);
   color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  right: max(-3vw, -5rem);
+  bottom: 0;
+  width: min(56vw, 720px);
+  height: min(90vh, 820px);
+  background-image: url('/bg-render1.webp');
+  background-position: right bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: var(--bg-render-opacity);
+  filter: var(--bg-render-filter);
+  -webkit-mask-image:
+    linear-gradient(to left, #000 23%, transparent 85%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render1.webp');
+  mask-image:
+    linear-gradient(to left, #000 23%, transparent 85%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render1.webp');
+  -webkit-mask-size: 100% 100%, 100% 100%, contain;
+  mask-size: 100% 100%, 100% 100%, contain;
+  -webkit-mask-position: center, center, right bottom;
+  mask-position: center, center, right bottom;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  left: max(-18vw, -8rem);
+  bottom: 0;
+  width: min(62vw, 820px);
+  height: min(96vh, 920px);
+  background-image: url('/bg-render2.webp');
+  background-position: left bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: var(--bg-render-opacity);
+  filter: var(--bg-render-filter);
+  -webkit-mask-image:
+    linear-gradient(to right, #000 23%, transparent 80%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render2.webp');
+  mask-image:
+    linear-gradient(to right, #000 23%, transparent 80%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render2.webp');
+  -webkit-mask-size: 100% 100%, 100% 100%, contain;
+  mask-size: 100% 100%, 100% 100%, contain;
+  -webkit-mask-position: center, center, left bottom;
+  mask-position: center, center, left bottom;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+@media (max-width: 1100px) {
+  body::before {
+    right: max(-10vw, -5rem);
+  }
+
+  body::after {
+    left: max(-24vw, -14rem);
+  }
+}
+
+@media (max-width: 900px) {
+  body::before {
+    right: max(-18vw, -8rem);
+    opacity: 0.13;
+    -webkit-mask-image:
+      linear-gradient(to left, #000 11%, transparent 75%),
+      var(--bg-render-bottom-mask),
+      url('/bg-render1.webp');
+    mask-image:
+      linear-gradient(to left, #000 11%, transparent 75%),
+      var(--bg-render-bottom-mask),
+      url('/bg-render1.webp');
+  }
+
+  body::after {
+    left: max(-32vw, -18rem);
+    opacity: 0.13;
+    -webkit-mask-image:
+      linear-gradient(to right, #000 11%, transparent 75%),
+      var(--bg-render-bottom-mask),
+      url('/bg-render2.webp');
+    mask-image:
+      linear-gradient(to right, #000 11%, transparent 75%),
+      var(--bg-render-bottom-mask),
+      url('/bg-render2.webp');
+  }
+}
+
+@media (max-width: 680px) {
+  body::before,
+  body::after {
+    display: none;
+  }
 }

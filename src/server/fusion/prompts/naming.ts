@@ -1,4 +1,4 @@
-import { pickUniformFromHash } from './seed-hash'
+import { pickWeightedFromHash } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 
 export type FusionNameRegister =
@@ -12,6 +12,10 @@ export interface SelectedFusionNameRegister {
   key: FusionNameRegister
   instruction: string
   examples: string[]
+}
+
+export interface FusionNameRegisterDefinition extends SelectedFusionNameRegister {
+  weight: number
 }
 
 export const FUSION_CANON_NAME_REFERENCES = [
@@ -48,9 +52,10 @@ export function isFusionNameRegister(value: string): value is FusionNameRegister
   return (FUSION_NAME_REGISTER_KEYS as readonly string[]).includes(value)
 }
 
-const REGISTER_DEFS: SelectedFusionNameRegister[] = [
+export const REGISTER_DEFS = [
   {
     key: 'pun',
+    weight: 22,
     instruction:
       'Wordplay first: homophone, double meaning, or sound-alike joke. The pun can be subtle; it must land without reading the description.',
     examples: [
@@ -68,12 +73,13 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   },
   {
     key: 'blunt',
+    weight: 22,
     instruction:
       'Deadpan and plain: 1–3 everyday words, almost boring on purpose — like a nickname someone would actually say out loud.',
     examples: [
       'Comic',
       'Meatball',
-      'Pop Off',
+      'Dog',
       'Zero Gravity',
       'Blast',
       'Decay',
@@ -87,6 +93,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   },
   {
     key: 'dramatic',
+    weight: 22,
     instruction:
       'Canon-style dramatic quirk title — bold and memorable like a published hero/villain quirk name, not generic dark-fantasy wallpaper.',
     examples: [
@@ -108,6 +115,7 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   },
   {
     key: 'absurd-long',
+    weight: 17,
     instruction:
       'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 8 words.',
     examples: [
@@ -124,25 +132,24 @@ const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   },
   {
     key: 'meme-adjacent',
+    weight: 17,
     instruction:
       'Internet-plain, cheeky, or meme-adjacent — blunt humor, unexpected noun, or title that sounds like a running joke.',
     examples: [
       'Sugar Rush',
-      'Brainwashing',
-      'Navel Laser',
-      'Tape',
       'Chest Hair',
-      'Anivoice',
-      'Good Ear',
       'Binging Ball',
-      'Tongue Tank',
-      'Day Dream',
       'Stress',
       'Sloshed',
-      'Who, Me?',
+      'Hula Hoop',
+      'Pop Off',
+      'Day Dream',
+      'Big Monkey',
+      'Playtime',
+      'Squirmy Fingers',
     ],
   },
-]
+] satisfies FusionNameRegisterDefinition[]
 
 function resolveRollKey(seed: string, parentA?: string, parentB?: string): string {
   return fusionRollKey(seed, parentA, parentB)
@@ -155,11 +162,9 @@ export function selectFusionNameRegister(
   attempt = 0,
 ): SelectedFusionNameRegister {
   const rollKey = resolveRollKey(seed, parentA, parentB)
+  const initial = pickWeightedFromHash(rollKey, 'name-register', REGISTER_DEFS)
+  const initialIndex = REGISTER_DEFS.indexOf(initial)
   const offset = attempt % REGISTER_DEFS.length
-  const rotated = [
-    ...REGISTER_DEFS.slice(offset),
-    ...REGISTER_DEFS.slice(0, offset),
-  ]
 
-  return pickUniformFromHash(rollKey, 'name-register', rotated)
+  return REGISTER_DEFS[(initialIndex + offset) % REGISTER_DEFS.length]!
 }

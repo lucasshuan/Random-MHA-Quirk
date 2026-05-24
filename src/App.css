@@ -1148,6 +1148,11 @@
   animation: resultTabFade 220ms ease;
 }
 
+.hybrid-result .segment-tab-panel.result-view-panel-parents {
+  overflow: visible;
+  padding: 0.35rem 0.55rem;
+}
+
 .result-step-rolling:has(.hybrid-result) {
   gap: clamp(0.75rem, 2.2svh, 1.1rem);
 }
@@ -2338,7 +2343,7 @@
 
 .quirk-card-glow {
   position: absolute;
-  inset: -45% -10% auto -10%;
+  inset: -45% 0 auto 0;
   height: 75%;
   background: radial-gradient(
     ellipse 55% 70% at 50% 0%,
@@ -2829,11 +2834,24 @@
 .quirk-card-fusion {
   --fusion-accent: #a78bfa;
   --fusion-accent-strong: #d4c4ff;
+  --fusion-accent-soft: rgba(167, 139, 250, 0.18);
+  --fusion-accent-glow: rgba(167, 139, 250, 0.26);
   --fusion-accent-bg: rgba(167, 139, 250, 0.1);
   --fusion-accent-border: rgba(167, 139, 250, 0.22);
 
   border-color: var(--fusion-accent-border);
   padding-right: 3.6rem;
+}
+
+.quirk-card-fusion .quirk-modal-trigger {
+  border-color: var(--fusion-accent-soft);
+}
+
+.quirk-card-fusion .quirk-modal-trigger:hover,
+.quirk-card-fusion .quirk-modal-trigger:focus-visible {
+  color: var(--fusion-accent-strong);
+  border-color: var(--fusion-accent);
+  box-shadow: 0 0 16px var(--fusion-accent-glow);
 }
 
 .fusion-hero .quirk-card-fusion {
@@ -2980,6 +2998,7 @@
   gap: 0.6rem;
   min-width: 0;
   max-width: 100%;
+  padding: 0.15rem 0.35rem;
 }
 
 .fusion-parents-grid .quirk-card {

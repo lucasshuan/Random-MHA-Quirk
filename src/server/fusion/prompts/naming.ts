@@ -55,7 +55,7 @@ export function isFusionNameRegister(value: string): value is FusionNameRegister
 export const REGISTER_DEFS = [
   {
     key: 'pun',
-    weight: 22,
+    weight: 26,
     instruction:
       'Wordplay first: homophone, double meaning, or sound-alike joke. The pun can be subtle; it must land without reading the description.',
     examples: [
@@ -73,7 +73,7 @@ export const REGISTER_DEFS = [
   },
   {
     key: 'blunt',
-    weight: 22,
+    weight: 26,
     instruction:
       'Deadpan and plain: 1–3 everyday words, almost boring on purpose — like a nickname someone would actually say out loud.',
     examples: [
@@ -93,7 +93,7 @@ export const REGISTER_DEFS = [
   },
   {
     key: 'dramatic',
-    weight: 22,
+    weight: 26,
     instruction:
       'Canon-style dramatic quirk title — bold and memorable like a published hero/villain quirk name, not generic dark-fantasy wallpaper.',
     examples: [
@@ -115,7 +115,7 @@ export const REGISTER_DEFS = [
   },
   {
     key: 'absurd-long',
-    weight: 17,
+    weight: 11,
     instruction:
       'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 8 words.',
     examples: [
@@ -132,7 +132,7 @@ export const REGISTER_DEFS = [
   },
   {
     key: 'meme-adjacent',
-    weight: 17,
+    weight: 11,
     instruction:
       'Internet-plain, cheeky, or meme-adjacent — blunt humor, unexpected noun, or title that sounds like a running joke.',
     examples: [

@@ -38,21 +38,50 @@ function asRecord(raw: unknown): Record<string, unknown> {
   return raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}
 }
 
-function assertFusionDescriptionLength(
+/** Trim overlong copy without a second LLM call — keeps full sentences when possible. */
+export function clampFusionDescription(
   description: string,
-  label: string,
-): void {
-  const length = description.length
-  if (length < FUSION_DESCRIPTION_MIN_LENGTH) {
+  min = FUSION_DESCRIPTION_MIN_LENGTH,
+  max = FUSION_DESCRIPTION_MAX_LENGTH,
+): string {
+  const trimmed = description.trim()
+  if (trimmed.length <= max) return trimmed
+
+  const window = trimmed.slice(0, max)
+  const sentenceBreak = Math.max(
+    window.lastIndexOf('. '),
+    window.lastIndexOf('! '),
+    window.lastIndexOf('? '),
+  )
+
+  if (sentenceBreak >= min - 1) {
+    const sentenceCut = trimmed.slice(0, sentenceBreak + 1).trim()
+    if (sentenceCut.length >= min) return sentenceCut
+  }
+
+  const wordBreak = window.lastIndexOf(' ')
+  if (wordBreak >= min) {
+    const wordCut = `${trimmed.slice(0, wordBreak).trim()}.`
+    if (wordCut.length >= min) return wordCut
+  }
+
+  const hardCut = trimmed.slice(0, max).trim()
+  if (hardCut.length >= min) return hardCut
+
+  throw new Error(
+    `Resposta inválida: description longo demais (${trimmed.length} caracteres; máximo ${max}) e não pôde ser encurtado com segurança.`,
+  )
+}
+
+function normalizeFusionDescription(description: string, label: string): string {
+  const trimmed = description.trim()
+  if (trimmed.length < FUSION_DESCRIPTION_MIN_LENGTH) {
     throw new Error(
-      `Resposta inválida: ${label}.description curto demais (${length} caracteres; mínimo ${FUSION_DESCRIPTION_MIN_LENGTH}).`,
+      `Resposta inválida: ${label}.description curto demais (${trimmed.length} caracteres; mínimo ${FUSION_DESCRIPTION_MIN_LENGTH}).`,
     )
   }
-  if (length > FUSION_DESCRIPTION_MAX_LENGTH) {
-    throw new Error(
-      `Resposta inválida: ${label}.description longo demais (${length} caracteres; máximo ${FUSION_DESCRIPTION_MAX_LENGTH}).`,
-    )
-  }
+
+  return clampFusionDescription(trimmed)
 }
 
 function parseFusionCopy(block: unknown, label: string): FusionCopy {
@@ -71,9 +100,8 @@ function parseFusionCopy(block: unknown, label: string): FusionCopy {
   if (!description) {
     throw new Error(`Resposta inválida: ${label}.description vazio.`)
   }
-  assertFusionDescriptionLength(description, label)
 
-  return { name, description }
+  return { name, description: normalizeFusionDescription(description, label) }
 }
 
 function normalizeFusionMechanics(obj: Record<string, unknown>): {
@@ -108,7 +136,7 @@ function normalizeFusionMechanics(obj: Record<string, unknown>): {
   }
 }
 
-/** Coerces LLM JSON into a fusion payload. Rejects bad length (never truncates). */
+/** Coerces LLM JSON into a fusion payload. Overlong descriptions are clamped server-side. */
 export function validateEnglishFusionPayload(raw: unknown): ValidatedEnglishFusionPayload {
   const obj = asRecord(raw)
   const en = parseFusionCopy(obj.en, 'en')

@@ -15,7 +15,7 @@ Your job:
 - Write en.name only after en.description is finished — the title must still make the gist obvious (pun or joke is fine if the effect stays clear).
 - Do not name parent quirks, their ids, "fusion", "combination", or source quirks in en.description.
 - Mechanic tradeoffs are optional: at most one physical cost OR one situational scope when needed — do not pad en.description with extra clauses to sound detailed.
-- en.description length is a hard server-validated limit (see Description length below); prefer 2 short sentences over a third.
+- en.description length is a hard server-validated limit (see Description length below); prefer 2 short sentences over a third — never exceed the max character count.
 
 Research (when web_search is available):
 - You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
@@ -117,8 +117,8 @@ ${constraints.facetContract}
 ### Range
 ${constraints.rangeProse}
 
-### Description length (HARD — validated server-side; overlong JSON is rejected)
-${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} characters (spaces and punctuation count). Prefer 160–240. Two short sentences beat a third clause.
+### Description length (HARD — ${constraints.descriptionMaxLength} characters max; overlong text is trimmed server-side)
+${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} characters (spaces and punctuation count). Target 160–240. Write at most TWO short sentences; stop before the limit — do not rely on the server to cut your copy.
 
 ### ${siblingGate}
 

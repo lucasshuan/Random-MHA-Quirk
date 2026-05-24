@@ -6,7 +6,6 @@ import {
 } from '../validate'
 import type { FusionEnglishRunContext } from './context'
 import {
-  FUSION_AGENT_MAX_ATTEMPTS,
   resolveFusionModelSettings,
   resolveFusionOpenAiModel,
 } from './config'
@@ -68,51 +67,21 @@ function enforceServerMechanics(
   }
 }
 
-function isDescriptionLengthError(err: unknown): boolean {
-  const message = err instanceof Error ? err.message : String(err)
-  return message.includes('description longo demais') || message.includes('description curto demais')
-}
-
-function buildEnglishUserTurn(retryHint: string | null): string {
-  if (!retryHint) return USER_TURN
-  return `${retryHint}\n\n${USER_TURN}`
-}
-
 export async function generateEnglishFusionWithAgent(
   fusion: FusionAgentInput,
 ): Promise<ValidatedEnglishFusionPayload> {
-  let retryHint: string | null = null
+  const result = await run(getEnglishAgent(), USER_TURN, {
+    context: { fusion },
+    maxTurns: resolveFusionAgentMaxTurns(),
+    ...buildEnglishFusionRunConfig(fusion),
+  })
 
-  for (let attempt = 1; attempt <= FUSION_AGENT_MAX_ATTEMPTS; attempt++) {
-    const fusionAttempt: FusionAgentInput = {
-      ...fusion,
-      meta: { ...fusion.meta, attempt: fusion.meta.attempt + attempt - 1 },
-    }
+  const raw = result.finalOutput
+  if (!raw) throw new Error('OpenAI agent retornou saída vazia.')
 
-    try {
-      const result = await run(getEnglishAgent(), buildEnglishUserTurn(retryHint), {
-        context: { fusion: fusionAttempt },
-        maxTurns: resolveFusionAgentMaxTurns(),
-        ...buildEnglishFusionRunConfig(fusionAttempt),
-      })
-
-      const raw = result.finalOutput
-      if (!raw) throw new Error('OpenAI agent retornou saída vazia.')
-
-      const validated = validateEnglishFusionPayload({
-        ...raw,
-        origin: fusion.mechanics.origin,
-      })
-      return enforceServerMechanics(validated, fusion)
-    } catch (err) {
-      if (attempt === FUSION_AGENT_MAX_ATTEMPTS) throw err
-      if (isDescriptionLengthError(err) && err instanceof Error) {
-        retryHint = err.message
-        continue
-      }
-      throw err
-    }
-  }
-
-  throw new Error('Falha na geração via OpenAI agent.')
+  const validated = validateEnglishFusionPayload({
+    ...raw,
+    origin: fusion.mechanics.origin,
+  })
+  return enforceServerMechanics(validated, fusion)
 }

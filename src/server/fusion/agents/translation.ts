@@ -7,7 +7,6 @@ import {
 } from "../validate";
 import type { FusionTranslationRunContext } from "./context";
 import {
-  FUSION_AGENT_MAX_ATTEMPTS,
   resolveFusionModelSettings,
   resolveFusionOpenAiModel,
 } from "./config";
@@ -78,36 +77,15 @@ export async function translateFusionWithAgent(
 ): Promise<ValidatedLocaleFusionCopy> {
   const context: FusionTranslationRunContext = { locale, source };
 
-  let retryHint: string | null = null;
+  const result = await run(getTranslationAgent(locale), USER_TURN, {
+    context,
+    maxTurns: 1,
+    ...(trace ? buildTranslationFusionRunConfig(locale, trace) : {}),
+  });
 
-  for (let attempt = 1; attempt <= FUSION_AGENT_MAX_ATTEMPTS; attempt++) {
-    const userTurn = retryHint ? `${retryHint}\n\n${USER_TURN}` : USER_TURN;
+  const raw = result.finalOutput;
+  if (!raw)
+    throw new Error(`OpenAI agent (${locale}) retornou saída vazia.`);
 
-    try {
-      const result = await run(getTranslationAgent(locale), userTurn, {
-        context,
-        maxTurns: 1,
-        ...(trace ? buildTranslationFusionRunConfig(locale, trace) : {}),
-      });
-
-      const raw = result.finalOutput;
-      if (!raw)
-        throw new Error(`OpenAI agent (${locale}) retornou saída vazia.`);
-
-      return validateLocaleFusionTranslation(raw, locale);
-    } catch (err) {
-      if (attempt === FUSION_AGENT_MAX_ATTEMPTS) throw err;
-      const message = err instanceof Error ? err.message : String(err);
-      if (
-        message.includes("description longo demais") ||
-        message.includes("description curto demais")
-      ) {
-        retryHint = message;
-        continue;
-      }
-      throw err;
-    }
-  }
-
-  throw new Error(`Falha na adaptação via OpenAI agent (${locale}).`);
+  return validateLocaleFusionTranslation(raw, locale);
 }

@@ -4,6 +4,7 @@ import {
   collectSiblingNames,
   hasDuplicateFusionName,
   isSiblingNameTaken,
+  mergeForbiddenFusionTitles,
   MAX_PRIOR_VARIANTS,
   MAX_PRIOR_VARIANTS_IN_PROMPT,
   MAX_SIBLING_NAMES_IN_PROMPT,
@@ -87,6 +88,17 @@ describe('collectSiblingNames', () => {
     expect(collectSiblingNames(rows, { limit: MAX_SIBLING_NAMES_IN_PROMPT })).toHaveLength(
       MAX_SIBLING_NAMES_IN_PROMPT,
     )
+  })
+})
+
+describe('mergeForbiddenFusionTitles', () => {
+  it('puts parent names first and dedupes siblings', () => {
+    expect(
+      mergeForbiddenFusionTitles('Permeation', 'Hardening', [
+        'Hardening',
+        'Sibling',
+      ]),
+    ).toEqual(['Permeation', 'Hardening', 'Sibling'])
   })
 })
 

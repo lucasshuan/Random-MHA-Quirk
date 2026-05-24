@@ -22,8 +22,19 @@ import {
   pushSingleHistoryEntry,
 } from '@/lib/history/store'
 import { shareHybridPath, shareQuirkPath } from '@/lib/share/paths'
+import { rerollHybridFromSettings } from '@/lib/hybrid/reroll-from-settings'
 import { rollHybrid } from '@/lib/hybrid/roll'
 import { applyFilters, pickRandom } from '@/lib/quirks/engine'
+import {
+  saveHybridRollSession,
+  type HybridRollSessionSettings,
+} from '@/lib/wizard/hybrid-roll-session'
+import {
+  clearWizardNavigationSession,
+  consumeWizardNavigationRestore,
+  saveWizardNavigationForShare,
+  type WizardNavigationSnapshot,
+} from '@/lib/wizard/wizard-navigation-session'
 import { DEFAULT_SELECTED_TIERS } from '@/lib/quirks/tiers'
 import {
   getPreviousStep,
@@ -39,6 +50,7 @@ import {
   type QuirkFilters,
   type QuirkTier,
 } from '@/types/quirk'
+import type { QuirkId } from '@/types/quirk-id'
 
 type RollResult = Quirk | HybridRollResult | null
 type PickPhase = 'type' | 'tier' | 'manual'
@@ -139,8 +151,80 @@ export function WizardApp({
   const [fusionPhase, setFusionPhase] = useState<'idle' | 'generating' | 'error'>('idle')
   const [fusionError, setFusionError] = useState<string | null>(null)
   const generatingFusionKeyRef = useRef<string | null>(null)
+  const restoredNavigationRef = useRef(false)
+  const pendingNavigationRestoreRef = useRef<WizardNavigationSnapshot | null>(null)
 
   const { quirks: allQuirks } = useQuirksCatalog(locale)
+
+  function manualParentsFromIds(
+    ids: [QuirkId | null, QuirkId | null],
+  ): [Quirk | null, Quirk | null] {
+    return [
+      ids[0] ? allQuirks.find((quirk) => quirk.id === ids[0]) ?? null : null,
+      ids[1] ? allQuirks.find((quirk) => quirk.id === ids[1]) ?? null : null,
+    ]
+  }
+
+  function buildNavigationSnapshot(): WizardNavigationSnapshot {
+    return {
+      returnStep: resultBackStep,
+      mode,
+      filters,
+      resultBackStep,
+      pickPhase,
+      pendingType,
+      selectedTiers,
+      tierSlideDirection,
+      manualFilters,
+      hybridTypeStep,
+      manualParentIds: [
+        manualHybridParents[0]?.id ?? null,
+        manualHybridParents[1]?.id ?? null,
+      ],
+      hybridTypes,
+      hybridSlotFilters,
+      hybridReachedSecondType,
+      tierEntrySource,
+    }
+  }
+
+  function applyNavigationSnapshot(snapshot: WizardNavigationSnapshot) {
+    setMode(snapshot.mode)
+    setFilters(snapshot.filters)
+    setResult(null)
+    setResultBackStep(snapshot.resultBackStep)
+    setPickPhase(snapshot.pickPhase)
+    setPendingType(snapshot.pendingType)
+    setSelectedTiers([...snapshot.selectedTiers])
+    setTierSlideDirection(snapshot.tierSlideDirection)
+    setManualFilters(snapshot.manualFilters)
+    setHybridTypeStep(snapshot.hybridTypeStep)
+    setManualHybridParents(manualParentsFromIds(snapshot.manualParentIds))
+    setHybridTypes(snapshot.hybridTypes)
+    setHybridSlotFilters(snapshot.hybridSlotFilters)
+    setHybridReachedSecondType(snapshot.hybridReachedSecondType)
+    setTierEntrySource(snapshot.tierEntrySource)
+    setFusionPhase('idle')
+    setFusionError(null)
+    generatingFusionKeyRef.current = null
+    setCurrentStep(snapshot.returnStep)
+  }
+
+  useEffect(() => {
+    if (!restoredNavigationRef.current) {
+      restoredNavigationRef.current = true
+      pendingNavigationRestoreRef.current = consumeWizardNavigationRestore()
+    }
+
+    const snapshot = pendingNavigationRestoreRef.current
+    if (!snapshot || allQuirks.length === 0) {
+      return
+    }
+
+    applyNavigationSnapshot(snapshot)
+    pendingNavigationRestoreRef.current = null
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allQuirks])
 
   const searchableText = useCallback(
     (quirk: Quirk) => buildQuirkSearchText(quirk, locale),
@@ -247,25 +331,48 @@ export function WizardApp({
     }
 
     const timer = window.setTimeout(() => {
+      if (onExitStart) {
+        saveWizardNavigationForShare(path, buildNavigationSnapshot())
+      }
       router.replace(path)
     }, 1150)
 
     return () => {
       window.clearTimeout(timer)
     }
-  }, [currentStep, locale, mode, result, router])
+  }, [currentStep, locale, mode, onExitStart, result, router])
+
+  function currentHybridRollSettings(): HybridRollSessionSettings {
+    return {
+      slotFilters: hybridSlotFilters,
+      manualParentIds: [
+        manualHybridParents[0]?.id ?? null,
+        manualHybridParents[1]?.id ?? null,
+      ],
+    }
+  }
 
   function setHybridRoll(hybrid: HybridRollResult | null) {
     setResult(hybrid)
-    if (hybrid && !hybrid.fusionEntry) {
-      setFusionPhase('generating')
-      setFusionError(null)
-      pushHybridHistoryEntry(
-        hybrid.parents[0],
-        hybrid.parents[1],
+    if (hybrid) {
+      const settings = currentHybridRollSettings()
+      saveHybridRollSession(
+        hybrid.parents[0].id,
+        hybrid.parents[1].id,
         hybrid.seed,
-        locale,
+        settings,
       )
+
+      if (!hybrid.fusionEntry) {
+        setFusionPhase('generating')
+        setFusionError(null)
+        pushHybridHistoryEntry(
+          hybrid.parents[0],
+          hybrid.parents[1],
+          hybrid.seed,
+          locale,
+        )
+      }
     }
   }
 
@@ -297,19 +404,13 @@ export function WizardApp({
       mode === 'hybrid' || (result !== null && isHybridRoll(result))
 
     if (rerollHybrid) {
-      const poolA = hybridPoolA
-      const poolB = hybridPoolB
-      const firstParent = manualHybridParents[0] ?? pickRandom(poolA)
-      const secondParent = manualHybridParents[1] ?? pickRandom(poolB)
-      if (firstParent && secondParent) {
-        setHybridRoll({
-          parents: [firstParent, secondParent],
-          seed: randomFusionSeed(),
-          fusionEntry: null,
-        })
-      } else {
-        setHybridRoll(rollHybrid(poolA, poolB, locale))
-      }
+      const next = rerollHybridFromSettings(
+        allQuirks,
+        currentHybridRollSettings(),
+        locale,
+        { searchableText },
+      )
+      setHybridRoll(next)
       return
     }
 
@@ -462,6 +563,7 @@ export function WizardApp({
 
   function handleRestart() {
     if (onExitStart) {
+      clearWizardNavigationSession()
       onExitStart()
       return
     }
@@ -595,6 +697,7 @@ export function WizardApp({
         flickerNames={allQuirks.map((quirk) => quirk.name)}
         fusionPhase={fusionPhase}
         fusionError={fusionError}
+        canRetryHybrid={mode === 'hybrid' || (result !== null && isHybridRoll(result))}
         onRetry={() => {
           rollFromCurrentSettings()
         }}

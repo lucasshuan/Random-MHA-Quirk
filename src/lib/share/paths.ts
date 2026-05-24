@@ -6,11 +6,30 @@ const QUIRK_ID_SET = new Set<string>(QUIRK_IDS)
 
 const SEED_PATTERN = /^[a-z0-9]{4,32}$/i
 
+/** Slug shape used in routes; catalog may include ids not yet listed in QUIRK_IDS. */
+const QUIRK_ID_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+const QUIRK_ID_SLUG_MAX_LEN = 80
+
 /** Legacy share links only — locale is no longer written to URLs. */
 export const SHARE_LANG_PARAM = 'lang'
 
+export function isQuirkIdSlug(value: string): boolean {
+  const trimmed = value.trim()
+  return (
+    trimmed.length >= 2 &&
+    trimmed.length <= QUIRK_ID_SLUG_MAX_LEN &&
+    QUIRK_ID_SLUG_PATTERN.test(trimmed)
+  )
+}
+
+/** Known catalog id from generated list (compile-time QuirkId union). */
 export function isQuirkId(value: string): value is QuirkId {
   return QUIRK_ID_SET.has(value)
+}
+
+/** Share / hybrid routes: valid id slug; existence is resolved by the quirks API. */
+export function isShareQuirkId(value: string): value is QuirkId {
+  return isQuirkIdSlug(value)
 }
 
 export function isFusionSeed(value: string): boolean {
@@ -44,7 +63,7 @@ export function fusionCacheKeyFromHybridRoute(
   parentB: string,
   seed: string,
 ): string | null {
-  if (!isQuirkId(parentA) || !isQuirkId(parentB) || !isFusionSeed(seed)) {
+  if (!isShareQuirkId(parentA) || !isShareQuirkId(parentB) || !isFusionSeed(seed)) {
     return null
   }
   if (parentA === parentB) {

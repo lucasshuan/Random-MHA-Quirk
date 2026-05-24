@@ -7,6 +7,8 @@
   --bg-radial-c: rgba(0, 190, 255, 0.08);
   --panel-bg: #121a27;
   --panel-bg-2: #0f1722;
+  --panel-surface: rgba(6, 11, 18, 0.34);
+  --scroll-track-bg: var(--panel-surface);
   --text: #e7ecf5;
   --muted: #9facbd;
   --border: #253244;

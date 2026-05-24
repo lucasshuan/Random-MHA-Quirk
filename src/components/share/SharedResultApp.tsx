@@ -7,9 +7,11 @@ import { QuirksCatalogGate } from '@/components/QuirksCatalogGate'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { StepFinalResult } from '@/components/wizard/StepFinalResult'
 import { useLocaleSwitchGuard } from '@/hooks/useLocaleSwitchGuard'
-import { ensureQuirksCatalog } from '@/hooks/useQuirksCatalog'
+import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
+import { ensureQuirksCatalog, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
 import { useI18n } from '@/i18n/useI18n'
 import type { Locale } from '@/i18n/types'
+import { rerollHybridFromSettings } from '@/lib/hybrid/reroll-from-settings'
 import { resolveApiErrorMessage } from '@/lib/api/resolve-error'
 import { fetchFusionFromCache, requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
@@ -21,12 +23,22 @@ import { fetchQuirkById } from '@/lib/quirks/api'
 import {
   absoluteShareUrl,
   isFusionSeed,
-  isQuirkId,
+  isShareQuirkId,
   SHARE_LANG_PARAM,
   shareHybridPath,
   shareLocaleFromSearchParams,
   shareQuirkPath,
 } from '@/lib/share/paths'
+import {
+  matchHybridRollSession,
+  saveHybridRollSession,
+} from '@/lib/wizard/hybrid-roll-session'
+import {
+  clearWizardNavigationSession,
+  matchWizardNavigationForShare,
+  queueWizardNavigationRestore,
+  saveWizardNavigationForShare,
+} from '@/lib/wizard/wizard-navigation-session'
 import type { ResultMode } from '@/lib/wizard/flow'
 import type { HybridRollResult } from '@/types/fusion'
 import type { Quirk } from '@/types/quirk'
@@ -61,6 +73,7 @@ export function SharedResultApp({
   const router = useRouter()
   const searchParams = useSearchParams()
   const { locale, setLocale, t } = useI18n()
+  const { quirks: allQuirks } = useQuirksCatalog(locale)
   const [result, setResult] = useState<RollResult>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -105,6 +118,28 @@ export function SharedResultApp({
   }, [mode, result])
 
   const shareUrl = sharePath ? absoluteShareUrl(sharePath) : null
+
+  const wizardNavigation = useMemo(() => {
+    if (!sharePath) {
+      return null
+    }
+    return matchWizardNavigationForShare(sharePath)
+  }, [sharePath])
+
+  const canRetryHybrid = useMemo(() => {
+    if (
+      mode !== 'hybrid' ||
+      !parentA ||
+      !parentB ||
+      !seed ||
+      !isShareQuirkId(parentA) ||
+      !isShareQuirkId(parentB)
+    ) {
+      return false
+    }
+
+    return matchHybridRollSession(parentA, parentB, seed) !== null
+  }, [mode, parentA, parentB, seed])
 
   useEffect(() => {
     if (strippedLegacyLangRef.current) {
@@ -200,7 +235,7 @@ export function SharedResultApp({
       }
 
       if (mode === 'single') {
-        if (!quirkId || !isQuirkId(quirkId)) {
+        if (!quirkId || !isShareQuirkId(quirkId)) {
           throw new Error('invalid')
         }
         await ensureQuirksCatalog(targetLocale)
@@ -213,8 +248,8 @@ export function SharedResultApp({
         !parentA ||
         !parentB ||
         !seed ||
-        !isQuirkId(parentA) ||
-        !isQuirkId(parentB) ||
+        !isShareQuirkId(parentA) ||
+        !isShareQuirkId(parentB) ||
         !isFusionSeed(seed) ||
         parentA === parentB
       ) {
@@ -272,7 +307,7 @@ export function SharedResultApp({
       generatingFusionKeyRef.current = null
 
       try {
-        if (mode === 'single' && (!quirkId || !isQuirkId(quirkId))) {
+        if (mode === 'single' && (!quirkId || !isShareQuirkId(quirkId))) {
           setLoadError(t('share.invalidLink'))
           return
         }
@@ -282,8 +317,8 @@ export function SharedResultApp({
           (!parentA ||
             !parentB ||
             !seed ||
-            !isQuirkId(parentA) ||
-            !isQuirkId(parentB) ||
+            !isShareQuirkId(parentA) ||
+            !isShareQuirkId(parentB) ||
             !isFusionSeed(seed) ||
             parentA === parentB)
         ) {
@@ -343,10 +378,58 @@ export function SharedResultApp({
     })
   }, [getRouteLocaleCache, isLoading, locale, routeKey])
 
+  function handleRetryHybrid() {
+    if (
+      mode !== 'hybrid' ||
+      !parentA ||
+      !parentB ||
+      !seed ||
+      !isShareQuirkId(parentA) ||
+      !isShareQuirkId(parentB)
+    ) {
+      return
+    }
+
+    const settings = matchHybridRollSession(parentA, parentB, seed)
+    if (!settings) {
+      return
+    }
+
+    const next = rerollHybridFromSettings(allQuirks, settings, locale, {
+      searchableText: (quirk) => buildQuirkSearchText(quirk, locale),
+    })
+    if (!next) {
+      return
+    }
+
+    generatingFusionKeyRef.current = null
+    resultLocaleCacheRef.current.delete(routeKey)
+    cacheResultForLocale(locale, next)
+    setResult(next)
+    saveHybridRollSession(
+      next.parents[0].id,
+      next.parents[1].id,
+      next.seed,
+      settings,
+    )
+    pushHybridHistoryEntry(next.parents[0], next.parents[1], next.seed, locale)
+    const nextPath = shareHybridPath(next.parents[0].id, next.parents[1].id, next.seed)
+    if (wizardNavigation) {
+      saveWizardNavigationForShare(nextPath, wizardNavigation)
+    }
+    router.replace(nextPath)
+    void tryGenerateFusion(next, true)
+  }
+
   function handleRerollFusion() {
     if (!result || !isHybridRoll(result)) {
       return
     }
+
+    const settings =
+      parentA && parentB && seed
+        ? matchHybridRollSession(parentA, parentB, seed)
+        : null
 
     const next: HybridRollResult = {
       parents: result.parents,
@@ -358,13 +441,43 @@ export function SharedResultApp({
     resultLocaleCacheRef.current.delete(routeKey)
     cacheResultForLocale(locale, next)
     setResult(next)
+    if (settings) {
+      saveHybridRollSession(
+        next.parents[0].id,
+        next.parents[1].id,
+        next.seed,
+        settings,
+      )
+    }
     pushHybridHistoryEntry(next.parents[0], next.parents[1], next.seed, locale)
-    router.replace(shareHybridPath(next.parents[0].id, next.parents[1].id, next.seed))
+    const nextPath = shareHybridPath(next.parents[0].id, next.parents[1].id, next.seed)
+    if (wizardNavigation) {
+      saveWizardNavigationForShare(nextPath, wizardNavigation)
+    }
+    router.replace(nextPath)
     void tryGenerateFusion(next, true)
   }
 
-  function goHome() {
+  function goStart() {
     router.push('/start')
+  }
+
+  function goMain() {
+    clearWizardNavigationSession()
+    router.push('/')
+  }
+
+  function handleBack() {
+    if (wizardNavigation) {
+      queueWizardNavigationRestore(wizardNavigation)
+      router.push('/start')
+      return
+    }
+    goStart()
+  }
+
+  function handleRestart() {
+    goMain()
   }
 
   function renderBody() {
@@ -376,7 +489,7 @@ export function SharedResultApp({
       return (
         <div className="simple-step result-step" role="alert">
           <p className="mini-copy">{loadError}</p>
-          <button type="button" className="big-action" onClick={goHome}>
+          <button type="button" className="big-action" onClick={goStart}>
             {t('share.goRoll')}
           </button>
         </div>
@@ -392,10 +505,19 @@ export function SharedResultApp({
         fusionError={fusionError}
         skipReveal
         shareUrl={shareUrl}
-        onRetry={() => goHome()}
+        canRetryHybrid={canRetryHybrid}
+        onRetry={() => {
+          if (mode === 'hybrid') {
+            if (canRetryHybrid) {
+              handleRetryHybrid()
+            }
+            return
+          }
+          goStart()
+        }}
         onRetryFusion={handleRerollFusion}
-        onBack={goHome}
-        onRestart={goHome}
+        onBack={handleBack}
+        onRestart={handleRestart}
       />
     )
   }
@@ -405,8 +527,8 @@ export function SharedResultApp({
       <MinimalFrame
         canGoBack
         showRestart
-        onBack={goHome}
-        onRestart={goHome}
+        onBack={handleBack}
+        onRestart={handleRestart}
       >
         {renderBody()}
       </MinimalFrame>

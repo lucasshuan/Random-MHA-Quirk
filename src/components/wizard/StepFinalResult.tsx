@@ -21,6 +21,7 @@ interface StepFinalResultProps {
   fusionError: string | null
   skipReveal?: boolean
   shareUrl?: string | null
+  canRetryHybrid?: boolean
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -58,6 +59,7 @@ interface ResultRevealProps {
   fusionError: string | null
   skipReveal?: boolean
   shareUrl?: string | null
+  canRetryHybrid?: boolean
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -72,6 +74,7 @@ function ResultReveal({
   fusionError,
   skipReveal = false,
   shareUrl = null,
+  canRetryHybrid = false,
   onRetry,
   onRetryFusion,
   onBack,
@@ -214,7 +217,10 @@ function ResultReveal({
           type="button"
           className="icon-btn strong-icon"
           onClick={onRetry}
-          disabled={isHybridResult(result) && fusionPhase === 'generating'}
+          disabled={
+            isHybridResult(result) &&
+            (!canRetryHybrid || fusionPhase === 'generating')
+          }
           aria-label={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
           data-tooltip={isHybridResult(result) ? t('nav.retryHybrid') : t('nav.retry')}
         >

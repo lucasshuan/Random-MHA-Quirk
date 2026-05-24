@@ -41,6 +41,31 @@ function normalizedVariantName(name: string): string {
   return name.trim().replace(/\s+/g, ' ').toLocaleLowerCase()
 }
 
+/** Parent catalog names first, then sibling fusion titles (deduped, case-insensitive). */
+export function mergeForbiddenFusionTitles(
+  parentAName: string,
+  parentBName: string,
+  siblingTitles: readonly string[] = [],
+): string[] {
+  const seen = new Set<string>()
+  const out: string[] = []
+
+  const add = (name: string) => {
+    const trimmed = name.trim()
+    if (!trimmed) return
+
+    const key = normalizedVariantName(trimmed)
+    if (seen.has(key)) return
+    seen.add(key)
+    out.push(trimmed)
+  }
+
+  add(parentAName)
+  add(parentBName)
+  for (const title of siblingTitles) add(title)
+  return out
+}
+
 export function hasDuplicateFusionName(
   name: string,
   priorVariants: FusionPriorVariant[],

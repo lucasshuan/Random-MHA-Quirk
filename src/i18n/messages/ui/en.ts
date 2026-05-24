@@ -18,7 +18,7 @@ export const en = {
   api: {
     errors: {
       rateLimitFusion:
-        'Too many fusion generations (15 per 5 minutes). Wait about {{minutes}} minutes before trying again.',
+        'Too many fusion generations (5 per 5 minutes). Wait about {{minutes}} minutes before trying again.',
       rateLimitApi: 'Too many requests. Try again in about {{minutes}} minutes.',
       forbidden: 'Request blocked.',
       invalidJson: 'Invalid request body.',
@@ -34,6 +34,7 @@ export const en = {
     title: 'Find a quirk.',
     action: 'Start',
     previousResults: 'Previous results',
+    viewAllQuirks: 'View all quirks',
   },
   mode: {
     title: 'What are we rolling?',
@@ -133,6 +134,24 @@ export const en = {
     title: 'Previous results',
     searchPlaceholder: 'Search by name, type, range, origin, or facet',
     empty: 'No saved results yet.',
+    hybridMissingDescription: 'This hybrid has no generated description yet.',
+    filterKind: 'Result type',
+    filterQuirks: 'Quirks',
+    filterHybrids: 'Hybrids',
+  },
+  database: {
+    mark: 'Database',
+    title: 'Quirk database',
+    tabs: 'Quirk database tabs',
+    tabQuirks: 'Quirks',
+    tabHybrids: 'Hybrids',
+    searchPlaceholder: 'Search by name, type, range, origin, or facet',
+    emptyQuirks: 'No quirks match the current filters.',
+    emptyHybrids: 'No hybrid results match the current filters.',
+    hybridLoading: 'Loading hybrids…',
+    hybridLoadError: 'Could not load the hybrid catalog.',
+    hybridParents: 'Parents',
+    hybridMissingDescription: 'This hybrid has no generated description yet.',
   },
   result: {
     oneQuirk: 'One Quirk',
@@ -151,7 +170,7 @@ export const en = {
     retry: 'Try again',
   },
   fusion: {
-    badge: 'Result',
+    badge: 'Hybrid',
     tabFusion: 'Result',
     tabParents: 'Rolled quirks',
     parents: 'Parent quirks',

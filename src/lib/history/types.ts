@@ -12,6 +12,7 @@ import type {
 export interface HistoryQuirkPreview {
   id: string
   name: string
+  description?: string
   origin: QuirkOrigin
   tier: QuirkTier
   type: QuirkType
@@ -28,6 +29,11 @@ export interface HybridHistoryResult {
   parentB: HistoryQuirkPreview & { id: QuirkId }
   seed: string
   fusion: HistoryQuirkPreview | null
+}
+
+export type HistoryModeFilter = {
+  quirks: boolean
+  hybrids: boolean
 }
 
 export type ResultHistoryEntry = {

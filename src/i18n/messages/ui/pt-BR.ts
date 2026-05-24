@@ -20,7 +20,7 @@ export const ptBR: Messages = {
   api: {
     errors: {
       rateLimitFusion:
-        'Muitas gerações de fusão (máx. 15 a cada 5 minutos). Aguarde cerca de {{minutes}} min antes de tentar de novo.',
+        'Muitas gerações de fusão (máx. 5 a cada 5 minutos). Aguarde cerca de {{minutes}} min antes de tentar de novo.',
       rateLimitApi: 'Muitas requisições. Tente novamente em cerca de {{minutes}} min.',
       forbidden: 'Requisição bloqueada.',
       invalidJson: 'Corpo da requisição inválido.',
@@ -36,6 +36,7 @@ export const ptBR: Messages = {
     title: 'Encontre uma individualidade.',
     action: 'Começar',
     previousResults: 'Resultados anteriores',
+    viewAllQuirks: 'Ver todas as individualidades',
   },
   mode: {
     title: 'O que vamos sortear?',
@@ -140,6 +141,24 @@ export const ptBR: Messages = {
     title: 'Resultados anteriores',
     searchPlaceholder: 'Busque por nome, tipo, alcance, origem ou característica',
     empty: 'Ainda não há resultados salvos.',
+    hybridMissingDescription: 'Este híbrido ainda não tem descrição gerada.',
+    filterKind: 'Tipo de resultado',
+    filterQuirks: 'Individualidades',
+    filterHybrids: 'Híbridos',
+  },
+  database: {
+    mark: 'Base',
+    title: 'Base de individualidades',
+    tabs: 'Abas da base de individualidades',
+    tabQuirks: 'Individualidades',
+    tabHybrids: 'Híbridos',
+    searchPlaceholder: 'Busque por nome, tipo, alcance, origem ou característica',
+    emptyQuirks: 'Nenhuma individualidade corresponde aos filtros atuais.',
+    emptyHybrids: 'Nenhum híbrido corresponde aos filtros atuais.',
+    hybridLoading: 'Carregando híbridos…',
+    hybridLoadError: 'Não foi possível carregar o catálogo de híbridos.',
+    hybridParents: 'Origens',
+    hybridMissingDescription: 'Este híbrido ainda não tem descrição gerada.',
   },
   result: {
     oneQuirk: 'Uma Individualidade',
@@ -158,7 +177,7 @@ export const ptBR: Messages = {
     retry: 'Tentar novamente',
   },
   fusion: {
-    badge: 'Resultado',
+    badge: 'Híbrido',
     tabFusion: 'Resultado',
     tabParents: 'Sorteadas',
     parents: 'Individualidades origem',

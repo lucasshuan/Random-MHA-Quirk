@@ -26,6 +26,7 @@ import {
   resolveFusionStrategyForKey,
   type FusionStrategyKey,
 } from './prompts/strategy'
+import { mergeForbiddenFusionTitles } from './prior-variants'
 
 const CANON_NAME_REFERENCES = [
   'Pop Off',
@@ -149,7 +150,11 @@ export function buildFusionAgentInput(
       description: variant.description.trim(),
       roll: variant.roll,
     })),
-    takenTitles: takenTitles.map((name) => name.trim()).filter(Boolean),
+    takenTitles: mergeForbiddenFusionTitles(
+      quirkA.name,
+      quirkB.name,
+      takenTitles,
+    ),
   }
 }
 

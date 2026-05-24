@@ -39,8 +39,8 @@ function formatTakenTitlesBlock(input: FusionAgentInput): string {
 
   const lines = input.takenTitles.map((name) => `- "${name}"`)
   return `
-### Taken titles (do not reuse)
-These en.name values are already used for this parent pair — pick a different title; do not reuse or lightly rephrase any of them:
+### Not allowed names (do not use for en.name)
+Forbidden titles for this fusion — includes both parent quirks' catalog names and prior fusion variants for this pair. Pick a different title; do not reuse or lightly rephrase any of them:
 ${lines.join('\n')}`
 }
 

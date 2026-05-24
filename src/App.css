@@ -247,6 +247,8 @@
 
 .minimal-screen:has(> .advanced-step),
 .minimal-screen:has(> .manual-pick-step),
+.minimal-screen:has(> .history-step),
+.minimal-screen:has(> .database-step),
 .minimal-screen:has(> .result-step) {
   overflow: hidden;
 }
@@ -259,6 +261,8 @@
 
 .minimal-screen > .simple-step.advanced-step,
 .minimal-screen > .simple-step.manual-pick-step,
+.minimal-screen > .simple-step.history-step,
+.minimal-screen > .simple-step.database-step,
 .minimal-screen > .simple-step.result-step {
   flex: 1 1 auto;
   align-self: stretch;
@@ -279,6 +283,8 @@
 
 .simple-step.advanced-step,
 .simple-step.manual-pick-step,
+.simple-step.history-step,
+.simple-step.database-step,
 .simple-step.result-step {
   overflow: hidden;
 }
@@ -391,9 +397,15 @@
 .start-step-actions {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0.7rem;
   margin-top: var(--fluid-after-title);
+}
+
+.start-step-secondary-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
 }
 
 .start-step-actions .big-action {
@@ -1128,31 +1140,70 @@
 .inner-scroll-panel {
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+/* App scrollbars — track matches panel surface */
+.inner-scroll-panel,
+.manual-quirk-grid,
+.history-entry-list,
+.hybrid-result .segment-tab-panel,
+.result-step .result-cards-reveal:not(:has(.hybrid-result)),
+.quirk-pick-card-scroll,
+.minimal-screen {
   scrollbar-width: thin;
-  scrollbar-color: rgba(248, 216, 73, 0.75) rgba(255, 255, 255, 0.06);
+  scrollbar-color: rgba(248, 216, 73, 0.75) var(--scroll-track-bg);
+}
+
+.inner-scroll-panel,
+.manual-quirk-grid,
+.history-entry-list {
   scrollbar-gutter: stable;
 }
 
-.inner-scroll-panel::-webkit-scrollbar {
+.inner-scroll-panel::-webkit-scrollbar,
+.manual-quirk-grid::-webkit-scrollbar,
+.history-entry-list::-webkit-scrollbar,
+.hybrid-result .segment-tab-panel::-webkit-scrollbar,
+.result-step .result-cards-reveal:not(:has(.hybrid-result))::-webkit-scrollbar,
+.quirk-pick-card-scroll::-webkit-scrollbar,
+.minimal-screen::-webkit-scrollbar {
   width: 10px;
 }
 
-.inner-scroll-panel::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+.inner-scroll-panel::-webkit-scrollbar-track,
+.manual-quirk-grid::-webkit-scrollbar-track,
+.history-entry-list::-webkit-scrollbar-track,
+.hybrid-result .segment-tab-panel::-webkit-scrollbar-track,
+.result-step .result-cards-reveal:not(:has(.hybrid-result))::-webkit-scrollbar-track,
+.quirk-pick-card-scroll::-webkit-scrollbar-track,
+.minimal-screen::-webkit-scrollbar-track {
+  background: var(--scroll-track-bg);
   border-radius: 999px;
 }
 
-.inner-scroll-panel::-webkit-scrollbar-thumb {
+.inner-scroll-panel::-webkit-scrollbar-thumb,
+.manual-quirk-grid::-webkit-scrollbar-thumb,
+.history-entry-list::-webkit-scrollbar-thumb,
+.hybrid-result .segment-tab-panel::-webkit-scrollbar-thumb,
+.result-step .result-cards-reveal:not(:has(.hybrid-result))::-webkit-scrollbar-thumb,
+.quirk-pick-card-scroll::-webkit-scrollbar-thumb,
+.minimal-screen::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
     rgba(248, 216, 73, 0.95),
     rgba(0, 190, 255, 0.7)
   );
   border-radius: 999px;
-  border: 2px solid rgba(10, 16, 24, 0.9);
+  border: 2px solid var(--scroll-track-bg);
 }
 
-.inner-scroll-panel::-webkit-scrollbar-thumb:hover {
+.inner-scroll-panel::-webkit-scrollbar-thumb:hover,
+.manual-quirk-grid::-webkit-scrollbar-thumb:hover,
+.history-entry-list::-webkit-scrollbar-thumb:hover,
+.hybrid-result .segment-tab-panel::-webkit-scrollbar-thumb:hover,
+.result-step .result-cards-reveal:not(:has(.hybrid-result))::-webkit-scrollbar-thumb:hover,
+.quirk-pick-card-scroll::-webkit-scrollbar-thumb:hover,
+.minimal-screen::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
     rgba(255, 233, 125, 0.98),
@@ -1865,7 +1916,7 @@
   padding: 0.8rem;
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: rgba(6, 11, 18, 0.34);
+  background: var(--panel-surface);
   text-align: left;
 }
 
@@ -2755,6 +2806,7 @@
   border: 1px solid var(--border);
   border-radius: 18px;
   background: rgba(6, 11, 18, 0.45);
+  --scroll-track-bg: rgba(6, 11, 18, 0.45);
   text-align: left;
 }
 
@@ -2798,20 +2850,19 @@
 }
 
 .quirk-card-fusion {
-  --card-accent: rgba(255, 185, 85, 0.85);
-  --card-accent-strong: #ffd0a0;
-  --card-accent-soft: rgba(255, 185, 85, 0.22);
-  --card-accent-glow: rgba(255, 170, 80, 0.28);
-  --card-accent-tint: rgba(255, 170, 60, 0.06);
+  --fusion-accent: #a78bfa;
+  --fusion-accent-strong: #d4c4ff;
+  --fusion-accent-bg: rgba(167, 139, 250, 0.14);
+  --fusion-accent-border: rgba(167, 139, 250, 0.42);
 
-  border-color: rgba(255, 185, 85, 0.28);
+  border-color: var(--fusion-accent-border);
   padding-right: 3.6rem;
 }
 
 .fusion-hero .quirk-card-fusion {
   box-shadow:
     0 12px 40px rgba(0, 0, 0, 0.45),
-    0 0 48px rgba(255, 170, 80, 0.14);
+    0 0 48px rgba(167, 139, 250, 0.16);
 }
 
 .quirk-fusion-badge {
@@ -2826,9 +2877,9 @@
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 220, 160, 0.95);
-  background: rgba(255, 160, 60, 0.18);
-  border: 1px solid rgba(255, 190, 100, 0.35);
+  color: var(--fusion-accent-strong, #d4c4ff);
+  background: var(--fusion-accent-bg, rgba(167, 139, 250, 0.14));
+  border: 1px solid var(--fusion-accent-border, rgba(167, 139, 250, 0.42));
   pointer-events: none;
 }
 
@@ -3115,12 +3166,34 @@
   max-height: 100%;
   min-height: 0;
   align-content: start;
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto auto minmax(0, 1fr);
 }
 
 .history-controls,
 .history-pick-layout {
   width: min(100%, 860px);
+}
+
+.database-step {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.database-tabs-wrap {
+  width: min(100%, 860px);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: var(--fluid-step-gap);
+}
+
+.database-controls,
+.database-tabs {
+  width: 100%;
+}
+
+.database-tab-panel {
+  min-height: 0;
+  display: grid;
 }
 
 .history-list-panel {
@@ -3131,10 +3204,39 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.62rem;
+  min-height: 0;
+  flex: 1 1 auto;
+  padding-right: 0.35rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  align-content: start;
 }
 
 .history-entry-card {
   text-align: left;
+}
+
+.manual-quirk-card.history-entry-card-hybrid {
+  --fusion-accent: #a78bfa;
+  --fusion-accent-strong: #d4c4ff;
+  --fusion-accent-bg: rgba(167, 139, 250, 0.14);
+  --fusion-accent-border: rgba(167, 139, 250, 0.42);
+
+  border-color: var(--fusion-accent-border);
+  padding-right: 2.35rem;
+}
+
+.manual-quirk-card.history-entry-card-hybrid:hover,
+.manual-quirk-card.history-entry-card-hybrid:focus-visible {
+  border-color: var(--fusion-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 12px 22px rgba(0, 0, 0, 0.32),
+    0 0 20px rgba(167, 139, 250, 0.22);
+}
+
+.modal-actions-readonly {
+  justify-content: flex-end;
 }
 
 .history-entry-time {
@@ -3170,9 +3272,29 @@
     box-shadow 220ms ease;
 }
 
-.manual-quirk-card > * {
+.manual-quirk-card > *:not(.quirk-card-glow):not(.quirk-fusion-badge) {
   position: relative;
   z-index: 2;
+}
+
+.manual-quirk-card > .quirk-fusion-badge {
+  position: absolute;
+  top: 0.48rem;
+  right: 0.48rem;
+  z-index: 3;
+  display: inline-flex;
+  width: auto;
+  max-width: calc(100% - 1rem);
+  padding: 0.1rem 0.38rem;
+  border-radius: 999px;
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fusion-accent-strong, #d4c4ff);
+  background: var(--fusion-accent-bg, rgba(167, 139, 250, 0.14));
+  border: 1px solid var(--fusion-accent-border, rgba(167, 139, 250, 0.42));
+  pointer-events: none;
 }
 
 .manual-quirk-card .quirk-card-glow {
@@ -3398,6 +3520,25 @@
   gap: 0.75rem;
 }
 
+.filter-kind-row {
+  margin: 0 0 0.15rem;
+  width: 100%;
+}
+
+.filter-kind-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-kind-grid .filter-toggle {
+  width: 100%;
+  min-height: 2.35rem;
+  justify-content: center;
+}
+
 .manual-filter-modal .panel {
   max-height: min(68svh, 560px);
   padding: 1rem 1.1rem;
@@ -3438,7 +3579,7 @@
     grid-template-columns: 1fr;
   }
 
-  .start-step-actions {
+  .start-step-secondary-actions {
     grid-template-columns: 1fr;
   }
 

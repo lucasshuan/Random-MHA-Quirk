@@ -61,10 +61,13 @@ function safeWriteStorage(entries: ResultHistoryEntry[]): void {
   }
 }
 
-function toPreview(quirk: Pick<Quirk, 'id' | 'name' | 'origin' | 'tier' | 'type' | 'range' | 'facets'>): HistoryQuirkPreview {
+function toPreview(
+  quirk: Pick<Quirk, 'id' | 'name' | 'description' | 'origin' | 'tier' | 'type' | 'range' | 'facets'>,
+): HistoryQuirkPreview {
   return {
     id: quirk.id,
     name: quirk.name,
+    description: quirk.description,
     origin: quirk.origin,
     tier: quirk.tier,
     type: quirk.type,
@@ -78,6 +81,7 @@ function toFusionPreview(entry: FusionCacheEntry, locale: Locale): HistoryQuirkP
   return {
     id: fusionQuirkId(entry.parents[0], entry.parents[1], entry.seed),
     name: copy.name,
+    description: copy.description,
     origin: entry.origin,
     tier: entry.tier,
     type: entry.type,
@@ -95,7 +99,14 @@ function searchTextForEntry(entry: ResultHistoryEntry): string {
         )
 
   return quirks
-    .flatMap((quirk) => [quirk.name, quirk.type, quirk.range, quirk.origin, ...quirk.facets])
+    .flatMap((quirk) => [
+      quirk.name,
+      quirk.description ?? '',
+      quirk.type,
+      quirk.range,
+      quirk.origin,
+      ...quirk.facets,
+    ])
     .join(' ')
     .toLowerCase()
 }

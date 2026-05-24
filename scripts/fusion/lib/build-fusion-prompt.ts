@@ -47,6 +47,7 @@ export function buildFusionPrompt(
     priorVariants,
     quirkA.id,
     quirkB.id,
+    { a: quirkA.name, b: quirkB.name },
   )
   const typeDiscipline = formatTypeDisciplineBlock(outputRoll.type)
   const facetContract = formatFacetContractBlock(

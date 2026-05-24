@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { LuHistory, LuSparkles } from 'react-icons/lu'
+import { LuHistory, LuLayoutGrid, LuSparkles } from 'react-icons/lu'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { BrandMark } from '@/components/wizard/BrandMark'
 import { useHasResultHistory } from '@/hooks/useHasResultHistory'
@@ -25,21 +25,31 @@ export default function HomePage() {
         <div className="start-step-actions">
           <button
             type="button"
-            className="big-action big-action-with-icon"
+            className="big-action big-action-with-icon start-step-primary-action"
             onClick={() => router.push('/start')}
           >
             <LuSparkles aria-hidden="true" />
             <span>{t('start.action')}</span>
           </button>
-          <button
-            type="button"
-            className="big-action secondary-big-action big-action-with-icon"
-            disabled={!hasHistory}
-            onClick={() => router.push('/history')}
-          >
-            <LuHistory aria-hidden="true" />
-            <span>{t('start.previousResults')}</span>
-          </button>
+          <div className="start-step-secondary-actions">
+            <button
+              type="button"
+              className="big-action secondary-big-action big-action-with-icon"
+              onClick={() => router.push('/database')}
+            >
+              <LuLayoutGrid aria-hidden="true" />
+              <span>{t('start.viewAllQuirks')}</span>
+            </button>
+            <button
+              type="button"
+              className="big-action secondary-big-action big-action-with-icon"
+              disabled={!hasHistory}
+              onClick={() => router.push('/history')}
+            >
+              <LuHistory aria-hidden="true" />
+              <span>{t('start.previousResults')}</span>
+            </button>
+          </div>
         </div>
       </div>
     </MinimalFrame>

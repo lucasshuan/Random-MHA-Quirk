@@ -39,6 +39,13 @@ describe('buildFusionAgentInput', () => {
     expect(input.roll.strategyInstruction).toContain('Fusion strategy')
   })
 
+  it('includes parent catalog names in takenTitles', () => {
+    const input = buildFusionAgentInput(quirkA, quirkB, 'seed-1', [], undefined, 0, undefined, [
+      'Sibling Title',
+    ])
+    expect(input.takenTitles).toEqual(['Permeation', 'Hardening', 'Sibling Title'])
+  })
+
   it('flags sibling diversity when priors exist', () => {
     const without = buildFusionAgentInput(quirkA, quirkB, 'seed-1')
     const withPrior = buildFusionAgentInput(quirkA, quirkB, 'seed-1', [

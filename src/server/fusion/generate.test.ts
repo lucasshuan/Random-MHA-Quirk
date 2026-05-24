@@ -136,7 +136,7 @@ describe('generateFusionEntry', () => {
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
     const fusionInput = mockGenerateEnglishFusionWithLlm.mock.calls[0][0]
     expect(fusionInput.priorVariants[0].name).toBe('Cached')
-    expect(fusionInput.takenTitles).toEqual(['Cached'])
+    expect(fusionInput.takenTitles).toEqual(['Acid', 'Explosion', 'Cached'])
     expect(fusionInput.meta.seed).toBe('seed1')
     expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
     expect(mockTranslateFusionToLocaleWithLlm.mock.calls[0][0]).toEqual(englishPayload)

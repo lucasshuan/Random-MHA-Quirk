@@ -3,14 +3,27 @@ import {
   fusionCacheKeyFromHybridRoute,
   isFusionSeed,
   isQuirkId,
+  isQuirkIdSlug,
+  isShareQuirkId,
   shareHybridPath,
   shareQuirkPath,
 } from './paths'
 
 describe('share paths', () => {
-  it('validates catalog ids', () => {
+  it('validates known catalog ids', () => {
     expect(isQuirkId('explosion')).toBe(true)
     expect(isQuirkId('not-a-quirk')).toBe(false)
+  })
+
+  it('accepts share slugs for ids present in live catalog but not QUIRK_IDS', () => {
+    expect(isShareQuirkId('memory-projector')).toBe(true)
+    expect(isQuirkId('memory-projector')).toBe(false)
+  })
+
+  it('rejects malformed id slugs', () => {
+    expect(isQuirkIdSlug('')).toBe(false)
+    expect(isQuirkIdSlug('Bad-ID')).toBe(false)
+    expect(isQuirkIdSlug('../escape')).toBe(false)
   })
 
   it('validates fusion seeds', () => {

@@ -1,6 +1,7 @@
 import { hashSeed } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 import type { FusionPriorVariant } from '@/types/fusion'
+import { mergeForbiddenFusionTitles } from '../prior-variants'
 
 export type FusionNameRegister =
   | 'pun'
@@ -157,6 +158,7 @@ export function formatFusionNamingBlock(
   priorVariants: FusionPriorVariant[] = [],
   parentA?: string,
   parentB?: string,
+  parentDisplayNames?: { a: string; b: string },
 ): string {
   const register = selectFusionNameRegister(seed, parentA, parentB)
   const priorList = priorVariants
@@ -165,6 +167,20 @@ export function formatFusionNamingBlock(
       description: variant.description.trim(),
     }))
     .filter((variant) => variant.name && variant.description)
+
+  const forbiddenNames = parentDisplayNames
+    ? mergeForbiddenFusionTitles(
+        parentDisplayNames.a,
+        parentDisplayNames.b,
+        priorList.map((variant) => variant.name),
+      )
+    : priorList.map((variant) => variant.name)
+
+  const forbiddenNamesBlock =
+    forbiddenNames.length === 0
+      ? ''
+      : `
+- Not allowed names (do not use for en.name — parent catalog quirks and prior fusion variants): ${forbiddenNames.map((name) => `"${name}"`).join(', ')}`
 
   const priorBlock =
     priorList.length === 0
@@ -197,5 +213,5 @@ ${priorList
 - ${NAME_QUALITY_GATE}
 - ${NAME_SELF_CHECK}
 - Canon-style reference names (any register): ${CANON_STYLE_NAMES.join(', ')}
-- Examples in the ${register.key} register: ${register.examples.join(', ')}${nameSafetyBlock}${priorBlock}`
+- Examples in the ${register.key} register: ${register.examples.join(', ')}${nameSafetyBlock}${forbiddenNamesBlock}${priorBlock}`
 }

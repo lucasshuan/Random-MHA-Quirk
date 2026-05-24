@@ -248,6 +248,20 @@ export async function findFusionByParentPairAndEnglishName(
   return null
 }
 
+export async function listAllFusionEntries(): Promise<FusionCacheEntry[]> {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from('fusion_entries')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    throw new Error(`Supabase list all fusions failed: ${error.message}`)
+  }
+
+  return (data ?? []).map((row) => rowToEntry(row as FusionRow))
+}
+
 export async function findFusionByKey(key: string): Promise<FusionCacheEntry | null> {
   const supabase = getSupabaseAdmin()
   const { data, error } = await supabase

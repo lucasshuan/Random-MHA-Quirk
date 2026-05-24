@@ -37,6 +37,18 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Hardening')
   })
 
+  it('lists parent catalog names in not allowed names block', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x', [], undefined, 0, undefined, [
+      'Old Hybrid',
+    ])
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).toContain('### Not allowed names (do not use for en.name)')
+    expect(instructions).toContain('- "Permeation"')
+    expect(instructions).toContain('- "Hardening"')
+    expect(instructions).toContain('- "Old Hybrid"')
+  })
+
   it('includes sibling diversity when prior variants exist', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x', [
       { name: 'Old', description: 'Prior idea.' },

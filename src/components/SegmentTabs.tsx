@@ -12,6 +12,8 @@ type SegmentTabsProps<T extends string> = {
   ariaLabel: string
   className?: string
   panelClassName?: string
+  /** Rendered between the tab list and the active panel (e.g. shared toolbar). */
+  between?: ReactNode
   children: ReactNode | ((activeTab: T) => ReactNode)
 }
 
@@ -22,6 +24,7 @@ export function SegmentTabs<T extends string>({
   ariaLabel,
   className,
   panelClassName,
+  between,
   children,
 }: SegmentTabsProps<T>) {
   const tablistId = useId()
@@ -59,6 +62,8 @@ export function SegmentTabs<T extends string>({
           )
         })}
       </div>
+
+      {between}
 
       <div
         className={panelClassName ?? 'segment-tab-panel'}

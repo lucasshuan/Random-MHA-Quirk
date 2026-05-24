@@ -27,6 +27,17 @@ export interface FilterPanelProps {
   originOptions?: readonly QuirkOrigin[]
   /** Tier toggles (manual pick advanced filters only). */
   showTiers?: boolean
+  /** Defaults to all tiers when `showTiers` is true. */
+  tierOptions?: readonly QuirkTier[]
+  /** Previous-results: quirks / hybrids toggles (always visible, not collapsible). */
+  resultKindFilter?: {
+    quirks: boolean
+    hybrids: boolean
+    quirksLabel: string
+    hybridsLabel: string
+    ariaLabel: string
+    onToggle: (kind: 'quirks' | 'hybrids') => void
+  }
 }
 
 function toggleValue<T extends string>(items: T[], value: T): T[] {
@@ -105,6 +116,8 @@ export function FilterPanel({
   showSearch = true,
   originOptions = CANONICAL_QUIRK_ORIGINS,
   showTiers = false,
+  tierOptions = QUIRK_TIERS,
+  resultKindFilter,
 }: FilterPanelProps) {
   const { t } = useI18n()
   const meta = useMetaLabel()
@@ -132,6 +145,43 @@ export function FilterPanel({
         </label>
       ) : null}
 
+      {resultKindFilter ? (
+        <section
+          className="filter-kind-row"
+          role="group"
+          aria-label={resultKindFilter.ariaLabel}
+        >
+          <div className="filter-kind-grid">
+            <button
+              type="button"
+              className={[
+                'filter-toggle',
+                resultKindFilter.quirks ? 'filter-toggle-active' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-pressed={resultKindFilter.quirks}
+              onClick={() => resultKindFilter.onToggle('quirks')}
+            >
+              <span>{resultKindFilter.quirksLabel}</span>
+            </button>
+            <button
+              type="button"
+              className={[
+                'filter-toggle',
+                resultKindFilter.hybrids ? 'filter-toggle-active' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-pressed={resultKindFilter.hybrids}
+              onClick={() => resultKindFilter.onToggle('hybrids')}
+            >
+              <span>{resultKindFilter.hybridsLabel}</span>
+            </button>
+          </div>
+        </section>
+      ) : null}
+
       <CheckboxGroup
         title={t('advanced.origin')}
         options={originOptions}
@@ -145,7 +195,7 @@ export function FilterPanel({
       {showTiers ? (
         <CheckboxGroup
           title={t('advanced.tier')}
-          options={QUIRK_TIERS}
+          options={tierOptions}
           selected={filters.tiers}
           labelFor={meta.tier}
           toneClass={(tier) => TIER_FILTER_TONE_CLASS[tier as QuirkTier]}

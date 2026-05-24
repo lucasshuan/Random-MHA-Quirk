@@ -5,10 +5,18 @@ import { useRouter } from 'next/navigation'
 import { FilterPanel, MANUAL_PICK_ORIGIN_OPTIONS } from '@/components/FilterPanel'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { useI18n } from '@/i18n/useI18n'
+import type { Locale } from '@/i18n/types'
 import { useMetaLabel } from '@/i18n/useMetaLabel'
 import { translateMatches } from '@/i18n/translate'
-import { historyPathForEntry, loadResultHistory } from '@/lib/history/store'
-import type { HistoryQuirkPreview, ResultHistoryEntry } from '@/lib/history/types'
+import { fetchFusionFromCache } from '@/lib/fusion/api'
+import { lookupFusion } from '@/lib/fusion/cache'
+import { historyPathForEntry, loadResultHistory, patchHybridHistoryFusion } from '@/lib/history/store'
+import {
+  matchesHistoryFilters,
+  matchesHistoryMode,
+  primaryHistoryQuirk,
+} from '@/lib/history/filters'
+import type { HistoryModeFilter, ResultHistoryEntry } from '@/lib/history/types'
 import { TierBadge } from '../TierScale'
 import {
   countAdvancedFilterSelections,
@@ -28,40 +36,56 @@ function toneClass(type: QuirkType): string {
   }
 }
 
-function entryQuirks(entry: ResultHistoryEntry): HistoryQuirkPreview[] {
-  if (entry.mode === 'single') {
-    return [entry.single.quirk]
+function hybridHistoryDescription(
+  entry: Extract<ResultHistoryEntry, { mode: 'hybrid' }>,
+  locale: Locale,
+): string | null {
+  const fromPreview = entry.hybrid.fusion?.description?.trim()
+  if (fromPreview) {
+    return fromPreview
   }
 
-  return [entry.hybrid.fusion, entry.hybrid.parentA, entry.hybrid.parentB].filter(
-    (quirk): quirk is HistoryQuirkPreview => Boolean(quirk),
+  const fromCache = lookupFusion(
+    entry.hybrid.parentA.id,
+    entry.hybrid.parentB.id,
+    entry.hybrid.seed,
+    locale,
   )
+  return fromCache?.description?.trim() || null
 }
 
-function matchesFilters(entry: ResultHistoryEntry, filters: QuirkFilters): boolean {
-  const query = filters.query.trim().toLowerCase()
-  if (query && !entry.searchText.includes(query)) {
-    return false
+function entryDescription(
+  entry: ResultHistoryEntry,
+  locale: Locale,
+  t: (key: string) => string,
+  meta: ReturnType<typeof useMetaLabel>,
+): string {
+  if (entry.mode === 'single') {
+    const { quirk } = entry.single
+    return (
+      quirk.description?.trim() ||
+      `${meta.origin(quirk.origin)} · ${meta.range(quirk.range)}`
+    )
   }
 
-  return entryQuirks(entry).some((quirk) => {
-    if (filters.origins.length > 0 && !filters.origins.includes(quirk.origin)) {
-      return false
-    }
-    if (filters.tiers.length > 0 && !filters.tiers.includes(quirk.tier)) {
-      return false
-    }
-    if (filters.types.length > 0 && !filters.types.includes(quirk.type)) {
-      return false
-    }
-    if (filters.ranges.length > 0 && !filters.ranges.includes(quirk.range)) {
-      return false
-    }
-    if (filters.facets.length > 0 && !filters.facets.every((facet) => quirk.facets.includes(facet))) {
-      return false
-    }
-    return true
-  })
+  const fusionDescription = hybridHistoryDescription(entry, locale)
+  if (fusionDescription) {
+    return fusionDescription
+  }
+
+  return t('history.hybridMissingDescription')
+}
+
+function hybridNeedsDescriptionHydration(
+  entry: ResultHistoryEntry,
+  locale: Locale,
+): entry is Extract<ResultHistoryEntry, { mode: 'hybrid' }> {
+  return entry.mode === 'hybrid' && !hybridHistoryDescription(entry, locale)
+}
+
+const DEFAULT_HISTORY_MODE_FILTER: HistoryModeFilter = {
+  quirks: false,
+  hybrids: false,
 }
 
 export function HistoryPageApp() {
@@ -69,8 +93,14 @@ export function HistoryPageApp() {
   const { locale, t } = useI18n()
   const meta = useMetaLabel()
   const [filters, setFilters] = useState<QuirkFilters>({ ...DEFAULT_QUIRK_FILTERS })
+  const [modeFilter, setModeFilter] = useState<HistoryModeFilter>({
+    ...DEFAULT_HISTORY_MODE_FILTER,
+  })
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [draftFilters, setDraftFilters] = useState<QuirkFilters>({ ...DEFAULT_QUIRK_FILTERS })
+  const [draftModeFilter, setDraftModeFilter] = useState<HistoryModeFilter>({
+    ...DEFAULT_HISTORY_MODE_FILTER,
+  })
   const [entries, setEntries] = useState<ResultHistoryEntry[]>([])
 
   const loadEntries = useCallback(() => {
@@ -91,9 +121,61 @@ export function HistoryPageApp() {
     }
   }, [loadEntries])
 
+  useEffect(() => {
+    let cancelled = false
+    const targets = entries.filter((entry) => hybridNeedsDescriptionHydration(entry, locale))
+    if (targets.length === 0) {
+      return
+    }
+
+    void (async () => {
+      let updated = false
+
+      for (const entry of targets) {
+        if (cancelled) {
+          return
+        }
+
+        try {
+          const fusionEntry = await fetchFusionFromCache(
+            entry.hybrid.parentA.id,
+            entry.hybrid.parentB.id,
+            entry.hybrid.seed,
+          )
+          if (!fusionEntry) {
+            continue
+          }
+
+          patchHybridHistoryFusion(
+            entry.hybrid.parentA.id,
+            entry.hybrid.parentB.id,
+            entry.hybrid.seed,
+            fusionEntry,
+            entry.locale,
+          )
+          updated = true
+        } catch {
+          // Skip entries that cannot be resolved from fusion cache.
+        }
+      }
+
+      if (!cancelled && updated) {
+        loadEntries()
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [entries, locale, loadEntries])
+
   const filteredEntries = useMemo(
-    () => entries.filter((entry) => matchesFilters(entry, filters)),
-    [entries, filters],
+    () =>
+      entries.filter(
+        (entry) =>
+          matchesHistoryMode(entry, modeFilter) && matchesHistoryFilters(entry, filters),
+      ),
+    [entries, filters, modeFilter],
   )
 
   const activeFilterCount = useMemo(
@@ -112,8 +194,9 @@ export function HistoryPageApp() {
 
   const openFiltersModal = useCallback(() => {
     setDraftFilters({ ...filters })
+    setDraftModeFilter({ ...modeFilter })
     setFiltersOpen(true)
-  }, [filters])
+  }, [filters, modeFilter])
 
   const dismissFiltersModal = useCallback(() => {
     setFiltersOpen(false)
@@ -128,8 +211,16 @@ export function HistoryPageApp() {
       ranges: draftFilters.ranges,
       facets: draftFilters.facets,
     }))
+    setModeFilter({ ...draftModeFilter })
     setFiltersOpen(false)
-  }, [draftFilters])
+  }, [draftFilters, draftModeFilter])
+
+  const toggleDraftModeKind = useCallback((kind: keyof HistoryModeFilter) => {
+    setDraftModeFilter((current) => ({
+      ...current,
+      [kind]: !current[kind],
+    }))
+  }, [])
 
   const resetDraftFilters = useCallback(() => {
     setDraftFilters((current) => ({
@@ -192,24 +283,31 @@ export function HistoryPageApp() {
             ) : (
               <div className="history-entry-list">
                 {filteredEntries.map((entry) => {
-                const primary =
-                  entry.mode === 'single'
-                    ? entry.single.quirk
-                    : entry.hybrid.fusion ?? entry.hybrid.parentA
-                const detail =
-                  entry.mode === 'single'
-                    ? `${meta.origin(entry.single.quirk.origin)} · ${meta.range(entry.single.quirk.range)}`
-                    : `${entry.hybrid.parentA.name} + ${entry.hybrid.parentB.name}`
+                const primary = primaryHistoryQuirk(entry)
+                const detail = entryDescription(entry, locale, t, meta)
+                const isHybrid = entry.mode === 'hybrid'
 
                 return (
                   <button
                     key={entry.id}
                     type="button"
-                    className={`manual-quirk-card history-entry-card ${toneClass(primary.type)}`}
+                    className={[
+                      'manual-quirk-card',
+                      'history-entry-card',
+                      toneClass(primary.type),
+                      isHybrid ? 'history-entry-card-hybrid' : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ')}
                     data-tier={primary.tier}
                     onClick={() => router.push(historyPathForEntry(entry))}
                   >
                     <span className="quirk-card-glow" aria-hidden="true" />
+                    {isHybrid ? (
+                      <span className="quirk-fusion-badge">
+                        {t('fusion.badge')}
+                      </span>
+                    ) : null}
                     <p className="quirk-meta manual-quirk-meta">
                       <TierBadge tier={primary.tier} />
                       <span className="quirk-meta-sep" aria-hidden="true" />
@@ -243,6 +341,14 @@ export function HistoryPageApp() {
               showSearch={false}
               originOptions={MANUAL_PICK_ORIGIN_OPTIONS}
               showTiers
+              resultKindFilter={{
+                quirks: draftModeFilter.quirks,
+                hybrids: draftModeFilter.hybrids,
+                quirksLabel: t('history.filterQuirks'),
+                hybridsLabel: t('history.filterHybrids'),
+                ariaLabel: t('history.filterKind'),
+                onToggle: toggleDraftModeKind,
+              }}
             />
             <div className="manual-filter-modal-actions">
               <button

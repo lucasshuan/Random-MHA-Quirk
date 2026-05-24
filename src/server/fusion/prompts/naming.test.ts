@@ -16,6 +16,16 @@ describe('formatFusionNamingBlock', () => {
     )
   })
 
+  it('lists parent catalog names in not allowed names', () => {
+    const block = formatFusionNamingBlock('seed1', [], 'acid', 'air-cannon', {
+      a: 'Acid',
+      b: 'Air Cannon',
+    })
+    expect(block).toContain('Not allowed names')
+    expect(block).toContain('"Acid"')
+    expect(block).toContain('"Air Cannon"')
+  })
+
   it('lists prior variant names and descriptions when provided', () => {
     const block = formatFusionNamingBlock(
       'seed1',

@@ -20,7 +20,7 @@ export const es: Messages = {
   api: {
     errors: {
       rateLimitFusion:
-        'Demasiadas generaciones de fusión (máx. 15 cada 5 minutos). Espera unos {{minutes}} min antes de intentar de nuevo.',
+        'Demasiadas generaciones de fusión (máx. 5 cada 5 minutos). Espera unos {{minutes}} min antes de intentar de nuevo.',
       rateLimitApi: 'Demasiadas solicitudes. Intenta de nuevo en unos {{minutes}} min.',
       forbidden: 'Solicitud bloqueada.',
       invalidJson: 'Cuerpo de la solicitud inválido.',
@@ -36,6 +36,7 @@ export const es: Messages = {
     title: 'Encuentra un don.',
     action: 'Empezar',
     previousResults: 'Resultados anteriores',
+    viewAllQuirks: 'Ver todos los dones',
   },
   mode: {
     title: '¿Qué vamos a sortear?',
@@ -140,6 +141,24 @@ export const es: Messages = {
     title: 'Resultados anteriores',
     searchPlaceholder: 'Busca por nombre, tipo, alcance, origen o faceta',
     empty: 'Aún no hay resultados guardados.',
+    hybridMissingDescription: 'Este híbrido aún no tiene descripción generada.',
+    filterKind: 'Tipo de resultado',
+    filterQuirks: 'Dones',
+    filterHybrids: 'Híbridos',
+  },
+  database: {
+    mark: 'Base',
+    title: 'Base de dones',
+    tabs: 'Pestañas de la base de dones',
+    tabQuirks: 'Dones',
+    tabHybrids: 'Híbridos',
+    searchPlaceholder: 'Busca por nombre, tipo, alcance, origen o faceta',
+    emptyQuirks: 'Ningún don coincide con los filtros actuales.',
+    emptyHybrids: 'Ningún híbrido coincide con los filtros actuales.',
+    hybridLoading: 'Cargando híbridos…',
+    hybridLoadError: 'No se pudo cargar el catálogo de híbridos.',
+    hybridParents: 'Orígenes',
+    hybridMissingDescription: 'Este híbrido aún no tiene descripción generada.',
   },
   result: {
     oneQuirk: 'Un Don',
@@ -158,7 +177,7 @@ export const es: Messages = {
     retry: 'Intentar de nuevo',
   },
   fusion: {
-    badge: 'Resultado',
+    badge: 'Híbrido',
     tabFusion: 'Resultado',
     tabParents: 'Sorteadas',
     parents: 'Dones origen',

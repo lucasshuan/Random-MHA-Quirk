@@ -2,8 +2,9 @@ import { describe, expect, it } from 'vitest'
 import {
   openAiSupportsCustomTemperature,
   openAiSupportsReasoningEffort,
+  openAiSupportsWebSearchDomainFilters,
   resolveOpenAiReasoningEffort,
-} from './llm'
+} from './openai-model'
 
 describe('openAiSupportsCustomTemperature', () => {
   it('allows temperature for gpt-4o family', () => {
@@ -37,6 +38,19 @@ describe('openAiSupportsReasoningEffort', () => {
   it('disables reasoning_effort for chat and gpt-4o models', () => {
     expect(openAiSupportsReasoningEffort('gpt-5-chat-latest')).toBe(false)
     expect(openAiSupportsReasoningEffort('gpt-4o-mini')).toBe(false)
+  })
+})
+
+describe('openAiSupportsWebSearchDomainFilters', () => {
+  it('allows domain filters on full-tier models', () => {
+    expect(openAiSupportsWebSearchDomainFilters('gpt-4.1')).toBe(true)
+    expect(openAiSupportsWebSearchDomainFilters('gpt-4o')).toBe(true)
+  })
+
+  it('disables domain filters on mini/nano models', () => {
+    expect(openAiSupportsWebSearchDomainFilters('gpt-4.1-mini')).toBe(false)
+    expect(openAiSupportsWebSearchDomainFilters('gpt-4o-mini')).toBe(false)
+    expect(openAiSupportsWebSearchDomainFilters('gpt-5-nano')).toBe(false)
   })
 })
 

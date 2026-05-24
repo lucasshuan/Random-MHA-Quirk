@@ -1,4 +1,6 @@
 import { webSearchTool } from '@openai/agents'
+import { openAiSupportsWebSearchDomainFilters } from '../openai-model'
+import { resolveFusionOpenAiModel } from './config'
 
 /** Domains for parent quirk research and brief science lookups (no https prefix). */
 export const FUSION_WEB_SEARCH_DEFAULT_DOMAINS = [
@@ -25,10 +27,15 @@ export function resolveFusionWebSearchDomains(): string[] {
 }
 
 export function createFusionWebSearchTool() {
-  return webSearchTool({
-    filters: { allowedDomains: resolveFusionWebSearchDomains() },
-    searchContextSize: 'low',
-  })
+  const model = resolveFusionOpenAiModel()
+  const options: { searchContextSize: 'low'; filters?: { allowedDomains: string[] } } =
+    { searchContextSize: 'low' }
+
+  if (openAiSupportsWebSearchDomainFilters(model)) {
+    options.filters = { allowedDomains: resolveFusionWebSearchDomains() }
+  }
+
+  return webSearchTool(options)
 }
 
 /** Extra turns when web search may run before structured JSON output. */

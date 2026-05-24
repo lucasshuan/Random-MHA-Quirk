@@ -1,13 +1,13 @@
 import type { ModelSettings } from '@openai/agents'
-import type { FusionLlmPurpose } from '../llm'
+import type { FusionLlmPurpose } from '../openai-model'
 import {
   openAiSupportsCustomTemperature,
   openAiSupportsReasoningEffort,
   resolveOpenAiReasoningEffort,
-} from '../llm'
+} from '../openai-model'
 
-/** Default fusion model when OPENAI_MODEL is unset (unverified accounts: gpt-4.1). */
-export const DEFAULT_FUSION_OPENAI_MODEL = 'gpt-4.1'
+/** Default fusion model when OPENAI_MODEL is unset. */
+export const DEFAULT_FUSION_OPENAI_MODEL = 'gpt-4.1-mini'
 
 export function resolveFusionOpenAiModel(): string {
   return process.env.OPENAI_MODEL?.trim() || DEFAULT_FUSION_OPENAI_MODEL

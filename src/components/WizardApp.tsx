@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useI18n } from '@/i18n/useI18n'
+import type { Locale } from '@/i18n/types'
 import { buildQuirkSearchText } from '@/i18n/quirkSearchText'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
 import { StepAdvancedFilters } from '@/components/wizard/StepAdvancedFilters'
-import { BrandMark } from '@/components/wizard/BrandMark'
 import { StepFinalResult } from '@/components/wizard/StepFinalResult'
 import { StepManualPick } from '@/components/wizard/StepManualPick'
 import { StepModeChoice } from '@/components/wizard/StepModeChoice'
@@ -14,6 +15,12 @@ import { useFilteredQuirks, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
 import { resolveApiErrorMessage } from '@/lib/api/resolve-error'
 import { requestFusionGeneration } from '@/lib/fusion/api'
 import { randomFusionSeed } from '@/lib/fusion/keys'
+import {
+  patchHybridHistoryFusion,
+  pushHybridHistoryEntry,
+  pushSingleHistoryEntry,
+} from '@/lib/history/store'
+import { shareHybridPath, shareQuirkPath } from '@/lib/share/paths'
 import { rollHybrid } from '@/lib/hybrid/roll'
 import { applyFilters, pickRandom } from '@/lib/quirks/engine'
 import { DEFAULT_SELECTED_TIERS } from '@/lib/quirks/tiers'
@@ -75,9 +82,34 @@ function hybridRollKey(result: HybridRollResult): string {
   return `${result.parents[0].id}+${result.parents[1].id}:${result.seed}`
 }
 
-export function WizardApp() {
+function buildSharePath(result: RollResult): string | null {
+  if (!result) {
+    return null
+  }
+
+  if (isHybridRoll(result)) {
+    return shareHybridPath(
+      result.parents[0].id,
+      result.parents[1].id,
+      result.seed,
+    )
+  }
+
+  return shareQuirkPath(result.id)
+}
+
+interface WizardAppProps {
+  initialStep?: WizardStep
+  onExitStart?: () => void
+}
+
+export function WizardApp({
+  initialStep = 'mode',
+  onExitStart,
+}: WizardAppProps = {}) {
+  const router = useRouter()
   const { locale, t } = useI18n()
-  const [currentStep, setCurrentStep] = useState<WizardStep>('start')
+  const [currentStep, setCurrentStep] = useState<WizardStep>(initialStep)
   const [mode, setMode] = useState<ResultMode>('single')
   const [filters, setFilters] = useState(defaultFilters)
   const [result, setResult] = useState<RollResult>(null)
@@ -163,6 +195,13 @@ export function WizardApp() {
         }
         return { ...prev, fusionEntry }
       })
+      patchHybridHistoryFusion(
+        hybrid.parents[0].id,
+        hybrid.parents[1].id,
+        hybrid.seed,
+        fusionEntry,
+        locale,
+      )
       setFusionPhase('idle')
     } catch (err) {
       setFusionError(resolveApiErrorMessage(t, err))
@@ -172,7 +211,7 @@ export function WizardApp() {
         generatingFusionKeyRef.current = null
       }
     }
-  }, [t])
+  }, [locale, t])
 
   useEffect(() => {
     if (currentStep !== 'result' || mode !== 'hybrid') {
@@ -184,11 +223,43 @@ export function WizardApp() {
     void tryGenerateFusion(result)
   }, [currentStep, mode, result, tryGenerateFusion])
 
+  useEffect(() => {
+    if (currentStep !== 'result' || !result) {
+      return
+    }
+
+    const path = buildSharePath(result)
+    if (!path) {
+      return
+    }
+
+    const timer = window.setTimeout(() => {
+      router.replace(path)
+    }, 1150)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [currentStep, locale, mode, result, router])
+
   function setHybridRoll(hybrid: HybridRollResult | null) {
     setResult(hybrid)
     if (hybrid && !hybrid.fusionEntry) {
       setFusionPhase('generating')
       setFusionError(null)
+      pushHybridHistoryEntry(
+        hybrid.parents[0],
+        hybrid.parents[1],
+        hybrid.seed,
+        locale,
+      )
+    }
+  }
+
+  function setSingleRoll(quirk: Quirk | null) {
+    setResult(quirk)
+    if (quirk) {
+      pushSingleHistoryEntry(quirk, locale)
     }
   }
 
@@ -204,9 +275,7 @@ export function WizardApp() {
     }
 
     generatingFusionKeyRef.current = null
-    setResult(next)
-    setFusionPhase('generating')
-    setFusionError(null)
+    setHybridRoll(next)
     void tryGenerateFusion(next, true)
   }
 
@@ -231,7 +300,7 @@ export function WizardApp() {
       return
     }
 
-    setResult(pickRandom(filteredQuirks))
+    setSingleRoll(pickRandom(filteredQuirks))
   }
 
   function continueFromAdvanced() {
@@ -304,7 +373,7 @@ export function WizardApp() {
 
     setFilters(slotFilters)
     const nextPool = applyFilters(allQuirks, slotFilters, { searchableText })
-    setResult(pickRandom(nextPool))
+    setSingleRoll(pickRandom(nextPool))
     setResultBackStep('type')
     setCurrentStep('result')
   }
@@ -343,7 +412,7 @@ export function WizardApp() {
     }
 
     setFilters(slotFilters)
-    setResult(quirk)
+    setSingleRoll(quirk)
     setResultBackStep('type')
     setCurrentStep('result')
   }
@@ -379,7 +448,12 @@ export function WizardApp() {
   }
 
   function handleRestart() {
-    setCurrentStep('start')
+    if (onExitStart) {
+      onExitStart()
+      return
+    }
+
+    setCurrentStep(initialStep)
     setMode('single')
     setFilters(defaultFilters())
     setResult(null)
@@ -388,6 +462,11 @@ export function WizardApp() {
   }
 
   function handleBack() {
+    if (currentStep === 'mode' && onExitStart) {
+      onExitStart()
+      return
+    }
+
     if (currentStep === 'advanced') {
       setPendingType(null)
       setTierEntrySource('type')
@@ -438,18 +517,6 @@ export function WizardApp() {
   }
 
   function renderStep() {
-    if (currentStep === 'start') {
-      return (
-        <div className="simple-step start-step">
-          <BrandMark />
-          <h1>{t('start.title')}</h1>
-          <button type="button" className="big-action" onClick={() => setCurrentStep('mode')}>
-            {t('start.action')}
-          </button>
-        </div>
-      )
-    }
-
     if (currentStep === 'mode') {
       return <StepModeChoice onChoose={handleModeChoice} />
     }
@@ -525,10 +592,20 @@ export function WizardApp() {
     )
   }
 
+  const exitToHome = Boolean(onExitStart)
+
   return (
     <MinimalFrame
-      canGoBack={currentStep !== 'start' && currentStep !== 'randomRoll'}
-      showRestart={currentStep !== 'start' && currentStep !== 'randomRoll'}
+      canGoBack={
+        exitToHome
+          ? currentStep !== 'randomRoll'
+          : currentStep !== 'mode' && currentStep !== 'randomRoll'
+      }
+      showRestart={
+        exitToHome
+          ? currentStep !== 'randomRoll'
+          : currentStep !== 'mode' && currentStep !== 'randomRoll'
+      }
       onBack={handleBack}
       onRestart={handleRestart}
     >

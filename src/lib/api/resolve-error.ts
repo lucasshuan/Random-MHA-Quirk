@@ -14,6 +14,7 @@ const ERROR_I18N_KEYS: Record<ApiErrorCode, string> = {
   MISSING_FUSION_FIELDS: 'api.errors.missingFusionFields',
   MISSING_LOCALE: 'api.errors.missingLocale',
   QUIRK_NOT_FOUND: 'api.errors.quirkNotFound',
+  FUSION_NOT_FOUND: 'api.errors.fusionNotFound',
   FUSION_GENERATE_FAILED: 'api.errors.fusionGenerateFailed',
   SERVER_ERROR: 'api.errors.serverError',
 }

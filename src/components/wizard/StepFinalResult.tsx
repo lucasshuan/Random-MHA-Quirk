@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
+import { LuShare2 } from 'react-icons/lu'
 import { QuirkCard } from '../QuirkCard'
 import { useI18n } from '../../i18n/useI18n'
+import { copyTextToClipboard } from '@/lib/share/clipboard'
 import type { ResultMode } from '@/lib/wizard/flow'
 import type { HybridRollResult } from '../../types/fusion'
 import type { Quirk } from '../../types/quirk'
@@ -17,6 +19,8 @@ interface StepFinalResultProps {
   flickerNames: string[]
   fusionPhase: FusionPhase
   fusionError: string | null
+  skipReveal?: boolean
+  shareUrl?: string | null
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -52,6 +56,8 @@ interface ResultRevealProps {
   flickerNames: string[]
   fusionPhase: FusionPhase
   fusionError: string | null
+  skipReveal?: boolean
+  shareUrl?: string | null
   onRetry: () => void
   onRetryFusion: () => void
   onBack: () => void
@@ -64,14 +70,17 @@ function ResultReveal({
   flickerNames,
   fusionPhase,
   fusionError,
+  skipReveal = false,
+  shareUrl = null,
   onRetry,
   onRetryFusion,
   onBack,
   onRestart,
 }: ResultRevealProps) {
   const { t } = useI18n()
-  const [revealed, setRevealed] = useState(false)
+  const [revealed, setRevealed] = useState(skipReveal)
   const [flickerIndex, setFlickerIndex] = useState(0)
+  const [shareTooltip, setShareTooltip] = useState<string | null>(null)
 
   const labels = useMemo(() => {
     if (flickerNames.length > 0) {
@@ -82,6 +91,13 @@ function ResultReveal({
   }, [flickerNames])
 
   useEffect(() => {
+    if (skipReveal) {
+      setRevealed(true)
+      return
+    }
+
+    setRevealed(false)
+
     const flickerTimer = window.setInterval(() => {
       setFlickerIndex((value) => (value + 1) % labels.length)
     }, FLICKER_MS)
@@ -95,7 +111,42 @@ function ResultReveal({
       window.clearInterval(flickerTimer)
       window.clearTimeout(revealTimer)
     }
-  }, [labels])
+  }, [labels, skipReveal])
+
+  async function handleShare() {
+    if (!shareUrl) {
+      return
+    }
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        await navigator.share({ url: shareUrl, title: t('share.shareTitle') })
+        setShareTooltip(t('share.shared'))
+      } else {
+        await copyTextToClipboard(shareUrl)
+        setShareTooltip(t('share.copied'))
+      }
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        return
+      }
+      setShareTooltip(t('share.copyError'))
+    }
+  }
+
+  useEffect(() => {
+    if (!shareTooltip) {
+      return
+    }
+
+    const timer = window.setTimeout(() => {
+      setShareTooltip(null)
+    }, 2200)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [shareTooltip])
 
   if (!revealed) {
     return (
@@ -169,6 +220,17 @@ function ResultReveal({
         >
           ↻
         </button>
+        {shareUrl ? (
+          <button
+            type="button"
+            className="icon-btn result-share-btn"
+            onClick={() => void handleShare()}
+            aria-label={t('share.action')}
+            data-tooltip={shareTooltip ?? t('share.action')}
+          >
+            <LuShare2 aria-hidden="true" />
+          </button>
+        ) : null}
         <button
           type="button"
           className="icon-btn"

@@ -16,16 +16,36 @@ const TYPE_KEYS: Array<{
   tone: string
   labelKey: string
   hintKey: string
+  iconSrc: string
 }> = [
-  { type: 'Any', tone: 'any', labelKey: 'type.any', hintKey: 'type.anyHint' },
-  { type: 'Emitter', tone: 'emitter', labelKey: 'type.emitter', hintKey: 'type.emitterHint' },
+  {
+    type: 'Any',
+    tone: 'any',
+    labelKey: 'type.any',
+    hintKey: 'type.anyHint',
+    iconSrc: '/quirk-types/random.webp',
+  },
+  {
+    type: 'Emitter',
+    tone: 'emitter',
+    labelKey: 'type.emitter',
+    hintKey: 'type.emitterHint',
+    iconSrc: '/quirk-types/emitter.webp',
+  },
   {
     type: 'Transformation',
     tone: 'transformation',
     labelKey: 'type.transformation',
     hintKey: 'type.transformationHint',
+    iconSrc: '/quirk-types/transformation.webp',
   },
-  { type: 'Mutant', tone: 'mutant', labelKey: 'type.mutant', hintKey: 'type.mutantHint' },
+  {
+    type: 'Mutant',
+    tone: 'mutant',
+    labelKey: 'type.mutant',
+    hintKey: 'type.mutantHint',
+    iconSrc: '/quirk-types/mutant.webp',
+  },
 ]
 
 export function StepTypeChoice({
@@ -76,6 +96,7 @@ export function StepTypeChoice({
               label={t(option.labelKey)}
               description={t(option.hintKey)}
               tone={option.tone}
+              iconSrc={option.iconSrc}
               className={`type-step-choice type-step-choice-${index + 1}`}
               onClick={() => onChoose(option.type)}
             />

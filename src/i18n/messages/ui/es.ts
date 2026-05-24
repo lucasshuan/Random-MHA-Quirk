@@ -27,6 +27,7 @@ export const es: Messages = {
       missingFusionFields: 'parentA, parentB y seed son obligatorios.',
       missingLocale: 'El parámetro "locale" es obligatorio (en, pt-BR, es).',
       quirkNotFound: 'Don no encontrado.',
+      fusionNotFound: 'No se encontró este resultado de fusión.',
       fusionGenerateFailed: 'No se pudo generar esta fusión.',
       serverError: 'Algo salió mal. Intenta de nuevo en un momento.',
     },
@@ -34,6 +35,7 @@ export const es: Messages = {
   start: {
     title: 'Encuentra un don.',
     action: 'Empezar',
+    previousResults: 'Resultados anteriores',
   },
   mode: {
     title: '¿Qué vamos a sortear?',
@@ -65,7 +67,7 @@ export const es: Messages = {
     advancedOptionsHint: 'Ajusta filtros y elige los tiers antes de sortear.',
     chooseManual: 'Elegir un don',
     chooseManualHint: 'Busca, revisa y fija un don ahora.',
-    any: 'Cualquiera',
+    any: 'Aleatorio',
     anyHint:
       'Sin filtro por tipo. Cualquier don de la lista puede salir.',
     emitter: 'Emisor',
@@ -78,9 +80,9 @@ export const es: Messages = {
   },
   tier: {
     mark: 'Tier',
-    pick: 'Elige los tiers',
-    first: 'Tiers del primer don',
-    second: 'Tiers del segundo don',
+    pick: 'Tiers posibles',
+    first: 'Tiers posibles del primer don',
+    second: 'Tiers posibles del segundo don',
     individualLabel: 'Tiers individuales',
     advance: 'Continuar',
     specialLabel: 'Especial',
@@ -121,6 +123,23 @@ export const es: Messages = {
     empty: 'Ningún don coincide con los filtros actuales.',
     cancel: 'Volver',
     confirm: 'Usar este don',
+  },
+  share: {
+    action: 'Compartir resultado',
+    shareTitle: 'Resultado — Don Aleatorio',
+    copied: 'Enlace copiado',
+    shared: 'Compartido',
+    copyError: 'No se pudo copiar el enlace',
+    loading: 'Cargando resultado…',
+    loadError: 'No se pudo cargar este resultado.',
+    invalidLink: 'Este enlace para compartir no es válido.',
+    goRoll: 'Sortear un don',
+  },
+  history: {
+    mark: 'Historial',
+    title: 'Resultados anteriores',
+    searchPlaceholder: 'Busca por nombre, tipo, alcance, origen o faceta',
+    empty: 'Aún no hay resultados guardados.',
   },
   result: {
     oneQuirk: 'Un Don',

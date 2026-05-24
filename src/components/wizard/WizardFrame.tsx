@@ -58,7 +58,7 @@ export function WizardFrame({
           type="button"
           className="btn btn-ghost"
           onClick={onBack}
-          disabled={step === 'start'}
+          disabled={step === 'mode'}
         >
           Back
         </button>

@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import { LoadingScreen } from '@/components/LoadingScreen'
 import { useI18n } from '@/i18n/useI18n'
 import { isCatalogBootstrapped, useQuirksCatalog } from '@/hooks/useQuirksCatalog'
 
@@ -16,12 +17,7 @@ export function QuirksCatalogGate({ children }: QuirksCatalogGateProps) {
   const blockError = !bootstrapped && error
 
   if (blockApp) {
-    return (
-      <div className="catalog-loading-screen" role="status" aria-live="polite" aria-busy="true">
-        <span className="catalog-loading-spinner" aria-hidden="true" />
-        <span className="catalog-loading-label">{t('quirks.loading')}</span>
-      </div>
-    )
+    return <LoadingScreen label={t('quirks.loading')} />
   }
 
   if (blockError) {

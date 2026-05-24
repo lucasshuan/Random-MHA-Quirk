@@ -1,12 +1,47 @@
 'use client'
 
-import { QuirksCatalogGate } from '@/components/QuirksCatalogGate'
-import { WizardApp } from '@/components/WizardApp'
+import { useRouter } from 'next/navigation'
+import { LuHistory, LuSparkles } from 'react-icons/lu'
+import { MinimalFrame } from '@/components/wizard/MinimalFrame'
+import { BrandMark } from '@/components/wizard/BrandMark'
+import { useHasResultHistory } from '@/hooks/useHasResultHistory'
+import { useI18n } from '@/i18n/useI18n'
 
 export default function HomePage() {
+  const router = useRouter()
+  const { t } = useI18n()
+  const hasHistory = useHasResultHistory()
+
   return (
-    <QuirksCatalogGate>
-      <WizardApp />
-    </QuirksCatalogGate>
+    <MinimalFrame
+      canGoBack={false}
+      showRestart={false}
+      onBack={() => router.push('/')}
+      onRestart={() => router.push('/')}
+    >
+      <div className="simple-step start-step home-step">
+        <BrandMark />
+        <h1>{t('start.title')}</h1>
+        <div className="start-step-actions">
+          <button
+            type="button"
+            className="big-action big-action-with-icon"
+            onClick={() => router.push('/start')}
+          >
+            <LuSparkles aria-hidden="true" />
+            <span>{t('start.action')}</span>
+          </button>
+          <button
+            type="button"
+            className="big-action secondary-big-action big-action-with-icon"
+            disabled={!hasHistory}
+            onClick={() => router.push('/history')}
+          >
+            <LuHistory aria-hidden="true" />
+            <span>{t('start.previousResults')}</span>
+          </button>
+        </div>
+      </div>
+    </MinimalFrame>
   )
 }

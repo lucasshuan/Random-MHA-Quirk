@@ -10,7 +10,7 @@ function buildValidationInput(
   override: Partial<StepValidationInput>,
 ): StepValidationInput {
   return {
-    step: 'start',
+    step: 'mode',
     mode: null,
     filteredCount: 1,
     hasResult: false,
@@ -20,13 +20,12 @@ function buildValidationInput(
 
 describe('wizardFlow navigation', () => {
   it('advances and retreats through fixed step order', () => {
-    expect(getNextStep('start')).toBe('mode')
     expect(getNextStep('mode')).toBe('randomRoll')
     expect(getNextStep('type')).toBe('advanced')
     expect(getNextStep('result')).toBe('result')
     expect(getPreviousStep('result')).toBe('advanced')
     expect(getPreviousStep('randomRoll')).toBe('mode')
-    expect(getPreviousStep('start')).toBe('start')
+    expect(getPreviousStep('mode')).toBe('mode')
   })
 })
 

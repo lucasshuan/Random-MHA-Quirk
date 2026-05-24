@@ -27,6 +27,7 @@ export const ptBR: Messages = {
       missingFusionFields: 'parentA, parentB e seed são obrigatórios.',
       missingLocale: 'O parâmetro "locale" é obrigatório (en, pt-BR, es).',
       quirkNotFound: 'Individualidade não encontrada.',
+      fusionNotFound: 'Este resultado de fusão não foi encontrado.',
       fusionGenerateFailed: 'Não foi possível gerar esta fusão.',
       serverError: 'Algo deu errado. Tente novamente em instantes.',
     },
@@ -34,6 +35,7 @@ export const ptBR: Messages = {
   start: {
     title: 'Encontre uma individualidade.',
     action: 'Começar',
+    previousResults: 'Resultados anteriores',
   },
   mode: {
     title: 'O que vamos sortear?',
@@ -65,7 +67,7 @@ export const ptBR: Messages = {
     advancedOptionsHint: 'Ajuste filtros e escolha os tiers antes de sortear.',
     chooseManual: 'Escolher individualidade',
     chooseManualHint: 'Busque, veja detalhes e fixe uma individualidade agora.',
-    any: 'Qualquer',
+    any: 'Aleatório',
     anyHint:
       'Sem filtro por tipo. Qualquer individualidade da lista pode sair no sorteio.',
     emitter: 'Emissor',
@@ -78,10 +80,10 @@ export const ptBR: Messages = {
   },
   tier: {
     mark: 'Tier',
-    pick: 'Possíveis níveis de individualidade',
+    pick: 'Possíveis níveis',
     first: 'Possíveis níveis da primeira individualidade',
     second: 'Possíveis níveis da segunda individualidade',
-    individualLabel: 'Tiers individuais',
+    individualLabel: 'Níveis individuais',
     advance: 'Avançar',
     specialLabel: 'Especial',
     tips: {
@@ -121,6 +123,23 @@ export const ptBR: Messages = {
     empty: 'Nenhuma individualidade corresponde aos filtros atuais.',
     cancel: 'Voltar',
     confirm: 'Usar esta individualidade',
+  },
+  share: {
+    action: 'Compartilhar resultado',
+    shareTitle: 'Resultado — Individualidade Aleatória',
+    copied: 'Link copiado',
+    shared: 'Compartilhado',
+    copyError: 'Não foi possível copiar o link',
+    loading: 'Carregando resultado…',
+    loadError: 'Não foi possível carregar este resultado.',
+    invalidLink: 'Este link de compartilhamento é inválido.',
+    goRoll: 'Sortear uma individualidade',
+  },
+  history: {
+    mark: 'Histórico',
+    title: 'Resultados anteriores',
+    searchPlaceholder: 'Busque por nome, tipo, alcance, origem ou característica',
+    empty: 'Ainda não há resultados salvos.',
   },
   result: {
     oneQuirk: 'Uma Individualidade',

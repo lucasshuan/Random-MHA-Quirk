@@ -1,5 +1,4 @@
 export const WIZARD_STEPS = [
-  'start',
   'mode',
   'randomRoll',
   'type',
@@ -39,10 +38,6 @@ export function getPreviousStep(step: WizardStep): WizardStep {
 }
 
 export function canProceedFromStep(input: StepValidationInput): boolean {
-  if (input.step === 'start') {
-    return true
-  }
-
   if (input.step === 'mode') {
     return input.mode !== null
   }

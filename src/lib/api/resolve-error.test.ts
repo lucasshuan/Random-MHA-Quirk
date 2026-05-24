@@ -25,6 +25,6 @@ describe('resolveApiErrorMessage', () => {
       new ApiRequestError('RATE_LIMIT_FUSION', { minutes: 5 }),
     )
     expect(msg).toContain('5')
-    expect(msg).toContain('10 per 5 minutes')
+    expect(msg).toContain('15 per 5 minutes')
   })
 })

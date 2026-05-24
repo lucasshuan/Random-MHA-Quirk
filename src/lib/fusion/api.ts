@@ -3,6 +3,35 @@ import type { QuirkId } from '@/types/quirk-id'
 import type { FusionCacheEntry } from '@/types/fusion'
 import { upsertFusionCacheEntry } from '@/lib/fusion/cache'
 
+export async function fetchFusionFromCache(
+  parentA: QuirkId,
+  parentB: QuirkId,
+  seed: string,
+): Promise<FusionCacheEntry | null> {
+  const params = new URLSearchParams({ parentA, parentB, seed })
+  const res = await fetch(`/api/fusion/cache?${params}`, {
+    headers: { Accept: 'application/json' },
+  })
+
+  if (res.status === 404) {
+    return null
+  }
+
+  const data = (await res.json().catch(() => ({}))) as {
+    entry?: FusionCacheEntry
+    error?: { code?: string; retryAfterSec?: number; minutes?: number }
+  }
+
+  if (!res.ok || !data.entry) {
+    const apiError = parseApiErrorBody(data)
+    if (apiError) throw apiError
+    throw new Error(`HTTP ${res.status}`)
+  }
+
+  upsertFusionCacheEntry(data.entry)
+  return data.entry
+}
+
 export async function requestFusionGeneration(
   parentA: QuirkId,
   parentB: QuirkId,

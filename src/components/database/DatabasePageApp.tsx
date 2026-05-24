@@ -276,20 +276,19 @@ export function DatabasePageApp() {
 
                           const parentA = findQuirkInCatalog(locale, entry.parents[0])
                           const parentB = findQuirkInCatalog(locale, entry.parents[1])
-                          const parentLabel =
-                            parentA && parentB
-                              ? `${parentA.name} + ${parentB.name}`
-                              : `${entry.parents[0]} + ${entry.parents[1]}`
+                          const parentAName = parentA?.name ?? entry.parents[0]
+                          const parentBName = parentB?.name ?? entry.parents[1]
 
                           return (
                             <button
                               key={entry.key}
                               type="button"
-                              className={`manual-quirk-card ${toneClass(fusion.type)}`}
+                              className={`manual-quirk-card history-entry-card-hybrid ${toneClass(fusion.type)}`}
                               data-tier={fusion.tier}
                               onClick={() => setSelectedHybrid(entry)}
                             >
                               <span className="quirk-card-glow" aria-hidden="true" />
+                              <span className="quirk-fusion-badge">Hybrid</span>
                               <p className="quirk-meta manual-quirk-meta">
                                 <TierBadge tier={fusion.tier} />
                                 <span className="quirk-meta-sep" aria-hidden="true" />
@@ -297,7 +296,18 @@ export function DatabasePageApp() {
                               </p>
                               <h3 className="manual-quirk-name">{fusion.name}</h3>
                               <p className="manual-quirk-description">
-                                {shortDescription(parentLabel, 72)}
+                                {shortDescription(fusion.description, 72)}
+                              </p>
+                              <p className="hybrid-parent-tags" aria-label={t('database.hybridParents')}>
+                                <span className="chip chip-muted hybrid-parent-tag">
+                                  {shortDescription(parentAName, 24)}
+                                </span>
+                                <span className="hybrid-parent-sep" aria-hidden="true">
+                                  +
+                                </span>
+                                <span className="chip chip-muted hybrid-parent-tag">
+                                  {shortDescription(parentBName, 24)}
+                                </span>
                               </p>
                             </button>
                           )

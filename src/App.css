@@ -3374,6 +3374,34 @@
   white-space: nowrap;
 }
 
+.hybrid-parent-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0.2rem 0 0;
+}
+
+.hybrid-parent-tag {
+  padding: 0.12rem 0.42rem;
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(230, 238, 248, 0.8);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  max-width: 7.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hybrid-parent-sep {
+  color: rgba(220, 228, 240, 0.52);
+  font-size: 0.56rem;
+  font-weight: 700;
+}
+
 .quirk-pick-modal-backdrop {
   position: fixed;
   inset: 0;

@@ -427,7 +427,11 @@ export function SharedResultApp({
     }
 
     const settings =
-      parentA && parentB && seed
+      parentA &&
+      parentB &&
+      seed &&
+      isShareQuirkId(parentA) &&
+      isShareQuirkId(parentB)
         ? matchHybridRollSession(parentA, parentB, seed)
         : null
 

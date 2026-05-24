@@ -38,7 +38,9 @@ describe('deriveFusionRollContext', () => {
     expect(ctx.roll.strategyKey).toBeTruthy()
     expect(ctx.roll.nameRegister).toBeTruthy()
     expect(ctx.roll.utilityNiche).toBeTruthy()
-    expect(ctx.roll.antiMashupRuleKey).toBe('coherent-loop')
+    expect(['coherent-loop', 'failure-reduced', 'modifier-cost']).toContain(
+      ctx.roll.antiMashupRuleKey,
+    )
     expect(ctx.outputRoll.type).toBeTruthy()
   })
 

@@ -1,5 +1,5 @@
 import type { FusionCatalogQuirk } from '../catalog'
-import { hashSeed } from './seed-hash'
+import { pickUniformFromHash } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 
 export const FUSION_STRATEGY_KEYS = [
@@ -209,28 +209,8 @@ type StrategyDef = {
   ) => string
 }
 
-const SIMPLE_STRATEGY_KEYS = new Set<FusionStrategyKey>([
-  'synergy',
-  'dominant-a',
-  'dominant-b',
-  'facet-anchor',
-  'body-weave',
-  'emission-bridge',
-  'failure-mode',
-])
-const SIMPLE_STRATEGY_BOOST_COPIES = 2
-
-function pickWeightedStrategy(rollKey: string, eligible: StrategyDef[]): StrategyDef {
-  const weighted: StrategyDef[] = []
-
-  for (const def of eligible) {
-    weighted.push(def)
-    if (SIMPLE_STRATEGY_KEYS.has(def.key)) {
-      for (let i = 0; i < SIMPLE_STRATEGY_BOOST_COPIES; i++) weighted.push(def)
-    }
-  }
-
-  return weighted[hashSeed(rollKey, 'strategy') % weighted.length] ?? eligible[0]
+function pickUniformStrategy(rollKey: string, eligible: StrategyDef[]): StrategyDef {
+  return pickUniformFromHash(rollKey, 'strategy', eligible)
 }
 
 function appendStrategyGuidance(key: FusionStrategyKey, instruction: string): string {
@@ -372,7 +352,7 @@ export function selectFusionStrategy(
   const leastUsed = eligible.filter(
     (def) => (priorCounts.get(def.key) ?? 0) === lowestUseCount,
   )
-  const picked = pickWeightedStrategy(rollKey, leastUsed)
+  const picked = pickUniformStrategy(rollKey, leastUsed)
 
   return buildSelectedStrategy(picked, ctx, quirkA, quirkB)
 }

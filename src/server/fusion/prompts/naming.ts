@@ -1,4 +1,4 @@
-import { hashSeed } from './seed-hash'
+import { pickUniformFromHash } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 import type { FusionPriorVariant } from '@/types/fusion'
 import { mergeForbiddenFusionTitles } from '../prior-variants'
@@ -38,6 +38,18 @@ const NAME_QUALITY_GATE =
 
 const NAME_SELF_CHECK =
   'Before accepting en.name, ask: "Does this title sound like a real anime Quirk name, a joke that lands, or a phrase someone could actually say?" If no, replace the name once in the SAME selected register. Do not use a random interjection; make the replacement work through wordplay, cadence, image, irony, or direct simplicity.'
+
+export const FUSION_NAME_REGISTER_KEYS = [
+  'pun',
+  'blunt',
+  'dramatic',
+  'absurd-long',
+  'meme-adjacent',
+] as const satisfies readonly FusionNameRegister[]
+
+export function isFusionNameRegister(value: string): value is FusionNameRegister {
+  return (FUSION_NAME_REGISTER_KEYS as readonly string[]).includes(value)
+}
 
 const REGISTER_DEFS: SelectedFusionNameRegister[] = [
   {
@@ -146,11 +158,13 @@ export function selectFusionNameRegister(
   attempt = 0,
 ): SelectedFusionNameRegister {
   const rollKey = resolveRollKey(seed, parentA, parentB)
-  const picked =
-    REGISTER_DEFS[
-      (hashSeed(rollKey, 'name-register') + attempt) % REGISTER_DEFS.length
-    ]
-  return picked ?? REGISTER_DEFS[0]
+  const offset = attempt % REGISTER_DEFS.length
+  const rotated = [
+    ...REGISTER_DEFS.slice(offset),
+    ...REGISTER_DEFS.slice(0, offset),
+  ]
+
+  return pickUniformFromHash(rollKey, 'name-register', rotated)
 }
 
 export function formatFusionNamingBlock(

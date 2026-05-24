@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { formatFusionNamingBlock, selectFusionNameRegister } from './naming'
+import {
+  FUSION_NAME_REGISTER_KEYS,
+  formatFusionNamingBlock,
+  selectFusionNameRegister,
+} from './naming'
 
 describe('selectFusionNameRegister', () => {
   it('rotates register on dedup retry attempts', () => {
@@ -7,6 +11,21 @@ describe('selectFusionNameRegister', () => {
     const retry = selectFusionNameRegister('seed-1', 'acid', 'explosion', 1)
     expect(retry.key).not.toBe(first.key)
   })
+
+  it('gives each register equal weight when no prior siblings', () => {
+    const counts = new Map<string, number>()
+    for (let i = 0; i < 250; i++) {
+      const key = selectFusionNameRegister(`reg-${i}`, 'acid', 'explosion').key
+      counts.set(key, (counts.get(key) ?? 0) + 1)
+    }
+
+    for (const key of FUSION_NAME_REGISTER_KEYS) {
+      expect(counts.get(key) ?? 0).toBeGreaterThan(20)
+    }
+    const values = [...counts.values()]
+    expect(Math.max(...values) / Math.min(...values)).toBeLessThan(3)
+  })
+
 })
 
 describe('formatFusionNamingBlock', () => {

@@ -65,7 +65,7 @@ describe('selectFusionStrategy', () => {
     })
 
     const keys = new Set(
-      Array.from({ length: 24 }, (_, i) =>
+      Array.from({ length: 80 }, (_, i) =>
         selectFusionStrategy(`seed-${i}`, a, b).key,
       ),
     )
@@ -91,7 +91,7 @@ describe('selectFusionStrategy', () => {
     expect(keys.has('facet-anchor')).toBe(true)
   })
 
-  it('biases toward simple strategies when many options are eligible', () => {
+  it('picks eligible strategies with uniform weight when no prior siblings', () => {
     const a = mockQuirk({
       id: 'acid',
       name: 'Acid',
@@ -107,21 +107,16 @@ describe('selectFusionStrategy', () => {
       facets: ['Elemental', 'Control'],
     })
 
-    const keys = Array.from({ length: 48 }, (_, i) =>
-      selectFusionStrategy(`boost-${i}`, a, b).key,
-    )
-    const simpleCount = keys.filter(
-      (key) =>
-        key === 'synergy' ||
-        key === 'dominant-a' ||
-        key === 'dominant-b' ||
-        key === 'facet-anchor' ||
-        key === 'body-weave' ||
-        key === 'emission-bridge' ||
-        key === 'failure-mode',
-    ).length
+    const counts = new Map<string, number>()
+    for (let i = 0; i < 120; i++) {
+      const key = selectFusionStrategy(`uniform-${i}`, a, b).key
+      counts.set(key, (counts.get(key) ?? 0) + 1)
+    }
 
-    expect(simpleCount).toBeGreaterThan(24)
+    const values = [...counts.values()]
+    expect(values.length).toBeGreaterThan(3)
+    expect(Math.min(...values)).toBeGreaterThan(0)
+    expect(Math.max(...values) / Math.min(...values)).toBeLessThan(5)
   })
 
   it('selects unused eligible strategies while siblings still have unused options', () => {

@@ -45,9 +45,10 @@ Research (when web_search is available):
 
 Scientific / conceptual synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
-- When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain; Sand + Lightning -> Fulgurite).
+- When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain).
 - The third concept must be mechanically earned by the description from both parent operations; do not force parent keywords into en.name when a cleaner derivative fits.
-- Rolled type, range, facets, tier, and strategy remain authoritative; a derivative expresses the single mechanism and never grants an unrelated power.`
+- Rolled type, range, facets, tier, and strategy remain authoritative; a derivative expresses the single mechanism and never grants an unrelated power.
+- This concept applies to everything. For example, preferably, two sport-based quirks may turn into another sport (e.g. Football + Basketball -> Volleyball). Or two animal-based quirks may turn into another animal (e.g. Lion + Eagle -> Griffin). Or two element-based quirks may turn into another element (e.g. Fire + Water -> Steam).`
 
 const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
 
@@ -56,7 +57,7 @@ ${buildFusionEnglishTierStaticBlock()}`
 const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
   pun: [
     'Cow + Horns -> bull -> "Bull Rush"',
-    'Frog + Adhesive -> tree frog -> "Stick Landing"',
+    'Frog + Tape -> tree frog -> "Stick Landing"',
     'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
     'Engine + Jet/Fan -> turbofan -> "Fan Service"',
     'Steam + Strength -> hydraulic press -> "Pressing Issue"',

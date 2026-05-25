@@ -243,7 +243,7 @@ function tierWeightAtIndex(
         ? 1
         : TIER_STRONGER_SIDE_MULTIPLIER
 
-  const floor = tierMinWeight(index, parentBlendCenter, parentA, parentB)
+  const floor = tierMinWeight(index, parentBlendCenter)
   const curve = Math.round(
     TIER_WEIGHT_AT_CENTER -
       TIER_DISTANCE_PENALTY * penaltyScale * distance * distance,

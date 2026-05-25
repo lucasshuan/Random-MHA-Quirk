@@ -139,7 +139,7 @@ ${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} charac
 ${formatPriorVariantsBlock(fusion)}
 ${formatTakenTitlesBlock(fusion)}
 
-### Parent quirks (catalog summary — search fandom if you need more canon detail)
+### Parent quirks (catalog summary)
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}
 

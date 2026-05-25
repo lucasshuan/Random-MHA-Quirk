@@ -86,10 +86,14 @@ describe('deriveFusionTier', () => {
     expect(weights[2].weight).toBeGreaterThan(weights[3].weight)
   })
 
-  it('normalizes Special as S and D as C for tier weighting', () => {
-    expect(buildFusionTierWeights('Ω', 'D', 'synergy', 'Short')).toEqual(
-      buildFusionTierWeights('S', 'C', 'synergy', 'Short'),
-    )
+  it('nudges Special parents toward S and gag parents toward C', () => {
+    const specialPair = buildFusionTierWeights('Ω', 'Ω', 'synergy', 'Short')
+    const strongPair = buildFusionTierWeights('S', 'S', 'synergy', 'Short')
+    const gagPair = buildFusionTierWeights('D', 'D', 'synergy', 'Short')
+    const weakPair = buildFusionTierWeights('C', 'C', 'synergy', 'Short')
+
+    expect(specialPair[0].weight).toBeGreaterThan(strongPair[0].weight)
+    expect(gagPair[3].weight).toBeGreaterThan(weakPair[3].weight)
   })
 
   it('shifts failure-mode weight toward weaker tiers', () => {

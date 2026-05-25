@@ -12,7 +12,7 @@ import { selectFusionUtilityNudge } from './utility'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkDisplayTier, QuirkRange, QuirkTier } from '@/types/quirk'
 
-/** Generated bands only; parent Ω is weighted as S and parent D is weighted as C. */
+/** Generated bands only; parent Ω anchors near S and parent D anchors near C. */
 export const FUSION_GENERATED_TIERS = [
   'S',
   'A',
@@ -27,10 +27,13 @@ const PARENT_TIER_INDEX: Record<QuirkTier, number> = {
   C: 3,
   D: 3,
 }
+/** Extra S weight per Special parent; extra C weight per gag parent. */
+const SPECIAL_S_TIER_NUDGE = 16
+const GAG_C_TIER_NUDGE = 4
 
 const RANGE_TIER_SHIFT: Record<QuirkRange, number> = {
-  Self: 0.35,
-  Contact: 0.2,
+  Self: 0.2,
+  Contact: 0.1,
   Short: 0,
   Medium: -0.1,
   Long: -0.2,
@@ -39,16 +42,16 @@ const RANGE_TIER_SHIFT: Record<QuirkRange, number> = {
 
 const STRATEGY_TIER_SHIFT: Partial<Record<FusionStrategyKey, number>> = {
   /** Positive shifts favor weaker bands; failure-mode should often land below its parents. */
-  'failure-mode': 0.85,
-  byproduct: 0.3,
+  'failure-mode': 0.75,
+  byproduct: 0.25,
   oscillation: 0.2,
-  synergy: -0.15,
   'dominant-a': -0.1,
   'dominant-b': -0.1,
   'facet-anchor': -0.1,
+  synergy: -0.08,
 }
-const TIER_WEIGHT_AT_CENTER = 50
-const TIER_DISTANCE_PENALTY = 18
+const TIER_WEIGHT_AT_CENTER = 56
+const TIER_DISTANCE_PENALTY = 26
 const TIER_MIN_WEIGHT = 2
 
 export interface FusionRollContext {
@@ -65,6 +68,29 @@ function clampTierCenter(value: number): number {
   return Math.max(0, Math.min(FUSION_GENERATED_TIERS.length - 1, value))
 }
 
+function countParentTier(parentA: QuirkTier, parentB: QuirkTier, tier: QuirkTier): number {
+  return Number(parentA === tier) + Number(parentB === tier)
+}
+
+function applyCatalogTierNudges(
+  weights: Array<{ tier: QuirkDisplayTier; weight: number }>,
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+): Array<{ tier: QuirkDisplayTier; weight: number }> {
+  const specialCount = countParentTier(parentA, parentB, 'Ω')
+  const gagCount = countParentTier(parentA, parentB, 'D')
+
+  return weights.map((entry) => {
+    if (entry.tier === 'S' && specialCount > 0) {
+      return { ...entry, weight: entry.weight + SPECIAL_S_TIER_NUDGE * specialCount }
+    }
+    if (entry.tier === 'C' && gagCount > 0) {
+      return { ...entry, weight: entry.weight + GAG_C_TIER_NUDGE * gagCount }
+    }
+    return entry
+  })
+}
+
 export function buildFusionTierWeights(
   parentA: QuirkTier,
   parentB: QuirkTier,
@@ -79,7 +105,7 @@ export function buildFusionTierWeights(
       RANGE_TIER_SHIFT[range],
   )
 
-  return FUSION_GENERATED_TIERS.map((tier, index) => ({
+  const weights = FUSION_GENERATED_TIERS.map((tier, index) => ({
     tier,
     weight: Math.max(
       TIER_MIN_WEIGHT,
@@ -89,6 +115,8 @@ export function buildFusionTierWeights(
       ),
     ),
   }))
+
+  return applyCatalogTierNudges(weights, parentA, parentB)
 }
 
 /** Deterministic weighted fusion tier from normalized parents, strategy, range, and seed. */

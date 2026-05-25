@@ -5,10 +5,13 @@ import { deriveFusionRollContext } from './roll-context'
 import {
   buildFusionEnglishTierVariantBlock,
   buildFusionTierCalibrationRubric,
+  buildFusionTierOmegaBlock,
+  buildFusionTierWeakSimplicityBlock,
+  formatFusionDescriptionLengthGuidance,
 } from './tier-decision'
 
 describe('buildFusionTierCalibrationRubric', () => {
-  it('includes seven questions, tier scale, and Special tier guard', () => {
+  it('includes seven questions, full ladder, and rare Ω/D assignment', () => {
     const rubric = buildFusionTierCalibrationRubric()
 
     expect(rubric).toContain('Seven evaluation questions')
@@ -22,14 +25,11 @@ describe('buildFusionTierCalibrationRubric', () => {
     expect(rubric).toContain('War-arc benchmark')
     expect(rubric).toMatch(/\*\*Ω\*\*/)
     expect(rubric).toContain('Special')
-    expect(rubric).toContain('never assigned to a generated fusion')
+    expect(rubric).toContain('**Ω**, **S**, **A**, **B**, **C**, or **D**')
+    expect(rubric).toContain('rolled intentionally rare')
     expect(rubric).toContain('| **S** | Exceptional |')
-    expect(rubric).toContain('| **A** | Strong |')
-    expect(rubric).toContain('| **B** | Solid |')
-    expect(rubric).toContain('| **C** | Weak-ish |')
-    expect(rubric).toContain('| **D** | Gag / useless |')
-    expect(rubric).toContain('server supplies one fixed generated tier')
-    expect(rubric).toContain('Do not output or override it')
+    expect(rubric).toContain('| **D** | Gag / weak |')
+    expect(rubric).not.toContain('never assigned to a generated fusion')
   })
 })
 
@@ -84,5 +84,85 @@ describe('buildFusionEnglishTierVariantBlock', () => {
     expect(text).toContain('tier roll already incorporates parent tiers')
     expect(text).toContain('do not recalculate or override it')
     expect(text).not.toContain('mandatory tier adjustment')
+  })
+
+  it('appends mandatory weak-tier simplicity for C and D', () => {
+    const base = buildFusionAgentInput(
+      quirkA,
+      quirkB,
+      'tier-block-test',
+      [],
+      deriveFusionRollContext('tier-block-test', quirkA, quirkB, []),
+    )
+
+    expect(
+      buildFusionEnglishTierVariantBlock({
+        ...base,
+        mechanics: { ...base.mechanics, tier: 'C' },
+      }),
+    ).toContain('C-tier simplicity (mandatory for this variant')
+    expect(
+      buildFusionEnglishTierVariantBlock({
+        ...base,
+        mechanics: { ...base.mechanics, tier: 'D' },
+      }),
+    ).toContain('D-tier simplicity (mandatory for this variant')
+    expect(buildFusionTierWeakSimplicityBlock('D')).toContain('enhanced chest hair')
+  })
+
+  it('appends mandatory Ω calibration when tier is Special', () => {
+    const base = buildFusionAgentInput(
+      quirkA,
+      quirkB,
+      'tier-block-test',
+      [],
+      deriveFusionRollContext('tier-block-test', quirkA, quirkB, []),
+    )
+    const text = buildFusionEnglishTierVariantBlock({
+      ...base,
+      mechanics: { ...base.mechanics, tier: 'Ω' },
+    })
+
+    expect(text).toContain('Ω-tier Special calibration')
+    expect(buildFusionTierOmegaBlock()).toContain('All For One')
+    expect(buildFusionTierOmegaBlock()).toContain('New Order')
+  })
+
+  it('omits tier-specific blocks for mid tiers', () => {
+    const fusion = buildFusionAgentInput(
+      quirkA,
+      quirkB,
+      'tier-block-test',
+      [],
+      deriveFusionRollContext('tier-block-test', quirkA, quirkB, []),
+    )
+
+    if (fusion.mechanics.tier === 'C' || fusion.mechanics.tier === 'D' || fusion.mechanics.tier === 'Ω') {
+      return
+    }
+
+    const text = buildFusionEnglishTierVariantBlock(fusion)
+    expect(text).not.toContain('-tier simplicity')
+    expect(text).not.toContain('Ω-tier Special calibration')
+  })
+})
+
+describe('formatFusionDescriptionLengthGuidance', () => {
+  it('uses short targets for C and D tiers', () => {
+    expect(formatFusionDescriptionLengthGuidance('C', 70, 300)).toContain(
+      'C-tier target 70–130',
+    )
+    expect(formatFusionDescriptionLengthGuidance('D', 70, 300)).toContain(
+      'D-tier target 70–110',
+    )
+  })
+
+  it('keeps the default target band for other tiers', () => {
+    expect(formatFusionDescriptionLengthGuidance('S', 70, 300)).toContain(
+      'Target 160–240',
+    )
+    expect(formatFusionDescriptionLengthGuidance('Ω', 70, 300)).toContain(
+      'Target 160–240',
+    )
   })
 })

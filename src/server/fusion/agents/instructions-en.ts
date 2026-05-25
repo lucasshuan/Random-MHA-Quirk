@@ -2,6 +2,7 @@ import type { FusionAgentInput } from '@/types/fusion-agent'
 import {
   buildFusionEnglishTierStaticBlock,
   buildFusionEnglishTierVariantBlock,
+  formatFusionDescriptionLengthGuidance,
 } from '../prompts/tier-decision'
 import {
   FUSION_CANON_NAME_REFERENCES,
@@ -31,6 +32,7 @@ const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from 
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
 - Add at most one physical cost OR one situational scope only when needed; do not pad for detail.
 - Obey the request-specific type, facet, range, and hard length constraints.
+- When the request includes a **C/D-tier simplicity** or **Ω-tier Special calibration** block, that block overrides generic detail, length, utility, and conceptual-synthesis elaboration rules in this prompt.
 
 ## Naming rules
 
@@ -47,8 +49,12 @@ Scientific / conceptual synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
 - When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain).
 - The third concept must be mechanically earned by the description from both parent operations; do not force parent keywords into en.name when a cleaner derivative fits.
-- Rolled type, range, facets, tier, and strategy remain authoritative; a derivative expresses the single mechanism and never grants an unrelated power.
-- This concept applies to everything. For example, preferably, two sport-based quirks may turn into another sport (e.g. Football + Basketball -> Volleyball). Or two animal-based quirks may turn into another animal (e.g. Lion + Eagle -> Griffin). Or two element-based quirks may turn into another element (e.g. Fire + Water -> Steam).`
+- This concept applies to everything. For example, preferably:
+  - Two sport-based quirks may turn into another sport (e.g. Football + Basketball -> Volleyball). 
+  - Or two animal-based quirks may turn into another animal (e.g. Lion + Eagle -> Griffin).
+  - Or one animal-based quirk with a trait may turn into an animal subtype (e.g. Rabbit + Speed -> Jackrabbit) 
+  - Or two element-based quirks may resolve into a reaction, phase, or byproduct (e.g. Fire + Water -> Steam).
+  - Or one element-based quirk with a condition turns into known material science (e.g. Softening + Barrier -> Non-Newtonian fluid)`
 
 const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
 
@@ -60,9 +66,8 @@ const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
     'Frog + Tape -> tree frog -> "Stick Landing"',
     'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
     'Engine + Jet/Fan -> turbofan -> "Fan Service"',
-    'Steam + Strength -> hydraulic press -> "Pressing Issue"',
+    'Steam + Muscle -> hydraulic press -> "Pressing Issue"',
     'Dog + Fire -> hellhound/hot dog -> "Hot Dog"',
-    'Horse + Wings -> pegasus -> "Stable Flight"',
     'Octopus + Camouflage -> mimic octopus -> "Inkognito"',
     'Ant + Telepathy -> colony mind -> "Ant-tenna"',
     'Battery + Muscle -> actuator -> "Flex Capacitor"',
@@ -77,7 +82,7 @@ const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
     'Horse + Wings -> pegasus -> "Pegasus"',
     'Bird + Fire -> phoenix -> "Phoenix"',
     'Sand + Lightning -> fulgurite -> "Fulgurite"',
-    'Rubber + Heat -> vulcanization -> "Volcano"',
+    'Rubber + Heat -> vulcanization -> "Vulcanization"',
   ],
   dramatic: [
     'Lion + Eagle -> griffin -> "Skyclaw"',
@@ -93,13 +98,13 @@ const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
   ],
   'absurd-long': [
     'Cow + Horns -> bull -> "Bull With His Own Battering Ram"',
-    'Ant + Telepaphy -> colony mind -> "Everybody Is A Big Happy Family',
+    'Ant + Telepathy -> colony mind -> "Everybody Is A Big Happy Family"',
     'Horse + Wings -> pegasus -> "Horse That Forgot Gravity"',
     'Engine + Jet/Fan -> turbofan -> "Turbofans Where His Calves Should Be"',
     'Steam + Strength -> hydraulic press -> "Arms That Work Like Hydraulic Presses"',
     'Serpent + Rooster -> cockatrice -> "Snake Chicken of Doom"',
     'Goat + Fish -> capricorn -> "Goat Mermaid Situation"',
-    'Engine +  Electricity -> hybrid drive -> "Whole-Body Hybrid Engine System"',
+    'Engine + Electricity -> hybrid drive -> "Whole-Body Hybrid Engine System"',
     'Mushroom + Mind Control -> cordyceps -> "Mushrooms That Borrow Other People\'s Bodies"',
   ],
   'meme-adjacent': [
@@ -107,7 +112,7 @@ const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
     'Rabbit + Speed -> jackrabbit -> "Zoomies"',
     'Ant + Telepathy -> colony mind -> "Group Chat"',
     'Engine + Electricity -> hybrid drive -> "Vroom Vroom"',
-    'Magnetism + Projectile -> railgun -> "Yeet Cannon"',
+    'Magnetism + Gatling -> railgun -> "Yeet Cannon"',
     'Dog + Fire -> hellhound/hot dog -> "Hot Dog"',
     'Frog + Adhesive -> tree frog -> "Wall Guy"',
     'Octopus + Camouflage -> mimic octopus -> "Not An Octopus"',
@@ -124,7 +129,7 @@ function formatConceptualSynthesisNameHint(nameRegister: string): string {
   const examples =
     CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES[nameRegister] ??
     ['use a familiar derived title in the selected register']
-  return `Conceptual-resolution option: if the earned mechanism resolves into a recognizable third concept, title that concept in the selected register rather than forcing parent keywords. Illustrative patterns for this register: ${examples.join('; ')}. These are models, not preferred outputs: use one only when it fits and is not forbidden; otherwise invent a different fitting derivative. If you can't find a fitting derivative, feel free to use other conceptualization strategies.`
+  return `Conceptual-resolution option: if the earned mechanism resolves into a recognizable third concept, title that concept in the selected register rather than forcing parent keywords. Illustrative patterns for this register: ${examples.join('; ')}. These are models, not preferred outputs: use one only when it fits and is not forbidden; otherwise invent a different fitting derivative. Use this only when the derivative is clearer than a literal fusion; otherwise keep the direct mechanism.`
 }
 
 function normalizeTitle(name: string): string {
@@ -180,6 +185,10 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
 - range: ${mechanics.range}
 - facets: [${mechanics.facets.join(', ')}]
 
+## Tier target for this variant
+
+${buildFusionEnglishTierVariantBlock(fusion)}
+
 ### Type-specific description focus
 - ${typeFocus}
 
@@ -205,7 +214,7 @@ ${constraints.facetContract}
 ${constraints.rangeProse}
 
 ### Description length (HARD — ${constraints.descriptionMaxLength} characters max; overlong text is trimmed server-side)
-${constraints.descriptionMinLength}–${constraints.descriptionMaxLength} characters (spaces and punctuation count). Target 160–240. Write at most TWO short sentences; stop before the limit — do not rely on the server to cut your copy.
+${formatFusionDescriptionLengthGuidance(mechanics.tier, constraints.descriptionMinLength, constraints.descriptionMaxLength)}
 
 ### ${siblingGate}
 ${formatPriorVariantsBlock(fusion)}
@@ -213,9 +222,5 @@ ${formatTakenTitlesBlock(fusion)}
 
 ### Parent quirks (catalog summary)
 ${formatParentBlock(fusion.parents[0])}
-${formatParentBlock(fusion.parents[1])}
-
-## Tier target for this variant
-
-${buildFusionEnglishTierVariantBlock(fusion)}`
+${formatParentBlock(fusion.parents[1])}`
 }

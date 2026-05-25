@@ -10,26 +10,27 @@ import { selectFusionStrategy } from './strategy'
 import type { FusionUtilityNiche } from './utility'
 import { selectFusionUtilityNudge } from './utility'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
-import type { QuirkDisplayTier, QuirkRange, QuirkTier } from '@/types/quirk'
+import type { QuirkRange, QuirkTier } from '@/types/quirk'
 
-/** Generated bands only; parent Ω anchors near S and parent D anchors near C. */
+/** Full fusion output ladder; weights come from one parent-centered curve. */
 export const FUSION_GENERATED_TIERS = [
+  'Ω',
   'S',
   'A',
   'B',
   'C',
-] as const satisfies readonly QuirkDisplayTier[]
+  'D',
+] as const satisfies readonly QuirkTier[]
+
+/** Parent position on the output ladder (Ω and D at the extremes). */
 const PARENT_TIER_INDEX: Record<QuirkTier, number> = {
   Ω: 0,
-  S: 0,
-  A: 1,
-  B: 2,
-  C: 3,
-  D: 3,
+  S: 1,
+  A: 2,
+  B: 3,
+  C: 4,
+  D: 5,
 }
-/** Extra S weight per Special parent; extra C weight per gag parent. */
-const SPECIAL_S_TIER_NUDGE = 16
-const GAG_C_TIER_NUDGE = 4
 
 const RANGE_TIER_SHIFT: Record<QuirkRange, number> = {
   Self: 0.2,
@@ -50,13 +51,34 @@ const STRATEGY_TIER_SHIFT: Partial<Record<FusionStrategyKey, number>> = {
   'facet-anchor': -0.1,
   synergy: -0.08,
 }
-const TIER_WEIGHT_AT_CENTER = 56
-const TIER_DISTANCE_PENALTY = 26
-const TIER_MIN_WEIGHT = 2
+
+/**
+ * Steep bell: high peak, quadratic distance falloff, readable tail floor.
+ * Tails stay well above 1 but dominate far less than center tiers.
+ */
+const TIER_WEIGHT_AT_CENTER = 720
+const TIER_DISTANCE_PENALTY = 52
+const TIER_MIN_WEIGHT = 14
+/**
+ * Slightly favor tiers on the parent-strong side of the curve; trim middle spill
+ * (A/B when parents are strong, Ω/S when weak) without crushing far C/D tails.
+ */
+const TIER_STRONGER_SIDE_MULTIPLIER = 0.72
+const TIER_MIDDLE_SPILL_MULTIPLIER = 1.38
+const TIER_MIDDLE_SPILL_MIN_DISTANCE = 1.05
+const TIER_MIDDLE_SPILL_MAX_DISTANCE = 3.25
+const LADDER_MIDPOINT_INDEX = 2.5
+const LADDER_MAX_INDEX = FUSION_GENERATED_TIERS.length - 1
+/** Parent blend offset from the Ω end; D end uses the mirror (5 − offset). */
+const EXTREME_SAME_TIER_BLEND_OFFSET = 0.25
+/** Ω/D output weight when no parent carries that extreme tier. */
+const TIER_EXTREME_UNLICENSED_SCALE = 0.2
+/** How much a non-matching parent pulls licensed extreme weight toward the floor. */
+const TIER_EXTREME_PARTIAL_BLEND = 0.55
 
 export interface FusionRollContext {
   outputRoll: FusionOutputRoll
-  tier: QuirkDisplayTier
+  tier: QuirkTier
   roll: FusionRollMeta
 }
 
@@ -68,27 +90,177 @@ function clampTierCenter(value: number): number {
   return Math.max(0, Math.min(FUSION_GENERATED_TIERS.length - 1, value))
 }
 
-function countParentTier(parentA: QuirkTier, parentB: QuirkTier, tier: QuirkTier): number {
-  return Number(parentA === tier) + Number(parentB === tier)
-}
-
-function applyCatalogTierNudges(
-  weights: Array<{ tier: QuirkDisplayTier; weight: number }>,
+/** Parent midpoint on the output ladder before strategy/range shifts. */
+export function resolveParentBlendCenter(
   parentA: QuirkTier,
   parentB: QuirkTier,
-): Array<{ tier: QuirkDisplayTier; weight: number }> {
-  const specialCount = countParentTier(parentA, parentB, 'Ω')
-  const gagCount = countParentTier(parentA, parentB, 'D')
+): number {
+  const indexA = PARENT_TIER_INDEX[parentA]
+  const indexB = PARENT_TIER_INDEX[parentB]
 
-  return weights.map((entry) => {
-    if (entry.tier === 'S' && specialCount > 0) {
-      return { ...entry, weight: entry.weight + SPECIAL_S_TIER_NUDGE * specialCount }
+  if (parentA === parentB) {
+    if (parentA === 'Ω') return EXTREME_SAME_TIER_BLEND_OFFSET
+    if (parentA === 'D') return LADDER_MAX_INDEX - EXTREME_SAME_TIER_BLEND_OFFSET
+    return indexA
+  }
+
+  return (indexA + indexB) / 2
+}
+
+function resolveExtremeSameTierTargetCenter(
+  strategyKey: FusionStrategyKey,
+  range: QuirkRange,
+): number {
+  return clampTierCenter(
+    EXTREME_SAME_TIER_BLEND_OFFSET +
+      (STRATEGY_TIER_SHIFT[strategyKey] ?? 0) +
+      RANGE_TIER_SHIFT[range],
+  )
+}
+
+/** Bell-curve center from parents, strategy, and range — no separate rare-tier add-ons. */
+export function resolveFusionTierTargetCenter(
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+  strategyKey: FusionStrategyKey,
+  range: QuirkRange,
+): number {
+  if (parentA === parentB && parentA === 'Ω') {
+    return resolveExtremeSameTierTargetCenter(strategyKey, range)
+  }
+
+  if (parentA === parentB && parentA === 'D') {
+    return clampTierCenter(
+      LADDER_MAX_INDEX - resolveExtremeSameTierTargetCenter(strategyKey, range),
+    )
+  }
+
+  return clampTierCenter(
+    resolveParentBlendCenter(parentA, parentB) +
+      (STRATEGY_TIER_SHIFT[strategyKey] ?? 0) +
+      RANGE_TIER_SHIFT[range],
+  )
+}
+
+/** Ω and D stay prominent only when a parent actually has that tier. */
+function resolveLicensedExtremeScale(
+  tier: 'Ω' | 'D',
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+): number {
+  const extremeIndex = PARENT_TIER_INDEX[tier]
+  const indexA = PARENT_TIER_INDEX[parentA]
+  const indexB = PARENT_TIER_INDEX[parentB]
+  const hasExtremeParent = indexA === extremeIndex || indexB === extremeIndex
+
+  if (!hasExtremeParent) {
+    return TIER_EXTREME_UNLICENSED_SCALE
+  }
+
+  if (indexA === extremeIndex && indexB === extremeIndex) {
+    return 1
+  }
+
+  const partnerIndex = indexA === extremeIndex ? indexB : indexA
+  const span = FUSION_GENERATED_TIERS.length - 1
+  const partnerDistance = Math.abs(partnerIndex - extremeIndex)
+  const affinity = 1 - (partnerDistance / span) * TIER_EXTREME_PARTIAL_BLEND
+
+  return Math.max(TIER_EXTREME_UNLICENSED_SCALE, affinity)
+}
+
+/**
+ * Opposite-tail floor scales with parent position and tier distance from parents.
+ * Strong parents → lower D/weak-side floors; weak parents → lower Ω/strong-side floors.
+ */
+function tierMinWeight(index: number, parentBlendCenter: number): number {
+  const ladderSpan = FUSION_GENERATED_TIERS.length - 1
+
+  if (parentBlendCenter < LADDER_MIDPOINT_INDEX) {
+    if (index <= parentBlendCenter) {
+      return TIER_MIN_WEIGHT
     }
-    if (entry.tier === 'C' && gagCount > 0) {
-      return { ...entry, weight: entry.weight + GAG_C_TIER_NUDGE * gagCount }
-    }
-    return entry
-  })
+
+    const parentFactor = parentBlendCenter / LADDER_MIDPOINT_INDEX
+    const tierFactor =
+      (index - parentBlendCenter) / (ladderSpan - parentBlendCenter)
+
+    return Math.max(
+      1,
+      Math.round(TIER_MIN_WEIGHT * parentFactor * tierFactor * tierFactor),
+    )
+  }
+
+  if (index >= parentBlendCenter) {
+    return TIER_MIN_WEIGHT
+  }
+
+  const parentFactor =
+    (ladderSpan - parentBlendCenter) / LADDER_MIDPOINT_INDEX
+  const tierFactor = (parentBlendCenter - index) / parentBlendCenter
+
+  return Math.max(
+    1,
+    Math.round(TIER_MIN_WEIGHT * parentFactor * tierFactor * tierFactor),
+  )
+}
+
+/** Scale only excess above the floor so opposite-tail ordering stays monotonic. */
+function applyLicensedExtremeWeight(
+  weight: number,
+  tier: QuirkTier,
+  floor: number,
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+): number {
+  if (tier !== 'Ω' && tier !== 'D') {
+    return weight
+  }
+
+  const scale = resolveLicensedExtremeScale(tier, parentA, parentB)
+  if (scale >= 1) {
+    return weight
+  }
+
+  return Math.max(1, floor + Math.round((weight - floor) * scale))
+}
+
+function tierWeightAtIndex(
+  index: number,
+  tier: QuirkTier,
+  targetCenter: number,
+  parentBlendCenter: number,
+  parentA: QuirkTier,
+  parentB: QuirkTier,
+): number {
+  const distance = Math.abs(index - targetCenter)
+  const towardWeakerOutput =
+    parentBlendCenter < LADDER_MIDPOINT_INDEX
+      ? index > targetCenter
+      : index < targetCenter
+  const inMiddleSpill =
+    distance >= TIER_MIDDLE_SPILL_MIN_DISTANCE &&
+    distance <= TIER_MIDDLE_SPILL_MAX_DISTANCE
+  const penaltyScale =
+    towardWeakerOutput && inMiddleSpill
+      ? TIER_MIDDLE_SPILL_MULTIPLIER
+      : towardWeakerOutput
+        ? 1
+        : TIER_STRONGER_SIDE_MULTIPLIER
+
+  const floor = tierMinWeight(index, parentBlendCenter, parentA, parentB)
+  const curve = Math.round(
+    TIER_WEIGHT_AT_CENTER -
+      TIER_DISTANCE_PENALTY * penaltyScale * distance * distance,
+  )
+
+  return applyLicensedExtremeWeight(
+    Math.max(floor, curve),
+    tier,
+    floor,
+    parentA,
+    parentB,
+  )
 }
 
 export function buildFusionTierWeights(
@@ -96,27 +268,26 @@ export function buildFusionTierWeights(
   parentB: QuirkTier,
   strategyKey: FusionStrategyKey,
   range: QuirkRange,
-): Array<{ tier: QuirkDisplayTier; weight: number }> {
-  const parentCenter =
-    (PARENT_TIER_INDEX[parentA] + PARENT_TIER_INDEX[parentB]) / 2
-  const targetCenter = clampTierCenter(
-    parentCenter +
-      (STRATEGY_TIER_SHIFT[strategyKey] ?? 0) +
-      RANGE_TIER_SHIFT[range],
+): Array<{ tier: QuirkTier; weight: number }> {
+  const parentBlendCenter = resolveParentBlendCenter(parentA, parentB)
+  const targetCenter = resolveFusionTierTargetCenter(
+    parentA,
+    parentB,
+    strategyKey,
+    range,
   )
 
-  const weights = FUSION_GENERATED_TIERS.map((tier, index) => ({
+  return FUSION_GENERATED_TIERS.map((tier, index) => ({
     tier,
-    weight: Math.max(
-      TIER_MIN_WEIGHT,
-      Math.round(
-        TIER_WEIGHT_AT_CENTER -
-          Math.abs(index - targetCenter) * TIER_DISTANCE_PENALTY,
-      ),
+    weight: tierWeightAtIndex(
+      index,
+      tier,
+      targetCenter,
+      parentBlendCenter,
+      parentA,
+      parentB,
     ),
   }))
-
-  return applyCatalogTierNudges(weights, parentA, parentB)
 }
 
 /** Deterministic weighted fusion tier from normalized parents, strategy, range, and seed. */
@@ -128,7 +299,7 @@ export function deriveFusionTier(
   range: QuirkRange,
   parentAId: string,
   parentBId: string,
-): QuirkDisplayTier {
+): QuirkTier {
   const rollKey = fusionRollKey(seed, parentAId, parentBId)
   const weights = buildFusionTierWeights(parentA, parentB, strategyKey, range)
   return pickWeightedFromHash(rollKey, 'fusion-tier', weights).tier

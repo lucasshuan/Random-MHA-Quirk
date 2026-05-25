@@ -1,6 +1,5 @@
 import type { FusionPriorVariant } from './fusion'
 import type {
-  QuirkDisplayTier,
   QuirkFacet,
   QuirkOrigin,
   QuirkRange,
@@ -35,7 +34,7 @@ export interface FusionAgentInput {
     range: QuirkRange
     facets: QuirkFacet[]
     origin: QuirkOrigin
-    tier: QuirkDisplayTier
+    tier: QuirkTier
   }
   roll: {
     strategyKey: string

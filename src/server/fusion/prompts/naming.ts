@@ -32,7 +32,7 @@ export const FUSION_CANON_NAME_REFERENCES = [
 export const FUSION_NAMING_RULES = [
   'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
   'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
-  'en.name must NOT read like a fantasy RPG skill, technical field label, or "[Parent theme adjective] + [Parent theme noun]" mashup.',
+  'en.name must NOT read like a fantasy RPG skill, dry academic jargon, or "[Parent theme adjective] + [Parent theme noun]" mashup. Short plain nouns that name the earned third concept (e.g. Railgun, Steam, Griffin) are fine; avoid textbook field labels and stacked technical adjectives.',
   'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
   'Question marks in en.name are exceptional: default to a non-question title. Use one ? only when the title is a naturally phrased, punny question whose joke is made relevant by the finished quirk mechanism. "Got Milk?" and "Who, Me?" are good models only when the new quirk makes that question unexpectedly apt. Never force a question or add ? merely for cadence, attitude, or meme flavor; choose a stronger non-question name instead.',
   'Other punctuation in en.name: one comma clause may sell spoken cadence unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',

@@ -72,10 +72,8 @@ describe('buildFusionEnglishInstructions', () => {
     )
     expect(instructions).toContain('mechanically earned by the description')
     expect(instructions).toContain('do not force parent keywords into en.name')
-    expect(instructions).toContain(
-      'Rolled type, range, facets, tier, and strategy remain authoritative',
-    )
-    expect(instructions).not.toContain('Softening + Barrier')
+    expect(instructions).toContain('rolled intentionally rare')
+    expect(instructions).toContain('Softening + Barrier')
   })
 
   it('adapts third-concept naming illustrations to the rolled register', () => {
@@ -97,7 +95,7 @@ describe('buildFusionEnglishInstructions', () => {
       'Lion + Eagle -> griffin -> "Skyclaw"',
     )
     expect(buildWithRegister('dramatic')).toContain(
-      'Engine + Jet/Air -> turbofan -> "Afterburner"',
+      'Engine + Jet/Fan -> turbofan -> "Afterburner"',
     )
     expect(buildWithRegister('dramatic')).toContain(
       'Centipede + Armor -> armored arthropod -> "Arthroplate"',
@@ -106,7 +104,7 @@ describe('buildFusionEnglishInstructions', () => {
       'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
     )
     expect(buildWithRegister('pun')).toContain(
-      'Steam + Strength -> hydraulic press -> "Pressing Issue"',
+      'Steam + Muscle -> hydraulic press -> "Pressing Issue"',
     )
     expect(buildWithRegister('pun')).toContain(
       'Octopus + Camouflage -> mimic octopus -> "Inkognito"',
@@ -118,15 +116,54 @@ describe('buildFusionEnglishInstructions', () => {
       'Shark + Electricity -> electroreception -> "Shark Wi-Fi"',
     )
     expect(buildWithRegister('absurd-long')).toContain(
-      'Octopus + Camouflage -> mimic octopus -> "Octopus Body Pretends To Be Stuff"',
+      'Serpent + Rooster -> cockatrice -> "Snake Chicken of Doom"',
     )
     expect(buildWithRegister('absurd-long')).toContain(
-      'Sand + Lightning -> fulgurite -> "Lightning Makes Glass Under His Feet"',
+      'Mushroom + Mind Control -> cordyceps -> "Mushrooms That Borrow Other People\'s Bodies"',
     )
     expect(buildWithRegister('blunt')).toContain('if the earned mechanism resolves')
     expect(buildWithRegister('blunt')).toContain('selected register')
     expect(buildWithRegister('blunt')).toContain('These are models, not preferred outputs')
     expect(buildWithRegister('blunt')).not.toContain('"Bull Rush"')
+  })
+
+  it('places tier target before utility and forces weak-tier guidance for C and D', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const cInstructions = buildFusionEnglishInstructions({
+      ...fusion,
+      mechanics: { ...fusion.mechanics, tier: 'C' },
+    })
+    const dInstructions = buildFusionEnglishInstructions({
+      ...fusion,
+      mechanics: { ...fusion.mechanics, tier: 'D' },
+    })
+
+    for (const instructions of [cInstructions, dInstructions]) {
+      expect(instructions.indexOf('## Tier target for this variant')).toBeLessThan(
+        instructions.indexOf('### Utility'),
+      )
+      expect(instructions).toContain('overrides generic detail')
+      expect(instructions).toContain('0% convoluted')
+    }
+
+    expect(cInstructions).toContain('C-tier target 70–130')
+    expect(cInstructions).toContain('C-tier simplicity (mandatory for this variant')
+    expect(dInstructions).toContain('D-tier target 70–110')
+    expect(dInstructions).toContain('enhanced chest hair')
+  })
+
+  it('forces Ω-tier Special calibration when tier is Ω', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions({
+      ...fusion,
+      mechanics: { ...fusion.mechanics, tier: 'Ω' },
+    })
+
+    expect(instructions).toContain('Ω-tier Special calibration')
+    expect(instructions).toContain('All For One')
+    expect(instructions.indexOf('## Tier target for this variant')).toBeLessThan(
+      instructions.indexOf('### Fusion strategy'),
+    )
   })
 
   it('requires description-first copy and clear naming', () => {
@@ -191,6 +228,12 @@ describe('buildFusionEnglishInstructions', () => {
     const secondRequestIndex = second.indexOf(requestMarker)
 
     expect(first.indexOf('## Tier calibration reference')).toBeLessThan(firstRequestIndex)
+    expect(first.indexOf('## Tier target for this variant')).toBeGreaterThan(
+      first.indexOf('### Fixed mechanics'),
+    )
+    expect(first.indexOf('## Tier target for this variant')).toBeLessThan(
+      first.indexOf('### Utility'),
+    )
     expect(first.slice(0, firstRequestIndex)).toBe(second.slice(0, secondRequestIndex))
     expect(first.indexOf('Question marks in en.name are exceptional')).toBeLessThan(
       firstRequestIndex,

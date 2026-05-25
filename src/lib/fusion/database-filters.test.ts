@@ -41,4 +41,19 @@ describe('filterFusionEntries', () => {
     )
     expect(result).toHaveLength(0)
   })
+
+  it('filters by special and D tiers', () => {
+    const omegaEntry = { ...sampleEntry, tier: 'Ω' as const }
+    const dEntry = { ...sampleEntry, tier: 'D' as const }
+
+    expect(
+      filterFusionEntries([omegaEntry], { ...DEFAULT_QUIRK_FILTERS, tiers: ['Ω'] }, 'en'),
+    ).toHaveLength(1)
+    expect(
+      filterFusionEntries([dEntry], { ...DEFAULT_QUIRK_FILTERS, tiers: ['D'] }, 'en'),
+    ).toHaveLength(1)
+    expect(
+      filterFusionEntries([omegaEntry], { ...DEFAULT_QUIRK_FILTERS, tiers: ['D'] }, 'en'),
+    ).toHaveLength(0)
+  })
 })

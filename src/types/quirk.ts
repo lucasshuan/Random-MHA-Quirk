@@ -38,6 +38,10 @@ export const QUIRK_TIERS = [
 
 /** Tiers enabled by default on tier-picker steps (Ω Special and D off). */
 export const DEFAULT_TIER_PICKER_SELECTION = ['S', 'A', 'B', 'C'] as const satisfies readonly QuirkTier[]
+
+/** All tiers offered in the database hybrids tab advanced filter. */
+export const HYBRID_DATABASE_TIER_OPTIONS: readonly QuirkTier[] = QUIRK_TIERS
+
 export type QuirkTier = (typeof QUIRK_TIERS)[number]
 
 export function isOmegaTier(tier: QuirkTier): tier is typeof QUIRK_TIER_OMEGA {

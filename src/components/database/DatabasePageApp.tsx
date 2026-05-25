@@ -18,7 +18,7 @@ import type { FusionCacheEntry } from '@/types/fusion'
 import {
   countAdvancedFilterSelections,
   DEFAULT_QUIRK_FILTERS,
-  DEFAULT_TIER_PICKER_SELECTION,
+  HYBRID_DATABASE_TIER_OPTIONS,
   type Quirk,
   type QuirkFilters,
   type QuirkTier,
@@ -27,7 +27,7 @@ import {
 
 type DatabaseTab = 'quirks' | 'hybrids'
 
-const HYBRID_DATABASE_TIERS = DEFAULT_TIER_PICKER_SELECTION
+const HYBRID_DATABASE_TIERS = HYBRID_DATABASE_TIER_OPTIONS
 
 function stripHybridDisallowedTiers(tiers: QuirkTier[]): QuirkTier[] {
   return tiers.filter((tier) =>

@@ -61,13 +61,72 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Old')
   })
 
-  it('mentions fandom search and scientific synthesis', () => {
+  it('mentions fandom search and scientific/conceptual synthesis', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
     expect(instructions).toContain('myheroacademia.fandom.com')
-    expect(instructions).toContain('Scientific synthesis')
+    expect(instructions).toContain('Scientific / conceptual synthesis')
+    expect(instructions).toContain(
+      'third organism, machine, material, mythic creature, or phenomenon',
+    )
+    expect(instructions).toContain('mechanically earned by the description')
+    expect(instructions).toContain('do not force parent keywords into en.name')
+    expect(instructions).toContain(
+      'Rolled type, range, facets, tier, and strategy remain authoritative',
+    )
     expect(instructions).not.toContain('Softening + Barrier')
+  })
+
+  it('adapts third-concept naming illustrations to the rolled register', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const buildWithRegister = (nameRegister: string) =>
+      buildFusionEnglishInstructions({
+        ...fusion,
+        roll: { ...fusion.roll, nameRegister },
+      })
+
+    expect(buildWithRegister('blunt')).toContain('Cow + Horns -> bull -> "Bull"')
+    expect(buildWithRegister('blunt')).toContain(
+      'Magnetism + Projectile -> railgun -> "Railgun"',
+    )
+    expect(buildWithRegister('blunt')).toContain(
+      'Sand + Lightning -> fulgurite -> "Fulgurite"',
+    )
+    expect(buildWithRegister('dramatic')).toContain(
+      'Lion + Eagle -> griffin -> "Skyclaw"',
+    )
+    expect(buildWithRegister('dramatic')).toContain(
+      'Engine + Jet/Air -> turbofan -> "Afterburner"',
+    )
+    expect(buildWithRegister('dramatic')).toContain(
+      'Centipede + Armor -> armored arthropod -> "Arthroplate"',
+    )
+    expect(buildWithRegister('pun')).toContain(
+      'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
+    )
+    expect(buildWithRegister('pun')).toContain(
+      'Steam + Strength -> hydraulic press -> "Pressing Issue"',
+    )
+    expect(buildWithRegister('pun')).toContain(
+      'Octopus + Camouflage -> mimic octopus -> "Inkognito"',
+    )
+    expect(buildWithRegister('meme-adjacent')).toContain(
+      'Ant + Telepathy -> colony mind -> "Group Chat"',
+    )
+    expect(buildWithRegister('meme-adjacent')).toContain(
+      'Shark + Electricity -> electroreception -> "Shark Wi-Fi"',
+    )
+    expect(buildWithRegister('absurd-long')).toContain(
+      'Octopus + Camouflage -> mimic octopus -> "Octopus Body Pretends To Be Stuff"',
+    )
+    expect(buildWithRegister('absurd-long')).toContain(
+      'Sand + Lightning -> fulgurite -> "Lightning Makes Glass Under His Feet"',
+    )
+    expect(buildWithRegister('blunt')).toContain('if the earned mechanism resolves')
+    expect(buildWithRegister('blunt')).toContain('selected register')
+    expect(buildWithRegister('blunt')).toContain('These are models, not preferred outputs')
+    expect(buildWithRegister('blunt')).not.toContain('"Bull Rush"')
   })
 
   it('requires description-first copy and clear naming', () => {

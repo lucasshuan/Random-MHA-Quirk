@@ -43,17 +43,87 @@ Research (when web_search is available):
 - Allowed domains only: ${FUSION_WEB_SEARCH_DEFAULT_DOMAINS.join(', ')} (or domains configured for this run).
 - Do not use user location. Keep searches minimal — confirm parents, not essay research.
 
-Scientific synthesis (when it strengthens the hybrid):
+Scientific / conceptual synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
-- The result need not echo both parent names literally if a principled synthesis fits better — like canon fusions where parents combine into a third idea (e.g. sweat chemistry leading to explosions, or asymmetric expression of two lineages).
-- Rolled type, range, facets, tier, and strategy still govern the entry; science explains how the single Quirk works, not an extra unrelated power.`
+- When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain; Sand + Lightning -> Fulgurite).
+- The third concept must be mechanically earned by the description from both parent operations; do not force parent keywords into en.name when a cleaner derivative fits.
+- Rolled type, range, facets, tier, and strategy remain authoritative; a derivative expresses the single mechanism and never grants an unrelated power.`
 
 const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
 
 ${buildFusionEnglishTierStaticBlock()}`
 
+const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
+  pun: [
+    'Cow + Horns -> bull -> "Bull Rush"',
+    'Frog + Adhesive -> tree frog -> "Stick Landing"',
+    'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
+    'Engine + Jet/Fan -> turbofan -> "Fan Service"',
+    'Steam + Strength -> hydraulic press -> "Pressing Issue"',
+    'Dog + Fire -> hellhound/hot dog -> "Hot Dog"',
+    'Horse + Wings -> pegasus -> "Stable Flight"',
+    'Octopus + Camouflage -> mimic octopus -> "Inkognito"',
+    'Ant + Telepathy -> colony mind -> "Ant-tenna"',
+    'Battery + Muscle -> actuator -> "Flex Capacitor"',
+  ],
+  blunt: [
+    'Cow + Horns -> bull -> "Bull"',
+    'Rabbit + Speed -> jackrabbit -> "Jackrabbit"',
+    'Lion + Eagle -> griffin -> "Griffin"',
+    'Engine + Electricity -> hybrid drive -> "Hybrid Drive"',
+    'Magnetism + Projectile -> railgun -> "Railgun"',
+    'Bat + Soundwave -> echolocation -> "Echolocation"',
+    'Horse + Wings -> pegasus -> "Pegasus"',
+    'Bird + Fire -> phoenix -> "Phoenix"',
+    'Sand + Lightning -> fulgurite -> "Fulgurite"',
+    'Rubber + Heat -> vulcanization -> "Volcano"',
+  ],
+  dramatic: [
+    'Lion + Eagle -> griffin -> "Skyclaw"',
+    'Bird + Fire -> phoenix -> "Phoenix"',
+    'Wolf + Shadow -> Fenrir -> "Black Fenrir"',
+    'Magnetism + Projectile -> railgun -> "Gauss Driver"',
+    'Engine + Jet/Fan -> turbofan -> "Afterburner"',
+    'Horse + Wings -> pegasus -> "Heaven Hoof"',
+    'Goat + Fire -> Baphomet -> "Baphomet"',
+    'Centipede + Armor -> armored arthropod -> "Arthroplate"',
+    'Sand + Lightning -> fulgurite -> "Thunderstone"',
+    'Octopus + Camouflage -> mimic octopus -> "False Form"',
+  ],
+  'absurd-long': [
+    'Cow + Horns -> bull -> "Bull With His Own Battering Ram"',
+    'Ant + Telepaphy -> colony mind -> "Everybody Is A Big Happy Family',
+    'Horse + Wings -> pegasus -> "Horse That Forgot Gravity"',
+    'Engine + Jet/Fan -> turbofan -> "Turbofans Where His Calves Should Be"',
+    'Steam + Strength -> hydraulic press -> "Arms That Work Like Hydraulic Presses"',
+    'Serpent + Rooster -> cockatrice -> "Snake Chicken of Doom"',
+    'Goat + Fish -> capricorn -> "Goat Mermaid Situation"',
+    'Engine +  Electricity -> hybrid drive -> "Whole-Body Hybrid Engine System"',
+    'Mushroom + Mind Control -> cordyceps -> "Mushrooms That Borrow Other People\'s Bodies"',
+  ],
+  'meme-adjacent': [
+    'Cow + Horns -> bull -> "Got Beef"',
+    'Rabbit + Speed -> jackrabbit -> "Zoomies"',
+    'Ant + Telepathy -> colony mind -> "Group Chat"',
+    'Engine + Electricity -> hybrid drive -> "Vroom Vroom"',
+    'Magnetism + Projectile -> railgun -> "Yeet Cannon"',
+    'Dog + Fire -> hellhound/hot dog -> "Hot Dog"',
+    'Frog + Adhesive -> tree frog -> "Wall Guy"',
+    'Octopus + Camouflage -> mimic octopus -> "Not An Octopus"',
+    'Bird + Fire -> phoenix -> "Try Again"',
+    'Shark + Electricity -> electroreception -> "Shark Wi-Fi"',
+  ],
+}
+
 function formatParentBlock(parent: FusionAgentInput['parents'][number]): string {
   return `- ${parent.name} (${parent.id}): tier ${parent.tier}, ${parent.type}, range ${parent.range}, facets [${parent.facets.join(', ')}]. ${parent.description}`
+}
+
+function formatConceptualSynthesisNameHint(nameRegister: string): string {
+  const examples =
+    CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES[nameRegister] ??
+    ['use a familiar derived title in the selected register']
+  return `Conceptual-resolution option: if the earned mechanism resolves into a recognizable third concept, title that concept in the selected register rather than forcing parent keywords. Illustrative patterns for this register: ${examples.join('; ')}. These are models, not preferred outputs: use one only when it fits and is not forbidden; otherwise invent a different fitting derivative. If you can't find a fitting derivative, feel free to use other conceptualization strategies.`
 }
 
 function normalizeTitle(name: string): string {
@@ -119,6 +189,7 @@ ${roll.antiMashupRule}${antiMashupExample}
 ### Name register: ${roll.nameRegister}
 ${roll.nameRegisterInstruction}
 Examples: ${roll.nameExamples.join(', ')}
+${formatConceptualSynthesisNameHint(roll.nameRegister)}
 
 ### Utility
 ${roll.utilityNudge}

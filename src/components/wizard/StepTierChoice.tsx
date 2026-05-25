@@ -69,14 +69,14 @@ export function StepTierChoice({
             return (
               <div
                 key={tier}
-                className={`tier-toggle-wrap type-step-choice type-step-choice-${index + 1}`}
+                className="tier-toggle-wrap"
               >
                 <span className="tier-toggle-tip" id={tipId} role="tooltip">
                   <span className="tier-toggle-tip-text">{t(`tier.tips.${tier}`)}</span>
                 </span>
                 <button
                   type="button"
-                  className={`tier-toggle tier-toggle-${TIER_TONES[tier]} ${isSelected ? 'tier-toggle-active' : ''}`}
+                  className={`tier-toggle type-step-choice type-step-choice-${index + 1} tier-toggle-${TIER_TONES[tier]} ${isSelected ? 'tier-toggle-active' : ''}`}
                   aria-pressed={isSelected}
                   aria-describedby={tipId}
                   onClick={() => onSelectedTiersChange(toggleTier(selectedTiers, tier))}

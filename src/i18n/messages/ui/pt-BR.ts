@@ -137,6 +137,7 @@ export const ptBR: Messages = {
   },
   share: {
     action: 'Compartilhar resultado',
+    waitHybrid: 'Gerando híbrido…',
     shareTitle: 'Resultado — Individualidade Aleatória',
     copied: 'Link copiado',
     shared: 'Compartilhado',

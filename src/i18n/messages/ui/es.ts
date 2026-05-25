@@ -137,6 +137,7 @@ export const es: Messages = {
   },
   share: {
     action: 'Compartir resultado',
+    waitHybrid: 'Generando híbrido…',
     shareTitle: 'Resultado — Don Aleatorio',
     copied: 'Enlace copiado',
     shared: 'Compartido',

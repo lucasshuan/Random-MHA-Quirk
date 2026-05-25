@@ -55,7 +55,7 @@ function clampFromTarget(target: EventTarget | null) {
 
   const tierWrap = target.closest<HTMLElement>('.tier-toggle-wrap')
   if (tierWrap) {
-    clampTierTip(tierWrap)
+    window.requestAnimationFrame(() => clampTierTip(tierWrap))
   }
 }
 

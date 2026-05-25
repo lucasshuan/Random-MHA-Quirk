@@ -545,6 +545,14 @@
   animation-delay: 170ms;
 }
 
+.type-step-panel .type-step-choice-5 {
+  animation-delay: 200ms;
+}
+
+.type-step-panel .type-step-choice-6 {
+  animation-delay: 230ms;
+}
+
 .type-step-panel .type-step-routes {
   animation-delay: 200ms;
 }
@@ -803,13 +811,23 @@
   border-top: 0;
   border-left: 0;
   background: #ffd84d;
-  transform: rotate(45deg);
+  opacity: 0;
+  transform: translateY(4px) rotate(45deg);
+  transition:
+    opacity 180ms ease,
+    transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .tier-toggle-wrap:hover .tier-toggle-tip,
 .tier-toggle-wrap:focus-within .tier-toggle-tip {
   opacity: 1;
   transform: translateX(calc(-50% + var(--tooltip-shift-x, 0px))) translateY(0) scale(1);
+}
+
+.tier-toggle-wrap:hover .tier-toggle-tip::after,
+.tier-toggle-wrap:focus-within .tier-toggle-tip::after {
+  opacity: 1;
+  transform: translateY(0) rotate(45deg);
 }
 
 /* S — ciano forte */
@@ -1949,7 +1967,8 @@
   .lang-btn[data-tooltip]::after,
   .social-btn[data-tooltip]::after,
   .chip-facet[data-tooltip]::after,
-  .tier-toggle-tip {
+  .tier-toggle-tip,
+  .tier-toggle-tip::after {
     transition: opacity 120ms linear;
   }
 }
@@ -3146,6 +3165,23 @@
 .result-toolbar {
   display: flex;
   gap: 0.65rem;
+}
+
+.result-share-btn {
+  border-color: rgba(34, 211, 238, 0.32);
+  color: rgba(120, 230, 255, 0.95);
+}
+
+.result-share-btn:hover:not(:disabled) {
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.14);
+  color: #fff;
+  box-shadow: 0 0 22px rgba(34, 211, 238, 0.24);
+}
+
+.result-share-btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .result-share-btn svg {

@@ -130,6 +130,7 @@ export const en = {
   },
   share: {
     action: 'Share result',
+    waitHybrid: 'Generating hybrid…',
     shareTitle: 'Random MHA Quirk result',
     copied: 'Link copied',
     shared: 'Shared',

@@ -119,8 +119,13 @@ function ResultReveal({
     }
   }, [labels, skipReveal])
 
+  const canShare =
+    Boolean(shareUrl) &&
+    (!isHybridResult(result) ||
+      (fusionPhase === 'idle' && Boolean(result.fusionEntry)))
+
   async function handleShare() {
-    if (!shareUrl) {
+    if (!canShare) {
       return
     }
 
@@ -202,6 +207,15 @@ function ResultReveal({
         >
           ←
         </button>
+        <button
+          type="button"
+          className="icon-btn"
+          onClick={onRestart}
+          aria-label={t('nav.restart')}
+          data-tooltip={t('nav.restart')}
+        >
+          ⌂
+        </button>
         {isHybridResult(result) ? (
           <button
             type="button"
@@ -234,21 +248,18 @@ function ResultReveal({
             type="button"
             className="icon-btn result-share-btn"
             onClick={() => void handleShare()}
+            disabled={!canShare}
             aria-label={t('share.action')}
-            data-tooltip={shareTooltip ?? t('share.action')}
+            data-tooltip={
+              shareTooltip ??
+              (!canShare && isHybridResult(result)
+                ? t('share.waitHybrid')
+                : t('share.action'))
+            }
           >
             <LuShare2 aria-hidden="true" />
           </button>
         ) : null}
-        <button
-          type="button"
-          className="icon-btn"
-          onClick={onRestart}
-          aria-label={t('nav.restart')}
-          data-tooltip={t('nav.restart')}
-        >
-          ⌂
-        </button>
       </div>
     </>
   )

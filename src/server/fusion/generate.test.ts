@@ -83,7 +83,6 @@ const cachedEntry: FusionCacheEntry = {
   roll: {
     strategyKey: 'synergy',
     nameRegister: 'blunt',
-    utilityNiche: 'plain wording',
     antiMashupRuleKey: 'modifier-cost',
   },
 }

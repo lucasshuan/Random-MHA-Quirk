@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { buildFusionAgentInput } from '../agent-input'
 import type { FusionCatalogQuirk } from '../catalog'
+import { REGISTER_DEFS } from '../prompts/naming'
+import { formatTypeDisciplineBlock } from '../prompts/type-discipline'
 import { buildFusionEnglishInstructions } from './instructions-en'
 
 const quirkA: FusionCatalogQuirk = {
@@ -25,6 +27,23 @@ const quirkB: FusionCatalogQuirk = {
   description: 'Harden body parts.',
 }
 
+function buildWithNameRegister(
+  key: (typeof REGISTER_DEFS)[number]['key'],
+): string {
+  const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+  const register = REGISTER_DEFS.find((definition) => definition.key === key)!
+
+  return buildFusionEnglishInstructions({
+    ...fusion,
+    roll: {
+      ...fusion.roll,
+      nameRegister: register.key,
+      nameRegisterInstruction: register.instruction,
+      nameExamples: register.examples,
+    },
+  })
+}
+
 describe('buildFusionEnglishInstructions', () => {
   it('embeds fixed mechanics and strategy from FusionAgentInput', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
@@ -34,7 +53,7 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain(`- tier: ${fusion.mechanics.tier}`)
     expect(instructions).not.toContain('- origin:')
     expect(instructions).toContain(fusion.roll.strategyInstruction)
-    expect(instructions).toContain(fusion.roll.utilityNudge)
+    expect(instructions).not.toContain('### Utility')
     expect(instructions).toContain('Permeation')
     expect(instructions).toContain('Hardening')
   })
@@ -77,57 +96,50 @@ describe('buildFusionEnglishInstructions', () => {
   })
 
   it('adapts third-concept naming illustrations to the rolled register', () => {
-    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
-    const buildWithRegister = (nameRegister: string) =>
-      buildFusionEnglishInstructions({
-        ...fusion,
-        roll: { ...fusion.roll, nameRegister },
-      })
-
-    expect(buildWithRegister('blunt')).toContain('Cow + Horns -> bull -> "Bull"')
-    expect(buildWithRegister('blunt')).toContain(
+    expect(buildWithNameRegister('blunt')).toContain('Cow + Horns -> bull -> "Bull"')
+    expect(buildWithNameRegister('blunt')).toContain(
       'Magnetism + Projectile -> railgun -> "Railgun"',
     )
-    expect(buildWithRegister('blunt')).toContain(
+    expect(buildWithNameRegister('blunt')).toContain(
       'Sand + Lightning -> fulgurite -> "Fulgurite"',
     )
-    expect(buildWithRegister('dramatic')).toContain(
+    expect(buildWithNameRegister('dramatic')).toContain(
       'Lion + Eagle -> griffin -> "Skyclaw"',
     )
-    expect(buildWithRegister('dramatic')).toContain(
+    expect(buildWithNameRegister('dramatic')).toContain(
       'Engine + Jet/Fan -> turbofan -> "Afterburner"',
     )
-    expect(buildWithRegister('dramatic')).toContain(
+    expect(buildWithNameRegister('dramatic')).toContain(
       'Centipede + Armor -> armored arthropod -> "Arthroplate"',
     )
-    expect(buildWithRegister('pun')).toContain(
+    expect(buildWithNameRegister('pun')).toContain(
       'Beetle + Explosion -> bombardier beetle -> "Shell Shock"',
     )
-    expect(buildWithRegister('pun')).toContain(
+    expect(buildWithNameRegister('pun')).toContain(
       'Steam + Muscle -> hydraulic press -> "Pressing Issue"',
     )
-    expect(buildWithRegister('pun')).toContain(
+    expect(buildWithNameRegister('pun')).toContain(
       'Octopus + Camouflage -> mimic octopus -> "Inkognito"',
     )
-    expect(buildWithRegister('meme-adjacent')).toContain(
+    expect(buildWithNameRegister('meme-adjacent')).toContain(
       'Ant + Telepathy -> colony mind -> "Group Chat"',
     )
-    expect(buildWithRegister('meme-adjacent')).toContain(
+    expect(buildWithNameRegister('meme-adjacent')).toContain(
       'Shark + Electricity -> electroreception -> "Shark Wi-Fi"',
     )
-    expect(buildWithRegister('absurd-long')).toContain(
+    expect(buildWithNameRegister('absurd-long')).toContain(
       'Serpent + Rooster -> cockatrice -> "Snake Chicken of Doom"',
     )
-    expect(buildWithRegister('absurd-long')).toContain(
+    expect(buildWithNameRegister('absurd-long')).toContain(
       'Mushroom + Mind Control -> cordyceps -> "Mushrooms That Borrow Other People\'s Bodies"',
     )
-    expect(buildWithRegister('blunt')).toContain('if the earned mechanism resolves')
-    expect(buildWithRegister('blunt')).toContain('selected register')
-    expect(buildWithRegister('blunt')).toContain('These are models, not preferred outputs')
-    expect(buildWithRegister('blunt')).not.toContain('"Bull Rush"')
+    expect(buildWithNameRegister('blunt')).toContain('if the earned mechanism resolves')
+    expect(buildWithNameRegister('blunt')).toContain('selected register')
+    expect(buildWithNameRegister('blunt')).toContain('These are models, not preferred outputs')
+    expect(buildWithNameRegister('blunt')).not.toContain('"Bull Rush"')
   })
 
-  it('places tier target before utility and forces weak-tier guidance for C and D', () => {
+  it('places tier target before strategy and forces weak-tier guidance for C and D', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const cInstructions = buildFusionEnglishInstructions({
       ...fusion,
@@ -140,7 +152,7 @@ describe('buildFusionEnglishInstructions', () => {
 
     for (const instructions of [cInstructions, dInstructions]) {
       expect(instructions.indexOf('## Tier target for this variant')).toBeLessThan(
-        instructions.indexOf('### Utility'),
+        instructions.indexOf('### Fusion strategy'),
       )
       expect(instructions).toContain('overrides generic detail')
       expect(instructions).toContain("it's not convoluted")
@@ -182,18 +194,20 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('do not add arbitrary targets')
   })
 
-  it('instructs the model to use question-mark names only for natural relevant puns', () => {
-    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
-    const instructions = buildFusionEnglishInstructions(fusion)
+  it('renders question-title guidance only for compatible rolled registers', () => {
+    const pun = buildWithNameRegister('pun')
+    const memeAdjacent = buildWithNameRegister('meme-adjacent')
+    const blunt = buildWithNameRegister('blunt')
+    const dramatic = buildWithNameRegister('dramatic')
 
-    expect(instructions).toContain('Question marks in en.name are exceptional')
-    expect(instructions).toContain('default to a non-question title')
-    expect(instructions).toContain('naturally phrased, punny question')
-    expect(instructions).toContain('finished quirk mechanism')
-    expect(instructions).toContain('"Got Milk?"')
-    expect(instructions).toContain('"Who, Me?"')
-    expect(instructions).toContain('unexpectedly apt')
-    expect(instructions).toContain('Never force a question')
+    expect(pun).toContain('A question title is exceptional')
+    expect(pun).toContain('finished mechanism')
+    expect(pun).toContain('"Got Milk?"')
+    expect(memeAdjacent).toContain('A question title is exceptional')
+    expect(memeAdjacent).toContain('"Who, Me?"')
+    expect(blunt).not.toContain('question title is exceptional')
+    expect(dramatic).not.toContain('question title is exceptional')
+    expect(pun).not.toContain('Canon-style reference names (any register)')
   })
 
   it('includes inheritance criteria and treats facets as presentation only', () => {
@@ -233,25 +247,42 @@ describe('buildFusionEnglishInstructions', () => {
       first.indexOf('### Fixed mechanics'),
     )
     expect(first.indexOf('## Tier target for this variant')).toBeLessThan(
-      first.indexOf('### Utility'),
+      first.indexOf('### Fusion strategy'),
     )
     expect(first.slice(0, firstRequestIndex)).toBe(second.slice(0, secondRequestIndex))
-    expect(first.indexOf('Question marks in en.name are exceptional')).toBeLessThan(
-      firstRequestIndex,
-    )
+    expect(first.slice(0, firstRequestIndex)).not.toContain('question title is exceptional')
+    expect(first).not.toContain('Canon-style reference names (any register)')
     expect(first).not.toContain('seed seed-x')
   })
 
-  it('explains only the selected output type in description focus', () => {
+  it('renders the fixed type reference before detailed selected-type rules', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const emitterRules = formatTypeDisciplineBlock('Emitter')
+      .split('\n')
+      .slice(1)
+      .map((line) => line.replace(/^- /, ''))
     const instructions = buildFusionEnglishInstructions({
       ...fusion,
       mechanics: { ...fusion.mechanics, type: 'Emitter' },
+      constraints: { ...fusion.constraints, typeDiscipline: emitterRules },
     })
+    const fixedReference = instructions.indexOf('## Quirk type reference')
+    const requestSpecification = instructions.indexOf('## Request-specific specification')
+    const selectedRules = instructions.indexOf(
+      '### Selected output type: Emitter (must follow)',
+    )
+    const tierTarget = instructions.indexOf('## Tier target for this variant')
+    const selectedRulesBlock = instructions.slice(selectedRules, tierTarget)
 
-    expect(instructions).toContain('Emitter: state the outward effect')
-    expect(instructions).not.toContain('Mutant: state the permanent body trait')
-    expect(instructions).not.toContain('Transformation: state what changes while active')
+    expect(fixedReference).toBeLessThan(requestSpecification)
+    expect(instructions).toContain('Emitter:')
+    expect(instructions).toContain('Transformation:')
+    expect(instructions).toContain('Mutant:')
+    expect(selectedRules).toBeGreaterThan(instructions.indexOf('### Fixed mechanics'))
+    expect(selectedRules).toBeLessThan(tierTarget)
+    expect(selectedRulesBlock).toContain('sends an effect outward from the body')
+    expect(selectedRulesBlock).not.toContain('temporarily changes the user')
+    expect(selectedRulesBlock).not.toContain('stable unusual anatomy')
   })
 
   it('lists described prior titles once instead of repeating them as forbidden names', () => {

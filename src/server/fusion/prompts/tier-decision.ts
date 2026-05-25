@@ -74,7 +74,7 @@ export function buildFusionTierWeakSimplicityBlock(tier: 'C' | 'D'): string {
 - Make sure it's not convoluted — like a plain catalog entry with one rule stated directly.
 - Prefer one short sentence; at most two plain sentences only when the rolled type needs trait plus effect (e.g. Mutant body tell, then what it does).
 - Use objective "Allows the user to..." / "Grants..." / "The user can..." wording; name the trait or activation once, then one narrow consequence.
-- Do not add costs, limits, facet padding, scientific-synthesis elaboration, or utility nudges below — stop as soon as the lone effect is clear.
+- Do not add costs, limits, facet padding, or scientific-synthesis elaboration below — stop as soon as the lone effect is clear.
 - Do not use the war-arc benchmark or "default suspicion" escalators; stay weak and narrow.${dFlavor}`
 }
 
@@ -84,7 +84,7 @@ export function buildFusionTierOmegaBlock(): string {
 - This fusion rolled **Ω (Special)** — intentionally rare. The **effect** stays plot-breaking (steal/copy quirks, rewrite rules on touch, time stop, line-of-sight full stop, etc.); the **write-up** stays as plain as a catalog line.
 - Prefer one short sentence; at most two plain sentences only when the rolled type needs trait plus effect (e.g. Mutant body tell, then what it does).
 - Use objective "Allows the user to..." / "Grants..." / "The user can..." wording; state the overpower rule once, then stop.
-- Do not add costs, drawbacks, counterplay, stamina tax, facet padding, scientific-synthesis elaboration, or utility nudges below — **do not think through limitations** in the description.
+- Do not add costs, drawbacks, counterplay, stamina tax, facet padding, or scientific-synthesis elaboration below — **do not think through limitations** in the description.
 - Do not use the war-arc benchmark or "default suspicion" escalators in the prose; do not tone the mechanism down to S-tier.
 - Still one NEW birth Quirk with one governing mechanism from both parents — not two kits stapled together.`
 }

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import type { QuirkType } from '@/types/quirk'
 import { deriveFusionOutputFromSeed } from './output'
 
 const TYPE_FACET_POOLS = {
@@ -33,6 +34,27 @@ const TYPE_FACET_POOLS = {
     'Stockpile',
   ],
 } as const
+
+function countTypes(parentTypes: [QuirkType, QuirkType]): Record<QuirkType, number> {
+  const counts: Record<QuirkType, number> = {
+    Emitter: 0,
+    Transformation: 0,
+    Mutant: 0,
+  }
+
+  for (let i = 0; i < 1_000; i++) {
+    const roll = deriveFusionOutputFromSeed(
+      `type-inheritance-${parentTypes.join('-')}-${i}`,
+      'parent-a',
+      'parent-b',
+      [],
+      { types: parentTypes },
+    )
+    counts[roll.type]++
+  }
+
+  return counts
+}
 
 describe('deriveFusionOutputFromSeed', () => {
   it('is deterministic for the same seed and parent pair', () => {
@@ -111,6 +133,57 @@ describe('deriveFusionOutputFromSeed', () => {
 
     expect(typeHits.length).toBeGreaterThan(40)
     expect(rangeHits.length).toBeGreaterThan(40)
+  })
+
+  it('reinforces same-type inheritance while keeping the dominant hierarchy', () => {
+    const emitterEmitter = countTypes(['Emitter', 'Emitter'])
+    const transformationTransformation = countTypes([
+      'Transformation',
+      'Transformation',
+    ])
+    const mutantMutant = countTypes(['Mutant', 'Mutant'])
+
+    expect(emitterEmitter.Emitter).toBeGreaterThan(emitterEmitter.Transformation)
+    expect(transformationTransformation.Transformation).toBeGreaterThan(
+      transformationTransformation.Mutant,
+    )
+    expect(mutantMutant.Mutant).toBeGreaterThan(mutantMutant.Transformation)
+  })
+
+  it('makes Emitter dominant and Mutant recessive in mixed inheritance', () => {
+    const emitterTransformation = countTypes(['Emitter', 'Transformation'])
+    const emitterMutant = countTypes(['Emitter', 'Mutant'])
+    const transformationMutant = countTypes(['Transformation', 'Mutant'])
+
+    expect(emitterTransformation.Emitter).toBeGreaterThan(
+      emitterTransformation.Transformation,
+    )
+    expect(emitterMutant.Emitter).toBeGreaterThan(emitterMutant.Transformation)
+    expect(transformationMutant.Transformation).toBeGreaterThan(
+      transformationMutant.Mutant,
+    )
+    expect(emitterMutant.Mutant).toBeLessThan(emitterMutant.Transformation)
+    expect(transformationMutant.Mutant).toBeGreaterThan(
+      transformationMutant.Emitter,
+    )
+  })
+
+  it('retains rare off-type outcomes for every parent-type pairing', () => {
+    const pairs: [QuirkType, QuirkType][] = [
+      ['Emitter', 'Emitter'],
+      ['Emitter', 'Transformation'],
+      ['Emitter', 'Mutant'],
+      ['Transformation', 'Transformation'],
+      ['Transformation', 'Mutant'],
+      ['Mutant', 'Mutant'],
+    ]
+
+    for (const pair of pairs) {
+      const counts = countTypes(pair)
+      expect(counts.Emitter).toBeGreaterThan(0)
+      expect(counts.Transformation).toBeGreaterThan(0)
+      expect(counts.Mutant).toBeGreaterThan(0)
+    }
   })
 
   it('keeps wildcard facets compatible with the rolled type', () => {

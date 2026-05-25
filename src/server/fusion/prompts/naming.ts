@@ -18,26 +18,11 @@ export interface FusionNameRegisterDefinition extends SelectedFusionNameRegister
   weight: number
 }
 
-export const FUSION_CANON_NAME_REFERENCES = [
-  'Pop Off',
-  'Comic',
-  'Meatball',
-  'Beams From His Eyes',
-  'Gigantic Spinning Flying Turtle',
-  'Sugar Rush',
-  'Brainwashing',
-  'Zero Gravity',
-]
-
 export const FUSION_NAMING_RULES = [
-  'Write en.name only after en.description — the title must give a clear idea of what the quirk does even if it is a pun, joke, or absurd-long register.',
-  'en.name uses a different voice than en.description — joke or cadence in the title, encyclopedic body text.',
-  'en.name must NOT read like a fantasy RPG skill, dry academic jargon, or "[Parent theme adjective] + [Parent theme noun]" mashup. Short plain nouns that name the earned third concept (e.g. Railgun, Steam, Griffin) are fine; avoid textbook field labels and stacked technical adjectives.',
+  'Write en.name only after en.description — the title must give a clear idea of what the quirk does while following the selected name register.',
+  'Keep en.description objective and encyclopedic; use en.name for the selected title voice.',
   'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
-  'Question marks in en.name are exceptional: default to a non-question title. Use one ? only when the title is a naturally phrased, punny question whose joke is made relevant by the finished quirk mechanism. "Got Milk?" and "Who, Me?" are good models only when the new quirk makes that question unexpectedly apt. Never force a question or add ? merely for cadence, attitude, or meme flavor; choose a stronger non-question name instead.',
-  'Other punctuation in en.name: one comma clause may sell spoken cadence unless register is absurd-long. No exclamation marks, ellipses, or quotes in the title.',
-  'Funny names must still land as a joke, phrase twist, mental image, or spoken cadence — not random interjection + mechanic noun (e.g. avoid "Oops, Cushion" unless the full phrase is the joke).',
-  'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title or a phrase someone could say?" If no, replace once in the SAME name register.',
+  'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title in the selected register?" If no, replace it within that register.',
 ]
 
 export const FUSION_NAME_REGISTER_KEYS = [
@@ -57,11 +42,12 @@ export const REGISTER_DEFS = [
     key: 'pun',
     weight: 26,
     instruction:
-      'Wordplay first: homophone, double meaning, or sound-alike joke. The pun can be subtle; it must land without reading the description.',
+      'Wordplay first: homophone, double meaning, or sound-alike joke. The pun can be subtle; it must land without reading the description. A question title is exceptional: use one ? only for a naturally phrased pun made apt by the finished mechanism, such as "Got Milk?" when relevant; otherwise choose a non-question pun. Do not use random interjection + mechanic noun as a substitute for a joke.',
     examples: [
       'Sole Survivor',
       'Pane In The Glass',
       'Current Events',
+      'Got Milk?',
       'Extend-o-Hair',
       'Gale Gale',
       'Leafipulation',
@@ -116,7 +102,7 @@ export const REGISTER_DEFS = [
     key: 'absurd-long',
     weight: 11,
     instruction:
-      'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 8 words.',
+      'Ridiculously long or specific phrase — commit to the bit. 4+ words is fine if it stays funny or memorable. No more than 8 words. The specific phrase must itself create the memorable image; do not bolt random joke words onto a mechanism.',
     examples: [
       'Gigantic Spinning Flying Turtle',
       'Beams From His Eyes',
@@ -133,13 +119,14 @@ export const REGISTER_DEFS = [
     key: 'meme-adjacent',
     weight: 11,
     instruction:
-      'Internet-plain, cheeky, or meme-adjacent — blunt humor, unexpected noun, or title that sounds like a running joke.',
+      'Internet-plain, cheeky, or meme-adjacent — blunt humor, unexpected noun, or title that sounds like a running joke. A question title is exceptional: use one ? only for a naturally phrased joke made apt by the finished mechanism, such as "Who, Me?" when relevant; otherwise choose a non-question title. The humor must come from a phrase twist or mental image, not random interjection + mechanic noun.',
     examples: [
       'Sugar Rush',
       'Chest Hair',
       'Binging Ball',
       'Stress',
       'Sloshed',
+      'Who, Me?',
       'Hula Hoop',
       'Pop Off',
       'Day Dream',

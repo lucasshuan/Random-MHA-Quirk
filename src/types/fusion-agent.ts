@@ -44,7 +44,6 @@ export interface FusionAgentInput {
     nameRegister: string
     nameRegisterInstruction: string
     nameExamples: string[]
-    utilityNudge: string
   }
   constraints: {
     descriptionMinLength: number

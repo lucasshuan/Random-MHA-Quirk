@@ -4,6 +4,7 @@ import {
   analyzeParentPair,
   formatStrategyCoherenceGuidance,
   FUSION_STRATEGY_KEYS,
+  resolveFusionStrategyForKey,
   selectFusionStrategy,
 } from './strategy'
 
@@ -34,6 +35,34 @@ describe('analyzeParentPair', () => {
 })
 
 describe('selectFusionStrategy', () => {
+  it('exposes only the supported strategy set', () => {
+    expect(FUSION_STRATEGY_KEYS).toEqual([
+      'synergy',
+      'dominant-a',
+      'dominant-b',
+      'failure-mode',
+    ])
+  })
+
+  it('falls back when legacy roll metadata names a retired strategy', () => {
+    const a = mockQuirk({ id: 'a', name: 'A' })
+    const b = mockQuirk({ id: 'b', name: 'B' })
+    const retired = [
+      'byproduct',
+      'oscillation',
+      'range-meet',
+      'emission-bridge',
+      'body-weave',
+      'facet-anchor',
+    ]
+
+    for (const key of retired) {
+      expect(FUSION_STRATEGY_KEYS).toContain(
+        resolveFusionStrategyForKey(key, a, b).key,
+      )
+    }
+  })
+
   it('can vary across parent ids even when mechanics are identical', () => {
     const pairA = [
       mockQuirk({ id: 'alpha-a', name: 'Alpha A' }),
@@ -54,44 +83,7 @@ describe('selectFusionStrategy', () => {
     expect(differences.length).toBeGreaterThan(0)
   })
 
-  it('excludes oscillation when both parents are Mutant', () => {
-    const a = mockQuirk({ id: 'beast', name: 'Beast', type: 'Mutant', range: 'Self' })
-    const b = mockQuirk({
-      id: 'bat',
-      name: 'Bat',
-      type: 'Mutant',
-      range: 'Self',
-      facets: ['Anthropomorphic', 'Mobility'],
-    })
-
-    const keys = new Set(
-      Array.from({ length: 80 }, (_, i) =>
-        selectFusionStrategy(`seed-${i}`, a, b).key,
-      ),
-    )
-
-    expect(keys.has('oscillation')).toBe(false)
-    expect(keys.has('body-weave')).toBe(true)
-  })
-
-  it('unlocks facet-anchor when parents share a facet', () => {
-    const a = mockQuirk({ id: 'acid', name: 'Acid', facets: ['Elemental', 'Emission'] })
-    const b = mockQuirk({
-      id: 'air-cannon',
-      name: 'Air Cannon',
-      facets: ['Elemental', 'Control'],
-    })
-
-    const keys = new Set(
-      Array.from({ length: 80 }, (_, i) =>
-        selectFusionStrategy(`other-${i}`, a, b).key,
-      ),
-    )
-
-    expect(keys.has('facet-anchor')).toBe(true)
-  })
-
-  it('picks eligible strategies with uniform weight when no prior siblings', () => {
+  it('picks selectable strategies with uniform weight when no prior siblings', () => {
     const a = mockQuirk({
       id: 'acid',
       name: 'Acid',
@@ -119,7 +111,7 @@ describe('selectFusionStrategy', () => {
     expect(Math.max(...values) / Math.min(...values)).toBeLessThan(5)
   })
 
-  it('selects unused eligible strategies while siblings still have unused options', () => {
+  it('selects unused strategies while siblings still have unused options', () => {
     const a = mockQuirk({
       id: 'tail',
       name: 'Tail',

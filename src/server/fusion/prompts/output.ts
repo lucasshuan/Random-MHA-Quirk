@@ -1,6 +1,6 @@
 import type { QuirkFacet, QuirkRange, QuirkType } from '@/types/quirk'
 import { QUIRK_FACETS, QUIRK_RANGES, QUIRK_TYPES } from '../constants'
-import { hashSeed } from './seed-hash'
+import { hashSeed, pickWeightedFromHash } from './seed-hash'
 import { fusionRollKey } from './roll-key'
 
 export interface FusionOutputRoll {
@@ -57,6 +57,56 @@ const SOURCE_BOUND_FACETS = new Set<QuirkFacet>([
   'Biological',
 ])
 
+type ParentTypePair =
+  | 'Emitter+Emitter'
+  | 'Emitter+Transformation'
+  | 'Emitter+Mutant'
+  | 'Transformation+Transformation'
+  | 'Transformation+Mutant'
+  | 'Mutant+Mutant'
+
+interface WeightedQuirkType {
+  type: QuirkType
+  weight: number
+}
+
+// Dominance-like inheritance: Emitter > Transformation > Mutant, with rare drift.
+const TYPE_INHERITANCE_WEIGHTS: Record<
+  ParentTypePair,
+  readonly WeightedQuirkType[]
+> = {
+  'Emitter+Emitter': [
+    { type: 'Emitter', weight: 95 },
+    { type: 'Transformation', weight: 4 },
+    { type: 'Mutant', weight: 1 },
+  ],
+  'Emitter+Transformation': [
+    { type: 'Emitter', weight: 65 },
+    { type: 'Transformation', weight: 32 },
+    { type: 'Mutant', weight: 3 },
+  ],
+  'Emitter+Mutant': [
+    { type: 'Emitter', weight: 55 },
+    { type: 'Transformation', weight: 35 },
+    { type: 'Mutant', weight: 10 },
+  ],
+  'Transformation+Transformation': [
+    { type: 'Emitter', weight: 8 },
+    { type: 'Transformation', weight: 72 },
+    { type: 'Mutant', weight: 20 },
+  ],
+  'Transformation+Mutant': [
+    { type: 'Emitter', weight: 8 },
+    { type: 'Transformation', weight: 57 },
+    { type: 'Mutant', weight: 35 },
+  ],
+  'Mutant+Mutant': [
+    { type: 'Emitter', weight: 4 },
+    { type: 'Transformation', weight: 16 },
+    { type: 'Mutant', weight: 80 },
+  ],
+}
+
 export function fusionOutputRollKey(
   seed: string,
   parentA: string,
@@ -76,13 +126,9 @@ function normalizeParentFacets(facets: string[]): QuirkFacet[] {
 }
 
 function normalizeParentTypes(types: string[]): QuirkType[] {
-  return [
-    ...new Set(
-      types.filter((type): type is QuirkType =>
-        QUIRK_TYPES.includes(type as QuirkType),
-      ),
-    ),
-  ]
+  return types.filter((type): type is QuirkType =>
+    QUIRK_TYPES.includes(type as QuirkType),
+  )
 }
 
 function normalizeParentRanges(ranges: string[]): QuirkRange[] {
@@ -99,9 +145,26 @@ function rangeIndex(range: QuirkRange): number {
   return QUIRK_RANGES.indexOf(range)
 }
 
+function parentTypePair(parentA: QuirkType, parentB: QuirkType): ParentTypePair {
+  const [first, second] = [parentA, parentB].sort(
+    (left, right) => QUIRK_TYPES.indexOf(left) - QUIRK_TYPES.indexOf(right),
+  )
+  return `${first}+${second}` as ParentTypePair
+}
+
 function pickTypeFromSeed(rollKey: string, parentTypeHints: QuirkType[]): QuirkType {
   if (parentTypeHints.length === 0) {
     return QUIRK_TYPES[hashSeed(rollKey, 'type') % QUIRK_TYPES.length]
+  }
+
+  if (parentTypeHints.length === 2) {
+    return pickWeightedFromHash(
+      rollKey,
+      'type',
+      TYPE_INHERITANCE_WEIGHTS[
+        parentTypePair(parentTypeHints[0], parentTypeHints[1])
+      ],
+    ).type
   }
 
   const pool: QuirkType[] = [...QUIRK_TYPES]

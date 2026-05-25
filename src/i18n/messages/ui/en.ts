@@ -204,7 +204,6 @@ export const en = {
     roll: {
       strategyLabel: 'Blend strategy',
       nameRegisterLabel: 'Name style',
-      utilityLabel: 'Writing focus',
       antiMashupLabel: 'Anti-mashup rule',
       antiMashupRuleKey: {
         'coherent-loop': 'One coherent loop',
@@ -215,12 +214,6 @@ export const en = {
         synergy: 'Synergy',
         'dominant-a': 'Parent A leads',
         'dominant-b': 'Parent B leads',
-        'facet-anchor': 'Shared facet anchor',
-        'body-weave': 'Body weave',
-        'emission-bridge': 'Emission bridge',
-        'range-meet': 'Range meet',
-        oscillation: 'Oscillation',
-        byproduct: 'Byproduct',
         'failure-mode': 'Failure mode',
       },
       nameRegister: {
@@ -229,15 +222,6 @@ export const en = {
         dramatic: 'Dramatic',
         'absurd-long': 'Absurd long',
         'meme-adjacent': 'Meme-adjacent',
-      },
-      utilityNiche: {
-        'single core effect': 'Single core effect',
-        'clear body tell': 'Clear body tell',
-        'direct trigger': 'Direct trigger',
-        'complete core effect': 'Complete core effect',
-        'simple secondary detail': 'Core effect only (legacy)',
-        'one practical limit': 'One practical limit',
-        'plain wording': 'Plain wording',
       },
     },
   },

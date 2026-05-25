@@ -211,7 +211,6 @@ export const es: Messages = {
     roll: {
       strategyLabel: 'Estrategia de mezcla',
       nameRegisterLabel: 'Estilo del nombre',
-      utilityLabel: 'Enfoque de redacción',
       antiMashupLabel: 'Regla anti-mashup',
       antiMashupRuleKey: {
         'coherent-loop': 'Un solo bucle coherente',
@@ -222,12 +221,6 @@ export const es: Messages = {
         synergy: 'Sinergia',
         'dominant-a': 'Padre A lidera',
         'dominant-b': 'Padre B lidera',
-        'facet-anchor': 'Ancla de faceta',
-        'body-weave': 'Tejido corporal',
-        'emission-bridge': 'Puente de emisión',
-        'range-meet': 'Encuentro de alcance',
-        oscillation: 'Oscilación',
-        byproduct: 'Subproducto',
         'failure-mode': 'Modo fallido',
       },
       nameRegister: {
@@ -236,15 +229,6 @@ export const es: Messages = {
         dramatic: 'Dramático',
         'absurd-long': 'Absurdo largo',
         'meme-adjacent': 'Meme',
-      },
-      utilityNiche: {
-        'single core effect': 'Un efecto central',
-        'clear body tell': 'Señal corporal clara',
-        'direct trigger': 'Disparo directo',
-        'complete core effect': 'Efecto central completo',
-        'simple secondary detail': 'Solo efecto central (heredado)',
-        'one practical limit': 'Un límite práctico',
-        'plain wording': 'Lenguaje simple',
       },
     },
   },

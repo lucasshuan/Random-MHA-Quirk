@@ -24,19 +24,13 @@ const STRATEGIES_WITH_PAIR_EXAMPLE = new Set<FusionStrategyKey>([
   'synergy',
   'dominant-a',
   'dominant-b',
-  'facet-anchor',
-  'body-weave',
-  'emission-bridge',
-  'range-meet',
-  'oscillation',
-  'byproduct',
 ])
 
 const PAIR_NEGATIVE_EXAMPLES: Record<string, string> = {
   'hardening+permeation':
     'phase through walls while fully armored at all times',
   'frog+laser':
-    'tongue fires lasers and also rescues allies at full laser DPS',
+    'tongue fires lasers and also full laser DPS',
   'blackwhip+creation':
     'free-form object creation and full blackwhip reach/control at once',
   'absorption-and-release+arbor':

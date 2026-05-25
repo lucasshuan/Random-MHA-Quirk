@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  FUSION_CANON_NAME_REFERENCES,
   FUSION_NAMING_RULES,
   FUSION_NAME_REGISTER_KEYS,
   REGISTER_DEFS,
@@ -20,11 +19,11 @@ describe('selectFusionNameRegister', () => {
     expect(
       Object.fromEntries(REGISTER_DEFS.map((definition) => [definition.key, definition.weight])),
     ).toEqual({
-      pun: 22,
-      blunt: 22,
-      dramatic: 22,
-      'absurd-long': 17,
-      'meme-adjacent': 17,
+      pun: 26,
+      blunt: 26,
+      dramatic: 26,
+      'absurd-long': 11,
+      'meme-adjacent': 11,
     })
     expect(REGISTER_DEFS.reduce((sum, definition) => sum + definition.weight, 0)).toBe(100)
   })
@@ -45,61 +44,43 @@ describe('selectFusionNameRegister', () => {
 })
 
 describe('naming policy', () => {
-  it('keeps question examples behind the exceptional-use guard', () => {
+  it('keeps shared naming rules independent of any rolled register', () => {
     const rules = FUSION_NAMING_RULES.join('\n')
 
-    expect(rules).toContain('Question marks in en.name are exceptional')
-    expect(rules).toContain('"Who, Me?"')
-    expect(rules).toContain('"Got Milk?"')
-    expect(rules).toContain('only when the new quirk makes that question unexpectedly apt')
-    expect(rules).toContain('Never force a question')
+    expect(rules).toContain('selected name register')
+    expect(rules).toContain('NEW birth Quirk')
+    expect(rules).not.toContain('question title')
+    expect(rules).not.toContain('meme')
+    expect(rules).not.toContain('absurd-long')
   })
 
-  it('keeps the canonical reference examples', () => {
-    expect(FUSION_CANON_NAME_REFERENCES).toEqual([
-      'Pop Off',
-      'Comic',
-      'Meatball',
-      'Beams From His Eyes',
-      'Gigantic Spinning Flying Turtle',
-      'Sugar Rush',
-      'Brainwashing',
-      'Zero Gravity',
-    ])
-  })
-
-  it('retains the meme-adjacent question example', () => {
-    let examples: string[] = []
-    for (let i = 0; i < 40; i++) {
-      const selected = selectFusionNameRegister(`meme-${i}`, 'a', 'b')
-      if (selected.key === 'meme-adjacent') {
-        examples = selected.examples
-        break
-      }
-    }
-
-    expect(examples).toContain('Who, Me?')
-  })
-
-  it('uses the curated cheeky canon and spin-off meme-adjacent examples', () => {
-    const memeAdjacent = REGISTER_DEFS.find(
-      (definition) => definition.key === 'meme-adjacent',
+  it('scopes question-title guidance to compatible playful registers', () => {
+    const instructions = Object.fromEntries(
+      REGISTER_DEFS.map((definition) => [definition.key, definition.instruction]),
     )
 
-    expect(memeAdjacent?.examples).toEqual([
-      'Sugar Rush',
-      'Chest Hair',
-      'Binging Ball',
-      'Stress',
-      'Sloshed',
-      'Who, Me?',
-      'Shame',
-      'Smile',
-      'Food',
-      'Dog',
-      'Soccer',
-      'Playtime',
-      'Squirmy Fingers',
-    ])
+    expect(instructions.pun).toContain('A question title is exceptional')
+    expect(instructions.pun).toContain('"Got Milk?"')
+    expect(instructions['meme-adjacent']).toContain('A question title is exceptional')
+    expect(instructions['meme-adjacent']).toContain('"Who, Me?"')
+    expect(instructions.blunt).not.toContain('question title')
+    expect(instructions.dramatic).not.toContain('question title')
+    expect(instructions['absurd-long']).not.toContain('question title')
+  })
+
+  it('keeps examples associated with their register definition', () => {
+    const pun = REGISTER_DEFS.find((definition) => definition.key === 'pun')
+    const blunt = REGISTER_DEFS.find((definition) => definition.key === 'blunt')
+    const absurdLong = REGISTER_DEFS.find(
+      (definition) => definition.key === 'absurd-long',
+    )
+    const memeAdjacent = REGISTER_DEFS.find((definition) => definition.key === 'meme-adjacent')
+
+    expect(pun?.examples).toContain('Got Milk?')
+    expect(blunt?.examples).toContain('Comic')
+    expect(absurdLong?.examples).toContain('Beams From His Eyes')
+    expect(memeAdjacent?.examples).toContain('Sugar Rush')
+    expect(memeAdjacent?.examples).toContain('Who, Me?')
+    expect(memeAdjacent?.examples).not.toContain('Beams From His Eyes')
   })
 })

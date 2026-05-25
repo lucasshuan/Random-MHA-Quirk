@@ -6,7 +6,6 @@ describe('parseFusionRollMeta', () => {
     const parsed = parseFusionRollMeta({
       strategyKey: 'synergy',
       nameRegister: 'pun',
-      utilityNiche: 'plain wording',
       antiMashupRuleKey: 'coherent-loop',
     })
     expect(parsed?.antiMashupRuleKey).toBe('coherent-loop')
@@ -16,10 +15,24 @@ describe('parseFusionRollMeta', () => {
     const parsed = parseFusionRollMeta({
       strategyKey: 'failure-mode',
       nameRegister: 'blunt',
-      utilityNiche: 'plain wording',
       antiMashupRule:
         'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop.',
     })
     expect(parsed?.antiMashupRuleKey).toBe('failure-reduced')
+  })
+
+  it('ignores obsolete stored utility niche metadata', () => {
+    expect(
+      parseFusionRollMeta({
+        strategyKey: 'synergy',
+        nameRegister: 'pun',
+        utilityNiche: 'plain wording',
+        antiMashupRuleKey: 'coherent-loop',
+      }),
+    ).toEqual({
+      strategyKey: 'synergy',
+      nameRegister: 'pun',
+      antiMashupRuleKey: 'coherent-loop',
+    })
   })
 })

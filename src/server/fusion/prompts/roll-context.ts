@@ -7,8 +7,6 @@ import { fusionRollKey } from './roll-key'
 import { pickWeightedFromHash } from './seed-hash'
 import type { FusionStrategyKey } from './strategy'
 import { selectFusionStrategy } from './strategy'
-import type { FusionUtilityNiche } from './utility'
-import { selectFusionUtilityNudge } from './utility'
 import type { FusionPriorVariant, FusionRollMeta } from '@/types/fusion'
 import type { QuirkRange, QuirkTier } from '@/types/quirk'
 
@@ -44,11 +42,8 @@ const RANGE_TIER_SHIFT: Record<QuirkRange, number> = {
 const STRATEGY_TIER_SHIFT: Partial<Record<FusionStrategyKey, number>> = {
   /** Positive shifts favor weaker bands; failure-mode should often land below its parents. */
   'failure-mode': 0.75,
-  byproduct: 0.25,
-  oscillation: 0.2,
   'dominant-a': -0.1,
   'dominant-b': -0.1,
-  'facet-anchor': -0.1,
   synergy: -0.08,
 }
 
@@ -328,7 +323,6 @@ export function deriveFusionRollContext(
       .filter((key): key is string => Boolean(key)),
   })
   const nameRegister = selectFusionNameRegister(seed, quirkA.id, quirkB.id)
-  const utility = selectFusionUtilityNudge(seed, quirkA.id, quirkB.id)
   const antiMashupRuleKey = resolveAntiMashupRuleKey(strategy.key)
   const tier = deriveFusionTier(
     seed,
@@ -346,10 +340,9 @@ export function deriveFusionRollContext(
     roll: {
       strategyKey: strategy.key,
       nameRegister: nameRegister.key,
-      utilityNiche: utility.niche,
       antiMashupRuleKey,
     },
   }
 }
 
-export type { FusionNameRegister, FusionStrategyKey, FusionUtilityNiche }
+export type { FusionNameRegister, FusionStrategyKey }

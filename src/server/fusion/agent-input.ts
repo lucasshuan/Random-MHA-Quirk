@@ -17,11 +17,6 @@ import { formatRangeProseBlock } from './prompts/range-prose'
 import type { FusionRollContext } from './prompts/roll-context'
 import { deriveFusionRollContext } from './prompts/roll-context'
 import {
-  formatFusionUtilityNudge,
-  isFusionUtilityNiche,
-  selectFusionUtilityNudge,
-} from './prompts/utility'
-import {
   resolveFusionStrategyForKey,
   type FusionStrategyKey,
 } from './prompts/strategy'
@@ -66,9 +61,6 @@ export function buildFusionAgentInput(
     quirkB.id,
     attempt,
   )
-  const utilityLine = isFusionUtilityNiche(roll.utilityNiche)
-    ? formatFusionUtilityNudge(roll.utilityNiche)
-    : selectFusionUtilityNudge(seed, quirkA.id, quirkB.id).line
   const antiMashupRule = isFusionAntiMashupRuleKey(roll.antiMashupRuleKey)
     ? formatBaseAntiMashupRule(roll.antiMashupRuleKey)
     : formatBaseAntiMashupRule('modifier-cost')
@@ -106,7 +98,6 @@ export function buildFusionAgentInput(
       nameRegister: nameRegister.key,
       nameRegisterInstruction: nameRegister.instruction,
       nameExamples: nameRegister.examples,
-      utilityNudge: utilityLine,
     },
     constraints: {
       descriptionMinLength: FUSION_DESCRIPTION_MIN_LENGTH,

@@ -26,7 +26,6 @@ export interface FusionPriorVariant {
 export interface FusionRollMeta {
   strategyKey: string
   nameRegister: string
-  utilityNiche: string
   antiMashupRuleKey: string
 }
 

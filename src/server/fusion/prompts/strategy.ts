@@ -6,12 +6,6 @@ export const FUSION_STRATEGY_KEYS = [
   'synergy',
   'dominant-a',
   'dominant-b',
-  'facet-anchor',
-  'body-weave',
-  'emission-bridge',
-  'range-meet',
-  'oscillation',
-  'byproduct',
   'failure-mode',
 ] as const
 
@@ -23,22 +17,14 @@ export function isFusionStrategyKey(value: string): value is FusionStrategyKey {
 
 const RANGE_ORDER = ['Self', 'Contact', 'Short', 'Medium', 'Long', 'Area'] as const
 
-const BODY_FACETS = new Set(['Anthropomorphic', 'Biological'])
-const PROJECTION_FACETS = new Set(['Elemental', 'Construct', 'Emission'])
-
 export interface ParentFusionContext {
   typeA: string
   typeB: string
   rangeA: string
   rangeB: string
-  facetsA: string[]
-  facetsB: string[]
   sameType: boolean
-  sameRange: boolean
   sharedFacets: string[]
   rangeGapLarge: boolean
-  hasMutant: boolean
-  hasEmitter: boolean
   commonPointLines: string[]
 }
 
@@ -75,42 +61,6 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
     criteria: [
       'Parent B supplies the main operation readers immediately recognize.',
       'Parent A changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
-    ],
-  },
-  'facet-anchor': {
-    criteria: [
-      'Use the shared facet as common ground, then state the distinct operation each parent contributes to the resulting NEW rule.',
-      'A shared tag is not itself a mechanic and cannot excuse losing either parent essence or copying one parent alone.',
-    ],
-  },
-  'body-weave': {
-    criteria: [
-      'The body trait or temporary form must cause a NEW effect, not reproduce one parent body plan unchanged with a metaphor.',
-      'Any emitted or controlled material must visibly come from that body mechanism.',
-    ],
-  },
-  'emission-bridge': {
-    criteria: [
-      'Define what is emitted and the exact change it causes on contact or within range.',
-      'The emission must carry the other parent operation; a themed blast or pressure wave is not inheritance.',
-    ],
-  },
-  'range-meet': {
-    criteria: [
-      'Change delivery distance only through one understandable rule; preserve the core operation from each parent.',
-      'Do not replace a close-range parent with generic projectiles merely because the output range is longer.',
-    ],
-  },
-  oscillation: {
-    criteria: [
-      'Both phases must be states of the same resource or mechanism, with a plain switch condition.',
-      'The second phase spends, reverses, redirects, or exposes what the first phase produced; it is not a second kit.',
-    ],
-  },
-  byproduct: {
-    criteria: [
-      'The secondary effect must be an inevitable fallout of the primary mechanism, not an added benefit.',
-      'Keep both parent essences in the primary rule even when the byproduct is minor.',
     ],
   },
   'failure-mode': {
@@ -180,118 +130,56 @@ export function analyzeParentPair(
     typeB: quirkB.type,
     rangeA: quirkA.range,
     rangeB: quirkB.range,
-    facetsA: quirkA.facets,
-    facetsB: quirkB.facets,
     sameType: quirkA.type === quirkB.type,
-    sameRange: quirkA.range === quirkB.range,
     sharedFacets,
     rangeGapLarge,
-    hasMutant: quirkA.type === 'Mutant' || quirkB.type === 'Mutant',
-    hasEmitter: quirkA.type === 'Emitter' || quirkB.type === 'Emitter',
     commonPointLines,
   }
 }
 
 type StrategyDef = {
   key: FusionStrategyKey
-  eligible: (ctx: ParentFusionContext) => boolean
   instruction: (
-    ctx: ParentFusionContext,
     quirkA: FusionCatalogQuirk,
     quirkB: FusionCatalogQuirk,
   ) => string
 }
 
-function pickUniformStrategy(rollKey: string, eligible: StrategyDef[]): StrategyDef {
-  return pickUniformFromHash(rollKey, 'strategy', eligible)
+function pickUniformStrategy(rollKey: string, available: StrategyDef[]): StrategyDef {
+  return pickUniformFromHash(rollKey, 'strategy', available)
 }
 
 const STRATEGY_DEFS: StrategyDef[] = [
   {
     key: 'synergy',
-    eligible: () => true,
     instruction: () =>
       'Fusion strategy — unified synergy: weave both parents into one coherent mechanism.',
   },
   {
     key: 'dominant-a',
-    eligible: () => true,
-    instruction: (_ctx, quirkA, quirkB) =>
+    instruction: (quirkA, quirkB) =>
       `Fusion strategy — parent A is dominant: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic leads; ${quirkB.name} modifies, limits, or reshapes its expression.`,
   },
   {
     key: 'dominant-b',
-    eligible: () => true,
-    instruction: (_ctx, quirkA, quirkB) =>
+    instruction: (quirkA, quirkB) =>
       `Fusion strategy — parent B is dominant: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic leads; ${quirkA.name} modifies, limits, or reshapes its expression.`,
   },
   {
-    key: 'facet-anchor',
-    eligible: (ctx) => ctx.sharedFacets.length > 0,
-    instruction: (ctx) =>
-      `Fusion strategy — facet anchor: build the hybrid around the shared facet(s) [${ctx.sharedFacets.join(', ')}] as the common point; both parents should feed that theme, not compete for attention.`,
-  },
-  {
-    key: 'body-weave',
-    eligible: (ctx) =>
-      ctx.hasMutant ||
-      ctx.typeA === 'Transformation' ||
-      ctx.typeB === 'Transformation' ||
-      ctx.sharedFacets.some((f) => BODY_FACETS.has(f)) ||
-      (ctx.facetsA.some((f) => BODY_FACETS.has(f)) &&
-        ctx.facetsB.some((f) => BODY_FACETS.has(f))),
-    instruction: (ctx) =>
-      `Fusion strategy — body weave: the hybrid is body-first (${ctx.hasMutant ? 'Mutant' : 'Transformation/biological'} DNA). Focus on anatomy, skin, limbs, permanent or triggered form changes, and what stays on the user vs what leaves the body.`,
-  },
-  {
-    key: 'emission-bridge',
-    eligible: (ctx) =>
-      ctx.hasEmitter ||
-      ctx.sharedFacets.some((f) => PROJECTION_FACETS.has(f)) ||
-      rangeIndex(ctx.rangeA) >= 4 ||
-      rangeIndex(ctx.rangeB) >= 4,
-    instruction: (ctx) =>
-      `Fusion strategy — emission bridge: the hybrid projects outward (${ctx.hasEmitter ? 'Emitter' : 'long-range/projection'} DNA). State clearly what detaches, travels, coats, or hits at distance vs what remains on the body.`,
-  },
-  {
-    key: 'range-meet',
-    eligible: (ctx) => !ctx.sameRange,
-    instruction: (ctx) =>
-      `Fusion strategy — range meet: parents differ in reach (${ctx.rangeA} vs ${ctx.rangeB}). Keep one core effect and one simple distance rule (stronger up close, weaker far away, or the opposite).`,
-  },
-  {
-    key: 'oscillation',
-    eligible: (ctx) =>
-      !ctx.sameType &&
-      !ctx.rangeGapLarge &&
-      ctx.sharedFacets.length > 0 &&
-      !(ctx.typeA === 'Mutant' && ctx.typeB === 'Mutant'),
-    instruction: (_ctx, quirkA, quirkB) =>
-      `Fusion strategy — oscillation: same Quirk with a brief delivery shift, not two separate kits. Default behavior stays unified; a short switch can echo ${quirkA.type} or ${quirkB.type} style with one clear cost.`,
-  },
-  {
-    key: 'byproduct',
-    eligible: (ctx) => ctx.sharedFacets.length > 0 && !ctx.rangeGapLarge,
-    instruction: () =>
-      'Fusion strategy — byproduct: one clear primary effect carries the design; any secondary effect is brief, minor fallout, not a free combat upgrade.',
-  },
-  {
     key: 'failure-mode',
-    eligible: () => true,
     instruction: () =>
-      'Fusion strategy — failure mode: incomplete genetic fusion, weaker or narrower than either parent. State what was lost, suppressed, or never expressed.',
+      'Fusion strategy — failure mode: incomplete genetic fusion, weaker or narrower than either parent.',
   },
 ]
 
 function buildSelectedStrategy(
   picked: StrategyDef,
-  ctx: ParentFusionContext,
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
 ): SelectedFusionStrategy {
   return {
     key: picked.key,
-    instruction: `${picked.instruction(ctx, quirkA, quirkB)}
+    instruction: `${picked.instruction(quirkA, quirkB)}
 ${formatStrategyCoherenceGuidance(picked.key)}`,
   }
 }
@@ -302,8 +190,6 @@ export function selectFusionStrategy(
   quirkB: FusionCatalogQuirk,
   options: FusionStrategySelectionOptions = {},
 ): SelectedFusionStrategy {
-  const ctx = analyzeParentPair(quirkA, quirkB)
-  const eligible = STRATEGY_DEFS.filter((def) => def.eligible(ctx))
   const rollKey = fusionRollKey(seed, quirkA.id, quirkB.id)
   const priorCounts = new Map<FusionStrategyKey, number>()
 
@@ -313,14 +199,14 @@ export function selectFusionStrategy(
   }
 
   const lowestUseCount = Math.min(
-    ...eligible.map((def) => priorCounts.get(def.key) ?? 0),
+    ...STRATEGY_DEFS.map((def) => priorCounts.get(def.key) ?? 0),
   )
-  const leastUsed = eligible.filter(
+  const leastUsed = STRATEGY_DEFS.filter(
     (def) => (priorCounts.get(def.key) ?? 0) === lowestUseCount,
   )
   const picked = pickUniformStrategy(rollKey, leastUsed)
 
-  return buildSelectedStrategy(picked, ctx, quirkA, quirkB)
+  return buildSelectedStrategy(picked, quirkA, quirkB)
 }
 
 export function resolveFusionStrategyForKey(
@@ -328,14 +214,11 @@ export function resolveFusionStrategyForKey(
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
 ): SelectedFusionStrategy {
-  const ctx = analyzeParentPair(quirkA, quirkB)
-  const picked = STRATEGY_DEFS.find(
-    (def) => def.key === key && def.eligible(ctx),
-  )
+  const picked = STRATEGY_DEFS.find((def) => def.key === key)
 
   if (!picked) {
     return selectFusionStrategy('fallback-strategy', quirkA, quirkB)
   }
 
-  return buildSelectedStrategy(picked, ctx, quirkA, quirkB)
+  return buildSelectedStrategy(picked, quirkA, quirkB)
 }

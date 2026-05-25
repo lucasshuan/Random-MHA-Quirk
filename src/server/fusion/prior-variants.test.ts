@@ -44,7 +44,6 @@ const target: FusionPriorVariantMatch = {
   roll: {
     strategyKey: 'synergy',
     nameRegister: 'pun',
-    utilityNiche: 'plain wording',
     antiMashupRuleKey: 'coherent-loop',
   },
 }
@@ -62,7 +61,6 @@ describe('scorePriorVariantSimilarity', () => {
         roll: {
           strategyKey: 'failure-mode',
           nameRegister: 'dramatic',
-          utilityNiche: 'clear body tell',
           antiMashupRuleKey: 'failure-reduced',
         },
       },
@@ -156,7 +154,6 @@ describe('pickPriorVariantsForPrompt', () => {
         roll: {
           strategyKey: 'failure-mode',
           nameRegister: 'dramatic',
-          utilityNiche: 'clear body tell',
           antiMashupRuleKey: 'modifier-cost',
         },
       },

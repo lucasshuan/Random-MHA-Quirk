@@ -211,7 +211,6 @@ export const ptBR: Messages = {
     roll: {
       strategyLabel: 'Estratégia de mistura',
       nameRegisterLabel: 'Estilo do nome',
-      utilityLabel: 'Foco da redação',
       antiMashupLabel: 'Regra anti-mashup',
       antiMashupRuleKey: {
         'coherent-loop': 'Um loop coerente',
@@ -222,12 +221,6 @@ export const ptBR: Messages = {
         synergy: 'Sinergia',
         'dominant-a': 'Pai A domina',
         'dominant-b': 'Pai B domina',
-        'facet-anchor': 'Âncora de faceta',
-        'body-weave': 'Corpo/teia',
-        'emission-bridge': 'Ponte de emissão',
-        'range-meet': 'Encontro de alcance',
-        oscillation: 'Oscilação',
-        byproduct: 'Subproduto',
         'failure-mode': 'Modo falho',
       },
       nameRegister: {
@@ -236,15 +229,6 @@ export const ptBR: Messages = {
         dramatic: 'Dramático',
         'absurd-long': 'Absurdo longo',
         'meme-adjacent': 'Meme',
-      },
-      utilityNiche: {
-        'single core effect': 'Um efeito central',
-        'clear body tell': 'Sinal corporal claro',
-        'direct trigger': 'Gatilho direto',
-        'complete core effect': 'Efeito central completo',
-        'simple secondary detail': 'Apenas efeito central (legado)',
-        'one practical limit': 'Um limite prático',
-        'plain wording': 'Linguagem simples',
       },
     },
   },

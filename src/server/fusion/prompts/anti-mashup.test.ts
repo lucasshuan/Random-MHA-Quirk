@@ -51,7 +51,7 @@ describe('formatStrategyAntiMashupExample', () => {
 
   it('uses pair-specific wording for frog + laser', () => {
     const example = formatStrategyAntiMashupExample(
-      'emission-bridge',
+      'dominant-b',
       mockQuirk({ id: 'frog', type: 'Mutant', range: 'Medium' }),
       mockQuirk({ id: 'laser', type: 'Emitter', range: 'Long' }),
     )

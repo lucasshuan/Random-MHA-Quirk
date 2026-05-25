@@ -37,7 +37,6 @@ import { QUIRK_TIERS } from '@/types/quirk'
 const DEFAULT_ROLL: FusionRollMeta = {
   strategyKey: 'synergy',
   nameRegister: 'blunt',
-  utilityNiche: 'plain wording',
   antiMashupRuleKey: 'coherent-loop',
 }
 

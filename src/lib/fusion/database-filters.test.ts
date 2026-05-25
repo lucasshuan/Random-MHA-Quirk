@@ -18,7 +18,6 @@ const sampleEntry: FusionCacheEntry = {
   roll: {
     strategyKey: 'synergy',
     nameRegister: 'blunt',
-    utilityNiche: 'plain wording',
     antiMashupRuleKey: 'coherent-loop',
   },
 }

@@ -1,5 +1,21 @@
 import { describe, expect, it } from 'vitest'
-import { formatTypeDisciplineBlock } from './type-discipline'
+import {
+  formatQuirkTypeReferenceBlock,
+  formatTypeDisciplineBlock,
+} from './type-discipline'
+
+describe('formatQuirkTypeReferenceBlock', () => {
+  it('explains all output classifications in the fixed reference', () => {
+    const block = formatQuirkTypeReferenceBlock()
+
+    expect(block).toContain('Emitter:')
+    expect(block).toContain('projected, transmitted, generated, or controlled')
+    expect(block).toContain('Transformation:')
+    expect(block).toContain('temporary active change')
+    expect(block).toContain('Mutant:')
+    expect(block).toContain('stable unusual anatomy')
+  })
+})
 
 describe('formatTypeDisciplineBlock', () => {
   it('prints only the discipline for the rolled type', () => {

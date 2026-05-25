@@ -3,7 +3,7 @@ import {
   resolveAntiMashupRuleKey,
   type FusionAntiMashupRuleKey,
 } from './prompts/anti-mashup'
-import { isFusionStrategyKey, type FusionStrategyKey } from './prompts/strategy'
+import { isFusionStrategyKey } from './prompts/strategy'
 import type { FusionRollMeta } from '@/types/fusion'
 
 function resolveAntiMashupRuleKeyFromLegacy(
@@ -30,8 +30,6 @@ export function parseFusionRollMeta(raw: unknown): FusionRollMeta | null {
     typeof record.strategyKey === 'string' ? record.strategyKey.trim() : ''
   const nameRegister =
     typeof record.nameRegister === 'string' ? record.nameRegister.trim() : ''
-  const utilityNiche =
-    typeof record.utilityNiche === 'string' ? record.utilityNiche.trim() : ''
 
   const keyFromField =
     typeof record.antiMashupRuleKey === 'string'
@@ -48,9 +46,9 @@ export function parseFusionRollMeta(raw: unknown): FusionRollMeta | null {
         ? resolveAntiMashupRuleKey(strategyKey)
         : null
 
-  if (!strategyKey || !nameRegister || !utilityNiche || !antiMashupRuleKey) {
+  if (!strategyKey || !nameRegister || !antiMashupRuleKey) {
     return null
   }
 
-  return { strategyKey, nameRegister, utilityNiche, antiMashupRuleKey }
+  return { strategyKey, nameRegister, antiMashupRuleKey }
 }

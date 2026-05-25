@@ -4,10 +4,8 @@ import {
   buildFusionEnglishTierVariantBlock,
   formatFusionDescriptionLengthGuidance,
 } from '../prompts/tier-decision'
-import {
-  FUSION_CANON_NAME_REFERENCES,
-  FUSION_NAMING_RULES,
-} from '../prompts/naming'
+import { FUSION_NAMING_RULES } from '../prompts/naming'
+import { formatQuirkTypeReferenceBlock } from '../prompts/type-discipline'
 import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
 
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
@@ -32,12 +30,17 @@ const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from 
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
 - Add at most one physical cost OR one situational scope only when needed; do not pad for detail.
 - Obey the request-specific type, facet, range, and hard length constraints.
-- When the request includes a **C/D/Ω-tier simplicity** block, that block overrides generic detail, length, utility, and conceptual-synthesis elaboration rules in this prompt.
+- When the request includes a **C/D/Ω-tier simplicity** block, that block overrides generic detail, length, and conceptual-synthesis elaboration rules in this prompt.
+
+## Quirk type reference
+
+Use these classifications before applying the selected output type rules:
+
+${formatQuirkTypeReferenceBlock()}
 
 ## Naming rules
 
 ${FUSION_NAMING_RULES.map((rule) => `- ${rule}`).join('\n')}
-- Canon-style reference names (any register): ${FUSION_CANON_NAME_REFERENCES.join(', ')}
 
 Research (when web_search is available):
 - You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
@@ -162,12 +165,6 @@ ${lines.join('\n')}`
 
 export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string {
   const { mechanics, roll, constraints } = fusion
-  const typeFocus =
-    mechanics.type === 'Mutant'
-      ? 'Mutant: state the permanent body trait, then its direct effect.'
-      : mechanics.type === 'Transformation'
-        ? 'Transformation: state what changes while active and what returns to normal.'
-        : 'Emitter: state the outward effect, its activation, and what it changes.'
   const siblingGate = constraints.siblingDiversityRequired
     ? 'Sibling diversity REQUIRED: produce a meaningfully different fusion than prior variants (not just rename or rephrase).'
     : 'Sibling diversity: not required for this pair yet.'
@@ -185,12 +182,13 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
 - range: ${mechanics.range}
 - facets: [${mechanics.facets.join(', ')}]
 
+### Selected output type: ${mechanics.type} (must follow)
+Apply only the detailed rules for the selected type below:
+${constraints.typeDiscipline.map((line) => `- ${line}`).join('\n')}
+
 ## Tier target for this variant
 
 ${buildFusionEnglishTierVariantBlock(fusion)}
-
-### Type-specific description focus
-- ${typeFocus}
 
 ### Fusion strategy
 ${roll.strategyInstruction}
@@ -200,12 +198,6 @@ ${roll.antiMashupRule}${antiMashupExample}
 ${roll.nameRegisterInstruction}
 Examples: ${roll.nameExamples.join(', ')}
 ${formatConceptualSynthesisNameHint(roll.nameRegister)}
-
-### Utility
-${roll.utilityNudge}
-
-### Type discipline
-${constraints.typeDiscipline.map((line) => `- ${line}`).join('\n')}
 
 ### Facet contract
 ${constraints.facetContract}

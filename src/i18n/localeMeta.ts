@@ -9,12 +9,6 @@ export const LOCALE_HTML_LANG: Record<Locale, string> = {
   es: 'es',
 }
 
-export const LOCALE_DOCUMENT_TITLE: Record<Locale, string> = {
-  en: 'Random MHA Quirk',
-  'pt-BR': 'Individualidade Aleatória MHA',
-  es: 'Don Aleatorio MHA',
-}
-
 export const LANGUAGE_SWITCHER_OPTIONS = [
   { locale: 'en' as const, Flag: US, labelKey: 'nav.languageEn' },
   { locale: 'pt-BR' as const, Flag: BR, labelKey: 'nav.languagePt' },

@@ -78,14 +78,15 @@ export function buildFusionTierWeakSimplicityBlock(tier: 'C' | 'D'): string {
 - Do not use the war-arc benchmark or "default suspicion" escalators; stay weak and narrow.${dFlavor}`
 }
 
-/** Mandatory calibration when the server assigns Ω (Special). */
+/** Mandatory plain catalog prose when the server assigns Ω (Special). */
 export function buildFusionTierOmegaBlock(): string {
-  return `### Ω-tier Special calibration
-- This fusion rolled **Ω (Special)** — intentionally rare. Design a **broken** quirk whose mastery ceiling can threaten war-arc logic, not a toned-down S-tier.
-- Think meta-scale mechanisms: steal/copy/distribute quirks (All For One), rewrite rules on touch (New Order), time stop or causality edits, line-of-sight full stop, or other effects that would have made top villains helpless if limits were loose in canon.
-- **Infinite potential** is the default suspicion: training, creativity, or stacked use can push past the first sentence unless the description states a hard cap.
-- Still one NEW birth Quirk with one governing mechanism from both parents — not two kits stapled together.
-- State explicit limits in the description (touch-only, single target, short window, self-harm, etc.), but the limit must not erase why the tier is Special — weak wording does not downgrade Ω to S.`
+  return `### Ω-tier simplicity (mandatory for this variant — overrides generic detail rules)
+- This fusion rolled **Ω (Special)** — intentionally rare. The **effect** stays plot-breaking (steal/copy quirks, rewrite rules on touch, time stop, line-of-sight full stop, etc.); the **write-up** stays as plain as a catalog line.
+- Prefer one short sentence; at most two plain sentences only when the rolled type needs trait plus effect (e.g. Mutant body tell, then what it does).
+- Use objective "Allows the user to..." / "Grants..." / "The user can..." wording; state the overpower rule once, then stop.
+- Do not add costs, drawbacks, counterplay, stamina tax, facet padding, scientific-synthesis elaboration, or utility nudges below — **do not think through limitations** in the description.
+- Do not use the war-arc benchmark or "default suspicion" escalators in the prose; do not tone the mechanism down to S-tier.
+- Still one NEW birth Quirk with one governing mechanism from both parents — not two kits stapled together.`
 }
 
 /** Stable tier knowledge supplied to the English fusion agent for mechanism calibration. */
@@ -119,6 +120,9 @@ export function formatFusionDescriptionLengthGuidance(
   }
   if (tier === 'C') {
     return `${minLength}–${maxLength} characters (spaces and punctuation count). **C-tier target 70–130** — prefer ONE short sentence; at most TWO plain sentences. Stop as soon as the single effect is clear; do not pad toward the max.`
+  }
+  if (isFusionSpecialTier(tier)) {
+    return `${minLength}–${maxLength} characters (spaces and punctuation count). **Ω-tier target 90–150** — prefer ONE short sentence; at most TWO plain sentences. State the Special effect plainly; do not pad with limits or drawbacks.`
   }
 
   return `${minLength}–${maxLength} characters (spaces and punctuation count). Target 160–240. Write at most TWO short sentences; stop before the limit — do not rely on the server to cut your copy.`

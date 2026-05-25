@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="public/logo.webp" alt="Random MHA Quirk" width="120" />
+  <img src="public/logo.webp" alt="MHA Lab" width="120" />
 </p>
 
-<h1 align="center">Random MHA Quirk</h1>
+<h1 align="center">MHA Lab</h1>
 
 <p align="center">
   <strong>Roll a quirk and Plus Ultra!</strong><br />
@@ -21,7 +21,7 @@
 
 ## What is this?
 
-**[Random MHA Quirk](https://random-mha-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*.
+**[MHA Lab](https://random-mha-quirk.vercel.app/)** is a fan-made quirk roller for *My Hero Academia*.
 
 Available in **English**, **Português (Brasil)**, and **Español**.
 

@@ -143,7 +143,7 @@ describe('buildFusionEnglishInstructions', () => {
         instructions.indexOf('### Utility'),
       )
       expect(instructions).toContain('overrides generic detail')
-      expect(instructions).toContain('0% convoluted')
+      expect(instructions).toContain("it's not convoluted")
     }
 
     expect(cInstructions).toContain('C-tier target 70–130')
@@ -152,15 +152,16 @@ describe('buildFusionEnglishInstructions', () => {
     expect(dInstructions).toContain('enhanced chest hair')
   })
 
-  it('forces Ω-tier Special calibration when tier is Ω', () => {
+  it('forces Ω-tier simplicity when tier is Ω', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions({
       ...fusion,
       mechanics: { ...fusion.mechanics, tier: 'Ω' },
     })
 
-    expect(instructions).toContain('Ω-tier Special calibration')
-    expect(instructions).toContain('All For One')
+    expect(instructions).toContain('Ω-tier simplicity (mandatory for this variant')
+    expect(instructions).toContain('do not think through limitations')
+    expect(instructions).toContain('Ω-tier target 90–150')
     expect(instructions.indexOf('## Tier target for this variant')).toBeLessThan(
       instructions.indexOf('### Fusion strategy'),
     )

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useShareDocumentTitle } from '@/components/seo/useShareDocumentTitle'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { QuirksCatalogGate } from '@/components/QuirksCatalogGate'
 import { MinimalFrame } from '@/components/wizard/MinimalFrame'
@@ -129,6 +130,8 @@ export function SharedResultApp({
     () => readReadyShareRouteResult(routeKey, locale, routeParams) === null,
   )
   const [shellMotion, setShellMotion] = useState<'static' | 'entrance'>('static')
+
+  useShareDocumentTitle(result, locale)
 
   const routeSharePath = useMemo(() => {
     if (mode === 'single' && quirkId && isShareQuirkId(quirkId)) {

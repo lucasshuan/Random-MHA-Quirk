@@ -14,7 +14,7 @@ export const ptBR: Messages = {
     buyCoffee: 'Me compre um café',
   },
   brand: {
-    title: 'Individualidade Aleatória',
+    title: 'Laboratório My Hero Academia',
     logoAlt: 'Logo de My Hero Academia',
   },
   api: {
@@ -138,7 +138,7 @@ export const ptBR: Messages = {
   share: {
     action: 'Compartilhar resultado',
     waitHybrid: 'Gerando híbrido…',
-    shareTitle: 'Resultado — Individualidade Aleatória',
+    shareTitle: 'Resultado — Laboratório My Hero Academia',
     copied: 'Link copiado',
     shared: 'Compartilhado',
     copyError: 'Não foi possível copiar o link',

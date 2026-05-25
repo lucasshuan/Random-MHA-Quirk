@@ -14,7 +14,7 @@ export const es: Messages = {
     buyCoffee: 'Cómprame un café',
   },
   brand: {
-    title: 'Don Aleatorio',
+    title: 'Laboratório My Hero Academia',
     logoAlt: 'Logo de My Hero Academia',
   },
   api: {
@@ -138,7 +138,7 @@ export const es: Messages = {
   share: {
     action: 'Compartir resultado',
     waitHybrid: 'Generando híbrido…',
-    shareTitle: 'Resultado — Don Aleatorio',
+    shareTitle: 'Resultado — Laboratório My Hero Academia',
     copied: 'Enlace copiado',
     shared: 'Compartido',
     copyError: 'No se pudo copiar el enlace',

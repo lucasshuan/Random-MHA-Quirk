@@ -123,9 +123,9 @@ describe('buildFusionEnglishTierVariantBlock', () => {
       mechanics: { ...base.mechanics, tier: 'Ω' },
     })
 
-    expect(text).toContain('Ω-tier Special calibration')
-    expect(buildFusionTierOmegaBlock()).toContain('All For One')
-    expect(buildFusionTierOmegaBlock()).toContain('New Order')
+    expect(text).toContain('Ω-tier simplicity (mandatory for this variant')
+    expect(buildFusionTierOmegaBlock()).toContain('do not think through limitations')
+    expect(buildFusionTierOmegaBlock()).not.toContain('State explicit limits')
   })
 
   it('omits tier-specific blocks for mid tiers', () => {
@@ -143,7 +143,7 @@ describe('buildFusionEnglishTierVariantBlock', () => {
 
     const text = buildFusionEnglishTierVariantBlock(fusion)
     expect(text).not.toContain('-tier simplicity')
-    expect(text).not.toContain('Ω-tier Special calibration')
+    expect(text).not.toContain('Ω-tier simplicity')
   })
 })
 
@@ -157,11 +157,17 @@ describe('formatFusionDescriptionLengthGuidance', () => {
     )
   })
 
-  it('keeps the default target band for other tiers', () => {
-    expect(formatFusionDescriptionLengthGuidance('S', 70, 300)).toContain(
-      'Target 160–240',
+  it('uses short targets for Ω tier', () => {
+    expect(formatFusionDescriptionLengthGuidance('Ω', 70, 300)).toContain(
+      'Ω-tier target 90–150',
     )
     expect(formatFusionDescriptionLengthGuidance('Ω', 70, 300)).toContain(
+      'do not pad with limits or drawbacks',
+    )
+  })
+
+  it('keeps the default target band for mid tiers', () => {
+    expect(formatFusionDescriptionLengthGuidance('S', 70, 300)).toContain(
       'Target 160–240',
     )
   })

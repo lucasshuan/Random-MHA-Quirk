@@ -32,7 +32,7 @@ const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from 
 - Once the mechanism is clear, do not add arbitrary targets, tracking restrictions, or tactical uses merely to make it sound detailed.
 - Add at most one physical cost OR one situational scope only when needed; do not pad for detail.
 - Obey the request-specific type, facet, range, and hard length constraints.
-- When the request includes a **C/D-tier simplicity** or **Ω-tier Special calibration** block, that block overrides generic detail, length, utility, and conceptual-synthesis elaboration rules in this prompt.
+- When the request includes a **C/D/Ω-tier simplicity** block, that block overrides generic detail, length, utility, and conceptual-synthesis elaboration rules in this prompt.
 
 ## Naming rules
 

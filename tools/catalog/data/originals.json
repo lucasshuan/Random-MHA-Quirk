@@ -273,5 +273,55 @@
         "description": "El cabello es una nube nebulosa controlable — mechones crecen, azotan y entrelazan. Lo que entra en un punto de la masa sale por otro mechón."
       }
     }
+  },
+  {
+    "id": "evolution",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Biological",
+      "Enhancement"
+    ],
+    "source": "https://www.deviantart.com/the-tormentor/art/MHA-OC-Nomu-X-963575821",
+    "inspiration": "OC Nomu-X (Evolution); catalogued as Special-tier Mutant.",
+    "name": "Evolution",
+    "description": "The user's mutant biology adapts on instinct every time it faces a new situation; the body keeps rewriting itself toward whatever it needs—new limbs, tissue, senses, resistances, and abilities emerge without end.",
+    "copy": {
+      "pt-BR": {
+        "name": "Evolução",
+        "description": "A biologia mutante do usuário se adapta instintivamente toda vez que enfrenta uma nova situação; o corpo segue se reescrevendo para o que precisa — novos membros, tecido, sentidos, resistências e capacidades novas surgem sem fim."
+      },
+      "es": {
+        "name": "Evolución",
+        "description": "La biología mutante del usuario se adapta instintivamente cada vez que enfrenta una nueva situación; el cuerpo sigue reescribiéndose hacia lo que necesita — nuevos miembros, tejido, sentidos, resistencias y capacidades novas surgen sin fin."
+      }
+    }
+  },
+  {
+    "id": "abyss-body",
+    "origin": "ORIGINAL",
+    "tier": "Ω",
+    "type": "Mutant",
+    "range": "Contact",
+    "facets": [
+      "Biological",
+      "Emission"
+    ],
+    "source": null,
+    "inspiration": "Original concept.",
+    "name": "Abyss Body",
+    "description": "The body is a living void under the skin; anything else that touches bare flesh slips into endless inner space and cannot return. Only the user, kin born with matching abyss-mutated tissue, and clothing woven from the same chemical composition as the user's abyss tissue can touch safely.",
+    "copy": {
+      "pt-BR": {
+        "name": "Corpo Abissal",
+        "description": "O corpo é um vazio vivo sob a pele; qualquer outra coisa que toque a carne exposta escorrega para um espaço interior sem fim e não volta. Só o usuário, parentes nascidos com tecido abissal compatível e roupas tecidas com a mesma composição química do tecido abissal do usuário podem tocar com segurança."
+      },
+      "es": {
+        "name": "Cuerpo Abisal",
+        "description": "El cuerpo es un vacío vivo bajo la piel; lo demás que toca la carne al descubierto se desliza a un espacio interior sin fin y no regresa. Solo el usuario, parientes nacidos con tejido abisal compatible y ropa tejida con la misma composición química del tejido abisal del usuario pueden tocar sin riesgo."
+      }
+    }
   }
 ]

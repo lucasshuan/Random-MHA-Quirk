@@ -125,7 +125,7 @@ function ResultReveal({
       (fusionPhase === 'idle' && Boolean(result.fusionEntry)))
 
   async function handleShare() {
-    if (!canShare) {
+    if (!canShare || !shareUrl) {
       return
     }
 

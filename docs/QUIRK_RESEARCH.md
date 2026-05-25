@@ -6,6 +6,17 @@ Canon quirks in the app DB use [`tools/catalog/docs/TIER_RUBRIC.md`](../tools/ca
 
 ---
 
+## Research Sources
+
+For reference, examples of some good research sources are:
+
+[My Hero Academia Wiki | Fandom](https://myheroacademia.fandom.com/)
+[Superpower Wiki | Fandom](https://powerlisting.fandom.com/  )
+
+But you don't have to limit yourself to these.
+
+---
+
 ## Trigger phrases
 
 Treat this protocol as active when the user says things like:
@@ -277,8 +288,7 @@ Keep prose minimal; **tables are the deliverable**.
 
 When a fan quirk is approved for the Supabase catalog:
 
-- **Ω (Special)** → do **not** seed; reject or redesign first
-- Map surviving tiers (**S**–**F**) to catalog policy in `TIER_RUBRIC.md` and encode limits in structured fields
+- Map surviving tiers (**Ω**–**D**) to catalog policy in `TIER_RUBRIC.md` and encode limits in structured fields
 
 ## Completion
 
@@ -286,15 +296,17 @@ When asked to add quirks to the project, append rows to [`tools/catalog/data/ori
 
 ### Description copy (EN + `copy.pt-BR` + `copy.es`)
 
-Write **what the quirk does** — activation, effect, range, and **mechanical limits** (duration, caps, touch/LOS requirements, valid targets).
+Write **what the quirk does** — activation, effect, range, and **mechanical limits** (duration, caps, touch/LOS requirements, valid targets, etc.).
 
-**Do not** add editorial tail lines about tier, combat value, or mission utility. Avoid phrases like “useless in a fight”, “no combat output”, “not practical for heroes”, “barely hurts”, or “only good for support” — tier already lives in `tier`; the description is an encyclopedia entry, not a balance review.
+**Do not** add editorial tail lines about tier, combat value, or mission utility. Avoid phrases like “useless in a fight”, “no combat output”, “not practical for heroes”, or “only good for support” — tier already lives in `tier`; the description is an encyclopedia entry, not a balance review.
+
+Follow the [fusion generation prompt](../src\server\fusion\agents\english.ts) rules for descriptions. They have to be short, concise and objective.
 
 | OK in `description` | Not in `description` |
 |---------------------|----------------------|
-| “Touch animates basketballs for about an hour; they may refuse orders.” | “…useless against strong villains.” |
-| “Only basketballs work; effect ends if the ball is destroyed.” | “…too weak for pro hero work.” |
-| “Recreates up to three fairytale props per day from stories the user has read.” | “…party trick with no battlefield use.” |
+| “Touch animates basketballs for about an hour.” | “…useless against strong villains.” |
+| “Generates and controls wooden tendrils from any part of the body.” | “…too weak for pro hero work.” |
+| Allows the user to trap others inside paintings.” | “…party trick with no battlefield use.” |
 
 Apply the same rule to **all three locales** — do not reintroduce combat commentary in pt-BR or es during translation.
 

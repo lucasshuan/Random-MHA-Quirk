@@ -323,5 +323,80 @@
         "description": "El cuerpo es un vacío vivo bajo la piel; lo demás que toca la carne al descubierto se desliza a un espacio interior sin fin y no regresa. Solo el usuario, parientes nacidos con tejido abisal compatible y ropa tejida con la misma composición química del tejido abisal del usuario pueden tocar sin riesgo."
       }
     }
+  },
+  {
+    "id": "alloy-slime",
+    "origin": "ORIGINAL",
+    "tier": "S",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Biological",
+      "Construct"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
+    "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Alloy Slime).",
+    "name": "Alloy Slime",
+    "description": "A fluid magnetic metal body absorbs metal to grow and reshape; the brain holds the mass together.",
+    "copy": {
+      "pt-BR": {
+        "name": "Slime Metálico",
+        "description": "Corpo de metal magnético fluido absorve metal para crescer e remodelar; o cérebro mantém a massa coesa."
+      },
+      "es": {
+        "name": "Limo Metálico",
+        "description": "Cuerpo de metal magnético fluido absorbe metal para crecer y remodelarse; el cerebro mantiene la masa unida."
+      }
+    }
+  },
+  {
+    "id": "firefly",
+    "origin": "ORIGINAL",
+    "tier": "S",
+    "type": "Mutant",
+    "range": "Medium",
+    "facets": [
+      "Elemental",
+      "Biological"
+    ],
+    "source": "https://www.deviantart.com/bluecola101/journal/My-Hero-Academia-Custom-Quirk-List-770276533",
+    "inspiration": "BlueCola101 My Hero Academia Custom Quirk List (Firefly).",
+    "name": "Firefly",
+    "description": "A firefly mutant body soaks in electricity and converts it into controlled plasma.",
+    "copy": {
+      "pt-BR": {
+        "name": "Vaga-lume",
+        "description": "Corpo mutante de vaga-lume absorve eletricidade e a converte em plasma controlado."
+      },
+      "es": {
+        "name": "Luciérnaga",
+        "description": "Cuerpo mutante de luciérnaga absorbe electricidad y la convierte en plasma controlado."
+      }
+    }
+  },
+  {
+    "id": "ink-print",
+    "origin": "ORIGINAL",
+    "tier": "A",
+    "type": "Mutant",
+    "range": "Self",
+    "facets": [
+      "Biological",
+      "Construct"
+    ],
+    "source": "https://www.quotev.com/story/13396027/Quirk-Ideas/6",
+    "inspiration": "Quirk Ideas — Quirks Part Two (Ink Print).",
+    "name": "Ink Print",
+    "description": "Born with intricate tattoos across the body. The ink extends off the skin and can be shaped into weapons.",
+    "copy": {
+      "pt-BR": {
+        "name": "Tinta Impressa",
+        "description": "Nasce com tatuagens intrincadas pelo corpo. A tinta se estende para fora da pele e pode ser moldada em armas."
+      },
+      "es": {
+        "name": "Tinta Impresa",
+        "description": "Nace con tatuajes intrincados por el cuerpo. La tinta se extiende fuera de la piel y puede moldearse en armas."
+      }
+    }
   }
 ]

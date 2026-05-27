@@ -1,0 +1,22 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: var(--app-height);
+  max-height: var(--app-height);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 0%, var(--bg-radial-a), transparent 34%),
+    radial-gradient(circle at 100% 35%, var(--bg-radial-b), transparent 30%),
+    radial-gradient(circle at 0% 90%, var(--bg-radial-c), transparent 28%),
+    var(--bg);
+  color: var(--text);
+}

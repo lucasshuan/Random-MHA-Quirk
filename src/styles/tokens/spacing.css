@@ -1,0 +1,34 @@
+:root {
+  --fluid-screen-pad-top: clamp(2.5rem, 6.5svh, 3.75rem);
+  --fluid-screen-pad-bottom: clamp(1.35rem, 3.5svh, 2rem);
+  --fluid-step-gap: clamp(0.55rem, 1.8svh, 1.2rem);
+  --fluid-after-title: clamp(1.25rem, 5.5svh, 3.2rem);
+  --fluid-title: clamp(2rem, min(9vw, 8svh), 4.25rem);
+  --fluid-title-advanced: clamp(2rem, 8vw, 3rem);
+  --fluid-brand-logo: clamp(170px, 42vw, 300px);
+  --fluid-brand-glow-h: clamp(120px, 22svh, 170px);
+  --fluid-choice-min-h: clamp(98px, 13.8svh, 122px);
+  --fluid-choice-label: clamp(1.14rem, 3.6vw, 1.28rem);
+  --fluid-choice-main-label: clamp(1.22rem, 4.2vw, 1.42rem);
+  --fluid-choice-pad-y: clamp(0.62rem, 1.4svh, 0.75rem);
+  --fluid-choice-pad-x: clamp(0.75rem, 2.5vw, 1.1rem);
+  --fluid-tier-min-h: clamp(90px, 12.5svh, 112px);
+  --fluid-tier-letter: clamp(1.6rem, 5vw, 2rem);
+  --fluid-big-action-pad-y: clamp(0.85rem, 1.8svh, 0.95rem);
+  --fluid-big-action-pad-x: clamp(1.15rem, 3.5vw, 1.35rem);
+  --fluid-big-action-font: clamp(0.92rem, 2.4vw, 1.05rem);
+  --fluid-roll-orb: clamp(88px, 14svh, 112px);
+  --fluid-roll-orb-core: clamp(44px, 8svh, 52px);
+  --fluid-roll-label: clamp(1.25rem, 3.6vw, 1.85rem);
+  --fluid-quirk-card-pad: clamp(0.9rem, 2svh, 1.15rem);
+  --fluid-quirk-card-title: clamp(1.25rem, 4vw, 1.6rem);
+  --fluid-quirk-card-desc: clamp(0.86rem, 2.2vw, 0.94rem);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

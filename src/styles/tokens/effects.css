@@ -1,0 +1,11 @@
+:root {
+  --elev-1: 0 10px 30px var(--color-rgba-1-6-15-042);
+  --bg-render-opacity: 0.09;
+  --bg-render-filter: saturate(0.8) brightness(0.6) contrast(0.9);
+  --bg-render-bottom-mask: linear-gradient(
+    to top,
+    transparent 0%,
+    var(--black) 20%,
+    var(--black) 100%
+  );
+}

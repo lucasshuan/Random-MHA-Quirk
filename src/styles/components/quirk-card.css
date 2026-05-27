@@ -1,0 +1,316 @@
+/* Type-based theming — single accent per card */
+.quirk-card-type-emitter {
+  --card-accent: var(--color-hex-5fa9ff);
+  --card-accent-strong: var(--color-hex-c7e1ff);
+  --card-accent-soft: var(--color-rgba-95-169-255-018);
+  --card-accent-glow: var(--color-rgba-95-169-255-026);
+  --card-accent-tint: var(--color-rgba-95-169-255-005);
+}
+
+.quirk-card-type-transformation {
+  --card-accent: var(--color-hex-ff9a45);
+  --card-accent-strong: var(--color-hex-ffd0a5);
+  --card-accent-soft: var(--color-rgba-255-154-69-018);
+  --card-accent-glow: var(--color-rgba-255-154-69-026);
+  --card-accent-tint: var(--color-rgba-255-154-69-005);
+}
+
+.quirk-card-type-mutant {
+  --card-accent: var(--color-hex-62d8a0);
+  --card-accent-strong: var(--color-hex-b6f0d2);
+  --card-accent-soft: var(--color-rgba-98-216-160-018);
+  --card-accent-glow: var(--color-rgba-98-216-160-026);
+  --card-accent-tint: var(--color-rgba-98-216-160-0045);
+}
+
+.quirk-card-slot-1,
+.quirk-card-slot-2 {
+  padding-top: 1.15rem;
+  padding-right: 3.2rem;
+}
+
+.quirk-slot-badge {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 3;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--card-accent-strong);
+  background:
+    linear-gradient(180deg, var(--color-rgba-255-255-255-005), var(--color-rgba-255-255-255-0)),
+    var(--color-rgba-10-14-22-072);
+  border: 1px solid var(--card-accent-soft);
+  box-shadow:
+    inset 0 1px 0 var(--color-rgba-255-255-255-006),
+    0 0 18px var(--card-accent-glow);
+  pointer-events: none;
+}
+
+.quirk-card h3 {
+  margin: 0.05rem 0 0;
+  padding-right: 0.15rem;
+  color: var(--color-hex-f3f6fb);
+  font-size: var(--fluid-quirk-card-title);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+}
+
+.quirk-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.quirk-description {
+  font-size: var(--fluid-quirk-card-desc);
+  line-height: 1.5;
+  color: var(--color-rgba-220-228-240-078);
+}
+
+/* === Meta row: tier scale · type · range === */
+.quirk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.quirk-meta-sep {
+  flex: 0 0 auto;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-rgba-255-255-255-018);
+}
+
+.quirk-tier-scale {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: stretch;
+  height: 1.2rem;
+  padding: 1.5px;
+  border-radius: 7px;
+  background: var(--color-rgba-255-255-255-0025);
+  border: 1px solid var(--color-rgba-255-255-255-007);
+  box-sizing: border-box;
+  gap: 1px;
+  /* 5 cells + gaps + inner padding — keeps Ω “Special” track aligned */
+  --quirk-tier-scale-width: calc(5 * 1.15rem + 4 * 1px + 2 * 1.5px);
+}
+
+.quirk-tier-cell {
+  --tier-cell-rgb: 200, 215, 240;
+
+  display: grid;
+  place-items: center;
+  min-width: 1.15rem;
+  height: 100%;
+  padding: 0 0.32rem;
+  border-radius: 5px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-rgba-220-228-240-03);
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+}
+
+/* Shared tier palette (tier toggles, card scale, manual-pick badges) */
+.quirk-tier-cell[data-tier='S'],
+.manual-quirk-tier-badge[data-tier='S'],
+.manual-quirk-card[data-tier='S'] .manual-quirk-tier-badge {
+  --tier-rgb: 52, 228, 196;
+}
+
+.quirk-tier-cell[data-tier='A'],
+.manual-quirk-tier-badge[data-tier='A'],
+.manual-quirk-card[data-tier='A'] .manual-quirk-tier-badge {
+  --tier-rgb: 118, 220, 130;
+}
+
+.quirk-tier-cell[data-tier='B'],
+.manual-quirk-tier-badge[data-tier='B'],
+.manual-quirk-card[data-tier='B'] .manual-quirk-tier-badge {
+  --tier-rgb: 250, 204, 21;
+}
+
+.quirk-tier-cell[data-tier='C'],
+.manual-quirk-tier-badge[data-tier='C'],
+.manual-quirk-card[data-tier='C'] .manual-quirk-tier-badge {
+  --tier-rgb: 251, 146, 60;
+}
+
+.quirk-tier-cell[data-tier='D'],
+.manual-quirk-tier-badge[data-tier='D'],
+.manual-quirk-card[data-tier='D'] .manual-quirk-tier-badge {
+  --tier-rgb: 255, 92, 108;
+}
+
+.quirk-tier-cell[aria-current='true'],
+.quirk-tier-cell-active {
+  --tier-cell-rgb: var(--tier-rgb);
+  color: var(--color-hex-0d1218);
+  background: rgb(var(--tier-cell-rgb));
+  box-shadow:
+    0 0 8px rgba(var(--tier-cell-rgb), 0.7),
+    0 0 16px rgba(var(--tier-cell-rgb), 0.35);
+}
+
+.quirk-tier-scale-omega {
+  flex: 0 0 auto;
+  width: var(--quirk-tier-scale-width);
+  min-width: var(--quirk-tier-scale-width);
+  padding: 1.5px;
+  border-color: var(--color-rgba-255-110-190-035);
+  background: var(--color-rgba-255-110-190-008);
+}
+
+.quirk-tier-special {
+  --tier-cell-rgb: 255, 110, 190;
+
+  display: grid;
+  place-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0 0.45rem;
+  border-radius: 5px;
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-hex-0d1218);
+  background: rgb(var(--tier-cell-rgb));
+  box-shadow:
+    0 0 8px rgba(var(--tier-cell-rgb), 0.7),
+    0 0 16px rgba(var(--tier-cell-rgb), 0.35);
+}
+
+.quirk-meta-type {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  color: var(--card-accent-strong);
+  text-shadow: 0 0 14px var(--card-accent-glow);
+}
+
+.quirk-meta-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-rgba-220-228-240-06);
+  font-weight: 700;
+}
+
+.quirk-meta-range-icon {
+  position: relative;
+  display: inline-block;
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+
+.quirk-meta-range-icon::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  opacity: 0.4;
+}
+
+.quirk-card-has-modal-trigger {
+  padding-bottom: calc(clamp(0.75rem, 1.6svh, 1rem) + 1.8rem);
+}
+
+.quirk-modal-trigger {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.65rem;
+  z-index: 3;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--card-accent-soft);
+  background: var(--color-rgba-10-14-22-072);
+  color: var(--color-rgba-220-228-240-075);
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.quirk-modal-trigger svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.quirk-modal-trigger:hover,
+.quirk-modal-trigger:focus-visible {
+  color: var(--card-accent-strong);
+  border-color: var(--card-accent);
+  background: var(--color-rgba-14-20-32-092);
+  box-shadow: 0 0 16px var(--card-accent-glow);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.chip {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent-strong);
+  font-size: 0.74rem;
+}
+
+.chip-muted {
+  border-color: var(--color-rgba-255-255-255-008);
+  background: var(--color-rgba-255-255-255-0025);
+  color: var(--color-rgba-220-228-240-062);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chip-facet {
+  z-index: 1;
+}
+
+.chip-facet[data-tooltip]:hover {
+  z-index: 34;
+}

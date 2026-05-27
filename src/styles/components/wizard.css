@@ -1,0 +1,280 @@
+/* === Advance button === */
+.tier-step-advance {
+  margin-top: 0.45rem;
+  margin-bottom: 0.15rem;
+  min-width: 200px;
+  transition:
+    box-shadow 220ms ease,
+    filter 220ms ease,
+    opacity 180ms ease;
+}
+
+.tier-step-advance:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: none;
+  box-shadow: none;
+}
+
+.type-step-panel .tier-step-advance {
+  animation: typeStepChoiceIn 280ms cubic-bezier(0.22, 1, 0.36, 1) 220ms backwards;
+}
+
+@keyframes typeStepFwd {
+  from {
+    opacity: 0;
+    transform: translateX(32px) scale(0.97);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes typeStepBack {
+  from {
+    opacity: 0;
+    transform: translateX(-32px) scale(0.97);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes typeStepLabelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typeStepChoiceIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.random-roll-step {
+  gap: clamp(0.8rem, 2.5svh, 1.2rem);
+}
+
+.roll-orb {
+  position: relative;
+  width: var(--fluid-roll-orb);
+  height: var(--fluid-roll-orb);
+  display: grid;
+  place-items: center;
+}
+
+.roll-orb-core {
+  width: var(--fluid-roll-orb-core);
+  height: var(--fluid-roll-orb-core);
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, var(--accent-strong), var(--accent) 55%, var(--color-hex-d45a3f));
+  box-shadow:
+    0 0 24px var(--color-rgba-248-216-73-035),
+    0 0 30px var(--color-rgba-0-190-255-02);
+}
+
+.roll-orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px dashed var(--color-rgba-248-216-73-045);
+}
+
+.roll-orb-spin .roll-orb-ring {
+  animation: orbSpin 900ms linear infinite;
+}
+
+.roll-orb-spin .roll-orb-core {
+  animation: orbPulse 420ms ease-in-out infinite alternate;
+}
+
+.roll-orb-reveal .roll-orb-core {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 34px var(--color-rgba-248-216-73-05),
+    0 0 28px var(--color-rgba-90-220-150-025);
+}
+
+.roll-label {
+  margin: 0;
+  width: 100%;
+  max-width: min(100%, 36rem);
+  box-sizing: border-box;
+  padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+  font-size: var(--fluid-roll-label);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.roll-label-reveal {
+  color: var(--accent-strong);
+  transform: scale(1.04);
+}
+
+.roll-label-slot,
+.roll-label-flicker {
+  display: block;
+  min-height: 2.75em;
+  overflow: visible;
+}
+
+.roll-label-flicker {
+  animation: labelFlicker 95ms ease-out;
+}
+
+@keyframes labelFlicker {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.result-step {
+  min-height: 0;
+}
+
+/* Hybrid — more content; stack from top with scroll in the card area */
+.result-step:has(.hybrid-result) {
+  align-content: center;
+  grid-template-rows: auto auto auto auto;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.result-step:has(.hybrid-result) .app-mark {
+  margin-top: auto;
+}
+
+.result-step:has(.hybrid-result) .result-toolbar-reveal {
+  margin-bottom: auto;
+  justify-content: center;
+}
+
+.result-step .quirk-card .quirk-description {
+  font-size: clamp(0.8rem, 2vw, 0.88rem);
+}
+
+/* Single quirk — center title + card like other wizard steps */
+.result-step:not(:has(.hybrid-result)) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  gap: 0;
+}
+
+.result-step:not(:has(.hybrid-result)) .app-mark + h1 {
+  margin-top: var(--fluid-step-gap);
+}
+
+.result-step:not(:has(.hybrid-result)) h1 + .result-cards-reveal,
+.result-step:not(:has(.hybrid-result)) h1 + .mini-copy,
+.result-step:not(:has(.hybrid-result)) h1 + .result-roll-stage {
+  margin-top: var(--fluid-after-title);
+}
+
+.result-step:not(:has(.hybrid-result)) .app-mark {
+  margin-top: auto;
+}
+
+.result-step:not(:has(.hybrid-result)) .result-cards-reveal,
+.result-step:not(:has(.hybrid-result)) > .mini-copy,
+.result-step:not(:has(.hybrid-result)) .result-roll-stage {
+  margin-bottom: auto;
+}
+
+.result-step:not(:has(.hybrid-result)) .result-toolbar-reveal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+}
+
+.result-step .result-cards-reveal {
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.result-step:has(.hybrid-result) .result-cards-reveal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.35rem 1rem 0.85rem;
+}
+
+.result-step .result-cards-reveal:not(:has(.hybrid-result)) {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Room for quirk-card drop shadow so it isn't clipped at the scroll edge */
+  padding: clamp(1.25rem, 2.8svh, 1.6rem) 0 clamp(2rem, 4.5svh, 2.75rem);
+}
+
+.hybrid-result .segment-tab-panel {
+  min-height: 0;
+  min-width: 0;
+  height: auto;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0.5rem 0.75rem;
+  animation: resultTabFade 220ms ease;
+}
+
+.result-step-rolling:has(.hybrid-result) {
+  gap: clamp(0.75rem, 2.2svh, 1.1rem);
+}
+
+/* Direct share links — no entrance replay (avoids client-nav flicker) */
+.simple-step.result-step-static {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+.simple-step.result-step-static .result-cards-reveal,
+.simple-step.result-step-static .result-cards-reveal .quirk-card,
+.simple-step.result-step-static .result-toolbar-reveal,
+.simple-step.result-step-static .hybrid-result .segment-tab-panel,
+.simple-step.result-step-static .result-roll-stage,
+.simple-step.result-step-static .result-roll-title,
+.simple-step.result-step-static > h1 {
+  animation: none !important;
+}
+
+/* History handoff — card/toolbar entrance only (no screenIn) */
+.simple-step.result-step-entrance {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+/* Rolling phase centers via flex + auto margins on single-result step */

@@ -1,0 +1,67 @@
+body::before {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  right: max(-3vw, -5rem);
+  bottom: 0;
+  width: min(56vw, 720px);
+  height: min(90vh, 820px);
+  background-image: url('/bg-render1.webp');
+  background-position: right bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: var(--bg-render-opacity);
+  filter: var(--bg-render-filter);
+  -webkit-mask-image:
+    linear-gradient(to left, var(--black) 23%, transparent 85%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render1.webp');
+  mask-image:
+    linear-gradient(to left, var(--black) 23%, transparent 85%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render1.webp');
+  -webkit-mask-size: 100% 100%, 100% 100%, contain;
+  mask-size: 100% 100%, 100% 100%, contain;
+  -webkit-mask-position: center, center, right bottom;
+  mask-position: center, center, right bottom;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  left: max(-18vw, -2rem);
+  bottom: 0;
+  width: min(60vw, 792px);
+  height: min(93vh, 890px);
+  background-image: url('/bg-render2.webp');
+  background-position: left bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: var(--bg-render-opacity);
+  filter: var(--bg-render-filter);
+  -webkit-mask-image:
+    linear-gradient(to right, var(--black) 23%, transparent 80%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render2.webp');
+  mask-image:
+    linear-gradient(to right, var(--black) 23%, transparent 80%),
+    var(--bg-render-bottom-mask),
+    url('/bg-render2.webp');
+  -webkit-mask-size: 100% 100%, 100% 100%, contain;
+  mask-size: 100% 100%, 100% 100%, contain;
+  -webkit-mask-position: center, center, left bottom;
+  mask-position: center, center, left bottom;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+@media (max-width: 1100px) {

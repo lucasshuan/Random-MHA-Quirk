@@ -59,11 +59,11 @@ Scientific / conceptual synthesis (when it strengthens the hybrid):
 - When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain).
 - The third concept must be mechanically earned by the description from both parent operations; do not force parent keywords into en.name when a cleaner derivative fits.
 - This concept applies to everything. For example, preferably:
-  - Two sport-based quirks may turn into another sport (e.g. Football + Basketball -> Volleyball). 
-  - Or two animal-based quirks may turn into another animal (e.g. Lion + Eagle -> Griffin).
-  - Or one animal-based quirk with a trait may turn into an animal subtype (e.g. Rabbit + Speed -> Jackrabbit) 
-  - Or two element-based quirks may resolve into a reaction, phase, or byproduct (e.g. Fire + Water -> Steam).
-  - Or one element-based quirk with a condition turns into known material science (e.g. Softening + Barrier -> Non-Newtonian fluid)`
+  - Two sport-based quirks may turn into another sport (e.g. Soccer + Sentient Basketballs -> volleyball-related or other sport-based quirk). 
+  - Or two animal-based quirks may turn into another animal (e.g. Lion + Eagle -> griffin or other animal).
+  - Or one animal-based quirk with a trait may turn into an animal subtype (e.g. Rabbit + Acceleration -> jackrabbit or other animal subtype) 
+  - Or two element-based quirks may resolve into a reaction, phase, or byproduct (e.g. Fire + Water Manipulation -> steam or other reaction, phase, or byproduct).
+  - Or one element-based quirk with a condition turns into known material science (e.g. Softening + Barrier -> non-newtonian fluid or other material science)`
 
 function buildFusionEnglishWebSearchBlock(): string {
   if (!resolveFusionWebSearchEnabled()) return ''

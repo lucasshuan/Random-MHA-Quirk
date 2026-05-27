@@ -125,11 +125,7 @@ export async function generateFusionEntry({
 
         const translations = await translateFusionToAllLocalesWithLlm(
           english,
-          {
-            nameRegister: fusionInput.roll.nameRegister,
-            nameRegisterInstruction: fusionInput.roll.nameRegisterInstruction,
-            nameExamples: fusionInput.roll.nameExamples,
-          },
+          { nameRegister: fusionInput.roll.nameRegister },
           traceContext,
         )
 

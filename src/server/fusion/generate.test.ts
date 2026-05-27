@@ -169,8 +169,6 @@ describe('generateFusionEntry', () => {
     expect(mockTranslateFusionToAllLocalesWithLlm.mock.calls[0][0]).toEqual(englishPayload)
     expect(mockTranslateFusionToAllLocalesWithLlm.mock.calls[0][1]).toEqual({
       nameRegister: fusionInput.roll.nameRegister,
-      nameRegisterInstruction: fusionInput.roll.nameRegisterInstruction,
-      nameExamples: fusionInput.roll.nameExamples,
     })
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()
     expect(mockReleaseFusionGenerationClaim).toHaveBeenCalledOnce()

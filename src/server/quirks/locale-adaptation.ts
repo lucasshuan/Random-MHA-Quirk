@@ -3,6 +3,7 @@ import {
   FUSION_DESCRIPTION_MIN_LENGTH,
   type FusionTranslationLocale,
 } from '@/server/fusion/constants'
+import { formatLocaleNameRegisterBlock } from '@/server/quirks/locale-name'
 import type { QuirkFacet, QuirkRange, QuirkType } from '@/types/quirk'
 
 const SHARED_TONE_HINT =
@@ -72,17 +73,17 @@ export function buildQuirkLocaleAdaptationStaticInstructionsAllLocales(
   const localeBlocks = locales.map((locale) => {
     const config = LOCALE_RULES[locale]
     return `### ${config.languageLabel} (${config.jsonKey})
-${buildLocaleRulesBlock(locale, { keyPrefix: `${config.jsonKey}.` })}`
-  })
+  ${buildLocaleRulesBlock(locale, { keyPrefix: `${config.jsonKey}.` })}`
+    })
 
-  return `Adapt this ${kind} My Hero Academia quirk into multiple target languages for a quirk encyclopedia app.
+    return `Adapt this ${kind} My Hero Academia quirk into multiple target languages for a quirk encyclopedia app.
 
-Your job is localization: preserve the finished concept, but adapt wording and title so they feel native in each target language.
+  Your job is localization: preserve the finished concept, but adapt wording and title so they feel native in each target language.
 
-Rules (by locale):
-${localeBlocks.join('\n\n')}
+  Rules (by locale):
+  ${localeBlocks.join('\n\n')}
 
-Return only JSON with keys: ${locales.map((l) => `"${l}"`).join(', ')}. No markdown.`
+  Return only JSON with keys: ${locales.map((l) => `"${l}"`).join(', ')}. No markdown.`
 }
 
 export function buildQuirkLocaleAdaptationDynamicSourceBlock(
@@ -101,20 +102,16 @@ export function buildQuirkLocaleAdaptationDynamicSourceBlock(
 export interface QuirkLocaleAdaptationNamingContext {
   /** Rolled name register key (pun/blunt/dramatic/...). */
   nameRegister: string
-  /** Register-specific instruction used for the English generation step. */
-  nameRegisterInstruction: string
-  /** Example titles for the register (English). */
-  nameExamples: readonly string[]
 }
 
 export function buildQuirkLocaleAdaptationDynamicNamingBlock(
   naming: QuirkLocaleAdaptationNamingContext | null | undefined,
+  locales: readonly FusionTranslationLocale[] = ['pt-BR', 'es'],
 ): string {
   if (!naming) return ''
-  const examples = naming.nameExamples.length > 0 ? naming.nameExamples.join(', ') : 'None.'
-  return `\n\nName register (keep the same voice as English generation): ${naming.nameRegister}
-- Instruction: ${naming.nameRegisterInstruction}
-- Examples: ${examples}`
+  const registerBlock = formatLocaleNameRegisterBlock(naming.nameRegister, locales)
+  if (!registerBlock) return ''
+  return `\n\nName register: ${naming.nameRegister}\n\n${registerBlock}`
 }
 
 function buildLocaleRulesBlock(
@@ -142,6 +139,7 @@ function buildLocaleRulesBlock(
     'Preserve the finished concept first, not the exact English wording',
     'Translate/adapt the name from the core idea of the quirk, not from isolated words',
     'Do not invent a new mechanism or reinterpret the quirk; only localize the already-created concept',
+    'Preserve the English title’s chosen angle when it is meaningful: if the title names the action, motion, creature, material, or concept cleanly, localize that same angle instead of switching to a different detail from the description.',
   ]
 
   return rules.map((line) => `- ${line}`).join('\n')

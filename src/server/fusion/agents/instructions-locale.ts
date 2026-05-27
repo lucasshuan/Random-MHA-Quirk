@@ -56,5 +56,6 @@ export function buildFusionTranslationDynamicPromptAllLocales(
 ): string {
   return `${buildFusionTranslationDynamicSourceBlock(source)}${buildQuirkLocaleAdaptationDynamicNamingBlock(
     naming,
+    FUSION_TRANSLATION_LOCALES,
   )}`
 }

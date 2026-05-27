@@ -47,8 +47,6 @@ export function translateFusionToAllLocalesWithLlm(
   english: ValidatedEnglishFusionPayload,
   naming: {
     nameRegister: string
-    nameRegisterInstruction: string
-    nameExamples: string[]
   },
   trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy[]> {

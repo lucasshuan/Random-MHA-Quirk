@@ -108,7 +108,6 @@ export const REGISTER_DEFS = [
     examples: [
       'Gigantic Spinning Flying Turtle',
       'Beams From His Eyes',
-      'Super Ultra Great Delicious All Time Best',
       'Wooden Swords From His Hands',
       'Attraction of Small Objects',
       'Shoulder-Mounted Jets',

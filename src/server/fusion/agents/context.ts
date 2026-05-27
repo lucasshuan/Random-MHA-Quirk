@@ -18,7 +18,5 @@ export interface FusionTranslationAllRunContext {
   source: ValidatedEnglishFusionPayload
   naming: {
     nameRegister: string
-    nameRegisterInstruction: string
-    nameExamples: string[]
   }
 }

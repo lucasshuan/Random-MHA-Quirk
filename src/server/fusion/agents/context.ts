@@ -12,3 +12,13 @@ export interface FusionTranslationRunContext {
   locale: FusionTranslationLocale
   source: ValidatedEnglishFusionPayload
 }
+
+/** Passed to `run(..., { context })` for multi-locale adaptation in one call. */
+export interface FusionTranslationAllRunContext {
+  source: ValidatedEnglishFusionPayload
+  naming: {
+    nameRegister: string
+    nameRegisterInstruction: string
+    nameExamples: string[]
+  }
+}

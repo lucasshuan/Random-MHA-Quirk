@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { buildFusionAgentInput } from '../agent-input'
 import type { FusionCatalogQuirk } from '../catalog'
 import { REGISTER_DEFS } from '../prompts/naming'
@@ -45,6 +45,10 @@ function buildWithNameRegister(
 }
 
 describe('buildFusionEnglishInstructions', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
   it('embeds fixed mechanics and strategy from FusionAgentInput', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
@@ -80,11 +84,29 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('Old')
   })
 
-  it('mentions fandom search and scientific/conceptual synthesis', () => {
+  it('omits web search guidance when web search is disabled', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
+    expect(instructions).not.toContain('myheroacademia.fandom.com')
+    expect(instructions).not.toContain('Research:')
+    expect(instructions).not.toContain('web_search')
+  })
+
+  it('includes web search guidance when web search is enabled', () => {
+    vi.stubEnv('FUSION_AGENT_WEB_SEARCH', '1')
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
     expect(instructions).toContain('myheroacademia.fandom.com')
+    expect(instructions).toContain('Research:')
+    expect(instructions).toContain('en.wikipedia.org')
+  })
+
+  it('mentions scientific/conceptual synthesis', () => {
+    const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
+    const instructions = buildFusionEnglishInstructions(fusion)
+
     expect(instructions).toContain('Scientific / conceptual synthesis')
     expect(instructions).toContain(
       'third organism, machine, material, mythic creature, or phenomenon',
@@ -189,7 +211,7 @@ describe('buildFusionEnglishInstructions', () => {
     expect(instructions).toContain('NEW birth Quirk')
     expect(instructions).toContain('Could this description belong to either parent unchanged?')
     expect(instructions).toContain(
-      'the title must give a clear idea of what the quirk does',
+      'The title should capture the cleanest core concept of the quirk',
     )
     expect(instructions).toContain('do not add arbitrary targets')
   })
@@ -214,7 +236,7 @@ describe('buildFusionEnglishInstructions', () => {
     const fusion = buildFusionAgentInput(quirkA, quirkB, 'seed-x')
     const instructions = buildFusionEnglishInstructions(fusion)
 
-    expect(instructions).toContain('recognizable operational essence from EACH parent')
+    expect(instructions).toContain('core recognizable essence from EACH parent')
     expect(instructions).toContain(
       'Rolled facets describe how the hybrid presents; they never replace',
     )

@@ -30,3 +30,8 @@ export const FusionEsOutputSchema = z.object({
 export function fusionTranslationOutputSchema(locale: FusionTranslationLocale) {
   return locale === 'pt-BR' ? FusionPtBrOutputSchema : FusionEsOutputSchema
 }
+
+export const FusionAllLocalesOutputSchema = z.object({
+  'pt-BR': localeCopySchema,
+  es: localeCopySchema,
+})

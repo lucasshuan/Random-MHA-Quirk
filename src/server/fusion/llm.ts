@@ -2,6 +2,7 @@ import { requireOneOf } from '@/server/env/utils'
 import type { FusionAgentInput } from '@/types/fusion-agent'
 import {
   generateEnglishFusionWithAgent,
+  translateFusionAllLocalesWithAgent,
   translateFusionWithAgent,
 } from './agents'
 import type { FusionTranslationLocale } from './constants'
@@ -40,4 +41,16 @@ export function translateFusionToLocaleWithLlm(
   trace?: FusionPipelineTraceContext,
 ): Promise<ValidatedLocaleFusionCopy> {
   return translateFusionWithAgent(english, locale, trace)
+}
+
+export function translateFusionToAllLocalesWithLlm(
+  english: ValidatedEnglishFusionPayload,
+  naming: {
+    nameRegister: string
+    nameRegisterInstruction: string
+    nameExamples: string[]
+  },
+  trace?: FusionPipelineTraceContext,
+): Promise<ValidatedLocaleFusionCopy[]> {
+  return translateFusionAllLocalesWithAgent(english, naming, trace)
 }

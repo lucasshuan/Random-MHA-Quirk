@@ -1,12 +1,12 @@
 import type { QuirkRange } from '@/types/quirk'
 
 const RANGE_PROSE_HINTS: Record<QuirkRange, string> = {
-  Self: 'effects stay on the user only — no ranged strikes or distant targets',
-  Contact: 'touch or immediate grappling distance only',
-  Short: 'a few meters — close-quarters, not across a field',
-  Medium: 'mid-distance — not self-only and not battlefield-wide',
-  Long: 'far reach across open space — not touch-only',
-  Area: 'wide zone or battlefield footprint — not single-target contact only',
+  Self: 'manifests only through the user’s own body, mind, or internal state',
+  Contact: 'requires direct touch or immediate physical interaction',
+  Short: 'extends a small distance away from the user',
+  Medium: 'operates comfortably beyond arm’s reach without covering large spaces',
+  Long: 'can affect distant targets or locations far from the user',
+  Area: 'influences a broad zone, field, or surrounding environment',
 }
 
 export function formatRangeProseBlock(range: QuirkRange): string {

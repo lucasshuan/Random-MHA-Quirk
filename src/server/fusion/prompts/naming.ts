@@ -19,11 +19,13 @@ export interface FusionNameRegisterDefinition extends SelectedFusionNameRegister
 }
 
 export const FUSION_NAMING_RULES = [
-  'Write en.name only after en.description — the title must give a clear idea of what the quirk does while following the selected name register.',
+  'The title should capture the cleanest core concept of the quirk, not every operational detail.',
+  'Prefer concept-first naming: if the quirk naturally resolves into a recognizable derived concept, organism, phenomenon, material, reaction, machine, or mythic form, title that concept directly.',
+  'Do not force parent keywords into en.name when a cleaner inherited concept exists.',
+  'The best titles usually describe the resulting idea, not the exact mechanism.',
   'Keep en.description objective and encyclopedic; use en.name for the selected title voice.',
-  'The title must fit a NEW birth Quirk — not a parent name with one swapped word (e.g. Parent "Foldabody" -> "Telescopic Fold" when the description is still just that parent).',
-  'Before finalizing en.name, ask: "Does this sound like a real anime Quirk title in the selected register?" If no, replace it within that register.',
-]
+  'The title must fit a NEW birth Quirk — not a parent name with one swapped word. Prefer evolved or resolved concepts over literal parent recombinations.',
+  'Before finalizing en.name, ask: "Does this sound like the cleanest and most memorable expression of the concept in the selected register, given the naming strategy and parents?" If no, replace it.',]
 
 export const FUSION_NAME_REGISTER_KEYS = [
   'pun',

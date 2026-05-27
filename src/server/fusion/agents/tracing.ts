@@ -119,7 +119,7 @@ export function buildEnglishFusionRunConfig(fusion: FusionAgentInput): RunConfig
 }
 
 export function buildTranslationFusionRunConfig(
-  locale: FusionTranslationLocale,
+  locale: FusionTranslationLocale | 'all',
   ctx: FusionPipelineTraceContext,
 ): RunConfig {
   return baseRunConfig(`Fusion locale adaptation (${locale})`, ctx, { locale })

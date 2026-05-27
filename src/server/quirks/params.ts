@@ -6,12 +6,7 @@ import {
   QUIRK_RANGES,
   QUIRK_TIERS,
   QUIRK_TYPES,
-  type QuirkFacet,
   type QuirkFilters,
-  type QuirkOrigin,
-  type QuirkRange,
-  type QuirkTier,
-  type QuirkType,
 } from '@/types/quirk'
 
 function parseList<T extends string>(

@@ -9,7 +9,10 @@ import {
   resolveFusionModelSettings,
   resolveFusionOpenAiModel,
 } from './config'
-import { buildFusionEnglishInstructions } from './instructions-en'
+import {
+  buildFusionEnglishDynamicPrompt,
+  buildFusionEnglishStaticInstructions,
+} from './instructions-en'
 import { FusionEnglishOutputSchema } from './schemas'
 import {
   createFusionWebSearchTool,
@@ -18,8 +21,12 @@ import {
 } from './tools'
 import { buildEnglishFusionRunConfig } from './tracing'
 
-const USER_TURN =
-  'Follow the specification. If helpful, search allowed sites for parent quirk canon (especially myheroacademia.fandom.com) before inventing the hybrid. Then return only the fusion quirk JSON.'
+function buildEnglishUserTurn(): string {
+  if (resolveFusionWebSearchEnabled()) {
+    return 'Follow the specification. If helpful, search allowed sites for parent quirk canon (especially myheroacademia.fandom.com) before inventing the hybrid. Then return only the fusion quirk JSON.'
+  }
+  return 'Follow the specification. Then return only the fusion quirk JSON.'
+}
 
 let englishAgent:
   | Agent<FusionEnglishRunContext, typeof FusionEnglishOutputSchema>
@@ -37,12 +44,10 @@ function getEnglishAgent(): Agent<
       name: 'Hybrid MHA Quirk Generator',
       handoffDescription:
         'Generates an English MHA hybrid quirk name and description for fixed rolled constraints.',
-      instructions: (runContext) => {
-        const fusion = runContext.context?.fusion
-        if (!fusion) {
-          throw new Error('Fusion agent context missing fusion input.')
-        }
-        return buildFusionEnglishInstructions(fusion)
+      // Keep system instructions stable across runs for caching.
+      instructions: (_runContext) => {
+        void _runContext
+        return buildFusionEnglishStaticInstructions()
       },
       model,
       modelSettings: resolveFusionModelSettings('fusion'),
@@ -71,7 +76,9 @@ function enforceServerMechanics(
 export async function generateEnglishFusionWithAgent(
   fusion: FusionAgentInput,
 ): Promise<ValidatedEnglishFusionPayload> {
-  const result = await run(getEnglishAgent(), USER_TURN, {
+  const userTurn = `${buildFusionEnglishDynamicPrompt(fusion)}\n\n${buildEnglishUserTurn()}`
+
+  const result = await run(getEnglishAgent(), userTurn, {
     context: { fusion },
     maxTurns: resolveFusionAgentMaxTurns(),
     ...buildEnglishFusionRunConfig(fusion),

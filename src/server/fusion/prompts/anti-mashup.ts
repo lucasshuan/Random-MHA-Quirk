@@ -12,11 +12,11 @@ export type FusionAntiMashupRuleKey = (typeof FUSION_ANTI_MASHUP_RULE_KEYS)[numb
 
 const ANTI_MASHUP_RULE_TEXT: Record<FusionAntiMashupRuleKey, string> = {
   'coherent-loop':
-    'Anti-mashup: do not describe two independent full-strength kits running in parallel.',
+    'Anti-mashup: do not list both parents as separate powers. Resolve them into one inherited concept with one clear rule.',
   'failure-reduced':
-    'Anti-mashup: failure-mode is reduced-potential fusion — one surviving loop at sub-parent ceiling; do not restore both signatures to full strength through synergy wording or a second free kit.',
+    'Anti-mashup: failure-mode should feel like an imperfect inheritance — a damaged, narrower, unstable, or partial concept descended from both parents.',
   'modifier-cost':
-    'Anti-mashup: one parent supplies the main loop; the other supplies one modifier, limit, or cost.',
+    'Anti-mashup: one parent should lead the concept while the other reshapes how it appears, behaves, fails, or is limited.',
 }
 
 /** Strategies that get one pair-aware ❌ example after the strategy line. */
@@ -26,15 +26,22 @@ const STRATEGIES_WITH_PAIR_EXAMPLE = new Set<FusionStrategyKey>([
   'dominant-b',
 ])
 
-const PAIR_NEGATIVE_EXAMPLES: Record<string, string> = {
+const GENERAL_NEGATIVE_EXAMPLES = [
+  'Hardening + Permeation -> turns fully armored and phases through anything as two separate powers',
+  'Frog + Laser -> has frog traits plus a normal laser attack with no shared concept',
+  'Blackwhip + Creation -> creates objects and controls black tendrils as unrelated abilities',
+  'Absorption and Release + Arbor -> absorbs attacks and fires full-power wood barrages as separate effects',
+] as const
+
+const PAIR_SPECIFIC_NEGATIVE_EXAMPLES: Record<string, string> = {
   'hardening+permeation':
-    'phase through walls while fully armored at all times',
+    'turns fully armored and phases through anything as two separate powers',
   'frog+laser':
-    'tongue fires lasers and also full laser DPS',
+    'has frog traits plus a normal laser attack with no shared concept',
   'blackwhip+creation':
-    'free-form object creation and full blackwhip reach/control at once',
+    'creates objects and controls black tendrils as unrelated abilities',
   'absorption-and-release+arbor':
-    'absorb any hit and launch amplified wood barrages at full strength together',
+    'absorbs attacks and fires full-power wood barrages as separate effects',
 }
 
 function pairKey(idA: string, idB: string): string {
@@ -45,7 +52,7 @@ function lookupPairNegativeExample(
   quirkA: FusionCatalogQuirk,
   quirkB: FusionCatalogQuirk,
 ): string {
-  const hardcoded = PAIR_NEGATIVE_EXAMPLES[pairKey(quirkA.id, quirkB.id)]
+  const hardcoded = PAIR_SPECIFIC_NEGATIVE_EXAMPLES[pairKey(quirkA.id, quirkB.id)]
   if (hardcoded) return hardcoded
 
   const ctx = analyzeParentPair(quirkA, quirkB)
@@ -91,6 +98,11 @@ export function formatStrategyAntiMashupExample(
     return ''
   }
 
-  const example = lookupPairNegativeExample(quirkA, quirkB)
-  return `Avoid this mashup for this strategy: ❌ "${example}"`
+  const pairExample = lookupPairNegativeExample(quirkA, quirkB)
+
+  return `Bad mashup examples to avoid:
+${GENERAL_NEGATIVE_EXAMPLES.map((example) => `- ❌ ${example}`).join('\n')}
+
+Bad mashup for this specific fusion:
+- ❌ ${pairExample}`
 }

@@ -155,6 +155,14 @@ export function validateLocaleFusionTranslation(
   return { [locale]: copy } as ValidatedLocaleFusionCopy
 }
 
+export function validateAllLocalesFusionTranslation(
+  raw: unknown,
+): ValidatedLocaleFusionCopy[] {
+  return FUSION_TRANSLATION_LOCALES.map((locale) =>
+    validateLocaleFusionTranslation(raw, locale),
+  )
+}
+
 export function mergeFusionPayload(
   english: ValidatedEnglishFusionPayload,
   ...translations: ValidatedLocaleFusionCopy[]

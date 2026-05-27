@@ -6,7 +6,10 @@ import {
 } from '../prompts/tier-decision'
 import { FUSION_NAMING_RULES } from '../prompts/naming'
 import { formatQuirkTypeReferenceBlock } from '../prompts/type-discipline'
-import { FUSION_WEB_SEARCH_DEFAULT_DOMAINS } from './tools'
+import {
+  resolveFusionWebSearchDomains,
+  resolveFusionWebSearchEnabled,
+} from './tools'
 
 const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from a structured specification.
 
@@ -19,9 +22,18 @@ const STATIC_INSTRUCTIONS = `You design My Hero Academia fan fusion quirks from 
 ## Core design contract
 
 - Create exactly one NEW birth Quirk with one governing mechanism, not two powers stapled together.
-- Preserve a recognizable operational essence from EACH parent in a third rule neither parent could claim alone.
-- Before writing prose, settle one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence.
+- Preserve the core recognizable essence from EACH parent in a third rule neither parent could claim alone; minor details may be ignored when they weaken the concept.
+- Before writing prose, settle the central concept first, then reduce it to one concrete rule: permanent trait or activation/condition -> changed body, target, material, or resource -> practical consequence.
 - Before returning JSON, ask: "Could this description belong to either parent unchanged?" If yes, invent a new combined rule; do not restate a parent through light rewording, a rename, or a metaphor.
+
+## Concept-first design
+
+- Start from the strongest concept, not from a checklist of details.
+- Prefer concept-first or name-first generation: find the clean inherited idea first, then describe only the details needed to support it.
+- Treat parent details as evidence for the concept, not as mandatory parts to mention.
+- Do not preserve every parent detail. Preserve the core recognizable essence from each parent.
+- If a familiar third concept explains the inheritance better than a literal mashup, use it.
+- Avoid overfitting to minor traits, edge cases, colors, tactics, or incidental wording from the parent descriptions.
 
 ## Description rules
 
@@ -42,12 +54,6 @@ ${formatQuirkTypeReferenceBlock()}
 
 ${FUSION_NAMING_RULES.map((rule) => `- ${rule}`).join('\n')}
 
-Research (when web_search is available):
-- You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
-- Use en.wikipedia.org only for short real-world science context (e.g. non-Newtonian fluid, catalysis, shear thickening) when it clarifies the hybrid mechanism.
-- Allowed domains only: ${FUSION_WEB_SEARCH_DEFAULT_DOMAINS.join(', ')} (or domains configured for this run).
-- Do not use user location. Keep searches minimal — confirm parents, not essay research.
-
 Scientific / conceptual synthesis (when it strengthens the hybrid):
 - Prefer one coherent mechanism grounded in plausible chemistry, physics, biology, or materials science, or a clear supernatural rule in MHA tone.
 - When both parents naturally imply it, the single Quirk may resolve into a familiar third organism, machine, material, mythic creature, or phenomenon instead of a literal mashup (e.g. Cow + Horns -> Bull; Bat + Soundwave -> Echolocation; Engine + Electricity -> Powertrain).
@@ -59,9 +65,24 @@ Scientific / conceptual synthesis (when it strengthens the hybrid):
   - Or two element-based quirks may resolve into a reaction, phase, or byproduct (e.g. Fire + Water -> Steam).
   - Or one element-based quirk with a condition turns into known material science (e.g. Softening + Barrier -> Non-Newtonian fluid)`
 
-const STABLE_INSTRUCTIONS_PREFIX = `${STATIC_INSTRUCTIONS}
+function buildFusionEnglishWebSearchBlock(): string {
+  if (!resolveFusionWebSearchEnabled()) return ''
+
+  const domains = resolveFusionWebSearchDomains().join(', ')
+  return `
+
+Research:
+- You may search before writing. Prefer myheroacademia.fandom.com for each parent's canon name, limits, and how the power is shown in-series.
+- Use en.wikipedia.org only for short real-world science context (e.g. non-Newtonian fluid, catalysis, shear thickening) when it clarifies the hybrid mechanism.
+- Allowed domains only: ${domains}.
+- Do not use user location. Keep searches minimal — confirm parents, not essay research.`
+}
+
+function buildFusionEnglishStableInstructionsPrefix(): string {
+  return `${STATIC_INSTRUCTIONS}${buildFusionEnglishWebSearchBlock()}
 
 ${buildFusionEnglishTierStaticBlock()}`
+}
 
 const CONCEPTUAL_SYNTHESIS_NAME_EXAMPLES: Record<string, readonly string[]> = {
   pun: [
@@ -163,7 +184,11 @@ Do not reuse or lightly rephrase these titles; pick a different core idea:
 ${lines.join('\n')}`
 }
 
-export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string {
+export function buildFusionEnglishStaticInstructions(): string {
+  return buildFusionEnglishStableInstructionsPrefix()
+}
+
+export function buildFusionEnglishDynamicPrompt(fusion: FusionAgentInput): string {
   const { mechanics, roll, constraints } = fusion
   const siblingGate = constraints.siblingDiversityRequired
     ? 'Sibling diversity REQUIRED: produce a meaningfully different fusion than prior variants (not just rename or rephrase).'
@@ -173,9 +198,7 @@ export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string
     ? `\n${roll.antiMashupExample}`
     : ''
 
-  return `${STABLE_INSTRUCTIONS_PREFIX}
-
-## Request-specific specification
+  return `## Request-specific specification
 
 ### Fixed mechanics (copy type, range, facets into output JSON first)
 - type: ${mechanics.type}
@@ -215,4 +238,11 @@ ${formatTakenTitlesBlock(fusion)}
 ### Parent quirks (catalog summary)
 ${formatParentBlock(fusion.parents[0])}
 ${formatParentBlock(fusion.parents[1])}`
+}
+
+/** Back-compat helper: concatenates static + dynamic. */
+export function buildFusionEnglishInstructions(fusion: FusionAgentInput): string {
+  return `${buildFusionEnglishStaticInstructions()}\n\n${buildFusionEnglishDynamicPrompt(
+    fusion,
+  )}`
 }

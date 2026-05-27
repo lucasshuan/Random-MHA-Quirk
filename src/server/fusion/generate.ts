@@ -4,12 +4,11 @@ import type { FusionCacheEntry } from '@/types/fusion'
 import type { QuirkId } from '@/types/quirk-id'
 import { buildFusionAgentInput } from './agent-input'
 import { getQuirkById } from './catalog'
-import { FUSION_TRANSLATION_LOCALES } from './constants'
 import { buildFusionEntry, mergeFusionPayload } from './validate'
 import { deriveFusionRollContext, type FusionRollContext } from './prompts/roll-context'
 import {
   generateEnglishFusionWithLlm,
-  translateFusionToLocaleWithLlm,
+  translateFusionToAllLocalesWithLlm,
 } from './llm'
 import {
   findFusionByKey,
@@ -124,10 +123,14 @@ export async function generateFusionEntry({
           return storedResult(existingByName)
         }
 
-        const translations = await Promise.all(
-          FUSION_TRANSLATION_LOCALES.map((locale) =>
-            translateFusionToLocaleWithLlm(english, locale, traceContext),
-          ),
+        const translations = await translateFusionToAllLocalesWithLlm(
+          english,
+          {
+            nameRegister: fusionInput.roll.nameRegister,
+            nameRegisterInstruction: fusionInput.roll.nameRegisterInstruction,
+            nameExamples: fusionInput.roll.nameExamples,
+          },
+          traceContext,
         )
 
         const payload = mergeFusionPayload(english, ...translations)

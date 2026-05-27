@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { FusionCacheEntry } from '@/types/fusion'
 
 const mockGenerateEnglishFusionWithLlm = vi.fn()
-const mockTranslateFusionToLocaleWithLlm = vi.fn()
+const mockTranslateFusionToAllLocalesWithLlm = vi.fn()
 const mockFindFusionByKey = vi.fn()
 const mockFindFusionByParentPairAndEnglishName = vi.fn()
 const mockListFusionPriorVariantsForParentPair = vi.fn()
@@ -17,8 +17,8 @@ const mockGetQuirkById = vi.fn()
 vi.mock('./llm', () => ({
   generateEnglishFusionWithLlm: (...args: unknown[]) =>
     mockGenerateEnglishFusionWithLlm(...args),
-  translateFusionToLocaleWithLlm: (...args: unknown[]) =>
-    mockTranslateFusionToLocaleWithLlm(...args),
+  translateFusionToAllLocalesWithLlm: (...args: unknown[]) =>
+    mockTranslateFusionToAllLocalesWithLlm(...args),
 }))
 
 vi.mock('./repository', () => ({
@@ -115,25 +115,20 @@ describe('generateFusionEntry', () => {
     mockUpsertFusionEntry.mockResolvedValue(undefined)
     mockUpsertFusionEntryAlias.mockResolvedValue(undefined)
     mockGenerateEnglishFusionWithLlm.mockResolvedValue(englishPayload)
-    mockTranslateFusionToLocaleWithLlm.mockImplementation(
-      (_english: unknown, locale: 'pt-BR' | 'es') => {
-        if (locale === 'pt-BR') {
-          return Promise.resolve({
-            'pt-BR': {
-              name: 'Novo',
-              description: 'Descrição PT adaptada para teste de fusão.',
-            },
-          })
-        }
-
-        return Promise.resolve({
-          es: {
-            name: 'Nuevo',
-            description: 'Descripción ES adaptada para prueba de fusión.',
-          },
-        })
+    mockTranslateFusionToAllLocalesWithLlm.mockResolvedValue([
+      {
+        'pt-BR': {
+          name: 'Novo',
+          description: 'Descrição PT adaptada para teste de fusão.',
+        },
       },
-    )
+      {
+        es: {
+          name: 'Nuevo',
+          description: 'Descripción ES adaptada para prueba de fusión.',
+        },
+      },
+    ])
   })
 
   it('returns an existing keyed entry without issuing LLM calls', async () => {
@@ -170,8 +165,13 @@ describe('generateFusionEntry', () => {
     expect(fusionInput.priorVariants[0].name).toBe('Cached')
     expect(fusionInput.takenTitles).toEqual(['Acid', 'Explosion', 'Cached'])
     expect(fusionInput.meta.seed).toBe('seed1')
-    expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
-    expect(mockTranslateFusionToLocaleWithLlm.mock.calls[0][0]).toEqual(englishPayload)
+    expect(mockTranslateFusionToAllLocalesWithLlm).toHaveBeenCalledOnce()
+    expect(mockTranslateFusionToAllLocalesWithLlm.mock.calls[0][0]).toEqual(englishPayload)
+    expect(mockTranslateFusionToAllLocalesWithLlm.mock.calls[0][1]).toEqual({
+      nameRegister: fusionInput.roll.nameRegister,
+      nameRegisterInstruction: fusionInput.roll.nameRegisterInstruction,
+      nameExamples: fusionInput.roll.nameExamples,
+    })
     expect(mockUpsertFusionEntry).toHaveBeenCalledOnce()
     expect(mockReleaseFusionGenerationClaim).toHaveBeenCalledOnce()
     expect(result.generated).toBe(true)
@@ -196,7 +196,7 @@ describe('generateFusionEntry', () => {
     })
 
     expect(mockFindFusionByKey).toHaveBeenCalledTimes(3)
-    expect(mockTranslateFusionToLocaleWithLlm).not.toHaveBeenCalled()
+    expect(mockTranslateFusionToAllLocalesWithLlm).not.toHaveBeenCalled()
     expect(mockReleaseFusionGenerationClaim).toHaveBeenCalledOnce()
     expect(result.cached).toBe(true)
     expect(result.generated).toBe(false)
@@ -236,7 +236,7 @@ describe('generateFusionEntry', () => {
       'explosion',
       'Cached',
     )
-    expect(mockTranslateFusionToLocaleWithLlm).not.toHaveBeenCalled()
+    expect(mockTranslateFusionToAllLocalesWithLlm).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntry).not.toHaveBeenCalled()
     expect(mockUpsertFusionEntryAlias).toHaveBeenCalledWith(
       'acid+explosion:seed1',
@@ -305,7 +305,7 @@ describe('generateFusionEntry', () => {
 
     expect(mockTryClaimFusionGeneration).toHaveBeenCalledOnce()
     expect(mockGenerateEnglishFusionWithLlm).toHaveBeenCalledOnce()
-    expect(mockTranslateFusionToLocaleWithLlm).toHaveBeenCalledTimes(2)
+    expect(mockTranslateFusionToAllLocalesWithLlm).toHaveBeenCalledOnce()
     expect(firstResult).toEqual(secondResult)
   })
 
@@ -327,7 +327,7 @@ describe('generateFusionEntry', () => {
   })
 
   it('does not fall back when force is true', async () => {
-    mockTranslateFusionToLocaleWithLlm.mockRejectedValue(
+    mockTranslateFusionToAllLocalesWithLlm.mockRejectedValue(
       new Error('Translation down'),
     )
 

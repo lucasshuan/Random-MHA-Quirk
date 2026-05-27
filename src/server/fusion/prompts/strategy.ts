@@ -38,7 +38,10 @@ export interface FusionStrategySelectionOptions {
 }
 
 interface StrategyCoherenceGuidance {
-  criteria: string[]
+  criteria: (
+    quirkA: FusionCatalogQuirk,
+    quirkB: FusionCatalogQuirk,
+  ) => string[]
 }
 
 const STRATEGY_COHERENCE_GUIDANCE: Record<
@@ -46,36 +49,47 @@ const STRATEGY_COHERENCE_GUIDANCE: Record<
   StrategyCoherenceGuidance
 > = {
   synergy: {
-    criteria: [
-      'Both parent essences must be indispensable parts of one NEW rule; removing either parent should break the concept.',
-      'Combine operations, not just imagery, nouns, colors, or generic force.',
+    criteria: (quirkA, quirkB) => [
+      `Treat ${quirkA.name} and ${quirkB.name} as ingredients for one new Quirk, not as two powers sharing space.`,
+      `Prefer a clean third concept when ${quirkA.name} and ${quirkB.name} naturally imply one: an organism, material, reaction, device, phenomenon, mythic form, sport, or other recognizable derivative.`,
+      `Do not force ${quirkA.name} or ${quirkB.name} key nouns into the final name when a clearer derived name fits better.`,
     ],
   },
+
   'dominant-a': {
-    criteria: [
-      'Parent A supplies the main operation readers immediately recognize.',
-      'Parent B changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+    criteria: (quirkA, quirkB) => [
+      `${quirkA.name} should be the clearest parent in the final Quirk.`,
+      `${quirkB.name} should reshape ${quirkA.name} into a new form, medium, behavior, weakness, or expression, not merely decorate it.`,
+      `Let ${quirkA.name} evolve into a fitting third concept through ${quirkB.name}'s influence, rather than staying as a literal version of ${quirkA.name}.`,
     ],
   },
+
   'dominant-b': {
-    criteria: [
-      'Parent B supplies the main operation readers immediately recognize.',
-      'Parent A changes exactly one trigger, medium, output, or limitation of that operation; it cannot be decorative flavor.',
+    criteria: (quirkA, quirkB) => [
+      `${quirkB.name} should be the clearest parent in the final Quirk.`,
+      `${quirkA.name} should reshape ${quirkB.name} into a new form, medium, behavior, weakness, or expression, not merely decorate it.`,
+      `Let ${quirkA.name} evolve into a fitting third concept through ${quirkB.name}'s influence, rather than staying as a literal version of ${quirkA.name}.`,
     ],
   },
+
   'failure-mode': {
-    criteria: [
-      'Choose one recognizable operational essence from each parent.',
-      'Degrade scale, speed, reach, output, reliability, or versatility; never degrade recognizability.',
-      'Name the missing capability through the narrower rule itself, rather than adding vague fatigue to an unrelated effect.',
+    criteria: (quirkA, quirkB) => [
+      `The result should still be recognizably descended from both ${quirkA.name} and ${quirkB.name}.`,
+      `Make the fusion incomplete, unstable, narrow, weaker, stranger, or harder to use because the two inheritances did not settle cleanly.`,
+      `The flaw should come from the tension between ${quirkA.name} and ${quirkB.name}, not from generic fatigue or random backlash.`,
+      `A third concept is allowed, but it should feel like a damaged, partial, or malformed version of what ${quirkA.name} and ${quirkB.name} could have become.`,
     ],
   },
 }
 
-export function formatStrategyCoherenceGuidance(key: FusionStrategyKey): string {
+export function formatStrategyCoherenceGuidance(
+  key: FusionStrategyKey,
+  quirkA: FusionCatalogQuirk,
+  quirkB: FusionCatalogQuirk,
+): string {
   const guidance = STRATEGY_COHERENCE_GUIDANCE[key]
   return `Strategy-specific requirements (${key}):
-${guidance.criteria.map((criterion) => `- ${criterion}`).join('\n')}`
+${guidance.criteria(quirkA, quirkB).map((criterion) => `- ${criterion}`).join('\n')}`
 }
 
 function rangeIndex(range: string): number {
@@ -97,8 +111,8 @@ export function analyzeParentPair(
     Math.abs(rangeIndex(quirkA.range) - rangeIndex(quirkB.range)) >= 3
 
   const commonPointLines: string[] = [
-    `Parent A: ${quirkA.type}, range ${quirkA.range}, facets [${quirkA.facets.join(', ')}]`,
-    `Parent B: ${quirkB.type}, range ${quirkB.range}, facets [${quirkB.facets.join(', ')}]`,
+    `${quirkA.name}: type ${quirkA.type}, range ${quirkA.range}, facets [${quirkA.facets.join(', ')}]`,
+    `${quirkB.name}: type ${quirkB.type}, range ${quirkB.range}, facets [${quirkB.facets.join(', ')}]`,
   ]
 
   if (quirkA.type === quirkB.type) {
@@ -153,22 +167,22 @@ const STRATEGY_DEFS: StrategyDef[] = [
   {
     key: 'synergy',
     instruction: () =>
-      'Fusion strategy — unified synergy: weave both parents into one coherent mechanism.',
+      'Fusion style — blended inheritance: create one natural Quirk that feels born from both parents.',
   },
   {
     key: 'dominant-a',
     instruction: (quirkA, quirkB) =>
-      `Fusion strategy — parent A is dominant: ${quirkA.name}'s ${quirkA.type}/${quirkA.range} logic leads; ${quirkB.name} modifies, limits, or reshapes its expression.`,
+      `Fusion style — ${quirkA.name} leads: the child mostly inherits ${quirkA.name}'s feel, while ${quirkB.name} reshapes how it appears, behaves, or fails.`,
   },
   {
     key: 'dominant-b',
     instruction: (quirkA, quirkB) =>
-      `Fusion strategy — parent B is dominant: ${quirkB.name}'s ${quirkB.type}/${quirkB.range} logic leads; ${quirkA.name} modifies, limits, or reshapes its expression.`,
+      `Fusion style — ${quirkB.name} leads: the child mostly inherits ${quirkB.name}'s feel, while ${quirkA.name} reshapes how it appears, behaves, or fails.`,
   },
   {
     key: 'failure-mode',
     instruction: () =>
-      'Fusion strategy — failure mode: incomplete genetic fusion, weaker or narrower than either parent.',
+      'Fusion style — imperfect inheritance: create a flawed, partial, or unstable Quirk descended from both parents.',
   },
 ]
 
@@ -180,7 +194,7 @@ function buildSelectedStrategy(
   return {
     key: picked.key,
     instruction: `${picked.instruction(quirkA, quirkB)}
-${formatStrategyCoherenceGuidance(picked.key)}`,
+${formatStrategyCoherenceGuidance(picked.key, quirkA, quirkB)}`,
   }
 }
 

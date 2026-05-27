@@ -10,7 +10,7 @@ interface PageSeoCopy {
 const SEO_COPY: Record<Locale, Record<SeoPageKey, PageSeoCopy>> = {
   en: {
     home: {
-      title: 'Roll Your Individuality',
+      title: 'Roll Your Quirk',
       description:
         'Fan-made My Hero Academia quirk roller. Draw one quirk from a curated canon-and-original pool, or fuse two parents into an AI-crafted hybrid. Solo rolls, hybrid fusions, and Try Your Luck — in English, Português, and Español.',
     },

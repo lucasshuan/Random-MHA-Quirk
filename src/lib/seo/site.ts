@@ -1,7 +1,7 @@
 /** Production fallback when env vars are unset (local build, OG crawlers). */
 export const SITE_URL_FALLBACK = 'https://random-mha-quirk.vercel.app'
 
-export const SITE_NAME = 'MHA Lab'
+export const SITE_NAME = 'My Hero Academia Lab'
 
 /** PNG — widely accepted by social crawlers (some reject WebP). */
 export const SITE_LOGO_PATH = '/logo.png'

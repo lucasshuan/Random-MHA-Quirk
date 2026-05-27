@@ -2,7 +2,7 @@
   <img src="public/logo.webp" alt="MHA Lab" width="120" />
 </p>
 
-<h1 align="center">MHA Lab</h1>
+<h1 align="center">My Hero Academia Lab</h1>
 
 <p align="center">
   <strong>Roll a quirk and Plus Ultra!</strong><br />

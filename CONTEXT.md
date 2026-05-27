@@ -1,4 +1,4 @@
-# Project context — MHA Lab
+# Project context — My Hero Academia Lab
 
 Fan-made quirk roller and fusion app for *My Hero Academia*: canon catalog in Supabase, hybrid generation via LLM, i18n (EN / PT-BR / ES). Not affiliated with the official series.
 

@@ -29,7 +29,7 @@ export function WizardFrame({
   return (
     <main className="wizard-shell">
       <header className="wizard-hero">
-        <p className="wizard-badge">MHA Lab</p>
+        <p className="wizard-badge">My Hero Academia Lab</p>
         <h1>{title}</h1>
         {description ? <p>{description}</p> : null}
       </header>

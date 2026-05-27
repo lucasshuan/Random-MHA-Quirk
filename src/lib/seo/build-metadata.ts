@@ -11,7 +11,8 @@ import {
   SITE_KEYWORDS,
   SITE_LOGO_PATH,
   SITE_NAME,
-  siteLogoUrl,
+  SITE_OG_IMAGE,
+  siteOgImageUrl,
 } from './site'
 
 const DESCRIPTION_MAX = 160
@@ -44,9 +45,10 @@ function sharedOpenGraph(
     alternateLocale: ['en_US', 'pt_BR', 'es_ES'].filter((l) => l !== ogLocale),
     images: [
       {
-        url: siteLogoUrl(),
-        width: 512,
-        height: 512,
+        url: siteOgImageUrl(),
+        width: SITE_OG_IMAGE.width,
+        height: SITE_OG_IMAGE.height,
+        type: SITE_OG_IMAGE.type,
         alt: `${SITE_NAME} logo`,
       },
     ],
@@ -55,10 +57,10 @@ function sharedOpenGraph(
 
 function sharedTwitter(title: string, description: string): Metadata['twitter'] {
   return {
-    card: 'summary_large_image',
+    card: 'summary',
     title,
     description,
-    images: [siteLogoUrl()],
+    images: [siteOgImageUrl()],
   }
 }
 

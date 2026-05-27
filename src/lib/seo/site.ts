@@ -6,6 +6,20 @@ export const SITE_NAME = 'My Hero Academia Lab'
 /** PNG — widely accepted by social crawlers (some reject WebP). */
 export const SITE_LOGO_PATH = '/logo.png'
 
+/**
+ * Open Graph / Twitter preview image.
+ * Keep width under 400px so Discord, Facebook, and LinkedIn use a side thumbnail
+ * instead of a full-width banner (logo.png is 124×120).
+ */
+export const SITE_OG_IMAGE = {
+  path: SITE_LOGO_PATH,
+  width: 124,
+  height: 120,
+  type: 'image/png' as const,
+  /** Bump when changing the asset or declared dimensions (crawler cache bust). */
+  cacheVersion: '2',
+} as const
+
 export const SITE_KEYWORDS = [
   'My Hero Academia',
   'MHA',
@@ -71,4 +85,9 @@ export function absoluteSiteUrl(path = ''): string {
 
 export function siteLogoUrl(): string {
   return absoluteSiteUrl(SITE_LOGO_PATH)
+}
+
+/** OG/Twitter image URL with cache-bust query for link-preview crawlers. */
+export function siteOgImageUrl(): string {
+  return `${absoluteSiteUrl(SITE_OG_IMAGE.path)}?v=${SITE_OG_IMAGE.cacheVersion}`
 }

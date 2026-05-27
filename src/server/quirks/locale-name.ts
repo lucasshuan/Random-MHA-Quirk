@@ -83,14 +83,14 @@ const LOCALE_NAME_BY_REGISTER: Record<
     'meme-adjacent': {
       rules: [
         'Humor de internet, frases de meme e termos chulos/leves coloquiais são permitidos.',
-        'Abreviações e gíria online são OK se mantiverem a piada.',
+        'Abreviações, onomatopeias e gíria online são OK se mantiverem a piada.',
         'Se traduzir mata a piada ou o termo já é usado assim online, mantenha o inglês.',
       ],
       examples: [
         'Who, Me? → Pera, Eu?',
         'Sugar Rush → Corrida do Açúcar',
         'Chest Hair → Pelos no Peito',
-        'Pop Off → Ploc-ploc',
+        'Pop Off → Pop Off',
         'Stress → Estresse',
       ],
     },
@@ -151,14 +151,14 @@ const LOCALE_NAME_BY_REGISTER: Record<
     'meme-adjacent': {
       rules: [
         'Humor de internet, frases meme y términos coloquiales/chulos leves están permitidos.',
-        'Abreviaciones y jerga online OK si mantienen el chiste.',
+        'Abreviaciones, onomatopeias y jerga online OK si mantienen el chiste.',
         'Si traducir mata el chiste o el término ya se usa así online, mantén el inglés.',
       ],
       examples: [
         'Who, Me? → ¿Quién, Yo?',
         'Sugar Rush → Subidón de Azúcar',
         'Chest Hair → Pelos en el Pecho',
-        'Pop Off → Plo-plo',
+        'Pop Off → Pop Off',
         'Stress → Estrés',
       ],
     },

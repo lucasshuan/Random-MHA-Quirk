@@ -6,7 +6,7 @@ import { useI18n } from '../../i18n/useI18n'
 interface MinimalFrameProps {
   children: ReactNode
   canGoBack: boolean
-  showRestart: boolean
+  canRestart: boolean
   onBack: () => void
   onRestart: () => void
 }
@@ -14,7 +14,7 @@ interface MinimalFrameProps {
 export function MinimalFrame({
   children,
   canGoBack,
-  showRestart,
+  canRestart,
   onBack,
   onRestart,
 }: MinimalFrameProps) {
@@ -35,17 +35,16 @@ export function MinimalFrame({
             >
               ←
             </button>
-            {showRestart ? (
-              <button
-                type="button"
-                className="icon-btn"
-                onClick={onRestart}
-                aria-label={t('nav.restart')}
-                data-tooltip={t('nav.restart')}
-              >
-                ⌂
-              </button>
-            ) : null}
+            <button
+              type="button"
+              className="icon-btn"
+              onClick={onRestart}
+              disabled={!canRestart}
+              aria-label={t('nav.restart')}
+              data-tooltip={t('nav.restart')}
+            >
+              ⌂
+            </button>
           </div>
           <div className="minimal-topbar-end">
             <SocialLinks />

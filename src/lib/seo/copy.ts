@@ -12,17 +12,17 @@ const SEO_COPY: Record<Locale, Record<SeoPageKey, PageSeoCopy>> = {
     home: {
       title: 'Roll Your Quirk',
       description:
-        'Fan-made My Hero Academia quirk roller. Draw one quirk from a curated canon-and-original pool, or fuse two parents into an AI-crafted hybrid. Solo rolls, hybrid fusions, and Try Your Luck — in English, Português, and Español.',
+        'Fan-made My Hero Academia quirk roller. Draw one quirk from a curated canon-and-original pool, or fuse two parents into an AI-crafted hybrid — in English, Português, and Español.',
     },
     start: {
       title: 'Roll a Quirk',
       description:
-        'Pick One Quirk, Hybrid fusion, or Try Your Luck. Filter by emitter, transformation, mutant, tier, range, and facets — then reveal your MHA individuality.',
+        'Pick One Quirk, Hybrid, or Try Your Luck. Filter by type, tier, range, and facets — then reveal your Hero Academia quirk.',
     },
     database: {
       title: 'Quirk Database',
       description:
-        'Browse every quirk and saved hybrid in the catalog. Search by name, type, tier, range, origin, and facets — open any entry or roll your own.',
+        'Browse every Hero Academia quirk and hybrid in the database. Search by name, type, tier, range, origin, and facets — open any entry or roll your own.',
     },
     history: {
       title: 'Previous Results',
@@ -39,12 +39,12 @@ const SEO_COPY: Record<Locale, Record<SeoPageKey, PageSeoCopy>> = {
     home: {
       title: 'Sorteie Sua Individualidade',
       description:
-        'Rolador de individualidades de My Hero Academia feito por fãs. Sorteie uma quirk do acervo canônico e original, ou funda dois pais em um híbrido gerado por IA. Modo solo, híbrido e Tente a Sorte — em português, inglês e espanhol.',
+        'Rolador de individualidades de My Hero Academia feito por fãs. Sorteie uma quirk do acervo canônico e original, ou funda dois pais em um híbrido gerado por IA — em português, inglês e espanhol.',
     },
     start: {
       title: 'Sortear Individualidade',
       description:
-        'Escolha Uma Individualidade, Híbrido ou Tente a Sorte. Filtre por emissor, transformação, mutante, tier, alcance e facetas — e revele sua quirk de MHA.',
+        'Escolha Uma Individualidade, Híbrido ou Tente a Sorte. Filtre por tipo, tier, alcance e facetas — e revele sua quirk de MHA.',
     },
     database: {
       title: 'Base de Individualidades',
@@ -66,12 +66,12 @@ const SEO_COPY: Record<Locale, Record<SeoPageKey, PageSeoCopy>> = {
     home: {
       title: 'Sortea Tu Don',
       description:
-        'Generador de dones de My Hero Academia hecho por fans. Saca un don del catálogo canónico y original, o fusiona dos padres en un híbrido con IA. Modo solo, híbrido y Prueba tu Suerte — en español, inglés y portugués.',
+        'Generador de dones de My Hero Academia hecho por fans. Saca un don del catálogo canónico y original, o fusiona dos padres en un híbrido con IA — en español, inglés y portugués.',
     },
     start: {
       title: 'Sortear un Don',
       description:
-        'Elige Un Don, Híbrido o Prueba tu Suerte. Filtra por emisor, transformación, mutante, tier, alcance y facetas — y descubre tu don de MHA.',
+        'Elige Un Don, Híbrido o Prueba tu Suerte. Filtra por tipo, tier, alcance y facetas — y descubre tu don de MHA.',
     },
     database: {
       title: 'Base de Dones',

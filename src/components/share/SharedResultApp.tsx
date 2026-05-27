@@ -636,7 +636,7 @@ export function SharedResultApp({
     <QuirksCatalogGate>
       <MinimalFrame
         canGoBack
-        showRestart
+        canRestart
         onBack={handleBack}
         onRestart={handleRestart}
       >

@@ -284,7 +284,7 @@ export function DatabasePageApp() {
   return (
     <MinimalFrame
       canGoBack
-      showRestart={false}
+      canRestart={false}
       onBack={goHome}
       onRestart={goHome}
     >

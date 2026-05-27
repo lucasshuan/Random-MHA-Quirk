@@ -767,7 +767,7 @@ export function WizardApp({
           ? currentStep !== 'randomRoll'
           : currentStep !== 'mode' && currentStep !== 'randomRoll'
       }
-      showRestart={
+      canRestart={
         exitToHome
           ? currentStep !== 'randomRoll'
           : currentStep !== 'mode' && currentStep !== 'randomRoll'

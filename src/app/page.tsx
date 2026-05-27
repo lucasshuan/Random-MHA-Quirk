@@ -19,7 +19,7 @@ export default function HomePage() {
   return (
     <MinimalFrame
       canGoBack={false}
-      showRestart={false}
+      canRestart={false}
       onBack={() => router.push('/')}
       onRestart={() => router.push('/')}
     >
